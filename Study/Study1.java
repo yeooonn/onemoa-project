@@ -2,52 +2,19 @@ import java.util.Scanner;
 
 public class Study {
   public static void main(String[] args) {
-    // ID : admin, PW : 1234 를 입력하면 '관리자님 환영합니다.'라고 출력하며 게시판 활성화
-    String ID, AdminID = "admin";
-    String PW, AdminPW = "1234";
-    int WrongCount = 0;
-    Scanner sc = new Scanner(System.in);
+    String ID, AdminID = "admin";  // 사용자가 입력하는 ID와 처음부터 지정된 관리자 ID 변수
+    String PW, AdminPW = "1234"; // 사용자가 입력하는 PW와 처음부터 지정된 관리자 PW 변수
+    int WrongCount = 0; // 에러 카운트를 저장하는 변수
+    Scanner sc = new Scanner(System.in); // 스캐너 변수 이름은 sc
 
-    while(true) {
-      if(WrongCount < 5) { // 오류 카운트가 5보다 작으면
-        System.out.printf("아이디를 입력하세요 : ");
-        ID = sc.nextLine();
-        if(ID.equals(AdminID)) { // 입력한 ID와 관리자 ID를 비교
-          // ID = AdminID일시 PW 입력으로 넘어감
-          System.out.printf("비밀번호를 입력하세요 : ");
-          PW = sc.nextLine(); // PW입력
-          if(PW.equals(AdminPW)) { // 입력한 PW와 관리자 PW를 비교
-            System.out.printf("관리자님 환영합니다.\n");
-            break;
-          } else if(!PW.equals(AdminPW)) { // 입력한 PW와 관리자 PW가 다르면 처음으로
-            System.out.printf("비밀번호가 틀렸습니다.\n");
-            WrongCount++; // 오류 카운트 +1
-          }
-        } else if(!ID.equals(AdminID)) { // 입력한 ID와 관리자 ID가 다르면 처음으로
-          System.out.printf("아이디가 틀렸습니다.\n");
-          WrongCount++; // 오류 카운트 +1
-        }
-      } else if(WrongCount >= 5){ // 오류 카운트가 5 이상이면
-        System.out.printf("입력 오류가 5번 누적됐습니다.\n다음에 다시 이용해주세요.\n");
-        break;
-      }
+    while(true) { // while(true)로 계속해서 돌아가도록 설정
+
+    // 내부에 if문을 사용하여 사용자가 관리자 ID,PW를 입력하면 sysout:"로그인 성공"이 뜨도록 설정
+    // ID가 틀리면 sysout"ID가 틀렸습니다.", PW가 틀리면 sysout"PW가 틀렸습니다." 출력
+    // 에러 카운트가 ID, PW 입력 중 총합 3번이 넘어가면 sysout:"오류가%d번 누적됐습니다. 다음에 이용해주세요"가 뜨도록 설정
+    // 반드시 ID입력이 성공해야지 PW입력으로 넘어가는 조건이 되어야 함!!!!!
+
     }
     sc.close();
-  }
-
-  public static void displayHeadline() {
-    System.out.println("------------------------");
-  }
-  public static void displayBlankLine() {
-    System.out.println();
-  }
-
-  public static void welcome() {
-    displayHeadline();
-    System.out.println("[게시판 애플리케이션]");
-    displayBlankLine();
-    System.out.println("환영합니다!");
-    displayBlankLine();
-    displayHeadline();
   }
 }
