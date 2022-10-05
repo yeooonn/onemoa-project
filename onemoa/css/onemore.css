@@ -203,6 +203,10 @@ footer .detail span {
 .modal.show {
   display: block;
 }
+.modal.hide {
+  display: none;
+}
+
 .modal_body {
   position: absolute;
   top: 50%;
@@ -224,7 +228,7 @@ p {
 }
 table tr td input {
   display: block;
-  width: 312px;
+  width: 129%;
   height: 47px;
   background-color: #fff;
   border: 2px solid #dedede;
@@ -280,4 +284,10 @@ label[for="label-a"] {
 .closebtn {
   border: none;
   background-color: #fff;
+}
+
+.closebtn {
+  float: right;
+  margin-top: -30px;
+  margin-left: 30px;
 }

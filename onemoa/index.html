@@ -2,12 +2,12 @@
 <html lang="ko">
   <head>
     <meta charset = "UTF-8">
-    <title>onemoa 메인페이지</title>
+    <title>onemoa v</title>
     <link href="css/onemore.css" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="./js/onemoa.js"></script>
   </head>
-  <body>
+  <body style="overflow-x: hidden">
     <div class="modal">
       <div class="modal_body">
         <div calss="login_container">
@@ -178,15 +178,15 @@
         modal.classList.toggle('show');
 
         if (modal.classList.contains('show')) {
-          body.style.overflow = 'hidden';
+          body.style.overflow = 'hide';
         }
+        body.style.overflow = 'show';
+       
       });
 
       closebtn.addEventListener('click', () => {
-        modal.classList.toggle('hidden');
-        if (modal.classList.contains('hidden')) {
-          body.style.overflow = 'auto';
-        }
+        modal.classList.toggle('hide');
+
       });
 
       modal.addEventListener('click', (event) => {
