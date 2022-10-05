@@ -16,10 +16,10 @@
           <form action='login' method="post">
             <table>
               <tr>
-                <td><input name='email' type='email' size='30' value="" placeholder="이메일을 입력해 주세요."></td>
+                <td><input name='email' type='email' value="" placeholder="이메일을 입력해 주세요."></td>
               </tr>
               <tr>
-                <td><input name='password' type='password' size='20' placeholder="패스워드를 입력해 주세요."></td>
+                <td><input name='password' type='password' placeholder="패스워드를 입력해 주세요."></td>
               </tr>
             </table>
             <p>
@@ -175,30 +175,22 @@
       const closebtn = document.querySelector('.closebtn');
 
       btnOpenPopup.addEventListener('click', () => {
-        modal.classList.toggle('show');
+        
+        modal.style.display = 'block';
 
         if (modal.classList.contains('show')) {
           body.style.overflow = 'hide';
         }
-        body.style.overflow = 'show';
+        body.style.overflow = 'hidden';
        
       });
 
       closebtn.addEventListener('click', () => {
-        modal.classList.toggle('hide');
+        modal.style.display = 'none';
+        body.style.overflow = 'auto';
 
       });
 
-      modal.addEventListener('click', (event) => {
-        if (event.target === modal) {
-          modal.classList.toggle('show');
-
-          if (!modal.classList.contains('show')) {
-            body.style.overflow = 'auto';
-          }
-        }
-      });
-      
     </script>
   </body>
 </html>
