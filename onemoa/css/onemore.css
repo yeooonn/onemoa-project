@@ -12,7 +12,9 @@ a {
   text-decoration: none;
   color: inherit;
 }
-
+button {
+  cursor: grab;
+}
 /* 메인페이지 header start */
 header {
   padding-top: 37px;  
@@ -24,6 +26,15 @@ header .nav .firstnav li {
   margin-right: 3.906%;
   font-size: 1.3021vW;
   font-family:'Noto Sans KR','Apple SD Gothic','맑은고딕',sans-serif;
+}
+header .nav .firstnav li .btn-open-popup {
+  float: right;
+  margin-right: 3.906%;
+  font-size: 1.3021vW;
+  font-family:'Noto Sans KR','Apple SD Gothic','맑은고딕',sans-serif;
+  border: none;
+  background-color: #fff;
+  width: 60px;
 }
 header .menu .secnav li {
   width: 90px;
@@ -177,4 +188,96 @@ footer .detail {
 }
 footer .detail span {
   display: block;
+}
+
+/* login */
+.modal {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: none;
+  background-color: rgba(0, 0, 0, 0.4);
+}
+.modal.show {
+  display: block;
+}
+.modal_body {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 29.833%;
+  height: 690px;
+  padding: 40px;
+  text-align: center;
+  background-color: rgb(255, 255, 255);
+  border-radius: 10px;
+  box-shadow: 0 2px 3px 0 rgba(34, 36, 38, 0.15);
+  transform: translateX(-50%) translateY(-50%);
+}
+p {
+  font-size: 22px;
+  color: #333;
+  margin-bottom: 20px;
+  margin-top: 20px;
+}
+table tr td input {
+  display: block;
+  width: 312px;
+  height: 47px;
+  background-color: #fff;
+  border: 2px solid #dedede;
+  padding-left: 10px;
+  margin-left: 25px;
+  margin-bottom: 8px;
+  border-radius: 5px;
+}
+.loginbtn {
+  border: none;
+  margin-top: -20px;
+}
+.email {
+  color: #333333;
+  padding-left: 10px;
+}
+.find {
+  font-size: 14px;
+  color: #333333;
+  float: right;
+  position: relative;
+  right: 30px;
+  top: -50px;
+}
+#email {
+  float: left;
+}
+input[id="email"] {
+  position: relative;
+  top: -10px;
+  left: 30px;
+}
+label[for="label-a"] {
+  position: relative;
+  top: -10px;
+  left: 40px;
+  float: left;
+  font-size: 14px;
+}
+.sns p {
+  font-size: 14px;
+  color: #666666;
+  position: relative;
+  right: 10px;
+  top: 10px;
+}
+.sns img {
+  margin-bottom: 5px;
+}
+.sign {
+  margin-top: 10px;
+}
+.closebtn {
+  border: none;
+  background-color: #fff;
 }

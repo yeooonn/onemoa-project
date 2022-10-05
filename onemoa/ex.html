@@ -7,21 +7,34 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="./js/onemoa.js"></script>
   </head>
-  <body> 
-    <div class="gallery">
-      <ul class="clearfix">
-        <li><img src="./img/mainre.png"></li>
-        <li><img src="./img/mainre.png"></li>
-        <li><img src="./img/mainre.png"></li>
-        <li><img src="./img/mainre.png"></li>
-        <li><img src="./img/mainre.png"></li>
-        <li><img src="./img/mainre.png"></li>
-        <li><img src="./img/mainre.png"></li>
-        <li><img src="./img/mainre.png"></li>
-      </ul>
-     </div>
-     
-    
+
+
+
+  <div class="modal">
+    <div class="modal_body">
+      <div calss="login_container">
+        <form action='login' method="post">
+          <table border='1'>
+            <tr>
+              <th>이메일</th><td><input name='email' type='email' size='30' value=""></td>
+            </tr>
+            <tr>
+              <th>암호</th><td><input name='password' type='password' size='20'></td>
+            </tr>
+          </table>
+          <input type="checkbox" name="saveEmail">이메일 저장<br>
+          <p>
+            <button type='submit'>로그인</button>
+            <a href='../'>취소</a>
+          </p>
+          </form>
+      </div>
+    </div>
+  </div>
+  <button class="btn-open-popup">로그인</button>
+
+
+
   </body>
 </html>
   

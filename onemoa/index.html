@@ -7,15 +7,47 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="./js/onemoa.js"></script>
   </head>
-  <body style="overflow-x: hidden">
-
+  <body>
+    <div class="modal">
+      <div class="modal_body">
+        <div calss="login_container">
+          <button class="closebtn"><img src="./img/x.png"></button>
+          <p>로그인</p>
+          <form action='login' method="post">
+            <table>
+              <tr>
+                <td><input name='email' type='email' size='30' value="" placeholder="이메일을 입력해 주세요."></td>
+              </tr>
+              <tr>
+                <td><input name='password' type='password' size='20' placeholder="패스워드를 입력해 주세요."></td>
+              </tr>
+            </table>
+            <p>
+              <button type='submit' class="loginbtn"><img src="img/loginbtn.png"></button>
+            </p>
+            <input type="checkbox" name="saveEmail" id="email"><label for="label-a">이메일 유지</label><br>
+            <p class="find"><a href = "#">아이디 / 패스워드 찾기</a></p>
+          </form>
+          <div class="sns">
+            <p>SNS로 간편하게 로그인하세요.</p>
+            <a href="#"><img src="./img/kakao.png"></a>
+            <a href="#"><img src="./img/naver.png"></a>
+            <a href="#"><img src="./img/google.png"></a>
+          </div>
+          <div class="sign">
+            <a href="#"><img src="./img/signup.png"></a>
+          </div>
+          </div>
+        </div>
+    </div>
+    
     <header>
       <div class="nav">
         <ul class="firstnav">
           <a href="#"><img src="./img/logo.png"></a>
-          <li><a href="#">메시지</a></li>
+          <li><button class="btn-open-popup">로그인</button></li>
           <li><a href="#">마이페이지</a></li>
-          <li><a href="#">로그인</a></li>
+          <li><a href="#">메시지</a></li>
         </ul>
       </div>
 
@@ -136,5 +168,37 @@
       </div>
     </footer>
 
+    <script>
+      const body = document.querySelector('body');
+      const modal = document.querySelector('.modal');
+      const btnOpenPopup = document.querySelector('.btn-open-popup');
+      const closebtn = document.querySelector('.closebtn');
+
+      btnOpenPopup.addEventListener('click', () => {
+        modal.classList.toggle('show');
+
+        if (modal.classList.contains('show')) {
+          body.style.overflow = 'hidden';
+        }
+      });
+
+      closebtn.addEventListener('click', () => {
+        modal.classList.toggle('hidden');
+        if (modal.classList.contains('hidden')) {
+          body.style.overflow = 'auto';
+        }
+      });
+
+      modal.addEventListener('click', (event) => {
+        if (event.target === modal) {
+          modal.classList.toggle('show');
+
+          if (!modal.classList.contains('show')) {
+            body.style.overflow = 'auto';
+          }
+        }
+      });
+      
+    </script>
   </body>
 </html>

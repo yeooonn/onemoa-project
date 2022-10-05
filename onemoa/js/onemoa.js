@@ -37,3 +37,5 @@ $(".g_item ul li").on('click',function(){
     "left":-300*idx+"px"
   },1000);
 });
+
+
