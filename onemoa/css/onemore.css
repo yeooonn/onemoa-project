@@ -23,15 +23,23 @@ a {
 }
 /* 메인페이지 header start */
 header {
-  padding-top: 37px;  
+  padding-top: 20px;  
   padding-left: 3.906%;
   height: 156px;
 }
+header .nav a .logo {
+  font-size: 26px;
+  margin-left: 3%;
+  font-weight: bold;
+}
+
 header .nav .firstnav li {
   float: right;
   margin-right: 3.906%;
   font-size: 1.3021vW;
   font-family:'Noto Sans KR','Apple SD Gothic','맑은고딕',sans-serif;
+  position: relative;
+  top: -40px;
 }
 header .nav .firstnav li .btn-open-popup {
   float: right;
@@ -39,13 +47,15 @@ header .nav .firstnav li .btn-open-popup {
   font-size: 1.3021vW;
   font-family:'Noto Sans KR','Apple SD Gothic','맑은고딕',sans-serif;
   border: none;
-  background-color: #fff;
+  background-color: transparent;
   width: 100px;
 }
 header .menu .secnav li {
   float: left;
   font-size: 1.3021vW;
   margin-left: 3.125%;
+  position: relative;
+  top: -10px;
 }
 header .menu .secnav li a:hover p {
   color: #707fc2;
@@ -59,11 +69,15 @@ header .firstnav li .btn-open-popup:hover {
   color: #707fc2;
   transition: all .3s;
 }
-header .menu .secnav li:nth-of-type(1) {
-  margin-left: 1.510%;
-}
+
 
 /* 메인페이지 mainContents start */
+.mainBanner {
+  width: 100%;
+}
+.mainBanner img {
+  width: 100%;
+}
 .mainContents {
   width: 100%;
   height: auto;
@@ -74,8 +88,8 @@ header .menu .secnav li:nth-of-type(1) {
   font-weight: bold;
   color: #333;
   width: 100%;
-  height: 200px;
-  padding-left: 7.031%;
+  height: 220px;
+  padding-left: 8.531%;
 }
 .mainContents .mainCategory p {
   padding-bottom: 40px;
@@ -85,22 +99,26 @@ header .menu .secnav li:nth-of-type(1) {
   margin-right: 2.812%;
   float: left;
   display: block;
-  width: 16.255%;
+  width: 15.955%;
   height: auto;
+
 }
+
 .mainContents .mainContest {
   font-size: 1.6667vW;
   font-weight: bold;
   color: #333;
-  padding-left: 7.031%;
+  padding-left: 8.531%;
   width: 100%;
-  height: 242px;
+  height: 252px;
   padding-top: 113px;
 }
+
 .mainContents .mainContest .mcon {
   width: 100%;
   height: 50px;
-  margin-top: 32px;
+  margin-top: 22px;
+
 }
 .mainContents .mainContest .mcon li {
   float: left;
@@ -135,12 +153,13 @@ header .menu .secnav li:nth-of-type(1) {
 
 /* maiinReview */
 .mainReview {
-  margin-top: 132px;
+  margin-top: 162px;
 }
 .mainReview p {
+  margin-bottom: 62px;
   font-size: 1.6667vW;
   font-weight: bold;
-  padding-left: 7.031%;
+  padding-left: 8.531%;
   color: #333;
 }
 .mainReview p span {
