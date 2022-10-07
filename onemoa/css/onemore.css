@@ -70,14 +70,104 @@ header .firstnav li .btn-open-popup:hover {
   transition: all .3s;
 }
 
+/* 메인페이지 배너 슬라이드 */
+[name="slideb"] {display:none;}
+.slidebox2 {width:100%;margin:0 auto;text-align:center;}
+.slidebox2 img {width:100%;}
+.slidebox2 .slidelist {
+  width: 100%;
+	white-space:nowrap;
+	font-size:0;
+	overflow:hidden;
+}
+.slidebox2 .slideitem {
+	position:relative;
+	display:inline-block;
+	vertical-align:middle;
+	width:100%;
+	transition:all .35s;
+}
+.slidebox2 .slideitem label {
+	position:absolute;
+	z-index:1;
+	top:50%;
+	transform:translateY(-50%);
+	padding:20px;
+	border-radius:50%;
+	cursor:pointer;
+}
+label.left {
+	left:20px;
+	background-image:url('../img/whitearrow1.png');
+	background-position:center center;
+	background-size:50%;
+	background-repeat:no-repeat;
+}
+label.right {
+	right:20px;
+	background-image:url('../img/whitearrow2.png');
+	background-position:center center;
+	background-size:50%;
+	background-repeat:no-repeat;
+}
 
+/* 페이징 스타일 */
+.paginglist {text-align:center;padding:30px 0;}
+.paginglist > li {display:inline-block;vertical-align:middle;margin:0 10px;}
+.paginglist > li > label {display:block;padding:10px 30px;border-radius:10px;background:#ccc;cursor:pointer;}
+.paginglist > li:hover > label {background:#333;}
+
+[id="slide1"]:checked ~ .slidelist .slideitem {transform:translateX(0);animation:slide1 15s infinite;}
+[id="slide2"]:checked ~ .slidelist .slideitem {transform:translateX(-100%);animation:slide2 15s infinite;}
+[id="slide3"]:checked ~ .slidelist .slideitem {transform:translateX(-200%);animation:slide3 15s infinite;}
+[id="slide4"]:checked ~ .slidelist .slideitem {transform:translateX(-300%);animation:slide4 15s infinite;}
+
+@keyframes slide1 {
+	0% {left:0%;}
+	23% {left:0%;}
+	25% {left:-100%;}
+	48% {left:-100%;}
+	50% {left:-200%;}
+	73% {left:-200%;}
+	75% {left:-300%;}
+	98% {left:-300%;}
+	100% {left:0%;}
+}
+@keyframes slide2 {
+	0% {left:0%;}
+	23% {left:0%;}
+	25% {left:-100%;}
+	48% {left:-100%;}
+	50% {left:-200%;}
+	73% {left:-200%;}
+	75% {left:100%;}
+	98% {left:100%;}
+	100% {left:0%;}
+}
+@keyframes slide3 {
+	0% {left:0%;}
+	23% {left:0%;}
+	25% {left:-100%;}
+	48% {left:-100%;}
+	50% {left:200%;}
+	73% {left:200%;}
+	75% {left:100%;}
+	98% {left:100%;}
+	100% {left:0%;}
+}
+@keyframes slide4 {
+	0% {left:0%;}
+	23% {left:0%;}
+	25% {left:300%;}
+	48% {left:300%;}
+	50% {left:200%;}
+	73% {left:200%;}
+	75% {left:100%;}
+	98% {left:100%;}
+	100% {left:0%;}
+}
 /* 메인페이지 mainContents start */
-.mainBanner {
-  width: 100%;
-}
-.mainBanner img {
-  width: 100%;
-}
+
 .mainContents {
   width: 100%;
   height: auto;
