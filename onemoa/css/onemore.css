@@ -37,7 +37,7 @@ header .nav a .logo {
 header .nav .firstnav li {
   float: right;
   margin-right: 3.906%;
-  font-size: 1.3021vw;
+  font-size: 1.302vw;
   font-family: "Noto Sans KR", "Apple SD Gothic", "맑은고딕", sans-serif;
   position: relative;
   top: -40px;
@@ -45,7 +45,7 @@ header .nav .firstnav li {
 header .nav .firstnav li .btn-open-popup {
   float: right;
   margin-right: 3.906%;
-  font-size: 1.3021vw;
+  font-size: 1.302vw;
   font-family: "Noto Sans KR", "Apple SD Gothic", "맑은고딕", sans-serif;
   border: none;
   background-color: transparent;
@@ -53,7 +53,7 @@ header .nav .firstnav li .btn-open-popup {
 }
 header .menu .secnav li {
   float: left;
-  font-size: 1.3021vw;
+  font-size: 1.302vw;
   margin-left: 3.125%;
   position: relative;
   top: -10px;
@@ -595,4 +595,381 @@ label[for="label-a"] {
   float: right;
   margin-top: -30px;
   margin-left: 30px;
+}
+
+
+/* contest -연정 */
+.contest {
+  width: 100%;
+  height: auto;
+}
+.contest .contestbg {
+  width: 100%;
+  height: auto;
+}
+.contest .contestbg img {
+  width: 100%;
+  height: auto;
+}
+.contest .contestctg {
+  margin-top: 148px;
+  width: 100%;
+  height: 156px;
+}
+.contest .contestctg .conctg {
+  width: 100%;
+  height: 42px;
+}
+.contest .contestctg .conctg li {
+  float: left;
+  font-size: 1.6667vw;
+  font-weight: bold;
+  margin-right: 2.760%;
+  color: #768084;
+}
+.contest .contestctg .conctg li:nth-of-type(1) {
+  margin-left: 4.687%;
+}
+.contest .contestctg .conctg li:nth-of-type(2) a {
+  color: #000;
+}
+.contest .contestctg .conctg li:hover a {
+  color: #000;
+  border-bottom: 2px solid #000;
+}
+.contest .contestctg .contype {
+  width: 100%;
+  height: auto;
+  margin-top: 39px;
+  margin-left: 4.687%;
+}
+.contest .contestctg .contype li {
+  font-size: 1.142vw;
+  font-weight: 500;
+  color: #768084;
+  float: left;
+  margin-right: 1.093%;
+}
+.contest .contestctg .contype li:nth-of-type(1) a {
+  color: #000;
+}
+.contest .contestctg .contype li:hover a {
+  color: #000;
+}
+
+.contest .contestctg .contype2 {
+  width: 100%;
+  height: auto;
+  margin-top: 39px;
+  margin-right: 4.687%;
+}
+.contest .contestctg .contype2 li {
+  font-size: 1.142vw;
+  font-weight: 500;
+  color: #768084;
+  float: right;
+  margin-left: 1.093%;
+  position: relative;
+  right: 4.687%;
+}
+.contest .contestctg .contype2 li:nth-of-type(4) a {
+  color: #000;
+}
+.contest .contestctg .contype2 li:hover a {
+  color: #000;
+}
+
+.contest .contestContents {
+  width: 100%;
+  height: auto;
+  margin-left: 4.687%;
+}
+.contest .contestContents .contestBox {
+  width: 100%;
+  height: auto;
+}
+.contest .contestContents .contestBox .con {
+  width: 91.562%;
+  height: 257px;
+  border: 1px solid #000;
+  padding: 31px;
+  margin-bottom: 40px;
+}
+.contest .contestContents .contestBox .con:hover {
+  background-color: #eceef3;
+  transition: all .3s;
+}
+.contest .contestContents .contestBox .con li {
+  width: 100%;
+}
+.contest .contestContents .contestBox .con li:nth-of-type(1) {
+  width: 12.047%;
+}
+.contest .contestContents .contestBox .con li .conimg {
+  width: 177px;
+  height: 194px;
+  float: left;
+}
+.contest .contestContents .contestBox .con li .conimg img {
+  width: 100%;
+  height: auto;
+}
+.contest .contestContents .contestBox .con li .contestName {
+  width: 65.194%;
+  height: 200px;
+  float: left;
+  border-right: 1px solid #000;
+  padding-left: 6%;
+}
+.contest .contestContents .contestBox .con li .contestName p {
+  float: left;
+  font-size: 0.938vw;
+  color: #000;
+  line-height: 25px;
+  margin-right: 2%;
+  font-weight: bold;
+}
+.contest .contestContents .contestBox .con li .contestName > p:nth-of-type(1) {
+  color: #2152f6;
+}
+.contest .contestContents .contestBox .con li .contesttext p span {
+  display: block;
+}
+.contest .contestContents .contestBox .con li .contesttext p {
+  position: relative;
+  top: 15px;
+  color: #777777;
+  font-weight: normal;
+}
+.contest .contestContents .contestBox .con li .contestD {
+  width: 17.528%;
+  height: 257px;
+  padding-left: 3%;
+  float: left;
+}
+.contest .contestContents .contestBox .con li .contestD p {
+  width: 100%;
+}
+.contest .contestContents .contestBox .con li .contestD p span {
+  float: right;
+  position: relative;
+  left: 40px;
+  top: 0;
+}
+.contest .contestContents .contestBox .con li .contestD p:nth-of-type(1) {
+  font-size: 1.042vw;
+  font-weight: bold;
+  margin-bottom: 90px;
+}
+.contest .contestContents .contestBox .con li .contestD p {
+  font-size: 0.938vw;
+}
+.contest .nextBox {
+  width: 100%;
+  height: 155px;
+  margin-top: 100px;
+}
+.contest .nextBox p {
+  text-align: center;
+}
+.contest .nextBox p span:nth-of-type(1) {
+  display: inline-block;
+  width: 30px;
+  height: 30px;
+  background-color: #2c2f39;
+  color: #fff;
+  border-radius: 10%;
+  padding-top: 3px;
+}
+.contest .nextBox p span {
+  padding-top: 3px;
+  display: inline-block;
+  width: 30px;
+  height: 30px;
+  background-color: #d3d7e3;
+  color: #fff;
+  border-radius: 10%;
+}
+.contest .nextBox p span:hover {
+  background-color: #2c2f39;
+  transition: all .3s;
+}
+
+
+/* contestTeam */
+.modal2 {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 2829px;
+  display: none;  
+  background-color: rgba(0, 0, 0, 0.6);
+}
+.modal2.show {
+  display: block;
+}
+.modal2.hide {
+  display: none;
+}
+.modal_body2 {
+  position: absolute;
+  top: 1630px;
+  left: 50%;
+  width: 80%;
+  height: auto;
+  padding-top: 80px;
+  padding-left: 4.529%;
+  padding-right: 4.029%;
+  background-color: rgb(255, 255, 255);
+  border-radius: 10px;
+  box-shadow: 0 2px 3px 0 rgba(34, 36, 38, 0.15);
+  transform: translateX(-50%) translateY(-50%);
+}
+.closebtn2 {
+  border: none;
+  background-color: #fff;
+  float: right;
+  margin-top: -30px;
+  position: relative;
+}
+.contestDetail p {
+  font-size: 1.458vw;
+  font-weight: bold;
+  letter-spacing: 1px;
+}
+.contestDetail .detail {
+  width: 120%;
+  height: 547px;
+}
+.contestDetail .detail li {
+  float: left;
+}
+.contestDetail .detail li .detailimg {
+  width: 90%;
+  height: auto;
+}
+.contestDetail .detail li .detailimg img {
+  width: 100%;
+  height: auto;
+}
+.contestDetail .detail li .contable {
+  margin-left: 15.23%;
+  font-size: 1.254vw;
+  color: #909090;
+  width: 100%;
+}
+.contestDetail .detail li .contable tr {
+  width: 90%;
+  height: 45px;
+}
+.contestDetail .detail li .contable tr td:nth-of-type(1) {
+  width: 160px;
+  color: #000;
+}
+.contestDetail .detail li .contable tr td span:nth-of-type(1) {
+  line-height: 40px;
+
+}
+.contestDetail .detail li .contable tr td span {
+  display: block;
+  position: relative;
+  top: 23px;
+}
+.contestdtype {
+  width: 100%;
+  height: 100px;
+  margin-top: 75px;
+}
+.contestdtype p {
+  font-size: 1.142vw;
+  color: #a5a5a5;
+  float: left;
+  margin-right: 5%;
+  font-weight: bold;
+}
+.contestdtype p:hover {
+  border-bottom: 3px solid #000;
+  padding-bottom: 7px;
+}
+.contestdtype p:nth-of-type(2) {
+  color: #000;
+  border-bottom: 3px solid #000;
+  padding-bottom: 7px;
+}
+.contestdtype span {
+  display: block;
+  width: 100%;
+  height: 1px;
+  background-color: #000;
+  position: relative;
+  top: 50px;
+}
+.person {
+  width: 100%;
+  height: auto;
+  margin-top: 40px;
+}
+.person p {
+  font-size: 1.350vw;
+  color: #2f2f2f;
+  line-height: 28px;
+}
+.person > p:nth-of-type(1) {
+  margin-left: 20px;
+}
+.person p span {
+  display: block;
+}
+.person .teamJang {
+  width: 90%;
+  height: 550px;
+  margin-left: 7%;
+  margin-top: 60px;
+}
+.person .teamJang li {
+  width: 15%;
+  margin-right: 5%;
+  float: left;
+  margin-bottom: 50px;
+}
+.person .teamJang li img {
+  width: 100%;
+  height: auto;
+}
+.person .teamJang li p {
+  text-align: center;
+}
+.insert {
+  text-align: center;
+  margin-bottom: 150px;
+}
+.insert p {
+  font-size: 1.563vw;
+  color: #2f2f2f;
+  line-height: 35px;
+}
+.insert p span {
+  display: block;
+}
+.insert .insertbtn {
+  width: 12.99%;
+  height: 71px;
+  border: 1px solid #707fc2;
+  margin: 30px auto;
+  padding-top: 25px;
+  border-radius: 5%;
+}
+.insert .insertbtn a {
+  font-size: 1.250vw;
+  color: #707fc2;
+}
+.insert .insertbtn:hover {
+  color: #fff;
+  background-color: #707fc2;
+  transition: all .3s;
+}
+.insert .insertbtn:hover a {
+  color: #fff;
+  transition: all .3s;
 }
