@@ -22,6 +22,9 @@ a {
 .loginbtn {
   cursor: pointer;
 }
+button {
+  cursor: pointer;
+}
 /* 메인페이지 header - 연정 */
 header {
   padding-top: 20px;
@@ -798,7 +801,7 @@ label[for="label-a"] {
 
 /* contestTeam */
 .modal2 {
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   width: 100%;
@@ -813,11 +816,12 @@ label[for="label-a"] {
   display: none;
 }
 .modal_body2 {
+  overflow-y: auto;
   position: absolute;
-  top: 1630px;
+  top: 16%;
   left: 50%;
   width: 80%;
-  height: auto;
+  height: 830px;
   padding-top: 80px;
   padding-left: 4.529%;
   padding-right: 4.029%;
@@ -826,12 +830,14 @@ label[for="label-a"] {
   box-shadow: 0 2px 3px 0 rgba(34, 36, 38, 0.15);
   transform: translateX(-50%) translateY(-50%);
 }
+::-webkit-scrollbar {
+  display: none;
+}
 .closebtn2 {
   border: none;
   background-color: #fff;
   float: right;
   margin-top: -30px;
-  position: relative;
 }
 .contestDetail p {
   font-size: 1.458vw;
@@ -879,7 +885,6 @@ label[for="label-a"] {
 .contestdtype {
   width: 100%;
   height: 100px;
-  margin-top: 75px;
 }
 .contestdtype p {
   font-size: 1.142vw;
@@ -957,19 +962,218 @@ label[for="label-a"] {
   height: 71px;
   border: 1px solid #707fc2;
   margin: 30px auto;
-  padding-top: 25px;
   border-radius: 5%;
 }
-.insert .insertbtn a {
+.insert .insertbtn > p {
   font-size: 1.250vw;
   color: #707fc2;
 }
-.insert .insertbtn:hover {
+.insert .insertbtn:hover > p {
   color: #fff;
+  transition: all .3s;
+}
+.insert .insertbtn:hover {
   background-color: #707fc2;
   transition: all .3s;
 }
-.insert .insertbtn:hover a {
+
+/* 팀장 상세페이지 - 연정 */
+.modal3 {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 2830px;
+  background-color: rgba(0, 0, 0, 0.6);
+  display: none;  
+}
+.modal3.show {
+  display: block;
+}
+.modal3.hide {
+  display: none;
+}
+.modal_body3 {
+  overflow-y: auto;
+  position: absolute;
+  top: 16%;
+  left: 50%;
+  width: 80%;
+  height: 830px;
+  padding-top: 80px;
+  padding-left: 8.529%;
+  padding-right: 4.029%;
+  background-color: rgb(255, 255, 255);
+  border-radius: 10px;
+  box-shadow: 0 2px 3px 0 rgba(34, 36, 38, 0.15);
+  transform: translateX(-50%) translateY(-50%);
+}
+.closebtn3 {
+  border: none;
+  background-color: #fff;
+  float: right;
+  margin-top: -30px;
+  position: relative;
+}
+.teamJangD {
+  width: 100%;
+  height: 550px;
+}
+.teamJangD .pp {
+  text-align: left;
+  font-weight: bold;
+}
+.teamJangD .tjd li {
+  float: left;
+  margin-top: 50px;
+}
+.teamJangD .tjd li .tjdimg {
+  width: 100%;
+  height: 155px;
+}
+.teamJangD .tjd li .tjdimg img {
+  width: 80.326%;
+  height: auto;
+}
+.teamJangD .tjd li p {
+  font-size: 1.254vw;
+  text-align: center;
+  position: relative;
+  right: 10%;
+}
+.teamJangD .tjd .tjdtxt {
+  background-color: #bcc5e9;
+  border: 1px solid #bcc5e9;
+  margin-left: 10%;
+  border-radius: 15px;
+  padding: 20px;
+  font-size: 16px;
+  width: 100%;
+  height: 400px;
+}
+.portfolio {
+  width: 100%;
+  height: auto;
+  padding-top: 10px;
+  padding-bottom: 20px;
+  padding-left: 2%;
+  border-bottom: 1px solid #909090;
+  border-top: 1px solid #909090;
+  float: left;
+}
+.portfolio p {
+  text-align: left;
+  font-size: 1.354vw;
+  font-weight: bold;
+}
+.portfolio button {
+  background-color: transparent;
+  border: none;
+  position: relative;
+  top: 4px;
+  left: 8px;
+}
+.portfolio .po {
+  width: 25%;
+  height: 50px;
+  padding-left: 10px;
+  float: left;
+  margin-right: 50%;
+  margin-bottom: 10px;
+}
+
+.hhhhhh .mi {
+  float: left;
+}
+.hhhhhh .mi img {
+  position: inherit;
+  right: 495px;
+  top: 10px;
+}
+.recruitment {
+  width: 100%;
+  height: auto;
+  padding-top: 10px;
+  padding-bottom: 20px;
+  padding-left: 2%;
+  border-bottom: 1px solid #909090;
+  float: left;
+}
+.recruitment p {
+  text-align: left;
+  font-size: 1.354vw;
+  font-weight: bold;
+  color: #344dbe;
+}
+.recruitment .recruit .re {
+  width: 25%;
+  height: 50px;
+  padding-left: 10px;
+  float: left;
+  margin-right: 2%;
+  margin-bottom: 10px;
+}
+.recruitment .recruit .re2 {
+  width: 6%;
+  height: 50px;
+  padding-left: 10px;
+  float: left;
+  margin-bottom: 10px;
+  margin-right: 60%;
+}
+.recruitment button {
+  background-color: transparent;
+  border: none;
+  position: relative;
+  top: 4px;
+  left: 8px;
+}
+.recruit .mi2 {
+  float: left;
+}
+.recruit .mi2 img {
+  position: inherit;
+  right: 595px;
+  top: 10px;
+}
+.teammate {
+  text-align: center;
+}
+.teammate .tm {
+  border: none;
+  background-color: transparent;  
+  margin-right: 3%;
+  font-size: 1.354vw;
+  width: 15%;
+  height: 80px;
+  background-color: #707fc2;
+  border: 1px solid #707fc2;
+  margin-top: 100px;
+  margin-bottom: 100px;
+  color: #fff;
+  border-radius: 10px;
+}
+.teammate .tm:hover {
+  background-color: #48527d;
+  color: #fff;
+  transition: all .3s;
+}
+.teammate .tm:nth-of-type(2) {
+  border: none;
+  background-color: transparent;  
+  margin-right: 3%;
+  font-size: 1.354vw;
+  width: 15%;
+  height: 80px;
+  background-color: #999ba1;
+  border: 1px solid #999ba1;
+  margin-top: 100px;
+  margin-bottom: 100px;
+  color: #fff;
+  border-radius: 10px;
+}
+.teammate .tm:nth-of-type(2):hover {
+  background-color: #6c6d70;
   color: #fff;
   transition: all .3s;
 }
