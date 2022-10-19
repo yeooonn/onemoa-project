@@ -34,14 +34,14 @@ insert into member (mno, email, pwd, nick, name, tel, cdt, pstno, base_addr, det
 
 
 -- 재능판매카테고리 테이블
-insert into product_category (pcno, pctier, pcname, pcparent) values ('010000', 1, '디자인', '010000');
-insert into product_category (pcno, pctier, pcname, pcparent) values ('020000', 1, 'IT·프로그래밍', '020000');
-insert into product_category (pcno, pctier, pcname, pcparent) values ('030000', 1, '영상·사진·음향', '030000');
-insert into product_category (pcno, pctier, pcname, pcparent) values ('040000', 1, '마케팅', '040000');
-insert into product_category (pcno, pctier, pcname, pcparent) values ('050000', 1, '번역·통역', '050000');
-insert into product_category (pcno, pctier, pcname, pcparent) values ('060000', 1, '문서·글쓰기', '060000');
-insert into product_category (pcno, pctier, pcname, pcparent) values ('070000', 1, '비즈니스컨설팅', '070000');
-insert into product_category (pcno, pctier, pcname, pcparent) values ('080000', 1, '주문제작', '080000');
+insert into product_category (pcno, pctier, pcname, pcparent) values ('010000', 1, '디자인', null);
+insert into product_category (pcno, pctier, pcname, pcparent) values ('020000', 1, 'IT·프로그래밍', null);
+insert into product_category (pcno, pctier, pcname, pcparent) values ('030000', 1, '영상·사진·음향', null);
+insert into product_category (pcno, pctier, pcname, pcparent) values ('040000', 1, '마케팅', null);
+insert into product_category (pcno, pctier, pcname, pcparent) values ('050000', 1, '번역·통역', null);
+insert into product_category (pcno, pctier, pcname, pcparent) values ('060000', 1, '문서·글쓰기', null);
+insert into product_category (pcno, pctier, pcname, pcparent) values ('070000', 1, '비즈니스컨설팅', null);
+insert into product_category (pcno, pctier, pcname, pcparent) values ('080000', 1, '주문제작', null);
 insert into product_category (pcno, pctier, pcname, pcparent) values ('010100', 2, '로고·브랜딩', '010000');
 insert into product_category (pcno, pctier, pcname, pcparent) values ('010200', 2, '상세·이벤트 페이지', '010000');
 insert into product_category (pcno, pctier, pcname, pcparent) values ('010300', 2, '명함·인쇄·홍보물', '010000');
