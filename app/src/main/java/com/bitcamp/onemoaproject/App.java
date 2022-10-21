@@ -18,9 +18,10 @@ public class App {
   }
 
   @GetMapping("/")
-  public String welcome() {
-    return "welcome";
+  public String welcome1() {
+    return "index";
   }
+
 }
 
 

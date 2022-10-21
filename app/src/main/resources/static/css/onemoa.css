@@ -600,6 +600,7 @@ label[for="label-a"] {
   margin-left: 30px;
 }
 
+
 /* contest -연정 */
 .contest {
   width: 100%;
@@ -626,7 +627,7 @@ label[for="label-a"] {
   float: left;
   font-size: 1.6667vw;
   font-weight: bold;
-  margin-right: 2.76%;
+  margin-right: 2.760%;
   color: #768084;
 }
 .contest .contestctg .conctg li:nth-of-type(1) {
@@ -699,7 +700,7 @@ label[for="label-a"] {
 }
 .contest .contestContents .contestBox .con:hover {
   background-color: #eceef3;
-  transition: all 0.3s;
+  transition: all .3s;
 }
 .contest .contestContents .contestBox .con li {
   width: 100%;
@@ -794,8 +795,9 @@ label[for="label-a"] {
 }
 .contest .nextBox p span:hover {
   background-color: #2c2f39;
-  transition: all 0.3s;
+  transition: all .3s;
 }
+
 
 /* contestTeam */
 .modal2 {
@@ -804,7 +806,7 @@ label[for="label-a"] {
   left: 0;
   width: 100%;
   height: 2829px;
-  display: none;
+  display: none;  
   background-color: rgba(0, 0, 0, 0.6);
 }
 .modal2.show {
@@ -815,13 +817,14 @@ label[for="label-a"] {
 }
 .modal_body2 {
   overflow-y: auto;
+  overflow-x: hidden;
   position: absolute;
   top: 16%;
   left: 50%;
   width: 80%;
   height: 830px;
   padding-top: 80px;
-  padding-left: 4.529%;
+  padding-left: 4.029%;
   padding-right: 4.029%;
   background-color: rgb(255, 255, 255);
   border-radius: 10px;
@@ -835,7 +838,10 @@ label[for="label-a"] {
   border: none;
   background-color: #fff;
   float: right;
-  margin-top: -30px;
+  position: relative;
+  top: 90px;
+  right: 15%;
+  z-index: 999;
 }
 .contestDetail p {
   font-size: 1.458vw;
@@ -873,6 +879,7 @@ label[for="label-a"] {
 }
 .contestDetail .detail li .contable tr td span:nth-of-type(1) {
   line-height: 40px;
+
 }
 .contestDetail .detail li .contable tr td span {
   display: block;
@@ -894,7 +901,7 @@ label[for="label-a"] {
   border-bottom: 3px solid #000;
   padding-bottom: 7px;
 }
-.contestdtype p:nth-of-type(2) {
+.contestdtype p:nth-of-type(1) {
   color: #000;
   border-bottom: 3px solid #000;
   padding-bottom: 7px;
@@ -913,7 +920,7 @@ label[for="label-a"] {
   margin-top: 40px;
 }
 .person p {
-  font-size: 1.35vw;
+  font-size: 1.350vw;
   color: #2f2f2f;
   line-height: 28px;
 }
@@ -944,7 +951,7 @@ label[for="label-a"] {
 }
 .insert {
   text-align: center;
-  margin-bottom: 150px;
+  margin-bottom: 100px;
 }
 .insert p {
   font-size: 1.563vw;
@@ -962,17 +969,106 @@ label[for="label-a"] {
   border-radius: 5%;
 }
 .insert .insertbtn > p {
-  font-size: 1.25vw;
+  font-size: 1.250vw;
   color: #707fc2;
 }
 .insert .insertbtn:hover > p {
   color: #fff;
-  transition: all 0.3s;
+  transition: all .3s;
 }
 .insert .insertbtn:hover {
   background-color: #707fc2;
-  transition: all 0.3s;
+  transition: all .3s;
 }
+
+/* contest 상세정보페이지 - 연정 */
+.contestIn {
+  width: 100%;
+  height: auto;
+}
+.contestIn .basicInformation {
+  width: 100%;
+  height: 50px;
+}
+.contestIn .basicInformation img {
+  float: left;
+}
+.contestIn .basicInformation p {
+  padding-top: 10px;
+  padding-left: 5%;
+  font-weight: bold;
+  font-size: 1.458vw;
+}
+.contestIn .contestInformation {
+  border: 1px solid rgb(142, 142, 142);
+  padding: 10px 30px;
+  margin-top: 20px;
+}
+.contestIn .contestInformation tr {
+  height: 70px;
+}
+.contestIn .contestInformation tr td span {
+  color: #404cef;
+  margin-right: 5%;
+}
+.contestIn .contestInformation tr td {
+  font-size: 1.158vw;
+}
+.contestIn .contestInformation tr:nth-of-type(3) td:nth-of-type(1) {
+  position: relative;
+  top: -25px;
+}
+.contestIn .contestInformation tr:nth-of-type(3) td:nth-of-type(2) {
+  position: relative;
+  top: 25px;
+  padding-bottom: 48px;
+  line-height: 26px;
+}
+.contestIn .contestInformation td:nth-of-type(1) {
+  font-weight: bold;
+  width: 15%;
+}
+.longcontext {
+  width: 100%;
+  height: auto;
+  padding-top: 52px;
+}
+.longcontext p:nth-of-type(1) {
+  font-weight: bold;
+  font-size: 1.458vw;
+  color: #0275c8;
+}
+.longcontext p img {
+  margin-right: 1%;
+}
+.longcontext p {
+  font-size: 1.158vw;
+  width: 70%;
+  line-height: 25px;
+}
+.longcontext p span {
+  display: block;
+  margin-top: 8px;
+}
+.longcontext2 {
+  width: 100%;
+  height: auto;
+  margin-bottom: 100px;
+}
+.longcontext2 p:nth-of-type(1) {
+  font-weight: bold;
+  font-size: 1.458vw;
+  color: #0275c8;
+  margin-top: 52px;
+}
+.longcontext2 p img {
+  margin-right: 1%;
+}
+.longcontext2 p {
+  font-size: 1.158vw;
+  width: 70%;
+}
+
 
 /* 팀장 상세페이지 - 연정 */
 .modal3 {
@@ -982,7 +1078,7 @@ label[for="label-a"] {
   width: 100%;
   height: 2830px;
   background-color: rgba(0, 0, 0, 0.6);
-  display: none;
+  display: none;  
 }
 .modal3.show {
   display: block;
@@ -998,7 +1094,7 @@ label[for="label-a"] {
   width: 80%;
   height: 830px;
   padding-top: 80px;
-  padding-left: 8.529%;
+  padding-left: 4.029%;
   padding-right: 4.029%;
   background-color: rgb(255, 255, 255);
   border-radius: 10px;
@@ -1009,8 +1105,10 @@ label[for="label-a"] {
   border: none;
   background-color: #fff;
   float: right;
-  margin-top: -30px;
   position: relative;
+  top: 90px;
+  right: 14.1%;
+  z-index: 999;
 }
 .teamJangD {
   width: 100%;
@@ -1031,12 +1129,13 @@ label[for="label-a"] {
 .teamJangD .tjd li .tjdimg img {
   width: 80.326%;
   height: auto;
+  margin-left: 14%;
 }
 .teamJangD .tjd li p {
   font-size: 1.254vw;
   text-align: center;
   position: relative;
-  right: 10%;
+  left: 2%;
 }
 .teamJangD .tjd .tjdtxt {
   background-color: #bcc5e9;
@@ -1084,7 +1183,7 @@ label[for="label-a"] {
 }
 .hhhhhh .mi img {
   position: inherit;
-  right: 495px;
+  right: 528px;
   top: 10px;
 }
 .recruitment {
@@ -1130,7 +1229,7 @@ label[for="label-a"] {
 }
 .recruit .mi2 img {
   position: inherit;
-  right: 595px;
+  right: 635px;
   top: 10px;
 }
 .teammate {
@@ -1138,7 +1237,7 @@ label[for="label-a"] {
 }
 .teammate .tm {
   border: none;
-  background-color: transparent;
+  background-color: transparent;  
   margin-right: 3%;
   font-size: 1.354vw;
   width: 15%;
@@ -1153,11 +1252,11 @@ label[for="label-a"] {
 .teammate .tm:hover {
   background-color: #48527d;
   color: #fff;
-  transition: all 0.3s;
+  transition: all .3s;
 }
 .teammate .tm:nth-of-type(2) {
   border: none;
-  background-color: transparent;
+  background-color: transparent;  
   margin-right: 3%;
   font-size: 1.354vw;
   width: 15%;
@@ -1172,5 +1271,446 @@ label[for="label-a"] {
 .teammate .tm:nth-of-type(2):hover {
   background-color: #6c6d70;
   color: #fff;
-  transition: all 0.3s;
+  transition: all .3s;
+}
+
+/* modal4 */
+.modal4 {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: none;
+  background-color: rgba(0, 0, 0, 0.6);
+}
+.modal4.show {
+  display: block;
+}
+.modal4.hide {
+  display: none;
+}
+.modal_body4 {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 29.833%;
+  height: 40%;
+  padding: 40px;
+  text-align: center;
+  background-color: rgb(255, 255, 255);
+  border-radius: 10px;
+  box-shadow: 0 2px 3px 0 rgba(34, 36, 38, 0.15);
+  transform: translateX(-50%) translateY(-50%);
+}
+.closebtn4 {
+  border: none;
+  background-color: #fff;
+  float: right;
+  position: relative;
+  top: 0px;
+  right: 0%;
+  z-index: 999;
+}
+.modal_body4 p {
+  font-size: 1.354vW;
+  padding-top: 70px;
+  padding-bottom: 40px;
+}
+.modal_body4 .teamb span button {
+  border: none;
+  background-color: transparent;
+  color: #fff;
+}
+.modal_body4 .teamb span {
+  padding: 10px 20px;
+  border: 1px solid #707fc2;
+  border-radius: 5px;
+  margin-left: 1%;
+  background-color: #707fc2;
+  color: #fff;
+}
+.modal_body4 .teamb span:hover {
+  background-color: #48527d;
+}
+.modal_body4 .teamb span:nth-of-type(2) {
+  background-color: #a5a5a5;
+  border: 1px solid #a5a5a5;
+}
+.modal_body4 .teamb span:nth-of-type(2):hover {
+  background-color: #6c6d70;
+}
+
+/* 팀장상세보기 */
+.modal5 {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 2830px;
+  display: none;  
+}
+.modal5.show {
+  display: block;
+}
+.modal5.hide {
+  display: none;
+}
+.modal_body5 {
+  overflow-y: auto;
+  position: absolute;
+  top: 16%;
+  left: 50%;
+  width: 80%;
+  height: 830px;
+  padding-top: 80px;
+  padding-left: 4.029%;
+  padding-right: 4.029%;
+  background-color: rgb(255, 255, 255);
+  border-radius: 10px;
+  box-shadow: 0 2px 3px 0 rgba(34, 36, 38, 0.15);
+  transform: translateX(-50%) translateY(-50%);
+}
+.closebtn5 {
+  border: none;
+  background-color: #fff;
+  float: right;
+  position: relative;
+  top: 90px;
+  right: 14.1%;
+  z-index: 999;
+}
+
+.teamJangD2 {
+  width: 100%;
+  height: auto;
+}
+.teamJangD2 .pp2 {
+  text-align: left;
+  font-weight: bold;
+}
+.teamJangD2 .tjd2 li:nth-of-type(1) {
+  width: 30%;
+}
+.teamJangD2 .tjd2 li:nth-of-type(2) {
+  width: 60%;
+  height: auto;
+  background-color: #bcc5e9;
+  padding: 20px 40px;
+  border-radius: 10px;
+}
+.teamJangD2 .tjd2 li {
+  float: left;
+  margin-top: 50px;
+  margin-bottom: 80px;
+}
+.teamJangD2 .tjd2 li .tjdimg2 {
+  width: 50%;
+  height: 155px;
+}
+.teamJangD2 .tjd2 li .tjdimg2 img {
+  width: 100%;
+  height: auto;
+  margin-left: 15%;
+}
+.teamJangD2 .tjd2 li:nth-of-type(1) p {
+  position: relative;
+  left: 25%;
+}
+.teamJangD2 .tjd2 li p {
+  font-size: 1.254vw;
+  line-height: 30px;
+}
+.portfolio2 {
+  width: 100%;
+  height: auto;
+  padding-top: 10px;
+  padding-bottom: 20px;
+  padding-left: 2%;
+  border-bottom: 1px solid #909090;
+  border-top: 1px solid #909090;
+  float: left;
+}
+.portfolio2 p {
+  text-align: left;
+  font-size: 1.354vw;
+  font-weight: bold;
+}
+.portfolio2 ul li {
+  color: #0275c8;
+  margin-bottom: 5px;
+  font-size: 1.2vw;
+}
+.portfolio2:nth-of-type(3) {
+  border-top: none;
+}
+.portfolio2:nth-of-type(3) ul li:nth-of-type(1) {
+  color: #000;
+  margin-top: 35px;
+
+}
+.portfolio2:nth-of-type(3) ul li:nth-of-type(2) {
+  margin-top: 15px;
+  color: #000;
+}
+.portfolio2:nth-of-type(3) ul li:nth-of-type(2) span {
+  color: #0275c8;
+}
+.portfolio2 ul .tmm {
+  float: right;
+  border: none;
+  background-color: transparent;  
+  margin-right: 3%;
+  font-size: 1.354vw;
+  width: 15%;
+  height: 80px;
+  background-color: #707fc2;
+  border: 1px solid #707fc2;
+  color: #fff;
+  border-radius: 10px;
+  margin-top: -95px;
+}
+.portfolio2 ul .tmm:hover {
+  background-color: #48527d;
+  color: #fff;
+  transition: all .3s;
+}
+.portfolio2:nth-of-type(4) {
+  padding-top: 100px;
+  padding-bottom: 100px;
+  border: none;
+}
+.portfolio2:nth-of-type(4) ul {
+  width: 100%;
+  height: 120px;
+}
+.portfolio2:nth-of-type(4) ul li {
+  float: left;
+}
+.portfolio2:nth-of-type(4) ul li img {
+  width: 45%;
+  margin-left: 20%;
+}
+.portfolio2:nth-of-type(4) ul li:nth-of-type(2) {
+  width: 60%;
+  height: 60px;
+  background-color: #bcc5e9;
+  padding-left: 3%;
+  border-radius: 10px;
+  margin-top: 20px;
+  margin-left: -2%;
+}
+.portfolio2:nth-of-type(4) ul li:nth-of-type(2) p {
+  font-weight: normal;
+}
+.portfolio2:nth-of-type(4) ul li:nth-of-type(2) p:nth-of-type(2) {
+  font-size: 0.938vw;
+  float: right;
+}
+.portfolio2:nth-of-type(4) ul li:nth-of-type(2) p:nth-of-type(2) a:nth-of-type(1) {
+  position: relative;
+  left: -10px;
+}
+.portfolio2:nth-of-type(4) ul li:nth-of-type(2) p:nth-of-type(2) a:hover {
+  color: blue;
+}
+.portfolio2:nth-of-type(4) ul li:nth-of-type(3) p {
+  font-weight: normal;
+  width: 100%;
+  height: 60px;
+  border: 1px solid #707fc2;
+  color: #707fc2;
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-top: 20px;
+  border-radius: 10px;
+  margin-left: 33%;
+}
+.portfolio2:nth-of-type(4) ul li:nth-of-type(3) p:hover {
+  background-color: #707fc2;
+  color: #fff;
+  transition: all .3s;
+}
+
+/*  modal6 팀원지원하기 */
+.modal6 {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 2830px;
+  background-color: rgba(0, 0, 0, 0.6);
+  display: none;  
+}
+.modal6.show {
+  display: block;
+}
+.modal6.hide {
+  display: none;
+}
+.modal_body6 {
+  overflow-y: auto;
+  position: absolute;
+  top: 16%;
+  left: 50%;
+  width: 80%;
+  height: 830px;
+  padding-top: 80px;
+  padding-left: 4.029%;
+  padding-right: 4.029%;
+  background-color: rgb(255, 255, 255);
+  border-radius: 10px;
+  box-shadow: 0 2px 3px 0 rgba(34, 36, 38, 0.15);
+  transform: translateX(-50%) translateY(-50%);
+}
+.closebtn6 {
+  border: none;
+  background-color: #fff;
+  float: right;
+  position: relative;
+  top: 90px;
+  right: 14.1%;
+  z-index: 999;
+}
+.teamOne {
+  width: 100%;
+  height: 550px;
+}
+.teamOne .pp {
+  margin-left: 4%;
+  text-align: left;
+  font-weight: bold;
+}
+.teamOne .tjd li {
+  float: left;
+  margin-top: 50px;
+}
+.teamOne .tjd li .tjdimg {
+  width: 100%;
+  height: 155px;
+}
+.teamOne .tjd li .tjdimg img {
+  width: 80.326%;
+  height: auto;
+  margin-left: 14%;
+}
+.teamOne .tjd li p {
+  font-size: 1.254vw;
+  text-align: center;
+  position: relative;
+  left: 2%;
+}
+.teamOne .tjd .tjdtxt {
+  background-color: #bcc5e9;
+  border: 1px solid #bcc5e9;
+  margin-left: 10%;
+  border-radius: 15px;
+  padding: 20px;
+  font-size: 16px;
+  width: 100%;
+  height: 400px;
+}
+.portfolio {
+  width: 100%;
+  height: auto;
+  padding-top: 10px;
+  padding-bottom: 20px;
+  padding-left: 2%;
+  border-bottom: 1px solid #909090;
+  border-top: 1px solid #909090;
+  float: left;
+}
+.portfolio p {
+  text-align: left;
+  font-size: 1.354vw;
+  font-weight: bold;
+}
+.portfolio button {
+  background-color: transparent;
+  border: none;
+  position: relative;
+  top: 4px;
+  left: 8px;
+}
+.portfolio .po2 {
+  width: 25%;
+  height: 50px;
+  padding-left: 10px;
+  float: left;
+  margin-right: 50%;
+  margin-bottom: 10px;
+}
+
+.hhhhhh2 .mi2 {
+  float: left;
+}
+.hhhhhh2 .mi2 img {
+  position: inherit;
+  right: 528px;
+  top: 10px;
+}
+.recruitment {
+  width: 100%;
+  height: auto;
+  padding-top: 10px;
+  padding-bottom: 20px;
+  padding-left: 2%;
+  border-bottom: 1px solid #909090;
+  float: left;
+}
+.recruitment p:nth-of-type(1) {
+  text-align: left;
+  font-size: 1.354vw;
+  font-weight: bold;
+  color: #344dbe;
+}
+.recruitment input {
+  margin-right: 0.5%;
+}
+.recruitment p {
+  margin-right: 0.5%;
+  font-size: 1.15vw;
+  color: #000;
+  font-weight: normal;
+}
+.teammate {
+  text-align: center;
+}
+.teammate .tm {
+  border: none;
+  background-color: transparent;  
+  margin-right: 3%;
+  font-size: 1.354vw;
+  width: 15%;
+  height: 80px;
+  background-color: #707fc2;
+  border: 1px solid #707fc2;
+  margin-top: 100px;
+  margin-bottom: 100px;
+  color: #fff;
+  border-radius: 10px;
+}
+.teammate .tm:hover {
+  background-color: #48527d;
+  color: #fff;
+  transition: all .3s;
+}
+.teammate .tm:nth-of-type(2) {
+  border: none;
+  background-color: transparent;  
+  margin-right: 3%;
+  font-size: 1.354vw;
+  width: 15%;
+  height: 80px;
+  background-color: #999ba1;
+  border: 1px solid #999ba1;
+  margin-top: 100px;
+  margin-bottom: 100px;
+  color: #fff;
+  border-radius: 10px;
+}
+.teammate .tm:nth-of-type(2):hover {
+  background-color: #6c6d70;
+  color: #fff;
+  transition: all .3s;
 }
