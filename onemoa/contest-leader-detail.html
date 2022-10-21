@@ -11,23 +11,26 @@
         top: 0;
         left: 0;
         width: 100%;
-        height: 100%;
+        height: 2830px;
+        background-color: rgba(0, 0, 0, 0.6);
         display: none;
-        background-color: rgba(0, 0, 0, 0.4);
-        overflow: hidden;
-        overflow-y: scroll;
-        padding-right: 0 !important;
       }
       .leader-detail-modal.show {
         display: block;
       }
+      .leader-detail-modal.hide {
+        display: none;
+      }
       .leader-detail-modal-body {
+        overflow-y: auto;
         position: absolute;
-        top: 65%;
+        top: 16%;
         left: 50%;
-        width: 600px;
-        padding: 40px;
-        text-align: center;
+        width: 80%;
+        height: 830px;
+        padding-top: 80px;
+        padding-left: 8.529%;
+        padding-right: 4.029%;
         background-color: rgb(255, 255, 255);
         border-radius: 10px;
         box-shadow: 0 2px 3px 0 rgba(34, 36, 38, 0.15);
