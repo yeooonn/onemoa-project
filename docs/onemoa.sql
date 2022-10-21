@@ -84,9 +84,9 @@ CREATE TABLE member (
   mno         INTEGER      NOT NULL COMMENT '회원번호', -- 회원번호
   email       VARCHAR(255) NOT NULL COMMENT '이메일(아이디)', -- 이메일(아이디)
   pwd         VARCHAR(100) NOT NULL COMMENT '비밀번호', -- 비밀번호
-  nick        VARCHAR(255) NOT NULL COMMENT '닉네임', -- 닉네임
   name        VARCHAR(255) NOT NULL COMMENT '이름', -- 이름
-  tel         VARCHAR(30)  NOT NULL COMMENT '연락처', -- 연락처
+  nick        VARCHAR(255) NOT NULL COMMENT '닉네임', -- 닉네임
+  tel         VARCHAR(30)  NULL     COMMENT '연락처', -- 연락처
   cdt         DATE         NOT NULL DEFAULT now() COMMENT '가입일', -- 가입일
   pstno       VARCHAR(10)  NOT NULL COMMENT '우편번호', -- 우편번호
   base_addr   VARCHAR(255) NOT NULL COMMENT '기본주소', -- 기본주소
@@ -477,12 +477,15 @@ ALTER TABLE team
 
 -- 팀원모집분야지원
 CREATE TABLE team_field_member (
-  tfmno INTEGER    NOT NULL COMMENT '팀원모집분야지원번호', -- 팀원모집분야지원번호
-  tfno  INTEGER    NOT NULL COMMENT '모집분야번호', -- 모집분야번호
-  mno   INTEGER    NOT NULL COMMENT '회원번호', -- 회원번호
-  cont  MEDIUMTEXT NOT NULL COMMENT '자기소개', -- 자기소개
-  cdt   DATE       NOT NULL DEFAULT now() COMMENT '등록일', -- 등록일
-  type  BOOLEAN    NOT NULL COMMENT '상태' -- 상태
+  tfmno  INTEGER      NOT NULL COMMENT '팀원모집분야지원번호', -- 팀원모집분야지원번호
+  tfno   INTEGER      NOT NULL COMMENT '모집분야번호', -- 모집분야번호
+  mno    INTEGER      NOT NULL COMMENT '회원번호', -- 회원번호
+  cont   MEDIUMTEXT   NOT NULL COMMENT '자기소개', -- 자기소개
+  cdt    DATE         NOT NULL DEFAULT now() COMMENT '등록일', -- 등록일
+  type   BOOLEAN      NOT NULL COMMENT '상태', -- 상태
+  fpath1 VARCHAR(255) NULL     COMMENT '포트폴리오1', -- 포트폴리오1
+  fpath2 VARCHAR(255) NULL     COMMENT '포트폴리오2', -- 포트폴리오2
+  fpath3 VARCHAR(255) NULL     COMMENT '포트폴리오3' -- 포트폴리오3
 )
 COMMENT '팀원모집분야지원';
 
