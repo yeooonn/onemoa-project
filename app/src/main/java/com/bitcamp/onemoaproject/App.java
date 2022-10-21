@@ -23,7 +23,7 @@ public class App {
   }
 
   @GetMapping("/contestTeam")
-  public String contestTeam() {
+  public String welcome2() {
     return "contestTeam";
   }
 
