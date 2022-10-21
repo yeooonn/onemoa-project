@@ -22,6 +22,11 @@ public class App {
     return "index";
   }
 
+  @GetMapping("/contestTeam")
+  public String welcome2() {
+    return "contestTeam";
+  }
+
 }
 
 
