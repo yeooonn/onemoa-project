@@ -18,8 +18,13 @@ public class App {
   }
 
   @GetMapping("/")
-  public String welcome1() {
+  public String welcome() {
     return "index";
+  }
+
+  @GetMapping("/contestTeam")
+  public String contestTeam() {
+    return "contestTeam";
   }
 
 }
