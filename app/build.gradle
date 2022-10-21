@@ -64,7 +64,7 @@ tasks.withType(JavaCompile) {
 // Eclipse IDE에서 사용할 프로젝트 정보 설정하기
 eclipse {
     project {
-        name = "test-server" 
+        name = "onemoa-project" 
         // 프로젝트 이름을 지정하지 않으면 build.gradle 파일이 있는 
         // 폴더 이름을 프로젝트 이름을 사용한다.
     }
