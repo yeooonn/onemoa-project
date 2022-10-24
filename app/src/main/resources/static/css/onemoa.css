@@ -952,6 +952,7 @@ label[for="label-a"] {
 .insert {
   text-align: center;
   margin-bottom: 100px;
+  margin-top: 60px;
 }
 .insert p {
   font-size: 1.563vw;
@@ -1507,12 +1508,18 @@ label[for="label-a"] {
   font-size: 0.938vw;
   float: right;
 }
-.portfolio2:nth-of-type(4) ul li:nth-of-type(2) p:nth-of-type(2) a:nth-of-type(1) {
+.portfolio2:nth-of-type(4) ul li:nth-of-type(2) p:nth-of-type(2) span:nth-of-type(1) {
   position: relative;
   left: -10px;
 }
-.portfolio2:nth-of-type(4) ul li:nth-of-type(2) p:nth-of-type(2) a:hover {
+.portfolio2:nth-of-type(4) ul li:nth-of-type(2) p:nth-of-type(2) span {
+  cursor: pointer;
+}
+.portfolio2:nth-of-type(4) ul li:nth-of-type(2) p:nth-of-type(2) span:hover {
   color: blue;
+}
+.portfolio2:nth-of-type(4) ul li:nth-of-type(2) p:nth-of-type(2) span:nth-of-type(2):hover {
+  color: red;
 }
 .portfolio2:nth-of-type(4) ul li:nth-of-type(3) p {
   font-weight: normal;
@@ -1539,7 +1546,6 @@ label[for="label-a"] {
   left: 0;
   width: 100%;
   height: 2830px;
-  background-color: rgba(0, 0, 0, 0.6);
   display: none;  
 }
 .modal6.show {
@@ -1713,4 +1719,281 @@ label[for="label-a"] {
   background-color: #6c6d70;
   color: #fff;
   transition: all .3s;
+}
+
+
+/* modal7 */
+.modal7 {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: none;
+  background-color: rgba(0, 0, 0, 0.6);
+}
+.modal7.show {
+  display: block;
+}
+.modal7.hide {
+  display: none;
+}
+.modal_body7 {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 29.833%;
+  height: 40%;
+  padding: 40px;
+  text-align: center;
+  background-color: rgb(255, 255, 255);
+  border-radius: 10px;
+  box-shadow: 0 2px 3px 0 rgba(34, 36, 38, 0.15);
+  transform: translateX(-50%) translateY(-50%);
+}
+.closebtn7 {
+  border: none;
+  background-color: #fff;
+  float: right;
+  position: relative;
+  top: 0px;
+  right: 0%;
+  z-index: 999;
+}
+.modal_body7 p {
+  font-size: 1.354vW;
+  padding-top: 70px;
+  padding-bottom: 40px;
+}
+.modal_body7 .teamb7 span button {
+  border: none;
+  background-color: transparent;
+  color: #fff;
+}
+.modal_body7 .teamb7 span {
+  padding: 10px 20px;
+  border: 1px solid #707fc2;
+  border-radius: 5px;
+  margin-left: 1%;
+  background-color: #707fc2;
+  color: #fff;
+}
+.modal_body7 .teamb7 span:hover {
+  background-color: #48527d;
+}
+.modal_body7 .teamb7 span:nth-of-type(2) {
+  background-color: #a5a5a5;
+  border: 1px solid #a5a5a5;
+}
+.modal_body7 .teamb7 span:nth-of-type(2):hover {
+  background-color: #6c6d70;
+}
+
+/* modal8 팀원상세보기 */
+.modal8 {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 2830px;
+  display: none;  
+}
+.modal8.show {
+  display: block;
+}
+.modal8.hide {
+  display: none;
+}
+.modal_body8 {
+  overflow-y: auto;
+  position: absolute;
+  top: 16%;
+  left: 50%;
+  width: 80%;
+  height: 830px;
+  padding-top: 80px;
+  padding-left: 4.029%;
+  padding-right: 4.029%;
+  background-color: rgb(255, 255, 255);
+  border-radius: 10px;
+  box-shadow: 0 2px 3px 0 rgba(34, 36, 38, 0.15);
+  transform: translateX(-50%) translateY(-50%);
+}
+.closebtn8 {
+  border: none;
+  background-color: #fff;
+  float: right;
+  position: relative;
+  top: 90px;
+  right: 14.1%;
+  z-index: 999;
+}
+
+.teamJangD8 {
+  width: 100%;
+  height: auto;
+}
+.teamJangD8 .pp8 {
+  text-align: left;
+  font-weight: bold;
+}
+.teamJangD8 .tjd8 li:nth-of-type(1) {
+  width: 30%;
+}
+.teamJangD8 .tjd8 li:nth-of-type(2) {
+  width: 60%;
+  height: auto;
+  background-color: #bcc5e9;
+  padding: 20px 40px;
+  border-radius: 10px;
+}
+.teamJangD8 .tjd8 li {
+  float: left;
+  margin-top: 50px;
+  margin-bottom: 80px;
+}
+.teamJangD8 .tjd8 li .tjdimg8 {
+  width: 50%;
+  height: 155px;
+}
+.teamJangD8 .tjd8 li .tjdimg8 img {
+  width: 100%;
+  height: auto;
+  margin-left: 15%;
+}
+.teamJangD8 .tjd8 li:nth-of-type(1) p {
+  position: relative;
+  left: 25%;
+}
+.teamJangD8 .tjd8 li p {
+  font-size: 1.254vw;
+  line-height: 30px;
+}
+.portfolio2 {
+  width: 100%;
+  height: auto;
+  padding-top: 10px;
+  padding-bottom: 20px;
+  padding-left: 2%;
+  border-bottom: 1px solid #909090;
+  border-top: 1px solid #909090;
+  float: left;
+}
+.portfolio2 p {
+  text-align: left;
+  font-size: 1.354vw;
+  font-weight: bold;
+}
+.portfolio2 ul li {
+  color: #0275c8;
+  margin-bottom: 5px;
+  font-size: 1.2vw;
+}
+.teammate8 {
+  text-align: center;
+}
+.teammate8 .tm8 {
+  border: none;
+  background-color: transparent;  
+  margin-right: 3%;
+  font-size: 1.354vw;
+  width: 15%;
+  height: 80px;
+  background-color: #707fc2;
+  border: 1px solid #707fc2;
+  margin-top: 100px;
+  margin-bottom: 100px;
+  color: #fff;
+  border-radius: 10px;
+}
+.teammate8 .tm8:hover {
+  background-color: #48527d;
+  color: #fff;
+  transition: all .3s;
+}
+.teammate8 .tm8:nth-of-type(2) {
+  border: none;
+  background-color: transparent;  
+  margin-right: 3%;
+  font-size: 1.354vw;
+  width: 15%;
+  height: 80px;
+  background-color: #999ba1;
+  border: 1px solid #999ba1;
+  margin-top: 100px;
+  margin-bottom: 100px;
+  color: #fff;
+  border-radius: 10px;
+}
+.teammate8 .tm8:nth-of-type(2):hover {
+  background-color: #6c6d70;
+  color: #fff;
+  transition: all .3s;
+}
+
+/* modal9 */
+.modal9 {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: none;
+  background-color: rgba(0, 0, 0, 0.6);
+}
+.modal9.show {
+  display: block;
+}
+.modal9.hide {
+  display: none;
+}
+.modal_body9 {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 29.833%;
+  height: 40%;
+  padding: 40px;
+  text-align: center;
+  background-color: rgb(255, 255, 255);
+  border-radius: 10px;
+  box-shadow: 0 2px 3px 0 rgba(34, 36, 38, 0.15);
+  transform: translateX(-50%) translateY(-50%);
+}
+.closebtn9 {
+  border: none;
+  background-color: #fff;
+  float: right;
+  position: relative;
+  top: 0px;
+  right: 0%;
+  z-index: 999;
+}
+.modal_body9 p {
+  font-size: 1.354vW;
+  padding-top: 70px;
+  padding-bottom: 40px;
+}
+.modal_body9 .teamb9 span button {
+  border: none;
+  background-color: transparent;
+  color: #fff;
+}
+.modal_body9 .teamb9 span {
+  padding: 10px 20px;
+  border: 1px solid #707fc2;
+  border-radius: 5px;
+  margin-left: 1%;
+  background-color: #707fc2;
+  color: #fff;
+}
+.modal_body9 .teamb9 span:hover {
+  background-color: #48527d;
+}
+.modal_body9 .teamb9 span:nth-of-type(2) {
+  background-color: #a5a5a5;
+  border: 1px solid #a5a5a5;
+}
+.modal_body9 .teamb9 span:nth-of-type(2):hover {
+  background-color: #6c6d70;
 }
