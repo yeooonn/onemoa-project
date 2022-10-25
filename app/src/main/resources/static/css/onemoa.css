@@ -1997,3 +1997,310 @@ label[for="label-a"] {
 .modal_body9 .teamb9 span:nth-of-type(2):hover {
   background-color: #6c6d70;
 }
+/* 주영 productForm CSS 작업 */
+.productForm-grid-container {
+  width: 60%;
+  display: grid;
+  grid-template-columns: 200px 0.5fr 2fr;
+  grid-template-rows: 70px 70px 70px 70px 300px 200px 100px;
+  /* border-style: solid; */
+}
+.productForm-grid-item {
+  /* border-style: solid; */
+}
+.productForm-grid-item:nth-child(1) {
+  grid-column-start: 1;
+  grid-column-end: 2;
+  grid-row-start: 1;
+  grid-row-end: 8;
+  display: flex;
+  justify-content: center;
+}
+.productForm-grid-item:nth-child(2) {
+  display: flex;
+  align-items: center;
+}
+.productForm-grid-item:nth-child(3) {
+  display: flex;
+  align-items: center;
+}
+/*카테고리*/
+.productForm-grid-item:nth-child(4) {
+  grid-column-start: 2;
+  grid-column-end: 3;
+  grid-row-start: 2;
+  grid-row-end: 4;
+  display: flex;
+}
+/*상위 카테고리 선택 */
+.productForm-grid-item:nth-child(5) {
+  width: 95%;
+  display: flex;
+  align-items: center;
+}
+/*하위 카테고리 선택 */
+.productForm-grid-item:nth-child(6) {
+  width: 95%;
+  display: flex;
+  align-items: center;
+}
+.productForm-grid-item:nth-child(9) {
+  grid-column-start: 2;
+  grid-column-end: 4;
+  grid-row-start: 5;
+  grid-row-end: 6;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.productForm-grid-item:nth-child(10) {
+  grid-column-start: 2;
+  grid-column-end: 4;
+  grid-row-start: 6;
+  grid-row-end: 7;
+  display: grid;
+  grid-template-columns: 0.5fr 0.5fr;
+}
+.productForm-grid-item:nth-child(11) {
+  grid-column-start: 2;
+  grid-column-end: 4;
+  grid-row-start: 7;
+  grid-row-end: 8;
+  display: flex;
+  justify-content: right;
+  align-items: center;
+}
+.productForm-grid-item2:nth-child(1) {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column; /*수직 정렬*/
+  justify-content: center;
+  align-items: center;
+}
+.productForm-grid-item2:nth-child(2) {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column; /*수직 정렬*/
+  justify-content: center;
+  align-items: center;
+}
+.productForm-submit {
+  width: 20%;
+  height: 50%;
+  margin-right: 10px;
+  font-size: 100%;
+}
+.productFrom-cancle {
+  width: 20%;
+  height: 50%;
+  margin-right: 10px;
+  font-size: 100%;
+}
+.productForm-inputbox1 {
+  display: none;
+}
+.productForm-inputbox2 {
+  display: none;
+}
+.productForm-grid-item > p {
+  font-size: 120%;
+}
+.productFrom-title-input-box {
+  width: 90%;
+  height: 100%;
+  font-size: 120%;
+  border: none;
+}
+.productFrom-price-input-box {
+  width: 30%;
+  height: 100%;
+  font-size: 120%;
+  border: none;
+  text-align: right;
+}
+.productFrom-price-span {
+  font-size: 120%;
+}
+.productForm-category {
+  width: 100%;
+}
+.categoryA-container {
+  width: 100%;
+}
+.categoryB-container {
+  width: 100%;
+}
+.productForm-category {
+  width: 95%;
+}
+
+/* 주영 joinForm CSS...*/
+.login-header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 2%;
+}
+.joinForm-flex-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 2%;
+}
+.joinForm-grid-container {
+  width: 35%;
+  display: grid;
+  grid-template-columns: 1fr;
+  /* grid-template-rows: 35px 50px; */
+  border-style: solid;
+  border-radius: 10px;
+  border-color: #707fc2;
+  padding: 1%;
+}
+.joinForm-grid-item {
+  /* border-style: solid; */
+}
+.joinForm-grid-item:nth-child(15) {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+/*joinForm 직업선택 select*/
+.select {
+  position: relative;
+}
+.select .job-list {
+  position: relative;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  overflow: hidden;
+  max-height: 0;
+}
+.select.active .job-list {
+  max-height: none;
+}
+/* 테마 적용하기 */
+#theme {
+}
+#theme .select {
+  box-shadow: 0 0 2px rgba(0, 0, 0, 0.3);
+  border-radius: 5px;
+  padding: 10px 15px;
+  cursor: pointer;
+}
+#theme .select:hover {
+  color: #333;
+  transition: all 0.3s;
+}
+#theme .select .text {
+}
+#theme .select .job-list {
+  list-style: none;
+  padding: 0;
+  border-radius: 5px;
+  box-shadow: 0 0 2px rgba(0, 0, 0, 0.3);
+}
+#theme .select .job-list .job {
+  padding: 10px 15px;
+}
+#theme .select .job-list .job:hover {
+  background-color: #f2f2f2;
+}
+/*joinForm 관심사선택 multiselect*/
+.interest-multiselect {
+  width: 200px;
+  height: 50%;
+}
+.interest-selectBox {
+  position: relative;
+  width: 200%;
+}
+#interest-checkboxes {
+  width: 200%;
+}
+.interest-selectBox select {
+  width: 100%;
+  font-size: 130%;
+  height: 100%;
+  padding-left: 5px;
+  box-shadow: 0 0 2px rgba(0, 0, 0, 0.3);
+  border-radius: 5px;
+}
+.overSelect {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+}
+#interest-checkboxes {
+  display: none;
+  border: 1px #dadada solid;
+  box-shadow: 0 0 2px rgba(0, 0, 0, 0.3);
+  border-radius: 5px;
+  padding: 10px 15px;
+  cursor: pointer;
+}
+#interest-checkboxes span {
+  font-size: large;
+}
+#interest-checkboxes label {
+  display: block;
+}
+#interest-checkboxes label:hover {
+  background-color: #1e90ff;
+}
+.joinForm-grid-item > span {
+  font-size: 130%;
+  margin: 1%;
+}
+.mail-input-box > input {
+  width: 60%;
+  height: 30px;
+  font-size: 100%;
+  margin: 1%;
+}
+.mail-input-box > button {
+  width: 20%;
+  height: 30px;
+}
+.joinForm-grid-item > input {
+  width: 60%;
+  height: 30px;
+  font-size: 100%;
+  margin: 1%;
+}
+.joinForm-grid-item > button {
+  width: 20%;
+  height: 30px;
+}
+#sample6_postcode {
+  width: 35%;
+  height: 30px;
+  margin: 1%;
+}
+.joinForm-postcode-bnt {
+  width: 20%;
+  height: 30px;
+  margin: 1%;
+}
+#sample6_address {
+  width: 60%;
+  height: 30px;
+  margin: 1%;
+}
+#sample6_detailAddress {
+  width: 60%;
+  height: 30px;
+  margin: 1%;
+}
+.joinForm-grid-item .select {
+  margin: 1%;
+}
+.interest-multiselect {
+  margin: 1%;
+}
+.joinForm-footer-bnt {
+  margin: 2%;
+}

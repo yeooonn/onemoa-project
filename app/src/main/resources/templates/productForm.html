@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <title>onemoa v</title>
+    <link href="css/onemoa.css" rel="stylesheet" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="js/onemoa.js"></script>
+  </head>
+  <body style="overflow-x: hidden">
+    <div class="modal" style="position: absolute; z-index: 1">
+      <div class="modal_body">
+        <div calss="login_container">
+          <button class="closebtn"><img src="./img/x.png" /></button>
+          <p>로그인</p>
+          <form action="auth/login" method="post">
+            <table class="input_login">
+              <tr>
+                <td>
+                  <input
+                    name="email"
+                    type="email"
+                    value=""
+                    placeholder="이메일을 입력해 주세요."
+                  />
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <input
+                    name="password"
+                    type="password"
+                    placeholder="패스워드를 입력해 주세요."
+                  />
+                </td>
+              </tr>
+            </table>
+            <p>
+              <button type="submit" class="loginbtn">
+                <img src="img/loginbtn.png" />
+              </button>
+            </p>
+            <input type="checkbox" name="saveEmail" id="email" /><label
+              for="label-a"
+              >이메일 유지</label
+            ><br />
+            <p class="find"><a href="#">아이디 / 패스워드 찾기</a></p>
+          </form>
+          <div class="sns">
+            <p>SNS로 간편하게 로그인하세요.</p>
+            <a href="#"><img src="./img/kakao.png" /></a>
+            <a href="#"><img src="./img/naver.png" /></a>
+            <a href="#"><img src="./img/google.png" /></a>
+          </div>
+          <div class="sign">
+            <a href="#"><img src="./img/signup.png" /></a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <header>
+      <div class="nav">
+        <a href="/onemoa"><p class="logo">ONEMOA</p></a>
+        <ul class="firstnav">
+          <li data-th-if="${session.loginMember != null}">
+            <a
+              href="auth/logout"
+              data-th-text="${session.loginMember.name} + '(로그아웃)'"
+              >홍길동(로그아웃)</a
+            >
+          </li>
+          <li data-th-if="${session.loginMember == null}">
+            <button class="btn-open-popup">로그인</button>
+          </li>
+          <li><a href="#">마이페이지</a></li>
+          <li><a href="#">메시지</a></li>
+        </ul>
+      </div>
+
+      <div class="menu">
+        <ul class="secnav">
+          <li>
+            <a href="contestTeam"><p>공모전</p></a>
+          </li>
+          <li>
+            <a href="#"><p>재능판매</p></a>
+          </li>
+        </ul>
+      </div>
+    </header>
+
+    <form action="" method="POST">
+      <div class="productForm-grid-container">
+        <div class="productForm-grid-item"><p>재능판매 등록</p></div>
+        <div class="productForm-grid-item"><p>제목</p></div>
+        <div class="productForm-grid-item">
+          <input
+            class="productFrom-title-input-box"
+            name="title"
+            type="text"
+            placeholder="제목을 입력해주세요."
+          />
+        </div>
+        <div class="productForm-grid-item"><p>카테고리</p></div>
+        <div class="productForm-grid-item">
+          <div class="categoryA-container">
+            <label for="categoryA">상위 카테고리 선택</label><br />
+            <select
+              class="productForm-category"
+              name="categoryA"
+              id="categoryA"
+            >
+              <option value="">상위 카테고리 선택</option>
+              <option value="010000">디자인</option>
+              <option value="020000">IT·프로그래밍</option>
+              <option value="030000">영상·사진·음향</option>
+              <option value="040000">마케팅</option>
+              <option value="050000">문서·글쓰기</option>
+              <option value="060000">비즈니스컨설팅</option>
+              <option value="070000">주문제작</option>
+            </select>
+          </div>
+        </div>
+        <div class="productForm-grid-item">
+          <div class="categoryB-container">
+            <label for="categoryB">하위 카테고리 선택</label><br />
+            <select
+              class="productForm-category"
+              name="categoryB"
+              id="categoryB"
+            >
+              <option value="">하위 카테고리 선택</option>
+              <option value="010000">디자인</option>
+              <option value="020000">IT·프로그래밍</option>
+              <option value="030000">영상·사진·음향</option>
+              <option value="040000">마케팅</option>
+              <option value="050000">문서·글쓰기</option>
+              <option value="060000">비즈니스컨설팅</option>
+              <option value="070000">주문제작</option>
+            </select>
+          </div>
+        </div>
+        <div class="productForm-grid-item"><p>가격 정보</p></div>
+        <div class="productForm-grid-item">
+          <input
+            class="productFrom-price-input-box"
+            name="price"
+            type="text"
+            placeholder="가격을 입력해주세요."
+            onkeyup="commas(this)"
+          /><span class="productFrom-price-span"> 원</span>
+        </div>
+        <div class="productForm-grid-item">
+          <textarea name="content" style="width: 90%; height: 90%"></textarea>
+        </div>
+        <div class="productForm-grid-item">
+          <div class="productForm-grid-item2">
+            <span>메인이미지등록(필수) 0/4</span>
+            <input
+              class="productForm-inputbox1"
+              name="files1"
+              type="file"
+              multiple
+            />
+            <img
+              width="200px"
+              src="img/productFromMain.png"
+              onclick="document.all.files1.click();"
+            />
+          </div>
+          <div class="productForm-grid-item2">
+            <span>상세이미지등록(3개 필수) 0/9</span>
+            <input
+              name="files2"
+              type="file"
+              multiple
+              class="productForm-inputbox2"
+            />
+            <img
+              width="200px"
+              src="img/productFromDetail.png"
+              onclick="document.all.files2.click();"
+            />
+          </div>
+        </div>
+        <div class="productForm-grid-item">
+          <button class="productForm-submit" action="submit">등록</button>
+          <button class="productFrom-cancle">취소</button>
+        </div>
+      </div>
+    </form>
+
+    <footer>
+      <ul class="footerMenu">
+        <li>
+          <a href="#"><p>공지사항</p></a>
+        </li>
+        <li>
+          <a href="#"><p>1 : 1 문의</p></a>
+        </li>
+      </ul>
+      <div class="detail">
+        (주)ONEMOA | 서울시 강남구 비트캠프 8층 | 대표 : 000 |
+        개인정보관리책임자 : 000 | 고객센터 : 1234-1234
+        <span
+          >고객센터 영업시간 10:30 ~ 18:00 ( 점심시간 13:00 ~ 14:00) 주말,
+          공휴일 휴무 | ONEMOA@onemoa.com |
+        </span>
+        <span>Copyright 2022 ONEMOA lnc.All rights reserved</span>
+      </div>
+    </footer>
+
+    <script>
+      const body = document.querySelector("body");
+      const modal = document.querySelector(".modal");
+      const btnOpenPopup = document.querySelector(".btn-open-popup");
+      const closebtn = document.querySelector(".closebtn");
+
+      btnOpenPopup.addEventListener("click", () => {
+        modal.style.display = "block";
+
+        if (modal.classList.contains("show")) {
+          body.style.overflow = "hide";
+        }
+        body.style.overflow = "hidden";
+      });
+
+      closebtn.addEventListener("click", () => {
+        modal.style.display = "none";
+        body.style.overflow = "auto";
+      });
+
+      // 숫자만 입력 받기 (feat.금액에 콤마넣기 1,000,000)
+      // https://htmlstory.tistory.com/28
+      function commas(t) {
+        // 콤마 빼고
+        var x = t.value;
+        x = x.replace(/,/gi, "");
+
+        // 숫자 정규식 확인
+        var regexp = /^[0-9]*$/;
+
+        if (!regexp.test(x)) {
+          $(t).val("");
+          alert("숫자만 입력 가능합니다.");
+        } else {
+          x = x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+          $(t).val(x);
+        }
+      }
+    </script>
+  </body>
+</html>

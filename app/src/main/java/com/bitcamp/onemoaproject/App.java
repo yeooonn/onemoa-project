@@ -26,7 +26,6 @@ public class App {
   public String welcome2() {
     return "contestTeam";
   }
-
 }
 
 
