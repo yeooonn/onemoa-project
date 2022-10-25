@@ -24,13 +24,14 @@ insert into job (jno, name) values (5, '대학(원)생');
 insert into job (jno, name) values (6, '취업준비생');
 
 -- 회원 테이블
-insert into member (mno, email, pwd, nick, name, tel, cdt, pstno, base_addr, detail_addr, jno, bank, acount, profil, token, status) values (1, 'user1@test.com', '0ffe1abd1a08215353c233d6e009613e95eec4253832a761af28ff37ac5a150c', '판매자닉네임
+insert into member (mno, email, pwd, nick, name, tel, cdt, pstno, base_addr, detail_addr, jno, bank, acount, profil, token, status) values (1, 'user1@test.com', sha2('1111',256), '판매자닉네임
 ', '판매자', '01011112222', '2022-10-07', '06134', '서울특별시 강남구 역삼동 819-3', '삼오빌딩 5-9층', 1, '국민은행', '111111-11-111111', '프로필사진파일경로', '이메일토큰', 1);
-insert into member (mno, email, pwd, nick, name, tel, cdt, pstno, base_addr, detail_addr, jno, bank, acount, profil, token, status) values (2, 'user2@test.com', '0ffe1abd1a08215353c233d6e009613e95eec4253832a761af28ff37ac5a150c', '회원닉네임', '홍길동', '01022222222', '2022-10-07', '06134', '서울특별시 강남구 역삼동 819-3', '삼오빌딩 5-9층', 2, null, null, '프로필사진파일경로', '이메일토큰', 1);
-insert into member (mno, email, pwd, nick, name, tel, cdt, pstno, base_addr, detail_addr, jno, bank, acount, profil, token, status) values (3, 'user3@test.com', '0ffe1abd1a08215353c233d6e009613e95eec4253832a761af28ff37ac5a150c', '회원닉네임', '홍길동', '01033332222', '2022-10-07', '06134', '서울특별시 강남구 역삼동 819-3', '삼오빌딩 5-9층', 3, null, null, '프로필사진파일경로', '이메일토큰', 1);
-insert into member (mno, email, pwd, nick, name, tel, cdt, pstno, base_addr, detail_addr, jno, bank, acount, profil, token, status) values (4, 'user4@test.com', '0ffe1abd1a08215353c233d6e009613e95eec4253832a761af28ff37ac5a150c', '회원닉네임', '홍길동', '01044442222', '2022-10-07', '06134', '서울특별시 강남구 역삼동 819-3', '삼오빌딩 5-9층', 4, null, null, '프로필사진파일경로', '이메일토큰', 1);
-insert into member (mno, email, pwd, nick, name, tel, cdt, pstno, base_addr, detail_addr, jno, bank, acount, profil, token, status) values (5, 'user5@test.com', '0ffe1abd1a08215353c233d6e009613e95eec4253832a761af28ff37ac5a150c', '회원닉네임', '홍길동', '01055552222', '2022-10-07', '06134', '서울특별시 강남구 역삼동 819-3', '삼오빌딩 5-9층', 5, null, null, '프로필사진파일경로', '이메일토큰', 1);
-insert into member (mno, email, pwd, nick, name, tel, cdt, pstno, base_addr, detail_addr, jno, bank, acount, profil, token, status) values (6, 'user6@test.com', '0ffe1abd1a08215353c233d6e009613e95eec4253832a761af28ff37ac5a150c', '회원닉네임', '홍길동', '01066662222', '2022-10-07', '06134', '서울특별시 강남구 역삼동 819-3', '삼오빌딩 5-9층', 6, null, null, '프로필사진파일경로', '이메일토큰', 1);
+insert into member (mno, email, pwd, nick, name, tel, cdt, pstno, base_addr, detail_addr, jno, bank, acount, profil, token, status) values (2, 'user2@test.com', sha2('1111',256), '회원닉네임', '홍길동', '01022222222', '2022-10-07', '06134', '서울특별시 강남구 역삼동 819-3', '삼오빌딩 5-9층', 2, null, null, '프로필사진파일경로', '이메일토큰', 1);
+insert into member (mno, email, pwd, nick, name, tel, cdt, pstno, base_addr, detail_addr, jno, bank, acount, profil, token, status) values (3, 'user3@test.com', sha2('1111',256), '회원닉네임', '홍길동', '01033332222', '2022-10-07', '06134', '서울특별시 강남구 역삼동 819-3', '삼오빌딩 5-9층', 3, null, null, '프로필사진파일경로', '이메일토큰', 1);
+insert into member (mno, email, pwd, nick, name, tel, cdt, pstno, base_addr, detail_addr, jno, bank, acount, profil, token, status) values (4, 'user4@test.com', sha2('1111',256), '회원닉네임', '홍길동', '01044442222', '2022-10-07', '06134', '서울특별시 강남구 역삼동 819-3', '삼오빌딩 5-9층', 4, null, null, '프로필사진파일경로', '이메일토큰', 1);
+insert into member (mno, email, pwd, nick, name, tel, cdt, pstno, base_addr, detail_addr, jno, bank, acount, profil, token, status) values (5, 'user5@test.com', sha2('1111',256), '회원닉네임', '홍길동', '01055552222', '2022-10-07', '06134', '서울특별시 강남구 역삼동 819-3', '삼오빌딩 5-9층', 5, null, null, '프로필사진파일경로', '이메일토큰', 1);
+insert into member (mno, email, pwd, nick, name, tel, cdt, pstno, base_addr, detail_addr, jno, bank, acount, profil, token, status) values (6, 'user6@test.com', sha2('1111',256), '회원닉네임', '홍길동', '01066662222', '2022-10-07', '06134', '서울특별시 강남구 역삼동 819-3', '삼오빌딩 5-9층', 6, null, null, '프로필사진파일경로', '이메일토큰', 1);
+insert into member (mno, email, pwd, nick, name, tel, cdt, pstno, base_addr, detail_addr, jno, bank, acount, profil, token, status) values (7, 'user7@test.com', sha2('1111',256), '회원닉네임', '홍길동', '01076662222', '2022-10-07', '06134', '서울특별시 강남구 역삼동 819-3', '삼오빌딩 5-9층', 6, null, null, '프로필사진파일경로', '이메일토큰', 1);
 
 
 -- 재능판매카테고리 테이블
@@ -336,8 +337,8 @@ insert into message_file (msgfno, fname, fpath, msgno) values (5, '1대1대화�
 insert into message_file (msgfno, fname, fpath, msgno) values (6, '1대1대화첨부파일6', '6af7752f-f889-4e40-aed8-2947fc5418f1', 6);
 
 -- 관리자 테이블
-insert into admin_member (amno, id, pwd) values (1, 'admin1@test.com', '1111');
-insert into admin_member (amno, id, pwd) values (2, 'admin2@test.com', '1111');
+insert into admin_member (amno, id, pwd) values (1, 'admin1@test.com', sha2('1111',256));
+insert into admin_member (amno, id, pwd) values (2, 'admin2@test.com', sha2('1111',256));
 
 -- 공지사항 테이블
 insert into notice (ntcno, title, cont, cdt, vcnt, fname, fpath) values (1, 'ONEMOA를 사칭하는 행위, 조심하세요!', '안녕하세요, ONEMOA입니다. 최근 ONEMOA를 사칭한 인물 및 업체로부터의 피해 사례가 발생하고 있습니다. 위와 같은 행위는 크몽 서비스 이용에 혼란을 주고, 더불어 물질적인 피해를 야기할 수 있어 회원님들의 각별한 주의가 필요합니다.', '22-10-08', 10, '공지사항 첨부파일.png','b1fe7835-1fcd-40d6-b495-450e5cac3f21');
