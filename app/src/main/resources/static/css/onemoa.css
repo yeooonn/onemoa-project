@@ -553,7 +553,7 @@ p {
   float: right;
   position: relative;
   right: 30px;
-  top: -30px;
+  top: -13px;
 }
 #email {
   float: left;
@@ -565,7 +565,7 @@ input[id="email2"] {
 }
 label[for="label-a"] {
   position: relative;
-  top: -10px;
+  top: 7px;
   left: 40px;
   float: left;
   font-size: 0.9722vw;
