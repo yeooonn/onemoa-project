@@ -18,36 +18,37 @@
           <form action='login' method="post">
             <table class="input_login" >
               <tr>
-                <td><input name='email' type='email' value="" placeholder="이메일을 입력해 주세요."></td>
+                <td><input name='email' type='email' id='email' value="user1@test.com" placeholder="이메일을 입력해 주세요." data-th-value="${email}"></td>
               </tr>
               <tr>
-                <td><input name='password' type='password' placeholder="패스워드를 입력해 주세요."></td>
+                <td><input name='password' type='password' id='password' placeholder="패스워드를 입력해 주세요."></td>
               </tr>
             </table>
             <p>
-              <button type='submit' class="loginbtn"><img src="img/loginbtn.png"></button>
+              <button type='submit' class="loginbtn" id="adminCheck"><img src="img/loginbtn.png"></button>
             </p>
-            <input type="checkbox" name="saveEmail" id="email"><label for="label-a">이메일 유지</label><br>
-            <p class="find"><a href = "#">아이디 / 패스워드 찾기</a></p>
+            <label for="label-a"><input type="checkbox" name="saveEmail" id="email2">이메일 유지<br></label>
+            <p class="find"><a href = "#">아이디 찾기</a> / <a href = "#">패스워드 찾기</a></p>
           </form>
           <div class="sns">
-            <p>SNS로 간편하게 로그인하세요.</p>
+            <p class="snsp">SNS로 간편하게 로그인하세요.</p>
             <a href="#"><img src="./img/kakao.png"></a>
             <a href="#"><img src="./img/naver.png"></a>
             <a href="#"><img src="./img/google.png"></a>
           </div>
           <div class="sign">
-            <a href="#"><img src="./img/signup.png"></a>
-          </div>
+            <a href="joinForm"><img src="./img/signup.png"></a>
           </div>
         </div>
+      </div>
     </div>
     
     <header>
       <div class="nav">
-        <a href="index.html"><p class="logo">ONEMOA</p></a>
+        <a href="/onemoa"><p class="logo">ONEMOA</p></a>
         <ul class="firstnav">
-          <li><button class="btn-open-popup">로그인</button></li>
+          <li data-th-if="${session.loginMember != null}"><a href="logout" data-th-text="로그아웃">로그아웃</a></li>
+          <li><button class="btn-open-popup" data-th-if="${session.loginMember == null}">로그인</button></li>
           <li><a href="#">마이페이지</a></li>
           <li><a href="#">메시지</a></li>
         </ul>
@@ -55,7 +56,7 @@
 
       <div class="menu">
         <ul class="secnav">
-          <li><a href="contestTeam.html"><p>공모전</p></a></li>
+          <li><a href="contestTeam"><p>공모전</p></a></li>
           <li><a href="#"><p>재능판매</p></a></li>
         </ul>
       </div>

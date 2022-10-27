@@ -11,14 +11,15 @@
 <body>
 <div class="login-header">
 <!--  <img width="30%" src="img/contestbg.png" />-->
-  <a href="/onemoa"><p class="logo">ONEMOA 회원가입</p></a>
+  <a href="/onemoa"><p class="logo">ONEMOA</p></a>
 </div>
 
 <form id="join_frm" action="" method="post">
   <div class="joinForm-flex-container">
     <div class="joinForm-grid-container">
+      <p class="joinp">딱 이것만 작성하면 가입완료!</p>
       <div class="joinForm-grid-item">
-        <span>이름</span> <span style="color: red">*</span>
+        <p>이름 <span style="color: red">*</p>
       </div>
       <div class="joinForm-grid-item">
         <input
@@ -30,8 +31,26 @@
             required
         />
       </div>
+
       <div class="joinForm-grid-item">
-        <span>이메일</span> <span style="color: red">*</span>
+        <p>닉네임 <span style="color: red">*</p>
+      </div>
+      <div class="joinForm-grid-item">
+        <input
+            class="nickname-input"
+            type="text"
+            name="nickname"
+            id="joinnickname"
+            placeholder="닉네임을 입력해 주세요"
+            required
+        />
+        <button type="button" id="nickname_btn" class="nickname_btn">
+          중복확인하기
+        </button>
+      </div>
+
+      <div class="joinForm-grid-item">
+        <p>이메일 <span style="color: red">*</p>
       </div>
       <div class="joinForm-grid-item">
         <div class="mail-input-box">
@@ -48,6 +67,7 @@
           </button>
         </div>
       </div>
+
       <div class="joinForm-grid-item">
         <input
             class="mail-input-check"
@@ -64,8 +84,9 @@
           인증하기
         </button>
       </div>
+
       <div class="joinForm-grid-item">
-        <span>비밀번호</span> <span style="color: red">*</span>
+        <p>비밀번호 <span style="color: red">*</p>
       </div>
       <div class="joinForm-grid-item">
         <input
@@ -84,8 +105,9 @@
             required
         />
       </div>
+
       <div class="joinForm-grid-item">
-        <span>우편번호</span> <span style="color: red">*</span>
+        <p>우편번호 <span style="color: red">*</p>
       </div>
       <div class="joinForm-grid-item">
         <div class="address">
@@ -115,35 +137,27 @@
           />
         </div>
       </div>
+
       <div class="joinForm-grid-item">
-        <span>직업</span> <span style="color: red">*</span>
+        <p>직업 <span style="color: red">*</p>
       </div>
+      <select name="job" class="job">
+        <option value="직업을 선택해주세요." selected>직업을 선택해주세요.</option>
+        <option value="1">프리랜서</option>
+        <option value="2">직장인</option>
+        <option value="3">소상공인</option>
+        <option value="4">스타트업 창업</option>
+        <option value="5">대학(원)생</option>
+        <option value="6">취업준비생</option>
+      </select>
+
       <div class="joinForm-grid-item">
-        <section id="theme" name="job">
-          <div class="select">
-            <div class="text" name="job">직업을 선택해 주세요.</div>
-            <input type="hidden" name="job" id="job-input-box">
-            <ul class="job-list">
-              <li class="job" value="1">프리랜서</li>
-              <li class="job" value="2">직장인</li>
-              <li class="job" value="3">소상공인</li>
-              <li class="job" value="4">스타트업 창업</li>
-              <li class="job" value="5">대학(원)생</li>
-              <li class="job" value="6">취업준비생</li>
-            </ul>
-          </div>
-        </section>
+        <p>관심사 선택 <span style="color: red">*</p>
       </div>
-      <div class="joinForm-grid-item">
-        <span>관심사 선택</span> <span style="color: red">*</span>
-      </div>
-      <div class="joinForm-grid-item">
-        <div class="interest-multiselect">
-          <div class="interest-selectBox" onclick="showInterestCheckboxes()">
-            <select>
-              <option>관심사를 선택해 주세요.</option>
-            </select>
-            <div class="overSelect"></div>
+      <div class="interest-multiselect">
+        <div class="interest-selectBox">
+          <div class="interest" onclick="showInterestCheckboxes()">
+            <p>관심사를 선택해 주세요.</p>
           </div>
           <div id="interest-checkboxes">
             <input type="checkbox" name="interests" value="010000" /><span>디자인</span><br />
@@ -157,6 +171,7 @@
           </div>
         </div>
       </div>
+    
       <div class="joinForm-grid-item">
         <button class="joinForm-footer-bnt" id="join" >회원가입하기</button>
         <button class="joinForm-footer-bnt" onclick="location.href='../'">취소</a></button>
@@ -214,36 +229,6 @@
       },
     }).open();
   }
-
-  /* 직업
-  https://as-you-say.tistory.com/282
-  */
-  function onClickSelectJob(e) {
-    const isActive = e.currentTarget.className.indexOf("active") !== -1;
-    if (isActive) {
-      e.currentTarget.className = "select";
-    } else {
-      e.currentTarget.className = "select active";
-    }
-  }
-
-  document.querySelector("#theme .select").addEventListener("click", onClickSelectJob);
-
-  function onClickOptionJob(e) {
-    const selectedValue1 = e.currentTarget.innerHTML;
-    const selectedValued = e.currentTarget.value;
-    document.querySelector("#theme .text").innerHTML = selectedValue1;
-    document.getElementById("job-input-box").value = selectedValued;
-    console.log(selectedValued);
-    console.log(selectedValue1);
-  }
-
-  var optionList = document.querySelectorAll("#theme .job");
-  for (var i = 0; i < optionList.length; i++) {
-    var option = optionList[i];
-    option.addEventListener("click", onClickOptionJob);
-  }
-
 
   // 관심사선택
   var expanded = false;

@@ -519,7 +519,7 @@ p {
   margin-bottom: 20px;
   margin-top: 20px;
 }
-table tr td input {
+.input_login tr td input {
   display: block;
   width: 101%;
   height: 47px;
@@ -546,7 +546,6 @@ table tr td input {
 }
 .email {
   color: #333333;
-  padding-left: 10px;
 }
 .find {
   font-size: 0.9722vw;
@@ -554,15 +553,15 @@ table tr td input {
   float: right;
   position: relative;
   right: 30px;
-  top: -50px;
+  top: -30px;
 }
 #email {
   float: left;
 }
-input[id="email"] {
+input[id="email2"] {
   position: relative;
-  top: -10px;
-  left: 30px;
+  top: 0px;
+  left: -10px;
 }
 label[for="label-a"] {
   position: relative;
@@ -571,12 +570,12 @@ label[for="label-a"] {
   float: left;
   font-size: 0.9722vw;
 }
-.sns p {
+.sns .snsp {
   font-size: 0.9722vw;
   color: #666666;
-  position: relative;
-  right: 10px;
-  top: 10px;
+  float: left;
+  white-space: nowrap; 
+  margin-left: 8%
 }
 .sns img {
   margin-bottom: 5px;
@@ -1997,142 +1996,8 @@ label[for="label-a"] {
 .modal_body9 .teamb9 span:nth-of-type(2):hover {
   background-color: #6c6d70;
 }
-/* 주영 productForm CSS 작업 */
-.productForm-grid-container {
-  width: 60%;
-  display: grid;
-  grid-template-columns: 200px 0.5fr 2fr;
-  grid-template-rows: 70px 70px 70px 70px 300px 200px 100px;
-  /* border-style: solid; */
-}
-.productForm-grid-item {
-  /* border-style: solid; */
-}
-.productForm-grid-item:nth-child(1) {
-  grid-column-start: 1;
-  grid-column-end: 2;
-  grid-row-start: 1;
-  grid-row-end: 8;
-  display: flex;
-  justify-content: center;
-}
-.productForm-grid-item:nth-child(2) {
-  display: flex;
-  align-items: center;
-}
-.productForm-grid-item:nth-child(3) {
-  display: flex;
-  align-items: center;
-}
-/*카테고리*/
-.productForm-grid-item:nth-child(4) {
-  grid-column-start: 2;
-  grid-column-end: 3;
-  grid-row-start: 2;
-  grid-row-end: 4;
-  display: flex;
-}
-/*상위 카테고리 선택 */
-.productForm-grid-item:nth-child(5) {
-  width: 95%;
-  display: flex;
-  align-items: center;
-}
-/*하위 카테고리 선택 */
-.productForm-grid-item:nth-child(6) {
-  width: 95%;
-  display: flex;
-  align-items: center;
-}
-.productForm-grid-item:nth-child(9) {
-  grid-column-start: 2;
-  grid-column-end: 4;
-  grid-row-start: 5;
-  grid-row-end: 6;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-.productForm-grid-item:nth-child(10) {
-  grid-column-start: 2;
-  grid-column-end: 4;
-  grid-row-start: 6;
-  grid-row-end: 7;
-  display: grid;
-  grid-template-columns: 0.5fr 0.5fr;
-}
-.productForm-grid-item:nth-child(11) {
-  grid-column-start: 2;
-  grid-column-end: 4;
-  grid-row-start: 7;
-  grid-row-end: 8;
-  display: flex;
-  justify-content: right;
-  align-items: center;
-}
-.productForm-grid-item2:nth-child(1) {
-  display: flex;
-  flex-wrap: wrap;
-  flex-direction: column; /*수직 정렬*/
-  justify-content: center;
-  align-items: center;
-}
-.productForm-grid-item2:nth-child(2) {
-  display: flex;
-  flex-wrap: wrap;
-  flex-direction: column; /*수직 정렬*/
-  justify-content: center;
-  align-items: center;
-}
-.productForm-submit {
-  width: 20%;
-  height: 50%;
-  margin-right: 10px;
-  font-size: 100%;
-}
-.productFrom-cancle {
-  width: 20%;
-  height: 50%;
-  margin-right: 10px;
-  font-size: 100%;
-}
-.productForm-inputbox1 {
-  display: none;
-}
-.productForm-inputbox2 {
-  display: none;
-}
-.productForm-grid-item > p {
-  font-size: 120%;
-}
-.productFrom-title-input-box {
-  width: 90%;
-  height: 100%;
-  font-size: 120%;
-  border: none;
-}
-.productFrom-price-input-box {
-  width: 30%;
-  height: 100%;
-  font-size: 120%;
-  border: none;
-  text-align: right;
-}
-.productFrom-price-span {
-  font-size: 120%;
-}
-.productForm-category {
-  width: 100%;
-}
-.categoryA-container {
-  width: 100%;
-}
-.categoryB-container {
-  width: 100%;
-}
-.productForm-category {
-  width: 95%;
-}
+
+
 
 /* 주영 joinForm CSS...*/
 .login-header {
@@ -2141,109 +2006,225 @@ label[for="label-a"] {
   align-items: center;
   margin-top: 2%;
 }
+.login-header p {
+  margin-top: 60px;
+  font-weight: bold;
+}
 .joinForm-flex-container {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 2%;
+}
+#join_frm {
+  margin-bottom: 150px;
 }
 .joinForm-grid-container {
-  width: 35%;
+  width: 37%;
   display: grid;
   grid-template-columns: 1fr;
   /* grid-template-rows: 35px 50px; */
   border-style: solid;
-  border-radius: 10px;
-  border-color: #707fc2;
-  padding: 1%;
+  border-radius: 5px;
+  border-color: #e2e2e2;
+  padding-left: 5%;
 }
-.joinForm-grid-item {
-  /* border-style: solid; */
+.joinForm-grid-container .joinp {
+  padding-top: 50px;
+  font-size: 2vw;
+}
+.joinForm-grid-item p {
+  font-size: 1.1vw;
+  height: 10px;
+}
+.joinForm-grid-item .name-input {
+  padding-left: 3%;
+  font-size: 1vw;
+  height: 50px;
+  border-radius: 3px;
+  border: 1px solid #cdcdcd;
+}
+.joinForm-grid-item .name-input::placeholder {
+  color: #a3a3a3;
+}
+.joinForm-grid-item .nickname-input {
+  padding-left: 3%;
+  font-size: 1vw;
+  height: 50px;
+  border-radius: 3px;
+  border: 1px solid #cdcdcd;
+}
+.joinForm-grid-item .nickname-input::placeholder {
+  color: #a3a3a3;
+}
+.joinForm-grid-item .nickname_btn {
+  height: 50px;
+  border: none;
+  background-color: #83879a;
+  color: #fff;
+  border-radius: 5px;
+}
+.joinForm-grid-item .nickname_btn:hover {
+  background-color: #575a68;
+  transition: all .3s;
+}
+.joinForm-grid-item .email-input {
+  padding-left: 3%;
+  font-size: 1vw;
+  height: 50px;
+  border-radius: 3px;
+  border: 1px solid #cdcdcd;
+}
+.joinForm-grid-item .email-input::placeholder {
+  color: #a3a3a3;
+}
+.joinForm-grid-item .mail-input-check {
+  padding-left: 3%;
+  font-size: 1vw;
+  height: 50px;
+  border-radius: 3px;
+  border: 1px solid #cdcdcd;
+}
+.joinForm-grid-item .mail-input-check::placeholder {
+  color: #a3a3a3;
+}
+.joinForm-grid-item .email_auth_btn {
+  height: 50px;
+  border: none;
+  background-color: #83879a;
+  color: #fff;
+  border-radius: 5px;
+}
+.joinForm-grid-item .email_auth_btn:hover {
+  background-color: #575a68;
+  transition: all .3s;
+}
+.joinForm-grid-item .email_auth_check_btn {
+  height: 50px;
+  border: none;
+  background-color: #83879a;
+  color: #fff;
+  border-radius: 5px;
+}
+.joinForm-grid-item .email_auth_check_btn:hover {
+  background-color: #575a68;
+  transition: all .3s;
+}
+.joinForm-grid-item #password {
+  padding-left: 3%;
+  font-size: 1vw;
+  height: 50px;
+  border-radius: 3px;
+  border: 1px solid #cdcdcd;
+}
+.joinForm-grid-item #password::placeholder {
+  color: #a3a3a3;
+}
+.joinForm-grid-item #password-ck {
+  padding-left: 3%;
+  font-size: 1vw;
+  height: 50px;
+  border-radius: 3px;
+  border: 1px solid #cdcdcd;
+}
+.joinForm-grid-item #password-ck::placeholder {
+  color: #a3a3a3;
+}
+.joinForm-grid-item #sample6_postcode {
+  padding-left: 3%;
+  font-size: 1vw;
+  height: 50px;
+  border-radius: 3px;
+  border: 1px solid #cdcdcd;
+}
+.joinForm-grid-item #sample6_postcode::placeholder {
+  color: #a3a3a3;
+}
+.joinForm-grid-item #sample6_address {
+  padding-left: 3%;
+  font-size: 1vw;
+  height: 50px;
+  border-radius: 3px;
+  border: 1px solid #cdcdcd;
+}
+.joinForm-grid-item #sample6_address::placeholder {
+  color: #a3a3a3;
+}
+.joinForm-grid-item #sample6_detailAddress {
+  padding-left: 3%;
+  font-size: 1vw;
+  height: 50px;
+  border-radius: 3px;
+  border: 1px solid #cdcdcd;
+}
+.joinForm-grid-item #sample6_detailAddress::placeholder {
+  color: #a3a3a3;
+}
+.joinForm-grid-item .joinForm-postcode-bnt {
+  height: 50px;
+  border: none;
+  background-color: #83879a;
+  color: #fff;
+  border-radius: 5px;
+}
+.joinForm-grid-item .joinForm-postcode-bnt:hover {
+  background-color: #575a68;
+  transition: all .3s;
 }
 .joinForm-grid-item:nth-child(15) {
   display: flex;
   justify-content: center;
   align-items: center;
 }
-/*joinForm 직업선택 select*/
-.select {
-  position: relative;
-}
-.select .job-list {
-  position: relative;
-  top: 100%;
-  left: 0;
-  width: 100%;
-  overflow: hidden;
-  max-height: 0;
-}
-.select.active .job-list {
-  max-height: none;
-}
-/* 테마 적용하기 */
-#theme {
-}
-#theme .select {
-  box-shadow: 0 0 2px rgba(0, 0, 0, 0.3);
-  border-radius: 5px;
-  padding: 10px 15px;
-  cursor: pointer;
-}
-#theme .select:hover {
-  color: #333;
-  transition: all 0.3s;
-}
-#theme .select .text {
-}
-#theme .select .job-list {
-  list-style: none;
-  padding: 0;
-  border-radius: 5px;
-  box-shadow: 0 0 2px rgba(0, 0, 0, 0.3);
-}
-#theme .select .job-list .job {
-  padding: 10px 15px;
-}
-#theme .select .job-list .job:hover {
-  background-color: #f2f2f2;
+.job {
+  padding-left: 3%;
+  font-size: 1vw;
+  width: 61%;
+  height: 50px;
+  border-radius: 3px;
+  border: 1px solid #cdcdcd;
+  color: #a3a3a3;
+  padding-right: 27%;
 }
 /*joinForm 관심사선택 multiselect*/
-.interest-multiselect {
-  width: 200px;
-  height: 50%;
-}
-.interest-selectBox {
+.interest-multiselect .interest {
+  padding-left: 3%;
+  font-size: 1vw;
+  height: 50px;
+  border-radius: 3px;
+  border: 1px solid #cdcdcd;
+  color: #a3a3a3;
   position: relative;
-  width: 200%;
+  left: -1.3%;
 }
-#interest-checkboxes {
-  width: 200%;
+.interest {
+  position: relative;
+  width: 63%;
 }
-.interest-selectBox select {
-  width: 100%;
-  font-size: 130%;
-  height: 100%;
-  padding-left: 5px;
-  box-shadow: 0 0 2px rgba(0, 0, 0, 0.3);
-  border-radius: 5px;
+.interest p {
+  font-size: 1vw;
+  color: #a3a3a3;
+  line-height: 10px;
 }
-.overSelect {
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 0;
-  bottom: 0;
-}
+
 #interest-checkboxes {
   display: none;
   border: 1px #dadada solid;
   box-shadow: 0 0 2px rgba(0, 0, 0, 0.3);
   border-radius: 5px;
-  padding: 10px 15px;
+  padding-top: 20px;
+  padding-left: 20px;
   cursor: pointer;
+  width: 63%;
+  margin-top: 5px;
+  position: relative;
+  left: -1.3%;
+}
+#interest-checkboxes input {
+  margin-bottom: 20px;
 }
 #interest-checkboxes span {
   font-size: large;
+  margin-left: 2%;
 }
 #interest-checkboxes label {
   display: block;
@@ -2255,6 +2236,7 @@ label[for="label-a"] {
   font-size: 130%;
   margin: 1%;
 }
+
 .mail-input-box > input {
   width: 60%;
   height: 30px;
@@ -2271,9 +2253,35 @@ label[for="label-a"] {
   font-size: 100%;
   margin: 1%;
 }
+
 .joinForm-grid-item > button {
   width: 20%;
-  height: 30px;
+  height: 50px;
+  border: none;
+  background-color: #707fc2;
+  border-radius: 5px;
+  color: #fff;
+}
+.joinForm-grid-item .joinForm-footer-bnt:nth-of-type(1) {
+  margin-left: 18%;
+  margin-top: 50px;
+  margin-bottom: 50px;
+}
+.joinForm-grid-item .joinForm-footer-bnt:hover {
+  background-color: #4c5684;
+  transition: all .3s;
+}
+.joinForm-grid-item .joinForm-footer-bnt:nth-of-type(2) {
+  width: 20%;
+  height: 50px;
+  border: none;
+  background-color: #999ba1;
+  border-radius: 5px;
+  color: #fff;
+}
+.joinForm-grid-item .joinForm-footer-bnt:nth-of-type(2):hover {
+  background-color: #717379;
+  transition: all .3s;
 }
 #sample6_postcode {
   width: 35%;

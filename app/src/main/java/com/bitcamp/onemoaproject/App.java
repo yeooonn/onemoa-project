@@ -17,15 +17,22 @@ public class App {
     SpringApplication.run(App.class, args);
   }
 
+
   @GetMapping("/")
-  public String welcome() {
+  public String index() {
     return "index";
   }
 
   @GetMapping("/contestTeam")
-  public String welcome2() {
+  public String contestTeam() {
     return "contestTeam";
   }
+
+  @GetMapping("/joinForm")
+  public String joinForm() {
+    return "joinForm";
+  }
+
 }
 
 
