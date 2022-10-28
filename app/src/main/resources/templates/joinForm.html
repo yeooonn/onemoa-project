@@ -4,17 +4,15 @@
   <meta charset="UTF-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
   <title>onemoa v</title>
   <link href="css/onemoa.css" rel="stylesheet">
 </head>
 <body>
 <div class="login-header">
-<!--  <img width="30%" src="img/contestbg.png" />-->
   <a href="/onemoa"><p class="logo">ONEMOA</p></a>
 </div>
 
-<form id="join_frm" action="" method="post">
+<form id="join_frm" action="member/add" method="post">
   <div class="joinForm-flex-container">
     <div class="joinForm-grid-container">
       <p class="joinp">딱 이것만 작성하면 가입완료!</p>
@@ -28,10 +26,10 @@
             name="name"
             id="joinname"
             placeholder="이름을 입력해 주세요"
+            maxlength="20"
             required
         />
       </div>
-
       <div class="joinForm-grid-item">
         <p>닉네임 <span style="color: red">*</p>
       </div>
@@ -40,15 +38,18 @@
             class="nickname-input"
             type="text"
             name="nickname"
-            id="joinnickname"
+            id="nickname"
             placeholder="닉네임을 입력해 주세요"
+            maxlength="20"
             required
         />
-        <button type="button" id="nickname_btn" class="nickname_btn">
-          중복확인하기
+        <button type="button" id="nicknameCheckBtn" class="nickname_check_btn">
+          중복검사
         </button>
       </div>
-
+      <div class="joinForm-grid-item">
+        <input type="text" id="nicknameCheckBox" required value="" readonly/>
+      </div>
       <div class="joinForm-grid-item">
         <p>이메일 <span style="color: red">*</p>
       </div>
@@ -60,6 +61,7 @@
               name="email"
               id="joinEmail"
               placeholder="이메일을 입력해 주세요"
+              maxlength="30"
               required
           />
           <button type="button" id="email_auth_btn" class="email_auth_btn">
@@ -67,14 +69,12 @@
           </button>
         </div>
       </div>
-
-      <div class="joinForm-grid-item">
+      <div class="joinForm-grid-item" id="email-auth-box">
         <input
             class="mail-input-check"
             id="email-auth-key"
             name="emailAuthkey"
             placeholder="인증번호 입력"
-            required
         />
         <button
             type="button"
@@ -84,7 +84,14 @@
           인증하기
         </button>
       </div>
-
+      <div class="joinForm-grid-item">
+        <input
+            type="text"
+            id="emailAuthCheckBox"
+            required
+            value=""
+            readonly/>
+      </div>
       <div class="joinForm-grid-item">
         <p>비밀번호 <span style="color: red">*</p>
       </div>
@@ -93,7 +100,7 @@
             type="password"
             id="password"
             name="password"
-            placeholder="비밀번호를 입력해주세요.(6자리 이상)"
+            placeholder="비밀번호를 입력해주세요.(8자리 이상)"
             required
         />
       </div>
@@ -105,7 +112,14 @@
             required
         />
       </div>
-
+      <div class="joinForm-grid-item">
+        <input
+            type="text"
+            id="password-cked"
+            required
+            value=""
+            readonly />
+      </div>
       <div class="joinForm-grid-item">
         <p>우편번호 <span style="color: red">*</p>
       </div>
@@ -114,8 +128,9 @@
           <input
               type="text"
               id="sample6_postcode"
-              name="zip"
+              name="postNo"
               placeholder="우편번호"
+              required
           />
           <input
               type="button"
@@ -126,31 +141,41 @@
           <input
               type="text"
               id="sample6_address"
-              name="addr1"
+              name="baseAddr"
               placeholder="도로명주소"
+              required
           /><br />
           <input
               type="text"
               id="sample6_detailAddress"
-              name="addr2"
+              name="detailAddr"
               placeholder="상세주소"
+              required
           />
         </div>
       </div>
-
       <div class="joinForm-grid-item">
         <p>직업 <span style="color: red">*</p>
       </div>
-      <select name="job" class="job">
-        <option value="직업을 선택해주세요." selected>직업을 선택해주세요.</option>
-        <option value="1">프리랜서</option>
-        <option value="2">직장인</option>
-        <option value="3">소상공인</option>
-        <option value="4">스타트업 창업</option>
-        <option value="5">대학(원)생</option>
-        <option value="6">취업준비생</option>
-      </select>
-
+      <div class="joinForm-grid-item">
+        <select id="jobNo" name="jobNo" class="job">
+          <option value="0" selected>직업을 선택해주세요.</option>
+          <option value="1">프리랜서</option>
+          <option value="2">직장인</option>
+          <option value="3">소상공인</option>
+          <option value="4">스타트업 창업</option>
+          <option value="5">대학(원)생</option>
+          <option value="6">취업준비생</option>
+        </select>
+      </div>
+      <div class="joinForm-grid-item">
+        <input
+            type="text"
+            id="jobNoCheckBox"
+            required
+            value=""
+            readonly />
+      </div>
       <div class="joinForm-grid-item">
         <p>관심사 선택 <span style="color: red">*</p>
       </div>
@@ -171,113 +196,16 @@
           </div>
         </div>
       </div>
-    
       <div class="joinForm-grid-item">
-        <button class="joinForm-footer-bnt" id="join" >회원가입하기</button>
-        <button class="joinForm-footer-bnt" onclick="location.href='../'">취소</a></button>
+        <button type="submit" class="joinForm-footer-bnt" id="join" >회원가입하기</button>
+        <button class="joinForm-footer-bnt" onclick="location.href='/onemoa/'">취소</a></button>
       </div>
     </div>
   </div>
 </form>
 
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-<script>
-  function sample6_execDaumPostcode() {
-    new daum.Postcode({
-      oncomplete: function (data) {
-        // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
-
-        // 각 주소의 노출 규칙에 따라 주소를 조합한다.
-        // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
-        var addr = ""; // 주소 변수
-        var extraAddr = ""; // 참고항목 변수
-
-        //사용자가 선택한 주소 타입에 따라 해당 주소 값을 가져온다.
-        if (data.userSelectedType === "R") {
-          // 사용자가 도로명 주소를 선택했을 경우
-          addr = data.roadAddress;
-        } else {
-          // 사용자가 지번 주소를 선택했을 경우(J)
-          addr = data.jibunAddress;
-        }
-
-        // 사용자가 선택한 주소가 도로명 타입일때 참고항목을 조합한다.
-        if (data.userSelectedType === "R") {
-          // 법정동명이 있을 경우 추가한다. (법정리는 제외)
-          // 법정동의 경우 마지막 문자가 "동/로/가"로 끝난다.
-          if (data.bname !== "" && /[동|로|가]$/g.test(data.bname)) {
-            extraAddr += data.bname;
-          }
-          // 건물명이 있고, 공동주택일 경우 추가한다.
-          if (data.buildingName !== "" && data.apartment === "Y") {
-            extraAddr +=
-                extraAddr !== ""
-                    ? ", " + data.buildingName
-                    : data.buildingName;
-          }
-          // 표시할 참고항목이 있을 경우, 괄호까지 추가한 최종 문자열을 만든다.
-          if (extraAddr !== "") {
-            extraAddr = " (" + extraAddr + ")";
-          }
-        }
-
-        // 우편번호와 주소 정보를 해당 필드에 넣는다.
-        document.getElementById("sample6_postcode").value = data.zonecode;
-        document.getElementById("sample6_address").value = addr;
-        // 커서를 상세주소 필드로 이동한다.
-        document.getElementById("sample6_detailAddress").focus();
-      },
-    }).open();
-  }
-
-  // 관심사선택
-  var expanded = false;
-
-  function showInterestCheckboxes() {
-    var checkboxes = document.getElementById("interest-checkboxes");
-    if (!expanded) {
-      checkboxes.style.display = "block";
-      expanded = true;
-    } else {
-      checkboxes.style.display = "none";
-      expanded = false;
-    }
-  }
-
-  // 이메일 인증번호 발송
-  $(function () {
-    var email_auth_cd = "";
-
-    $(".email_auth_btn").click(function () {
-      var email = $("#joinEmail").val();
-
-      if (email == "") {
-        alert("이메일을 입력해주세요.");
-        return false;
-      }
-
-      $.ajax({
-        type: "POST",
-        url: "/onemoa/emailAuth",
-        data: { email: email },
-        success: function (data) {
-          alert("인증번호가 발송되었습니다.");
-          email_auth_cd = data;
-        },
-        error: function (data) {
-          alert("메일 발송에 실패했습니다.");
-        },
-      });
-
-      $(".email_auth_check_btn").click(function() {
-        if ($("#email_auth_key").val() != email_auth_cd) {
-          alert("인증번호가 일치하지 않습니다.");
-          return false;
-        }
-      });
-    });
-  });
-
-</script>
+<script src="js/joinForm.js"></script>
 </body>
 </html>

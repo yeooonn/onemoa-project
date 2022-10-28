@@ -15,15 +15,13 @@ public interface MemberService {
 
   Member get(String email, String password) throws Exception;
 
+  Member get(String email) throws Exception;
+
+  Member getNickName(String nickname) throws Exception;
+
   //boolean delete(int no) throws Exception;
 
   List<Member> list() throws Exception;
 }
-
-
-
-
-
-
 
 

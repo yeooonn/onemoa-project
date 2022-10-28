@@ -6,7 +6,7 @@ import org.springframework.stereotype.Service;
 import com.bitcamp.onemoaproject.dao.MemberDao;
 import com.bitcamp.onemoaproject.vo.Member;
 
-@Service 
+@Service
 public class DefaultMemberService implements MemberService {
 
   @Autowired
@@ -36,6 +36,16 @@ public class DefaultMemberService implements MemberService {
     return memberDao.findByEmailPassword(email, password);
   }
 
+  @Override
+  public Member get(String email) throws Exception {
+    return memberDao.findByEmail(email);
+  }
+
+  @Override
+  public Member getNickName(String nickname) throws Exception {
+    return memberDao.findByNickName(nickname);
+  }
+
   //  @Transactional
   //  @Override
   //  public boolean delete(int no) throws Exception {
@@ -49,11 +59,5 @@ public class DefaultMemberService implements MemberService {
     return memberDao.findAll();
   }
 }
-
-
-
-
-
-
 
 

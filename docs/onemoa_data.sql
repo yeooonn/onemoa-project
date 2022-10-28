@@ -24,14 +24,14 @@ insert into job (jno, name) values (5, '대학(원)생');
 insert into job (jno, name) values (6, '취업준비생');
 
 -- 회원 테이블
-insert into member (mno, email, pwd, nick, name, tel, cdt, pstno, base_addr, detail_addr, jno, bank, acount, profil, token, status) values (1, 'user1@test.com', sha2('1111',256), '판매자닉네임
+insert into member (mno, email, pwd, nick, name, tel, cdt, pstno, base_addr, detail_addr, jno, bank, account, profile, token, status) values (1, 'user1@test.com', sha2('1111',256), '판매자닉네임
 ', '판매자', '01011112222', '2022-10-07', '06134', '서울특별시 강남구 역삼동 819-3', '삼오빌딩 5-9층', 1, '국민은행', '111111-11-111111', '프로필사진파일경로', '이메일토큰', 1);
-insert into member (mno, email, pwd, nick, name, tel, cdt, pstno, base_addr, detail_addr, jno, bank, acount, profil, token, status) values (2, 'user2@test.com', sha2('1111',256), '회원닉네임', '홍길동', '01022222222', '2022-10-07', '06134', '서울특별시 강남구 역삼동 819-3', '삼오빌딩 5-9층', 2, null, null, '프로필사진파일경로', '이메일토큰', 1);
-insert into member (mno, email, pwd, nick, name, tel, cdt, pstno, base_addr, detail_addr, jno, bank, acount, profil, token, status) values (3, 'user3@test.com', sha2('1111',256), '회원닉네임', '홍길동', '01033332222', '2022-10-07', '06134', '서울특별시 강남구 역삼동 819-3', '삼오빌딩 5-9층', 3, null, null, '프로필사진파일경로', '이메일토큰', 1);
-insert into member (mno, email, pwd, nick, name, tel, cdt, pstno, base_addr, detail_addr, jno, bank, acount, profil, token, status) values (4, 'user4@test.com', sha2('1111',256), '회원닉네임', '홍길동', '01044442222', '2022-10-07', '06134', '서울특별시 강남구 역삼동 819-3', '삼오빌딩 5-9층', 4, null, null, '프로필사진파일경로', '이메일토큰', 1);
-insert into member (mno, email, pwd, nick, name, tel, cdt, pstno, base_addr, detail_addr, jno, bank, acount, profil, token, status) values (5, 'user5@test.com', sha2('1111',256), '회원닉네임', '홍길동', '01055552222', '2022-10-07', '06134', '서울특별시 강남구 역삼동 819-3', '삼오빌딩 5-9층', 5, null, null, '프로필사진파일경로', '이메일토큰', 1);
-insert into member (mno, email, pwd, nick, name, tel, cdt, pstno, base_addr, detail_addr, jno, bank, acount, profil, token, status) values (6, 'user6@test.com', sha2('1111',256), '회원닉네임', '홍길동', '01066662222', '2022-10-07', '06134', '서울특별시 강남구 역삼동 819-3', '삼오빌딩 5-9층', 6, null, null, '프로필사진파일경로', '이메일토큰', 1);
-insert into member (mno, email, pwd, nick, name, tel, cdt, pstno, base_addr, detail_addr, jno, bank, acount, profil, token, status) values (7, 'user7@test.com', sha2('1111',256), '회원닉네임', '홍길동', '01076662222', '2022-10-07', '06134', '서울특별시 강남구 역삼동 819-3', '삼오빌딩 5-9층', 6, null, null, '프로필사진파일경로', '이메일토큰', 1);
+insert into member (mno, email, pwd, nick, name, tel, cdt, pstno, base_addr, detail_addr, jno, bank, account, profile, token, status) values (2, 'user2@test.com', sha2('1111',256), '회원닉네임1', '홍길동', '01022222222', '2022-10-07', '06134', '서울특별시 강남구 역삼동 819-3', '삼오빌딩 5-9층', 2, null, null, '프로필사진파일경로', '이메일토큰', 1);
+insert into member (mno, email, pwd, nick, name, tel, cdt, pstno, base_addr, detail_addr, jno, bank, account, profile, token, status) values (3, 'user3@test.com', sha2('1111',256), '회원닉네임2', '임꺽정', '01033332222', '2022-10-07', '06134', '서울특별시 강남구 역삼동 819-3', '삼오빌딩 5-9층', 3, null, null, '프로필사진파일경로', '이메일토큰', 1);
+insert into member (mno, email, pwd, nick, name, tel, cdt, pstno, base_addr, detail_addr, jno, bank, account, profile, token, status) values (4, 'user4@test.com', sha2('1111',256), '회원닉네임3', '유관순', '01044442222', '2022-10-07', '06134', '서울특별시 강남구 역삼동 819-3', '삼오빌딩 5-9층', 4, null, null, '프로필사진파일경로', '이메일토큰', 1);
+insert into member (mno, email, pwd, nick, name, tel, cdt, pstno, base_addr, detail_addr, jno, bank, account, profile, token, status) values (5, 'user5@test.com', sha2('1111',256), '회원닉네임4', '홍길동1', '01055552222', '2022-10-07', '06134', '서울특별시 강남구 역삼동 819-3', '삼오빌딩 5-9층', 5, null, null, '프로필사진파일경로', '이메일토큰', 1);
+insert into member (mno, email, pwd, nick, name, tel, cdt, pstno, base_addr, detail_addr, jno, bank, account, profile, token, status) values (6, 'user6@test.com', sha2('1111',256), '회원닉네임5', '임꺽정2', '01066662222', '2022-10-07', '06134', '서울특별시 강남구 역삼동 819-3', '삼오빌딩 5-9층', 6, null, null, '프로필사진파일경로', '이메일토큰', 1);
+insert into member (mno, email, pwd, nick, name, tel, cdt, pstno, base_addr, detail_addr, jno, bank, account, profile, token, status) values (7, 'user7@test.com', sha2('1111',256), '회원닉네임6', '유관순2', '01076662222', '2022-10-07', '06134', '서울특별시 강남구 역삼동 819-3', '삼오빌딩 5-9층', 6, null, null, '프로필사진파일경로', '이메일토큰', 1);
 
 
 -- 재능판매카테고리 테이블
@@ -155,7 +155,7 @@ insert into product_category (pcno, pctier, pcname, pcparent) values ('070900', 
 insert into product_category (pcno, pctier, pcname, pcparent) values ('071000', 2, '업무지원·CS', '070000');
 
 -- 재능판매 테이블
-INSERT INTO `product` (`pno`, `pcno`, `mno`, `title`, `cont`, `price`, `vcnt`, `cdt`, `thumbnail`, `thumbnailpath`)
+INSERT INTO `product` (`pno`, `pcno`, `mno`, `title`, `cont`, `price`, `vw_cnt`, `cdt`, `thumbnail`, `thumbnailpath`)
 VALUES
   (1, '010100', 1, '로고제작 공모전 488회우승 로고디자인 CI BI 드림', ' 로고 디자인 공모전 488회 우승 국내 로고 제작 경력 최다 디자이너가 직접 진행 상담은 무료입니다.:)', 1000000, 1000, '2022-10-06', '썸네일파일이름.png', '3b0f725d-8c53-4cae-9eec-58e64a50316c\n'),
   (2, '010100', 1, '미술,디자인,작가가 모여 감각적인 로고 제작해드립니다.', '안녕하세요:)\n디자인, 미술, 포토그래퍼가 모인 로고회사입니다.\n다양한 분야에서 다양한 시선으로 고객님을 이해하며 소통하는 로고고입니다.\n브랜드의 첫인상인 로고 끝까지 책임지고 만들어드리겠습니다.', 220000, 1000, '2022-10-06', '썸네일파일이름.png', 'b1fe7835-1fcd-40d6-b495-450e5cac3f21'),
@@ -174,46 +174,6 @@ VALUES
   (15, '010100', 1, '컬러리스트산업기사,한양대출신디자이너가제작해 드립니다.\n', '한양여대 도자기공예과 졸업\n한양대 산업디자인 졸업\n컬러리스트 산업기사 자격증 취득\n오랜경력의 디자인업체 근무\n현재 포토샵,일러스트의 디자인관련 교육중', 175000, 2000, '2022-10-08', '썸네일파일이름.png', '7355f53e-b89d-4847-b64f-08d9d1edfd95\n'),
   (16, '010100', 1, '로고디자인 단 하루 24시간내 로고제작 해드립니다\n', '로고 전문 디자인 밴페로디자인 입니다.\n\n', 130000, 2000, '2022-10-08', '썸네일파일이름.png', '7355f53e-b89d-4847-b64f-08d9d1edfd95');
 
---insert into product (pno, pcno, mno, title, cont, price, vcnt, cdt, thumbnail, thumbnailpath) values (1, '010100', 1, '로고제작 공모전 488회우승 로고디자인 CI BI 드림', ' 로고 디자인 공모전 488회 우승 국내 로고 제작 경력 최다 디자이너가 직접 진행 상담은 무료입니다.:)', 1000000, 1000, '2022-10-06', '썸네일파일이름.png', '3b0f725d-8c53-4cae-9eec-58e64a50316c
---');
---insert into product (pno, pcno, mno, title, cont, price, vcnt, cdt, thumbnail, thumbnailpath) values (2, '010100', 1, '미술,디자인,작가가 모여 감각적인 로고 제작해드립니다.', '안녕하세요:)
---디자인, 미술, 포토그래퍼가 모인 로고회사입니다.
---다양한 분야에서 다양한 시선으로 고객님을 이해하며 소통하는 로고고입니다.
---브랜드의 첫인상인 로고 끝까지 책임지고 만들어드리겠습니다.', 220000, 1000, '2022-10-06', '썸네일파일이름.png', 'b1fe7835-1fcd-40d6-b495-450e5cac3f21');
---insert into product (pno, pcno, mno, title, cont, price, vcnt, cdt, thumbnail, thumbnailpath) values (3, '010200', 1, '고객의 마음을 사로잡는 상세페이지를 제작해 드립니다.
---', '-배너 / 이벤트페이지 / 쇼핑몰상세페이지
----썸네일/자사물 상세페이지
----쇼핑몰 상세페이지
----오픈마켓 상세페이지
---
---무엇이든 디자인하고 책임지고 작업해드리겠습니다.!!', 275000, 1000, '2022-10-06', '썸네일파일이름.png', '5f769e8c-378c-4044-9da4-108c0ce9a360');
---insert into product (pno, pcno, mno, title, cont, price, vcnt, cdt, thumbnail, thumbnailpath) values (4, '010100', 1, '"2년 연속 크몽 어워즈 대상" 실력을 보여 드립니다.
---', '2020크몽 어워즈 대상 수상!
---2020~2021년 기준, 크몽 디자인 카테고리 압도적 1위!
---
---압도적인 만족도와 리뷰를 살펴보세요.', 300000, 1000, '2022-10-06', '썸네일파일이름.png', 'efc680ad-1f3f-47aa-a9fe-a84fcc740a2f');
---insert into product (pno, pcno, mno, title, cont, price, vcnt, cdt, thumbnail, thumbnailpath) values (5, '010100', 1, '"디자인어워드 수상"검증된 디자이너가 로고디자인 제작해 드립니다.
---', '안녕하세요 Brand03입니다.
---직접 의뢰자님의 브랜드를 분석, 컨설팅하여 원하시는 컨셉에 맞게 고퀄리티 로고를 제작해드립니다. 디자이너 브랜드, 인테리어 전문 회사, 기업, 카페 브랜딩 등 다양한 경험으로 만족스러운 결과물, 합리적인 가격을 약속드리겠습니다.
---
---감각적인 로고(BI, CI) 디자인으로 의뢰자님의 시작을 함께 하겠습니다
---
---포트폴리오를 확인해 주세요 :D', 210000, 1000, '2022-10-06', '썸네일파일이름.png', '50462bb8-e3bf-44d3-a404-00a89667c20a');
---insert into product (pno, pcno, mno, title, cont, price, vcnt, cdt, thumbnail, thumbnailpath) values (6, '010100', 1, '"로고마스터"가 당신과 브랜드의 가치에 한끗을 더하다
---', '브랜드(BRAND)는 당신의 비즈니스에 있어서 가장 중요하고 강력한 투자입니다.
---
---지난 10년간 국민은행, SH공사, 현대건설, 한국미니스톱, 기상청 등을 대상으로 다양한 디자인 프로젝트를 진행하였습니다', 79000, 1000, '2022-10-06', '썸네일파일이름.png', 'd829d0b0-4d68-4eec-a050-daa4982f2baf');
---insert into product (pno, pcno, mno, title, cont, price, vcnt, cdt, thumbnail, thumbnailpath) values (7, '010100', 1, '컬러리스트산업기사,한양대출신디자이너가제작해 드립니다.
---', '한양여대 도자기공예과 졸업
---한양대 산업디자인 졸업
---컬러리스트 산업기사 자격증 취득
---오랜경력의 디자인업체 근무
---현재 포토샵,일러스트의 디자인관련 교육중', 175000, 2000, '2022-10-08', '썸네일파일이름.png', '7355f53e-b89d-4847-b64f-08d9d1edfd95
---');
---insert into product (pno, pcno, mno, title, cont, price, vcnt, cdt, thumbnail, thumbnailpath) values (8, '010100', 1, '로고디자인 단 하루 24시간내 로고제작 해드립니다
---', '로고 전문 디자인 밴페로디자인 입니다.
---
---', 130000, 2000, '2022-10-08', '썸네일파일이름.png', '7355f53e-b89d-4847-b64f-08d9d1edfd95');
 
 
 -- 재능 판매 첨부파일 테이블
@@ -276,7 +236,7 @@ insert into contest_category (ctgno,name) values (10, '전시/페스티벌');
 insert into contest_category (ctgno,name) values (11, '문학/시나리오');
 
 -- 공모전 테이블 // 참가인원(=최소인원) 0(제한없음) // 상금(=총 상금액)
-INSERT INTO `contest` (`ctstno`, `orgno`, `ctgno`, `title`, `subcont`, `cdt`, `sdate`, `edate`, `vcnt`, `org`, `appl`, `cont`, `page`, `size`, `qual`, `team`, `reward`)
+INSERT INTO `contest` (`ctstno`, `orgno`, `ctgno`, `title`, `subcont`, `cdt`, `sdate`, `edate`, `vw_cnt`, `org`, `appl`, `cont`, `page`, `size`, `qual`, `team`, `reward`)
 VALUES
 	(1, 2, 1, '2022 부산교통공사 시민톡톡아이디어 공모전', '[공모내용] : 절대안전, 건전재정, 고객행복, 사회적가치에 부합하는 부산 지하철에 관한 모든 아이디어\n\n', '2022-01-01', '2022-01-01', '2022-12-31', 1, '부산교통공사', '이메일', '[공모내용] : 절대안전, 건전재정, 고객행복, 사회적가치에 부합하는 부산 지하철에 관한 모든 아이디어\n[공모대상] : 부산교통공사(HUmetro)에 관심이 있는 시민 누구나[공모기간] : 2022.01.01. ~ 2022.12.31.\n[시상내역]- 금상 : 200만원- 은상 : 100만원- 동상 : 30만원- 장려상 : 10만원 - 참여상 : 5만원 \n\n※ 등급에 해당하는 제안이 없는 경우에는 해당 등급을 채택하지 않을 수 있음\n※ 결과발표 : 반기별 심사 후 개별 통지※ 「소득세법 제21조 1항 19의 라」에 따라, 10만원 이상의 포상금에 대해서는 기타소득세 제외 후 포상금 지급\n※ 자세한 내용은 공모전사이트 참고\n\n[공모방법]- 온라인 : 부산교통공사 홈페이지 내 시민톡톡아이디어 게시판 등록  부산교통공사 홈페이지 \n- 고객참여 - 시민톡톡아이디어 참여하기\n- 오프라인 : E-mail 및 우편 공모  \nE-mail 주소 : onezero27@humetro.busan.kr  \n우편 주소 : (47353) 부산광역시 부산진구 중앙대로644번길 20, 부산교통공사 기술연구원', 'https://www.humetro.busan.kr/', 0, '대학생/일반인/초등학생/중학생/고등학생', 0, 345),
 	(2, 2, 1, '2022 부산교통공사 시민톡톡아이디어 공모전', '[공모내용] : 절대안전, 건전재정, 고객행복, 사회적가치에 부합하는 부산 지하철에 관한 모든 아이디어\n\n', '2022-01-01', '2022-01-01', '2022-12-31', 1, '부산교통공사', '이메일', '[공모내용] : 절대안전, 건전재정, 고객행복, 사회적가치에 부합하는 부산 지하철에 관한 모든 아이디어\n[공모대상] : 부산교통공사(HUmetro)에 관심이 있는 시민 누구나[공모기간] : 2022.01.01. ~ 2022.12.31.\n[시상내역]- 금상 : 200만원- 은상 : 100만원- 동상 : 30만원- 장려상 : 10만원 - 참여상 : 5만원 \n\n※ 등급에 해당하는 제안이 없는 경우에는 해당 등급을 채택하지 않을 수 있음\n※ 결과발표 : 반기별 심사 후 개별 통지※ 「소득세법 제21조 1항 19의 라」에 따라, 10만원 이상의 포상금에 대해서는 기타소득세 제외 후 포상금 지급\n※ 자세한 내용은 공모전사이트 참고\n\n[공모방법]- 온라인 : 부산교통공사 홈페이지 내 시민톡톡아이디어 게시판 등록  부산교통공사 홈페이지 \n- 고객참여 - 시민톡톡아이디어 참여하기\n- 오프라인 : E-mail 및 우편 공모  \nE-mail 주소 : onezero27@humetro.busan.kr  \n우편 주소 : (47353) 부산광역시 부산진구 중앙대로644번길 20, 부산교통공사 기술연구원', 'https://www.humetro.busan.kr/', 0, '대학생/일반인/초등학생/중학생/고등학생', 0, 345),
@@ -341,8 +301,8 @@ insert into admin_member (amno, id, pwd) values (1, 'admin1@test.com', sha2('111
 insert into admin_member (amno, id, pwd) values (2, 'admin2@test.com', sha2('1111',256));
 
 -- 공지사항 테이블
-insert into notice (ntcno, title, cont, cdt, vcnt, fname, fpath) values (1, 'ONEMOA를 사칭하는 행위, 조심하세요!', '안녕하세요, ONEMOA입니다. 최근 ONEMOA를 사칭한 인물 및 업체로부터의 피해 사례가 발생하고 있습니다. 위와 같은 행위는 크몽 서비스 이용에 혼란을 주고, 더불어 물질적인 피해를 야기할 수 있어 회원님들의 각별한 주의가 필요합니다.', '22-10-08', 10, '공지사항 첨부파일.png','b1fe7835-1fcd-40d6-b495-450e5cac3f21');
-insert into notice (ntcno, title, cont, cdt, vcnt, fname, fpath) values (2, '패널티 정책 안내', '안녕하세요, ONEMOA입니다. ONEMOA는 거래의 안전성과 신뢰성을 확보하기 위하여 서비스 이용 중 발생할 수 있는 규정 위반 사유를 안내하고, 이용약관 및 정책에 따라 상응하는 조치를 취하고 있습니다. 회원님의 원활한 서비스 이용을 바라며 명문화된 페널티 정책을 안내해 드립니다. 자세한 내용은 아래의 공지를 확인해 주시기 바랍니다.', '22-10-08', 10, '공지사항 첨부파일.png','b1fe7835-1fcd-40d6-b495-450e5cac3f21');
+insert into notice (ntcno, title, cont, cdt, vw_cnt, fname, fpath) values (1, 'ONEMOA를 사칭하는 행위, 조심하세요!', '안녕하세요, ONEMOA입니다. 최근 ONEMOA를 사칭한 인물 및 업체로부터의 피해 사례가 발생하고 있습니다. 위와 같은 행위는 크몽 서비스 이용에 혼란을 주고, 더불어 물질적인 피해를 야기할 수 있어 회원님들의 각별한 주의가 필요합니다.', '22-10-08', 10, '공지사항 첨부파일.png','b1fe7835-1fcd-40d6-b495-450e5cac3f21');
+insert into notice (ntcno, title, cont, cdt, vw_cnt, fname, fpath) values (2, '패널티 정책 안내', '안녕하세요, ONEMOA입니다. ONEMOA는 거래의 안전성과 신뢰성을 확보하기 위하여 서비스 이용 중 발생할 수 있는 규정 위반 사유를 안내하고, 이용약관 및 정책에 따라 상응하는 조치를 취하고 있습니다. 회원님의 원활한 서비스 이용을 바라며 명문화된 페널티 정책을 안내해 드립니다. 자세한 내용은 아래의 공지를 확인해 주시기 바랍니다.', '22-10-08', 10, '공지사항 첨부파일.png','b1fe7835-1fcd-40d6-b495-450e5cac3f21');
 
 -- FAQ 테이블
 insert into faq (faqno, title, cont, type) value(1, '로그인이 제대로 되지 않을 경우.', 'ID와 비밀번호가 맞는지 확인해봅니다.', '관리자');
