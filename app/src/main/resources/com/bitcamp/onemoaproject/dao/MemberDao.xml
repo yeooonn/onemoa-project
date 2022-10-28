@@ -7,90 +7,104 @@
   <!-- 자바 객체의 프로퍼티와 컬럼 이름을 연결한다. -->
   <resultMap type="member" id="memberMap">
     <id column="mno" property="no"/>
-    <result column="name" property="name"/>
     <result column="email" property="email"/>
-    <result column="pwd" property="password"/>
-    <result column="cdt" property="createdDate"/>
     <result column="nick" property="nickname"/>
+    <result column="name" property="name"/>
     <result column="tel" property="tel"/>
-    <result column="pstno" property="pstno"/>
-    <result column="base_addr" property="baseAddress"/>
-    <result column="detail_addr" property="detailAddress"/>
+    <result column="cdt" property="createdDate"/>
+    <result column="pstno" property="postNo"/>
+    <result column="base_addr" property="baseAddr"/>
+    <result column="detail_addr" property="detailAddr"/>
     <result column="jno" property="jobNo"/>
     <result column="bank" property="bank"/>
-    <result column="acount" property="acount"/>
-    <result column="profil" property="profil"/>
+    <result column="account" property="account"/>
+    <result column="profile" property="profile"/>
     <result column="token" property="token"/>
     <result column="status" property="status"/>
-    
   </resultMap>
 
+  <!-- 회원가입 -->
   <insert id="insert" parameterType="member">
-    insert into member(name,email,pwd) 
-    values(#{name},#{email},sha2(#{password},256))
+    insert into
+    member (
+    email,
+    pwd,
+    nick,
+    name,
+    tel,
+    pstno,
+    base_addr,
+    detail_addr,
+    jno,
+    bank,
+    account,
+    profile,
+    token,
+    status
+    )
+    values (
+    #{email},
+    sha2(#{password},256),
+    #{nickname},
+    #{name},
+    #{tel},
+    #{postNo},
+    #{baseAddr},
+    #{detailAddr},
+    #{jobNo},
+    #{bank},
+    #{account},
+    #{profile},
+    #{token},
+    #{status}
+    );
   </insert>
 
   <select id="findByNo" resultMap="memberMap">
-    select 
-      mno,
-      name,
-      email,
-      cdt
-    from 
-      member 
-    where 
-      mno=#{value}
+    select
+    mno,
+    name,
+    email,
+    cdt
+    from
+    member
+    where
+    mno=#{value}
   </select>
-  
+
   <select id="findAll" resultMap="memberMap">
-    select 
-      mno,
-      name,
-      email 
-    from 
-      member 
-    order by 
-      name
+    select mno, email, nick, name, tel, cdt, pstno, base_addr, detail_addr, jno, bank, acount, profil, status from member order by mno;
   </select>
 
   <select id="findByEmailPassword" resultMap="memberMap">
-    select 
-      mno,
-      name,
-      email,
-      cdt,
-      nick,
-      tel,
-      pstno,
-      base_addr,
-      detail_addr,
-      jno,
-      bank,
-      acount,
-      profil,
-      token,
-      status
-    from 
-      member 
-    where 
-      email=#{email} and pwd=sha2(#{password},256)
+    select
+    email,
+    pwd
+    from
+    member
+    where
+    email=#{email} and pwd=sha2(#{password},256)
+  </select>
+
+  <select id="findByEmail" resultMap="memberMap">
+    select email from member where email=#{email}
+  </select>
+
+  <select id="findByNickName" resultMap="memberMap">
+    select nick from member where nick=#{nickname}
   </select>
 
   <update id="update" parameterType="Member">
-    update member set 
-      name=#{name}, 
-      email=#{email}, 
-      pwd=sha2(#{password},256) 
-    where 
-      mno=#{no}
+    update member set
+    name=#{name},
+    email=#{email},
+    pwd=sha2(#{password},256)
+    where
+    mno=#{no}
   </update>
-  
+
   <delete id="delete">
-    delete from member 
-    where mno=#{value}
+    delete from member where mno=#{value}
   </delete>
-  
+
 </mapper>
-
-
-
