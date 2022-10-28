@@ -4,8 +4,6 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.GetMapping;
 
 
@@ -22,13 +20,6 @@ public class App {
 
   @GetMapping("/")
   public String index() {
-    return "index";
-  }
-
-  @GetMapping("index")
-  public String welcome2(@CookieValue(name = "email", defaultValue = "") String email,
-      Model model) {
-    model.addAttribute("email", email);
     return "index";
   }
 
