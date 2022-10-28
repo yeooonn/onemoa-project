@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -19,6 +20,14 @@ public class AuthController {
 
   public AuthController(MemberService memberService) {
     this.memberService = memberService;
+  }
+
+  @GetMapping("index")
+  public String form(@CookieValue(name = "email", defaultValue = "") String email, Model model) {
+    System.out.println(email);
+    model.addAttribute("email", email);
+    System.out.println(model);
+    return "index";
   }
 
   @ResponseBody
@@ -51,7 +60,7 @@ public class AuthController {
   @GetMapping("logout")
   public String logout(HttpSession session) throws Exception {
     session.invalidate(); // 현재 세션을 무효화시킨다.
-    return "redirect:/index";
+    return "redirect:index";
   }
 
   @ResponseBody
