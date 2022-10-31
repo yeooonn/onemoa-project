@@ -214,3 +214,5 @@ build
 
 # intelliJ
 .idea
+
+**/src/main/resources/application-smtp.properties
