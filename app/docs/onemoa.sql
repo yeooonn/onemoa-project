@@ -138,7 +138,7 @@ CREATE TABLE contest (
   cdt     DATE         NOT NULL DEFAULT now() COMMENT '등록일', -- 등록일
   sdate   DATE         NULL     COMMENT '시작일', -- 시작일
   edate   DATE         NULL     COMMENT '종료일', -- 종료일
-  vw_cnt  INTEGER      NOT NULL COMMENT '조회수', -- 조회수
+  vw_cnt  INTEGER      NULL     COMMENT '조회수', -- 조회수
   org     VARCHAR(255) NOT NULL COMMENT '주최기관명', -- 주최기관명
   appl    VARCHAR(255) NULL     COMMENT '접수방법', -- 접수방법
   cont    MEDIUMTEXT   NULL     COMMENT '상세내용', -- 상세내용
@@ -220,15 +220,16 @@ ALTER TABLE contest_file
       ctstfno -- 첨부파일번호
     );
 
+ALTER TABLE contest_file
+  MODIFY COLUMN ctstfno INTEGER NOT NULL AUTO_INCREMENT COMMENT '첨부파일번호';
+
 -- 공지사항
 CREATE TABLE notice (
   ntcno  INTEGER      NOT NULL COMMENT '게시글번호', -- 게시글번호
   title  VARCHAR(255) NOT NULL COMMENT '제목', -- 제목
   cont   MEDIUMTEXT   NOT NULL COMMENT '내용', -- 내용
   cdt    DATE         NOT NULL DEFAULT now() COMMENT '작성일', -- 작성일
-  vw_cnt INTEGER      NOT NULL COMMENT '조회수', -- 조회수
-  fname  VARCHAR(255) NULL     COMMENT '파일이름', -- 파일이름
-  fpath  VARCHAR(255) NULL     COMMENT '파일경로' -- 파일경로
+  vw_cnt INTEGER      NOT NULL COMMENT '조회수' -- 조회수
 )
 COMMENT '공지사항';
 

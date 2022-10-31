@@ -4,6 +4,8 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.GetMapping;
 
 
@@ -17,22 +19,21 @@ public class App {
     SpringApplication.run(App.class, args);
   }
 
-
   @GetMapping("/")
-  public String index() {
+  public String welcome(@CookieValue(name = "email", defaultValue = "") String email, Model model) {
+    model.addAttribute("email", email);
     return "index";
   }
 
-  @GetMapping("/contestTeam")
-  public String contestTeam() {
-    return "contestTeam";
-  }
-
-  @GetMapping("/joinform")
+  @GetMapping("joinform")
   public String joinForm() {
     return "joinForm";
   }
 
+  @GetMapping("/productForm")
+  public String productForm() {
+    return "product/productForm";
+  }
 }
 
 
