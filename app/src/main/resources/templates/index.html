@@ -3,7 +3,7 @@
 <head>
   <meta charset = "UTF-8">
   <title>onemoa v</title>
-  <link href="css/onemoa.css" rel="stylesheet">
+  <link href="./css/onemoa.css" rel="stylesheet">
   <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
   <script src="./js/onemoa.js"></script>
 </head>
@@ -52,9 +52,9 @@
 
 <header>
   <div class="nav">
-    <a href="/onemoa"><p class="logo">ONEMOA</p></a>
+    <a href="http://localhost:8888/onemoa/"><p class="logo">ONEMOA</p></a>
     <ul class="firstnav">
-      <li data-th-if="${session.loginMember != null}"><a href="logout" data-th-text="로그아웃">로그아웃</a></li>
+      <li data-th-if="${session.loginMember != null}"><a href="http://localhost:8888/onemoa/logout" data-th-text="로그아웃">로그아웃</a></li>
       <li><button class="btn-open-popup" data-th-if="${session.loginMember == null}">로그인</button></li>
       <li><a href="#">마이페이지</a></li>
       <li><a href="#">메시지</a></li>
@@ -63,8 +63,8 @@
 
   <div class="menu">
     <ul class="secnav">
-      <li><a href="contestTeam"><p>공모전</p></a></li>
-      <li><a href="#"><p>재능판매</p></a></li>
+      <li><a href="http://localhost:8888/onemoa/contestTeam"><p>공모전</p></a></li>
+      <li><a href="http://localhost:8888/onemoa/product/list"><p>재능판매</p></a></li>
     </ul>
   </div>
 </header>
@@ -199,7 +199,7 @@
 
   <footer>
     <ul class="footerMenu">
-      <li><a href="#"><p>공지사항</p></a></li>
+      <li><a href="http://localhost:8888/onemoa/notice/list"><p>공지사항</p></a></li>
       <li><a href="#"><p>1 : 1 문의</p></a></li>
     </ul>
     <div class="detail">

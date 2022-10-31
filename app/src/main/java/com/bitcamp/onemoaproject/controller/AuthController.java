@@ -51,7 +51,7 @@ public class AuthController {
   @GetMapping("logout")
   public String logout(HttpSession session) throws Exception {
     session.invalidate(); // 현재 세션을 무효화시킨다.
-    return "redirect:/index";
+    return "redirect:./";
   }
 
   @ResponseBody

@@ -42,6 +42,18 @@ public class App {
     return "joinForm";
   }
 
+  @GetMapping("/productForm")
+  public String productForm() {
+    return "productForm";
+  }
+
+
+  //  @GetMapping("/notice/list")
+  //  public String noticeList() {
+  //    return "notice/list";
+  //  }
+
+
 }
 
 
