@@ -53,7 +53,7 @@
   <div class="nav">
     <a href="/onemoa"><p class="logo">ONEMOA</p></a>
     <ul class="firstnav">
-      <li data-th-if="${session.loginMember != null}"><a href="logout" data-th-text="로그아웃">로그아웃</a></li>
+      <li data-th-if="${session.loginMember != null}"><a href="http://localhost:3333/onemoa/logout" data-th-text="로그아웃">로그아웃</a></li>
       <li><button class="btn-open-popup" data-th-if="${session.loginMember == null}">로그인</button></li>
       <li><a href="#">마이페이지</a></li>
       <li><a href="#">메시지</a></li>
