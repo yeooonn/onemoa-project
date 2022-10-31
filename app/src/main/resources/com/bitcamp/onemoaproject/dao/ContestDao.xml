@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bitcamp.onemoaproject.dao.ContestDao">
+  <resultMap type="contest" id="contestMap">
+    <id column="ctstno" property="ctstNo"/>
+    <result column="orgno" property="orgNo"/>
+    <result column="ctgno" property="ctgNo"/>
+    <result column="title" property="title"/>
+    <result column="subcont" property="subCont"/>
+    <result column="cdt" property="createdDate"/>
+    <result column="sdate" property="sDate"/>
+    <result column="edate" property="eDate"/>
+    <result column="vw_cnt" property="vw_cnt"/>
+    <result column="org" property="org"/>
+    <result column="appl" property="appl"/>
+    <result column="cont" property="cont"/>
+    <result column="page" property="page"/>
+    <result column="size" property="size"/>
+    <result column="qual" property="qual"/>
+    <result column="team" property="team"/>
+    <result column="reward" property="reward"/>
+
+    <!-- 조인 결과에서 같은 게시글에 대해 한 개의 회원 데이터를 담을 경우 -->
+    <association property="contOrg" javaType="contestOrg">
+      <id column="orgno" property="no"/>
+      <result column="coname" property="orgName"/>
+    </association>
+
+    <!-- 조인 결과에서 같은 게시글에 대해 한 개의 회원 데이터를 담을 경우 -->
+    <association property="contCategory" javaType="contestCategory">
+      <id column="ctgno" property="no"/>
+      <result column="ccname" property="categoryName"/>
+    </association>
+
+  </resultMap>
+
+  <select id="findAll" resultMap="contestMap">
+    select
+    ctstno,
+    co.name coname,
+    cc.name ccname,
+    title,
+    subcont,
+    cdt,
+    sdate,
+    edate,
+    vw_cnt,
+    org,
+    appl,
+    cont,
+    page,
+    size,
+    qual,
+    team,
+    reward
+    from contest
+    join contest_category cc on contest.ctgno = cc.ctgno
+    join contest_organization co on contest.orgno = co.orgno;
+  </select>
+
+  <select id="findByNo" resultMap="contestMap">
+    select
+    ctstno,
+    co.name coname,
+    cc.name ccname,
+    title,
+    subcont,
+    cdt,
+    sdate,
+    edate,
+    vw_cnt,
+    org,
+    appl,
+    cont,
+    page,
+    size,
+    qual,
+    team,
+    reward
+    from contest
+    join contest_category cc on contest.ctgno = cc.ctgno
+    join contest_organization co on contest.orgno = co.orgno
+    where
+    ctstno=#{value}
+  </select>
+
+</mapper>
