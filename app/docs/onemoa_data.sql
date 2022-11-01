@@ -1,4 +1,5 @@
 -- 데이터베이스 생성
+-- 데이터베이스 생성
 -- create database onemoa character set utf8 collate utf8_general_ci;
 -- create database test1 character set utf8 collate utf8_general_ci;
 -- 사용자 생성 후 데이터베이스에 권한 설정
@@ -368,8 +369,15 @@ insert into wishlist (mno, pno) values (2,1);
 insert into wishlist (mno, pno) values (2,2);
 
 -- product_review
+insert into product_review (mno, pno, title, cont, scope) values (1, 1, "후기 제목", "와우 연락도 빨랐고 생각했던 것 보다 더 잘 만들어 주셨어요!", 1);
+insert into product_review (mno, pno, title, cont, scope) values (2, 1, "후기 제목", "와우 연락도 빨랐고 생각했던 것 보다 더 잘 만들어 주셨어요!", 3);
+insert into product_review (mno, pno, title, cont, scope) values (3, 1, "후기 제목", "와우 연락도 빨랐고 생각했던 것 보다 더 잘 만들어 주셨어요!", 3);
+insert into product_review (mno, pno, title, cont, scope) values (4, 1, "후기 제목", "와우 연락도 빨랐고 생각했던 것 보다 더 잘 만들어 주셨어요!", 2);
+insert into product_review (mno, pno, title, cont, scope) values (5, 1, "후기 제목", "와우 연락도 빨랐고 생각했던 것 보다 더 잘 만들어 주셨어요!", 5);
+insert into product_review (mno, pno, title, cont, scope) values (6, 1, "후기 제목", "와우 연락도 빨랐고 생각했던 것 보다 더 잘 만들어 주셨어요!", 4);
+
+
 insert into product_review (prno, mno, pno, title, cont, cdt, scope) values (1, 1, 1, "로고디자인", "연락도 빨랐고 생각했던 것 보다 더 잘 만들어 주셨어요!","2022-10-09", 5);
-insert into product_review (prno, mno, pno, title, cont, cdt, scope) values (2, 2, 5, "로고디자인", "초안을 여러개 볼 수 있어서 좋았습니다.","2022-10-09", 4);
 insert into product_review (prno, mno, pno, title, cont, cdt, scope) values (3, 3, 2, "로고디자인", "수정을 여러번 요청해도 다 들어주셨고 작업해주신거 정말 맘에 들어요","2022-10-09", 5);
 insert into product_review (prno, mno, pno, title, cont, cdt, scope) values (4, 4, 3, "로고디자인", "연락이 정말 빨랐고 작업 맘에 들어요","2022-10-09", 5);
 insert into product_review (prno, mno, pno, title, cont, cdt, scope) values (5, 5, 4, "로고디자인", "너무 친절했고 마감기한 딱 맞춰주셨어요","2022-10-09", 4);

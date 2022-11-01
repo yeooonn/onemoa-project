@@ -32,7 +32,7 @@ public class App {
 
   @GetMapping("/productForm")
   public String productForm() {
-    return "product/productForm";
+    return "productForm";
   }
 }
 
