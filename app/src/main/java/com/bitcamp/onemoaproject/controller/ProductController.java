@@ -1,5 +1,7 @@
 package com.bitcamp.onemoaproject.controller;
 
+import com.bitcamp.onemoaproject.service.ProductCategoryService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import javax.servlet.ServletContext;
@@ -12,14 +14,12 @@ import com.bitcamp.onemoaproject.service.ProductService;
 @RequestMapping("/product/")
 public class ProductController {
 
+    @Autowired
     ServletContext sc;
+    @Autowired
     ProductService productService;
-
-    public ProductController(ProductService productService, ServletContext sc) {
-        System.out.println("BoardController() 호출됨!");
-        this.productService = productService;
-        this.sc = sc;
-    }
+    @Autowired
+    ProductCategoryService productCategoryService;
 
 /*
   @GetMapping("form")
@@ -78,6 +78,9 @@ public class ProductController {
     @GetMapping("list")
     public void list(Model model) throws Exception {
         model.addAttribute("products", productService.list());
+        model.addAttribute("productCategories", productCategoryService.list());
+        System.out.println(productCategoryService.list());
+
     }
 
 //  @GetMapping("detail")

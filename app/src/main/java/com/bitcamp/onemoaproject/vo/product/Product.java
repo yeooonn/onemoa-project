@@ -22,7 +22,7 @@ public class Product {
   public String toString() {
     return "Product [no=" + no + ", categoryNo=" + categoryNo + ", title=" + title + ", content="
         + content + ", price=" + price + ", viewCount=" + viewCount + ", createdDate=" + createdDate
-        + ", thumbnail=" + thumbnail + ", thumbnailPath=" + thumbnailPath + ", writer=" + writer
+        + ", thumbnail=" + thumbnail + ", thumbnailPath=" + thumbnailPath
         + "]";
   }
 

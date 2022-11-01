@@ -51,7 +51,7 @@
 
 <header>
   <div class="nav">
-    <a href="/onemoa"><p class="logo">ONEMOA</p></a>
+    <a href="http://localhost:3333/onemoa/"><p class="logo">ONEMOA</p></a>
     <ul class="firstnav">
       <li data-th-if="${session.loginMember != null}"><a href="http://localhost:3333/onemoa/logout" data-th-text="로그아웃">로그아웃</a></li>
       <li><button class="btn-open-popup" data-th-if="${session.loginMember == null}">로그인</button></li>
@@ -62,8 +62,8 @@
 
   <div class="menu">
     <ul class="secnav">
-      <li><a href="contest/contestTeam"><p>공모전</p></a></li>
-      <li><a href="#"><p>재능판매</p></a></li>
+      <li><a href="http://localhost:3333/onemoa/contest/contestTeam"><p>공모전</p></a></li>
+      <li><a href="http://localhost:3333/onemoa/product/list"><p>재능판매</p></a></li>
     </ul>
   </div>
 </header>
