@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Google Fonts - 나눔고딕 -->
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;700&display=swap" rel="stylesheet" />
+    <!-- Google Material Icons -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reset-css@5.0.1/reset.min.css" />
+
+<title></title>
+  
+ <style>
+     .wrap {
+      margin-top: 20px;
+      margin-left: 20px;
+      max-width: 1000px;
+      min-width: 1000px;
+      display: grid;
+      grid-template-rows: 3fr 0.2 1.5fr 2fr;
+      grid-template-columns: 5fr 5fr; 
+    }
+
+    .wrap > div{
+    }
+
+    #commonboder {
+      height: 30px;
+    }
+
+    #breadc {
+      padding-top: 20px;
+      margin-left: 40px;
+    } 
+    
+     /* left */
+    #detail{ 
+    height: 50%;
+    }
+
+    #detail-1 {
+      
+      border: 1px solid #808080;
+      height: 300px;
+      padding-left: 30px;
+      padding-top: 20px;
+    }
+
+    #detail-2 {
+      border: 1px solid black;
+      display: grid;
+      grid-template-columns: 3.3fr 3.3fr 3.3fr;
+      height: 200px;
+      padding-left: 30px;
+      padding-top: 20px;
+    }
+
+    #detail-3 {
+      border: 1px solid black;
+      display: grid;
+      grid-template-columns: 2.5fr 2.5fr 2.5fr 2.5fr;
+      height: 200px;
+      padding-left: 30px;
+      padding-top: 20px;
+    }
+
+    #detail-4 {
+      border: 1px solid black;
+      height: 30px;
+      padding-left: 30px;
+      padding-top: 20px;
+    }
+
+    #detail-5 {
+      border: 1px solid black;
+      display: grid;
+      grid-template-columns: 3.3fr 3.3fr 3.3fr;
+      height: 200px;
+      padding-left: 30px;
+      padding-top: 20px;
+    }
+
+    #detail-6 {
+      border: 1px solid black;
+      display: grid;
+      grid-template-columns: 3.3fr 3.3fr 3.3fr;
+      height: 20px;
+      padding-left: 30px;
+      padding-top: 10px;
+    }
+
+    #detail2 {
+      
+    }
+
+    #detail2-1 {
+      border: 1px solid black;
+      height: 20px;
+      padding-left: 30px;
+      padding-top: 10px;
+    }
+
+    #detail2-2 { 
+      border: 1px solid black;
+      height: 100px;
+      padding-left: 30px;
+      padding-top: 10px;
+    }
+
+    #detail2-3 { 
+      border: 1px solid black;
+      height: 20px;
+      padding-left: 30px;
+      padding-top: 10px;
+    }
+
+    #detail2-4 { 
+      border: 1px solid black;
+      height: 200px;
+      padding-left: 30px;
+      padding-top: 10px;
+    }
+
+    #detail2-5 { 
+      border: 1px solid black;
+      height: 20px;
+      padding-left: 30px;
+      padding-top: 10px;
+      
+    }
+
+    #detail2-6 { 
+      border: 1px solid black;
+      height: 200px;
+      padding-left: 30px;
+      padding-top: 10px;
+      
+    }
+
+    #detail2-7 { 
+      border-bottom: 1px solid black;
+    }
+
+    #detail3 { 
+    }
+
+    #detail3 .cc {
+      border: 1px solid #808080;
+      margin-right: 200px;
+      padding: 10px;
+      margin-bottom: 20px;
+      text-align : center;
+    }
+
+    #detail3-1 {
+      border: 1px solid black;
+      height: 20px;
+      padding-left: 30px;
+      padding-top: 10px;
+    }
+
+    #detail3-2 { 
+      border: 1px solid black;
+      height: 20px;
+      padding-left: 30px;
+      padding-top: 10px;
+    }
+
+    #detail3-2 >div { 
+      float: left;
+      
+    }
+
+    #detail3-3 { 
+      border: 1px solid black;
+      height: 20px;
+      padding-left: 30px;
+      padding-top: 10px;
+    }
+
+    #detail3-4 { 
+      border: 1px solid black;
+      display: grid;
+      grid-template-columns: 2.5fr 2.5fr 2.5fr 2.5fr;
+      height: 200px;
+      margin-bottom: 60px;
+      padding-left: 30px;
+      padding-left: 30px;
+      padding-top: 10px;
+    }
+
+    #detail3-5 { 
+      border: 1px solid black;
+      display: grid;
+      grid-template-columns: 2.5fr 2.5fr 2.5fr 2.5fr 2.5fr;
+      height: 30px;
+      margin-bottom: 60px;
+      padding-left: 30px;
+      padding-left: 30px;
+      padding-top: 10px;
+    }
+
+    #detail3-6-r { 
+      display: grid;
+      grid-template-rows: 3fr 3fr 3fr;
+      padding-left: 30px;
+      
+    }
+
+    #detail3-6-1 { 
+      display: grid;
+      grid-template-columns: 1fr 1.5fr 3fr 3fr;
+      grid-template-rows: 3fr 2fr 2fr;
+      padding-top: 10px;
+    }
+
+    #detail3-6-1 .aa {
+      border: 1px solid #808080;
+      grid-row: span 2;
+    }
+
+    #detail3-6-1 .aaa {
+      border: 1px solid #808080;
+    }
+
+    #detail3-6-1 .bb {
+      border: 1px solid #808080;
+    }
+
+    #detail3-6-2{ 
+      border: 1px solid #808080;
+      margin-bottom: 15px;
+      height: 40px;
+      margin-right: 200px;
+    }
+
+    #detail3-6-3 > div { 
+      border: 1px solid #808080;
+      float: left;   
+      padding-left: 5px;
+      margin-bottom: 30px;
+    }
+
+    #detail3-6-2 .aa {
+      border: 1px solid #808080;
+      grid-row: span 2;
+    }
+
+    #detail3-6-2 .aaa {
+      border: 1px solid #808080;
+    }
+
+    #detail3-6-1 .bb {
+      border: 1px solid #808080;
+    }
+
+    #detail3-6-2{ 
+      border: 1px solid #808080;
+      margin-bottom: 15px;
+      height: 40px;
+    }
+
+    #detail3-6-3 > div { 
+      border: 1px solid #808080;
+      float: left; 
+      padding-left: 5px;
+      margin-bottom: 30px;
+    }
+
+/* 
+    #ds {
+      border: 1px solid #808080;
+      display: grid;
+      grid-template-columns: 1fr 5fr 1fr;
+      grid-template-rows: repeat(2, 0.5fr) 1.5fr; 
+      padding-left: 30px;
+      padding-top: 50px;
+      font-weight: 50;
+      line-height :normal; 
+    } */
+/* 
+    #xx{
+      display: grid;
+      grid-template-rows: 2fr 18fr;
+    }
+
+    #xx .xxt {
+      text-align: left;
+      padding-top: 10px;
+      padding-left: 10px;
+      color: black;
+    } */
+
+/* 
+    #top{
+      border: 1px solid black;
+      display: grid;
+      grid-template-columns: 3fr 7fr;
+      grid-template-rows: repeat(11, 1fr); 
+      padding-left: 50px;
+    }
+
+    .but{
+      padding-top: 10;
+      float: right;
+    } */
+
+ /* right */
+    #top {
+      height: 50%;
+      display: grid;
+      border: 1px solid #808080;
+      grid-template-rows: repeat(4, 0.2fr) 4fr; 
+    }
+
+    #top >div{
+      padding-top: 5px;
+      padding-left: 20px;
+    }
+
+    #top .bb {
+      border: 1px solid #808080;
+      display: grid;
+      grid-template-columns: 2fr 9fr;
+    }
+
+    /* grid-area: auto;
+      grid-row: 1 / span 2; 
+ */
+
+    /* #top .cc {
+      grid-column: 1 / span 2;
+    } */
+
+    #top >div {
+      border: 1px solid #808080;
+    }
+
+    #seller-info {
+      display: grid;
+      grid-template-rows: 1.5fr 2fr 1.2fr 0.5fr 0.5fr 2fr
+    }
+    #seller-info >div {
+      border-bottom: 1px solid #808080;
+    }
+
+    #seller-info .ff {
+      display: grid;
+      grid-template-columns: 4fr 19fr;
+      margin-top: 10px;
+      line-height: 30px;
+      align-items: center;
+    }
+
+    #seller-info .gg {
+      display: grid;
+      grid-template-columns: 4fr 16fr;
+    }
+    
+    #seller-nic {
+      display: grid;
+      grid-template-columns: 10fr 3fr;
+    }
+
+    #blank1 {
+        }
+        
+    #blank2 {
+        }
+        
+  </style>
+
+</head>
+<body>
+  <div id = breadc>
+  <span>디자인></span>
+  <span>로고, 브랜딩></span>
+  <span>로고 디자인</span>
+</div>
+   <div class="wrap">
+      <div id="detail">
+        <div id="detail-1">메인썸네일자리
+        </div>
+        <div id="detail-2">
+          <div>1<a href=""></a></div>
+          <div>2<a href=""></a></div>
+          <div>3<a href=""></a></div>
+        </div>
+        <div id="detail-3">
+          <div>1<a href=""></a></div>
+          <div>2<a href=""></a></div>
+          <div>3<a href=""></a></div>
+          <div>4<a href=""></a></div>
+        </div>
+        <div id="detail-4">포트폴리오</div>
+        <div id="detail-5">
+          <div>1<a href=""></a></div>
+          <div>2<a href=""></a></div>
+          <div>3<a href=""></a></div>
+        </div>
+        <div id="detail-6">
+          <div>포폴제목1<a href=""></a></div>
+          <div>포폴제목2<a href=""></a></div>
+          <div>포폴제목3<a href=""></a></div>
+        </div>
+        <div id="commonboder"></div>
+
+        </div>
+
+        <div id="top">
+          <div class="bb">
+            <div>별별별별별 5.0</div>
+            <div>(후기2100개)</div>
+          </div>
+          <div>판매할 재능 제목</div>
+          <div>75,000</div>
+          <div>구매하기</div>
+            <div id="seller-info">
+            <div>
+              <div id="seller-nic">
+              <div>판매자 닉네임</div>
+              <div>판매자 프로필</div>
+            </div>
+            </div>
+            <div></div>
+            <div>
+              <div>ONEMOA 이력</div>
+              <div>
+                <div class="ff">
+                <div>총작업개수 / </div>
+                <div>2833</div>
+              </div>
+              </div>
+              <div>
+                <div class="gg">
+                <div>공모전 1회 우승</div>
+                <div>총 상금 150만원</div>
+              </div>
+              </div>
+            </div>
+            <div>문의 남기기</div>
+            <div>소개</div>
+            <div>판매자 소개글</div>
+          </div>
+        </div>
+
+      <div id="detail2">
+        <div id="detail2-1">서비스 설명</div>
+        <div id="detail2-2">서비스 설명 내용</div>
+        <div id="detail2-3">수정 및 재진행</div>
+        <div id="detail2-4">수정 및 재진행 내용</div>
+        <div id="detail2-5">취소 및 환불 규정</div>
+        <div id="detail2-6">취소 및 환불 규정 내용</div>
+        <div id="commonboder"></div>
+  </div>
+
+        <div id="blank1"></div>
+
+        <div id="detail3">
+            <div id="detail3-1">서비스 평가</div>
+            <div id="detail3-2">
+              <div>별별별별별5.0</div>
+              <div>(2012개의 평가)</div>
+            </div>
+            <div id="detail3-3">포토후기 20개</div>
+            <div id="detail3-4">
+            <div>1<a href=""></a></div>
+            <div>2<a href=""></a></div>
+            <div>3<a href=""></a></div>
+            <div>4<a href=""></a></div>
+          </div>
+            <div id="detail3-5">
+              <div>서비스 후기 2102개<a href=""></a></div>
+              <div></div>
+              <div>최신순<a href=""></a></div>
+              <div>별점 높은 순<a href=""></a></div>
+              <div>별점 낮은 순<a href=""></a></div>
+            </div>
+            
+            <div id="detail3-6-r">
+
+              <div id="detail3-6">
+
+              <div id="detail3-6-1">
+              <div class="aa">프로필사진 들어가는 곳곳곳곳곳곳곳곳곳곳곳곳
+              </div>
+              <div class="aaa">닉네임</div>
+              <div></div>
+              <div></div>
+              <div class="bb">별별별별별 5.0</div>
+              <div class="bb">22.10.21 23:38</div>
+              <div></div>
+            </div>
+
+              <div id="detail3-6-2">
+              빠른 피드백 감사합니다</div>
+              
+              <div id="detail3-6-3">
+              <div>작업일 7일</div>
+              <div>주문금액 : 5만원 - 10만원</div>
+            </div>
+              </div>
+
+
+              <div id="detail3-6">
+
+                <div id="detail3-6-1">
+                <div class="aa">프로필사진 들어가는 곳곳곳곳곳곳곳곳곳곳곳곳
+                </div>
+                <div class="aaa">닉네임</div>
+                <div></div>
+                <div></div>
+                <div class="bb">별별별별별 5.0</div>
+                <div class="bb">22.10.21 23:38</div>
+                <div></div>
+              </div>
+  
+                <div id="detail3-6-2">
+                빠른 피드백 감사합니다</div>
+                
+                <div id="detail3-6-3">
+                <div>작업일 7일</div>
+                <div>주문금액 : 5만원 - 10만원</div>
+              </div>        
+            </div> 
+
+            <div id="detail3-6">
+
+              <div id="detail3-6-1">
+              <div class="aa">프로필사진 들어가는 곳곳곳곳곳곳곳곳곳곳곳곳
+              </div>
+              <div class="aaa">닉네임</div>
+              <div></div>
+              <div></div>
+              <div class="bb">별별별별별 5.0</div>
+              <div class="bb">22.10.21 23:38</div>
+              <div></div>
+            </div>
+
+              <div id="detail3-6-2">
+              빠른 피드백 감사합니다</div>
+              
+              <div id="detail3-6-3">
+              <div>작업일 7일</div>
+              <div>주문금액 : 5만원 - 10만원</div>
+
+            </div>        
+          </div> 
+          <div class="cc">더보기</div>
+
+        </div>
+      </div>
+      <div id="blank2"></div>
+    </div>
+    </html>
