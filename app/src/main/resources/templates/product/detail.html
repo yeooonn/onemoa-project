@@ -16,10 +16,10 @@
      .wrap {
       margin-top: 20px;
       margin-left: 20px;
-      max-width: 1000px;
-      min-width: 1000px;
+      max-width: 1280px;
+      min-width: 1280px;
       display: grid;
-      grid-template-rows: 3fr 0.2 1.5fr 2fr;
+      grid-template-rows: 3fr 0.2 3fr 2fr;
       grid-template-columns: 5fr 5fr; 
     }
 
@@ -50,9 +50,8 @@
 
     #detail-2 {
       border: 1px solid black;
-      display: grid;
       grid-template-columns: 3.3fr 3.3fr 3.3fr;
-      height: 200px;
+      display: grid;
       padding-left: 30px;
       padding-top: 20px;
     }
@@ -118,7 +117,6 @@
 
     #detail2-4 { 
       border: 1px solid black;
-      height: 200px;
       padding-left: 30px;
       padding-top: 10px;
     }
@@ -133,7 +131,6 @@
 
     #detail2-6 { 
       border: 1px solid black;
-      height: 200px;
       padding-left: 30px;
       padding-top: 10px;
       
@@ -381,29 +378,29 @@
 </div>
    <div class="wrap">
       <div id="detail">
-        <div id="detail-1">메인썸네일자리
+        <div id="detail-1">첨부이미지1(썸네일)
         </div>
         <div id="detail-2">
-          <div>1<a href=""></a></div>
-          <div>2<a href=""></a></div>
-          <div>3<a href=""></a></div>
+          <div>첨부이미지2<a href=""></a></div>
+          <div>첨부이미지3<a href=""></a></div>
+          <div>첨부이미지4<a href=""></a></div>
         </div>
         <div id="detail-3">
-          <div>1<a href=""></a></div>
-          <div>2<a href=""></a></div>
-          <div>3<a href=""></a></div>
-          <div>4<a href=""></a></div>
+          <div>네비1<a href=""></a></div>
+          <div>네비2<a href=""></a></div>
+          <div>네비3<a href=""></a></div>
+          <div>네비4<a href=""></a></div>
         </div>
-        <div id="detail-4">포트폴리오</div>
+        <div id="detail-4">포트폴리오(일단안함)</div>
         <div id="detail-5">
-          <div>1<a href=""></a></div>
-          <div>2<a href=""></a></div>
-          <div>3<a href=""></a></div>
+          <div>포트폴리오(일단안함)<a href=""></a></div>
+          <div>포트폴리오(일단안함)<a href=""></a></div>
+          <div>포트폴리오(일단안함)<a href=""></a></div>
         </div>
         <div id="detail-6">
-          <div>포폴제목1<a href=""></a></div>
-          <div>포폴제목2<a href=""></a></div>
-          <div>포폴제목3<a href=""></a></div>
+          <div>포폴제목(일단안함)<a href=""></a></div>
+          <div>포폴제목(일단안함)<a href=""></a></div>
+          <div>포폴제목(일단안함)<a href=""></a></div>
         </div>
         <div id="commonboder"></div>
 
@@ -411,11 +408,11 @@
 
         <div id="top">
           <div class="bb">
-            <div>별별별별별 5.0</div>
+            <div data-th-text="${productjoin}">5.0</div>
             <div>(후기2100개)</div>
           </div>
-          <div>판매할 재능 제목</div>
-          <div>75,000</div>
+          <div data-th-text="${product.title}">제목</div>
+          <div data-th-text="${product.price} + ' 원'">가격</div>
           <div>구매하기</div>
             <div id="seller-info">
             <div>
@@ -448,11 +445,31 @@
 
       <div id="detail2">
         <div id="detail2-1">서비스 설명</div>
-        <div id="detail2-2">서비스 설명 내용</div>
+        <div id="detail2-2" data-th-text="${product.content}">서비스 설명 내용</div>
         <div id="detail2-3">수정 및 재진행</div>
         <div id="detail2-4">수정 및 재진행 내용</div>
         <div id="detail2-5">취소 및 환불 규정</div>
-        <div id="detail2-6">취소 및 환불 규정 내용</div>
+        <div id="detail2-6">취소 및 환불 규정
+01. 전문가와 의뢰인 간의 상호 협의 후 청약철회가 가능합니다. 
+
+02. 전문가의 귀책사유로 디자인작업을 시작하지 않았거나 혹은 이에 준하는 보편적인 관점에서 심각하게 잘못 이행한 경우 결제 금액 전체 환불이 가능합니다. 
+
+03. 전문가가 작업 기간 동안 지정된 서비스를 제공하지 못할 것이 확실한 경우 지급받은 서비스 비용을 일할 계산하여 작업물 개수와 작업 기간 일수만큼 공제하고 잔여 금액을 환불합니다. 
+
+04. 서비스 받은 항목을 공제하여 환불하며, 공제 비용은 정가 처리됩니다.
+가. 소비자 피해 보상 규정에 의거하여 작업물 원본의 멸실 및 작업 기간 미이행 및 이에 상응하는 전문가 책임으로 인한 피해 발생 시, 전액 환불 
+나. 시안 작업 진행된 상품 차감 환불
+ⓐ. '디자인'에 대한 금액이 서비스 내 별도 기재가 되지 않았거나, 디자인 상품 패키지 내 수정 횟수가 1회(1회 포함) 이상인 서비스 상품의 시안 or 샘플이 제공된 경우
+→ 구매금액의 10% 환불(디자인 비용이 별도 기재되어 있는 경우, 해당금액 차감 후 환불)
+※ 시안 제공 및 수정이 추가로 이뤄진 경우 환불 금액내 수정 횟수에 따라 분할하여 환불. 
+
+05. 주문 제작 상품 등 서비스 받은 항목이 없으며, 결제 후 1일 이내 작업이 진행되기 전 시점은 전액 환불 가능. 
+
+06. 다만, 환불이 불가능한 서비스에 대한 사실을 표시사항에 포함한 경우에는 의뢰인의 환불요청이 제한될 수 있습니다. 
+가. 고객의 요청에 따라 개별적으로 주문 제작되는 재판매가 불가능한 경우(인쇄, 이니셜 각인, 사이즈 맞춤 등) 
+ⓐ. 주문 제작 상품 특성상 제작(인쇄 등) 진행된 경우. 
+ⓑ. 인쇄 색상의 차이 : 모니터의 종류에 따라 색상의 차이가 발생하며,인쇄 시마다 합판 인쇄 방법의 특성상 색상 표현의 오차가 발생함. 
+ⓒ. 디자인 서비스이며 수정 횟수가 존재하지 않았던 상품일 경우 시안 수령 후 환불 불가</div>
         <div id="commonboder"></div>
   </div>
 

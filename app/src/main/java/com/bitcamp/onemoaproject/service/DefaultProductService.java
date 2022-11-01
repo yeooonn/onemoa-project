@@ -23,11 +23,10 @@ public class DefaultProductService implements ProductService {
   //    return false;
   //  }
 
-  //  @Override
-  //  public Product get(int no) throws Exception {
-  //    // TODO Auto-generated method stub
-  //    return null;
-  //  }
+  @Override
+  public Product get(int no) throws Exception {
+    return productDao.findByNo(no);
+  }
 
   //  @Override
   //  public boolean delete(int no) throws Exception {

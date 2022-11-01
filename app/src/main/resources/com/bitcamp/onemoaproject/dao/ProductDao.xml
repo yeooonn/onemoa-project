@@ -14,8 +14,19 @@
     <result column="cdt" property="createdDate"/>
     <result column="thumbnail" property="thumbnailPath"/>
     <result column="thumbnailpath" property="thumbnail"/>
-  </resultMap>  
-    
+  </resultMap>
+  
+  <resultMap type="productJoin" id="testMap">
+    <id column="pno" property="no"/>
+    <result column="pcno" property="categoryNo"/>
+    <result column="title" property="title"/>
+    <result column="cont" property="content"/>
+    <result column="price" property="price"/>
+    <result column="vcnt" property="viewCount"/>
+    <result column="cdt" property="createdDate"/>
+    <result column="average" property="average"/>
+  </resultMap> 
+  
     <!-- member객체를 만들어서 값을 담고, board객체의 writer라는 프로퍼티에 넣는다.  -->
     <!-- 조인 결과에서 같은 게시글에 대해 한 개의 회원 데이터를 담을 경우  -->
 <!--     <association property="writer" javaType="member">
@@ -59,27 +70,42 @@
       pno desc
   </select>
 
-<!-- 
-   <select id="findByNo" resultMap="boardMap">
-    select
-      b.bno,
-      b.title,
-      b.cont,
-      b.cdt,
-      b.vw_cnt,
-      m.mno,
-      m.name,
-      bf.bfno,
-      bf.filepath
-    from 
-      app_board b
-      join app_member m on b.mno = m.mno
-      left outer join app_board_file bf on b.bno=bf.bno
-    where 
-      b.bno=#{value}      
+   <select id="findByNo" resultMap="productMap">
+     select 
+      pno,
+      pcno,
+      title,
+      cont,
+      price,
+      vcnt,
+      cdt,
+      thumbnail,
+      thumbnailpath
+    from
+      product p
+    where  
+      pno=#{value}      
+  </select>  
+
+<!--  <select id="findByNo" resultMap="testMap">
+	    select 
+	      p.pno,
+	      p.pcno,
+	      p.title,
+	      p.price,
+	      p.vcnt,
+	      p.cdt,
+	      p.thumbnail,
+	      p.thumbnailpath,
+	      avg(rv.scope) average
+	    from
+	      product p
+	      left outer join product_review rv
+	      on p.pno = rv.pno
+	    where 
+	      p.pno=#{value}
   </select> 
--->
-  
+ -->
 <!--   
 <select id="findFilesByBoard" resultMap="attachedFileMap">
     select 

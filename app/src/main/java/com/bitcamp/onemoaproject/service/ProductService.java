@@ -9,7 +9,7 @@ public interface ProductService {
   //
   //  boolean update(Product product) throws Exception;
   //
-  //  Product get(int no) throws Exception;
+  Product get(int no) throws Exception;
   //
   //  boolean delete(int no) throws Exception;
 
