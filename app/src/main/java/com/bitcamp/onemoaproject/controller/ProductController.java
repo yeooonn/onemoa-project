@@ -1,8 +1,10 @@
 package com.bitcamp.onemoaproject.controller;
 
-import java.util.HashMap;
-import java.util.Map;
 import javax.servlet.ServletContext;
+
+import com.bitcamp.onemoaproject.service.ProductReviewService;
+import com.bitcamp.onemoaproject.vo.product.Product;
+import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -10,7 +12,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import com.bitcamp.onemoaproject.service.ProductCategoryService;
 import com.bitcamp.onemoaproject.service.ProductService;
-import com.bitcamp.onemoaproject.vo.product.Product;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 // CRUD 요청을 처리하는 페이지 컨트롤러들을 한 개의 클래스로 합친다.
 @Controller // 페이지 컨트롤러에 붙이는 애노테이션
@@ -23,6 +28,8 @@ public class ProductController {
   ProductService productService;
   @Autowired
   ProductCategoryService productCategoryService;
+  @Autowired
+  ProductReviewService productReviewService;
 
   /*
   @GetMapping("form")
@@ -90,15 +97,17 @@ public class ProductController {
   public Map detail(int no) throws Exception {
 
     Product product = productService.get(no);
-
-    //    if (board == null) {
-    //      throw new Exception("해당 번호의 게시글이 없습니다!");
-    //    }
+    double average = Math.round((productReviewService.get(no)*100)/100.0);
 
     Map map = new HashMap();
     map.put("product", product);
+    map.put("average", average);
+    System.out.println(average);
     return map;
   }
+
+
+
 
   //  @PostMapping("update")
   //  public String update(

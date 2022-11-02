@@ -1,17 +1,30 @@
 package com.bitcamp.onemoaproject.vo.product;
 
+import jdk.jfr.DataAmount;
+
 import java.sql.Date;
 
-public class ProductJoin {
+public class ProductReview {
 
   private int no;
-  private String categoryNo;
+//   private Member;
+  private Product product;
   private String title;
   private String content;
-  private int price;
-  private int viewCount;
   private Date createdDate;
-  private double average;
+  private int score;
+
+  @Override
+  public String toString() {
+    return "ProductReview{" +
+            "no=" + no +
+            ", product=" + product +
+            ", title='" + title + '\'' +
+            ", content='" + content + '\'' +
+            ", createdDate=" + createdDate +
+            ", score=" + score +
+            '}';
+  }
 
   public int getNo() {
     return no;
@@ -21,12 +34,12 @@ public class ProductJoin {
     this.no = no;
   }
 
-  public String getCategoryNo() {
-    return categoryNo;
+  public Product getProduct() {
+    return product;
   }
 
-  public void setCategoryNo(String categoryNo) {
-    this.categoryNo = categoryNo;
+  public void setProduct(Product product) {
+    this.product = product;
   }
 
   public String getTitle() {
@@ -45,22 +58,6 @@ public class ProductJoin {
     this.content = content;
   }
 
-  public int getPrice() {
-    return price;
-  }
-
-  public void setPrice(int price) {
-    this.price = price;
-  }
-
-  public int getViewCount() {
-    return viewCount;
-  }
-
-  public void setViewCount(int viewCount) {
-    this.viewCount = viewCount;
-  }
-
   public Date getCreatedDate() {
     return createdDate;
   }
@@ -69,12 +66,12 @@ public class ProductJoin {
     this.createdDate = createdDate;
   }
 
-  public double getAverage() {
-    return average;
+  public int getScore() {
+    return score;
   }
 
-  public void setAverage(double average) {
-    this.average = average;
+  public void setScore(int score) {
+    this.score = score;
   }
 }
 

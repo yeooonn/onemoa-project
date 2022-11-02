@@ -375,6 +375,8 @@ insert into product_review (mno, pno, title, cont, scope) values (3, 1, "후기 
 insert into product_review (mno, pno, title, cont, scope) values (4, 1, "후기 제목", "와우 연락도 빨랐고 생각했던 것 보다 더 잘 만들어 주셨어요!", 2);
 insert into product_review (mno, pno, title, cont, scope) values (5, 1, "후기 제목", "와우 연락도 빨랐고 생각했던 것 보다 더 잘 만들어 주셨어요!", 5);
 insert into product_review (mno, pno, title, cont, scope) values (6, 1, "후기 제목", "와우 연락도 빨랐고 생각했던 것 보다 더 잘 만들어 주셨어요!", 4);
+insert into product_review (mno, pno, title, cont, scope) values (1, 1, "후기 제목", "와우 연락도 빨랐고 생각했던 것 보다 더 잘 만들어 주셨어요!", 1);
+insert into product_review (mno, pno, title, cont, scope) values (1, 1, "후기 제목", "와우 연락도 빨랐고 생각했던 것 보다 더 잘 만들어 주셨어요!", 1);
 
 
 insert into product_review (prno, mno, pno, title, cont, cdt, scope) values (1, 1, 1, "로고디자인", "연락도 빨랐고 생각했던 것 보다 더 잘 만들어 주셨어요!","2022-10-09", 5);
