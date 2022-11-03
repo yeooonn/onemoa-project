@@ -1,11 +1,13 @@
 package com.bitcamp.onemoaproject.vo.product;
 
+import com.bitcamp.onemoaproject.vo.Member;
+
 import java.sql.Date;
+import java.util.List;
 
 public class Product {
 
   private int no;
-  private String categoryNo;
   private String title;
   private String content;
   private int price;
@@ -13,17 +15,27 @@ public class Product {
   private Date createdDate;
   private String thumbnail;
   private String thumbnailPath;
-  // private Member writer;
-
-  // 첨부파일 정보를 저장할 필드 
-  // private List<AttachedFile> attachedFiles;
+  private Member writer;
+  private ProductCategory productCategory;
+  private List<AttachedFile> attachedFiles;
+  private double scope;
 
   @Override
   public String toString() {
-    return "Product [no=" + no + ", categoryNo=" + categoryNo + ", title=" + title + ", content="
-        + content + ", price=" + price + ", viewCount=" + viewCount + ", createdDate=" + createdDate
-        + ", thumbnail=" + thumbnail + ", thumbnailPath=" + thumbnailPath
-        + "]";
+    return "Product{" +
+            "no=" + no +
+            ", title='" + title + '\'' +
+            ", content='" + content + '\'' +
+            ", price=" + price +
+            ", viewCount=" + viewCount +
+            ", createdDate=" + createdDate +
+            ", thumbnail='" + thumbnail + '\'' +
+            ", thumbnailPath='" + thumbnailPath + '\'' +
+            ", writer=" + writer +
+            ", productCategory=" + productCategory +
+            ", attachedFiles=" + attachedFiles +
+            ", scope=" + scope +
+            '}';
   }
 
   public int getNo() {
@@ -32,14 +44,6 @@ public class Product {
 
   public void setNo(int no) {
     this.no = no;
-  }
-
-  public String getCategoryNo() {
-    return categoryNo;
-  }
-
-  public void setCategoryNo(String categoryNo) {
-    this.categoryNo = categoryNo;
   }
 
   public String getTitle() {
@@ -98,19 +102,35 @@ public class Product {
     this.thumbnailPath = thumbnailPath;
   }
 
-// s
+  public Member getWriter() {
+    return writer;
+  }
 
-//  public void setWriter(Member writer) {
-//
-//    this.writer = writer;
-//  }
+  public void setWriter(Member writer) {
+    this.writer = writer;
+  }
 
-  //  public List<AttachedFile> getAttachedFiles() {
-  //    return attachedFiles;
-  //  }
-  //
-  //  public void setAttachedFiles(List<AttachedFile> attachedFiles) {
-  //    this.attachedFiles = attachedFiles;
-  //  }
+  public List<AttachedFile> getAttachedFiles() {
+    return attachedFiles;
+  }
 
+  public void setAttachedFiles(List<AttachedFile> attachedFiles) {
+    this.attachedFiles = attachedFiles;
+  }
+
+  public double getScope() {
+    return scope;
+  }
+
+  public void setScope(double scope) {
+    this.scope = scope;
+  }
+
+  public ProductCategory getProductCategory() {
+    return productCategory;
+  }
+
+  public void setProductCategory(ProductCategory productCategory) {
+    this.productCategory = productCategory;
+  }
 }

@@ -78,6 +78,7 @@
 
   <select id="findByEmailPassword" resultMap="memberMap">
     select
+    mno,
     email,
     pwd
     from
