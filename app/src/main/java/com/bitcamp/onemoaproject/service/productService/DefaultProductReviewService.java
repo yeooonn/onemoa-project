@@ -1,6 +1,6 @@
-package com.bitcamp.onemoaproject.service;
+package com.bitcamp.onemoaproject.service.productService;
 
-import com.bitcamp.onemoaproject.dao.ProductReviewDao;
+import com.bitcamp.onemoaproject.dao.productDao.ProductReviewDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

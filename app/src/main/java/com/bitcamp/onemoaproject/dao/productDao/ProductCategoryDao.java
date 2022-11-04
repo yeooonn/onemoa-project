@@ -1,4 +1,4 @@
-package com.bitcamp.onemoaproject.dao;
+package com.bitcamp.onemoaproject.dao.productDao;
 
 
 

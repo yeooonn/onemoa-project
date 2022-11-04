@@ -1,10 +1,13 @@
-package com.bitcamp.onemoaproject.service;
+package com.bitcamp.onemoaproject.service.productService;
 
 import java.util.List;
+import java.util.Map;
+
+import com.bitcamp.onemoaproject.vo.paging.Criteria;
 import com.bitcamp.onemoaproject.vo.product.AttachedFile;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import com.bitcamp.onemoaproject.dao.ProductDao;
+import com.bitcamp.onemoaproject.dao.productDao.ProductDao;
 import com.bitcamp.onemoaproject.vo.product.Product;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -55,10 +58,6 @@ public class DefaultProductService implements ProductService {
     return productDao.delete(no) > 0;
   }
 
-  @Override
-  public List<Product> list() throws Exception {
-    return productDao.findAll();
-  }
 
   @Override
   public AttachedFile getAttachedFile(int fileNo) throws Exception {
@@ -73,6 +72,16 @@ public class DefaultProductService implements ProductService {
   @Override
   public List<Product> list(String code) throws Exception {
     return productDao.findByCategory(code);
+  }
+
+  @Override
+  public List<Map<String, Object>> selectProductList(Criteria cri) {
+    return productDao.selectProductList(cri);
+  }
+
+  @Override
+  public int countProductListTotal() {
+    return productDao.countProductList();
   }
 
 //  public double getReviewAvg(int productNo) throws Exception {

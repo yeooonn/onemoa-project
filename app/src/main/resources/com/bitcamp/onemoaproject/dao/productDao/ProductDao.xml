@@ -2,7 +2,7 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.bitcamp.onemoaproject.dao.ProductDao">
+<mapper namespace="com.bitcamp.onemoaproject.dao.productDao.ProductDao">
 
   <resultMap type="product" id="productMap">
     <id column="pno" property="no"/>
@@ -225,5 +225,34 @@
       where bfno = #{value}
   </select>
   -->
+
+    <select id="selectProductList" resultType="hashMap" parameterType="hashMap">
+        <![CDATA[
+    select
+			pno,
+			pcno,
+			title,
+			cont,
+			price,
+      vw_cnt,
+			cdt,
+			thumbnail,
+			thumbnailpath
+    from
+      product p
+    order by
+      pno desc
+      limit #{pageStart}, #{perPageNum}
+        ]]>
+    </select>
+
+    <select id="countProductList" resultType="Integer">
+        <![CDATA[
+        SELECT
+            count(*)
+        FROM
+            product
+    ]]>
+    </select>
   
 </mapper>

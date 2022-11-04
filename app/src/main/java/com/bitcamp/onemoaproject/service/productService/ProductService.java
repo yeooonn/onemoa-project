@@ -1,6 +1,9 @@
-package com.bitcamp.onemoaproject.service;
+package com.bitcamp.onemoaproject.service.productService;
 
 import java.util.List;
+import java.util.Map;
+
+import com.bitcamp.onemoaproject.vo.paging.Criteria;
 import com.bitcamp.onemoaproject.vo.product.AttachedFile;
 import com.bitcamp.onemoaproject.vo.product.Product;
 
@@ -14,9 +17,11 @@ public interface ProductService {
 
     boolean delete(int no) throws Exception;
 
-    List<Product> list() throws Exception;
-
     List<Product> list(String code) throws Exception;
+
+    List<Map<String, Object>> selectProductList(Criteria cri);
+
+    int countProductListTotal();
 
     AttachedFile getAttachedFile(int fileNo) throws Exception;
 

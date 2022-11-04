@@ -1,4 +1,4 @@
-package com.bitcamp.onemoaproject.dao;
+package com.bitcamp.onemoaproject.dao.productDao;
 
 import com.bitcamp.onemoaproject.vo.product.Product;
 import com.bitcamp.onemoaproject.vo.product.ProductReview;

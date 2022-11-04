@@ -5,8 +5,10 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpSession;
 import javax.servlet.http.Part;
 
-import com.bitcamp.onemoaproject.service.ProductReviewService;
+import com.bitcamp.onemoaproject.service.productService.ProductReviewService;
 import com.bitcamp.onemoaproject.vo.Member;
+import com.bitcamp.onemoaproject.vo.paging.Criteria;
+import com.bitcamp.onemoaproject.vo.paging.PageMaker;
 import com.bitcamp.onemoaproject.vo.product.AttachedFile;
 import com.bitcamp.onemoaproject.vo.product.Product;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,9 +17,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import com.bitcamp.onemoaproject.service.ProductCategoryService;
-import com.bitcamp.onemoaproject.service.ProductService;
+import com.bitcamp.onemoaproject.service.productService.ProductCategoryService;
+import com.bitcamp.onemoaproject.service.productService.ProductService;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
 
 import java.io.IOException;
 import java.util.*;
@@ -74,11 +77,27 @@ public class ProductController {
   }
 
 
-  @GetMapping("list")
-  public void list(Model model) throws Exception {
-    model.addAttribute("products", productService.list());
-    model.addAttribute("productCategories", productCategoryService.list());
-    // System.out.println(productCategoryService.list());
+//  @GetMapping("list")
+//  public void list(Model model) throws Exception {
+//    model.addAttribute("products", productService.list());
+//    model.addAttribute("productCategories", productCategoryService.list());
+//    // System.out.println(productCategoryService.list());
+//  }
+
+  @RequestMapping("list")
+  public ModelAndView openProductList(Criteria cri) throws Exception {
+
+    ModelAndView mav = new ModelAndView("product/list");
+
+    PageMaker pageMaker = new PageMaker();
+    pageMaker.setCri(cri);
+    pageMaker.setTotalCount(productService.countProductListTotal());
+
+    List<Map<String,Object>> list = productService.selectProductList(cri);
+    mav.addObject("list", list);
+    mav.addObject("pageMaker", pageMaker);
+    mav.addObject("productCategories", productCategoryService.list());
+    return mav;
   }
 
   @GetMapping("listf")
@@ -88,6 +107,8 @@ public class ProductController {
     model.addAttribute("products", productService.list(code));
     return "product/list";
   }
+
+
 
   @GetMapping("detail")
   public Map detail(int no) throws Exception {

@@ -1,4 +1,4 @@
-package com.bitcamp.onemoaproject.service;
+package com.bitcamp.onemoaproject.service.productService;
 
 import com.bitcamp.onemoaproject.vo.product.ProductCategory;
 
