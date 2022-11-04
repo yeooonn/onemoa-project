@@ -9,21 +9,42 @@
         <result column="title" property="title"/>
         <result column="cont" property="content"/>
         <result column="cdt" property="createdDate"/>
-        <result column="scope" property="score"/>
-        <association property="product" javaType="product">
-            <id column="pno" property="no"/>
-        </association>
+        <result column="score" property="score"/>
     </resultMap>
 
-<select id="getAvg" resultType="java.lang.Double">
-    select
-        avg(rv.scope) average
-    from
+    <select id="findAll" parameterType="int" resultMap="productReviewMap">
+        select
+        pno,
+        pcno,
+        title,
+        cont,
+        price,
+        vw_cnt,
+        cdt,
+        thumbnail,
+        thumbnailpath
+        from
         product p
-        left outer join product_review rv
-        on p.pno = rv.pno
-    where
-        p.pno=#{value}
-</select>
-  
+        order by
+        pno desc
+    </select>
+
+    <select id="getAverage" resultType="java.lang.Double">
+        select
+          round(avg(score), 2) average
+        from
+          product_review rv
+        where
+          pno=#{value}
+    </select>
+
+    <select id="count" resultType="java.lang.Integer">
+        select
+          count(*)
+        from
+          product_review
+        where
+          pno=#{value}
+    </select>
+
 </mapper>

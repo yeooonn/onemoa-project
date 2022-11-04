@@ -9,7 +9,9 @@ import java.util.List;
 @Mapper
 public interface ProductReviewDao {
 
-  double getAvg(int no);
+  int count(int no);
+
+  double getAverage(int no);
 
 }
 

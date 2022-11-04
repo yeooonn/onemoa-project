@@ -22,5 +22,5 @@ public interface ProductService {
 
     boolean deleteAttachedFile(int fileNo) throws Exception;
 
-    double getReviewAvg(int productNo) throws Exception;
+//    double getReviewAvg(int productNo) throws Exception;
 }

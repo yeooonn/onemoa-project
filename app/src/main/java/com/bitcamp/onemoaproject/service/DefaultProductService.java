@@ -75,8 +75,8 @@ public class DefaultProductService implements ProductService {
     return productDao.findByCategory(code);
   }
 
-  public double getReviewAvg(int productNo) throws Exception {
-    return productDao.getAvg(productNo);
-  }
+//  public double getReviewAvg(int productNo) throws Exception {
+//    return productDao.getReviewAvg(productNo);
+//  }
 
 }
