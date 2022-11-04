@@ -13,8 +13,6 @@ public class AdminMemberController {
   AdminMemberService adminMemberService;
   
   public AdminMemberController(AdminMemberService adminMemberService) {
-    System.out.println("AdminMemberController() 호출됨!!");
-    System.out.println("adminMemberService.toString() : " + adminMemberService.toString());
     this.adminMemberService = adminMemberService;
   }
   
