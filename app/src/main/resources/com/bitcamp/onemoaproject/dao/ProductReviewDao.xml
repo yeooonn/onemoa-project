@@ -29,9 +29,9 @@
         pno desc
     </select>
 
-    <select id="getAverage" resultType="java.lang.Double">
+    <select id="getAverage" resultType="double">
         select
-          round(avg(score), 2) average
+          round(avg(score), 3) average
         from
           product_review rv
         where
