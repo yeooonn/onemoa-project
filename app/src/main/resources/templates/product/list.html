@@ -1,78 +1,17 @@
 <!DOCTYPE html>
-<html lang="ko" >
-  <head>
-    <meta charset = "UTF-8">
-    <title>onemoa</title>
-    <link href="../css/onemoa.css" rel="stylesheet">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="../js/onemoa.js"></script>
-    <script src="http://code.jquery.com/jquery-1.12.0.min.js"></script>
-    <!--지연-->
-  </head>
-  
-  <body style="overflow-x: hidden">
-  <div class="modal"style="position: absolute; z-index: 1;">
-  <div class="modal_body">
-    <div calss="login_container">
-      <button class="closebtn"><img src="../img/x.png"></button>
-      <p>로그인</p>
-      <form action='login' method="post">
-        <table class="input_login" >
-          <tr>
-            <td><input name='email' type='email' id='email' value="user1@test.com" placeholder="이메일을 입력해 주세요." data-th-value="${email}"></td>
-          </tr>
-          <tr>
-            <td><input name='password' type='password' id='password' placeholder="패스워드를 입력해 주세요."></td>
-          </tr>
-        </table>
-        <div class="email-password-checkbox">
-        <input
-            type="text"
-            id="emailPasswordCheck"
-            value=""
-            readonly
-            style="font-size: 1vw; color: #ff0000; border: none; display: none; outline:none; width: 100%; text-align: center" />
-        </div>
-        <label for="label-a"><input type="checkbox" name="saveEmail" id="email2">이메일 유지<br></label>
-        <p class="find"><a href = "#">아이디 찾기</a> / <a href = "#">패스워드 찾기</a></p>
-        <p>
-          <button type='button' class="loginbtn" id="adminCheck"><img src="../img/loginbtn.png"></button>
-        </p>
-      </form>
-      <div class="sns">
-        <p class="snsp">SNS로 간편하게 로그인하세요.</p>
-        <a href="#"><img src="../img/kakao.png"></a>
-        <a href="#"><img src="../img/naver.png"></a>
-        <a href="#"><img src="../img/google.png"></a>
-      </div>
-      <div class="sign">
-        <a href="joinform"><img src="../img/signup.png"></a>
-      </div>
-    </div>
-  </div>
-</div>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <div data-th-replace="/fragments/header.html :: fragment-header"></div>
+</head>
+<body style="overflow-x: hidden">
+  <div data-th-replace="/fragments/nav.html :: fragment-nav"></div>
 
-<header>
-  <div class="nav">
-    <a href="http://localhost:3333/onemoa/"><p class="logo">ONEMOA</p></a>
-    <ul class="firstnav">
-      <li data-th-if="${session.loginMember != null}"><a href="http://localhost:3333/onemoa/logout" data-th-text="로그아웃">로그아웃</a></li>
-      <li><button class="btn-open-popup" data-th-if="${session.loginMember == null}">로그인</button></li>
-      <li><a href="#">마이페이지</a></li>
-      <li><a href="#">메시지</a></li>
-    </ul>
-  </div>
 
-  <div class="menu">
-    <ul class="secnav">
-      <li><a href="contestTeam"><p>공모전</p></a></li>
-      <li><a href="http://localhost:3333/onemoa/product/list"><p>재능판매</p></a></li>
-    </ul>
-  </div>
-</header> 
- 
- <main id="productList">
-    <img class="banner" src="../img/productbg.png" alt="">
+
+
+  <main id="productList">
+    <img class="banner" src="http://localhost:3333/onemoa/img/productbg.png" alt="">
     <div id="underBanner">
       <p id="">전체카테고리
         <span>최신순</span>
@@ -86,14 +25,14 @@
         <li class="menu" data-th-each= "category : ${productCategories}">
           <p class="cate1" data-th-text="${category.name}">상위 카테고리</p>
           <ul class="hide">
-<!--            <a href="#" data-th-href="@{${child.code}}" data-th-each= "child : ${category.children}" data-th-text="${child.name}">하위 카테고리</a>-->
+            <!--            <a href="#" data-th-href="@{${child.code}}" data-th-each= "child : ${category.children}" data-th-text="${child.name}">하위 카테고리</a>-->
             <a href="#" data-th-href="@{listf(code=${child.code})}" data-th-each= "child : ${category.children}" data-th-text="${child.name}">하위 카테고리</a>
-<!--            <a href="listf?no=010010"  data-th-each= "child : ${category.children}" data-th-text="${child.name}">하위 카테고리</a>-->
+            <!--            <a href="listf?no=010010"  data-th-each= "child : ${category.children}" data-th-text="${child.name}">하위 카테고리</a>-->
           </ul>
         </li>
       </ul>
     </nav>
-    
+
     <section id="product">
       <div class="product_container">
         <a href="#" data-th-href="@{detail(no=${product.no})}" class="item" data-th-each= "product : ${products}">
@@ -104,20 +43,16 @@
       </div>
     </section>
     <div id="underBanner"></div>
-   </main>  
-     <footer>
-    <ul class="footerMenu">
-      <li><a href="http://localhost:8888/onemoa/notice/list"><p>공지사항</p></a></li>
-      <li><a href="#"><p>1 : 1 문의</p></a></li>
-    </ul>
-    <div class="detail">
+  </main>
 
-      (주)ONEMOA  | 서울시 강남구 비트캠프 8층 | 대표 : 000 | 개인정보관리책임자 : 000 | 고객센터 : 1234-1234
-      <span>고객센터 영업시간 10:30 ~ 18:00 ( 점심시간 13:00 ~ 14:00) 주말, 공휴일 휴무 | ONEMOA@onemoa.com | </span>
-      <span>Copyright 2022 ONEMOA lnc.All rights reserved</span>
+  <footer data-th-replace="/fragments/footer.html :: fragment-footer"></footer>
 
-    </div>
-  </footer>
+  <script>
+    // TODO 1. JQuery 사용해서 쿠키값안에 email 값 찾아서 login시 email ID 값에 추가.
+    // TODO 2. cookie 2번
+    console.log($.cookie("email"));
+    $("#email").val($.cookie("email"));
+  </script>
 
   <script>
     const body = document.querySelector('body');
@@ -139,43 +74,20 @@
       body.style.overflow = 'auto';
     });
 
-    // 로그인 ajax 비동기 처리
-    $(".loginbtn").click(function () {
-      var email = $("#email").val();
-      var password = $("#password").val();
-      var saveEmail = $("#saveEmail").val();
-
-      $.ajax({
-        type: "POST",
-        url: "/onemoa/login",
-        data: { email: email, password: password, saveEmail: saveEmail},
-        success: function (result) {
-          if(result == "true") {
-            window.location.reload();
-          } else if (result == "false") {
-            document.getElementById("emailPasswordCheck").style.display = "block";
-            document.getElementById("emailPasswordCheck").value="이메일 또는 비밀번호가 일치하지 않습니다.";
-            document.getElementById("emailPasswordCheck").style.color="red";
-          }
-        },
-      });
-    });
-    
     $(document).ready(function(){
-        $(".menu>p").click(function(){
-          $(this).addClass("selected");
-          var submenu = $(this).next("ul");
+      $(".menu>p").click(function(){
+        $(this).addClass("selected");
+        var submenu = $(this).next("ul");
 
-          // submenu 가 화면상에 보일때는 위로 보드랍게 접고 아니면 아래로 보드랍게 펼치기
-          if(submenu.is(":visible") ){
-            submenu.slideUp();
-            $(this).removeClass("selected");
-          }else{
-            submenu.slideDown();
-          }
-        })});
+        // submenu 가 화면상에 보일때는 위로 보드랍게 접고 아니면 아래로 보드랍게 펼치기
+        if(submenu.is(":visible") ){
+          submenu.slideUp();
+          $(this).removeClass("selected");
+        }else{
+          submenu.slideDown();
+        }
+      })});
 
   </script>
-
-  </body>
-  </html>
+</body>
+</html>

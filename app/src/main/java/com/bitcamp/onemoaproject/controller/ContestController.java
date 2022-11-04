@@ -3,7 +3,6 @@ package com.bitcamp.onemoaproject.controller;
 import com.bitcamp.onemoaproject.service.ContestService;
 import com.bitcamp.onemoaproject.vo.contest.Contest;
 import com.bitcamp.onemoaproject.vo.contest.ContestAttachedFile;
-import com.bitcamp.onemoaproject.vo.contest.ContestTeam;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;

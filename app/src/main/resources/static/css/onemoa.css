@@ -54,6 +54,25 @@ header .nav .firstnav li .btn-open-popup {
   background-color: transparent;
   width: 100px;
 }
+header .nav .firstnav .firstnav-li {
+  margin-right: 5%;
+}
+header .nav .firstnav li .btn-open-popup2 {
+  float: right;
+  font-size: 1.302vw;
+  font-family: "Noto Sans KR", "Apple SD Gothic", "맑은고딕", sans-serif;
+  border: none;
+  background-color: transparent;
+  width: 100%;
+}
+header .nav .firstnav li .btn-open-popup3 {
+  float: right;
+  font-size: 1.302vw;
+  font-family: "Noto Sans KR", "Apple SD Gothic", "맑은고딕", sans-serif;
+  border: none;
+  background-color: transparent;
+  width: 100%;
+}
 header .menu .secnav li {
   float: left;
   font-size: 1.302vw;
@@ -2471,7 +2490,7 @@ label[for="label-a"] {
 .product_container {
   display: grid;
   gap: 40px 25px;
-  grid-template-rows: 18rem 18rem 18rem 18rem;
+  grid-template-rows: 35rem 35rem 35rem 35rem;
   grid-template-columns: 1fr 1fr 1fr 1fr;
   margin-top: 2.5vw;
   margin-right: 3vw;
