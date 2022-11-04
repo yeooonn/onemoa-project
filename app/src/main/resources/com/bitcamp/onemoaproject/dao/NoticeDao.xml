@@ -9,7 +9,7 @@
     <result column="title" property="title"/>
     <result column="cont" property="content"/>
     <result column="cdt" property="createdDate"/>
-    <result column="vcnt" property="viewCount"/>
+    <result column="vw_cnt" property="viewCount"/>
     <result column="fname" property="fileName"/>
     <result column="fpath" property="filePath"/>
   </resultMap>
@@ -46,7 +46,7 @@
       title,
 			cont,
 			cdt,
-			vcnt
+			vw_cnt
     from 
       notice
     where 
@@ -55,7 +55,7 @@
   
   <insert id="insert" parameterType="notice" 
           useGeneratedKeys="true" keyColumn="ntcno" keyProperty="no">
-    insert into notice(title,cont,vcnt) 
+    insert into notice(title,cont,vw_cnt)
     values(#{title},#{content},0)
   </insert>
 
@@ -128,5 +128,4 @@
       where bfno = #{value}
   </select> 
   -->
- 
 </mapper>
