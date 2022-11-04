@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bitcamp.onemoaproject.dao.ProductDao">
+
+  <resultMap type="product" id="productMap">
+    <id column="pno" property="no"/>
+    <result column="title" property="title"/>
+    <result column="cont" property="content"/>
+    <result column="price" property="price"/>
+    <result column="vw_cnt" property="viewCount"/>
+    <result column="cdt" property="createdDate"/>
+    <result column="thumbnail" property="thumbnailPath"/>
+    <result column="thumbnailpath" property="thumbnail"/>
+    <result column="scope" property="scope"/>
+    <!-- member객체를 만들어서 값을 담고, board객체의 writer라는 프로퍼티에 넣는다.  -->
+    <!-- 조인 결과에서 같은 게시글에 대해 한 개의 회원 데이터를 담을 경우  -->
+    <association property="writer" javaType="member">
+      <id column="mno" property="no"/>
+      <result column="nick" property="nickname"/>
+    </association>
+
+    <association property="productCategory" javaType="productCategory">
+     <id column="pcno" property="code"/>
+     <result column="pctier" property="tier"/>
+     <result column="pcname" property="name"/>
+     <result column="pcparent" property="parent"/>
+    </association>
+
+      <!--  조인 결과에서 같은 게시글에 대해 여러 개의 첨부 파일 데이터를 담을 경우  -->
+    <collection property="attachedFiles" ofType="attachedFile">
+      <!-- ofType이 담기는 collection이라는 뜻이다  -->
+      <id column="pfno" property="no"/>
+      <result column="fpath" property="filepath"/>
+      <result column="fname" property="filename"/>
+      <result column="pno" property="productNo"/>
+    </collection>
+  </resultMap>
+
+  <resultMap type="attachedFile" id="attachedFileMap">
+     <id column="pfno" property="no"/>
+     <result column="fname" property="filename"/>
+     <result column="fpath" property="filepath"/>
+     <result column="pno" property="productNo"/>
+  </resultMap>
+
+  <select id="findAll" resultMap="productMap">
+    select
+			pno,
+			pcno,
+			title,
+			cont,
+			price,
+			vw_cnt,
+			cdt,
+			thumbnail,
+			thumbnailpath
+    from
+      product p
+    order by 
+      pno desc
+  </select>
+
+  <select id="findByCategory" resultMap="productMap" parameterType="java.lang.String">
+    select
+      pno,
+      pcno,
+      title,
+      cont,
+      price,
+      vw_cnt,
+      cdt,
+      thumbnail,
+      thumbnailpath
+    from
+      product
+    where
+      pcno=#{code}
+  </select>
+
+  <select id="findByNo" resultMap="productMap">
+    select
+        p.pno,
+        p.pcno,
+        p.title,
+        p.cont,
+        p.price,
+        p.vw_cnt,
+        p.cdt,
+        p.thumbnail,
+        p.thumbnailpath,
+        (select round(avg(scope),2)
+            from product_review where pno=p.pno) as scope
+    from
+        product p
+        left outer join product_review rv
+        on p.pno = rv.pno
+    where
+        p.pno=#{value}
+  </select>  
+
+<!--  <select id="findByNo" resultMap="testMap">
+	    select 
+	      p.pno,
+	      p.pcno,
+	      p.title,
+	      p.price,
+	      p.vcnt,
+	      p.cdt,
+	      p.thumbnail,
+	      p.thumbnailpath,
+	      avg(rv.scope) average
+	    from
+	      product p
+	      left outer join product_review rv
+	      on p.pno = rv.pno
+	    where 
+	      p.pno=#{value}
+  </select> 
+ -->
+<!--   
+<select id="findFilesByBoard" resultMap="attachedFileMap">
+    select 
+      bfno, 
+      filepath, 
+      bno 
+    from 
+      app_board_file 
+    where bno = #{value}
+  </select>
+ -->
+ 
+<insert id="insert" parameterType="product"
+          useGeneratedKeys="true" keyColumn="pno" keyProperty="no">
+    insert into product(pcno, mno, title, cont, price)
+    values(#{productCategory.code},#{writer.no},#{title},#{content},#{price})
+</insert>
+
+<!--
+
+  <update id="update" parameterType="board">
+    update 
+      app_board 
+    set 
+      title=#{title}, 
+      cont=#{content} 
+    where 
+      bno=#{no}
+  </update>
+  
+  <delete id="delete">
+	  delete 
+	  from app_board 
+	  where bno=#{value}
+  </delete>
+
+  <delete id="deleteByMember">
+    delete from app_board 
+    where mno=#{value}
+  </delete>
+ -->
+
+  <insert id="insertFiles" parameterType="product">
+    insert into product_file(fname,fpath,pno)
+    values
+    <foreach collection="attachedFiles" item="file" separator=",">
+      (#{file.filename},#{file.filepath}, #{no})
+    </foreach>
+  </insert>
+
+   <!--
+  <delete id="deleteFiles">
+    delete 
+    from app_board_file 
+    where bno=#{value}
+  </delete>
+  
+  <delete id="deleteFilesByMemberBoards">
+    delete from app_board_file
+    where bno in (select bno from app_board where mno=#{value});
+  </delete>
+  
+  <delete id="deleteFile">
+    delete 
+    from app_board_file 
+    where bfno=#{value}
+  </delete>
+  
+  <select id="findFileByNo" resultMap="attachedFileMap">
+    select 
+      bfno, 
+      filepath, 
+      bno 
+    from app_board_file 
+      where bfno = #{value}
+  </select>
+  -->
+  
+</mapper>
