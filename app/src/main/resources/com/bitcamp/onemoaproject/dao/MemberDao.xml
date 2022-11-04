@@ -73,7 +73,7 @@
   </select>
 
   <select id="findAll" resultMap="memberMap">
-    select mno, email, nick, name, tel, cdt, pstno, base_addr, detail_addr, jno, bank, acount, profil, status from member order by mno;
+    select mno, email, nick, name, tel, cdt, pstno, base_addr, detail_addr, jno, bank, account, profile, status from member order by mno;
   </select>
 
   <select id="findByEmailPassword" resultMap="memberMap">

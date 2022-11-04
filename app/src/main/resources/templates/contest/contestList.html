@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>bitcamp</title>
+  <style>
+    tr:hover {
+      background-color: navy;
+      color: white;
+    }
+  </style>
+</head>
+<body>
+<h1 style="text-align: center; margin-top:100px;">게시글</h1>
+<table border='1' style="margin:0 auto;width:50%;">
+  <tr>
+    <th>공모전번호</th>
+    <th>공모전분야</th>
+    <th>제목</th>
+  </tr>
+  <tr data-th-each="contest : ${contests}">
+    <td data-th-text="${contest.ctstNo}">공모전번호</td>
+    <td data-th-text="${contest.contCategory.categoryName}">공모전분야</td>
+    <td>
+      <a href='contestDetail?ctstNo=1'
+         data-th-href="@{contestDetail(ctstNo=${contest.ctstNo})}"
+         data-th-text="${contest.title == ''} ? '(제목없음)' : ${contest.title}">제목</a>
+    </td>
+  </tr>
+</table>
+<p style="text-align: center;">
+  <button><a href='../'>메인</a></button>
+  <a href='contestForm'>새 공모전 등록</a>
+</p>
+</body>
+</html>
+
+
+

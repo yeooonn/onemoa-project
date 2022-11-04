@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>onemoa v</title>
+</head>
+<body>
+<h1 style="text-align: center;">공모전 입력</h1>
+
+<form action='contestAdd' method="post" enctype="multipart/form-data">
+  <table border='1' style="margin: 0 auto;">
+    <tr>
+      <th>기관명</th>
+      <td>
+        <select name="orgNo">
+          <option value="1">대기업</option>
+          <option value="2">공공기관</option>
+          <option value="3">자영업자</option>
+        </select>
+      </td>
+    </tr>
+    <tr>
+      <th>주관</th>
+      <td><input name='org' type='text' size='60'></td>
+    </tr>
+     <tr>
+      <th>썸네일</th>
+      <td><input name='files2' type="file" multiple></td>
+    </tr>
+    <tr>
+      <th>공모전분야</th>
+      <td>
+        <select name="ctgNo">
+          <option value="1">기획/아이디어</option>
+          <option value="2">광고/마케팅</option>
+          <option value="3">사진/영상/UCC</option>
+          <option value="4">디자인/순수미술/공예</option>
+          <option value="5">네이밍/슬로건</option>
+          <option value="6">캐릭터/만화/게임</option>
+          <option value="7">건축/건설/인테리어</option>
+          <option value="8">과학/공학</option>
+          <option value="9">예체능/패션</option>
+          <option value="10">전시/페스티벌</option>
+          <option value="11">문학/시나리오</option>
+        </select>
+      </td>
+    </tr>
+    <tr>
+      <th>제목</th>
+      <td><input name='title' type='text' size='60' value=""></td>
+    </tr>
+    <tr>
+      <th>공모전설명</th>
+      <td><textarea name='subCont' rows='6' cols='60'></textarea></td>
+    </tr>
+    <tr>
+      <th>접수방법</th>
+      <td><input name='appl' type='text' size='60' value="이메일"></td>
+    </tr>
+    <tr>
+      <th>참가자격</th>
+      <td>
+        <input name='qual' type='text' value="대학생/일반인/초등학생/중학생/고등학생">
+      </td>
+    </tr>
+    <tr>
+      <th>시작일시</th>
+      <td><input name='sDate' type='date'></td>
+    </tr>
+    <tr>
+      <th>종료일시</th>
+      <td><input name='eDate' type='date'></td>
+    </tr>
+    <tr>
+      <th>상금</th>
+      <td><input name='reward' type='text' size='60'></td>
+    </tr>
+    <tr>
+      <th>홈페이지</th>
+      <td><input name='page' type='text' size='60'></td>
+    </tr>
+    <tr>
+      <th>팀전여부</th>
+      <td>
+        <input type="radio" name="team" value="0" checked>개인전
+        <input type="radio" name="team" value="1" >팀전
+      </td>
+    </tr>
+     <tr>
+      <th>첨부파일</th>
+      <td><input name='files' type="file" multiple></td>
+    </tr>
+    <tr>
+      <th>공모전 상세설명</th>
+      <td><textarea name='cont' rows='10' cols='60'></textarea></td>
+    </tr>
+  </table>
+  <p style="text-align: center;">
+    <button type='submit'>등록</button>
+    <a href='contestList'>목록</a>
+  </p>
+</form>
+</body>
+</html>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bitcamp.onemoaproject.dao.AdminMemberDao">
+  <resultMap type="adminMember" id="adminMemberMap">
+    <id column="amno" property="no"/>
+    <result column="id" property="email"/>
+  </resultMap>
+
+  <select id="findAll" resultMap="adminMemberMap">
+    select
+      amno,
+      id
+    from
+      admin_member
+    order by
+      id;
+  </select>
+
+</mapper>

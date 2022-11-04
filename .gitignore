@@ -208,11 +208,9 @@ temp/
 Debug/
 Release/
 html-exam/
-package-lock.json
 # Ignore Gradle build output directory
 build
 
 # intelliJ
 .idea
-
 **/src/main/resources/application-smtp.properties
