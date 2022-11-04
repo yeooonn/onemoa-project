@@ -73,7 +73,6 @@ $(function() {
     if (nickname == "") {
       document.getElementById("nicknameCheckBox").value = "닉네임을 입력해주세요.";
       document.getElementById("nicknameCheckBox").style.display = "block";
-      document.getElementById("nicknameCheckBox").style.color = "red";
       document.getElementById("nickname").focus();
       return false;
     }
@@ -88,7 +87,6 @@ $(function() {
         if (result == "false") {
           document.getElementById("nicknameCheckBox").value = "중복된 닉네임입니다.";
           document.getElementById("nicknameCheckBox").style.display = "block";
-          document.getElementById("nicknameCheckBox").style.color = "red";
           document.getElementById("nickname").focus();
           isnickname = false;
           return false;

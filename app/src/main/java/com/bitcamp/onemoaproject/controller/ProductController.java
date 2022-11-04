@@ -176,6 +176,31 @@ public class ProductController {
 
     return "redirect:detail?no=" + product.getNo();
   }
+  
+  
+  @GetMapping("fileDelete2")
+  public String fileDelete2(
+      @RequestParam("no") int no,
+      HttpSession session)
+      throws Exception {
+    
+    AttachedFile attachedFile = productService.getAttachedFile(no);
+    
+    // 게시글의 작성자가 로그인 사용자인지 검사한다. (남의 것 삭제할 수 있으면 안되니까)
+    Member loginMember = (Member) session.getAttribute("loginMember");
+    Product product = productService.get(attachedFile.getProductNo());
+    
+    if (product.getWriter().getNo() != loginMember.getNo()) {
+      throw new Exception("게시글 작성자가 아닙니다.");
+    }
+    
+    // 첨부파일을 삭제한다.
+    if (!productService.deleteAttachedFile(no)) {
+      throw new Exception("게시글 첨부파일 삭제 실패!");
+    }
+    
+    return "redirect:detail?no=" + product.getNo();
+  }
 }
 
 

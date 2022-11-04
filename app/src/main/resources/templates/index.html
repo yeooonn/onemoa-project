@@ -4,6 +4,11 @@
   <meta charset = "UTF-8">
   <title>onemoa v</title>
   <link href="css/onemoa.css" rel="stylesheet">
+  <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+  <!-- jquery-cookie 관련 라이브러리 추가 -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.js"></script>
+  <script src="./js/onemoa.js"></script>
+  <script src="./js/login.js"></script>
 </head>
 <body style="overflow-x: hidden">
 
@@ -62,7 +67,7 @@
 
   <div class="menu">
     <ul class="secnav">
-      <li><a href="http://localhost:3333/onemoa/contest/contestTeam"><p>공모전</p></a></li>
+      <li><a href="http://localhost:3333/onemoa/contest/contestTeam?no=1"><p>공모전</p></a></li>
       <li><a href="http://localhost:3333/onemoa/product/list"><p>재능판매</p></a></li>
     </ul>
   </div>
@@ -210,8 +215,13 @@
     </div>
   </footer>
 
-  <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-  <script src="./js/onemoa.js"></script>
+  <script>
+    // TODO 1. JQuery 사용해서 쿠키값안에 email 값 찾아서 login시 email ID 값에 추가.
+    // TODO 2. cookie 2번
+    console.log($.cookie("email"));
+    $("#email").val($.cookie("email"));
+  </script>
+
   <script>
     const body = document.querySelector('body');
     const modal = document.querySelector('.modal');
@@ -232,28 +242,6 @@
       body.style.overflow = 'auto';
     });
 
-    // 로그인 ajax 비동기 처리
-    $(".loginbtn").click(function () {
-      var email = $("#email").val();
-      var password = $("#password").val();
-      var saveEmail = $("input[type=checkbox][name=saveEmail]:checked").val();
-      console.log(saveEmail);
-
-      $.ajax({
-        type: "POST",
-        url: "/onemoa/login",
-        data: { email: email, password: password, saveEmail: saveEmail},
-        success: function (result) {
-          if(result == "true") {
-            window.location.reload();
-          } else if (result == "false") {
-            document.getElementById("emailPasswordCheck").style.display = "block";
-            document.getElementById("emailPasswordCheck").value="이메일 또는 비밀번호가 일치하지 않습니다.";
-            document.getElementById("emailPasswordCheck").style.color="red";
-          }
-        },
-      });
-    });
   </script>
 </body>
 </html>

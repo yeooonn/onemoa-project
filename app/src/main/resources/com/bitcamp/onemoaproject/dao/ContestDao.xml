@@ -21,19 +21,44 @@
     <result column="qual" property="qual"/>
     <result column="team" property="team"/>
     <result column="reward" property="reward"/>
+    <result column="thumbnail" property="thumbNail"/>
 
-    <!-- 조인 결과에서 같은 게시글에 대해 한 개의 회원 데이터를 담을 경우 -->
+    <!--  -->
     <association property="contOrg" javaType="contestOrg">
       <id column="orgno" property="no"/>
       <result column="coname" property="orgName"/>
     </association>
 
-    <!-- 조인 결과에서 같은 게시글에 대해 한 개의 회원 데이터를 담을 경우 -->
+    <!--  -->
     <association property="contCategory" javaType="contestCategory">
       <id column="ctgno" property="no"/>
       <result column="ccname" property="categoryName"/>
     </association>
 
+    <collection property="contestAttachedFiles" ofType="contestAttachedFile">
+      <id column="ctstfno" property="ctstFno"/>
+      <result column="fname" property="fName"/>
+      <result column="fpath" property="filepath"/>
+    </collection>
+  </resultMap>
+
+  <resultMap type="contestAttachedFile" id="contestAttachedFileMap">
+    <id column="ctstfno" property="ctstFno"/>
+    <result column="fname" property="fName"/>
+    <result column="fpath" property="filepath"/>
+    <result column="ctstno" property="ctstNo"/>
+  </resultMap>
+
+  <resultMap type="contestTeam" id="contestTeamMap">
+    <id column="tno" property="tno"/>
+    <result column="cont" property="cont"/>
+    <result column="cdt" property="cdt"/>
+
+    <association property="reader" javaType="Member">
+      <id column="mno" property="no"/>
+      <result column="nick" property="nickname"/>
+      <result column="profile" property="profile"/>
+    </association>
   </resultMap>
 
   <select id="findAll" resultMap="contestMap">
@@ -54,13 +79,14 @@
     size,
     qual,
     team,
-    reward
+    reward,
+    thumbnail
     from contest
     join contest_category cc on contest.ctgno = cc.ctgno
     join contest_organization co on contest.orgno = co.orgno;
   </select>
 
-  <select id="findByNo" resultMap="contestMap">
+  <select id="findByTeam" resultMap="contestMap">
     select
     ctstno,
     co.name coname,
@@ -78,12 +104,146 @@
     size,
     qual,
     team,
-    reward
+    reward,
+    thumbnail
     from contest
     join contest_category cc on contest.ctgno = cc.ctgno
     join contest_organization co on contest.orgno = co.orgno
+    where team=#{value};
+  </select>
+
+  <select id="findByNo" resultMap="contestMap">
+    select
+    cont.ctstno,
+    cont.ctgno,
+    cont.orgno,
+    co.name coname,
+    cc.name ccname,
+    cont.title,
+    cont.subcont,
+    cont.cdt,
+    cont.sdate,
+    cont.edate,
+    cont.vw_cnt,
+    cont.org,
+    cont.appl,
+    cont.cont,
+    cont.page,
+    cont.size,
+    cont.qual,
+    cont.team,
+    cont.reward,
+    cont.thumbnail,
+    cf.ctstfno,
+    cf.fname,
+    cf.fpath
+    from
+    contest cont
+    join contest_category cc on cont.ctgno = cc.ctgno
+    join contest_organization co on cont.orgno = co.orgno
+    left outer join contest_file cf on cont.ctstno = cf.ctstno
     where
-    ctstno=#{value}
+    cont.ctstno=#{value};
+  </select>
+
+  <insert id="insert" parameterType="contest"
+    useGeneratedKeys="true" keyColumn="ctstno" keyProperty="ctstNo">
+    INSERT INTO `contest` (`orgno`, `ctgno`, `title`, `subcont`, `sdate`, `edate`, `vw_cnt`, `org`, `appl`, `cont`, `page`, `size`, `qual`, `team`, `reward`, `thumbnail`)
+    VALUES
+    (
+    #{orgNo},
+    #{ctgNo},
+    #{title},
+    #{subCont},
+    #{sDate},
+    #{eDate},
+    #{vw_cnt},
+    #{org},
+    #{appl},
+    #{cont},
+    #{page},
+    #{size},
+    #{qual},
+    #{team},
+    #{reward},
+    #{thumbNail});
+  </insert>
+
+  <insert id="insertFiles" parameterType="contest">
+    insert into contest_file(fname,fpath,ctstno)
+    values
+    <foreach collection="contestAttachedFiles" item="file" separator=",">
+      (#{file.fName},#{file.filepath},#{ctstNo})
+    </foreach>
+  </insert>
+
+  <update id="update" parameterType="contest">
+    update contest set
+    orgno=#{orgNo},
+    ctgno=#{ctgNo},
+    title=#{title},
+    subcont=#{subCont},
+    sdate=#{sDate},
+    edate=#{eDate},
+    org=#{org},
+    appl=#{appl},
+    cont=#{cont},
+    page=#{page},
+    size=#{size},
+    qual=#{qual},
+    team=#{team},
+    reward=#{reward}
+    where ctstno=#{ctstNo}
+  </update>
+
+
+  <update id="updateThumbnailFile" parameterType="contest">
+    update contest set
+    thumbnail=#{thumbNail}
+    where ctstno=#{ctstNo}
+  </update>
+
+
+  <delete id="delete">
+    delete from contest
+    where ctstno=#{value}
+  </delete>
+
+  <delete id="deleteFiles">
+    delete from contest_file
+    where ctstno=#{value}
+  </delete>
+
+  <select id="findFileByNo" resultMap="contestAttachedFileMap">
+    select
+      ctstfno,
+      fname,
+      fpath,
+      ctstno
+    from
+      contest_file
+    where
+      ctstfno = #{value}
+  </select>
+
+  <delete id="deleteFile">
+    delete from contest_file
+    where ctstfno=#{value}
+  </delete>
+
+
+  <select id="findByTeamNo" resultMap="contestTeamMap">
+    select
+      t.tno,
+      t.ctstno,
+      t.mno,
+      t.cont,
+      t.cdt,
+      m.nick,
+      m.profile
+    from team t
+      join member m on m.mno = t.mno
+    where ctstno=#{value};
   </select>
 
 </mapper>

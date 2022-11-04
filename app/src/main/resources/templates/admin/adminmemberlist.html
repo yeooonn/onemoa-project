@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>AdminMemberList</title>
+  <style>
+    tr:hover {
+      background-color: gray;
+      color: white;
+    }
+  </style>
+</head>
+<body>
+<h1><a href='../'>회원</a></h1>
+<a href='form'>새 회원</a>
+<table border='1'>
+  <tr>
+    <th>번호</th>
+    <th>이메일</th>
+  </tr>
+
+  <tr data-th-each="adminMember : ${adminMembers}">
+    <td data-th-text="${adminMember.no}">1</td>
+    <td><a href='detail?no=1' data-th-href="@{detail(no=${adminMember.no})}" data-th-text="${adminMember.email}">admin@onemoa.com</a></td>
+  </tr>
+</table>
+<p>
+  <a href='../'>메인</a>
+</p>
+</body>
+</html>
