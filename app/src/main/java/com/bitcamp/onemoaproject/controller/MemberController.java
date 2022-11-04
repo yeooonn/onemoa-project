@@ -18,8 +18,6 @@ public class MemberController {
   MemberService memberService;
   
   public MemberController(MemberService memberService) {
-    System.out.println("MemberController() 호출됨!");
-    System.out.println("memberService.toString()" + memberService.toString());
     this.memberService = memberService;
   }
   

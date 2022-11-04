@@ -36,12 +36,10 @@ public class ContestController {
   
   @GetMapping("contestTeam")
   public String contestTeamList(Model model, int no) throws Exception {
-    if (no == 1) {
-      model.addAttribute("contests", contestService.listTeam(false));
-      return "contest/contestTeam";
-    } else if (no == 2) {
-      model.addAttribute("contests", contestService.listTeam(true));
-      return "contest/contestTeam";
+    switch (no) {
+      case 1: model.addAttribute("contests", contestService.list()); return "contest/contestTeam";
+      case 2: model.addAttribute("contests", contestService.listTeam(false)); return "contest/contestTeam";
+      case 3: model.addAttribute("contests", contestService.listTeam(true)); return "contest/contestTeam";
     }
     return "contest/contestTeam";
   }

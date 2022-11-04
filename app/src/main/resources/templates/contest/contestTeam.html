@@ -14,8 +14,9 @@
 
     <div class="contestctg">
       <ul class="conctg">
-        <li><a href="/onemoa/contest/contestTeam?no=1">개인전</a></li>
-        <li><a href="/onemoa/contest/contestTeam?no=2">팀전</a></li>
+        <li><a href="/onemoa/contest/contestTeam?no=1">전체</a></li>
+        <li><a href="/onemoa/contest/contestTeam?no=2">개인전</a></li>
+        <li><a href="/onemoa/contest/contestTeam?no=3">팀전</a></li>
       </ul>
       <ul class="contype">
         <li><a href="#">전체</a></li>
@@ -415,7 +416,6 @@
           <a href="#"><ul class="con" data-th-id="${contest.ctstNo}" data-th-value="${contest.team}">
             <li>
               <div class="conimg">
-                <!--                  <img id="contestListImage" data-th-src="${/onemoa/contest/files/{path}(path=${contest.thumbNail})}" src="../img/contestimg.png">-->
                 <img id="contestListImage" data-th-src="${'/onemoa/contest/files/' + contest.thumbNail}">
               </div>
             </li>
@@ -441,7 +441,8 @@
                 <p>조회수<span data-th-text="${contest.vw_cnt}">303회</span></p>
               </div>
             </li>
-          </ul></a>
+          </ul>
+          </a>
         </div>
       </div> <!--contestBox-->
     </div>
@@ -455,42 +456,9 @@
     </div>
   </div>
 
-
-
-
   <footer data-th-replace="/fragments/footer.html :: fragment-footer"></footer>
 
   <script>
-    // TODO 1. JQuery 사용해서 쿠키값안에 email 값 찾아서 login시 email ID 값에 추가.
-    // TODO 2. cookie 2번
-    console.log($.cookie("email"));
-    $("#email").val($.cookie("email"));
-  </script>
-
-  <script>
-
-    const body = document.querySelector('body');
-    const modal = document.querySelector('.modal');
-    const btnOpenPopup = document.querySelector('.btn-open-popup');
-    const closebtn = document.querySelector('.closebtn');
-    let contestNumber = ""
-
-    btnOpenPopup.addEventListener('click', () => {
-      modal.style.display = 'block';
-
-      if (modal.classList.contains('show')) {
-        body.style.overflow = 'hide';
-      }
-      body.style.overflow = 'hidden';
-
-    });
-
-    closebtn.addEventListener('click', () => {
-      modal.style.display = 'none';
-      body.style.overflow = 'auto';
-
-    });
-
     // 공모전 상세페이지
     $(".con").click(function () {
       contestNumber = $(this).attr("id"); // 공모전 번호

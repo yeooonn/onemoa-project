@@ -715,6 +715,7 @@ label[for="label-a"] {
   border: 1px solid #000;
   padding: 31px;
   margin-bottom: 40px;
+  cursor:pointer;
 }
 .contest .contestContents .contestBox .con:hover {
   background-color: #eceef3;
