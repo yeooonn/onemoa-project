@@ -18,9 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.bitcamp.onemoaproject.service.ProductCategoryService;
 import com.bitcamp.onemoaproject.service.ProductService;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.multipart.MultipartFile;
 
-import java.io.File;
 import java.io.IOException;
 import java.util.*;
 
@@ -94,14 +92,23 @@ public class ProductController {
   @GetMapping("detail")
   public Map detail(int no) throws Exception {
 
+    Map map = new HashMap();
+
     Product product = productService.get(no);
-  //  double average = Math.round(productReviewService.get(no) * 100) / 100.0;
-    System.out.println(product);
+    int count = productReviewService.count(no);
+
+    if (count != 0) { // 후기글의 개수가 0이 아니면
+      double average = productReviewService.getReviewAverage(no);
+      map.put("average", average);
+    }
+
+//     double average = Math.round(productReviewService.getReviewAverage(no) * 100) / 100.0;
+
     if (product == null) {
       throw new Exception("해당 번호의 게시글이 없습니다!");
     }
 
-    Map map = new HashMap();
+    map.put("count", count);
     map.put("product", product);
   //  map.put("average", average);
   //  System.out.println(average);

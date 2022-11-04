@@ -8,17 +8,18 @@
     <id column="pno" property="no"/>
     <result column="title" property="title"/>
     <result column="cont" property="content"/>
+    <result column="rule" property="rule"/>
     <result column="price" property="price"/>
     <result column="vw_cnt" property="viewCount"/>
     <result column="cdt" property="createdDate"/>
     <result column="thumbnail" property="thumbnailPath"/>
     <result column="thumbnailpath" property="thumbnail"/>
     <result column="scope" property="scope"/>
-    <!-- member객체를 만들어서 값을 담고, board객체의 writer라는 프로퍼티에 넣는다.  -->
-    <!-- 조인 결과에서 같은 게시글에 대해 한 개의 회원 데이터를 담을 경우  -->
+
     <association property="writer" javaType="member">
       <id column="mno" property="no"/>
       <result column="nick" property="nickname"/>
+      <result column="profile" property="profile"/>
     </association>
 
     <association property="productCategory" javaType="productCategory">
@@ -28,7 +29,6 @@
      <result column="pcparent" property="parent"/>
     </association>
 
-      <!--  조인 결과에서 같은 게시글에 대해 여러 개의 첨부 파일 데이터를 담을 경우  -->
     <collection property="attachedFiles" ofType="attachedFile">
       <!-- ofType이 담기는 collection이라는 뜻이다  -->
       <id column="pfno" property="no"/>
@@ -90,51 +90,80 @@
         p.cdt,
         p.thumbnail,
         p.thumbnailpath,
+        p.rule,
+        m.mno,
+        m.profile,
+        m.nick,
+        pf.pfno,
+        pf.fname,
+        pf.fpath
+      from
+        product p
+        join member m on p.mno = m.mno
+        left outer join product_file pf on p.pno=pf.pno
+    where
+        p.pno=#{value}
+  </select>
+
+    <!--
+    <select id="findByNo" resultMap="productMap">
+        select
+        p.pno,
+        p.pcno,
+        p.title,
+        p.cont,
+        p.price,
+        p.vw_cnt,
+        p.cdt,
+        p.thumbnail,
+        p.thumbnailpath,
         (select round(avg(scope),2)
-            from product_review where pno=p.pno) as scope
-    from
+        from product_review where pno=p.pno) as scope
+        from
         product p
         left outer join product_review rv
         on p.pno = rv.pno
-    where
+        where
         p.pno=#{value}
-  </select>  
+    </select>
+    -->
 
-<!--  <select id="findByNo" resultMap="testMap">
-	    select 
-	      p.pno,
-	      p.pcno,
-	      p.title,
-	      p.price,
-	      p.vcnt,
-	      p.cdt,
-	      p.thumbnail,
-	      p.thumbnailpath,
-	      avg(rv.scope) average
-	    from
-	      product p
-	      left outer join product_review rv
-	      on p.pno = rv.pno
-	    where 
-	      p.pno=#{value}
-  </select> 
- -->
-<!--   
-<select id="findFilesByBoard" resultMap="attachedFileMap">
+
+    <!--<select id="findByNo" resultMap="testMap">
+          select
+            p.pno,
+            p.pcno,
+            p.title,
+            p.price,
+            p.vcnt,
+            p.cdt,
+            p.thumbnail,
+            p.thumbnailpath,
+            avg(rv.scope) average
+          from
+            product p
+            left outer join product_review rv
+            on p.pno = rv.pno
+          where
+            p.pno=#{value}
+    </select>
+   -->
+
+<select id="findFilesByProduct" resultMap="attachedFileMap">
     select 
-      bfno, 
-      filepath, 
-      bno 
+      pfno,
+      filepath,
+      filename,
+      pno
     from 
-      app_board_file 
-    where bno = #{value}
+      product_file
+    where pno = #{value}
   </select>
- -->
- 
+
 <insert id="insert" parameterType="product"
           useGeneratedKeys="true" keyColumn="pno" keyProperty="no">
-    insert into product(pcno, mno, title, cont, price)
-    values(#{productCategory.code},#{writer.no},#{title},#{content},#{price})
+    insert into product(pcno, mno, title, cont, price, rule)
+    values(#{productCategory.code},#{writer.no},#{title},#{content},#{price},#{rule})
 </insert>
 
 <!--

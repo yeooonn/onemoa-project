@@ -129,9 +129,6 @@
       <div class="productForm-grid-item">
       </div>
 
-      <div data-th-text="${productCategories}"></div>
-      <div data-th-text="${productCategories[0].name}"></div>
-
       <div class="categoryA-container">
         <label for="categoryA">상위 카테고리 선택</label><br />
         <select class="productForm-category" id="categoryA">
@@ -169,8 +166,8 @@
 
           </textarea>
         <div class="productForm-grid-item">수정 및 재진행<div>
-          <textarea name="rule" class=rule>
 
+          <textarea name="rule" class="rule">
           </textarea>
         </div>
 
@@ -185,22 +182,8 @@
               />
               <img
                       width="200px"
-                      src="img/productFromMain.png"
+                      src="/img/productFromMain.png"
                       onclick="document.all.files1.click();"
-              />
-            </div>
-            <div class="productForm-grid-item2">
-              <span>상세이미지등록(3개 필수) 0/9</span>
-              <input
-                      name="files2"
-                      type="file"
-                      multiple
-                      class="productForm-inputbox2"
-              />
-              <img
-                      width="200px"
-                      src="img/productFromDetail.png"
-                      onclick="document.all.files2.click();"
               />
             </div>
 

@@ -1,5 +1,12 @@
 package com.bitcamp.onemoaproject.vo.product;
 
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
+
+@Getter
+@Setter
+@ToString
 public class AttachedFile {
 
     private int no;
@@ -15,45 +22,4 @@ public class AttachedFile {
         this.filepath = filepath;
     }
 
-    @Override
-    public String toString() {
-        return "AttachedFile{" +
-                "no=" + no +
-                ", filename='" + filename + '\'' +
-                ", filepath='" + filepath + '\'' +
-                ", productNo=" + productNo +
-                '}';
-    }
-
-    public int getNo() {
-        return no;
-    }
-
-    public void setNo(int no) {
-        this.no = no;
-    }
-
-    public String getFilepath() {
-        return filepath;
-    }
-
-    public void setFilepath(String filepath) {
-        this.filepath = filepath;
-    }
-
-    public int getProductNo() {
-        return productNo;
-    }
-
-    public void setProductNo(int productNo) {
-        this.productNo = productNo;
-    }
-
-    public String getFilename() {
-        return filename;
-    }
-
-    public void setFilename(String filename) {
-        this.filename = filename;
-    }
 }

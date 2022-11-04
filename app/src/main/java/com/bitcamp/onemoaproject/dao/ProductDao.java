@@ -37,7 +37,7 @@ public interface ProductDao {
 
   List<Product> findCategorized(String code);
 
-  double getAvg(int productNo);
+//  double getReviewAvg(int productNo);
 
 }
 
