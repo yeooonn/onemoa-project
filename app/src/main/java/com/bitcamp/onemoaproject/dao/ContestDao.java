@@ -2,6 +2,7 @@ package com.bitcamp.onemoaproject.dao;
 
 import com.bitcamp.onemoaproject.vo.contest.Contest;
 import com.bitcamp.onemoaproject.vo.contest.ContestAttachedFile;
+import com.bitcamp.onemoaproject.vo.contest.ContestTeam;
 import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
 
@@ -26,7 +27,9 @@ public interface ContestDao {
   
   int deleteFiles(int ctstno); // 공모전 첨부파일 삭제
   
-  ContestAttachedFile findFileByNo(int fileNo);
+  ContestAttachedFile findFileByNo(int fileNo); //
   
-  int deleteFile(int fileNo);
+  int deleteFile(int fileNo); //
+  
+  List<ContestTeam> findByTeamNo(int contestNumber); //
 }

@@ -4,6 +4,7 @@ package com.bitcamp.onemoaproject.service;
 import com.bitcamp.onemoaproject.dao.ContestDao;
 import com.bitcamp.onemoaproject.vo.contest.Contest;
 import com.bitcamp.onemoaproject.vo.contest.ContestAttachedFile;
+import com.bitcamp.onemoaproject.vo.contest.ContestTeam;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -28,6 +29,11 @@ public class DefaultContestService implements ContestService{
   @Override
   public Contest get(int ctstNo) throws Exception {
     return contestDao.findByNo(ctstNo);
+  }
+  
+  @Override
+  public List<ContestTeam> getTeamList(int contestNumber) {
+    return contestDao.findByTeamNo(contestNumber);
   }
   
   @Transactional

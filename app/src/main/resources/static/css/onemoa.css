@@ -891,8 +891,7 @@ label[for="label-a"] {
 }
 .contestDetail .detail li .contable tr td span {
   display: block;
-  position: relative;
-  top: 23px;
+  height: auto;
 }
 .contestdtype {
   width: 100%;

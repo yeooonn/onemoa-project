@@ -162,7 +162,7 @@
 
               <div class="contestdtype">
                 <p onclick="team()"><a href="#">상세정보</a></p>
-                <p id="contestTypeTeam" onclick="team()"><a href="#">팀원구해요</a></p>
+                <p id="contestTypeTeam" onclick="team()">팀원구해요</a></p>
                 <span></span>
               </div>
 
@@ -482,7 +482,7 @@
               <li>
                 <div class="conimg">
 <!--                  <img id="contestListImage" data-th-src="${/onemoa/contest/files/{path}(path=${contest.thumbNail})}" src="../img/contestimg.png">-->
-                  <img id="contestListImage" data-th-src="${'/onemoa/contest/files/'+contest.thumbNail}">
+                  <img id="contestListImage" data-th-src="${'/onemoa/contest/files/' + contest.thumbNail}">
                 </div>
               </li>
               <li>
@@ -548,6 +548,7 @@
       const modal = document.querySelector('.modal');
       const btnOpenPopup = document.querySelector('.btn-open-popup');
       const closebtn = document.querySelector('.closebtn');
+      let contestNumber = ""
 
       btnOpenPopup.addEventListener('click', () => {
         modal.style.display = 'block';
@@ -567,7 +568,7 @@
 
       // 공모전 상세페이지
       $(".con").click(function () {
-        let contestNumber = $(this).attr("id"); // 공모전 번호
+        contestNumber = $(this).attr("id"); // 공모전 번호
         let contestTeam = $(this).attr("value"); // 공모전 팀여부(true/false)
 
         // 공모전 개인전(false=0)이라면 상세보기 '팀원구해요' 태그 닫기
@@ -599,7 +600,7 @@
               $("#contestDetailTitle").text(result.title); // 공모전 제목
               $("#contestDetailAppl").text(result.appl); // 공모전 접수방법(이메일)
               $("#contestDetailQual").text(result.qual); // 공모전 참가자격
-              $("#contestDetailReceptionPeriod").text(result.sDate + "~" + result.eDate); // 공모전 시작일 ~ 종료일
+              $("#contestDetailReceptionPeriod").text(result.sdate + "~" + result.edate); // 공모전 시작일 ~ 종료일
               $("#contestDetailReward").text(result.reward + "만원"); // 공모전 상금
               $("#contestDetailPage").html("<a href='"+ result.page + "'>" + result.page +"</a>"); // 공모전 홈페이지
               $("#contestDetailCont").text(result.cont); // 공모전 상세내용
@@ -770,6 +771,18 @@
 
     // 팀원구해요
     function team(){
+      console.log(contestNumber);
+      $.ajax({
+        type: "POST",
+        url: "/onemoa/contest/contestTeam/teamList",
+        data: { contestNumber: contestNumber}, // 공모전 번호를 서버에 전달
+          success: function (result, xhr) {
+            console.log(result)
+            console.log(xhr);
+          }
+      });
+
+
       if ($('.person').css('display') == 'none'){
         $('.person').show();
         $('.contestIn').hide();

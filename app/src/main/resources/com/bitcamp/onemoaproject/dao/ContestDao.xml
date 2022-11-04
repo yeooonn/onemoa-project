@@ -49,6 +49,18 @@
     <result column="ctstno" property="ctstNo"/>
   </resultMap>
 
+  <resultMap type="contestTeam" id="contestTeamMap">
+    <id column="tno" property="tno"/>
+    <result column="cont" property="cont"/>
+    <result column="cdt" property="cdt"/>
+
+    <association property="reader" javaType="Member">
+      <id column="mno" property="no"/>
+      <result column="nick" property="nickname"/>
+      <result column="profile" property="profile"/>
+    </association>
+  </resultMap>
+
   <select id="findAll" resultMap="contestMap">
     select
     ctstno,
@@ -218,5 +230,20 @@
     delete from contest_file
     where ctstfno=#{value}
   </delete>
+
+
+  <select id="findByTeamNo" resultMap="contestTeamMap">
+    select
+      t.tno,
+      t.ctstno,
+      t.mno,
+      t.cont,
+      t.cdt,
+      m.nick,
+      m.profile
+    from team t
+      join member m on m.mno = t.mno
+    where ctstno=#{value};
+  </select>
 
 </mapper>
