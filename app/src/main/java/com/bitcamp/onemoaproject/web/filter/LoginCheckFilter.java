@@ -35,21 +35,22 @@ public class LoginCheckFilter implements Filter {
     //System.out.println("servletPath : " + servletPath);
 
     String servletPath = httpRequest.getServletPath();
-    System.out.println("httpRequest.getContextPath()" + httpRequest.getContextPath());
-    System.out.println("httpRequest.getServletPath()" + httpRequest.getServletPath());
+//    System.out.println("httpRequest.getContextPath()" + httpRequest.getContextPath());
+//    System.out.println("httpRequest.getServletPath()" + httpRequest.getServletPath());
 
     // 콘텐트를 틍록, 변경, 삭제하는 경우 로그인 여부를 확인한다.
-    if (servletPath.toLowerCase().endsWith("add") || servletPath.toLowerCase().endsWith("update")
-        || servletPath.toLowerCase().endsWith("delete")) {
-
+    if (servletPath.toLowerCase().endsWith("add")
+        || servletPath.toLowerCase().endsWith("update")
+        || servletPath.toLowerCase().endsWith("delete")
+        || servletPath.toLowerCase().contains("mypage")) {
+    
       Member loginMember = (Member) httpRequest.getSession().getAttribute("loginMember");
       if (loginMember == null) { // 로그인 하지 않았다
-        httpResponse.sendRedirect(httpRequest.getContextPath() + "/onemoa/");
+        httpResponse.sendRedirect(httpRequest.getContextPath() + "/pageLogin");
         return;
         //getContextPath 웹애플리케이션인 경우 애플리케이션 이름이 바뀌면 자동으로 변경된다.
       }
     }
-
     // 현재 필터, 다음에 실행할 필터를 지정한다.
     // 다음 필터를 실행한다.
     // 다음으로 실행할 필터가 없다면 원래 목적지인 서블릿이 실행될 것이다.

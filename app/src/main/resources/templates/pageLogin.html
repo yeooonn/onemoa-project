@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>onemoa v</title>
+  <link href="http://localhost:3333/onemoa/css/onemoa.css" rel="stylesheet">
+  <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.js"></script>
+  <script src="http://localhost:3333/onemoa/js/login.js"></script>
+</head>
+<body style="overflow-x: hidden">
+<div data-th-replace="/fragments/nav.html :: fragment-nav"></div>
+
+  <div class="pagelogin-container">
+    <div calss="login_container2">
+      <p>로그인</p>
+      <form action='loginPage' method="post">
+        <table class="input_login" >
+          <tr>
+            <td><input name='email' type='email' id='emailPage' value="user1@test.com" placeholder="이메일을 입력해 주세요." data-th-value="${email}"></td>
+          </tr>
+          <tr>
+            <td><input name='password' type='password' id='passwordPage' placeholder="패스워드를 입력해 주세요."></td>
+          </tr>
+        </table>
+        <div class="email-password-checkbox">
+          <input
+              type="text"
+              id="emailPasswordCheckPage"
+              value=""
+              required
+              readonly
+              style="font-size: 1vw; color: #ff0000; border: none; display: none; outline:none; width: 100%; text-align: center" />
+        </div>
+        <label for="label-a"><input type="checkbox" name="saveEmail" id="saveEmailPage">이메일 유지<br></label>
+        <p class="find"><a href = "#">아이디 찾기</a> / <a href = "#">패스워드 찾기</a></p>
+        <p>
+          <button type='button' class="loginbtn" id="loginPage"><img src="http://localhost:3333/onemoa/img/loginbtn.png"></button>
+        </p>
+      </form>
+      <div class="sns">
+        <p class="snsp">SNS로 간편하게 로그인하세요.</p>
+        <a href="#"><img src="http://localhost:3333/onemoa/img/kakao.png"></a>
+        <a href="#"><img src="http://localhost:3333/onemoa/img/naver.png"></a>
+        <a href="#"><img src="http://localhost:3333/onemoa/img/google.png"></a>
+      </div>
+      <div class="sign">
+        <a href="joinform"><img src="http://localhost:3333/onemoa/img/signup.png"></a>
+      </div>
+    </div>
+  </div>
+
+<!--<footer data-th-replace="/fragments/footer.html :: fragment-footer"></footer>-->
+
+<script src="js/onemoa.js"></script>
+</body>
+</html>
