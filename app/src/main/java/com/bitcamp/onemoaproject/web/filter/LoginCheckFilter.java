@@ -24,7 +24,7 @@ public class LoginCheckFilter implements Filter {
   public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
       throws IOException, ServletException {
 
-    System.out.println("LoginCheckFilter.doFilter() 실행!");
+//    System.out.println("LoginCheckFilter.doFilter() 실행!");
     HttpServletRequest httpRequest = (HttpServletRequest) request;
     // 응답 기능에 대해서도 HTTP 관련 메서드를 사용하고 싶다면 형변환 하라!
     HttpServletResponse httpResponse = (HttpServletResponse) response;

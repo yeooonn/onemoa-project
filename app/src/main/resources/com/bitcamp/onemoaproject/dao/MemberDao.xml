@@ -60,6 +60,28 @@
     );
   </insert>
 
+  <!-- // 회원 이름과 이메일 검색 -->
+  <select id="findByIdEmail" resultMap="memberMap">
+    select
+      mno,
+      name,
+      email,
+      cdt
+    from
+      member
+    where
+      name=#{name} AND email=#{email};
+  </select>
+
+
+  <!-- 회원 패스워드 초기화 -->
+  <update id="updatePwd" parameterType="Member">
+    update member set
+      pwd=sha2(#{password},256)
+    where
+      mno=#{no} AND name=#{name} AND email=#{email}
+  </update>
+
   <select id="findByNo" resultMap="memberMap">
     select
     mno,

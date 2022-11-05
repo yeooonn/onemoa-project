@@ -2574,3 +2574,24 @@ label[for="label-a"] {
   text-align: center;
   margin: auto;
 }
+.input-findIdPw tr td input {
+  display: block;
+  width: 101%;
+  height: 47px;
+  background-color: #fff;
+  border: 2px solid #dedede;
+  padding-left: 10px;
+  margin-left: 8%;
+  margin-bottom: 8px;
+  border-radius: 5px;
+}
+.input-findIdPw {
+  width: 85.4%;
+}
+.input-findIdPw .findIdPwBtn {
+  width: 100%;
+  background-color: #707fc2;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+}

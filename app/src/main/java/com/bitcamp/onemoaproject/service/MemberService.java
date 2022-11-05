@@ -6,7 +6,14 @@ import java.util.List;
 // 비즈니스 로직을 수행하는 객체의 사용규칙(호출규칙)
 public interface MemberService {
   
+  // 회원 등록
   void add(Member member) throws Exception;
+  
+  // 회원 이름과 이메일 검색
+  Member getIdEmail(String name, String email) throws Exception;
+  
+  // 회원 패스워드 초기화
+  boolean updatePwd(Member member) throws Exception;
   
   boolean update(Member member) throws Exception;
   

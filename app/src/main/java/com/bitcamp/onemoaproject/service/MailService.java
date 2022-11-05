@@ -33,6 +33,7 @@ public class MailService {
     
     String email = mail.getAddress();
     String checkNum = String.valueOf(mail.getCheckNum());
+    String templates = mail.getTemplate();
     
     //템플릿에 전달할 데이터 설정
     Context context = new Context();
@@ -40,7 +41,7 @@ public class MailService {
     context.setVariable("checkNum", checkNum);
     
     //메일 내용 설정 : 템플릿 프로세스
-    String html = templateEngine.process("emailCode", context);
+    String html = templateEngine.process(templates, context);
     helper.setText(html, true);
    
     //메일 보내기

@@ -24,19 +24,6 @@ public class App {
     model.addAttribute("email", email);
     return "index";
   }
-  
-  @GetMapping("/pageLogin")
-  public void loginCheck() {}
-
-  @GetMapping("joinform")
-  public String joinForm() {
-    return "joinForm";
-  }
-
-  @GetMapping("/productForm")
-  public String productForm() {
-    return "form";
-  }
 }
 
 

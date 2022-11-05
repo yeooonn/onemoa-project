@@ -19,9 +19,22 @@ public class DefaultMemberService implements MemberService {
 //  @Autowired
 //  BoardDao boardDao;
   
+  // 회원 등록
   @Override
   public void add(Member member) throws Exception {
     memberDao.insert(member);
+  }
+  
+  // 회원 이름과 이메일 검색
+  @Override
+  public Member getIdEmail(String name, String email) throws Exception {
+    return memberDao.findByIdEmail(name, email);
+  }
+  
+  // 회원 패스워드 초기화
+  @Override
+  public boolean updatePwd(Member member) throws Exception {
+    return memberDao.updatePwd(member) > 0;
   }
   
   @Override

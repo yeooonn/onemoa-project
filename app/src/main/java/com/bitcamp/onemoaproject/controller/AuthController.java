@@ -82,6 +82,14 @@ public class AuthController {
     session.invalidate(); // 현재 세션을 무효화시킨다.
     return "redirect:/";
   }
+  
+  @GetMapping("/pageLogin")
+  public void loginCheck() {}
+  
+  @GetMapping("joinform")
+  public String joinForm() {
+    return "joinForm";
+  }
 
   @ResponseBody
   @PostMapping("/nicknamecheck")
@@ -110,6 +118,7 @@ public class AuthController {
     mail.setAddress(email);
     mail.setTitle("[onemoa] 이메일 계정 인증");
     mail.setCheckNum(checkNum);
+    mail.setTemplate("emailCode");
     mailService.sendTemplateMessage(mail);
     return Integer.toString(checkNum);
   }
