@@ -20,7 +20,7 @@ public interface ContestService {
   
   boolean delete(int ctstno) throws Exception; // 공모전 삭제
   
-  ContestAttachedFile getContestAttachedFile(int fileNo) throws Exception;
+  ContestAttachedFile getContestAttachedFile(int fileNo) throws Exception; // 첨부파일번호로 파일 검색
   
-  boolean contestDeleteAttachedFile(int fileNo) throws Exception;
+  boolean contestDeleteAttachedFile(int fileNo) throws Exception; // 첨부파일 번호로 첨부파일 삭제
 }

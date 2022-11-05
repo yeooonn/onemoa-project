@@ -16,26 +16,31 @@ public class DefaultContestService implements ContestService{
   @Autowired
   ContestDao contestDao;
   
+  // 공모전 모든 게시글 검색
   @Override
   public List<Contest> list() throws Exception {
     return contestDao.findAll();
   }
   
+  // 공모전 개인전, 팀전 검색
   @Override
   public List<Contest> listTeam(boolean no) throws Exception {
     return contestDao.findByTeam(no);
   }
   
+  // 공모전 게시글 상세보기
   @Override
   public Contest get(int ctstNo) throws Exception {
     return contestDao.findByNo(ctstNo);
   }
   
+  // 공모전 팀원구해요 목록 검색
   @Override
   public List<ContestTeam> getTeamList(int contestNumber) {
     return contestDao.findByTeamNo(contestNumber);
   }
   
+  // 공모전 게시글 등록
   @Transactional
   @Override
   public void add(Contest contest) throws Exception {
@@ -50,6 +55,7 @@ public class DefaultContestService implements ContestService{
     }
   }
   
+  // 공모전 게시글 수정
   @Transactional
   @Override
   public boolean update(Contest contest) throws Exception {
@@ -68,6 +74,8 @@ public class DefaultContestService implements ContestService{
     return true;
   }
   
+  
+  // 공모전 게시글 삭제
   @Transactional
   @Override
   public boolean delete(int ctstno) throws Exception {
@@ -78,11 +86,13 @@ public class DefaultContestService implements ContestService{
     return contestDao.delete(ctstno) > 0;
   }
   
+  // 공모전 게시글의 첨부파일 삭제하기 위해 첨부파일 번호 검색
   @Override
   public ContestAttachedFile getContestAttachedFile(int fileNo) throws Exception {
     return contestDao.findFileByNo(fileNo);
   }
   
+  // 공모전 게시글의 첨부파일 삭제
   @Override
   public boolean contestDeleteAttachedFile(int fileNo) throws Exception {
     return contestDao.deleteFile(fileNo) > 0;

@@ -27,9 +27,9 @@ public interface ContestDao {
   
   int deleteFiles(int ctstno); // 공모전 첨부파일 삭제
   
-  ContestAttachedFile findFileByNo(int fileNo); //
+  ContestAttachedFile findFileByNo(int fileNo); // 공모전 게시글의 첨부파일 삭제하기 위해 첨부파일 번호 검색
   
-  int deleteFile(int fileNo); //
+  int deleteFile(int fileNo); // 공모전 게시글의 첨부파일 삭제
   
-  List<ContestTeam> findByTeamNo(int contestNumber); //
+  List<ContestTeam> findByTeamNo(int contestNumber); // 공모전 팀원구해요 목록 검색
 }

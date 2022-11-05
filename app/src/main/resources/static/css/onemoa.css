@@ -2491,7 +2491,7 @@ label[for="label-a"] {
 .product_container {
   display: grid;
   gap: 40px 25px;
-  grid-template-rows: 35rem 35rem 35rem 35rem;
+  grid-template-rows: 18rem 18rem 18rem 18rem;
   grid-template-columns: 1fr 1fr 1fr 1fr;
   margin-top: 2.5vw;
   margin-right: 3vw;
