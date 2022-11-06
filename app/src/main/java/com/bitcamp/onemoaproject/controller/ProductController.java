@@ -101,10 +101,14 @@ public class ProductController {
   }
 
   @GetMapping("listf")
-  public String list(Model model, String code) throws Exception {
-    System.out.println("code = " + code);
+  public String list(Model model, String code, Criteria cri) throws Exception {
+    PageMaker pageMaker = new PageMaker();
+    pageMaker.setCri(cri);
+    pageMaker.setTotalCount(productService.countProductListTotal());
+
     model.addAttribute("productCategories", productCategoryService.list());
     model.addAttribute("products", productService.list(code));
+    model.addAttribute("pageMaker", pageMaker);
     return "product/list";
   }
 
