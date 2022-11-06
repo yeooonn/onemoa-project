@@ -128,37 +128,16 @@
     </select>
     -->
 
-
-    <!--<select id="findByNo" resultMap="testMap">
-          select
-            p.pno,
-            p.pcno,
-            p.title,
-            p.price,
-            p.vcnt,
-            p.cdt,
-            p.thumbnail,
-            p.thumbnailpath,
-            avg(rv.scope) average
-          from
-            product p
-            left outer join product_review rv
-            on p.pno = rv.pno
-          where
-            p.pno=#{value}
-    </select>
-   -->
-
-<select id="findFilesByProduct" resultMap="attachedFileMap">
-    select 
-      pfno,
-      filepath,
-      filename,
-      pno
-    from 
-      product_file
-    where pno = #{value}
-  </select>
+<!--<select id="findFilesByProduct" resultMap="attachedFileMap">-->
+<!--    select -->
+<!--      pfno,-->
+<!--      filepath,-->
+<!--      filename,-->
+<!--      pno-->
+<!--    from -->
+<!--      product_file-->
+<!--    where pno = #{value}-->
+<!--</select>-->
 
 <insert id="insert" parameterType="product"
           useGeneratedKeys="true" keyColumn="pno" keyProperty="no">

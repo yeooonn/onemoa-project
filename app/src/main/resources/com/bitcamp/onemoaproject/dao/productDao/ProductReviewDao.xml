@@ -10,28 +10,64 @@
         <result column="cont" property="content"/>
         <result column="cdt" property="createdDate"/>
         <result column="score" property="score"/>
+
+        <association property="writer" javaType="member">
+            <id column="mno" property="no"/>
+            <result column="nick" property="nickname"/>
+            <result column="profile" property="profile"/>
+        </association>
+
+        <association property="product" javaType="product">
+            <id column="pno" property="no"/>
+            <result column="title" property="title"/>
+            <result column="cont" property="content"/>
+            <result column="rule" property="rule"/>
+            <result column="price" property="price"/>
+            <result column="vw_cnt" property="viewCount"/>
+            <result column="cdt" property="createdDate"/>
+            <result column="thumbnail" property="thumbnailPath"/>
+            <result column="thumbnailpath" property="thumbnail"/>
+            <result column="scope" property="scope"/>
+        </association>
+
     </resultMap>
 
-    <select id="findAll" parameterType="int" resultMap="productReviewMap">
+    <select id="findAll" resultMap="productReviewMap">
         select
-        pno,
-        pcno,
-        title,
-        cont,
-        price,
-        vw_cnt,
-        cdt,
-        thumbnail,
-        thumbnailpath
+          prno,
+          mno,
+          pno,
+          title,
+          cont,
+          cdt,
+          score
         from
-        product p
+          product_review
         order by
-        pno desc
+          cdt desc
+    </select>
+
+    <select id="findByProductNo" parameterType="int" resultMap="productReviewMap">
+        select
+          rw.prno,
+          rw.mno,
+          rw.pno,
+          rw.title,
+          rw.cont,
+          rw.cdt,
+          rw.score,
+          m.profile,
+          m.nick
+        from
+          product_review rw
+          join member m on rw.mno=m.mno
+        where
+          pno=#{value}
     </select>
 
     <select id="getAverage" resultType="double">
         select
-          round(avg(score), 3) average
+          round(avg(score), 1) average
         from
           product_review rv
         where

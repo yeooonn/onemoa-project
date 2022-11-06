@@ -1,6 +1,5 @@
 package com.bitcamp.onemoaproject.dao.productDao;
 
-import com.bitcamp.onemoaproject.vo.product.Product;
 import com.bitcamp.onemoaproject.vo.product.ProductReview;
 import org.apache.ibatis.annotations.Mapper;
 
@@ -13,6 +12,9 @@ public interface ProductReviewDao {
 
   double getAverage(int no);
 
+  List<ProductReview> findAll();
+
+  List<ProductReview> findByProductNo(int no);
 }
 
 
