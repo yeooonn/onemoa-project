@@ -34,17 +34,35 @@
       </ul>
     </nav>
 
-    <section id="product">
-      <div class="product_container">
-        <a href="#" data-th-href="@{detail(no=${product.no})}" class="item" data-th-each= "product : ${products}">
-          <img src="./img/conthumb.png" alt="">
-          <p data-th-text="${product.title}">상품게시물 제목</p>
-          <p data-th-text="${#numbers.formatInteger(product.price, 3, 'COMMA')} + ' 원'">판매 상품 가격</p>
-        </a>
-      </div>
-    </section>
-    <div id="underBanner"></div>
-  </main>
+       <section id="product">
+         <div class="product_container">
+           <a href="#" class="item" data-th-each= "product : ${list}">
+             <img src="./img/conthumb.png" alt="">
+             <p data-th-text="${product.title}">상품게시물 제목</p>
+             <p data-th-text="${product.price} + ' ' + 원">판매 상품 가격</p>
+           </a>
+         </div>
+       </section>
+
+     <oi class = "pagingContainer">
+       <li class="page-firstPage" th:if="${pageMaker.prev}">
+         <a class="page-link" th:href="@{list(pageMaker.startPage-1)}" aria-label="Previous">
+           <span aria-hidden="true">이전페이지</span>
+         </a>
+       </li>
+       <th:block th:each="pageNum: ${#numbers.sequence(pageMaker.startPage, pageMaker.endPage)}">
+         <li class="page-1to5List">
+           <a class="page-link" th:href="@{list(page=${pageNum})}"><i th:text="${pageNum}"></i></a>
+         </li>
+       </th:block>
+       <li class="page-nextPage" th:if="${pageMaker.next && pageMaker.endPage >0}">
+         <a class="page-link" th:href="@{list(page=${pageMaker.endPage+1})}" aria-label="Next">
+           <span aria-hidden="true">다음페이지</span>
+         </a>
+       </li>
+     </oi>
+
+   </main>  
 
   <footer data-th-replace="/fragments/footer.html :: fragment-footer"></footer>
   <script>

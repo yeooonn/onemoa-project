@@ -1,4 +1,4 @@
-package com.bitcamp.onemoaproject.service;
+package com.bitcamp.onemoaproject.service.productService;
 
 public interface ProductReviewService {
 

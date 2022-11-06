@@ -1,6 +1,9 @@
-package com.bitcamp.onemoaproject.dao;
+package com.bitcamp.onemoaproject.dao.productDao;
 
 import java.util.List;
+import java.util.Map;
+
+import com.bitcamp.onemoaproject.vo.paging.Criteria;
 import com.bitcamp.onemoaproject.vo.product.AttachedFile;
 import com.bitcamp.onemoaproject.vo.product.Product;
 import org.apache.ibatis.annotations.Mapper;
@@ -19,8 +22,6 @@ public interface ProductDao {
 
   int deleteByMember(int memberNo);
 
-  List<Product> findAll();
-
   List<Product> findByCategory(String code);
 
   int insertFiles(Product product);
@@ -36,6 +37,12 @@ public interface ProductDao {
   int deleteFilesByMemberProducts(int memberNo);
 
   List<Product> findCategorized(String code);
+
+  // 페이징에 필요한 메소드
+  public List<Map<String, Object>> selectProductList(Criteria cri);
+
+  // 게시판 글의 개수를 세기위한 메소드
+  public int countProductList();
 
 //  double getReviewAvg(int productNo);
 
