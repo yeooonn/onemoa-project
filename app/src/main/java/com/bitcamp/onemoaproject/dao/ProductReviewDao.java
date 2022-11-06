@@ -13,6 +13,9 @@ public interface ProductReviewDao {
 
   double getAverage(int no);
 
+  List<ProductReview> findAll();
+
+  List<ProductReview> findByProductNo(int no);
 }
 
 

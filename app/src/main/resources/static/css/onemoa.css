@@ -2345,7 +2345,7 @@ label[for="label-a"] {
   height: auto;
 }
 
-#underBanner {
+.underBanner {
   height : 40px;
 }
 
@@ -2462,7 +2462,7 @@ label[for="label-a"] {
   gap: 40px 25px;
   grid-template-rows: 18rem 18rem 18rem 18rem;
   grid-template-columns: 1fr 1fr 1fr 1fr;
-  margin-top: 2.5vw;
+  margin-top: 3vw;
   margin-right: 3vw;
 }
 
@@ -2521,10 +2521,9 @@ label[for="label-a"] {
 #underBanner p, button {
   font-size: 2.7vw;
   margin: 0 0;
-
 }
 
-#underBanner p span, button {
+ #underBanner p span, button {
   font-size: 1vw;
   margin: 0 0 0 20px;
   float : right;

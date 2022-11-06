@@ -9,6 +9,7 @@ import com.bitcamp.onemoaproject.service.ProductReviewService;
 import com.bitcamp.onemoaproject.vo.Member;
 import com.bitcamp.onemoaproject.vo.product.AttachedFile;
 import com.bitcamp.onemoaproject.vo.product.Product;
+import com.bitcamp.onemoaproject.vo.product.ProductReview;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -64,10 +65,12 @@ public class ProductController {
       if (part.getSize() == 0) {
         continue;
       }
+
       String originname = part.getSubmittedFileName();
-      String filename = UUID.randomUUID().toString() + '_' + originname;
+      System.out.println(originname);
+      String filename = UUID.randomUUID().toString();
       part.write(dirPath + "/" + filename);
-      attachedFiles.add(new AttachedFile(filename, originname));
+      attachedFiles.add(new AttachedFile(originname, filename));
 
     }
     return attachedFiles;
@@ -100,8 +103,10 @@ public class ProductController {
     if (count != 0) { // 후기글의 개수가 0이 아니면
       double average = productReviewService.getReviewAverage(no);
       map.put("average", average);
-    }
 
+      List<ProductReview> productReviews = productReviewService.list(no);
+      map.put("reviews", productReviews);
+    }
 //     double average = Math.round(productReviewService.getReviewAverage(no) * 100) / 100.0;
 
     if (product == null) {

@@ -60,6 +60,7 @@ public class DefaultProductService implements ProductService {
     return productDao.findAll();
   }
 
+
   @Override
   public AttachedFile getAttachedFile(int fileNo) throws Exception {
     return productDao.findFileByNo(fileNo);

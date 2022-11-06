@@ -16,7 +16,7 @@ public class AttachedFile {
 
     public AttachedFile() {}
 
-    public AttachedFile(String filename, String originname) { this.filepath = filename; this.filename = originname;}
+    public AttachedFile(String filename, String filepath) { this.filename = filename; this.filepath = filepath;}
 
     public AttachedFile(String filepath) {
         this.filepath = filepath;
