@@ -1,7 +1,8 @@
 package com.bitcamp.onemoaproject.service;
 
-import java.util.List;
 import com.bitcamp.onemoaproject.vo.Member;
+
+import java.util.List;
 
 // 비즈니스 로직을 수행하는 객체의 사용규칙(호출규칙)
 //
@@ -14,8 +15,8 @@ public interface MemberService {
   Member get(int no) throws Exception;
 
   Member get(String email, String password) throws Exception;
-
-  //boolean delete(int no) throws Exception;
+//
+//  boolean delete(int no) throws Exception;
 
   List<Member> list() throws Exception;
 }

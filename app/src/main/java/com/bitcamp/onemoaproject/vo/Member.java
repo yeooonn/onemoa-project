@@ -16,8 +16,8 @@ public class Member {
   private String detailAddress;
   private int jobNo;
   private String bank;
-  private String acount;
-  private String profil;
+  private String account;
+  private String profile;
   private String token;
   private boolean status;
 
@@ -26,7 +26,7 @@ public class Member {
     return "Member [no=" + no + ", name=" + name + ", email=" + email + ", password=" + password
         + ", createdDate=" + createdDate + ", nickname=" + nickname + ", tel=" + tel + ", pstno="
         + pstno + ", baseAddress=" + baseAddress + ", detailAddress=" + detailAddress + ", jobNo="
-        + jobNo + ", bank=" + bank + ", acount=" + acount + ", profil=" + profil + ", token="
+        + jobNo + ", bank=" + bank + ", account=" + account + ", profil=" + profile + ", token="
         + token + ", status=" + status + "]";
   }
 
@@ -103,16 +103,16 @@ public class Member {
     this.bank = bank;
   }
   public String getAcount() {
-    return acount;
+    return account;
   }
   public void setAcount(String acount) {
-    this.acount = acount;
+    this.account = acount;
   }
   public String getProfil() {
-    return profil;
+    return profile;
   }
   public void setProfil(String profil) {
-    this.profil = profil;
+    this.profile = profil;
   }
   public String getToken() {
     return token;

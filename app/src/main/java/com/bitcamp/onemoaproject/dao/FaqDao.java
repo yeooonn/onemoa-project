@@ -7,30 +7,16 @@ import java.util.List;
 
 @Mapper
 public interface FaqDao {
-//
-//  int insert(Board board);
-//
-    Faq findByNo(int no);
-//
-//  int update(Board board);
-//
-//  int delete(int no);
-//
-//  int deleteByMember(int memberNo);
-//
+
+     int insert(Faq faq);
+     Faq findByNo(int no);
+
+     int update(Faq faq);
+
+     int delete(int no);
      List<Faq> findAll();
-//
-//  int insertFiles(Board board);
-//
-//  AttachedFile findFileByNo(int fileNo);
-//
-//  List<AttachedFile> findFilesByBoard(int boardNo);
-//
-//  int deleteFile(int fileNo);
-//
-//  int deleteFiles(int boardNo);
-//
-//  int deleteFilesByMemberBoards(int memberNo);
+
+     //  int deleteByMember(int memberNo);
 }
 
 
