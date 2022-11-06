@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>onemoa v</title>
+  <link href="http://localhost:3333/onemoa/css/onemoa.css" rel="stylesheet">
+  <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.js"></script>
+  <script src="http://localhost:3333/onemoa/js/login.js"></script>
+</head>
+<body>
+<div data-th-replace="/fragments/nav.html :: fragment-nav"></div>
+
+<div class="pagelogin-container">
+  <div calss="login_container2">
+    <p>아이디 찾기</p>
+    <form action='memberFindById' method="post">
+      <table class="input-findIdPw" >
+        <tr>
+          <td><input name='nameId' type='text' id='findIdName' placeholder="이름을 입력해 주세요."></td>
+        </tr>
+        <tr>
+          <td><input name='emailId' type='email' id='findIdEmail' placeholder="이메일을 입력해 주세요."></td>
+        </tr>
+        <tr>
+          <td><input name="memberId" id="memberId" vlaue="" style="display: none" readonly></td>
+        </tr>
+        <tr>
+          <td><input type='button' class="findIdPwBtn" id="findByIdBtn" value="아이디 찾기"></td>
+        </tr>
+      </table>
+    </form>
+  </div>
+  <br>
+  <div calss="login_container2">
+    <p>패스워드 초기화</p>
+    <form action='memberFindByPwd' method="post">
+      <table class="input-findIdPw" >
+        <tr>
+          <td><input name='namePwd' type='text' id='findPwdName' placeholder="이름을 입력해 주세요."></td>
+        </tr>
+        <tr>
+          <td><input name='emailPwd' type='email' id='findPwdEmail' placeholder="이메일을 입력해 주세요."></td>
+        </tr>
+        <tr>
+          <td><input type='button' class="findIdPwBtn" id="sendEmailBtn" value="인증번호 발송"></td>
+        </tr>
+        <tr>
+          <td><input type="text" id="findIdEmailCode" placeholder="인증번호 입력"></td>
+        </tr>
+        <tr>
+          <td><input type='button' class="findIdPwBtn" id="findByPwdBtn" value="패스워드 초기화"></td>
+        </tr>
+      </table>
+    </form>
+    <br>
+  </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.js"></script>
+<script src="http://localhost:3333/onemoa/js/findIdPw.js"></script>
+<script>
+  // TODO 1. JQuery 사용해서 쿠키값안에 email 값 찾아서 login시 email ID 값에 추가.
+  // TODO 2. cookie 2번
+  // console.log($.cookie("email"));
+  $("#email").val($.cookie("email"));
+</script>
+
+<script>
+  const body = document.querySelector('body');
+  const modal = document.querySelector('.modal');
+  let contestNumber = ""
+
+  $(".btn-open-popup").click(() => {
+    modal.style.display = 'block';
+
+    if (modal.classList.contains('show')) {
+      body.style.overflow = 'hide';
+    }
+    body.style.overflow = 'hidden';
+  });
+
+  $(".closebtn").click(() => {
+    modal.style.display = 'none';
+    body.style.overflow = 'auto';
+  });
+</script>
+</body>
+</html>

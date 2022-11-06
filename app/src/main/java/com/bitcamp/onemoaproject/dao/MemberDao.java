@@ -7,7 +7,14 @@ import org.apache.ibatis.annotations.Param;
 
 @Mapper
 public interface MemberDao {
+  // 회원 등록
   int insert(Member member);
+  
+  // 회원 이름과 이메일 검색
+  Member findByIdEmail(String name, String email);
+  
+  // 회원 패스워드 초기화
+  int updatePwd(Member member);
   
   Member findByNo(int no);
   

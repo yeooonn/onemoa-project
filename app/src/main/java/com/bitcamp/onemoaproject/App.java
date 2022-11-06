@@ -7,7 +7,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.GetMapping;
-
+import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 @EnableTransactionManagement
@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class App {
 
   public static void main(String[] args) {
-    System.out.println("비 트캠프 프로젝트!");
+    System.out.println("비트캠프 프로젝트!");
     SpringApplication.run(App.class, args);
   }
 
@@ -23,16 +23,6 @@ public class App {
   public String welcome(@CookieValue(name = "email", defaultValue = "") String email, Model model) {
     model.addAttribute("email", email);
     return "index";
-  }
-
-  @GetMapping("joinform")
-  public String joinForm() {
-    return "joinForm";
-  }
-
-  @GetMapping("/productForm")
-  public String productForm() {
-    return "form";
   }
 }
 

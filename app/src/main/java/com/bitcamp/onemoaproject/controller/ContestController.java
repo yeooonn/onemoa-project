@@ -3,7 +3,6 @@ package com.bitcamp.onemoaproject.controller;
 import com.bitcamp.onemoaproject.service.ContestService;
 import com.bitcamp.onemoaproject.vo.contest.Contest;
 import com.bitcamp.onemoaproject.vo.contest.ContestAttachedFile;
-import com.bitcamp.onemoaproject.vo.contest.ContestTeam;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -35,14 +34,16 @@ public class ContestController {
     this.sc = sc;
   }
   
+  // 공모전 목록 출력
   @GetMapping("contestTeam")
   public String contestTeamList(Model model, int no) throws Exception {
-    if (no == 1) {
-      model.addAttribute("contests", contestService.listTeam(false));
-      return "contest/contestTeam";
-    } else if (no == 2) {
-      model.addAttribute("contests", contestService.listTeam(true));
-      return "contest/contestTeam";
+    switch (no) {
+      // 전체 목록
+      case 1: model.addAttribute("contests", contestService.list()); return "contest/contestTeam";
+      // 개인전 목록
+      case 2: model.addAttribute("contests", contestService.listTeam(false)); return "contest/contestTeam";
+      // 팀전 목록
+      case 3: model.addAttribute("contests", contestService.listTeam(true)); return "contest/contestTeam";
     }
     return "contest/contestTeam";
   }
@@ -60,7 +61,6 @@ public class ContestController {
   @ResponseBody
   public Object contestTeamTeamList(Model model, int contestNumber) throws Exception {
     model.addAttribute("teams",contestService.getTeamList(contestNumber));
-//    return model.toString();
     return model.getAttribute("teams");
   }
 
@@ -71,14 +71,14 @@ public class ContestController {
     return contest;
   }
 
-  // 공모전 리스트(관리자 페이지)
+  // 공모전 목록(관리자 페이지)
   @GetMapping("contestList")
   public String list(Model model) throws Exception {
     model.addAttribute("contests", contestService.list());
     return "contest/contestList";
   }
   
-  // 공모전 글작성 폼(관리자 페이지)
+  // 공모전 글등록 폼(관리자 페이지)
   @GetMapping("contestForm")
   public void form() throws Exception {
     String dirPath2 = sc.getRealPath("/contest/files");
@@ -98,7 +98,7 @@ public class ContestController {
     return "redirect:contestList";
   }
 
-  // 공모전 글작성(관리자 페이지)
+  // 공모전 글등록(관리자 페이지)
   @PostMapping("contestAdd")
   public String add(Contest contest, Part[] files, Part files2, HttpServletRequest request, HttpSession session)
       throws Exception {

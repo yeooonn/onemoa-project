@@ -35,6 +35,7 @@
       <result column="ccname" property="categoryName"/>
     </association>
 
+    <!--    -->
     <collection property="contestAttachedFiles" ofType="contestAttachedFile">
       <id column="ctstfno" property="ctstFno"/>
       <result column="fname" property="fName"/>
@@ -42,6 +43,7 @@
     </collection>
   </resultMap>
 
+<!--  -->
   <resultMap type="contestAttachedFile" id="contestAttachedFileMap">
     <id column="ctstfno" property="ctstFno"/>
     <result column="fname" property="fName"/>
@@ -49,11 +51,13 @@
     <result column="ctstno" property="ctstNo"/>
   </resultMap>
 
+<!--  -->
   <resultMap type="contestTeam" id="contestTeamMap">
     <id column="tno" property="tno"/>
     <result column="cont" property="cont"/>
     <result column="cdt" property="cdt"/>
 
+<!--  -->
     <association property="reader" javaType="Member">
       <id column="mno" property="no"/>
       <result column="nick" property="nickname"/>
@@ -61,6 +65,7 @@
     </association>
   </resultMap>
 
+<!-- 공모전 리스트 -->
   <select id="findAll" resultMap="contestMap">
     select
     ctstno,
@@ -86,6 +91,7 @@
     join contest_organization co on contest.orgno = co.orgno;
   </select>
 
+<!-- 공모전 개인전, 팀전 리스트 -->
   <select id="findByTeam" resultMap="contestMap">
     select
     ctstno,
@@ -112,6 +118,7 @@
     where team=#{value};
   </select>
 
+<!-- 공모전 상세정보 -->
   <select id="findByNo" resultMap="contestMap">
     select
     cont.ctstno,
@@ -146,6 +153,7 @@
     cont.ctstno=#{value};
   </select>
 
+<!-- 공모전 등록 -->
   <insert id="insert" parameterType="contest"
     useGeneratedKeys="true" keyColumn="ctstno" keyProperty="ctstNo">
     INSERT INTO `contest` (`orgno`, `ctgno`, `title`, `subcont`, `sdate`, `edate`, `vw_cnt`, `org`, `appl`, `cont`, `page`, `size`, `qual`, `team`, `reward`, `thumbnail`)
@@ -169,6 +177,7 @@
     #{thumbNail});
   </insert>
 
+<!-- 공모전 첨부파일 등록 -->
   <insert id="insertFiles" parameterType="contest">
     insert into contest_file(fname,fpath,ctstno)
     values
@@ -177,6 +186,7 @@
     </foreach>
   </insert>
 
+<!-- 공모전 수정 -->
   <update id="update" parameterType="contest">
     update contest set
     orgno=#{orgNo},
@@ -196,24 +206,26 @@
     where ctstno=#{ctstNo}
   </update>
 
-
+<!-- 공모전 썸네일 첨부파일 수정 -->
   <update id="updateThumbnailFile" parameterType="contest">
     update contest set
     thumbnail=#{thumbNail}
     where ctstno=#{ctstNo}
   </update>
 
-
+<!-- 공모전 삭제 -->
   <delete id="delete">
     delete from contest
     where ctstno=#{value}
   </delete>
 
+<!-- 공모전 첨부파일 삭제 -->
   <delete id="deleteFiles">
     delete from contest_file
     where ctstno=#{value}
   </delete>
 
+<!-- 공모전 게시글의 첨부파일 삭제하기 위해 첨부파일 번호 검색 -->
   <select id="findFileByNo" resultMap="contestAttachedFileMap">
     select
       ctstfno,
@@ -226,12 +238,13 @@
       ctstfno = #{value}
   </select>
 
+<!-- 공모전 게시글의 첨부파일 삭제 -->
   <delete id="deleteFile">
     delete from contest_file
     where ctstfno=#{value}
   </delete>
 
-
+<!-- 공모전 팀원구해요 목록 검색 -->
   <select id="findByTeamNo" resultMap="contestTeamMap">
     select
       t.tno,

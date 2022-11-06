@@ -1,365 +1,307 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link href="../css/onemoa.css" rel="stylesheet">
+  <meta charset="UTF-8">
+  <title>onemoa v</title>
   <link href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" rel="stylesheet">
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <link href="http://localhost:3333/onemoa/css/onemoa.css" rel="stylesheet">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  <script src="../js/onemoa.js"></script>
-  <script src="http://code.jquery.com/jquery-1.12.0.min.js"></script>
+  <script src="http://localhost:3333/onemoa/js/login.js"></script>
+  <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 
-<style>
-  .wrap {
-    margin-top: 20px;
-    margin-left: 20px;
-    max-width: 60vw;
-    min-width: 60vw;
-    display: grid;
-    margin-left: 5%;
-    position: relative;
-  }
+  <style>
+    .wrap {
+      margin-top: 20px;
+      margin-left: 20px;
+      max-width: 60vw;
+      min-width: 60vw;
+      display: grid;
+      margin-left: 5%;
+      position: relative;
+    }
 
-  div > p {
-    margin-top: 1%;
-    margin-left: 1%;
-    font-size: 0.8vw;
-    line-height: 150%;
-  }
+    div > p {
+      margin-top: 1%;
+      margin-left: 1%;
+      font-size: 0.8vw;
+      line-height: 150%;
+    }
 
-  .head {
-    font-weight: bold;
-  }
+    .head {
+      font-weight: bold;
+    }
 
-  #reviewInfo {
-    margin-left: 0px;
-  }
+    #reviewInfo {
+      margin-left: 0px;
+    }
 
-  #commonboder {
-    height: 30px;
-  }
+    #commonboder {
+      height: 30px;
+    }
 
-  #breadc {
-    margin-left: 5%;
-  }
+    #breadc {
+      margin-top: 5%;
+      margin-left: 5%;
+    }
 
-  /* left */
-  #detail{
-    height: 50%;
-  }
+    /* left */
+    #detail{
+      height: 50%;
+    }
 
-  #detail-1 {
-    border: 1px solid #808080;
-    height: 300px;
-  }
+    #detail-1 {
+      border: 1px solid #808080;
+      height: 300px;
+    }
 
-  #detail-2 {
-    border: 1px solid black;
-    grid-template-columns: 3.3fr 3.3fr 3.3fr;
-    display: grid;
-  }
+    #detail-2 {
+      border: 1px solid black;
+      grid-template-columns: 3.3fr 3.3fr 3.3fr;
+      display: grid;
+    }
 
-  /*#detail-3 {*/
-  /*  border: 1px solid black;*/
-  /*  display: grid;*/
-  /*  grid-template-columns: 2.5fr 2.5fr 2.5fr 2.5fr;*/
-  /*  height: 200px;*/
-  /*}*/
+    /*#detail-3 {*/
+    /*  border: 1px solid black;*/
+    /*  display: grid;*/
+    /*  grid-template-columns: 2.5fr 2.5fr 2.5fr 2.5fr;*/
+    /*  height: 200px;*/
+    /*}*/
 
-  /*#detail-4 {*/
-  /*  border: 1px solid black;*/
-  /*  height: 30px;*/
-  /*}*/
+    /*#detail-4 {*/
+    /*  border: 1px solid black;*/
+    /*  height: 30px;*/
+    /*}*/
 
-  #detail-5 {
-    border: 1px solid black;
-    display: grid;
-    grid-template-columns: 3.3fr 3.3fr 3.3fr;
-    height: 200px;
-  }
+    #detail-5 {
+      border: 1px solid black;
+      display: grid;
+      grid-template-columns: 3.3fr 3.3fr 3.3fr;
+      height: 200px;
+    }
 
-  #detail-6 {
-    border: 1px solid black;
-    display: grid;
-    grid-template-columns: 3.3fr 3.3fr 3.3fr;
-    height: 20px;
-  }
+    #detail-6 {
+      border: 1px solid black;
+      display: grid;
+      grid-template-columns: 3.3fr 3.3fr 3.3fr;
+      height: 20px;
+    }
 
-  #detail2-1 {
-    border: 1px solid black;
-  }
+    #detail2-1 {
+      border: 1px solid black;
+    }
 
-  #detail2-2 {
-    border: 1px solid black;
-  }
+    #detail2-2 {
+      border: 1px solid black;
+    }
 
-  #detail2-3 {
-    border: 1px solid black;
-  }
+    #detail2-3 {
+      border: 1px solid black;
+    }
 
-  #detail2-4 {
-    border: 1px solid black;
-  }
+    #detail2-4 {
+      border: 1px solid black;
+    }
 
-  #detail2-5 {
-    border: 1px solid black;
-  }
+    #detail2-5 {
+      border: 1px solid black;
+    }
 
-  #detail2-6 {
-    border: 1px solid black;
-  }
+    #detail2-6 {
+      border: 1px solid black;
+    }
 
-  /*#detail2-7 {*/
-  /*  border-bottom: 1px solid black;*/
-  /*}*/
+    /*#detail2-7 {*/
+    /*  border-bottom: 1px solid black;*/
+    /*}*/
 
-  #detail3 .cc {
-    border: 1px solid #808080;
-    margin-right: 200px;
-    padding: 10px;
-    margin-bottom: 20px;
-    text-align : center;
-  }
+    #detail3 .cc {
+      border: 1px solid #808080;
+      margin-right: 200px;
+      padding: 10px;
+      margin-bottom: 20px;
+      text-align : center;
+    }
 
-  #detail3-1 {
-    border: 1px solid black;
-    height: 20px;
-  }
+    #detail3-1 {
+      border: 1px solid black;
+      height: 20px;
+    }
 
-  #detail3-2 {
-    border: 1px solid black;
-    height: 20px;
-  }
+    #detail3-2 {
+      border: 1px solid black;
+      height: 20px;
+    }
 
-  #detail3-2 >div {
-    float: left;
+    #detail3-2 >div {
+      float: left;
 
-  }
+    }
 
-  #detail3-3 {
-    border: 1px solid black;
-  }
+    #detail3-3 {
+      border: 1px solid black;
+    }
 
-  #detail3-4 {
-    border: 1px solid black;
-    display: grid;
-    grid-template-columns: 2.5fr 2.5fr 2.5fr 2.5fr;
-    height: 200px;
-    margin-bottom: 60px;
-  }
+    #detail3-4 {
+      border: 1px solid black;
+      display: grid;
+      grid-template-columns: 2.5fr 2.5fr 2.5fr 2.5fr;
+      height: 200px;
+      margin-bottom: 60px;
+    }
 
-  #detail3-5 {
-    border: 1px solid black;
-    display: grid;
-    grid-template-columns: 2.5fr 2.5fr 2.5fr 2.5fr 2.5fr;
-    height: 30px;
-    margin-bottom: 60px;
-  }
+    #detail3-5 {
+      border: 1px solid black;
+      display: grid;
+      grid-template-columns: 2.5fr 2.5fr 2.5fr 2.5fr 2.5fr;
+      height: 30px;
+      margin-bottom: 60px;
+    }
 
-  #detail3-6-1 {
-    display: grid;
-    grid-template-columns: 1fr 1.5fr 3fr 3fr;
-    grid-template-rows: 3fr 2fr 2fr;
-    padding-top: 10px;
-  }
+    #detail3-6-1 {
+      display: grid;
+      grid-template-columns: 1fr 1.5fr 3fr 3fr;
+      grid-template-rows: 3fr 2fr 2fr;
+      padding-top: 10px;
+    }
 
-  #detail3-6-1 .aa {
-    border: 1px solid #808080;
-    grid-row: span 2;
-  }
+    #detail3-6-1 .aa {
+      border: 1px solid #808080;
+      grid-row: span 2;
+    }
 
-  #detail3-6-1 .aaa {
-    border: 1px solid #808080;
-  }
+    #detail3-6-1 .aaa {
+      border: 1px solid #808080;
+    }
 
-  #detail3-6-1 .bb {
-    border: 1px solid #808080;
-  }
+    #detail3-6-1 .bb {
+      border: 1px solid #808080;
+    }
 
-  #detail3-6-2{
-    border: 1px solid #808080;
-    margin-bottom: 15px;
-    height: 40px;
-    margin-right: 200px;
-  }
+    #detail3-6-2{
+      border: 1px solid #808080;
+      margin-bottom: 15px;
+      height: 40px;
+      margin-right: 200px;
+    }
 
-  #detail3-6-3 > div {
-    border: 1px solid #808080;
-    float: left;
-    padding-left: 5px;
-    margin-bottom: 30px;
-  }
+    #detail3-6-3 > div {
+      border: 1px solid #808080;
+      float: left;
+      padding-left: 5px;
+      margin-bottom: 30px;
+    }
 
-  #detail3-6-2 .aa {
-    border: 1px solid #808080;
-    grid-row: span 2;
-  }
+    #detail3-6-2 .aa {
+      border: 1px solid #808080;
+      grid-row: span 2;
+    }
 
-  #detail3-6-2 .aaa {
-    border: 1px solid #808080;
-  }
+    #detail3-6-2 .aaa {
+      border: 1px solid #808080;
+    }
 
-  #detail3-6-1 .bb {
-    border: 1px solid #808080;
-  }
+    #detail3-6-1 .bb {
+      border: 1px solid #808080;
+    }
 
-  #detail3-6-2{
-    border: 1px solid #808080;
-    margin-bottom: 15px;
-    height: 40px;
-  }
+    #detail3-6-2{
+      border: 1px solid #808080;
+      margin-bottom: 15px;
+      height: 40px;
+    }
 
-  #detail3-6-3 > div {
-    border: 1px solid #808080;
-    float: left;
-    padding-left: 5px;
-    margin-bottom: 30px;
-  }
+    #detail3-6-3 > div {
+      border: 1px solid #808080;
+      float: left;
+      padding-left: 5px;
+      margin-bottom: 30px;
+    }
 
-  #top {
-    border : solid  #4c5684 ;
-    border-radius: 10px;
-    margin-left : 61%;
-    margin-right: 1%;
-    padding-top: 1%;
-    position: fixed;
-  }
+    #top {
+      border : solid  #4c5684 ;
+      border-radius: 10px;
+      margin-left : 61%;
+      margin-right: 1%;
+      padding-top: 1%;
+      position: fixed;
+    }
 
-  #top > div {
-    border: none;
-    padding-top: 5px;
-    padding-left: 20px;
-    grid-auto-rows: minmax(100px, auto);
-  }
+    #top > div {
+      border: none;
+      padding-top: 5px;
+      padding-left: 20px;
+      grid-auto-rows: minmax(100px, auto);
+    }
 
-  #top .bb > div {
-    display: inline-block;
-  }
+    #top .bb > div {
+      display: inline-block;
+    }
 
-  #top p {
-    margin-left: 0px;
-    font-size: 1vw;
-  }
+    #top p {
+      margin-left: 0px;
+      font-size: 1vw;
+    }
 
-  .seller-infoprofile {
-    margin-right: 20px;
-  }
+    .seller-infoprofile {
+      margin-right: 20px;
+    }
 
-  #top #horizonLine {
-    display: block;
-    height: 10px;
-    border-bottom: solid 1px #4c5684;
-    margin-left: 3%;
-    margin-right: 3%;
-    margin-bottom: 3%;
-  }
-</style>
+    #top #horizonLine {
+      display: block;
+      height: 10px;
+      border-bottom: solid 1px #4c5684;
+      margin-left: 3%;
+      margin-right: 3%;
+      margin-bottom: 3%;
+    }
+  </style>
 </head>
-
 <body style="overflow-x: hidden">
-<div class="modal"style="position: absolute; z-index: 1;">
-  <div class="modal_body">
-    <div calss="login_container">
-      <button class="closebtn"><img src="../img/x.png"></button>
-      <p>로그인</p>
-      <form action='login' method="post">
-        <table class="input_login" >
-          <tr>
-            <td><input name='email' type='email' id='email' value="user1@test.com" placeholder="이메일을 입력해 주세요." data-th-value="${email}"></td>
-          </tr>
-          <tr>
-            <td><input name='password' type='password' id='password' placeholder="패스워드를 입력해 주세요."></td>
-          </tr>
-        </table>
-        <div class="email-password-checkbox">
-          <input
-                  type="text"
-                  id="emailPasswordCheck"
-                  value=""
-                  readonly
-                  style="font-size: 1vw; color: #ff0000; border: none; display: none; outline:none; width: 100%; text-align: center" />
-        </div>
-        <label for="label-a"><input type="checkbox" name="saveEmail" id="email2">이메일 유지<br></label>
-        <p class="find"><a href = "#">아이디 찾기</a> / <a href = "#">패스워드 찾기</a></p>
-        <p>
-          <button type='button' class="loginbtn" id="adminCheck"><img src="../img/loginbtn.png"></button>
-        </p>
-      </form>
-      <div class="sns">
-        <p class="snsp">SNS로 간편하게 로그인하세요.</p>
-        <a href="#"><img src="../img/kakao.png"></a>
-        <a href="#"><img src="../img/naver.png"></a>
-        <a href="#"><img src="../img/google.png"></a>
+  <div data-th-replace="/fragments/nav.html :: fragment-nav"></div>
+
+
+  <div id = breadc>
+    <span>디자인></span>
+    <span>로고, 브랜딩></span>
+    <span>로고 디자인</span>
+  </div>
+  <div class="wrap">
+    <div id="detail">
+      <div id="detail-1">첨부이미지1(썸네일)
       </div>
-      <div class="sign">
-        <a href="joinform"><img src="../img/signup.png"></a>
+      <div id="detail-2">
+        <div>첨부이미지2<a href=""></a></div>
+        <div>첨부이미지3<a href=""></a></div>
+        <div>첨부이미지4<a href=""></a></div>
       </div>
+      <div id="detail-5">
+        <div>포트폴리오(일단안함)<a href=""></a></div>
+        <div>포트폴리오(일단안함)<a href=""></a></div>
+        <div>포트폴리오(일단안함)<a href=""></a></div>
+      </div>
+      <div id="detail-6">
+        <div>포폴제목(일단안함)<a href=""></a></div>
+        <div>포폴제목(일단안함)<a href=""></a></div>
+        <div>포폴제목(일단안함)<a href=""></a></div>
+      </div>
+      <div id="commonboder"></div>
     </div>
-  </div>
-</div>
 
-<header>
-  <div class="nav">
-    <a href="http://localhost:3333/onemoa/"><p class="logo">ONEMOA</p></a>
-    <ul class="firstnav">
-      <li data-th-if="${session.loginMember != null}"><a href="http://localhost:3333/onemoa/logout" data-th-text="로그아웃">로그아웃</a></li>
-      <li><button class="btn-open-popup" data-th-if="${session.loginMember == null}">로그인</button></li>
-      <li><a href="#">마이페이지</a></li>
-      <li><a href="#">메시지</a></li>
-    </ul>
-  </div>
+    <div id="top">
+      <div class="bb">
+        <div><p class="head" data-th-text="${average} == null ? '' : ${average}">별점 평균</p></div>
+        <div><p class="head" id="reviewInfo" data-th-text="${count} == 0 ? '후기 없음' : ' ( 후기 : ' + ${count} + '개 ) '">후기 개수</p></div>
+      </div>
+      <div><p class="head" data-th-text="${product.title}">제목</p></div>
+      <div><p class="head" data-th-text="${#numbers.formatInteger(product.price, 3, 'COMMA')} + ' 원'">가격</p></div>
 
-  <div class="menu">
-    <ul class="secnav">
-      <li><a href="contestTeam"><p>공모전</p></a></li>
-      <li><a href="http://localhost:3333/onemoa/product/list"><p>재능판매</p></a></li>
-    </ul>
-  </div>
-</header>
-<div id = breadc>
-  <span>디자인></span>
-  <span>로고, 브랜딩></span>
-  <span>로고 디자인</span>
-</div>
-<div class="wrap">
-  <div id="detail">
-    <div id="detail-1">첨부이미지1(썸네일)
-    </div>
-    <div id="detail-2">
-      <div>첨부이미지2<a href=""></a></div>
-      <div>첨부이미지3<a href=""></a></div>
-      <div>첨부이미지4<a href=""></a></div>
-    </div>
-    <div id="detail-5">
-      <div>포트폴리오(일단안함)<a href=""></a></div>
-      <div>포트폴리오(일단안함)<a href=""></a></div>
-      <div>포트폴리오(일단안함)<a href=""></a></div>
-    </div>
-    <div id="detail-6">
-      <div>포폴제목(일단안함)<a href=""></a></div>
-      <div>포폴제목(일단안함)<a href=""></a></div>
-      <div>포폴제목(일단안함)<a href=""></a></div>
-    </div>
-    <div id="commonboder"></div>
+      <div id="horizonLine"></div>
 
-  </div>
-
-
-  <div id="top">
-    <div class="bb">
-      <div><p class="head" data-th-text="${average} == null ? '' : ${average}">별점 평균</p></div>
-      <div><p class="head" id="reviewInfo" data-th-text="${count} == 0 ? '후기 없음' : ' ( 후기 : ' + ${count} + '개 ) '">후기 개수</p></div>
-    </div>
-    <div><p class="head" data-th-text="${product.title}">제목</p></div>
-    <div><p class="head" data-th-text="${#numbers.formatInteger(product.price, 3, 'COMMA')} + ' 원'">가격</p></div>
-
-    <div id="horizonLine"></div>
-
-    <div id="seller-info">
+      <div id="seller-info">
         <div class="seller-infoprofile">
           <div><p data-th-text="${product.writer.nickname}">판매자 닉네임</p></div>
-          <img id="sellerProfile" src="../img/profile2.png" class="img-circle" alt="Cinque" width="100" height="100">
+          <img id="sellerProfile" src="http://localhost:3333/onemoa/img/profile2.png" class="img-circle" alt="Cinque" width="100" height="100">
         </div>
       </div>
 
@@ -369,102 +311,80 @@
         넣을 내용이 없어서 그렇습니다람쥐드래곤약은약사에게</div>
       <button type="button" class="btn btn-default">구매하기</button>
       <button type="button" class="btn btn-default">문의하기 </button>
-  </div>
-  <div></div>
-  <div id="detail2">
-    <div id="detail2-1" class="head"><p>서비스 설명</p></div>
-    <div id="detail2-2"><p data-th-utext="${product.content}">서비스 설명 내용</p></div>
-    <div id="detail2-3" class="head"><p>수정 및 재진행</p></div>
-    <div id="detail2-4"><p data-th-text="${product.rule}">
-      시안은 1개이며 간단한 레이아웃/텍스트 조정에 한해 무료 2회로 진행합니다.
-      레이아웃이 크게 변경되거나, 30%이상 수정을 원하실 경우 유료로 수정 가능합니다</p></div>
-    <div id="detail2-5"><p class="head">취소 및 환불 규정</p></div>
-    <div id="detail2-6"><p>
-      01. 전문가와 의뢰인 간의 상호 협의 후 청약철회가 가능합니다. <br>
-      02. 전문가의 귀책사유로 디자인작업을 시작하지 않았거나 혹은 이에 준하는 보편적인 관점에서 심각하게 잘못 이행한 경우 결제 금액 전체 환불이 가능합니다.<br>
-      03. 전문가가 작업 기간 동안 지정된 서비스를 제공하지 못할 것이 확실한 경우 지급받은 서비스 비용을 일할 계산하여 작업물 개수와 작업 기간 일수만큼 공제하고 잔여 금액을 환불합니다.<br>
-      04. 서비스 받은 항목을 공제하여 환불하며, 공제 비용은 정가 처리됩니다.<br>
-      가. 소비자 피해 보상 규정에 의거하여 작업물 원본의 멸실 및 작업 기간 미이행 및 이에 상응하는 전문가 책임으로 인한 피해 발생 시, 전액 환불<br>
-      나. 시안 작업 진행된 상품 차감 환불<br>
-      ⓐ. '디자인'에 대한 금액이 서비스 내 별도 기재가 되지 않았거나, 디자인 상품 패키지 내 수정 횟수가 1회(1회 포함) 이상인 서비스 상품의 시안 or 샘플이 제공된 경우<br>
-      → 구매금액의 10% 환불(디자인 비용이 별도 기재되어 있는 경우, 해당금액 차감 후 환불)<br>
-      ※ 시안 제공 및 수정이 추가로 이뤄진 경우 환불 금액내 수정 횟수에 따라 분할하여 환불.<br>
-
-      05. 주문 제작 상품 등 서비스 받은 항목이 없으며, 결제 후 1일 이내 작업이 진행되기 전 시점은 전액 환불 가능.<br>
-
-      06. 다만, 환불이 불가능한 서비스에 대한 사실을 표시사항에 포함한 경우에는 의뢰인의 환불요청이 제한될 수 있습니다.<br>
-      가. 고객의 요청에 따라 개별적으로 주문 제작되는 재판매가 불가능한 경우(인쇄, 이니셜 각인, 사이즈 맞춤 등)<br>
-      ⓐ. 주문 제작 상품 특성상 제작(인쇄 등) 진행된 경우.<br>
-      ⓑ. 인쇄 색상의 차이 : 모니터의 종류에 따라 색상의 차이가 발생하며,인쇄 시마다 합판 인쇄 방법의 특성상 색상 표현의 오차가 발생함.<br>
-      ⓒ. 디자인 서비스이며 수정 횟수가 존재하지 않았던 상품일 경우 시안 수령 후 환불 불가</p></div>
-    <div id="commonboder"></div>
-  </div>
-  <div id="blank2"></div>
-  <div id="detail3">
-    <div id="detail3-1"><p>구매 후기</p></div>
-    <div id="detail3-2">
-      <div><p>별별별별별5.0</p></div>
-      <div>(2012개의 평가)</div>
     </div>
-    <div id="detail3-3">포토후기 20개</div>
-    <div id="detail3-4">
-      <div>1<a href=""></a></div>
-      <div>2<a href=""></a></div>
-      <div>3<a href=""></a></div>
-      <div>4<a href=""></a></div>
+    <div></div>
+    <div id="detail2">
+      <div id="detail2-1" class="head"><p>서비스 설명</p></div>
+      <div id="detail2-2"><p data-th-utext="${product.content}">서비스 설명 내용</p></div>
+      <div id="detail2-3" class="head"><p>수정 및 재진행</p></div>
+      <div id="detail2-4"><p data-th-text="${product.rule}">
+        시안은 1개이며 간단한 레이아웃/텍스트 조정에 한해 무료 2회로 진행합니다.
+        레이아웃이 크게 변경되거나, 30%이상 수정을 원하실 경우 유료로 수정 가능합니다</p></div>
+      <div id="detail2-5"><p class="head">취소 및 환불 규정</p></div>
+      <div id="detail2-6"><p>
+        01. 전문가와 의뢰인 간의 상호 협의 후 청약철회가 가능합니다. <br>
+        02. 전문가의 귀책사유로 디자인작업을 시작하지 않았거나 혹은 이에 준하는 보편적인 관점에서 심각하게 잘못 이행한 경우 결제 금액 전체 환불이 가능합니다.<br>
+        03. 전문가가 작업 기간 동안 지정된 서비스를 제공하지 못할 것이 확실한 경우 지급받은 서비스 비용을 일할 계산하여 작업물 개수와 작업 기간 일수만큼 공제하고 잔여 금액을 환불합니다.<br>
+        04. 서비스 받은 항목을 공제하여 환불하며, 공제 비용은 정가 처리됩니다.<br>
+        가. 소비자 피해 보상 규정에 의거하여 작업물 원본의 멸실 및 작업 기간 미이행 및 이에 상응하는 전문가 책임으로 인한 피해 발생 시, 전액 환불<br>
+        나. 시안 작업 진행된 상품 차감 환불<br>
+        ⓐ. '디자인'에 대한 금액이 서비스 내 별도 기재가 되지 않았거나, 디자인 상품 패키지 내 수정 횟수가 1회(1회 포함) 이상인 서비스 상품의 시안 or 샘플이 제공된 경우<br>
+        → 구매금액의 10% 환불(디자인 비용이 별도 기재되어 있는 경우, 해당금액 차감 후 환불)<br>
+        ※ 시안 제공 및 수정이 추가로 이뤄진 경우 환불 금액내 수정 횟수에 따라 분할하여 환불.<br>
+
+        05. 주문 제작 상품 등 서비스 받은 항목이 없으며, 결제 후 1일 이내 작업이 진행되기 전 시점은 전액 환불 가능.<br>
+
+        06. 다만, 환불이 불가능한 서비스에 대한 사실을 표시사항에 포함한 경우에는 의뢰인의 환불요청이 제한될 수 있습니다.<br>
+        가. 고객의 요청에 따라 개별적으로 주문 제작되는 재판매가 불가능한 경우(인쇄, 이니셜 각인, 사이즈 맞춤 등)<br>
+        ⓐ. 주문 제작 상품 특성상 제작(인쇄 등) 진행된 경우.<br>
+        ⓑ. 인쇄 색상의 차이 : 모니터의 종류에 따라 색상의 차이가 발생하며,인쇄 시마다 합판 인쇄 방법의 특성상 색상 표현의 오차가 발생함.<br>
+        ⓒ. 디자인 서비스이며 수정 횟수가 존재하지 않았던 상품일 경우 시안 수령 후 환불 불가</p></div>
+      <div id="commonboder"></div>
     </div>
-    <div id="detail3-5">
-      <div>서비스 후기 2102개<a href=""></a></div>
-      <div></div>
-      <div>최신순<a href=""></a></div>
-      <div>별점 높은 순<a href=""></a></div>
-      <div>별점 낮은 순<a href=""></a></div>
-    </div>
+    <div id="blank2"></div>
+    <div id="detail3">
+      <div id="detail3-1"><p>구매 후기</p></div>
+      <div id="detail3-2">
+        <div><p>별별별별별5.0</p></div>
+        <div>(2012개의 평가)</div>
+      </div>
+      <div id="detail3-3">포토후기 20개</div>
+      <div id="detail3-4">
+        <div>1<a href=""></a></div>
+        <div>2<a href=""></a></div>
+        <div>3<a href=""></a></div>
+        <div>4<a href=""></a></div>
+      </div>
+      <div id="detail3-5">
+        <div>서비스 후기 2102개<a href=""></a></div>
+        <div></div>
+        <div>최신순<a href=""></a></div>
+        <div>별점 높은 순<a href=""></a></div>
+        <div>별점 낮은 순<a href=""></a></div>
+      </div>
 
-    <div id="detail3-6-r">
+      <div id="detail3-6-r">
 
-      <div id="detail3-6">
+        <div id="detail3-6">
 
-        <div id="detail3-6-1">
-          <div class="aa">프로필사진 들어가는 곳곳곳곳곳곳곳곳곳곳곳곳
+          <div id="detail3-6-1">
+            <div class="aa">프로필사진 들어가는 곳곳곳곳곳곳곳곳곳곳곳곳
+            </div>
+            <div class="aaa">닉네임</div>
+            <div></div>
+            <div></div>
+            <div class="bb">별별별별별 5.0</div>
+            <div class="bb">22.10.21 23:38</div>
+            <div></div>
           </div>
-          <div class="aaa">닉네임</div>
-          <div></div>
-          <div></div>
-          <div class="bb">별별별별별 5.0</div>
-          <div class="bb">22.10.21 23:38</div>
-          <div></div>
-        </div>
 
-        <div id="detail3-6-2">
-          빠른 피드백 감사합니다</div>
+          <div id="detail3-6-2">
+            빠른 피드백 감사합니다</div>
+        </div>
       </div>
     </div>
-
   </div>
 
-</div>
-
-
-<footer>
-  <ul class="footerMenu">
-    <li>
-      <a href="#"><p>공지사항</p></a>
-    </li>
-    <li>
-      <a href="#"><p>1 : 1 문의</p></a>
-    </li>
-  </ul>
-  <div class="detail">
-    (주)ONEMOA | 서울시 강남구 비트캠프 8층 | 대표 : 000 |
-    개인정보관리책임자 : 000 | 고객센터 : 1234-1234
-    <span
-    >고객센터 영업시간 10:30 ~ 18:00 ( 점심시간 13:00 ~ 14:00) 주말,
-          공휴일 휴무 | ONEMOA@onemoa.com |
-        </span>
-    <span>Copyright 2022 ONEMOA lnc.All rights reserved</span>
-  </div>
-</footer>
-
+  <footer data-th-replace="/fragments/footer.html :: fragment-footer"></footer>
 </body>
 </html>

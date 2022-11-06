@@ -54,6 +54,25 @@ header .nav .firstnav li .btn-open-popup {
   background-color: transparent;
   width: 100px;
 }
+header .nav .firstnav .firstnav-li {
+  margin-right: 5%;
+}
+header .nav .firstnav li .btn-open-popup2 {
+  float: right;
+  font-size: 1.302vw;
+  font-family: "Noto Sans KR", "Apple SD Gothic", "맑은고딕", sans-serif;
+  border: none;
+  background-color: transparent;
+  width: 100%;
+}
+header .nav .firstnav li .btn-open-popup3 {
+  float: right;
+  font-size: 1.302vw;
+  font-family: "Noto Sans KR", "Apple SD Gothic", "맑은고딕", sans-serif;
+  border: none;
+  background-color: transparent;
+  width: 100%;
+}
 header .menu .secnav li {
   float: left;
   font-size: 1.302vw;
@@ -696,6 +715,7 @@ label[for="label-a"] {
   border: 1px solid #000;
   padding: 31px;
   margin-bottom: 40px;
+  cursor:pointer;
 }
 .contest .contestContents .contestBox .con:hover {
   background-color: #eceef3;
@@ -2539,4 +2559,39 @@ label[for="label-a"] {
   font-size: 1vw;
   margin: 0 0 0 20px;
   float : right;
+}
+
+.pagelogin-container {
+  text-align: center;
+  background-color: rgb(255, 255, 255);
+  border-radius: 10px;
+  box-shadow: 0 2px 3px 0 rgba(34, 36, 38, 0.15);
+  width: 29.833%;
+  height: 85%;
+  margin: auto;
+}
+.login_container2 {
+  text-align: center;
+  margin: auto;
+}
+.input-findIdPw tr td input {
+  display: block;
+  width: 101%;
+  height: 47px;
+  background-color: #fff;
+  border: 2px solid #dedede;
+  padding-left: 10px;
+  margin-left: 8%;
+  margin-bottom: 8px;
+  border-radius: 5px;
+}
+.input-findIdPw {
+  width: 85.4%;
+}
+.input-findIdPw .findIdPwBtn {
+  width: 100%;
+  background-color: #707fc2;
+  color: #fff;
+  border: none;
+  cursor: pointer;
 }
