@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @Controller
 @EnableTransactionManagement
 @SpringBootApplication
+
 public class App {
 
   public static void main(String[] args) {
