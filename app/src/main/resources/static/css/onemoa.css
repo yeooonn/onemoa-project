@@ -2368,6 +2368,40 @@ label[for="label-a"] {
   margin: 1%;
 }
 
+.pagelogin-container {
+  text-align: center;
+  background-color: rgb(255, 255, 255);
+  border-radius: 10px;
+  box-shadow: 0 2px 3px 0 rgba(34, 36, 38, 0.15);
+  width: 29.833%;
+  height: 85%;
+  margin: auto;
+}
+.login_container2 {
+  text-align: center;
+  margin: auto;
+}
+.input-findIdPw tr td input {
+  display: block;
+  width: 101%;
+  height: 47px;
+  background-color: #fff;
+  border: 2px solid #dedede;
+  padding-left: 10px;
+  margin-left: 8%;
+  margin-bottom: 8px;
+  border-radius: 5px;
+}
+.input-findIdPw {
+  width: 85.4%;
+}
+.input-findIdPw .findIdPwBtn {
+  width: 100%;
+  background-color: #707fc2;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+}
 
 /* notice/list (feat/notice : 지연) */
 
@@ -2444,127 +2478,127 @@ label[for="label-a"] {
 
 /* product/list 페이지 */
 
-  #productList .selected {
-    font-weight: 550;
-  }
+#productList .selected {
+  font-weight: 550;
+}
 
-  #productList a {
-    font-size: 1.5vw;
-    text-decoration: none; 
-    display: block;
-    color: rgb(62, 62, 62);
-    margin-bottom: 10px;
-  }
+#productList a {
+  font-size: 1.5vw;
+  text-decoration: none;
+  display: block;
+  color: rgb(62, 62, 62);
+  margin-bottom: 10px;
+}
 
-  #productList nav {
-    float: left;
-    width: 15vw;
-    margin-left: 4vw;
-    margin-right: 3vw;
-  }
-  
-  #productList ul {
-    display: block;
-    list-style-type: disc;
-    margin-block-start: 1vw;
-    margin-block-end: 1em;
-    margin-inline-start: 0px;
-    margin-inline-end: 0px;
-    padding-inline-start: 10px;
-  }
-  
-  #productList li {
-    text-decoration: none;
-    list-style: none;
-    margin-bottom: 5px;
-  }
+#productList nav {
+  float: left;
+  width: 15vw;
+  margin-left: 4vw;
+  margin-right: 3vw;
+}
 
-  
-  #productList .menu a 
-  {
-    cursor:pointer;
-  }
+#productList ul {
+  display: block;
+  list-style-type: disc;
+  margin-block-start: 1vw;
+  margin-block-end: 1em;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+  padding-inline-start: 10px;
+}
 
-  #productList .menu p, button {
-    cursor:pointer;
-  }
+#productList li {
+  text-decoration: none;
+  list-style: none;
+  margin-bottom: 5px;
+}
 
-  #productList .menu .hide {display:none;}
-  
-  .menu .cate1 {
-    font-size: 1.8vw;
-    margin-top: 30px;
-  }
 
-  .product_container {
-    display: grid;
-    gap: 40px 25px;
-    grid-template-rows: 18rem 18rem 18rem 18rem;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
-    margin-top: 2.5vw;
-    margin-right: 3vw;
-  }
-  
-  .item > * {
-    display: block;
-    margin: auto;
-  }
-  
-  .item > img {
-    border:solid;
-    width: 100%;
-    min-height: 200px;
-    margin-bottom: 20px
-  }
-  
-  .item p {
-    font-size: 20px;
-    margin-top: 5px;
-    margin-bottom: 5px;
-  }
-  
-  .banner {
-    height: 25vw;
-    width: 100%;
-  }
-  
-  
-  .options {
-    float: right;
-    display: block;
-    margin-top: 1vw;
-    margin-bottom: 1vw;
-    margin-right: 3vw;
-  }
-  
-  .options a {
-    float: right;
-    display: inline;
-    margin-bottom: 0;
-    margin-right: 10px;
-  }
-  
-  #maincategory {
-    font-size: 2.5vw;
-    margin-top: 1vw;
-    margin-left: 1vw;
-  }
-  
-  #underBanner {
-    min-height :20px;
-    padding-top: 2.5vw;
-    padding-left: 4vw;
-    padding-right: 3vw;
-  }
-  
-  #underBanner p, button {
-    font-size: 2.7vw;
-    margin: 0 0;
-    
-  }
-  
-  #underBanner p span, button {
-    font-size: 1vw;
-    margin: 0 0 0 20px;
-    float : right;
-  }
+#productList .menu a
+{
+  cursor:pointer;
+}
+
+#productList .menu p, button {
+  cursor:pointer;
+}
+
+#productList .menu .hide {display:none;}
+
+.menu .cate1 {
+  font-size: 1.8vw;
+  margin-top: 30px;
+}
+
+.product_container {
+  display: grid;
+  gap: 40px 25px;
+  grid-template-rows: 18rem 18rem 18rem 18rem;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  margin-top: 2.5vw;
+  margin-right: 3vw;
+}
+
+.item > * {
+  display: block;
+  margin: auto;
+}
+
+.item > img {
+  border:solid;
+  width: 100%;
+  min-height: 200px;
+  margin-bottom: 20px
+}
+
+.item p {
+  font-size: 20px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+.banner {
+  height: 25vw;
+  width: 100%;
+}
+
+
+.options {
+  float: right;
+  display: block;
+  margin-top: 1vw;
+  margin-bottom: 1vw;
+  margin-right: 3vw;
+}
+
+.options a {
+  float: right;
+  display: inline;
+  margin-bottom: 0;
+  margin-right: 10px;
+}
+
+#maincategory {
+  font-size: 2.5vw;
+  margin-top: 1vw;
+  margin-left: 1vw;
+}
+
+#underBanner {
+  min-height :20px;
+  padding-top: 2.5vw;
+  padding-left: 4vw;
+  padding-right: 3vw;
+}
+
+#underBanner p, button {
+  font-size: 2.7vw;
+  margin: 0 0;
+
+}
+
+#underBanner p span, button {
+  font-size: 1vw;
+  margin: 0 0 0 20px;
+  float : right;
+}
