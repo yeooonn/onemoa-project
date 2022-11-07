@@ -3,10 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <title>onemoa v</title>
-  <link href="http://localhost:3333/onemoa/css/onemoa.css" rel="stylesheet">
+  <link href="/onemoa/css/onemoa.css" rel="stylesheet">
   <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.js"></script>
-  <script src="http://localhost:3333/onemoa/js/login.js"></script>
+  <script src="/onemoa/js/login.js"></script>
 </head>
 <body style="overflow-x: hidden">
 <div data-th-replace="/fragments/nav.html :: fragment-nav"></div>
@@ -35,7 +35,7 @@
         <label for="label-a"><input type="checkbox" name="saveEmail" id="saveEmailPage">이메일 유지<br></label>
         <p class="find"><a href = "member/findIdPw">아이디 찾기</a> / <a href = "member/findIdPw">패스워드 찾기</a></p>
         <p>
-          <button type='button' class="loginbtn" id="loginPage"><img src="http://localhost:3333/onemoa/img/loginbtn.png"></button>
+          <button type='button' class="loginbtn" id="loginPage"><img src="/onemoa/img/loginbtn.png"></button>
         </p>
       </form>
       <div class="sns">
@@ -45,14 +45,14 @@
         <a href="#"><img src="http://localhost:3333/onemoa/img/google.png"></a>
       </div>
       <div class="sign">
-        <a href="joinform"><img src="http://localhost:3333/onemoa/img/signup.png"></a>
+        <a href="joinform"><img src="/onemoa/img/signup.png"></a>
       </div>
     </div>
   </div>
 
 <script src="js/onemoa.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.js"></script>
-<script src="http://localhost:3333/onemoa/js/findIdPw.js"></script>
+<script src="/onemoa/js/findIdPw.js"></script>
 <script>
   // TODO 1. JQuery 사용해서 쿠키값안에 email 값 찾아서 login시 email ID 값에 추가.
   // TODO 2. cookie 2번

@@ -82,10 +82,9 @@ public class ContestController {
   // 공모전 팀원 모집하기
   @PostMapping("contestTeam/teamRecruitForm")
   @ResponseBody
-  public Member contestTeamTeamRecruit(HttpServletRequest session) throws Exception {
-    Member loginMember = (Member) session.getAttribute("loginMember");
-    System.out.println("loginMember = " + loginMember);
-    return loginMember;
+  public String contestTeamTeamRecruit(int contestNumber, HttpServletRequest session) throws Exception {
+    System.out.println("session.getAttribute(\"loginMember\") = " + session.getAttribute("loginMember"));
+    return null;
   }
 
   // 공모전 상세정보(관리자 페이지)
