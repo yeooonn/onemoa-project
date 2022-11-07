@@ -70,7 +70,9 @@ function clo(){
   }
 }
 
+// 공모전 팀원구해요 팀원 모집하기 폼
 function dis2(){
+  console.log(contestNumber)// 공모전 번호;
   if ($('.modal3').css('display') == 'none'){
     $('.modal3').show();
     $('.modal2').hide();
@@ -78,7 +80,17 @@ function dis2(){
     $('.modal3').hide();
     $('.modal2').hide();
   }
+
+  $.ajax({
+    type: "POST",
+    url: "/onemoa/contest/contestTeam/teamRecruitForm",
+    data:{contestNumber: contestNumber},
+    success: function (result) {
+      console.log("result : " + result);
+    }
+  });
 }
+
 function clo2(){
   if ($('.modal3').css('display') == 'show'){
     $('.modal3').hide();
@@ -89,13 +101,22 @@ function clo2(){
   }
 }
 
+
+
 function dis3(){
+  console.log(contestNumber)// 공모전 번호;
   if ($('.modal4').css('display') == 'none'){
     $('.modal3').show();
     $('.modal4').show();
   } else{
     $('.modal4').hide();
   }
+  //
+  // $.ajax({
+  //   type: "POST",
+  //   url: "/onemoa/contest/contestTeam/teamRecruit",
+  //
+  // });
 }
 function clo3(){
   if ($('.modal4').css('display') == 'show'){
@@ -209,15 +230,15 @@ function team(){
     url: "/onemoa/contest/contestTeam/teamList",
     data: { contestNumber: contestNumber}, // 공모전 번호를 서버에 전달
     success: function (result) {
-      console.log(result)
+      // console.log(result)
       var listList = "";
       if (result.length > 0) {
         for (let i = 0; i < result.length; i++) {
-          console.log(result[i]);
-          console.log("팀목록 PK : " + result[i].tno);
-          console.log("팀장 회원번호 : " + result[i].reader.no);
-          console.log("팀장 닉네임 : " + result[i].reader.nickname);
-          console.log("팀장 프로필파일경로 : " + result[i].reader.profile);
+          // console.log(result[i]);
+          // console.log("팀목록 PK : " + result[i].tno);
+          // console.log("팀장 회원번호 : " + result[i].reader.no);
+          // console.log("팀장 닉네임 : " + result[i].reader.nickname);
+          // console.log("팀장 프로필파일경로 : " + result[i].reader.profile);
           listList += "<li>" + "<a href='" + "#'" + "onclick=\"dis4()\"" + "id='" + result[i].tno + "'" +  ">"
               + "<img src='/onemoa/member/files/"
               + result[i].reader.profile + "'"
@@ -281,4 +302,13 @@ $(document).on("click","button[name=addStaff3]",function(){
 $(document).on("click","button[name=minus2]",function(){
   var trHtml2 = $(this).parent();
   trHtml2.remove(); //tr 테그 삭제
+});
+
+// 페이지 필터 타입(전체, 대기업, 공공기관, 자영업자)
+$(".orgTypeType").click(function () {
+  let urlParameter = location.search; // 현재 페이지의 url 파라미터값 얻기
+  let urlSplit = urlParameter.substring(1,5); // ex) 파라미터값 문자열 자르기 ?no1=orgno=2 -> no=1
+  let orgNumber = $(this).attr("name");
+  let setUrl = "/onemoa/contest/contestTeam?" + urlSplit + "&orgno=" + orgNumber;
+  window.location = setUrl;
 });

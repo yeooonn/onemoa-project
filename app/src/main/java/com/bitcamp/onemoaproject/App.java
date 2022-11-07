@@ -25,6 +25,9 @@ public class App {
     model.addAttribute("email", email);
     return "index";
   }
+  
+  @GetMapping("test")
+  public void test() {}
 }
 
 

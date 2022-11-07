@@ -10,6 +10,10 @@ public interface ContestService {
   
   List<Contest> listTeam(boolean no) throws Exception; // 공모전 개인전, 팀전 리스트
   
+  List<Contest> listOrgFilter(int orgno) throws Exception; // 공모전 리스트
+  
+  List<Contest> listTeamOrgFilter(boolean no, int orgno) throws Exception; // 공모전 개인전, 팀전 리스트
+  
   Contest get(int ctstNo) throws Exception; // 공모전 상세정보
   
   List<ContestTeam> getTeamList(int contestNumber); // 공모전 팀원구해요

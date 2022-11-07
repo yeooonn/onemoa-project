@@ -18,16 +18,25 @@
 
     <div class="contestctg">
       <ul class="conctg">
-        <li><a href="/onemoa/contest/contestTeam?no=1">전체</a></li>
-        <li><a href="/onemoa/contest/contestTeam?no=2">개인전</a></li>
-        <li><a href="/onemoa/contest/contestTeam?no=3">팀전</a></li>
+        <li><a href="/onemoa/contest/contestTeam?no=1&orgno=0">전체</a></li>
+        <li><a href="/onemoa/contest/contestTeam?no=2&orgno=0">개인전</a></li>
+        <li><a href="/onemoa/contest/contestTeam?no=3&orgno=0">팀전</a></li>
       </ul>
       <ul class="contype">
-        <li><a href="#">전체</a></li>
-        <li><a href="#">대기업</a></li>
-        <li><a href="#">공공기관</a></li>
-        <li><a href="#">자영업자</a></li>
+        <li class="selected">
+          <input type="button" id="sorter-orgTypeAll" class="orgTypeType" name="0" value="전체">
+        </li>
+        <li>
+          <input type="button" id="sorter-orgType02" class="orgTypeType" name="1" value="대기업">
+        </li>
+        <li>
+          <input type="button" id="sorter-orgType03" class="orgTypeType" name="2" value="공공기관">
+        </li>
+        <li>
+          <input type="button" id="sorter-orgType04" class="orgTypeType" name="3" value="자영업자">
+        </li>
       </ul>
+
       <ul class="contype2">
         <li><a href="#">상금 순</a></li>
         <li><a href="#">조회 순</a></li>
