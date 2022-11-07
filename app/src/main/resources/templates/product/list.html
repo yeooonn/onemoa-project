@@ -49,11 +49,11 @@
 
        <section id="product">
          <div class="product_container">
-           <a href="#" data-th-href="@{detail(no=${product.pno})}"  class="item" data-th-each= "product : ${products}">
-             <img data-th-src="'/onemoa/product/files/' + ${product.fpath}" alt="">
-             <p data-th-text="${product.title}">상품게시물 제목</p>
-             <p data-th-text="${#numbers.formatInteger(product.price, 3, 'COMMA')} + ' 원'">판매 상품 가격</p>
-           </a>
+            <a href="#" data-th-href="@{detail(no=${product.pno})}"  class="item" data-th-each= "product : ${products}">
+              <img data-th-src="'/onemoa/product/files/' + ${product.fpath}" alt="">
+              <p data-th-text="${product.title}">상품게시물 제목</p>
+              <p data-th-text="${#numbers.formatInteger(product.price, 3, 'COMMA')} + ' 원'">판매 상품 가격</p>
+            </a>
          </div>
        </section>
 
@@ -96,7 +96,8 @@
   </script>
 
 <script>
-
+  let test1 = [[${products}]];
+  console.log(test1);
 </script>
 </body>
 </html>

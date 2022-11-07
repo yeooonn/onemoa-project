@@ -208,8 +208,8 @@
   -->
   <select id="selectProductList" resultType="hashMap" parameterType="hashMap">
     <![CDATA[
-    select
-			p.pno,
+   select
+			pf.pno,
 			p.pcno,
 			p.title,
 			p.cont,
@@ -219,6 +219,7 @@
             pf.fpath
     from product p
       join product_file pf on p.pno = pf.pno
+    group by pf.pno
     order by
       pno desc
       limit #{pageStart}, #{perPageNum}
