@@ -28,6 +28,18 @@ public class DefaultContestService implements ContestService{
     return contestDao.findByTeam(no);
   }
   
+  // 공모전 전체 기관 필터
+  @Override
+  public List<Contest> listOrgFilter(int orgno) throws Exception {
+    return contestDao.findByOrgAll(orgno);
+  }
+  
+  // 공모전 개인전, 팀전별 기관 필터
+  @Override
+  public List<Contest> listTeamOrgFilter(boolean no, int orgno) throws Exception {
+    return contestDao.findByOrgTeam(no, orgno);
+  }
+  
   // 공모전 게시글 상세보기
   @Override
   public Contest get(int ctstNo) throws Exception {
