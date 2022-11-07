@@ -14,7 +14,6 @@
     <result column="cdt" property="createdDate"/>
     <result column="thumbnail" property="thumbnailPath"/>
     <result column="thumbnailpath" property="thumbnail"/>
-    <result column="scope" property="scope"/>
 
     <association property="writer" javaType="member">
       <id column="mno" property="no"/>
@@ -47,17 +46,19 @@
 
   <select id="findAll" resultMap="productMap">
     select
-			pno,
-			pcno,
-			title,
-			cont,
-			price,
-			vw_cnt,
-			cdt,
-			thumbnail,
-			thumbnailpath
+			p.pno,
+			p.pcno,
+			p.title,
+			p.cont,
+			p.price,
+			p.vw_cnt,
+			p.cdt,
+			p.thumbnail,
+			p.thumbnailpath,
+            pf.fpath
     from
       product p
+      join product_file pf on p.pno=pf.pno
     order by 
       pno desc
   </select>
@@ -81,28 +82,29 @@
 
   <select id="findByNo" resultMap="productMap">
     select
-        p.pno,
-        p.pcno,
-        p.title,
-        p.cont,
-        p.price,
-        p.vw_cnt,
-        p.cdt,
-        p.thumbnail,
-        p.thumbnailpath,
-        p.rule,
-        m.mno,
-        m.profile,
-        m.nick,
-        pf.pfno,
-        pf.fname,
-        pf.fpath
-      from
-        product p
-        join member m on p.mno = m.mno
-        left outer join product_file pf on p.pno=pf.pno
+      p.pno,
+      p.pcno,
+      p.title,
+      p.cont,
+      p.price,
+      p.vw_cnt,
+      p.cdt,
+      p.thumbnail,
+      p.thumbnailpath,
+      p.rule,
+      m.mno,
+      m.profile,
+      m.nick,
+      pf.pfno,
+      pf.fname,
+      pf.fpath
+    from
+      product p
+      join member m on p.mno = m.mno
+      left outer join product_file pf on p.pno=pf.pno
+      left outer join product_category pc on p.pcno=pc.pcno
     where
-        p.pno=#{value}
+      p.pno=#{value};
   </select>
 
     <!--
@@ -204,26 +206,24 @@
       where bfno = #{value}
   </select>
   -->
-
-    <select id="selectProductList" resultType="hashMap" parameterType="hashMap">
-        <![CDATA[
+  <select id="selectProductList" resultType="hashMap" parameterType="hashMap">
+    <![CDATA[
     select
-			pno,
-			pcno,
-			title,
-			cont,
-			price,
-      vw_cnt,
-			cdt,
-			thumbnail,
-			thumbnailpath
-    from
-      product p
+			p.pno,
+			p.pcno,
+			p.title,
+			p.cont,
+			p.price,
+            p.vw_cnt,
+			p.cdt,
+            pf.fpath
+    from product p
+      join product_file pf on p.pno = pf.pno
     order by
       pno desc
       limit #{pageStart}, #{perPageNum}
         ]]>
-    </select>
+  </select>
 
     <select id="countProductList" resultType="Integer">
         <![CDATA[

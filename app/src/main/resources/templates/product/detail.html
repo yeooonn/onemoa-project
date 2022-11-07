@@ -11,6 +11,7 @@
   <script src="http://localhost:3333/onemoa/js/login.js"></script>
 <style>
   .wrap {
+    margin-bottom: 5%;
     margin-top: 1%;
     max-width: 60vw;
     min-width: 40vw;
@@ -50,6 +51,7 @@
   #detail-5 {
     display: grid;
     border : solid #7c7979 2px ;
+    border-radius: 4px;
   }
 
   #detail-6 {
@@ -59,6 +61,7 @@
   }
   #detail2 {
     border : solid #7c7979 2px ;
+    border-radius: 4px;
     max-width: 60vw;
     min-width: 40vw;
   }
@@ -111,96 +114,19 @@
     float: left;
   }
 
-
   #detail3-2 {
-    border: 1px solid #6c6d70;
-    margin-top: 10px;
-  }
-
-  #detail3-2 p, img {
-    display: inline;
-  }
-
-  #detail3-2 div {
-    display: inline;
-  }
-
-  #detail3-3 {
-    border: 1px solid black;
-  }
-
-  #detail3-4 {
-    border: 1px solid black;
-    display: grid;
-    grid-template-columns: 2.5fr 2.5fr 2.5fr 2.5fr;
-    height: 200px;
-    margin-bottom: 60px;
-  }
-
-  #detail3-5 {
-    border: 1px solid black;
-    display: grid;
-    grid-template-columns: 2.5fr 2.5fr 2.5fr 2.5fr 2.5fr;
-    height: 30px;
-    margin-bottom: 60px;
-  }
-
-  #detail3-6-1 {
-    display: grid;
-    grid-template-columns: 1fr 1.5fr 3fr 3fr;
-    grid-template-rows: 3fr 2fr 2fr;
+    border-top: solid #7c7979 2px;
+    margin-top: 15px;
     padding-top: 10px;
   }
 
-  #detail3-6-1 .aa {
-    grid-row: span 2;
-  }
 
-  #detail3-6-1 .aaa {
-  }
 
-  #detail3-6-1 .bb {
-  }
-
-  #detail3-6-2{
-    margin-bottom: 15px;
-    height: 40px;
-    margin-right: 200px;
-  }
-
-  #detail3-6-3 > div {
-    border: 1px solid #808080;
-    float: left;
-    padding-left: 5px;
-    margin-bottom: 30px;
-  }
-
-  #detail3-6-2 .aa {
-    border: 1px solid #808080;
-    grid-row: span 2;
-  }
-
-  #detail3-6-2 .aaa {
-  }
-
-  #detail3-6-1 .bb {
-  }
-
-  #detail3-6-2{
-    margin-bottom: 15px;
-    height: 40px;
-  }
-
-  #detail3-6-3 > div {
-    float: left;
-    padding-left: 5px;
-    margin-bottom: 30px;
-  }
 
   #top {
     border : solid #c4c4c4 2px ;
     border-radius: 4px;
-    background-color: #f6f5f5;
+    background-color: #f8f6f6;
     margin-left : 61%;
     margin-right: 1%;
     padding-top: 0.5%;
@@ -242,7 +168,7 @@
   }
 
   #top #title {
-    font-size: 1.2vw;
+    font-size: 1.1vw;
   }
 
   .product_images img {
@@ -257,7 +183,6 @@
     font-size: 30px;
     height: 50px;
     width: 200px;
-    background-color: #f6e58d;
     border: 4px solid #555;
     border-radius: 10px;
     margin-left: 130px;
@@ -275,8 +200,11 @@
 
   #top .btn-default {
     color: white;
+    border: none;
+    border-radius: 4px;
     background-color: #707fc2;
     margin: 0;
+    padding: 8px 8px;
     width: 48%;
     float: none;
   }
@@ -286,20 +214,37 @@
   }
 
   .attached-file-container img {
-    height: 100px;
-    width: auto;
+    height: auto;
+    width: 100%;
   }
 
+  #rwCreatedDate {
+    float: right;
+  }
+
+  #detail3-2 #reviewList {
+    margin-left: 0px;
+    width: 100%;
+    padding-right: 10px;
+  }
+
+  #reviewList .reviewLine p {
+    font-size: 1vw;
+    margin-top: 5px;
+    margin-bottom: 5px;
+  }
+
+  #reviewList .reviewLine {
+  }
 </style>
 </head>
 <body style="overflow-x: hidden">
   <div data-th-replace="/fragments/nav.html :: fragment-nav"></div>
 
-<div id = breadc>
-  <span>디자인></span>
-  <span>로고, 브랜딩></span>
-  <span data-th-text="${product.productCategory.code}">로고 디자인</span>
-</div>
+<!--<div id = breadc>-->
+<!--  <span>디자인></span>-->
+<!--  <span data-th-text="${product.productCategory.code}">로고 디자인</span>-->
+<!--</div>-->
 
 <div class="wrap">
     <div id="detail-5">
@@ -385,25 +330,16 @@
       <p>별점 낮은 순</p>
     </div>
     <div id="detail3-2">
-      <div data-th-each="review : ${reviews}">
-       <ul class="con" data-th-id="${review.no}">
-          <li>
-            <div class="con">
-             <div class="review-detail">
-                <p data-th-text="'만족도 : ' + ${review.score} + ' 점'">후기 별점</p>
-                <div>
-                  <p data-th-text="${review.content}">전문가님의 산뜻한 치킨브랜드 네이밍 부탁드립니다. 이름을 들었을 때 무언도 괜찮습니다.</p>
-                </div>
-             </div>
-             <p data-th-text="${review.createdDate}">작성일</p>
-            </div>
-        </li>
-       </ul>
+      <table id="reviewList">
+        <tr class="reviewLine" data-th-each="review : ${reviews}">
+          <td><p data-th-text="'만족도 : ' + ${review.score} + ' 점'">후기 별점</p></td>
+          <td><p data-th-text="${review.content}">후기 내용</p></td>
+          <td><p id="rwCreatedDate" data-th-text="${review.createdDate}">작성일</p></td>
+        </tr>
+      </table>
     </div>
-   </div>
   </div>
 </div>
-
-  <footer data-th-replace="/fragments/footer.html :: fragment-footer"></footer>
+<footer data-th-replace="/fragments/footer.html :: fragment-footer"></footer>
 </body>
 </html>

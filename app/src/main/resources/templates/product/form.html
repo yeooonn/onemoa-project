@@ -45,9 +45,10 @@
 
         <div class="categoryA-container">
           <label for="categoryA">상위 카테고리 선택</label><br />
-          <select class="productForm-category" id="categoryA">
+          <select name="categoryA" class="productForm-category" id="categoryA" onchange="setUpperCategory()">
             <div>
             <option value="">상위 카테고리 선택</option>
+            <option value="" data-th-each="category : ${productCategories}" data-th-value="${category.code}" data-th-text="${category.name}">상위카테고리</option>
             </div>
           </select>
         </div>
@@ -55,11 +56,10 @@
           <div class="categoryB-container">
             <label for="code">하위 카테고리 선택</label><br />
             <select name="productCategory.code" class="productForm-category" id="code">
-              <option value="010100">하위 카테고리 선택</option>
-              <option value="010200">ㅇㄹㄴㅇㄹ</option>
+              <option value="">하위 카테고리 선택</option>
+<!--              <option data-th-each= "child : ${category.children}" data-th-if="" data-th-value="${child.code}" data-th-text="${child.name}">하위카테고리</option>-->
             </select>
           </div>
-
         </div>
       </div>
 
@@ -131,5 +131,40 @@
   <footer data-th-replace="/fragments/footer.html :: fragment-footer"></footer>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
+  <script>
+    function setUpperCategory() {
+      var upperCategorySelected = document.getElementById("categoryA");
+      var value = upperCategorySelected.options[document.getElementById("categoryA").selectedIndex].value;
+      console.log(value);
+
+      $.ajax({
+        type: "GET",
+        url: "/onemoa/product/getSubCategories",
+        data: {code:value},
+        success: function(result) {
+          console.log(result);
+
+          var $code = document.getElementById('code');
+
+          $code.innerHTML = '<option value="">하위 카테고리 선택</option>';
+
+          for (let i = 0; i < result.length; i++) {
+            $code.innerHTML += '<option value="'+ result[i].pcno + '" text="' + result[i].pcname + '">' + result[i].pcname + '</option>'
+          }
+
+
+          // <select name="code" class="productForm-category" id="code">
+          //   <option value="">하위 카테고리 선택</option>
+
+//          data-th-value="${child.code}" data-th-text="${child.name}"
+
+          // for (let i = 0; i < arr.length; i++) {
+          //   subcatelist += "<option data-th-value=" + arr[i].pcno + "data-th-text" + arr[i].code + "></option>"
+          // }
+        }
+      });
+    }
+  </script>
+
 </body>
 </html>

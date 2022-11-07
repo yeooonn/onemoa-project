@@ -2545,14 +2545,13 @@ label[for="label-a"] {
 }
 
 .item > img {
-  border:solid;
   width: 100%;
   min-height: 200px;
   margin-bottom: 20px
 }
 
 .item p {
-  font-size: 20px;
+  font-size: 1.4vw;
   margin-top: 5px;
   margin-bottom: 5px;
 }

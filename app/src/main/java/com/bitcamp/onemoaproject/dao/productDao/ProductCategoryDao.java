@@ -6,6 +6,7 @@ import com.bitcamp.onemoaproject.vo.product.ProductCategory;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
+import java.util.Map;
 
 @Mapper
 public interface ProductCategoryDao {
@@ -21,5 +22,7 @@ public interface ProductCategoryDao {
 //    //  int deleteByMember(int memberNo);
 //
     List<ProductCategory> findAll();
+
+    List<Map> findByParent(String code);
 //
 }

@@ -7,6 +7,19 @@
   <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.js"></script>
   <script src="http://localhost:3333/onemoa/js/login.js"></script>
+  <style>
+    #newProduct {
+      position: fixed;
+      top: 45vw;
+      left: 87.8vw;
+      padding: 10px 20px;
+      border-radius: 20px;
+      border: none;
+      background-color: #dbdbe5;
+      font-size: 1.2vw;
+    }
+
+  </style>
 </head>
 <body style="overflow-x: hidden">
   <div data-th-replace="/fragments/nav.html :: fragment-nav"></div>
@@ -37,7 +50,7 @@
        <section id="product">
          <div class="product_container">
            <a href="#" data-th-href="@{detail(no=${product.pno})}"  class="item" data-th-each= "product : ${products}">
-             <img src="./img/conthumb.png" alt="">
+             <img data-th-src="'/onemoa/product/files/' + ${product.fpath}" alt="">
              <p data-th-text="${product.title}">상품게시물 제목</p>
              <p data-th-text="${#numbers.formatInteger(product.price, 3, 'COMMA')} + ' 원'">판매 상품 가격</p>
            </a>
@@ -61,6 +74,8 @@
          </a>
        </li>
      </oi>
+
+    <a href="form"><button class="button" id="newProduct">새 글 작성하기</button></a>
    </main>
 
   <footer data-th-replace="/fragments/footer.html :: fragment-footer"></footer>
@@ -79,5 +94,9 @@
         }
       })});
   </script>
+
+<script>
+
+</script>
 </body>
 </html>

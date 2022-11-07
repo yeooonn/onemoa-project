@@ -12,15 +12,13 @@ import com.bitcamp.onemoaproject.vo.paging.PageMaker;
 import com.bitcamp.onemoaproject.vo.product.AttachedFile;
 import com.bitcamp.onemoaproject.vo.product.Product;
 import com.bitcamp.onemoaproject.vo.product.ProductReview;
+import com.fasterxml.jackson.databind.util.JSONPObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import com.bitcamp.onemoaproject.service.productService.ProductCategoryService;
 import com.bitcamp.onemoaproject.service.productService.ProductService;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.io.IOException;
@@ -88,7 +86,7 @@ public class ProductController {
 //  }
 
   @RequestMapping("list")
-  public ModelAndView openProductList(Criteria cri) throws Exception {
+  public ModelAndView openProductList(Criteria cri) {
 
     ModelAndView mav = new ModelAndView("product/list");
 
@@ -114,7 +112,6 @@ public class ProductController {
     model.addAttribute("pageMaker", pageMaker);
     return "product/list";
   }
-
 
 
   @GetMapping("detail")
@@ -205,6 +202,13 @@ public class ProductController {
     }
 
     return "redirect:detail?no=" + product.getNo();
+  }
+
+  @ResponseBody
+  @GetMapping("getSubCategories")
+  public List<Map> getSubCategories(String code) {
+    System.out.println(code);
+   return productCategoryService.getSubCategories(code);
   }
 }
 

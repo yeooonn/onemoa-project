@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class DefaultProductCategoryService implements ProductCategoryService {
@@ -18,5 +19,8 @@ public class DefaultProductCategoryService implements ProductCategoryService {
   public List<ProductCategory> list() {
     return productCategoryDao.findAll();
   }
+
+  @Override
+  public List<Map> getSubCategories(String code) { return productCategoryDao.findByParent(code); }
 
 }
