@@ -130,25 +130,6 @@ ALTER TABLE member
 
 -- 공모전
 CREATE TABLE contest (
-<<<<<<< HEAD:app/docs/onemoa.sql
-  ctstno  INTEGER      NOT NULL COMMENT '공모전번호', -- 공모전번호
-  orgno   INTEGER      NOT NULL COMMENT '기관분류번호', -- 기관분류번호
-  ctgno   INTEGER      NOT NULL COMMENT '공모전카테고리번호', -- 공모전카테고리번호
-  title   VARCHAR(255) NOT NULL COMMENT '제목', -- 제목
-  subcont MEDIUMTEXT   NOT NULL COMMENT '내용', -- 내용
-  cdt     DATE         NOT NULL DEFAULT now() COMMENT '등록일', -- 등록일
-  sdate   DATE         NULL     COMMENT '시작일', -- 시작일
-  edate   DATE         NULL     COMMENT '종료일', -- 종료일
-  vw_cnt  INTEGER      NULL     COMMENT '조회수', -- 조회수
-  org     VARCHAR(255) NOT NULL COMMENT '주최기관명', -- 주최기관명
-  appl    VARCHAR(255) NULL     COMMENT '접수방법', -- 접수방법
-  cont    MEDIUMTEXT   NULL     COMMENT '상세내용', -- 상세내용
-  page    VARCHAR(255) NULL     COMMENT '홈페이지', -- 홈페이지
-  size    INTEGER      NULL     COMMENT '참가인원', -- 참가인원
-  qual    VARCHAR(255) NULL     COMMENT '참가자격', -- 참가자격
-  team    BOOLEAN      NOT NULL COMMENT '팀여부', -- 팀여부
-  reward  INTEGER      NULL     COMMENT '상금' -- 상금
-=======
   ctstno    INTEGER      NOT NULL COMMENT '공모전번호', -- 공모전번호
   orgno     INTEGER      NOT NULL COMMENT '기관분류번호', -- 기관분류번호
   ctgno     INTEGER      NOT NULL COMMENT '공모전카테고리번호', -- 공모전카테고리번호
@@ -167,7 +148,6 @@ CREATE TABLE contest (
   team      BOOLEAN      NOT NULL COMMENT '팀여부', -- 팀여부
   reward    INTEGER      NULL     COMMENT '상금', -- 상금
   thumbnail VARCHAR(255) NOT NULL COMMENT '썸네일' -- 썸네일
->>>>>>> contest:docs/onemoa.sql
 )
 COMMENT '공모전';
 

@@ -1,6 +1,7 @@
 package com.bitcamp.onemoaproject.controller;
 
 import com.bitcamp.onemoaproject.service.ContestService;
+import com.bitcamp.onemoaproject.vo.Member;
 import com.bitcamp.onemoaproject.vo.contest.Contest;
 import com.bitcamp.onemoaproject.vo.contest.ContestAttachedFile;
 import java.io.IOException;
@@ -76,6 +77,15 @@ public class ContestController {
   public Object contestTeamTeamList(Model model, int contestNumber) throws Exception {
     model.addAttribute("teams",contestService.getTeamList(contestNumber));
     return model.getAttribute("teams");
+  }
+  
+  // 공모전 팀원 모집하기
+  @PostMapping("contestTeam/teamRecruitForm")
+  @ResponseBody
+  public Member contestTeamTeamRecruit(HttpServletRequest session) throws Exception {
+    Member loginMember = (Member) session.getAttribute("loginMember");
+    System.out.println("loginMember = " + loginMember);
+    return loginMember;
   }
 
   // 공모전 상세정보(관리자 페이지)
