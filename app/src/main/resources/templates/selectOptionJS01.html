@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+</head>
+<body>
+
+<select id="num" onchange="selectNum()">
+  <option id="t1" value="000111" name="원">원</option>
+  <option id="t2" value="000222" name="투">투</option>
+  <option id="t3" value="000333" name="쓰리">쓰리</option>
+  <option id="t4" value="000444" name="포">포</option>
+</select>
+
+<script>
+  function selectNum() {
+    let numSelect = document.getElementById("num");
+    let value =  numSelect.options[document.getElementById("num").selectedIndex].value;
+    console.log(value);
+  }
+</script>
+</body>
+</html>
