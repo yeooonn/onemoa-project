@@ -44,7 +44,4 @@ $(document).ready(function () {
     });
   });
 
-  $(".btn-open-popup2").click(() => {
-    location.href="/onemoa/member/mypage";
-  });
 });
