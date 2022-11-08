@@ -3,66 +3,15 @@
   <head>
     <meta charset = "UTF-8">
     <title>onemoa mypage</title>
-    <link href="../css/onemoa.css" rel="stylesheet">
-    <link href="../css/onemoaMypage.css" rel="stylesheet">
+    <link href="/onemoa/css/onemoa.css" rel="stylesheet">
+    <link href="/onemoa/css/onemoaMypage.css" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-    <script src="../js/onemoa.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.js"></script>
+    <script src="/onemoa/js/onemoa.js"></script>
+    <script src="/onemoa/js/login.js"></script>
   </head>
   <body style="overflow-x: hidden">
-    
-     <!-- login modal -->
-    <div class="modal"style="position: absolute; z-index: 1;">
-      <div class="modal_body">
-        <div class="login_container">
-          <button class="closebtn"><img src="../img/x.png"></button>
-          <p>로그인</p>
-          <form action='login' method="post">
-            <table class="input_login" >
-              <tr>
-                <td><input name='email' type='email' id='email' value="user1@test.com" placeholder="이메일을 입력해 주세요." data-th-value="${email}"></td>
-              </tr>
-              <tr>
-                <td><input name='password' type='password' id='password' placeholder="패스워드를 입력해 주세요."></td>
-              </tr>
-            </table>
-            <label for="label-a"><input type="checkbox" name="saveEmail" id="email2">이메일 유지<br></label>
-            <p class="find"><a href = "#">아이디 찾기</a> / <a href = "#">패스워드 찾기</a></p>
-            <p>
-              <button type='submit' class="loginbtn" id="adminCheck"><img src="../img/loginbtn.png"></button>
-            </p>
-          </form>
-          <div class="sns">
-            <p class="snsp">SNS로 간편하게 로그인하세요.</p>
-            <a href="#"><img src="../img/kakao.png"></a>
-            <a href="#"><img src="../img/naver.png"></a>
-            <a href="#"><img src="../img/google.png"></a>
-          </div>
-          <div class="sign">
-            <a href="joinForm"><img src="../img/signup.png"></a>
-          </div>
-        </div>
-      </div>
-    </div>
-    
-    <header>
-      <div class="nav">
-        <a href="/onemoa"><p class="logo">ONEMOA</p></a>
-        <ul class="firstnav">
-          <li data-th-if="${session.loginMember != null}"><a href="http://localhost:3333/onemoa/logout" data-th-text="로그아웃">로그아웃</a></li>
-          <li><button class="btn-open-popup" data-th-if="${session.loginMember == null}">로그인</button></li>
-          <li><a href="../portfolio/portfolioList">마이페이지</a></li>
-          <li><a href="#">메시지</a></li>
-        </ul>
-      </div>
-
-      <div class="menu">
-        <ul class="secnav">
-          <li><a href="../contest/contestTeam"><p>공모전</p></a></li>
-          <li><a href="#"><p>재능판매</p></a></li>
-        </ul>
-      </div>
-    </header>
-    
+    <div data-th-replace="/fragments/nav.html :: fragment-nav"></div>
     <ul class="myPage">
       <li class="mypageArea">
         <div class="nick">
@@ -99,65 +48,6 @@
         </div>
       </li>
     </ul>
-
-
-    <footer>
-      <ul class="footerMenu">
-        <li><a href="#"><p>공지사항</p></a></li>
-        <li><a href="#"><p>1 : 1 문의</p></a></li>
-      </ul>
-      <div class="detail">
-        
-          (주)ONEMOA  | 서울시 강남구 비트캠프 8층 | 대표 : 000 | 개인정보관리책임자 : 000 | 고객센터 : 1234-1234
-          <span>고객센터 영업시간 10:30 ~ 18:00 ( 점심시간 13:00 ~ 14:00) 주말, 공휴일 휴무 | ONEMOA@onemoa.com | </span>
-          <span>Copyright 2022 ONEMOA lnc.All rights reserved</span>
-       
-      </div>
-    </footer>
-
-    <script>
-      const body = document.querySelector('body');
-      const modal = document.querySelector('.modal');
-      const btnOpenPopup = document.querySelector('.btn-open-popup');
-      const closebtn = document.querySelector('.closebtn');
-
-      btnOpenPopup.addEventListener('click', () => {
-        modal.style.display = 'block';
-
-        if (modal.classList.contains('show')) {
-          body.style.overflow = 'hide';
-        }
-        body.style.overflow = 'hidden';
-      });
-
-      closebtn.addEventListener('click', () => {
-        modal.style.display = 'none';
-        body.style.overflow = 'auto';
-      });
-      
-
-      // 로그인 ajax 비동기 처리
-      $(".loginbtn").click(function () {
-        var email = $("#email").val();
-        var password = $("#password").val();
-        var saveEmail = $("input[type=checkbox][name=saveEmail]:checked").val();
-
-        $.ajax({
-          type: "POST",
-          url: "/onemoa/login",
-          data: {email: email, password: password, saveEmail: saveEmail},
-          success: function (result) {
-            if(result == "true") {
-              window.location.reload();
-            } else if (result == "false") {
-              document.getElementById("emailPasswordCheck").style.display = "block";
-              document.getElementById("emailPasswordCheck").value="이메일 또는 비밀번호가 일치하지 않습니다.";
-              document.getElementById("emailPasswordCheck").style.color="red";
-            }
-          },
-        });
-      }); 
-    </script>
-
+    <footer data-th-replace="/fragments/footer.html :: fragment-footer"></footer>
   </body>
 </html>
