@@ -54,7 +54,7 @@
     #{jobNo},
     #{bank},
     #{account},
-    #{profile},
+    '85d79cc2-9991-422c-995f-88d76f46562f',
     #{token},
     #{status}
     );
@@ -87,7 +87,9 @@
     mno,
     name,
     email,
-    cdt
+    cdt,
+    nick,
+    profile
     from
     member
     where

@@ -80,9 +80,7 @@ $(function() {
     $.ajax({
       type: "POST",
       url: "/onemoa/nicknamecheck",
-      data: {
-        nickname: nickname
-      },
+      data: { nickname: nickname },
       success: function(result) {
         if (result == "false") {
           document.getElementById("nicknameCheckBox").value = "중복된 닉네임입니다.";

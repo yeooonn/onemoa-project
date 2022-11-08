@@ -86,7 +86,10 @@ function dis2(){
     url: "/onemoa/contest/contestTeam/teamRecruitForm",
     data:{contestNumber: contestNumber},
     success: function (result) {
-      console.log("result : " + result);
+      console.log(result);
+      $("#teamRecruitFormReaderNo").attr("value", result.no)
+      $("#teamRecruitFormReaderProfile").attr("src", "/onemoa/member/files/" + result.profile);
+      $("#teamRecruitFormReaderNickname").html(result.nickname);
     }
   });
 }
