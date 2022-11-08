@@ -25,7 +25,7 @@ public class Contest {
   private String page;
   private int size;
   private String qual;
-  private boolean team;
+  private String team;
   private int reward;
   private String thumbNail; // thumbNail 첨부파일을 저장할 필드
   private ContestOrg contOrg; // 공모전 기관명을 저장할 필드

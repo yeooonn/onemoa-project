@@ -400,6 +400,11 @@
                   <p data-th-text="${contest.contCategory.categoryName}">로고디자인</p>
                   <p>|</p>
                   <p data-th-text="${contest.title}">치킨브랜드에 어울리는 브랜드명</p>
+                  <p>|</p>
+                  <p data-th-if="${contest.team == 'individual'}">개인전</p>
+                  <p data-th-if="${contest.team == 'match'}">팀전</p>
+                  <p>|</p>
+                  <p data-th-text="${contest.contOrg.orgName}"></p>
                 </div>
                 <div class="contesttext">
                   <p data-th-text="${contest.subCont}">전문가님의 산뜻한 치킨브랜드 네이밍 부탁드립니다. 이름을 들었을 때 무언가 맛있는 느낌이 와도 좋지만 동떨어진 이름이지만<span>

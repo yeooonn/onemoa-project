@@ -19,6 +19,9 @@ public class DefaultContestService implements ContestService{
   // 공모전 모든 게시글 검색
   @Override
   public List<Contest> list(String no, String ono) throws Exception {
+    System.out.println("no = " + no);
+    System.out.println("ono = " + ono);
+    System.out.println("contestDao.findAll(no, ono) = " + contestDao.findAll(no, ono));
     return contestDao.findAll(no, ono);
   }
 

@@ -72,12 +72,12 @@ public class ContestController {
     return contest;
   }
 
-//  // 공모전 목록(관리자 페이지)
-//  @GetMapping("contestList")
-//  public String list(Model model) throws Exception {
-//    model.addAttribute("contests", contestService.list());
-//    return "contest/contestList";
-//  }
+  // 공모전 목록(관리자 페이지)
+  @GetMapping("contestList")
+  public String list(Model model) throws Exception {
+    model.addAttribute("contests", contestService.list());
+    return "contest/contestList";
+  }
   
   // 공모전 글등록 폼(관리자 페이지)
   @GetMapping("contestForm")
