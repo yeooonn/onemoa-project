@@ -21,7 +21,7 @@ public class DefaultContestService implements ContestService{
   public List<Contest> list(String no, String ono) throws Exception {
     return contestDao.findAll(no, ono);
   }
-  
+
   // 공모전 게시글 상세보기
   @Override
   public Contest get(int ctstNo) throws Exception {

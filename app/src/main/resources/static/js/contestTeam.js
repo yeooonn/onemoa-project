@@ -2,13 +2,13 @@
 $(".con").click(function () {
   contestNumber = $(this).attr("id"); // 공모전 번호
   let contestTeam = $(this).attr("value"); // 공모전 팀여부(true/false)
-
+  console.log(contestTeam);
   // 공모전 개인전(false=0)이라면 상세보기 '팀원구해요' 태그 닫기
-  if(contestTeam == "false") {
+  if(contestTeam == "individual") {
     document.querySelector("#contestTypeTeam").style.display = "none";
   }
   // 공모전 팀전(true=1)이라면 상세보기 '팀원구해요' 태그 열기
-  if(contestTeam == "true") {
+  if(contestTeam == "match") {
     document.querySelector("#contestTypeTeam").style.display = "block";
   }
 
@@ -314,10 +314,10 @@ $(".orgTypeType").click(function () {
   if(url.includes("all")) {
     window.location.href = "/onemoa/contest/contestTeam?no=all" + "&ono=" + orgNumber;
   }
-  if(url.includes("true")) {
-    window.location.href = "/onemoa/contest/contestTeam?no=true" + "&ono=" + orgNumber;
+  if(url.includes("individual")) {
+    window.location.href = "/onemoa/contest/contestTeam?no=individual" + "&ono=" + orgNumber;
   }
-  if(url.includes("false")) {
-    window.location.href = "/onemoa/contest/contestTeam?no=false" + "&ono=" + orgNumber;
+  if(url.includes("match")) {
+    window.location.href = "/onemoa/contest/contestTeam?no=match" + "&ono=" + orgNumber;
   }
 });

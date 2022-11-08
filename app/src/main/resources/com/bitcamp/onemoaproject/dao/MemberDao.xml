@@ -121,8 +121,15 @@
 
   <update id="update" parameterType="Member">
     update member set
-    name=#{name},
-    email=#{email},
+      name=#{name},
+      email=#{email},
+      pwd=sha2(#{password},256)
+    where
+      mno=#{no}
+  </update>
+
+  <update id="updatePassword" parameterType="Member">
+    update member set
     pwd=sha2(#{password},256)
     where
     mno=#{no}
@@ -131,5 +138,4 @@
   <delete id="delete">
     delete from member where mno=#{value}
   </delete>
-
 </mapper>
