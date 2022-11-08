@@ -1,6 +1,7 @@
 package com.bitcamp.onemoaproject.controller;
 
 import com.bitcamp.onemoaproject.service.ContestService;
+import com.bitcamp.onemoaproject.service.MemberService;
 import com.bitcamp.onemoaproject.vo.Member;
 import com.bitcamp.onemoaproject.vo.contest.Contest;
 import com.bitcamp.onemoaproject.vo.contest.ContestAttachedFile;
@@ -29,18 +30,12 @@ public class ContestController {
   ServletContext sc;
   @Autowired
   ContestService contestService;
-
-  public ContestController(ContestService contestService, ServletContext sc) {
-    this.contestService = contestService;
-    this.sc = sc;
-  }
+  @Autowired
+  MemberService memberService;
   
   // 공모전 목록 출력
   @GetMapping("contestTeam")
   public String contestTeamList(Model model, int no, int orgno) throws Exception {
-    System.out.println("no = " + no);
-    System.out.println("orgno = " + orgno);
-    
     if(orgno == 0) {
       switch (no) {
         // 전체 목록
@@ -79,12 +74,14 @@ public class ContestController {
     return model.getAttribute("teams");
   }
   
-  // 공모전 팀원 모집하기
+  // 공모전 팀원 모집하기 폼
   @PostMapping("contestTeam/teamRecruitForm")
   @ResponseBody
-  public String contestTeamTeamRecruit(int contestNumber, HttpServletRequest session) throws Exception {
-    System.out.println("session.getAttribute(\"loginMember\") = " + session.getAttribute("loginMember"));
-    return null;
+  public Member contestTeamTeamRecruit(int contestNumber, HttpSession session) throws Exception {
+    Member member = (Member) session.getAttribute("loginMember");
+    member = memberService.get(member.getNo());
+    System.out.println("member = " + member);
+    return member;
   }
 
   // 공모전 상세정보(관리자 페이지)
