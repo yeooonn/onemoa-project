@@ -52,7 +52,7 @@ public class ProductController {
 
     product.setAttachedFiles(saveAttachedFiles(files));
     product.setWriter((Member) session.getAttribute("loginMember"));
-    System.out.println("product.getWriter() = " + product.getWriter());
+   //  System.out.println("product.getWriter() = " + product.getWriter());
     productService.add(product);
     return "redirect:list";
   }

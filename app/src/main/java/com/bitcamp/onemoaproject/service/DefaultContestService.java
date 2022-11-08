@@ -21,13 +21,20 @@ public class DefaultContestService implements ContestService{
   public List<Contest> list() throws Exception {
     return contestDao.findAll();
   }
-  
+
+  @Override
+  public List<Contest> list(int no, int orgno) {
+    return contestDao.findAll(no, orgno);
+  }
+
+
   // 공모전 개인전, 팀전 검색
   @Override
   public List<Contest> listTeam(boolean no) throws Exception {
     return contestDao.findByTeam(no);
   }
-  
+
+
   // 공모전 전체 기관 필터
   @Override
   public List<Contest> listOrgFilter(int orgno) throws Exception {

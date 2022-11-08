@@ -36,4 +36,6 @@ public interface ContestDao {
   int deleteFile(int fileNo); // 공모전 게시글의 첨부파일 삭제
   
   List<ContestTeam> findByTeamNo(int contestNumber); // 공모전 팀원구해요 목록 검색
+
+  List<Contest> findAll(int no, int orgno);
 }

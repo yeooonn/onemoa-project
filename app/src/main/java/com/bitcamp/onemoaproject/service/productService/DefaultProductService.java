@@ -58,8 +58,6 @@ public class DefaultProductService implements ProductService {
     return productDao.delete(no) > 0;
   }
 
-
-
   @Override
   public AttachedFile getAttachedFile(int fileNo) throws Exception {
     return productDao.findFileByNo(fileNo);

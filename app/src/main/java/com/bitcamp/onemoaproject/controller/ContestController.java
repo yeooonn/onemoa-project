@@ -40,26 +40,8 @@ public class ContestController {
   public String contestTeamList(Model model, int no, int orgno) throws Exception {
     System.out.println("no = " + no);
     System.out.println("orgno = " + orgno);
-    
-    if(orgno == 0) {
-      switch (no) {
-        // 전체 목록
-        case 1: model.addAttribute("contests", contestService.list()); return "contest/contestTeam";
-        // 개인전 목록
-        case 2: model.addAttribute("contests", contestService.listTeam(false)); return "contest/contestTeam";
-        // 팀전 목록
-        case 3: model.addAttribute("contests", contestService.listTeam(true)); return "contest/contestTeam";
-      }
-    } else {
-      switch (no) {
-        // 전체 목록
-        case 1: model.addAttribute("contests", contestService.listOrgFilter(orgno)); return "contest/contestTeam";
-        // 개인전 목록
-        case 2: model.addAttribute("contests", contestService.listTeamOrgFilter(false, orgno)); return "contest/contestTeam";
-        // 팀전 목록
-        case 3: model.addAttribute("contests", contestService.listTeamOrgFilter(true, orgno)); return "contest/contestTeam";
-      }
-    }
+
+    model.addAttribute("contests", contestService.list(no, orgno));
     return "contest/contestTeam";
   }
 
