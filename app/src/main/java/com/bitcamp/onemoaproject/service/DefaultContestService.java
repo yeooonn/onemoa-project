@@ -18,26 +18,8 @@ public class DefaultContestService implements ContestService{
   
   // 공모전 모든 게시글 검색
   @Override
-  public List<Contest> list() throws Exception {
-    return contestDao.findAll();
-  }
-  
-  // 공모전 개인전, 팀전 검색
-  @Override
-  public List<Contest> listTeam(boolean no) throws Exception {
-    return contestDao.findByTeam(no);
-  }
-  
-  // 공모전 전체 기관 필터
-  @Override
-  public List<Contest> listOrgFilter(int orgno) throws Exception {
-    return contestDao.findByOrgAll(orgno);
-  }
-  
-  // 공모전 개인전, 팀전별 기관 필터
-  @Override
-  public List<Contest> listTeamOrgFilter(boolean no, int orgno) throws Exception {
-    return contestDao.findByOrgTeam(no, orgno);
+  public List<Contest> list(String no, String ono) throws Exception {
+    return contestDao.findAll(no, ono);
   }
   
   // 공모전 게시글 상세보기

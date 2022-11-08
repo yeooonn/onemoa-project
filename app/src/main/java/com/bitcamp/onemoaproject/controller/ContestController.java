@@ -35,27 +35,8 @@ public class ContestController {
   
   // 공모전 목록 출력
   @GetMapping("contestTeam")
-  public String contestTeamList(Model model, int no, int orgno) throws Exception {
-    if(orgno == 0) {
-      switch (no) {
-        // 전체 목록
-        case 1: model.addAttribute("contests", contestService.list()); return "contest/contestTeam";
-        // 개인전 목록
-        case 2: model.addAttribute("contests", contestService.listTeam(false)); return "contest/contestTeam";
-        // 팀전 목록
-        case 3: model.addAttribute("contests", contestService.listTeam(true)); return "contest/contestTeam";
-      }
-    } else {
-      switch (no) {
-        // 전체 목록
-        case 1: model.addAttribute("contests", contestService.listOrgFilter(orgno)); return "contest/contestTeam";
-        // 개인전 목록
-        case 2: model.addAttribute("contests", contestService.listTeamOrgFilter(false, orgno)); return "contest/contestTeam";
-        // 팀전 목록
-        case 3: model.addAttribute("contests", contestService.listTeamOrgFilter(true, orgno)); return "contest/contestTeam";
-      }
-    }
-    return "contest/contestTeam";
+  public void contestTeamList(Model model, String no, String ono) throws Exception {
+    model.addAttribute("contests", contestService.list(no, ono));
   }
 
   // 공모전 디테일
@@ -91,12 +72,12 @@ public class ContestController {
     return contest;
   }
 
-  // 공모전 목록(관리자 페이지)
-  @GetMapping("contestList")
-  public String list(Model model) throws Exception {
-    model.addAttribute("contests", contestService.list());
-    return "contest/contestList";
-  }
+//  // 공모전 목록(관리자 페이지)
+//  @GetMapping("contestList")
+//  public String list(Model model) throws Exception {
+//    model.addAttribute("contests", contestService.list());
+//    return "contest/contestList";
+//  }
   
   // 공모전 글등록 폼(관리자 페이지)
   @GetMapping("contestForm")

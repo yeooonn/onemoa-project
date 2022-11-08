@@ -9,13 +9,7 @@ import org.apache.ibatis.annotations.Mapper;
 @Mapper
 public interface ContestDao {
   
-  List<Contest> findAll();  // 공모전 리스트
-  
-  List<Contest> findByTeam(boolean no); // 공모전 개인전, 팀전 리스트
-  
-  List<Contest> findByOrgAll(int orgno);   // 공모전 전체 기관 필터
-  
-  List<Contest> findByOrgTeam(boolean no, int orgno);   // 공모전 개인전, 팀전별 기관 필터
+  List<Contest> findAll(String no, String ono);  // 공모전 리스트
   
   Contest findByNo(int ctstNo); // 공모전 상세정보
   
