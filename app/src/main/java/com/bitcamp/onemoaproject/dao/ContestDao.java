@@ -5,13 +5,20 @@ import com.bitcamp.onemoaproject.vo.contest.ContestAttachedFile;
 import com.bitcamp.onemoaproject.vo.contest.ContestTeam;
 import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 @Mapper
 public interface ContestDao {
   
-  List<Contest> findAll(String no, String ono);  // 공모전 리스트
+  List<Contest> findAll(@Param("no") String no, @Param("ono")String ono, @Param("sortCd") String sortCd);  // 공모전 리스트
   
-  List<Contest> findAll2(String no, String ono, String sortCd);  // 공모전 리스트
+  List<Contest> findAll2(
+      @Param("no") String no,
+      @Param("ono")String ono,
+      @Param("sortCd") String sortCd,
+      @Param("sortEd") String sortEd,
+      @Param("sortVw") String sortVw,
+      @Param("sortRw") String sortRw);  // 공모전 리스트
   
   Contest findByNo(int ctstNo); // 공모전 상세정보
   

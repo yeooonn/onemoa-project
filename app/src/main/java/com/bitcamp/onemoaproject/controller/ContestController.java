@@ -37,7 +37,9 @@ public class ContestController {
   // 공모전 목록 출력
   @GetMapping("contestTeam")
   public void contestTeamList(Model model, String no, String ono, String sortCd) throws Exception {
-    model.addAttribute("contests", contestService.list2(no, ono, sortCd));
+    model.addAttribute("contests", contestService.list(no, ono, sortCd));
+    model.addAttribute("no", no);
+    model.addAttribute("ono", ono);
     model.addAttribute("sortCd", sortCd);
   }
 
@@ -80,14 +82,14 @@ public class ContestController {
 
   // 공모전 목록(관리자 페이지)
   @GetMapping("contestList")
-  public String list(Model model, String no, String ono, String sortCd) throws Exception {
-    System.out.println("no = " + no);
-    System.out.println("ono = " + ono);
-    System.out.println("sortCd = " + sortCd);
-    model.addAttribute("contests", contestService.list2(no, ono, sortCd));
+  public String list(Model model, String no, String ono, String sortCd, String sortEd, String sortVw, String sortRw) throws Exception {
+    model.addAttribute("contests", contestService.list2(no, ono, sortCd, sortEd, sortVw, sortRw));
     model.addAttribute("no", no);
     model.addAttribute("ono", ono);
     model.addAttribute("sortCd", sortCd);
+    model.addAttribute("sortEd", sortEd);
+    model.addAttribute("sortVw", sortVw);
+    model.addAttribute("sortRw", sortRw);
     return "contest/contestList";
   }
   

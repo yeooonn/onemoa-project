@@ -18,14 +18,14 @@ public class DefaultContestService implements ContestService{
   
   // 공모전 모든 게시글 검색
   @Override
-  public List<Contest> list(String no, String ono) throws Exception {
-    return contestDao.findAll(no, ono);
+  public List<Contest> list(String no, String ono, String sortCd) throws Exception {
+    return contestDao.findAll(no, ono, sortCd);
   }
   
   // 공모전 모든 게시글 검색
   @Override
-  public List<Contest> list2(String no, String ono, String sortCd) throws Exception {
-    return contestDao.findAll2(no, ono, sortCd);
+  public List<Contest> list2(String no, String ono, String sortCd, String sortEd, String sortVw, String sortRw) throws Exception {
+    return contestDao.findAll2(no, ono, sortCd, sortEd, sortVw, sortRw);
   }
 
   // 공모전 게시글 상세보기
