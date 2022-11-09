@@ -7,6 +7,7 @@
   <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.js"></script>
   <script src="/onemoa/js/login.js"></script>
+  <script src="/onemoa/node_modules/sweetalert/dist/sweetalert.min.js"></script>
 </head>
 <body style="overflow-x: hidden">
   <div data-th-replace="/fragments/nav.html :: fragment-nav"></div>
@@ -38,7 +39,7 @@
         <li><a href="#">상금 순</a></li>
         <li><a href="#">조회 순</a></li>
         <li><a href="#">마감임박 순</a></li>
-        <li><a href="#">최신등록 순</a></li>
+        <li><input type="button" id="sortCreatDate" data-type="" data-th-data-type="${sortCd}" value="최신등록 순"></li>
       </ul>
     </div>
 

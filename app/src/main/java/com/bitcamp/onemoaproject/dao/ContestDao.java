@@ -11,6 +11,8 @@ public interface ContestDao {
   
   List<Contest> findAll(String no, String ono);  // 공모전 리스트
   
+  List<Contest> findAll2(String no, String ono, String sortCd);  // 공모전 리스트
+  
   Contest findByNo(int ctstNo); // 공모전 상세정보
   
   int insert(Contest contest); // 공모전 등록

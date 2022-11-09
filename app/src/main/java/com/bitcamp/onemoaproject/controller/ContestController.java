@@ -6,6 +6,7 @@ import com.bitcamp.onemoaproject.vo.Member;
 import com.bitcamp.onemoaproject.vo.contest.Contest;
 import com.bitcamp.onemoaproject.vo.contest.ContestAttachedFile;
 import java.io.IOException;
+import java.lang.ProcessBuilder.Redirect;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
@@ -35,8 +36,9 @@ public class ContestController {
   
   // 공모전 목록 출력
   @GetMapping("contestTeam")
-  public void contestTeamList(Model model, String no, String ono) throws Exception {
-    model.addAttribute("contests", contestService.list(no, ono));
+  public void contestTeamList(Model model, String no, String ono, String sortCd) throws Exception {
+    model.addAttribute("contests", contestService.list2(no, ono, sortCd));
+    model.addAttribute("sortCd", sortCd);
   }
 
   // 공모전 디테일
@@ -59,10 +61,14 @@ public class ContestController {
   @PostMapping("contestTeam/teamRecruitForm")
   @ResponseBody
   public Member contestTeamTeamRecruit(int contestNumber, HttpSession session) throws Exception {
-    Member member = (Member) session.getAttribute("loginMember");
-    member = memberService.get(member.getNo());
-    System.out.println("member = " + member);
-    return member;
+    Member loginMember = (Member) session.getAttribute("loginMember");
+    if(loginMember != null){
+      Member member = memberService.get(loginMember.getNo());
+      System.out.println("member = " + member);
+      return member;
+    }
+    loginMember.setStatus(false);
+    return loginMember;
   }
 
   // 공모전 상세정보(관리자 페이지)
@@ -74,8 +80,14 @@ public class ContestController {
 
   // 공모전 목록(관리자 페이지)
   @GetMapping("contestList")
-  public String list(Model model) throws Exception {
-    model.addAttribute("contests", contestService.list());
+  public String list(Model model, String no, String ono, String sortCd) throws Exception {
+    System.out.println("no = " + no);
+    System.out.println("ono = " + ono);
+    System.out.println("sortCd = " + sortCd);
+    model.addAttribute("contests", contestService.list2(no, ono, sortCd));
+    model.addAttribute("no", no);
+    model.addAttribute("ono", ono);
+    model.addAttribute("sortCd", sortCd);
     return "contest/contestList";
   }
   

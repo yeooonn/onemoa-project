@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <title>bitcamp</title>
+  <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
   <style>
     tr:hover {
       background-color: navy;
@@ -11,27 +12,132 @@
   </style>
 </head>
 <body>
-<h1 style="text-align: center; margin-top:100px;">게시글</h1>
+<a href="/onemoa/contest/contestList?no=all"><h1 style="text-align: center; margin-top:100px;">게시글</h1></a>
+<div style="text-align: center;">
+  <select id="noType" onchange="selectNum()">
+    <option value="all">선택</option>
+    <option value="all">전체</option>
+    <option value="individual">개인전</option>
+    <option value="match">팀전</option>
+  </select>
+  <select id="onoType" onchange="selectNum2()">
+    <option>기관명</option>
+    <option value="1">대기업</option>
+    <option value="2">공공기관</option>
+    <option value="3">자영업자</option>
+  </select>
+<!--  <select id="sortType" onchange="selectNum3()">-->
+<!--    <option>정렬</option>-->
+<!--    <option value="1" id="sortCreatDate">최신등록 순</option>-->
+<!--    <option value="2" id="sortEndDate">마감임박 순</option>-->
+<!--    <option value="2" id="sortViewCount">조회 순</option>-->
+<!--    <option value="3" id="sortReward">높은 상금 순</option>-->
+<!--  </select>-->
+  <input type="button" id="sortCreatDate" name="sortCd" value="최신등록 순" data-type="" data-th-data-type="${sortCd}">
+<!--  <input type="button" id="sortEndDate" name="sortEd" value="마감임박 순">-->
+<!--  <input type="button" id="sortViewCount" name="sortVw" value="조회 순">-->
+<!--  <input type="button" id="sortReward" name="" value="높은 상금 순">-->
+</div>
 <table border='1' style="margin:0 auto;width:50%;">
   <tr>
     <th>공모전번호</th>
+    <th>기관명</th>
     <th>공모전분야</th>
+    <th>팀전여부</th>
     <th>제목</th>
+    <th>등록일자</th>
+    <th>조회수</th>
+    <th>상금</th>
   </tr>
   <tr data-th-each="contest : ${contests}">
     <td data-th-text="${contest.ctstNo}">공모전번호</td>
+    <td data-th-text="${contest.contOrg.orgName}">기관명</td>
     <td data-th-text="${contest.contCategory.categoryName}">공모전분야</td>
+    <td data-th-if="${contest.team == 'individual'}">개인전</td>
+    <td data-th-if="${contest.team == 'match'}">팀전</td>
     <td>
       <a href='contestDetail?ctstNo=1'
          data-th-href="@{contestDetail(ctstNo=${contest.ctstNo})}"
          data-th-text="${contest.title == ''} ? '(제목없음)' : ${contest.title}">제목</a>
     </td>
+    <td data-th-text="${contest.createdDate}">등록일자</td>
+    <td data-th-text="${contest.vw_cnt}">조회수</td>
+    <td data-th-text="${contest.reward}">상금</td>
   </tr>
 </table>
 <p style="text-align: center;">
   <button><a href='../'>메인</a></button>
   <a href='contestForm'>새 공모전 등록</a>
 </p>
+
+<script>
+  function selectNum() {
+    let noValue =  document.getElementById("noType").options[document.getElementById("noType").selectedIndex].value;
+    window.location.href="/onemoa/contest/contestList?" + "no=" + noValue;
+  }
+
+  function selectNum2() {
+    let url = location.href;
+    let urlParam = location.search;
+    let onoValue =  document.getElementById("onoType").options[document.getElementById("onoType").selectedIndex].value;
+    if (url.includes("ono")) {
+      window.location.href = url.substring(url.lastIndexOf("&"), length) + "&ono=" + onoValue;
+    }
+    else {
+      window.location.href = "/onemoa/contest/contestList" + urlParam + "&ono=" + onoValue;
+    }
+  }
+
+  let createdSort = document.getElementById("sortCreatDate");
+  let createdSortType = createdSort.getAttribute("data-type");
+  let flag = "최신등록 순";
+
+  if (createdSortType == "" || createdSortType == null) {
+    createdSort.innerHTML = "제목";
+  } else if (createdSortType == "desc") {
+    createdSort.innerHTML = "제목V";
+  } else {
+    createdSort.innerHTML = "제목^";
+  }
+
+  document.querySelector("#sortCreatDate").onclick = (e) => {
+    let flag = "최신등록순";
+    if (createdSortType == "" || createdSortType == null) {
+      createdSortType = "desc";
+      flag += "V";
+    } else if (createdSortType == "desc") {
+      createdSortType = "asc";
+      flag += "^";
+    } else {
+      createdSortType = "";
+      flag += "";
+    }
+    console.log("createdSortType: " + createdSortType);
+    e.target.setAttribute("data-type", createdSortType);
+    e.target.innerHTML = flag;
+
+    let sortCd = ""
+    if (createdSortType != "") {
+      sortCd = "&sortCd=" + createdSortType;
+    }
+
+    let url = location.href;
+    let urlParam = location.search;
+
+    if (url.includes("sortCd") && url.includes("ono")) {
+      window.location.href = url.substring(url.lastIndexOf("&"), length) + sortCd;
+    }
+    else if (url.includes("ono")) {
+      window.location.href = "/onemoa/contest/contestList" + urlParam + sortCd;
+    }
+    else if (url.includes("sortCd") && url.includes("no")) {
+      window.location.href = url.substring(url.lastIndexOf("&"), length) + sortCd;
+    } else if (url.includes("no")) {
+      window.location.href = "/onemoa/contest/contestList" + urlParam + sortCd;
+    }
+  }
+
+</script>
 </body>
 </html>
 

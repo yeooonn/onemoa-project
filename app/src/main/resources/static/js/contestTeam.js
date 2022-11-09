@@ -86,10 +86,19 @@ function dis2(){
     url: "/onemoa/contest/contestTeam/teamRecruitForm",
     data:{contestNumber: contestNumber},
     success: function (result) {
-      console.log(result);
-      $("#teamRecruitFormReaderNo").attr("value", result.no)
-      $("#teamRecruitFormReaderProfile").attr("src", "/onemoa/member/files/" + result.profile);
-      $("#teamRecruitFormReaderNickname").html(result.nickname);
+        console.log(result);
+        $("#teamRecruitFormReaderNo").attr("value", result.no)
+        $("#teamRecruitFormReaderProfile").attr("src", "/onemoa/member/files/" + result.profile);
+        $("#teamRecruitFormReaderNickname").html(result.nickname);
+    },
+    error: function () {
+      swal({
+        title: "로그인이 필요한 화면입니다.",
+        text: "로그인 창으로 이동합니다.",
+        icon: "error",
+        closeOnClickOutside : false}).then(() =>{
+          window.location.href = "/onemoa/pageLogin";
+      });
     }
   });
 }
@@ -310,14 +319,61 @@ $(document).on("click","button[name=minus2]",function(){
 // 페이지 필터 타입(전체, 대기업, 공공기관, 자영업자)
 $(".orgTypeType").click(function () {
   let url = location.href;
+  let urlParam = location.search;
   let orgNumber = $(this).attr("name");
-  if(url.includes("all")) {
-    window.location.href = "/onemoa/contest/contestTeam?no=all" + "&ono=" + orgNumber;
+  if (url.includes("ono")) {
+    window.location.href = url.substring(url.lastIndexOf("&"), length) + "&ono=" + orgNumber;
   }
-  if(url.includes("individual")) {
-    window.location.href = "/onemoa/contest/contestTeam?no=individual" + "&ono=" + orgNumber;
-  }
-  if(url.includes("match")) {
-    window.location.href = "/onemoa/contest/contestTeam?no=match" + "&ono=" + orgNumber;
+  else {
+    window.location.href = "/onemoa/contest/contestTeam" + urlParam + "&ono=" + orgNumber;
   }
 });
+
+let createdSort = document.getElementById("sortCreatDate");
+let createdSortType = createdSort.getAttribute("data-type");
+let flag = "최신등록 순";
+
+if (createdSortType == "" || createdSortType == null) {
+  createdSort.innerHTML = "제목";
+} else if (createdSortType == "desc") {
+  createdSort.innerHTML = "제목V";
+} else {
+  createdSort.innerHTML = "제목^";
+}
+
+document.querySelector("#sortCreatDate").onclick = (e) => {
+  let flag = "최신등록순";
+  if (createdSortType == "" || createdSortType == null) {
+    createdSortType = "desc";
+    flag += "V";
+  } else if (createdSortType == "desc") {
+    createdSortType = "asc";
+    flag += "^";
+  } else {
+    createdSortType = "";
+    flag += "";
+  }
+  console.log("createdSortType: " + createdSortType);
+  e.target.setAttribute("data-type", createdSortType);
+  e.target.innerHTML = flag;
+
+  let sortCd = ""
+  if (createdSortType != "") {
+    sortCd = "&sortCd=" + createdSortType;
+  }
+
+  let url = location.href;
+  let urlParam = location.search;
+
+  if (url.includes("sortCd") && url.includes("ono")) {
+    window.location.href = url.substring(url.lastIndexOf("&"), length) + sortCd;
+  }
+  else if (url.includes("ono")) {
+    window.location.href = "/onemoa/contest/contestTeam" + urlParam + sortCd;
+  }
+  else if (url.includes("sortCd") && url.includes("no")) {
+    window.location.href = url.substring(url.lastIndexOf("&"), length) + sortCd;
+  } else if (url.includes("no")) {
+    window.location.href = "/onemoa/contest/contestTeam" + urlParam + sortCd;
+  }
+}
