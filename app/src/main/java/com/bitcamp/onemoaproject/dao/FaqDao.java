@@ -14,6 +14,7 @@ public interface FaqDao {
      int update(Faq faq);
 
      int delete(int no);
+
      List<Faq> findAll();
 
      //  int deleteByMember(int memberNo);

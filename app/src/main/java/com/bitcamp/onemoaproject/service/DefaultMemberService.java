@@ -16,7 +16,6 @@ public class DefaultMemberService implements MemberService {
     //  @Autowired
     //  BoardDao boardDao;
 
-
     @Override
     public void add(Member member) throws Exception {
         memberDao.insert(member);

@@ -1,0 +1,1302 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+<link rel="stylesheet" type="text/css" href="https://t1.daumcdn.net/tistory_admin/lib/lightbox/css/lightbox.min.css" /><link rel="stylesheet" type="text/css" href="https://t1.daumcdn.net/tistory_admin/assets/blog/tistory-5ace86dc6dc2ad99c6af7108e9e608d1ced4fac5/blogs/style/content/font.css?_version_=tistory-5ace86dc6dc2ad99c6af7108e9e608d1ced4fac5" /><link rel="stylesheet" type="text/css" href="https://t1.daumcdn.net/tistory_admin/assets/blog/tistory-5ace86dc6dc2ad99c6af7108e9e608d1ced4fac5/blogs/style/content/content.css?_version_=tistory-5ace86dc6dc2ad99c6af7108e9e608d1ced4fac5" /><!--[if lt IE 9]><script src="https://t1.daumcdn.net/tistory_admin/lib/jquery/jquery-1.12.4.min.js"></script><![endif]--><!--[if gte IE 9]>
+<!--><script src="//t1.daumcdn.net/tistory_admin/lib/jquery/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script><!--<![endif]-->
+<script src="https://t1.daumcdn.net/tistory_admin/lib/lightbox/js/lightbox-plus-jquery.min.js"></script>
+<script>
+lightbox.options.fadeDuration = 200;
+lightbox.options.resizeDuration = 200;
+lightbox.options.wrapAround = false;
+lightbox.options.albumLabel = "%1 / %2";
+</script>
+<script>var tjQuery = jQuery.noConflict(true);</script><style type="text/css">.tt_article_useless_p_margin p {padding-top:0 !important;padding-bottom:0 !important;margin-top:0 !important;margin-bottom:0 !important;}</style><meta name="referrer" content="always"><link rel="icon" href="//t1.daumcdn.net/tistory_admin/static/top/favicon_0630.ico" /><link rel="apple-touch-icon" href="//img1.daumcdn.net/thumb/C180x180/?fname=https%3A%2F%2Ftistory4.daumcdn.net%2Ftistory%2F2804567%2Fattach%2F003216925b5e4f8cb70c5a0fec09a26e">
+<link rel="apple-touch-icon" sizes="76x76" href="//img1.daumcdn.net/thumb/C76x76/?fname=https%3A%2F%2Ftistory4.daumcdn.net%2Ftistory%2F2804567%2Fattach%2F003216925b5e4f8cb70c5a0fec09a26e">
+<link rel="apple-touch-icon" sizes="120x120" href="//img1.daumcdn.net/thumb/C120x120/?fname=https%3A%2F%2Ftistory4.daumcdn.net%2Ftistory%2F2804567%2Fattach%2F003216925b5e4f8cb70c5a0fec09a26e">
+<link rel="apple-touch-icon" sizes="152x152" href="//img1.daumcdn.net/thumb/C152x152/?fname=https%3A%2F%2Ftistory4.daumcdn.net%2Ftistory%2F2804567%2Fattach%2F003216925b5e4f8cb70c5a0fec09a26e">
+<meta name="google-adsense-platform-account" content="ca-host-pub-9691043933427338">
+<meta name="google-adsense-platform-domain" content="tistory.com">
+<meta name="description" content="맥북을 사용하다보면 아무 생각없이 사용할때가 있는데 문득 보니 iterm 터미날과 파인더 창에서 보이는 한글로 된 파일 및 폴더에 이름이 서로 다르게 보이기 시작했다. 이전까지는 아무렇디 않게 사용했는데 어..">
+
+<!-- BEGIN OPENGRAPH -->
+<link rel="canonical" href="https://louky0714.tistory.com/147" /><meta property="og:type" content="article"><meta property="og:url" content="https://louky0714.tistory.com/147" ><meta property="og:article:author" content="louky" ><meta property="og:site_name" content="Nam's Daily" ><meta property="og:title" content="[mac] iterm 터미널에서  한글 깨짐(자음,모음 분리)" ><meta name="by" content="louky" ><meta property="og:description" content="맥북을 사용하다보면 아무 생각없이 사용할때가 있는데 문득 보니 iterm 터미날과 파인더 창에서 보이는 한글로 된 파일 및 폴더에 이름이 서로 다르게 보이기 시작했다. 이전까지는 아무렇디 않게 사용했는데 어.." ><meta property="og:image" content="https://img1.daumcdn.net/thumb/R800x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2Fl8nyx%2FbtrmUyoxuml%2F6AMXTeWbxJAmsgJYaK2vhK%2Fimg.png" ><meta property="article:section" content="IT 인터넷" >
+<!-- END OPENGRAPH -->
+
+
+
+<!-- BEGIN TWITTERCARD -->
+<meta name="twitter:card" content="summary_large_image"><meta name="twitter:site" content="@TISTORY"><meta name="twitter:title" content="[mac] iterm 터미널에서  한글 깨짐(자음,모음 분리)" ><meta name="twitter:description" content="맥북을 사용하다보면 아무 생각없이 사용할때가 있는데 문득 보니 iterm 터미날과 파인더 창에서 보이는 한글로 된 파일 및 폴더에 이름이 서로 다르게 보이기 시작했다. 이전까지는 아무렇디 않게 사용했는데 어.." ><meta property="twitter:image" content="https://img1.daumcdn.net/thumb/R800x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2Fl8nyx%2FbtrmUyoxuml%2F6AMXTeWbxJAmsgJYaK2vhK%2Fimg.png" >
+<!-- END TWITTERCARD -->
+
+
+
+<!-- BEGIN DAUMAPP -->
+<meta property="dg:plink" content="https://louky0714.tistory.com/147" ><meta name="plink" content="https://louky0714.tistory.com/147" ><meta name="title" content="[mac] iterm 터미널에서  한글 깨짐(자음,모음 분리)" ><meta name="article:media_name" content="Nam's Daily" ><meta property="article:mobile_url" content="https://louky0714.tistory.com/m/147" ><meta property="article:pc_url" content="https://louky0714.tistory.com/147" ><meta property="article:mobile_view_url" content="https://louky0714.tistory.com/m/147" ><meta property="article:pc_view_url" content="https://louky0714.tistory.com/147" ><meta property="article:talk_channel_view_url" content="https://louky0714.tistory.com/m/147" ><meta property="article:pc_service_home" content="https://www.tistory.com" ><meta property="article:mobile_service_home" content="https://www.tistory.com/m" ><meta property="article:txid" content="2804567_147" /><meta property="article:published_time" content="2021-12-03T18:37:46+09:00" ><meta property="og:regDate" content="20211203183746" ><meta property="article:modified_time" content="2022-01-06T22:15:36+09:00" >
+<!-- END DAUMAPP -->
+
+
+
+<!-- BEGIN STRUCTURED_DATA -->
+<script type="application/ld+json">{"@context":"http:\/\/schema.org","@type":"BlogPosting","mainEntityOfPage":{"@id":"https:\/\/louky0714.tistory.com\/147"},"url":"https:\/\/louky0714.tistory.com\/147","headline":"[mac] iterm \ud130\ubbf8\ub110\uc5d0\uc11c  \ud55c\uae00 \uae68\uc9d0(\uc790\uc74c,\ubaa8\uc74c \ubd84\ub9ac)","description":"\ub9e5\ubd81\uc744 \uc0ac\uc6a9\ud558\ub2e4\ubcf4\uba74 \uc544\ubb34 \uc0dd\uac01\uc5c6\uc774 \uc0ac\uc6a9\ud560\ub54c\uac00 \uc788\ub294\ub370 \ubb38\ub4dd \ubcf4\ub2c8 iterm \ud130\ubbf8\ub0a0\uacfc \ud30c\uc778\ub354 \ucc3d\uc5d0\uc11c \ubcf4\uc774\ub294 \ud55c\uae00\ub85c \ub41c \ud30c\uc77c \ubc0f \ud3f4\ub354\uc5d0 \uc774\ub984\uc774 \uc11c\ub85c \ub2e4\ub974\uac8c \ubcf4\uc774\uae30 \uc2dc\uc791\ud588\ub2e4. \uc774\uc804\uae4c\uc9c0\ub294 \uc544\ubb34\ub807\ub514 \uc54a\uac8c \uc0ac\uc6a9\ud588\ub294\ub370 \uc5b4..","author":{"@type":"Person","name":"louky"},"image":{"@type":"ImageObject","url":"https:\/\/img1.daumcdn.net\/thumb\/R800x0\/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2Fl8nyx%2FbtrmUyoxuml%2F6AMXTeWbxJAmsgJYaK2vhK%2Fimg.png","width":"800px","height":"800px"},"datePublished":"20211203T18:37:46+09:00","dateModified":"20220106T22:15:36+09:00","publisher":{"@type":"Organization","name":"TISTORY","logo":{"@type":"ImageObject","url":"https:\/\/t1.daumcdn.net\/tistory_admin\/static\/images\/openGraph\/opengraph.png","width":"800px","height":"800px"}}}</script><meta name="robots" content="max-image-preview:large">
+<!-- END STRUCTURED_DATA -->
+
+        <script data-ad-host="ca-host-pub-9691043933427338" data-ad-client="ca-pub-5831141483287443" async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <title>[mac] iterm 터미널에서  한글 깨짐(자음,모음 분리)</title>
+  <meta name="title" content="[mac] iterm 터미널에서  한글 깨짐(자음,모음 분리) :: Nam's Daily" />
+  <meta name="description" Content="일상을 기억하다..." />
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, minimum-scale=1.0, maximum-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1" />
+  <link rel="alternate" type="application/rss+xml" title="Nam's Daily" href="https://louky0714.tistory.com/rss" />
+  <link rel="shortcut icon" href="/favicon.ico" />
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/xeicon@2.3.3/xeicon.min.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noto+Sans+KR:400,500,700&amp;subset=korean">
+  <link rel="stylesheet" href="https://tistory4.daumcdn.net/tistory/0/Odyssey/style.css" />
+  <script src="//t1.daumcdn.net/tistory_admin/lib/jquery/jquery-1.12.4.min.js"></script>
+  <script src="//t1.daumcdn.net/tistory_admin/assets/skin/common/vh-check.min.js"></script>
+  <script src="https://tistory4.daumcdn.net/tistory/0/Odyssey/images/common.js" defer></script>
+  <script> (function () { var test = vhCheck();}()); </script>
+<link rel="stylesheet" type="text/css" href="https://t1.daumcdn.net/tistory_admin/assets/blog/tistory-5ace86dc6dc2ad99c6af7108e9e608d1ced4fac5/blogs/plugins/A_ShareEntryWithSNS/css/shareEntryWithSNS.css?_version_=tistory-5ace86dc6dc2ad99c6af7108e9e608d1ced4fac5">
+<script type="text/javascript" src="https://t1.daumcdn.net/tistory_admin/assets/blog/tistory-5ace86dc6dc2ad99c6af7108e9e608d1ced4fac5/blogs/plugins/A_ShareEntryWithSNS/script/shareEntryWithSNS.js?_version_=tistory-5ace86dc6dc2ad99c6af7108e9e608d1ced4fac5"></script>
+
+<link rel="stylesheet" type="text/css" href="https://t1.daumcdn.net/tistory_admin/assets/blog/tistory-5ace86dc6dc2ad99c6af7108e9e608d1ced4fac5/blogs/plugins/TistoryProfileLayer/style.css?_version_=tistory-5ace86dc6dc2ad99c6af7108e9e608d1ced4fac5" />
+<script type="text/javascript" src="https://t1.daumcdn.net/tistory_admin/assets/blog/tistory-5ace86dc6dc2ad99c6af7108e9e608d1ced4fac5/blogs/plugins/TistoryProfileLayer/profile.js?_version_=tistory-5ace86dc6dc2ad99c6af7108e9e608d1ced4fac5"></script>
+	<style type="text/css">
+		.another_category { border: 1px solid #E5E5E5; padding: 10px 10px 5px; margin:10px 0; clear: both; }
+		.another_category h4 { font-size: 12px !important; margin: 0 !important; border-bottom: 1px solid #E5E5E5 !important; padding: 2px 0 6px !important; }
+		.another_category h4 a { font-weight: bold !important; }
+		.another_category table { table-layout: fixed; border-collapse: collapse; width: 100% !important; margin-top: 10px !important; }
+		* html .another_category table { width: auto !important; }
+		*:first-child+html .another_category table { width: auto !important; }
+		.another_category th, .another_category td { padding: 0 0 4px !important; }
+		.another_category th { text-align: left; font-size: 12px !important; font-weight: normal;  word-break: break-all; overflow: hidden; line-height: 1.5; }
+		.another_category td { text-align: right; width: 80px; font-size: 11px; }
+		.another_category th a { font-weight: normal; text-decoration: none; border: none !important; }
+		.another_category th a.current{ font-weight: bold; text-decoration: none !important; border-bottom: 1px solid !important; }
+		.another_category th span { font-weight: normal; text-decoration: none; font: 10px Tahoma, Sans-serif; border: none !important; }
+
+		.another_category_color_gray, .another_category_color_gray h4 { border-color: #E5E5E5 !important; }
+		.another_category_color_gray * { color: #909090 !important; }
+		.another_category_color_gray th a.current{border-color:#909090 !important;}
+		.another_category_color_gray h4, .another_category_color_gray h4 a { color: #737373 !important; }
+
+
+		.another_category_color_red, .another_category_color_red h4 { border-color: #F6D4D3 !important;  }
+		.another_category_color_red * { color: #E86869 !important; }
+		.another_category_color_red th a.current{border-color:#E86869 !important;}
+		.another_category_color_red h4, .another_category_color_red h4 a { color: #ED0908 !important; }
+
+
+		.another_category_color_green, .another_category_color_green h4 { border-color: #CCE7C8 !important; }
+		.another_category_color_green * { color: #64C05B !important; }
+		.another_category_color_green th a.current{border-color:#64C05B !important;}
+		.another_category_color_green h4, .another_category_color_green h4 a { color: #3EA731 !important; }
+
+
+		.another_category_color_blue, .another_category_color_blue h4 { border-color: #C8DAF2 !important; }
+		.another_category_color_blue * { color: #477FD6 !important; }
+		.another_category_color_blue th a.current{border-color:#477FD6 !important;}
+		.another_category_color_blue h4, .another_category_color_blue h4 a { color: #1960CA !important; }
+
+
+		.another_category_color_violet, .another_category_color_violet h4 { border-color: #E1CEEC !important;  }
+		.another_category_color_violet * { color:#9D64C5 !important; }
+		.another_category_color_violet th a.current{border-color:#9D64C5 !important;}
+		.another_category_color_violet h4, .another_category_color_violet h4 a { color: #7E2CB5 !important; }
+	</style>
+<script type="text/javascript">
+        
+        window.TistoryBlog = {
+            basePath: "",
+            url: "https://louky0714.tistory.com",
+            tistoryUrl: "https://louky0714.tistory.com",
+			manageUrl: 'https://louky0714.tistory.com/manage',
+            token: 'KX1j/+1oldxDtER2z4aOhQ=='
+        };
+        var servicePath = "";
+        var blogURL = "";
+    </script>
+
+	<script> (function() { window.orgjQuery = window.jQuery; window.jQuery = tjQuery })()</script>
+    <script type="text/javascript" defer src=https://t1.daumcdn.net/tistory_admin/assets/blog/tistory-5ace86dc6dc2ad99c6af7108e9e608d1ced4fac5/blogs/script/reaction/reaction-button-container.min.js?_version_=tistory-5ace86dc6dc2ad99c6af7108e9e608d1ced4fac5></script>
+    <script> (function() { window.jQuery = window.orgjQuery; delete window.orgjQuery })()</script>
+        <script type="text/javascript" src="https://t1.daumcdn.net/tistory_admin/assets/blog/tistory-5ace86dc6dc2ad99c6af7108e9e608d1ced4fac5/blogs/script/_/base.js?_version_=tistory-5ace86dc6dc2ad99c6af7108e9e608d1ced4fac5"></script>
+        <link rel="stylesheet" type="text/css" href="https://t1.daumcdn.net/tistory_admin/assets/blog/tistory-5ace86dc6dc2ad99c6af7108e9e608d1ced4fac5/blogs/style/dialog.css?_version_=tistory-5ace86dc6dc2ad99c6af7108e9e608d1ced4fac5"/>
+            <link rel="stylesheet" type="text/css" href="//t1.daumcdn.net/tistory_admin/www/style/top/font.css">
+    <link rel="stylesheet" type="text/css" href="https://t1.daumcdn.net/tistory_admin/assets/blog/tistory-5ace86dc6dc2ad99c6af7108e9e608d1ced4fac5/blogs/style/postBtn.css?_version_=tistory-5ace86dc6dc2ad99c6af7108e9e608d1ced4fac5"/>
+        <link rel="stylesheet" type="text/css" href="https://t1.daumcdn.net/tistory_admin/assets/blog/tistory-5ace86dc6dc2ad99c6af7108e9e608d1ced4fac5/blogs/style/component/tistory.css?_version_=tistory-5ace86dc6dc2ad99c6af7108e9e608d1ced4fac5" />
+    <script type="text/javascript" src="https://t1.daumcdn.net/tistory_admin/assets/blog/tistory-5ace86dc6dc2ad99c6af7108e9e608d1ced4fac5/blogs/script/component/tistory.js?_version_=tistory-5ace86dc6dc2ad99c6af7108e9e608d1ced4fac5"></script>
+        <script type="text/javascript" src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
+
+        <link rel="stylesheet" type="text/css" href="https://t1.daumcdn.net/tistory_admin/assets/blog/tistory-5ace86dc6dc2ad99c6af7108e9e608d1ced4fac5/blogs/style/revenue.css?_version_=tistory-5ace86dc6dc2ad99c6af7108e9e608d1ced4fac5"/></head>
+
+
+<body id="tt-body-page" class="headerslogundisplayon headerbannerdisplayon listmorenumber listmorebuttonmobile   use-menu-topnavnone-wrp">
+
+  <script type="text/javascript">
+	(function() {
+		if (!window.T) {
+			window.T = {}
+		}
+		window.T.config = {"TOP_SSL_URL":"https:\/\/www.tistory.com","PREVIEW":false,"ROLE":"guest","PREV_PAGE":"\/148","NEXT_PAGE":"\/146","BLOG":{"isDormancy":false,"title":"Nam's Daily"},"NEED_COMMENT_LOGIN":false,"COMMENT_LOGIN_CONFIRM_MESSAGE":"","LOGIN_URL":"https:\/\/www.tistory.com\/auth\/login\/?redirectUrl=http%3A%2F%2Flouky0714.tistory.com%2F147","DEFAULT_URL":"https:\/\/louky0714.tistory.com","USER":{"name":null,"homepage":null},"ROLE_GROUP":"visitor","SUBSCRIPTION":{"status":"none","isConnected":false,"isProcessing":false,"isPending":false,"isWait":false,"isNone":true},"IS_LOGIN":false,"HAS_BLOG":false,"TOP_URL":"https:\/\/www.tistory.com","JOIN_URL":"https:\/\/www.tistory.com\/member\/join"};
+		window.appInfo = {"domain":"tistory.com","topUrl":"https:\/\/www.tistory.com","loginUrl":"https:\/\/www.tistory.com\/auth\/login","logoutUrl":"https:\/\/www.tistory.com\/auth\/logout"};
+
+        window.initData = {};
+        
+	})();
+</script>
+
+<script type="text/javascript" src="https://t1.daumcdn.net/tistory_admin/assets/blog/tistory-5ace86dc6dc2ad99c6af7108e9e608d1ced4fac5/blogs/script/blog/common.js?_version_=tistory-5ace86dc6dc2ad99c6af7108e9e608d1ced4fac5"></script>
+<div style="margin:0; padding:0; border:none; background:none; float:none; clear:none; z-index:0"></div>
+    <!-- 사이드바 서랍형일때 wrap-right / wrap-drawer -->
+    <div id="wrap" class="wrap-right">
+
+      <!-- header -->
+      <header class="header">
+				<div class="line-bottom display-none"></div>
+        <!-- inner-header -->
+        <div class="inner-header  topnavnone">
+
+          <div class="box-header">
+            <h1 class="title-logo">
+              <a href="/" title="Nam's Daily" class="link_logo">
+                
+                
+                  Nam's Daily
+                
+              </a>
+            </h1>
+
+            <!-- search-bar for PC -->
+						<div class="util use-top">
+							<div class="search">
+							<input class="searchInput" type="text" name="search" value="" placeholder="Search..." onkeypress="if (event.keyCode == 13) { requestSearch('.util.use-top .searchInput') }"/>
+							</div>
+						</div>
+
+
+          </div>
+
+          <!-- area-align -->
+          <div class="area-align">
+
+            
+
+            <!-- area-gnb -->
+            <div class="area-gnb">
+              <nav class="topnavnone">
+                <ul>		<li class="t_menu_home first">
+			<a href="/">홈</a>
+		</li>
+				<li class="t_menu_tag">
+			<a href="/tag">태그</a>
+		</li>
+				<li class="t_menu_medialog">
+			<a href="/media">미디어로그</a>
+		</li>
+				<li class="t_menu_location">
+			<a href="/location">위치로그</a>
+		</li>
+				<li class="t_menu_guestbook last">
+			<a href="/guestbook">방명록</a>
+		</li>
+		</ul>
+              </nav>
+            </div>
+
+            <button type="button" class="button-menu">
+              <svg xmlns="//www.w3.org/2000/svg" width="20" height="14" viewBox="0 0 20 14">
+                <path fill="#333" fill-rule="evenodd" d="M0 0h20v2H0V0zm0 6h20v2H0V6zm0 6h20v2H0v-2z" />
+              </svg>
+            </button>
+
+            
+
+          </div>
+          <!-- // area-align -->
+
+        </div>
+        <!-- // inner-header -->
+
+      </header>
+      <!-- // header -->
+
+      
+
+      <!-- container -->
+      <div id="container">
+
+        <main class="main">
+
+          <!-- area-main -->
+          <div class="area-main">
+
+            <!-- s_list / 카테고리, 검색 리스트 -->
+            <div class="area-common" >
+							
+            </div>
+            <!-- // s_list / 카테고리, 검색 리스트 -->
+
+            <!-- area-view / 뷰페이지 및 기본 영역 -->
+            <div class="area-view">
+              <!-- s_article_rep -->
+              
+
+                <!-- s_permalink_article_rep / 뷰페이지 -->
+                
+                  <!-- 이미지가 없는 경우 article-header-noimg -->
+                  <div class="article-header" thumbnail="https://img1.daumcdn.net/thumb/R1440x0/?scode=mtistory2&fname=https://blog.kakaocdn.net/dn/l8nyx/btrmUyoxuml/6AMXTeWbxJAmsgJYaK2vhK/img.png" style="background-image:url('')">
+                    <div class="inner-header">
+                      <div class="box-meta">
+                        <p class="category">운영체제/MAC</p>
+                        <h2 class="title-article">[mac] iterm 터미널에서  한글 깨짐(자음,모음 분리)</h2>
+                        <div class="box-info">
+                          <span class="writer">louky</span>
+                          <span class="date">2021. 12. 3. 18:37</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- 에디터 영역 -->
+                  <div class="article-view">
+                    <div class="tt_article_useless_p_margin contents_style">            <div class="revenue_unit_wrap ">
+               <div class="revenue_unit_item adsense  responsive" >
+                    <div class="revenue_unit_info">반응형</div>
+                    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+                    <ins class="adsbygoogle" style="display:block;" data-ad-host="ca-host-pub-9691043933427338" data-ad-client="ca-pub-5831141483287443" data-ad-format="auto"></ins>
+                    <script>(adsbygoogle = window.adsbygoogle || []).push({}); </script>
+               </div>
+            </div><p data-ke-size="size16">맥북을 사용하다보면 아무 생각없이 사용할때가 있는데 문득 보니 iterm 터미날과 파인더 창에서 보이는 한글로 된 파일 및 폴더에 이름이 서로 다르게 보이기 시작했다.</p>
+<p data-ke-size="size16">이전까지는 아무렇디 않게 사용했는데 어느순간 눈에 거슬리게 되었다.&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">finder창에서는 정상적으로 보이는 한글로 된 파일 및 폴더가 이상하게 iterm 터미널에서는 깨지는 것 처럼 보인다.&nbsp;</p>
+<p><figure class='imageblock alignCenter' data-origin-width='864' data-origin-height='114' data-ke-mobilestyle='alignCenter'><span data-url='https://blog.kakaocdn.net/dn/l8nyx/btrmUyoxuml/6AMXTeWbxJAmsgJYaK2vhK/img.png' data-lightbox='lightbox' data-alt=''><img src='https://blog.kakaocdn.net/dn/l8nyx/btrmUyoxuml/6AMXTeWbxJAmsgJYaK2vhK/img.png' srcset='https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2Fl8nyx%2FbtrmUyoxuml%2F6AMXTeWbxJAmsgJYaK2vhK%2Fimg.png' width='556' height='73' data-ke-mobilestyle='alignCenter'/></span></figure></p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">아이러니하게도 비록 한글이 깨져서 보이긴 하지만 cd로 이동하는데에는 전혀 문제가 없다.&nbsp;</p>
+<p><figure class='imageblock alignCenter' data-origin-width='792' data-origin-height='104' data-ke-mobilestyle='alignCenter'><span data-url='https://blog.kakaocdn.net/dn/bjlCEZ/btrmXulo8gl/ClKClrROQDC2H2MHlkzD6K/img.png' data-lightbox='lightbox' data-alt=''><img src='https://blog.kakaocdn.net/dn/bjlCEZ/btrmXulo8gl/ClKClrROQDC2H2MHlkzD6K/img.png' srcset='https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FbjlCEZ%2FbtrmXulo8gl%2FClKClrROQDC2H2MHlkzD6K%2Fimg.png' width='556' height='73' data-ke-mobilestyle='alignCenter'/></span></figure></p>
+<p data-ke-size="size16">&nbsp;</p>
+            <div class="revenue_unit_wrap ">
+               <div class="revenue_unit_item adsense  responsive" >
+                    <div class="revenue_unit_info">반응형</div>
+                    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+                    <ins class="adsbygoogle" style="display:block;" data-ad-host="ca-host-pub-9691043933427338" data-ad-client="ca-pub-5831141483287443" data-ad-format="auto"></ins>
+                    <script>(adsbygoogle = window.adsbygoogle || []).push({}); </script>
+               </div>
+            </div>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">하지만 맥북에서 기본으로 제공하는 terminal에서는 정상적을 보인다.&nbsp;</p>
+<figure contenteditable="false" data-ke-type="emoticon" data-ke-align="alignCenter" data-emoticon-type="friends2" data-emoticon-name="015" data-emoticon-isanimation="false" data-emoticon-src="https://t1.daumcdn.net/keditor/emoticon/friends2/large/015.png"><img src="https://t1.daumcdn.net/keditor/emoticon/friends2/large/015.png" width="150" /></figure>
+<p><figure class='imageblock alignCenter' data-origin-width='850' data-origin-height='160' data-ke-mobilestyle='alignCenter'><span data-url='https://blog.kakaocdn.net/dn/bGDXYX/btrmXvdvDfF/I79JUlanBmIykL3q4ogpD1/img.png' data-lightbox='lightbox' data-alt=''><img src='https://blog.kakaocdn.net/dn/bGDXYX/btrmXvdvDfF/I79JUlanBmIykL3q4ogpD1/img.png' srcset='https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FbGDXYX%2FbtrmXvdvDfF%2FI79JUlanBmIykL3q4ogpD1%2Fimg.png' width='494' height='93' data-ke-mobilestyle='alignCenter'/></span></figure></p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">구글신에 물어 보니 .... iterm의 설정를 바꾸기만 하면 정상적으로 보인다는 것이다.&nbsp;</p>
+<p data-ke-size="size16"><span style="background-color: #c1bef9;">iterm설정 &gt; &nbsp;profile &gt; 해당 프로필 선택 &nbsp;&gt; Text &nbsp;Tab &gt; Unicode &nbsp;Field의 "Unicode normalization from" </span></p>
+<p data-ke-size="size16"><span style="color: #ee2323;">None</span> -&gt; <span style="color: #006dd7;">NFC</span>로 변경&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p><figure class='imageblock alignCenter' data-origin-width='1862' data-origin-height='1148' data-ke-mobilestyle='alignCenter'><span data-url='https://blog.kakaocdn.net/dn/cymn9h/btrmXn00dep/rmjNJGLJPajyKEhxqGOufk/img.png' data-lightbox='lightbox' data-alt='&amp;amp;lt;변경전&amp;amp;gt;'><img src='https://blog.kakaocdn.net/dn/cymn9h/btrmXn00dep/rmjNJGLJPajyKEhxqGOufk/img.png' srcset='https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2Fcymn9h%2FbtrmXn00dep%2FrmjNJGLJPajyKEhxqGOufk%2Fimg.png' data-ke-mobilestyle='alignCenter'/></span><figcaption>&amp;lt;변경전&amp;gt;</figcaption></figure></p>
+<p data-ke-size="size16">&nbsp;</p>
+<p><figure class='imageblock alignCenter' data-origin-width='1862' data-origin-height='1148' data-ke-mobilestyle='alignCenter'><span data-url='https://blog.kakaocdn.net/dn/N76uO/btrmXkwCrNg/R8P17FLW1a4jKSvcVqpS9k/img.png' data-lightbox='lightbox' data-alt='&amp;amp;lt;변경후&amp;amp;gt;'><img src='https://blog.kakaocdn.net/dn/N76uO/btrmXkwCrNg/R8P17FLW1a4jKSvcVqpS9k/img.png' srcset='https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FN76uO%2FbtrmXkwCrNg%2FR8P17FLW1a4jKSvcVqpS9k%2Fimg.png' data-ke-mobilestyle='alignCenter'/></span><figcaption>&amp;lt;변경후&amp;gt;</figcaption></figure></p>
+<p data-ke-size="size16"><b>None에서 NFC로 변경을 했다면 iterm를 다시 재시작 한다. &nbsp;(command + Q )</b></p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">iterm을 재시작후 확인하면 정상적으로 보인다.&nbsp;</p>
+<p><figure class='imageblock alignCenter' data-origin-width='1152' data-origin-height='132' data-ke-mobilestyle='alignCenter'><span data-url='https://blog.kakaocdn.net/dn/bwYPBt/btrmXFmQJY7/F2u4D596NNDXD1OyPoarq0/img.png' data-lightbox='lightbox' data-alt=''><img src='https://blog.kakaocdn.net/dn/bwYPBt/btrmXFmQJY7/F2u4D596NNDXD1OyPoarq0/img.png' srcset='https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FbwYPBt%2FbtrmXFmQJY7%2FF2u4D596NNDXD1OyPoarq0%2Fimg.png' data-ke-mobilestyle='alignCenter'/></span></figure></p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">진작에 할껄 몰랐던 나의 잘못이다.&nbsp;</p>
+<figure contenteditable="false" data-ke-type="emoticon" data-ke-align="alignLeft" data-emoticon-type="friends2" data-emoticon-name="016" data-emoticon-isanimation="false" data-emoticon-src="https://t1.daumcdn.net/keditor/emoticon/friends2/large/016.png"><img src="https://t1.daumcdn.net/keditor/emoticon/friends2/large/016.png" width="150" /></figure>
+<p data-ke-size="size16">&nbsp;</p>            <div class="revenue_unit_wrap ">
+               <div class="revenue_unit_item adsense  responsive" >
+                    <div class="revenue_unit_info">반응형</div>
+                    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+                    <ins class="adsbygoogle" style="display:block;" data-ad-host="ca-host-pub-9691043933427338" data-ad-client="ca-pub-5831141483287443" data-ad-format="auto"></ins>
+                    <script>(adsbygoogle = window.adsbygoogle || []).push({}); </script>
+               </div>
+            </div><div class="container_postbtn #post_button_group">
+    <div class="postbtn_like">
+        
+<script>
+    window.ReactionButtonType = 'reaction';
+    window.ReactionApiUrl = '//louky0714.tistory.com/reaction';
+    window.ReactionReqBody = {
+        entryId: 147    }
+</script>
+<div class="wrap_btn" id=reaction-147></div>
+<script src=https://t1.daumcdn.net/tistory_admin/assets/blog/tistory-5ace86dc6dc2ad99c6af7108e9e608d1ced4fac5/blogs/script/reaction/reaction-button-container.min.js?_version_=tistory-5ace86dc6dc2ad99c6af7108e9e608d1ced4fac5></script>
+        <div class="wrap_btn wrap_btn_share">
+    <button type="button" class="btn_post sns_btn btn_share" data-thumbnail-url="https://img1.daumcdn.net/thumb/R800x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2Fl8nyx%2FbtrmUyoxuml%2F6AMXTeWbxJAmsgJYaK2vhK%2Fimg.png" data-title="[mac] iterm 터미널에서  한글 깨짐(자음,모음 분리)" data-description="맥북을 사용하다보면 아무 생각없이 사용할때가 있는데 문득 보니 iterm 터미날과 파인더 창에서 보이는 한글로 된 파일 및 폴더에 이름이 서로 다르게 보이기 시작했다. 이전까지는 아무렇디 않게 사용했는데 어.." data-profile-image="https://tistory4.daumcdn.net/tistory/2804567/attach/003216925b5e4f8cb70c5a0fec09a26e" data-profile-name="louky" data-pc-url="https://louky0714.tistory.com/147" data-relative-pc-url="/147" data-blog-title="Nam's Daily">
+        <span class="ico_postbtn ico_share">공유하기</span>
+    </button>
+</div>
+                <div class="wrap_btn wrap_btn_etc" data-entry-id="147" data-entry-visibility="public" data-category-visibility="public">
+    <button type="button" class="btn_post btn_etc2"><span class="ico_postbtn ico_etc">글 요소</span></button>
+</div>
+    </div>
+    <button type="button" class="btn_menu_toolbar btn_subscription  #subscribe" data-blog-id="2804567" data-url="https://louky0714.tistory.com/147" data-device="web_pc">
+    <em class="txt_state">구독하기</em>
+    <strong class="txt_tool_id">Nam's Daily</strong>
+    <span class="img_common_tistory ico_check_type1"></span>
+</button>
+    <div class="postbtn_ccl" data-ccl-type="1">
+    <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/deed.ko" target="_blank" class="link_ccl" rel="license">
+        <span class="bundle_ccl">
+            <span class="ico_postbtn ico_ccl1">저작자표시</span><span class="ico_postbtn ico_ccl2">비영리</span><span class="ico_postbtn ico_ccl3">변경금지</span>        </span>
+    </a>
+</div>
+    <!--
+<rdf:RDF xmlns="http://web.resource.org/cc/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+    <Work rdf:about="">
+        <license rdf:resource="http://creativecommons.org/licenses/by-nc-nd/2.0/kr/" />
+    </Work>
+    <License rdf:about="http://creativecommons.org/licenses/by-nc-nd/">
+        <permits rdf:resource="http://web.resource.org/cc/Reproduction"/>
+        <permits rdf:resource="http://web.resource.org/cc/Distribution"/>
+        <requires rdf:resource="http://web.resource.org/cc/Notice"/>
+        <requires rdf:resource="http://web.resource.org/cc/Attribution"/>
+                        <prohibits rdf:resource="http://web.resource.org/cc/CommercialUse"/>
+            </License>
+</rdf:RDF>
+-->
+</div><div class="tt-plugin tt-share-entry-with-sns tt-sns-icon-alignment-left tt-sns-icon-size-big">
+	<div class="tt-sns-wrap" id="ttSnsWrap-147">
+		<ul class="tt-sns-service-default">
+			<li class="tt-sns-service-kakaostory"><a href="javascript:;" onclick="ShareEntryWithSNS.share('kakaostory', '147', '%5Bmac%5D%20iterm%20%ED%84%B0%EB%AF%B8%EB%84%90%EC%97%90%EC%84%9C%20%20%ED%95%9C%EA%B8%80%20%EA%B9%A8%EC%A7%90%28%EC%9E%90%EC%9D%8C%2C%EB%AA%A8%EC%9D%8C%20%EB%B6%84%EB%A6%AC%29');">카카오스토리</a></li>
+			<li class="tt-sns-service-twitter"><a href="javascript:;" onclick="ShareEntryWithSNS.share('twitter', '147', '%5Bmac%5D%20iterm%20%ED%84%B0%EB%AF%B8%EB%84%90%EC%97%90%EC%84%9C%20%20%ED%95%9C%EA%B8%80%20%EA%B9%A8%EC%A7%90%28%EC%9E%90%EC%9D%8C%2C%EB%AA%A8%EC%9D%8C%20%EB%B6%84%EB%A6%AC%29');">트위터</a></li>
+			<li class="tt-sns-service-facebook"><a href="javascript:;" onclick="ShareEntryWithSNS.share('facebook', '147', '%5Bmac%5D%20iterm%20%ED%84%B0%EB%AF%B8%EB%84%90%EC%97%90%EC%84%9C%20%20%ED%95%9C%EA%B8%80%20%EA%B9%A8%EC%A7%90%28%EC%9E%90%EC%9D%8C%2C%EB%AA%A8%EC%9D%8C%20%EB%B6%84%EB%A6%AC%29');">페이스북</a></li>
+		</ul>
+	</div>
+	<div class="tt-sns-clear"></div>
+</div>
+<div class="another_category another_category_color_gray">
+<h4>'<a href="/category/운영체제">운영체제</a>&nbsp;>&nbsp;<a href="/category/운영체제/MAC">MAC</a>' 카테고리의 다른 글</h4>
+<table>
+<tr>
+<th>
+<a href="/147?category=630757"  class ="current" >[mac] iterm 터미널에서  한글 깨짐(자음,모음 분리)</a>&nbsp;&nbsp;<span>(0)</span>
+</th>
+<td>
+2021.12.03</td>
+</tr>
+<tr>
+<th>
+<a href="/146?category=630757" >[mac] IntelliJ Idea 에서 키반복 안될때 &quot;ApplePressAndHoldEnabled&quot; 끄기</a>&nbsp;&nbsp;<span>(0)</span>
+</th>
+<td>
+2021.12.03</td>
+</tr>
+<tr>
+<th>
+<a href="/141?category=630757" >[Mac] oh my zsh설치</a>&nbsp;&nbsp;<span>(0)</span>
+</th>
+<td>
+2021.06.09</td>
+</tr>
+<tr>
+<th>
+<a href="/111?category=630757" >[Mac]맥북에서  Centos 부팅 USB만들기</a>&nbsp;&nbsp;<span>(0)</span>
+</th>
+<td>
+2020.10.21</td>
+</tr>
+<tr>
+<th>
+<a href="/38?category=630757" >[Mac] Mac OS에 X11설치하기</a>&nbsp;&nbsp;<span>(0)</span>
+</th>
+<td>
+2019.06.24</td>
+</tr>
+<tr>
+<th>
+<a href="/26?category=630757" >[MAC] iterm2 sound Off (사운드 끄기)</a>&nbsp;&nbsp;<span>(0)</span>
+</th>
+<td>
+2019.04.16</td>
+</tr>
+</table></div></div>
+                  </div>
+
+                  <!-- article-footer -->
+                  <div class="article-footer">
+
+                    
+                      <!-- article-tag -->
+                      <div class="article-tag">
+                        <h3 class="title-footer">Tag</h3>
+                        <div class="box-tag"><a href="/tag/iterm%ED%95%9C%EA%B8%80%20%EA%B9%A8%EC%A7%90"  rel="tag">iterm한글 깨짐</a>,
+<a href="/tag/%EB%AA%A8%EC%9D%8C%20%EB%B6%84%EB%A6%AC"  rel="tag">모음 분리</a>,
+<a href="/tag/%EC%9E%90%EC%9D%8C%20%EB%AA%A8%EC%9D%8C%20%EB%B6%84%EB%A6%AC"  rel="tag">자음 모음 분리</a>,
+<a href="/tag/%EC%9E%90%EC%9D%8C%20%EB%B6%84%EB%A6%AC"  rel="tag">자음 분리</a>,
+<a href="/tag/%ED%84%B0%EB%AF%B8%EB%84%90%EA%B3%BC%ED%8C%8C%EC%9D%B8%EB%93%9C%20%EC%B0%BD%20%ED%95%9C%EA%B8%80%20%EB%8B%A4%EB%A6%84"  rel="tag">터미널과파인드 창 한글 다름</a>,
+<a href="/tag/%ED%95%9C%EA%B8%80%20%EB%B6%84%EB%A6%AC"  rel="tag">한글 분리</a>,
+<a href="/tag/%ED%95%9C%EA%B8%80%20%ED%8E%BC%EC%B3%90%EC%A7%90"  rel="tag">한글 펼쳐짐</a></div>
+                      </div>
+                      <!-- // area_tag -->
+                    
+
+                    <div class="article-page">
+                      <h3 class="title-footer">'운영체제/MAC'의 다른글</h3>
+                      <ul>
+                        <li>
+                          
+                            <a href="/146"><span>이전글</span><strong>[mac] IntelliJ Idea 에서 키반복 안될때 &quot;ApplePressAndHoldEnabled&quot; 끄기</strong></a>
+                          
+                        </li>
+                        <li><span>현재글</span><strong>[mac] iterm 터미널에서  한글 깨짐(자음,모음 분리)</strong></li>
+                        <li>
+                          
+                            <a href="/148"><span>다음글</span><strong>[python3] &quot;TypeError: Object of type date is not JSON serializable&quot;  Error 발생시</strong></a>
+                          
+                        </li>
+                      </ul>
+                    </div>
+
+                    
+                      <!-- article-related -->
+                      <div class="article-related">
+                        <h3 class="title-footer">관련글</h3>
+                        <ul class="list-related">
+                          
+                            <li class="item-related">
+                              <a href="/146?category=630757" class="link-related">
+                                <span class="thumnail" style="background-image:url('')"></span>
+                                <div class="box_content">
+                                  <strong>[mac] IntelliJ Idea 에서 키반복 안될때 &quot;ApplePressAndHoldEnabled&quot; 끄기</strong>
+                                  <span class="date">2021.12.03</span>
+                                </div>
+                              </a>
+                            </li>
+                          
+                            <li class="item-related">
+                              <a href="/141?category=630757" class="link-related">
+                                <span class="thumnail" style="background-image:url('https://blog.kakaocdn.net/dn/lX4JW/btq6RbPuL3W/LaqlGx8RaWc1E6C100YXLK/img.png')"></span>
+                                <div class="box_content">
+                                  <strong>[Mac] oh my zsh설치</strong>
+                                  <span class="date">2021.06.09</span>
+                                </div>
+                              </a>
+                            </li>
+                          
+                            <li class="item-related">
+                              <a href="/111?category=630757" class="link-related">
+                                <span class="thumnail" style="background-image:url('https://blog.kakaocdn.net/dn/xylqa/btqLvfqDHha/8MMLAh6nvtkXnn1cbftbFK/img.png')"></span>
+                                <div class="box_content">
+                                  <strong>[Mac]맥북에서  Centos 부팅 USB만들기</strong>
+                                  <span class="date">2020.10.21</span>
+                                </div>
+                              </a>
+                            </li>
+                          
+                            <li class="item-related">
+                              <a href="/38?category=630757" class="link-related">
+                                <span class="thumnail" style="background-image:url('https://blog.kakaocdn.net/dn/cqJfrm/btqwi1AU18P/tFCt3u4JnrTVgOsuJfWrc0/img.png')"></span>
+                                <div class="box_content">
+                                  <strong>[Mac] Mac OS에 X11설치하기</strong>
+                                  <span class="date">2019.06.24</span>
+                                </div>
+                              </a>
+                            </li>
+                          
+                        </ul>
+                      </div>
+                      <!-- // article-related -->
+                    
+
+                    <!-- article-reply -->
+                    <div class="article-reply">
+
+                      <div class="box-total">
+                        <a href="#rp" onclick="">댓글 <span><span id="commentCount147_0">0</span></span></a>
+                      </div>
+
+                      <div id="entry147Comment">
+                        <!-- area-reply -->
+                        <div class="area-reply">
+                          
+                        </div>
+                        <!-- // area-reply -->
+
+                        <form method="post" action="/comment/add/147" onsubmit="return false" style="margin: 0">
+                          <!-- reply_write -->
+                          <form method="post">
+                            <div class="area-write">
+                              
+                                
+                                  <div class="box-account">
+                                    <input type="text" name="name" value=""
+                                      title="이름" placeholder="이름" />
+                                    <input type="password" name="password" value=""
+                                      title="비밀번호" maxlength="12" placeholder="비밀번호" />
+                                  </div>
+                                
+                              
+                              <div class="box-textarea">
+                                <label for="comment" class="screen_out">댓글</label>
+                                <textarea id="comment" name="comment" placeholder="내용을 입력해주세요."></textarea>
+                              </div>
+
+                              <div class="box-write">
+                                <label class="xe-label">
+                                  <input type="checkbox" name="" id="secret">
+                                  <span class="xe-input-helper"></span>
+                                  <span class="xe-label-text">비밀글</span>
+                                </label>
+                                <button type="button" class="btn_register" onclick="addComment(this, 147); return false;">등록</button>
+                              </div>
+
+                            </div>
+                          </form>
+                          <!-- // reply_write -->
+                        </form>
+                      </div><script type="text/javascript">loadedComments[147]=true;findFragmentAndHighlight(147)</script>
+
+                    </div>
+                    <!-- // article-reply -->
+
+                  </div>
+                  <!-- // article-footer -->
+
+                
+              
+              <!-- // s_article_rep -->
+
+              <!-- s_article_protected / 개별 보호글 페이지 -->
+              
+              <!-- // s_article_protected -->
+
+              <!-- s_page_rep -->
+              
+              <!-- // s_page_rep -->
+
+              <!-- s_notice_rep / 개별 공지사항 페이지 -->
+							
+
+              <!-- // s_notice_rep -->
+
+              <!-- s_tag / 개별 태그 페이지-->
+              
+              <!-- // s_tag -->
+
+              <!-- s_local / 개별 위치로그 페이지 -->
+              
+              <!-- // s_local -->
+
+              <!-- s_guest  / 개별 방명록 페이지 -->
+              
+              <!-- // s_guest -->
+
+              <!-- s_paging -->
+              
+                <!-- area_paging -->
+                <div class="area-paging">
+                  <a  href='/148' class="link_page link_prev ">
+                    <span class="xi-angle-left-min">
+                      <span class="screen_out">
+                        이전
+                      </span>
+                    </span>
+                  </a>
+                  <div class="paging_num">
+                    
+                      <a  href='/162' class="link_num"><span >1</span></a>
+                    
+                      <a  class="link_num"><span >&middot;&middot;&middot;</span></a>
+                    
+                      <a  href='/151' class="link_num"><span >12</span></a>
+                    
+                      <a  href='/150' class="link_num"><span >13</span></a>
+                    
+                      <a  href='/149' class="link_num"><span >14</span></a>
+                    
+                      <a  href='/148' class="link_num"><span >15</span></a>
+                    
+                      <a  class="link_num"><span class="selected">16</span></a>
+                    
+                      <a  href='/146' class="link_num"><span >17</span></a>
+                    
+                      <a  href='/145' class="link_num"><span >18</span></a>
+                    
+                      <a  href='/144' class="link_num"><span >19</span></a>
+                    
+                      <a  href='/141' class="link_num"><span >20</span></a>
+                    
+                      <a  class="link_num"><span >&middot;&middot;&middot;</span></a>
+                    
+                      <a  href='/1' class="link_num"><span >143</span></a>
+                    
+                  </div>
+                  <a  href='/146' class="link_page link_next ">
+                    <span class="xi-angle-right-min">
+                      <span class="screen_out">
+                        다음
+                      </span>
+                    </span>
+                  </a>
+                </div>
+                <!-- // area_paging -->
+                <!-- area-paging-more -->
+                <div class="area-paging-more">
+                    <a href="#page-more" class="paging-more">더보기</a>
+                </div>
+                <!-- // end area-paging-more -->
+              
+              <!-- // s_paging -->
+
+            </div>
+            <!-- area-view -->
+
+            <!-- s_cover_group / 커버 리스트 -->
+            
+            <!-- // s_cover_group -->
+
+          </div>
+          <!-- // area-main -->
+
+          <!-- aside -->
+          <aside class="area-aside">
+            <!-- sidebar 01 -->
+            
+                <!-- 프로필 -->
+								<div class="box-profile " style="background-image:url('');">
+									<div class="inner-box">
+										<img src="https://tistory4.daumcdn.net/tistory/2804567/attach/003216925b5e4f8cb70c5a0fec09a26e" class="img-profile" alt="프로필사진">
+										<p class="text-profile">일상을 기억하다...</p>
+										<!-- <button type="button" class="button-subscription">구독하기</button> -->
+										<div class="box-sns">
+											
+											
+											
+											
+										</div>
+									</div>
+								</div>
+              
+                <!-- 태그 -->
+                <div class="box-tag">
+                  <h3 class="title-sidebar">Tag</h3>
+                  <div class="box_tag">
+                    
+                      <a href="/tag/linux%20zabbix" class="cloud1">linux zabbix,</a>
+                    
+                      <a href="/tag/glance%20install" class="cloud1">glance install,</a>
+                    
+                      <a href="/tag/The%20requested%20URL%20/auth/login/%20was%20not%20found%20on%20this%20server." class="cloud1">The requested URL /auth/login/ was not found on this server.,</a>
+                    
+                      <a href="/tag/hcl%20%EC%A4%84%EB%B0%94%EA%BF%88" class="cloud5">hcl 줄바꿈,</a>
+                    
+                      <a href="/tag/omreport" class="cloud1">omreport,</a>
+                    
+                      <a href="/tag/%EC%82%AC%EC%9A%A9%EC%9E%90%20%EC%9E%85%EB%A0%A5%20%EC%A7%80%EC%9A%B0%EA%B8%B0" class="cloud5">사용자 입력 지우기,</a>
+                    
+                      <a href="/tag/virt-install" class="cloud1">virt-install,</a>
+                    
+                      <a href="/tag/openstack%20keystone" class="cloud1">openstack keystone,</a>
+                    
+                      <a href="/tag/terraform%20line" class="cloud5">terraform line,</a>
+                    
+                      <a href="/tag/Expected%20a%20closing%20parenthesis%20to%20terminate%20the%20expression." class="cloud5">Expected a closing parenthesis to terminate the expression.,</a>
+                    
+                      <a href="/tag/terraform%20%EC%A4%84%EB%B0%94%EA%BF%88" class="cloud5">terraform 줄바꿈,</a>
+                    
+                      <a href="/tag/kvm%20console%20%EB%B9%A0%EC%A0%B8%EB%82%98%EC%98%A4%EA%B8%B0" class="cloud1">kvm console 빠져나오기,</a>
+                    
+                      <a href="/tag/terraform%20else" class="cloud5">terraform else,</a>
+                    
+                      <a href="/tag/KVM%20VM%EC%83%9D%EC%84%B1" class="cloud1">KVM VM생성,</a>
+                    
+                      <a href="/tag/openstack%20%22Not%20Found%22" class="cloud1">openstack &quot;Not Found&quot;,</a>
+                    
+                      <a href="/tag/bash%20shell%20keyboard%20input%20backspace%20key" class="cloud5">bash shell keyboard input backspace key,</a>
+                    
+                      <a href="/tag/if%EB%AC%B8%20terraform" class="cloud5">if문 terraform,</a>
+                    
+                      <a href="/tag/terraform%20if%EB%AC%B8" class="cloud5">terraform if문,</a>
+                    
+                      <a href="/tag/terraform%20install" class="cloud1">terraform install,</a>
+                    
+                      <a href="/tag/nova%20install" class="cloud1">nova install,</a>
+                    
+                  </div>
+                </div>
+              
+                <!-- 방문자수 -->
+                <div class="box-visit">
+                  <h3 class="title-sidebar"><span class="blind">방문자수</span>Total</h3>
+                  <p class="text-total">293,227</p>
+                  <ul>
+                    <li class="item-visit">Today : 294</li>
+                    <li class="item-visit">Yesterday : 63</li>
+                  </ul>
+                </div>
+              
+
+            <!-- sidebar 02 -->
+            
+                <s_if_var_sidebarcategoryuse>
+                  <!-- 카테고리 메뉴 -->
+                  <div class="box-category box-category-2depth">
+                    <nav>
+                      <ul class="tt_category">
+	<li class="">
+		<a class="link_tit" href="/category">
+			분류 전체보기							<span class="c_cnt">(143)</span>
+			
+					</a>
+
+				<ul class="category_list">
+							<li class="">
+					<a class="link_item" href="/category/IT">
+						IT													<span class="c_cnt">(33)</span>
+						
+											</a>
+
+										<ul class="sub_category_list">
+													<li class="">
+								<a class="link_sub_item" href="/category/IT/Openstack">
+									Openstack
+																			<span class="c_cnt">(22)</span>
+									
+																	</a>
+							</li>
+													<li class="">
+								<a class="link_sub_item" href="/category/IT/Container">
+									Container
+																			<span class="c_cnt">(5)</span>
+									
+																	</a>
+							</li>
+													<li class="">
+								<a class="link_sub_item" href="/category/IT/%EB%B9%85%EB%8D%B0%EC%9D%B4%ED%84%B0">
+									빅데이터
+																			<span class="c_cnt">(1)</span>
+									
+																	</a>
+							</li>
+													<li class="">
+								<a class="link_sub_item" href="/category/IT/Terraform">
+									Terraform
+																			<span class="c_cnt">(4)</span>
+									
+																	</a>
+							</li>
+													<li class="">
+								<a class="link_sub_item" href="/category/IT/Public%20Cloud">
+									Public Cloud
+																			<span class="c_cnt">(1)</span>
+									
+																	</a>
+							</li>
+											</ul>
+					
+				</li>
+							<li class="">
+					<a class="link_item" href="/category/Script%20Language">
+						Script Language													<span class="c_cnt">(25)</span>
+						
+											</a>
+
+										<ul class="sub_category_list">
+													<li class="">
+								<a class="link_sub_item" href="/category/Script%20Language/Bash%20Shell%20script%20">
+									Bash Shell script
+																			<span class="c_cnt">(6)</span>
+									
+																	</a>
+							</li>
+													<li class="">
+								<a class="link_sub_item" href="/category/Script%20Language/Python2.x">
+									Python2.x
+																			<span class="c_cnt">(0)</span>
+									
+																	</a>
+							</li>
+													<li class="">
+								<a class="link_sub_item" href="/category/Script%20Language/Python3..x">
+									Python3..x
+																			<span class="c_cnt">(18)</span>
+									
+																	</a>
+							</li>
+													<li class="">
+								<a class="link_sub_item" href="/category/Script%20Language/Go%20Lang">
+									Go Lang
+																			<span class="c_cnt">(0)</span>
+									
+																	</a>
+							</li>
+											</ul>
+					
+				</li>
+							<li class="">
+					<a class="link_item" href="/category/%EC%9A%B4%EC%98%81%EC%B2%B4%EC%A0%9C">
+						운영체제													<span class="c_cnt">(70)</span>
+						
+											</a>
+
+										<ul class="sub_category_list">
+													<li class="">
+								<a class="link_sub_item" href="/category/%EC%9A%B4%EC%98%81%EC%B2%B4%EC%A0%9C/Window">
+									Window
+																			<span class="c_cnt">(11)</span>
+									
+																	</a>
+							</li>
+													<li class="">
+								<a class="link_sub_item" href="/category/%EC%9A%B4%EC%98%81%EC%B2%B4%EC%A0%9C/MAC">
+									MAC
+																			<span class="c_cnt">(9)</span>
+									
+																	</a>
+							</li>
+													<li class="">
+								<a class="link_sub_item" href="/category/%EC%9A%B4%EC%98%81%EC%B2%B4%EC%A0%9C/Linux">
+									Linux
+																			<span class="c_cnt">(30)</span>
+									
+																	</a>
+							</li>
+													<li class="">
+								<a class="link_sub_item" href="/category/%EC%9A%B4%EC%98%81%EC%B2%B4%EC%A0%9C/UBUNTU">
+									UBUNTU
+																			<span class="c_cnt">(4)</span>
+									
+																	</a>
+							</li>
+													<li class="">
+								<a class="link_sub_item" href="/category/%EC%9A%B4%EC%98%81%EC%B2%B4%EC%A0%9C/RHEL%26CENTOS">
+									RHEL&amp;CENTOS
+																			<span class="c_cnt">(14)</span>
+									
+																	</a>
+							</li>
+											</ul>
+					
+				</li>
+							<li class="">
+					<a class="link_item" href="/category/DB">
+						DB													<span class="c_cnt">(7)</span>
+						
+											</a>
+
+										<ul class="sub_category_list">
+													<li class="">
+								<a class="link_sub_item" href="/category/DB/Mysql">
+									Mysql
+																			<span class="c_cnt">(7)</span>
+									
+																	</a>
+							</li>
+											</ul>
+					
+				</li>
+							<li class="">
+					<a class="link_item" href="/category/%EC%82%AC%EB%B6%80%EC%9E%91%EC%82%AC%EB%B6%80%EC%9E%91">
+						사부작사부작													<span class="c_cnt">(3)</span>
+						
+											</a>
+
+					
+				</li>
+							<li class="">
+					<a class="link_item" href="/category/Food%27s">
+						Food's													<span class="c_cnt">(0)</span>
+						
+											</a>
+
+					
+				</li>
+							<li class="">
+					<a class="link_item" href="/category/DailyLife~">
+						DailyLife~													<span class="c_cnt">(4)</span>
+						
+											</a>
+
+					
+				</li>
+					</ul>
+			</li>
+</ul>
+                    </nav>
+                  </div>
+                </s_if_var_sidebarcategoryuse>
+              
+                <!-- 최근글과 인기글-->
+                <div class="box-recent">
+                  <h3 class="title-sidebar blind">최근글과 인기글</h3>
+                  <ul class="tab-recent">
+                    <li class="tab-button recent_button on"><a class="tab-button" href="#" onclick="return false;">최근글</a></li>
+                    <li class="tab-button sidebar_button"><a class="tab-button" href="#" onclick="return false;">인기글</a></li>
+                  </ul>
+                  <ul class="list-recent">
+                    
+                      <li>
+                        <a href="/162" class="link-recent">
+                          
+                            <p class="thumbnail" style="background-image:url('https://img1.daumcdn.net/thumb/R750x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FAygSP%2FbtrCrf6ILQr%2FSK2Rwa0NsngXaG8KWx3soK%2Fimg.png')"></p>
+                          
+                          <div class="box-recent">
+                            <strong>[Terraform] Terraform tf파일내에서  줄바꿈 방법</strong>
+                            <span>2022.05.17 16:55</span>
+                          </div>
+                        </a>
+                      </li>
+                    
+
+                      <li>
+                        <a href="/161" class="link-recent">
+                          
+                            <p class="thumbnail" style="background-image:url('https://img1.daumcdn.net/thumb/R750x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2Fbs5oPL%2FbtryBsWrtaU%2FIPjYba83K3vjK81zC6aHoK%2Fimg.png')"></p>
+                          
+                          <div class="box-recent">
+                            <strong>[BASH Shell] Shell script사용자 입력 받기 - backspace 키 사용하기</strong>
+                            <span>2022.04.06 12:26</span>
+                          </div>
+                        </a>
+                      </li>
+                    
+
+                      <li>
+                        <a href="/160" class="link-recent">
+                          
+                          <div class="box-recent">
+                            <strong>[BASH Shell] case  문( 활용 포함)</strong>
+                            <span>2022.04.05 14:53</span>
+                          </div>
+                        </a>
+                      </li>
+                    
+
+                      <li>
+                        <a href="/159" class="link-recent">
+                          
+                          <div class="box-recent">
+                            <strong>[AWS:aws cli] AMI copy (이미지 다른 리전으로 복사)</strong>
+                            <span>2022.03.28 17:50</span>
+                          </div>
+                        </a>
+                      </li>
+                    
+
+                      <li>
+                        <a href="/158" class="link-recent">
+                          
+                            <p class="thumbnail" style="background-image:url('https://img1.daumcdn.net/thumb/R750x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FkDWgm%2FbtrxHX378F6%2FZUENIiofXETJrXmK11QPI0%2Fimg.png')"></p>
+                          
+                          <div class="box-recent">
+                            <strong>[docker-compose] 자동 완성 - bash-completion</strong>
+                            <span>2022.03.28 15:13</span>
+                          </div>
+                        </a>
+                      </li>
+                    
+                  </ul>
+
+                  <ul class="list-recent list-tab" style="display: none">
+                    
+                      <li>
+                        <a href="/131" class="link-recent">
+                          
+                          <div class="box-recent">
+                            <strong>[Docker] Ubuntu 18.04.x LTS에 docker 설치 하기</strong>
+                            <span>2021.01.07 15:26</span>
+                          </div>
+                        </a>
+                      </li>
+                    
+
+                      <li>
+                        <a href="/112" class="link-recent">
+                          
+                          <div class="box-recent">
+                            <strong>[Linux] Apache https로 redirect 예외처리 (특정 URL만 redirect되지⋯</strong>
+                            <span>2020.10.26 18:22</span>
+                          </div>
+                        </a>
+                      </li>
+                    
+
+                      <li>
+                        <a href="/140" class="link-recent">
+                          
+                            <p class="thumbnail" style="background-image:url('https://img1.daumcdn.net/thumb/R750x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FdpJkNW%2Fbtq6SlRMaAi%2FlQSnW9pGiMaLEnFvugYN71%2Fimg.png')"></p>
+                          
+                          <div class="box-recent">
+                            <strong>[docker] mac에 docker설치 하기 (인텔칩셋)</strong>
+                            <span>2021.06.09 14:16</span>
+                          </div>
+                        </a>
+                      </li>
+                    
+
+                      <li>
+                        <a href="/115" class="link-recent">
+                          
+                          <div class="box-recent">
+                            <strong>[Linux] dell omsa command (옴사 명령어) - omreport</strong>
+                            <span>2020.11.05 01:29</span>
+                          </div>
+                        </a>
+                      </li>
+                    
+
+                      <li>
+                        <a href="/132" class="link-recent">
+                          
+                          <div class="box-recent">
+                            <strong>[Docker] mysql docker로 실행하기..</strong>
+                            <span>2021.03.04 15:13</span>
+                          </div>
+                        </a>
+                      </li>
+                    
+                  </ul>
+                </div>
+              
+                <!-- 최근댓글 -->
+                <div class="box-reply">
+                  <h3 class="title-sidebar">최근댓글</h3>
+                  <ul class="list-sidebar">
+                    
+                      <li>
+                        <a href="/91#comment13237318" class="link-sidebar">
+                          <strong>갑자기 원격프로그램 블랙스크린에 빡쳐서 고생하⋯</strong>
+                          <p>ㅇㅇ</p>
+                        </a>
+                      </li>
+                    
+
+                      <li>
+                        <a href="/148#comment13123381" class="link-sidebar">
+                          <strong>도움 되었습니다, 감사합니다!</strong>
+                          <p>yrohh_</p>
+                        </a>
+                      </li>
+                    
+
+                      <li>
+                        <a href="/45#comment12980951" class="link-sidebar">
+                          <strong>[승인대기]</strong>
+                          <p>louky</p>
+                        </a>
+                      </li>
+                    
+                  </ul>
+                </div>
+              
+                <!-- 공지사항 -->
+                
+                  <div class="box-notice">
+                    <h3 class="title-sidebar">공지사항</h3>
+                    <ul class="list-sidebar">
+                      
+                    </ul>
+                  </div>
+                
+              
+                <!-- 페이스북 트위터 플러그인 -->
+                <div class="box-plugins">
+                  <h3 class="title-sidebar blind">페이스북 트위터 플러그인</h3>
+                  <ul class="tab-sns">
+                    <li class="tab-button item-facebook on"><a class="tab-button" href="#" onclick="return false;">Facebook</a></li>
+                    <li class="tab-button item-twitter"><a class="tab-button" href="#" onclick="return false;">Twitter</a></li>
+                  </ul>
+
+                  <div class="plugin-facebook">
+                    <div id="fb-root"></div>
+                      <script>(function(d, s, id) {
+                        var js, fjs = d.getElementsByTagName(s)[0];
+                        if (d.getElementById(id)) return;
+                        js = d.createElement(s); js.id = id;
+                        js.src = '//connect.facebook.net/ko_KR/sdk.js#xfbml=1&version=v3.2&appId=360877073936113&autoLogAppEvents=1';
+                        fjs.parentNode.insertBefore(js, fjs);
+                      }(document, 'script', 'facebook-jssdk'));</script>
+                    <div class="fb-page" data-href="" data-tabs="timeline" data-small-header="true" data-adapt-container-width="true" data-hide-cover="true" data-show-facepile="false"><blockquote cite="" class="fb-xfbml-parse-ignore"><a href=""></a></blockquote>
+                    </div>
+                  </div>
+
+                  <div class="plugin-twitter" style="display: none;">
+                    <a class="twitter-timeline" href=""></a> <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+                  </div>
+                </div>
+              
+                <!-- 글 보관함 -->
+                <div class="box-archive">
+                  <h3 class="title-sidebar">Archives</h3>
+                  <ul class="list-sidebar">
+                    
+                      <li><a href="/archive/202205" class="link-sidebar">2022/05</a></li>
+                    
+
+                      <li><a href="/archive/202204" class="link-sidebar">2022/04</a></li>
+                    
+
+                      <li><a href="/archive/202203" class="link-sidebar">2022/03</a></li>
+                    
+
+                      <li><a href="/archive/202202" class="link-sidebar">2022/02</a></li>
+                    
+                  </ul>
+                </div>
+              
+                <!-- 달력 모듈-->
+                <div class="box-calendar">
+                  <h3 class="title-sidebar"><span class="blind">Calendar</span></h3>
+                  <div class="inner-calendar">		<table class="tt-calendar" cellpadding="0" cellspacing="1" style="width: 100%; table-layout: fixed">
+			<caption class="cal_month">
+				<a href="/archive/202207" title="1개월 앞의 달력을 보여줍니다.">&laquo;</a>
+				&nbsp;
+				<a href="/archive/202208"
+				   title="현재 달의 달력을 보여줍니다.">2022/08</a>
+				&nbsp;
+				<a href="/archive/202209" title="1개월 뒤의 달력을 보여줍니다.">&raquo;</a>
+			</caption>
+			<thead>
+			<tr>
+				<th class="cal_week2">일</th>
+				<th class="cal_week1">월</th>
+				<th class="cal_week1">화</th>
+				<th class="cal_week1">수</th>
+				<th class="cal_week1">목</th>
+				<th class="cal_week1">금</th>
+				<th class="cal_week1">토</th>
+			</tr>
+			</thead>
+			<tbody>
+					<tr class="cal_week">
+			<td class="cal_day1">&nbsp;</td>
+			<td class=" cal_day cal_day3">1</td>
+			<td class=" cal_day cal_day3">2</td>
+			<td class=" cal_day cal_day3">3</td>
+			<td class=" cal_day cal_day3">4</td>
+			<td class=" cal_day cal_day3">5</td>
+			<td class=" cal_day cal_day3">6</td>
+		</tr>
+		<tr class="cal_week">
+			<td class=" cal_day cal_day_sunday cal_day3">7</td>
+			<td class=" cal_day cal_day3">8</td>
+			<td class=" cal_day cal_day3">9</td>
+			<td class=" cal_day cal_day3">10</td>
+			<td class=" cal_day cal_day3">11</td>
+			<td class=" cal_day cal_day3">12</td>
+			<td class=" cal_day cal_day3">13</td>
+		</tr>
+		<tr class="cal_week">
+			<td class=" cal_day cal_day_sunday cal_day3">14</td>
+			<td class=" cal_day cal_day3">15</td>
+			<td class=" cal_day cal_day3">16</td>
+			<td class=" cal_day cal_day3">17</td>
+			<td class=" cal_day cal_day3">18</td>
+			<td class=" cal_day cal_day3">19</td>
+			<td class=" cal_day cal_day3">20</td>
+		</tr>
+		<tr class="cal_week cal_current_week">
+			<td class=" cal_day cal_day_sunday cal_day3">21</td>
+			<td class=" cal_day cal_day4">22</td>
+			<td class=" cal_day cal_day3">23</td>
+			<td class=" cal_day cal_day3">24</td>
+			<td class=" cal_day cal_day3">25</td>
+			<td class=" cal_day cal_day3">26</td>
+			<td class=" cal_day cal_day3">27</td>
+		</tr>
+		<tr class="cal_week">
+			<td class=" cal_day cal_day_sunday cal_day3">28</td>
+			<td class=" cal_day cal_day3">29</td>
+			<td class=" cal_day cal_day3">30</td>
+			<td class=" cal_day cal_day3">31</td>
+			<td class="cal_day2">&nbsp;</td>
+			<td class="cal_day2">&nbsp;</td>
+			<td class="cal_day2">&nbsp;</td>
+		</tr>
+			</tbody>
+		</table>
+		</div>
+                </div>
+                                      <div class="revenue_unit_wrap ">
+               <div class="revenue_unit_item adsense  responsive" >
+                    <div class="revenue_unit_info">반응형</div>
+                    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+                    <ins class="adsbygoogle" style="display:block;" data-ad-host="ca-host-pub-9691043933427338" data-ad-client="ca-pub-5831141483287443" data-ad-format="auto"></ins>
+                    <script>(adsbygoogle = window.adsbygoogle || []).push({}); </script>
+               </div>
+            </div>
+
+						<!-- search-bar for MOBILE -->
+						<div class="util use-sidebar">
+							<div class="search">
+                <label for="searchInput" class="screen_out">블로그 내 검색</label>
+								<input id="searchInput" class="searchInput" type="text" name="search" value="" placeholder="검색내용을 입력하세요." onkeypress="if (event.keyCode == 13) { requestSearch('.util.use-sidebar .searchInput') }">
+							</div>
+						</div>
+
+          </aside>
+          <!-- // aside -->
+
+        </main>
+        <!-- // main -->
+      </div>
+      <!-- // container -->
+
+    
+
+    <!-- footer -->
+      <footer id="footer">
+
+        <div class="inner-footer">
+          <div class="box-policy">
+            
+            
+            
+          </div>
+          <div>
+            <p class="text-info">Copyright © Kakao Corp. All rights reserved.</p>
+            <address></address>
+          </div>
+
+          <div class="box-site">
+            <button type="button" data-toggle="xe-dropdown" aria-expanded="false">관련사이트</button>
+            <ul>
+              
+                <li class="on"><a href="http://withcolours.tistory.com" target="_blank">What's your colour?</a></li>
+              
+            </ul>
+          </div>
+        </div>
+
+      </footer>
+      <!-- // footer -->
+
+    </div>
+    <!-- // wrap -->
+  
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.3/styles/darcula.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.3/highlight.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.3/languages/delphi.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.3/languages/php.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.3/languages/python.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.3/languages/r.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.3/languages/ruby.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.3/languages/scala.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.3/languages/shell.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.3/languages/sql.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.3/languages/swift.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.3/languages/typescript.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.3/languages/vbnet.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script><script src="//search1.daumcdn.net/search/statics/common/js/g/search_dragselection.min.js"></script>
+
+	<script>
+	    lightbox.option({
+			"fadeDuration": 200,
+		    "resizeDuration": 200,
+		    "wrapAround": false,
+			"albumLabel": "%1 / %2",
+			"fitImagesInViewport":true ,
+			"stopEvent": false
+	    })
+	</script>            <script type="text/javascript" src="//t1.daumcdn.net/tiara/js/v1/tiara.min.js"></script>
+            <script type="text/javascript">window.tiara = {"svcDomain":"user.tistory.com","section":"\uae00\ubdf0","trackPage":"\uae00\ubdf0_\ubcf4\uae30","page":"\uae00\ubdf0","key":"2804567-147","customProps":{"userId":0,"blogId":"2804567","role":"guest","filterTarget":false,"trackPage":"\uae00\ubdf0_\ubcf4\uae30","entryId":"147"},"entry":{"entryId":"147","categoryName":"MAC","categoryId":"630757","author":"3706379","authorId":"3706379","image":"3706379","plink":"\/147","tags":["iterm\ud55c\uae00 \uae68\uc9d0","\ubaa8\uc74c \ubd84\ub9ac","\uc790\uc74c \ubaa8\uc74c \ubd84\ub9ac","\uc790\uc74c \ubd84\ub9ac","\ud130\ubbf8\ub110\uacfc\ud30c\uc778\ub4dc \ucc3d \ud55c\uae00 \ub2e4\ub984","\ud55c\uae00 \ubd84\ub9ac","\ud55c\uae00 \ud3bc\uccd0\uc9d0"],"key":"2804567-147"},"sentryDsn":"https:\/\/a53520229cd744e798d42900d76b0e2a@aem-ingest.onkakao.net\/713","kakaoAppKey":"b8aef3eeb03fa312b81795386484f051","appUserId":null};</script>
+            <script type="text/javascript" src="https://t1.daumcdn.net/tistory_admin/assets/blog/tistory-5ace86dc6dc2ad99c6af7108e9e608d1ced4fac5/blogs/script/tiara/tiara.min.js?_version_=tistory-5ace86dc6dc2ad99c6af7108e9e608d1ced4fac5" defer></script>
+                        <script type="text/javascript">
+                window.roosevelt_params_queue = window.roosevelt_params_queue || [{channel_id: 'dk', channel_label: 'tistory'}];
+            </script>
+            <script type="text/javascript" src="//t1.daumcdn.net/midas/rt/dk_bt/roosevelt_dk_bt.js" async></script><script type="text/javascript">if(window.console!=undefined){setTimeout(console.log.bind(console,"%cTISTORY","font:8em Arial;color:#EC6521;font-weight:bold"),0);setTimeout(console.log.bind(console,"%c  나를 표현하는 블로그","font:2em sans-serif;color:#333;"),0);}</script><iframe style="position:absolute;width:1px;height:1px;left:-100px;top:-100px" src="//louky0714.tistory.com/api" id="editEntry"></iframe><div id="tistoryEtcLayer" class="layer_post"></div><div id="tistorySnsLayer" class="layer_post"></div></body>
+</html>

@@ -1,6 +1,5 @@
 package com.bitcamp.onemoaproject.service;
 
-
 import com.bitcamp.onemoaproject.dao.FaqDao;
 import com.bitcamp.onemoaproject.vo.Faq;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,10 +25,8 @@ public class DefaultFaqService implements FaqService {
   public boolean update(Faq faq) throws Exception {
     // 1) 게시글 변경
     if (faqDao.update(faq) == 0) {
-      System.out.println("update실패!!(if false)");
       return false;
     }
-    System.out.println("update완료!!(if true)");
     return true;
   }
 

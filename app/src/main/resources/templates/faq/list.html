@@ -17,13 +17,14 @@
           </tr>
         <tr>
 
-    <tr data-th-each="faq : ${faqs}">
-        <td data-th-text="${faq.no}">100</td>
+    <tr data-th-each="faq, state : ${faqs}">
+        <td data-th-text="${state.count}">100</td>
         <td>
             <a href='detail?no=1'
                data-th-href="@{detail(no=${faq.no})}"
                data-th-text="${faq.title == ''} ? '(제목없음)' : ${faq.title}">제목</a>
         </td>
+
             </td>
          </tr>
         </table>

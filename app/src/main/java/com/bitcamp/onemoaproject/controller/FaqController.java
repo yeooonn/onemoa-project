@@ -61,8 +61,6 @@ public class FaqController {
 
   @PostMapping("update")
   public String update(Faq faq) throws Exception {
-    System.out.println("faq/update 호출!");
-    System.out.println("faqService.update(faq)");
     faqService.update(faq);
 
     return "redirect:list";
