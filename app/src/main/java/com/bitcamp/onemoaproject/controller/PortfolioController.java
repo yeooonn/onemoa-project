@@ -34,17 +34,17 @@ public class PortfolioController {
     this.sc = sc;
   }
 
-  @GetMapping("portfolioForm")
-  public String portfolioForm() {
-    return "portfolio/portfolioForm";
+  @GetMapping("portfolio1")
+  public String portfolio1() {
+    return "portfolio/portfolio1";
   }
 
   @GetMapping("portfolioList")
   public String list(Model model, HttpSession session) throws Exception {
     Member loginMember = (Member) session.getAttribute("loginMember");
     model.addAttribute("portfolios", portfolioService.list(loginMember.getNo()));
-    model.getAttribute("portfolios");
-    System.out.println(model.getAttribute("portfolios"));
+    //    model.getAttribute("portfolios");
+    //    System.out.println(model.getAttribute("portfolios"));
     return "portfolio/portfolioList";
   }
 
@@ -71,10 +71,28 @@ public class PortfolioController {
 
     Map map = new HashMap();
     map.put("portfolio", portfolio);
-    map.get("portfolio");
-    System.out.println(map.get("portfolio"));
+    //    map.get("portfolio");
+    //    System.out.println(map.get("portfolio"));
     return map;
   }
+
+  @GetMapping("firstportfolio")
+  public Map firstportfolio(Model model, HttpSession session, int ptNo) throws Exception {
+    Member loginMember = (Member) session.getAttribute("loginMember");
+    model.addAttribute("portfolios", portfolioService.list(loginMember.getNo()));
+    Portfolio portfolio = portfolioService.get(ptNo);
+
+    if (portfolio == null) {
+      throw new Exception("해당 번호의 게시글이 없습니다!");
+    }
+
+    Map map = new HashMap();
+    map.put("portfolio", portfolio);
+    //    map.get("portfolio");
+    //    System.out.println(map.get("portfolio"));
+    return map;
+  }
+
 
   @PostMapping("portfolioUpdate")
   public String update(
