@@ -58,7 +58,7 @@
 			thumbnailpath
     from
       product p
-    order by 
+    order by
       pno desc
   </select>
 
@@ -148,23 +148,23 @@
 <!--
 
   <update id="update" parameterType="board">
-    update 
-      app_board 
-    set 
-      title=#{title}, 
-      cont=#{content} 
-    where 
+    update
+      app_board
+    set
+      title=#{title},
+      cont=#{content}
+    where
       bno=#{no}
   </update>
-  
+
   <delete id="delete">
-	  delete 
-	  from app_board 
+	  delete
+	  from app_board
 	  where bno=#{value}
   </delete>
 
   <delete id="deleteByMember">
-    delete from app_board 
+    delete from app_board
     where mno=#{value}
   </delete>
  -->
@@ -179,34 +179,33 @@
 
    <!--
   <delete id="deleteFiles">
-    delete 
-    from app_board_file 
+    delete
+    from app_board_file
     where bno=#{value}
   </delete>
-  
+
   <delete id="deleteFilesByMemberBoards">
     delete from app_board_file
     where bno in (select bno from app_board where mno=#{value});
   </delete>
-  
+
   <delete id="deleteFile">
-    delete 
-    from app_board_file 
+    delete
+    from app_board_file
     where bfno=#{value}
   </delete>
-  
+
   <select id="findFileByNo" resultMap="attachedFileMap">
-    select 
-      bfno, 
-      filepath, 
-      bno 
-    from app_board_file 
+    select
+      bfno,
+      filepath,
+      bno
+    from app_board_file
       where bfno = #{value}
   </select>
   -->
 
     <select id="selectProductList" resultType="hashMap" parameterType="hashMap">
-        <![CDATA[
     select
 			pno,
 			pcno,
@@ -219,19 +218,22 @@
 			thumbnailpath
     from
       product p
+        <if test="categoryCode != null">
+      where p.pcno = #{categoryCode}
+        </if>
     order by
       pno desc
       limit #{pageStart}, #{perPageNum}
-        ]]>
     </select>
 
     <select id="countProductList" resultType="Integer">
-        <![CDATA[
         SELECT
             count(*)
         FROM
             product
-    ]]>
+        <if test="categoryCode != null">
+            where pcno = #{categoryCode}
+        </if>
     </select>
-  
+
 </mapper>

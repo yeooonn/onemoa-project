@@ -27,7 +27,7 @@
           <p class="cate1" data-th-text="${category.name}">상위 카테고리</p>
           <ul class="hide">
             <!--            <a href="#" data-th-href="@{${child.code}}" data-th-each= "child : ${category.children}" data-th-text="${child.name}">하위 카테고리</a>-->
-            <a href="#" data-th-href="@{listf(code=${child.code})}" data-th-each= "child : ${category.children}" data-th-text="${child.name}">하위 카테고리</a>
+            <a href="#" data-th-href="@{list(code=${child.code})}" data-th-each= "child : ${category.children}" data-th-text="${child.name}">하위 카테고리</a>
             <!--            <a href="listf?no=010010"  data-th-each= "child : ${category.children}" data-th-text="${child.name}">하위 카테고리</a>-->
           </ul>
         </li>

@@ -88,31 +88,24 @@ public class ProductController {
 //  }
 
   @RequestMapping("list")
-  public ModelAndView openProductList(Criteria cri) throws Exception {
+  public ModelAndView openProductList(Criteria cri, String code) throws Exception {
 
     ModelAndView mav = new ModelAndView("product/list");
 
     PageMaker pageMaker = new PageMaker();
+    cri.setCategoryCode(code);
     pageMaker.setCri(cri);
-    pageMaker.setTotalCount(productService.countProductListTotal());
 
+    pageMaker.setTotalCount(productService.countProductListTotal(code));
     List<Map<String,Object>> products = productService.selectProductList(cri);
-    mav.addObject("products", products);
-    mav.addObject("pageMaker", pageMaker);
-    mav.addObject("productCategories", productCategoryService.list());
+    System.out.println(cri);
+    System.out.println(cri.getCategoryCode());
+    System.out.println(cri.getCategoryCode());
+    System.out.println(productService.countProductListTotal(code));
+      mav.addObject("products", products);
+      mav.addObject("pageMaker", pageMaker);
+      mav.addObject("productCategories", productCategoryService.list());
     return mav;
-  }
-
-  @GetMapping("listf")
-  public String list(Model model, String code, Criteria cri) throws Exception {
-    PageMaker pageMaker = new PageMaker();
-    pageMaker.setCri(cri);
-    pageMaker.setTotalCount(productService.countProductListTotal());
-
-    model.addAttribute("productCategories", productCategoryService.list());
-    model.addAttribute("products", productService.list(code));
-    model.addAttribute("pageMaker", pageMaker);
-    return "product/list";
   }
 
 

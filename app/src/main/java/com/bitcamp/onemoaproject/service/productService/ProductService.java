@@ -21,7 +21,7 @@ public interface ProductService {
 
     List<Map<String, Object>> selectProductList(Criteria cri);
 
-    int countProductListTotal();
+    int countProductListTotal(String code);
 
     AttachedFile getAttachedFile(int fileNo) throws Exception;
 

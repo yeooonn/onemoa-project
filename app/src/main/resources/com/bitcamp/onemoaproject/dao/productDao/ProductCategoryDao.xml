@@ -17,7 +17,7 @@
     </collection>
   </resultMap>
 
- 
+
   <select id="findAll" resultMap="productCategoryMap">
       select
           c.pcno,
@@ -32,5 +32,5 @@
       inner join product_category c2 on c2.pcparent=c.pcno
   </select>
 
-  
+
 </mapper>
