@@ -87,11 +87,27 @@ public class QnaController {
   @GetMapping("updateform")
   public Map updateform(int no) throws Exception {
     Qna qna = qnaService.get(no);
+    if (qna == null) {
+      throw new Exception("해당 번호의 게시글이 없습니다!");
+    }
 
     Map map = new HashMap();
     map.put("qna", qna);
     return map;
   }
+
+    // 관리자 응답폼 예정
+//  @GetMapping("answerform")
+//  public Map answerform(int no) throws Exception {
+//    Qna qna = qnaService.get(no);
+//    if (qna == null) {
+//      throw new Exception("해당 번호의 게시글이 없습니다!");
+//    }
+//
+//    Map map = new HashMap();
+//    map.put("qna", qna);
+//    return map;
+//  }
 
   @PostMapping("update")
   public String update(
