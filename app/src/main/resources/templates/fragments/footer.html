@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html leng="en">
+<footer data-th-fragment="fragment-footer" class="th-footer">
+    <ul class="footerMenu">
+        <li><a href="/onemoa/notice/list"><p>공지사항</p></a></li>
+        <li><a href="#"><p>1 : 1 문의</p></a></li>
+    </ul>
+    <div class="detail">
+
+        (주)ONEMOA  | 서울시 강남구 비트캠프 8층 | 대표 : 000 | 개인정보관리책임자 : 000 | 고객센터 : 1234-1234
+        <span>고객센터 영업시간 10:30 ~ 18:00 ( 점심시간 13:00 ~ 14:00) 주말, 공휴일 휴무 | ONEMOA@onemoa.com | </span>
+        <span>Copyright 2022 ONEMOA lnc.All rights reserved</span>
+
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.js"></script>
+    <script>
+        // TODO 1. JQuery 사용해서 쿠키값안에 email 값 찾아서 login시 email ID 값에 추가.
+        // TODO 2. cookie 2번
+        console.log($.cookie());
+        $("#email").val($.cookie("email"));
+    </script>
+
+    <script>
+        const body = document.querySelector('body');
+        const modal = document.querySelector('.modal');
+        let contestNumber = ""
+
+        $(".btn-open-popup").click(() => {
+            modal.style.display = 'block';
+
+            if (modal.classList.contains('show')) {
+                body.style.overflow = 'hide';
+            }
+            body.style.overflow = 'hidden';
+        });
+
+        $(".closebtn").click(() => {
+            modal.style.display = 'none';
+            body.style.overflow = 'auto';
+        });
+    </script>
+</footer>
+</html>
