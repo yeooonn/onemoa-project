@@ -206,33 +206,34 @@
       where bfno = #{value}
   </select>
   -->
-  <select id="selectProductList" resultType="hashMap" parameterType="hashMap">
-    <![CDATA[
+  <select id="selectProductList" resultMap="productMap" parameterType="criteria">
    select
 			pf.pno,
 			p.pcno,
 			p.title,
 			p.cont,
 			p.price,
-            p.vw_cnt,
+      p.vw_cnt,
 			p.cdt,
-            pf.fpath
+      pf.fpath
     from product p
       join product_file pf on p.pno = pf.pno
+      where p.pcno=#{code}
     group by pf.pno
     order by
-      pno desc
-      limit #{pageStart}, #{perPageNum}
-        ]]>
+    p.pno desc
+    limit #{pageStart}, #{perPageNum}
   </select>
 
-    <select id="countProductList" resultType="Integer">
-        <![CDATA[
+    <select id="countProductList" parameterType="String" resultType="Integer">
         SELECT
             count(*)
         FROM
             product
-    ]]>
+        <if test="code != null">
+        WHERE
+            pcno=#{code}
+        </if>
     </select>
-  
+
 </mapper>
