@@ -6,14 +6,10 @@ import com.bitcamp.onemoaproject.vo.contest.ContestTeam;
 import java.util.List;
 
 public interface ContestService {
-  List<Contest> list() throws Exception; // 공모전 리스트
+  List<Contest> list(String no, String ono, String sortCd) throws Exception; // 공모전 리스트
   
-  List<Contest> listTeam(boolean no) throws Exception; // 공모전 개인전, 팀전 리스트
-  
-  List<Contest> listOrgFilter(int orgno) throws Exception; // 공모전 리스트
-  
-  List<Contest> listTeamOrgFilter(boolean no, int orgno) throws Exception; // 공모전 개인전, 팀전 리스트
-  
+  List<Contest> list2(String no, String ono, String sortCd, String sortEd, String sortVw, String sortRw) throws Exception; // 공모전 리스트
+
   Contest get(int ctstNo) throws Exception; // 공모전 상세정보
   
   List<ContestTeam> getTeamList(int contestNumber); // 공모전 팀원구해요

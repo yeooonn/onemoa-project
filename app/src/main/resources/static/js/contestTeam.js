@@ -2,13 +2,13 @@
 $(".con").click(function () {
   contestNumber = $(this).attr("id"); // 공모전 번호
   let contestTeam = $(this).attr("value"); // 공모전 팀여부(true/false)
-
+  console.log(contestTeam);
   // 공모전 개인전(false=0)이라면 상세보기 '팀원구해요' 태그 닫기
-  if(contestTeam == "false") {
+  if(contestTeam == "individual") {
     document.querySelector("#contestTypeTeam").style.display = "none";
   }
   // 공모전 팀전(true=1)이라면 상세보기 '팀원구해요' 태그 열기
-  if(contestTeam == "true") {
+  if(contestTeam == "match") {
     document.querySelector("#contestTypeTeam").style.display = "block";
   }
 
@@ -84,13 +84,32 @@ function dis2(){
   $.ajax({
     type: "POST",
     url: "/onemoa/contest/contestTeam/teamRecruitForm",
-    data:{contestNumber: contestNumber},
     success: function (result) {
-      console.log(result);
-      $("#teamRecruitFormReaderNo").attr("value", result.no)
-      $("#teamRecruitFormReaderProfile").attr("src", "/onemoa/member/files/" + result.profile);
-      $("#teamRecruitFormReaderNickname").html(result.nickname);
+        console.log(result);
+        $("#teamRecruitFormReaderNo").attr("value", result.no)
+        $("#teamRecruitFormReaderProfile").attr("src", "/onemoa/member/files/" + result.profile);
+        $("#teamRecruitFormReaderNickname").html(result.nickname);
+    },
+    error: function () {
+      swal({
+        title: "로그인이 필요한 화면입니다.",
+        text: "로그인 창으로 이동합니다.",
+        icon: "error",
+        closeOnClickOutside : false}).then(() =>{
+          window.location.href = "/onemoa/pageLogin";
+      });
     }
+  });
+
+  $.ajax({
+    type: "POST",
+    url: "/onemoa/contest/contestTeam/teamRecruitForm2",
+    success: function (result2) {
+      console.log(result2);
+      for (let i = 0; i < result2.length; i++) {
+        console.log(result2[i].title);
+      }
+    },
   });
 }
 
@@ -309,9 +328,62 @@ $(document).on("click","button[name=minus2]",function(){
 
 // 페이지 필터 타입(전체, 대기업, 공공기관, 자영업자)
 $(".orgTypeType").click(function () {
-  let urlParameter = location.search; // 현재 페이지의 url 파라미터값 얻기
-  let urlSplit = urlParameter.substring(1,5); // ex) 파라미터값 문자열 자르기 ?no1=orgno=2 -> no=1
+  let url = location.href;
+  let urlParam = location.search;
   let orgNumber = $(this).attr("name");
-  let setUrl = "/onemoa/contest/contestTeam?" + urlSplit + "&orgno=" + orgNumber;
-  window.location = setUrl;
+  if (url.includes("ono")) {
+    window.location.href = url.substring(url.lastIndexOf("&"), length) + "&ono=" + orgNumber;
+  }
+  else {
+    window.location.href = "/onemoa/contest/contestTeam" + urlParam + "&ono=" + orgNumber;
+  }
 });
+
+let createdSort = document.getElementById("sortCreatDate");
+let createdSortType = createdSort.getAttribute("data-type");
+let flag = "최신등록 순";
+
+if (createdSortType == "" || createdSortType == null) {
+  createdSort.innerHTML = "제목";
+} else if (createdSortType == "desc") {
+  createdSort.innerHTML = "제목V";
+} else {
+  createdSort.innerHTML = "제목^";
+}
+
+document.querySelector("#sortCreatDate").onclick = (e) => {
+  let flag = "최신등록순";
+  if (createdSortType == "" || createdSortType == null) {
+    createdSortType = "desc";
+    flag += "V";
+  } else if (createdSortType == "desc") {
+    createdSortType = "asc";
+    flag += "^";
+  } else {
+    createdSortType = "";
+    flag += "";
+  }
+  console.log("createdSortType: " + createdSortType);
+  e.target.setAttribute("data-type", createdSortType);
+  e.target.innerHTML = flag;
+
+  let sortCd = ""
+  if (createdSortType != "") {
+    sortCd = "&sortCd=" + createdSortType;
+  }
+
+  let url = location.href;
+  let urlParam = location.search;
+
+  if (url.includes("sortCd") && url.includes("ono")) {
+    window.location.href = url.substring(url.lastIndexOf("&"), length) + sortCd;
+  }
+  else if (url.includes("ono")) {
+    window.location.href = "/onemoa/contest/contestTeam" + urlParam + sortCd;
+  }
+  else if (url.includes("sortCd") && url.includes("no")) {
+    window.location.href = url.substring(url.lastIndexOf("&"), length) + sortCd;
+  } else if (url.includes("no")) {
+    window.location.href = "/onemoa/contest/contestTeam" + urlParam + sortCd;
+  }
+}

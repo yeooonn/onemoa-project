@@ -88,11 +88,24 @@
     thumbnail
     from contest
     join contest_category cc on contest.ctgno = cc.ctgno
-    join contest_organization co on contest.orgno = co.orgno;
+    join contest_organization co on contest.orgno = co.orgno
+    <if test="no != 'all'">
+      where team=#{no}
+    </if>
+    <if test="ono != null">
+      and contest.orgno=#{ono}
+    </if>
+    order by
+    <if test="sortCd != null">
+      cdt ${sortCd}
+    </if>
+    <if test="sortCd == null">
+      ctstno desc
+    </if>
   </select>
 
-<!-- 공모전 개인전, 팀전 리스트 -->
-  <select id="findByTeam" resultMap="contestMap">
+  <!-- 공모전 리스트 -->
+  <select id="findAll2" resultMap="contestMap">
     select
     ctstno,
     co.name coname,
@@ -115,61 +128,28 @@
     from contest
     join contest_category cc on contest.ctgno = cc.ctgno
     join contest_organization co on contest.orgno = co.orgno
-    where team=#{value};
-  </select>
-
-<!--  공모전 전체 기관 필터-->
-  <select id="findByOrgAll" resultMap="contestMap">
-    select
-    ctstno,
-    co.name coname,
-    cc.name ccname,
-    title,
-    subcont,
-    cdt,
-    sdate,
-    edate,
-    vw_cnt,
-    org,
-    appl,
-    cont,
-    page,
-    size,
-    qual,
-    team,
-    reward,
-    thumbnail
-    from contest
-    join contest_category cc on contest.ctgno = cc.ctgno
-    join contest_organization co on contest.orgno = co.orgno
-    where co.orgno = #{value};
-  </select>
-
-  <!--  // 공모전 개인전, 팀전별 기관 필터 -->
-  <select id="findByOrgTeam" resultMap="contestMap">
-    select
-    ctstno,
-    co.name coname,
-    cc.name ccname,
-    title,
-    subcont,
-    cdt,
-    sdate,
-    edate,
-    vw_cnt,
-    org,
-    appl,
-    cont,
-    page,
-    size,
-    qual,
-    team,
-    reward,
-    thumbnail
-    from contest
-    join contest_category cc on contest.ctgno = cc.ctgno
-    join contest_organization co on contest.orgno = co.orgno
-    where team=#{no} AND co.orgno=#{orgno};
+    <if test="no != 'all'">
+      where team=#{no}
+    </if>
+    <if test="ono != null">
+      and contest.orgno=#{ono}
+    </if>
+    order by
+    <if test="sortCd != null">
+      cdt ${sortCd}
+    </if>
+    <if test="sortEd != null">
+      edate ${sortEd}
+    </if>
+    <if test="sortVw != null">
+      vw_cnt ${sortVw}
+    </if>
+    <if test="sortRw != null">
+      reward ${sortRw}
+    </if>
+    <if test="sortCd == null and sortEd == null and sortVw == null and sortRw == null">
+      ctstno desc
+    </if>
   </select>
 
 <!-- 공모전 상세정보 -->

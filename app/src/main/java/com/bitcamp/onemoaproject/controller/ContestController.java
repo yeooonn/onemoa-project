@@ -2,6 +2,7 @@ package com.bitcamp.onemoaproject.controller;
 
 import com.bitcamp.onemoaproject.service.ContestService;
 import com.bitcamp.onemoaproject.service.MemberService;
+import com.bitcamp.onemoaproject.service.PortfolioService;
 import com.bitcamp.onemoaproject.vo.Member;
 import com.bitcamp.onemoaproject.vo.contest.Contest;
 import com.bitcamp.onemoaproject.vo.contest.ContestAttachedFile;
@@ -32,30 +33,16 @@ public class ContestController {
   ContestService contestService;
   @Autowired
   MemberService memberService;
+  @Autowired
+  PortfolioService portfolioService;
   
   // 공모전 목록 출력
   @GetMapping("contestTeam")
-  public String contestTeamList(Model model, int no, int orgno) throws Exception {
-    if(orgno == 0) {
-      switch (no) {
-        // 전체 목록
-        case 1: model.addAttribute("contests", contestService.list()); return "contest/contestTeam";
-        // 개인전 목록
-        case 2: model.addAttribute("contests", contestService.listTeam(false)); return "contest/contestTeam";
-        // 팀전 목록
-        case 3: model.addAttribute("contests", contestService.listTeam(true)); return "contest/contestTeam";
-      }
-    } else {
-      switch (no) {
-        // 전체 목록
-        case 1: model.addAttribute("contests", contestService.listOrgFilter(orgno)); return "contest/contestTeam";
-        // 개인전 목록
-        case 2: model.addAttribute("contests", contestService.listTeamOrgFilter(false, orgno)); return "contest/contestTeam";
-        // 팀전 목록
-        case 3: model.addAttribute("contests", contestService.listTeamOrgFilter(true, orgno)); return "contest/contestTeam";
-      }
-    }
-    return "contest/contestTeam";
+  public void contestTeamList(Model model, String no, String ono, String sortCd) throws Exception {
+    model.addAttribute("contests", contestService.list(no, ono, sortCd));
+    model.addAttribute("no", no);
+    model.addAttribute("ono", ono);
+    model.addAttribute("sortCd", sortCd);
   }
 
   // 공모전 디테일
@@ -77,11 +64,25 @@ public class ContestController {
   // 공모전 팀원 모집하기 폼
   @PostMapping("contestTeam/teamRecruitForm")
   @ResponseBody
-  public Member contestTeamTeamRecruit(int contestNumber, HttpSession session) throws Exception {
-    Member member = (Member) session.getAttribute("loginMember");
-    member = memberService.get(member.getNo());
-    System.out.println("member = " + member);
-    return member;
+  public Object contestTeamTeamRecruit(HttpSession session, Model model) throws Exception {
+    Member loginMember = (Member) session.getAttribute("loginMember");
+    
+    if(loginMember != null){
+      model.addAttribute("member", memberService.get(loginMember.getNo()));
+      System.out.println("model.getAttribute(\"member\") = " + model.getAttribute("member"));
+      return model.getAttribute("member");
+    }
+    loginMember.setStatus(false);
+    return loginMember;
+  }
+  
+  @PostMapping("contestTeam/teamRecruitForm2")
+  @ResponseBody
+  public Object contestTeamTeamRecruit2(HttpSession session, Model model) throws Exception {
+    Member loginMember = (Member) session.getAttribute("loginMember");
+    model.addAttribute("portfolio", portfolioService.list2(loginMember.getNo()));
+    System.out.println("model.getAttribute(\"portfolio\") = " + model.getAttribute("portfolio"));
+    return model.getAttribute("portfolio");
   }
 
   // 공모전 상세정보(관리자 페이지)
@@ -93,8 +94,14 @@ public class ContestController {
 
   // 공모전 목록(관리자 페이지)
   @GetMapping("contestList")
-  public String list(Model model) throws Exception {
-    model.addAttribute("contests", contestService.list());
+  public String list(Model model, String no, String ono, String sortCd, String sortEd, String sortVw, String sortRw) throws Exception {
+    model.addAttribute("contests", contestService.list2(no, ono, sortCd, sortEd, sortVw, sortRw));
+    model.addAttribute("no", no);
+    model.addAttribute("ono", ono);
+    model.addAttribute("sortCd", sortCd);
+    model.addAttribute("sortEd", sortEd);
+    model.addAttribute("sortVw", sortVw);
+    model.addAttribute("sortRw", sortRw);
     return "contest/contestList";
   }
   

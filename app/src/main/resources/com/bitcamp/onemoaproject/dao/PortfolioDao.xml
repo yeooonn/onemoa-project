@@ -14,6 +14,8 @@
     <!-- 조인 결과에서 같은 게시글에 대해 한 개의 회원 데이터를 담을 경우 -->
     <association property="member" javaType="member">
       <id column="no" property="no"/>
+      <id column="nick" property="nickname"/>
+      <id column="profile" property="profile"/>
     </association>
 
     <!-- 조인 결과에서 같은 게시글에 대해 한 개의 회원 데이터를 담을 경우 -->
@@ -55,6 +57,24 @@
       mno = #{value};
   </select>
 
+  <select id="findAll2" resultMap="portfolioMap">
+    select
+      p.ptno,
+      p.mno,
+      p.title,
+      p.cont,
+      p.cdt,
+      pf.ptfno,
+      pf.fname,
+      pf.fpath
+    from
+    portfolio p
+      join portfolio_file pf on p.ptno = pf.ptno
+    where
+      p.mno=#{value}
+    group by p.ptno;
+  </select>
+
   <insert id="insert" parameterType="portfolio"
           useGeneratedKeys="true" keyColumn="ptno" keyProperty="ptNo">
     insert into portfolio(mno,title,cont) 
@@ -77,7 +97,7 @@
     where
       portfolio.ptNo=#{value}
   </select>
-  
+
   <update id="update" parameterType="portfolio">
     update portfolio set 
       title=#{title},

@@ -152,6 +152,7 @@ public class PortfolioController {
     return "redirect:portfolioDetail?ptNo=" + portfolio.getPtNo();
   }
 
+  
 }
 
 
