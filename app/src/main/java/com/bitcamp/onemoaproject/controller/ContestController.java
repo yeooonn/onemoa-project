@@ -2,11 +2,11 @@ package com.bitcamp.onemoaproject.controller;
 
 import com.bitcamp.onemoaproject.service.ContestService;
 import com.bitcamp.onemoaproject.service.MemberService;
+import com.bitcamp.onemoaproject.service.PortfolioService;
 import com.bitcamp.onemoaproject.vo.Member;
 import com.bitcamp.onemoaproject.vo.contest.Contest;
 import com.bitcamp.onemoaproject.vo.contest.ContestAttachedFile;
 import java.io.IOException;
-import java.lang.ProcessBuilder.Redirect;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
@@ -33,6 +33,8 @@ public class ContestController {
   ContestService contestService;
   @Autowired
   MemberService memberService;
+  @Autowired
+  PortfolioService portfolioService;
   
   // 공모전 목록 출력
   @GetMapping("contestTeam")
@@ -62,15 +64,25 @@ public class ContestController {
   // 공모전 팀원 모집하기 폼
   @PostMapping("contestTeam/teamRecruitForm")
   @ResponseBody
-  public Member contestTeamTeamRecruit(int contestNumber, HttpSession session) throws Exception {
+  public Object contestTeamTeamRecruit(HttpSession session, Model model) throws Exception {
     Member loginMember = (Member) session.getAttribute("loginMember");
+    
     if(loginMember != null){
-      Member member = memberService.get(loginMember.getNo());
-      System.out.println("member = " + member);
-      return member;
+      model.addAttribute("member", memberService.get(loginMember.getNo()));
+      System.out.println("model.getAttribute(\"member\") = " + model.getAttribute("member"));
+      return model.getAttribute("member");
     }
     loginMember.setStatus(false);
     return loginMember;
+  }
+  
+  @PostMapping("contestTeam/teamRecruitForm2")
+  @ResponseBody
+  public Object contestTeamTeamRecruit2(HttpSession session, Model model) throws Exception {
+    Member loginMember = (Member) session.getAttribute("loginMember");
+    model.addAttribute("portfolio", portfolioService.list2(loginMember.getNo()));
+    System.out.println("model.getAttribute(\"portfolio\") = " + model.getAttribute("portfolio"));
+    return model.getAttribute("portfolio");
   }
 
   // 공모전 상세정보(관리자 페이지)

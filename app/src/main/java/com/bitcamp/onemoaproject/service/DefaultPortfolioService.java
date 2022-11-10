@@ -32,9 +32,7 @@ public class DefaultPortfolioService implements PortfolioService {
   public Portfolio get(int ptNo) throws Exception {
     return portfolioDao.findByNo(ptNo); // 첨부파일 데이터까지 조인하여 select를 한 번만 실행한다.
   }
-
-
-
+  
   @Transactional
   @Override
   public boolean update(Portfolio portfolio) throws Exception {
@@ -64,6 +62,11 @@ public class DefaultPortfolioService implements PortfolioService {
   @Override
   public List<Portfolio> list(int mno) throws Exception {
     return portfolioDao.findAll(mno);
+  }
+  
+  @Override
+  public List<Portfolio> list2(int mno) throws Exception {
+    return portfolioDao.findAll2(mno);
   }
 
   //  @Override

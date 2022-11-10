@@ -17,7 +17,9 @@ public interface PortfolioService {
   boolean delete(int no) throws Exception;
 
   List<Portfolio> list(int mno) throws Exception;
-
+  
+  List<Portfolio> list2(int mno) throws Exception;
+  
   PortfolioAttachedFile getAttachedFile(int no) throws Exception;
 
   boolean deleteAttachedFile(int no) throws Exception;

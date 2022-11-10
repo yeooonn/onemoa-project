@@ -11,7 +11,7 @@ public interface PortfolioDao {
   int insert(Portfolio portfolio);
 
   Portfolio findByNo(int ptNo);
-
+  
   int update(Portfolio portfolio);
 
   int delete(int no);
@@ -19,7 +19,9 @@ public interface PortfolioDao {
   //  int deleteByMember(int memberNo);
 
   List<Portfolio> findAll(int mno);
-
+  
+  List<Portfolio> findAll2(int mno);
+  
   int insertFiles(Portfolio portfolio);
 
   PortfolioAttachedFile findFileByNo(int ptfNo);

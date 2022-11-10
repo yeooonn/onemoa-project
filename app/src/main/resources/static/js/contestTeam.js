@@ -84,7 +84,6 @@ function dis2(){
   $.ajax({
     type: "POST",
     url: "/onemoa/contest/contestTeam/teamRecruitForm",
-    data:{contestNumber: contestNumber},
     success: function (result) {
         console.log(result);
         $("#teamRecruitFormReaderNo").attr("value", result.no)
@@ -100,6 +99,17 @@ function dis2(){
           window.location.href = "/onemoa/pageLogin";
       });
     }
+  });
+
+  $.ajax({
+    type: "POST",
+    url: "/onemoa/contest/contestTeam/teamRecruitForm2",
+    success: function (result2) {
+      console.log(result2);
+      for (let i = 0; i < result2.length; i++) {
+        console.log(result2[i].title);
+      }
+    },
   });
 }
 
