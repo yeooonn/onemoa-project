@@ -1,14 +1,14 @@
-  `<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js">
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
   <link href="../css/onemoa.css" rel="stylesheet">
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="../js/login.js"></script>
   <script src="../js/onemoa.js"></script>
-  <script src="http://code.jquery.com/jquery-1.12.0.min.js"></script>
-  <script src="/onemoa/js/login.js"></script>
 <style>
   .wrap {
     margin-bottom: 5%;
@@ -119,8 +119,6 @@
     margin-top: 15px;
     padding-top: 10px;
   }
-
-
 
 
   #top {
@@ -245,7 +243,7 @@
 <!--  <span>디자인></span>-->
 <!--  <span data-th-text="${product.productCategory.code}">로고 디자인</span>-->
 <!--</div>-->
-
+<div id="productNo" hidden data-th-value="${product.no}"></div>
 <div class="wrap">
     <div id="detail-5">
         <ul class="attached-file-container">
@@ -263,7 +261,12 @@
       <div>판매자 포트폴리오3<a href=""></a></div>
     </div>
     <div class="commonBorder"></div>
-
+  <label for="wishCount">총 like 갯수</label>
+  <button id="wishCount" data-th-text="${wishCount}"></button>
+  <div data-th-if="${session.loginMember != null}">
+  <label for="checkLike">이 사용자가 좋아하는지</label>
+  <button  id="checkLike" data-th-value="${wishCheck}" data-th-text="${wishCheck}">??</button>
+  </div>
 
   <div id="top">
     <div><p id="title" class="head" data-th-text="${product.title}">제목</p></div>
@@ -341,5 +344,54 @@
   </div>
 </div>
 <footer data-th-replace="/fragments/footer.html :: fragment-footer"></footer>
+<script>
+  $(document).ready(function () {
+    const checkLike = $("#checkLike").attr("value"); // 해당 사용자가 좋아하는지
+
+    console.log(checkLike);
+
+    if (checkLike == 1) {
+      // $(".like").addClass("heart-active");
+      // $(".heart").addClass("heart-active");
+      console.log("좋아함")
+    } else if (checkLike == 0) {
+      // $(".like").removeClass("heart-active");
+      // $(".heart").removeClass("heart-active");
+      console.log("안좋아함")
+    }
+    const productNo = $("#productNo").attr("value");
+
+    console.log(productNo);
+
+    $("#checkLike").on("click", function () {
+      $.ajax({
+        url: '/onemoa/product/like',
+        type: 'POST',
+        data: {'productNo': productNo},
+        success: function(data) {
+
+          console.log(data);
+          //
+          $("#checkLike").text(data.result);
+
+          if (data.result == 1) {
+            console.log("이제 좋아요!");
+            // $(".like").addClass("heart-active");
+          //   // $(".heart").addClass("heart-active");
+          } else {
+            console.log("이제 안좋아요1");
+            // $(".like").removeClass("heart-active");
+            // $(".heart").removeClass("heart-active");
+          }
+          $("#wishCount").text(data.count);
+        },
+        error: function () {
+          alert(this.error);
+          console.log("Error");
+        }
+      });
+    });
+  });
+</script>
 </body>
 </html>

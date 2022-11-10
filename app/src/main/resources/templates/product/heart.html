@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="reset.css" />
+    <style>
+        .heart {
+            width: 20px;
+            height: 20px;
+            background: #ea2027;
+            position: relative;
+            transform: rotate(45deg);
+        }
+        .heart::before,
+        .heart::after {
+            content: "";
+            width: 20px;
+            height: 20px;
+            position: absolute;
+            border-radius: 50%;
+            background: #ea2027;
+        }
+        .heart::before {
+            left: -50%;
+        }
+        .heart::after {
+            top: -50%;
+        }
+
+        .heart-active {
+            background: #ea2027;
+        }
+    </style>
+</head>
+<body>
+<div class="heart"></div>
+
+<script>
+    $(".heart").click(function () {
+        if($(".heart").hasClass("heart-active")) {
+            $(".heart").removeClass("heart-active");
+        } else {
+            $(".heart").addClass("heart-active");
+        }
+    })
+</script>
+</body>
+</html>
