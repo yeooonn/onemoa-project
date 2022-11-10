@@ -1,39 +1,64 @@
 <!DOCTYPE html>
-<html>
-<head>
-  <meta charset="UTF-8">
-  <title>bitcamp</title>
-  <style>
-    tr:hover {
-      background-color: navy;
-      color: white;
-    }
-  </style>
+<html lang="ko">
+  <head>
+    <meta charset = "UTF-8">
+    <title>onemoa mypage</title>
+    <link href="/onemoa/css/onemoa.css" rel="stylesheet">
+    <link href="/onemoa/css/onemoaMypage.css" rel="stylesheet">
+    <link href="/onemoa/css/onemoaManage.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="/onemoa/js/onemoa.js"></script>
+  </head>
+
 </head>
 <body>
-<h1 style="text-align: center; margin-top:100px;">게시글</h1>
-<table border='1' style="margin:0 auto;width:50%;">
-  <tr>
-    <th>공모전번호</th>
-    <th>공모전분야</th>
-    <th>제목</th>
-  </tr>
-  <tr data-th-each="contest : ${contests}">
-    <td data-th-text="${contest.ctstNo}">공모전번호</td>
-    <td data-th-text="${contest.contCategory.categoryName}">공모전분야</td>
-    <td>
-      <a href='contestDetail?ctstNo=1'
-         data-th-href="@{contestDetail(ctstNo=${contest.ctstNo})}"
-         data-th-text="${contest.title == ''} ? '(제목없음)' : ${contest.title}">제목</a>
-    </td>
-  </tr>
-</table>
-<p style="text-align: center;">
-  <button><a href='../'>메인</a></button>
-  <a href='contestForm'>새 공모전 등록</a>
-</p>
+  <ul class="myPage">
+    <li class="mypageArea">
+      <div class="mypageNav">
+        <div class="myonemoa">
+          <p>관리자페이지</p>
+          <span class="mybar">
+        </div>
+        <ul class="mynav">
+          <li><a href="/onemoa/managePage">회원관리</a></li>
+          <li><a class="font" href="contestList">공모전관리</a></li>
+          <li><a href="">재능판매관리</a></li>
+          <li><a href="">1:1문의관리</a></li>
+          <li><a href="">FAQ관리</a></li>
+          <li><a href="">공지사항관리</a></li>
+          <li><a href="">카테고리관리</a></li>
+        </ul>
+      </div>
+    </li>
+    <li class="mypageArea">
+      <div class="contestList">
+        <h1>공모전관리</h1>
+        <table border='1'>
+          <tr>
+            <th>공모전번호</th>
+            <th>공모전분야</th>
+            <th>제목(수정하기)</th>
+          </tr>
+          <tr data-th-each="contest : ${contests}">
+            <td data-th-text="${contest.ctstNo}">공모전번호</td>
+            <td data-th-text="${contest.contCategory.categoryName}">공모전분야</td>
+            <td class="updatetitle">
+              <a href='contestDetail?ctstNo=1'
+                data-th-href="@{contestDetail(ctstNo=${contest.ctstNo})}"
+                data-th-text="${contest.title == ''} ? '(제목없음)' : ${contest.title}">제목</a>
+            </td>
+          </tr>
+        </table>
+        <p>
+          <button><a href='contestForm'>새 공모전 등록</a></button>
+        </p>
+      </div>
+    </li>
+  </ul>
+
 </body>
 </html>
 
 
 
+    

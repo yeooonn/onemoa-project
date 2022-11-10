@@ -7,7 +7,6 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 @EnableTransactionManagement
@@ -20,12 +19,17 @@ public class App {
     SpringApplication.run(App.class, args);
   }
 
+  @GetMapping("/managePage")
+  public String managePage() {
+    return "managePage";
+  }
+
   @GetMapping("/")
   public String welcome(@CookieValue(name = "email", defaultValue = "") String email, Model model) {
     model.addAttribute("email", email);
     return "index";
   }
-  
+
   @GetMapping("test")
   public void test() {}
 }

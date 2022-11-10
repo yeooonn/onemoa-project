@@ -1,0 +1,43 @@
+/* contestList */
+
+.myPage .mypageArea .contestList h1 {
+  font-size: 1.5vw;
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+.myPage .mypageArea .contestList table tr th {
+  width: 300px;
+  height: 30px;
+  text-align: center;
+}
+.myPage .mypageArea .contestList table tr td {
+  height: 30px;
+  padding-left: 5px;
+}
+.myPage .mypageArea .contestList table tr .updatetitle:hover {
+  background-color: blue;
+  transition: all .3s;
+  color: #fff;
+}
+.myPage .mypageArea .contestList button {
+  padding: 5px 10px;
+}
+.mynav li {
+  cursor: pointer;
+}
+.font {
+  font-weight: bold;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
