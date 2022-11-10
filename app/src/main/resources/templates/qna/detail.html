@@ -13,8 +13,9 @@
     <script src="http://localhost:3333/onemoa/js/login.js"></script>
 </head>
 <style>
-    div > th {
+    .thstyle {
         vertical-align: center;
+        font-size: 20px;
     }
 
     #border {
@@ -35,25 +36,25 @@
         <div class="container">
                 <table class="table">
                 <tr>
-                  <th style="width:80px;">문의항목</th>
+                  <th class="thstyle" style="width:120px;">문의항목</th>
                   <td colspan="3" data-th-text="${qna.category.name}"></td>
                 </tr>
                 <tr>
-                  <th>작성자</th>
+                  <th class="thstyle">작성자</th>
                   <td data-th-text="${qna.writer.name}"></td>
-                  <td>문의일시</td>
+                  <td style="font-size: 20px; font-weight:800;">문의일시</td>
                   <td data-th-text="${qna.createdDate}"></td>
                 </tr>
                 <tr>
-                  <th>제목</th>
+                  <th class="thstyle">제목</th>
                   <td colspan="3"><textarea style="resize: none;" rows='1' cols='60' data-th-text="${qna.title}" readonly>></textarea></td>
                 </tr>
                 <tr>
-                  <th>문의내용</th>
+                  <th class="thstyle">문의내용</th>
                   <td colspan="3"><textarea style="resize: none;" rows='4' cols='60' data-th-text="${qna.content}" readonly>></textarea></td>
                 </tr>
                 <tr>
-                  <th>첨부파일</th>
+                  <th class="thstyle">첨부파일</th>
                   <td colspan="3">
                       <ul>
                           <li data-th-each="file : ${qna.attachedFiles}" style="float:left; margin-right:5%; list-style:none; width:10%">
@@ -67,11 +68,11 @@
 
                     </tr>
                     <tr>
-                        <th>답글 내용</th>
+                        <th class="thstyle">답글 내용</th>
                         <td colspan="3" data-th-text="${qna.answer}"></td>
                     </tr>
                     <tr>
-                        <th>답글 일시</th>
+                        <th class="thstyle">답글 일시</th>
                         <td colspan="3" data-th-text="${qna.answerCdt}"></td>
                     </tr>
               </table>
