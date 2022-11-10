@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>bitcamp</title>
+  <style>
+      a {
+        text-decoration:none;
+        color: #000;
+      }
+    </style>
+</head>
+<body>
+<h1>회원 입력</h1>
+
+<form action='memberAdd' method="post">
+<table border='1'>
+  <tr>
+    <th>이름</th>
+    <td><input name='name' type='text' value='' size='60'></td>
+  </tr>
+  <tr>
+    <th>닉네임</th>
+    <td><input name='nickname' type='text' value='' size='60'></td>
+  </tr>
+  <tr>
+    <th>이메일</th>
+    <td><input name='email' type='email' value='' size='60'></td>
+  </tr>
+  <tr>
+    <th>암호</th>
+    <td><input name='password' type='password' size='10'></td>
+  </tr>
+  <tr>
+    <th>직업</th>
+    <td><input name='jobNo' type='number' value='' maxlength="6" oninput="maxLengthCheck(this)"></td>
+  </tr>
+  <tr>
+    <th>우편번호</th>
+    <td><input name='postNo' type='text' value='' size='60'></td>
+  </tr>
+  <tr>
+    <th>기본주소</th>
+    <td><input name='baseAddr' type='text' value='' size='60'></td>
+  </tr>
+  <tr>
+    <th>상세주소</th>
+    <td><input name='detailAddr' type='text' value='' size='60'></td>
+  </tr>
+</table>
+<p>
+  <button type='submit'>등록</button>
+  <button><a href='memberList'>목록</a></button>
+</p>
+</form>
+
+
+<script>
+  function maxLengthCheck(e) {
+    if (e.value.length >= e.maxlength) {
+        alert('1~6까지만 넣을 수 있습니다.');
+    }
+  }
+</script>
+
+</body>
+</html>
