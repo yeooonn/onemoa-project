@@ -294,6 +294,7 @@ header {
   border-radius: 5px;
   background-color: #707fc2;
   font-size: 0.9vw;
+  margin-right: -10px;
 }
 .myPage .mypageArea2 .mypagePortfolio .portfolioBoxCon2 .portsub:hover {
   background-color: #4a5480;
@@ -305,15 +306,17 @@ header {
   width: 95%;
   height: 50px;
 }
-.myPage .mypageArea2 .mypagePortfolio .portfolioBoxCon2 .portbtns a {
-  border: none;
-  background-color: transparent;
-  text-align: center;
-  padding: 10px 15px;
-  color: #fff;
-  border-radius: 5px;
-  background-color: rgb(111, 114, 123);
-  font-size: 0.9vw;
+.myPage .mypageArea2 .mypagePortfolio .portfolioBoxCon2 .portbtns .portsub:nth-of-type(2) {
+  background-color: #594d9e;
+}
+.myPage .mypageArea2 .mypagePortfolio .portfolioBoxCon2 .portbtns .portsub:nth-of-type(2):hover {
+  background-color: #393267;
+}
+.myPage .mypageArea2 .mypagePortfolio .portfolioBoxCon2 .portbtns .portsub:nth-of-type(1) {
+  background-color: #696972;
+}
+.myPage .mypageArea2 .mypagePortfolio .portfolioBoxCon2 .portbtns .portsub:nth-of-type(1):hover {
+  background-color: #404045;
 }
 .myPage .mypageArea2 .mypagePortfolio .portfolioBoxCon2 .portbtns a:hover {
   background-color: rgb(84, 86, 92);
