@@ -12,20 +12,14 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.js"></script>
     <script src="http://localhost:3333/onemoa/js/login.js"></script>
 </head>
-<style>
-    div > th {
-        vertical-align: center;
-    }
-
-</style>
-<body style="overflow-x: hidden">
-<form action='answerform' method="get">
+<body>
+<form action='answerupdate' method="post" enctype="multipart/form-data">
     <h1 style="text-align: center; margin-top:70px;">1:1문의 답변하기</h1>
     <div class="container">
         <table class="table">
             <tr>
                 <th style="width:80px;">문의항목</th>
-                <td colspan="3" data-th-text="${qna.category.name}"></td>
+                <td colspan="3"><input type="hidden" name="category.no" data-th-value="${qna.category.no}" data-th-text="${qna.category.name}" readonly></td>
             </tr>
             <tr>
                 <th>작성자</th>
@@ -35,11 +29,11 @@
             </tr>
             <tr>
                 <th>제목</th>
-                <td colspan="3"><textarea style="resize: none;" rows='1' cols='60' data-th-text="${qna.title}" readonly></textarea></td>
+                <td colspan="3"><textarea name="title" style="resize: none;" rows='1' cols='60' data-th-text="${qna.title}" readonly></textarea></td>
             </tr>
             <tr>
                 <th>문의내용</th>
-                <td colspan="3"><textarea style="resize: none;" rows='4' cols='60' data-th-text="${qna.content}" readonly></textarea></td>
+                <td colspan="3"><textarea name="content" style="resize: none;" rows='4' cols='60' data-th-text="${qna.content}" readonly></textarea></td>
             </tr>
             <tr>
                 <th>첨부파일</th>
@@ -57,21 +51,23 @@
             </tr>
             <tr>
                 <th>답글 내용</th>
-                <td colspan="3"><textarea style="resize: none;" rows='4' cols='30'></textarea></td>
+                <td colspan="3"><textarea name="answer" style="resize: none;" rows='4' cols='30'></textarea></td>
             </tr>
             <tr>
                 <th>답글 일시</th>
-                <td colspan="3"><textarea style="resize: none;" rows='4' cols='30'></textarea></td>
+                <td colspan="3"></td>
             </tr>
         </table>
         <input type="hidden" name='no'
                value='1'
                data-th-value="${qna.no}"
                readonly>
+<!--        <input hidden name="files" type="file" multiple accept="image/*">-->
         <button><a href="./list">목록</a></button>
-        <button type='submit'>수정</button>
+        <button type='submit'>답변 완료</button>
     </div>
 </form>
+</script>
 
 </body>
 </html>

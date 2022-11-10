@@ -42,7 +42,12 @@ public class DefaultQnaService implements QnaService {
     if (qna.getAttachedFiles().size() > 0) {
       qnaDao.insertFiles(qna);
     }
+    return true;
+  }
 
+  @Override
+  public boolean answerUpdate(Qna qna) throws Exception {
+    qnaDao.answerUpdate(qna);
     return true;
   }
 

@@ -12,7 +12,7 @@ public interface QnaService {
   void add(Qna qna) throws Exception;
 
   boolean update(Qna qna) throws Exception;
-
+  boolean answerUpdate(Qna qna) throws Exception;
   Qna get(int no) throws Exception;
 
   boolean delete(int no) throws Exception;

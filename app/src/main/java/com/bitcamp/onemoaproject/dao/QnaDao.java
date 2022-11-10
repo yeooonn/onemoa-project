@@ -15,6 +15,8 @@ public interface QnaDao {
 
     int update(Qna qna);
 
+    boolean answerUpdate(Qna qna);
+
     int delete(int no);
 
 //  int deleteByMember(int memberNo);
@@ -32,6 +34,7 @@ public interface QnaDao {
   int deleteFiles(int qnaNo);
 
   int deleteFilesByMemberBoards(int memberNo);
+
 }
 
 

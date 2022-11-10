@@ -104,6 +104,13 @@
     where qnano=#{no}
   </update>
 
+  <update id="answerUpdate" parameterType="qna">
+    update qna set
+    answer=#{answer},
+    answercdt=now()
+    where qnano=#{no}
+  </update>
+
   <!-- 이 쿼리문 됨..-->
   <delete id="delete">
     delete from qna

@@ -16,6 +16,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpSession;
 import javax.servlet.http.Part;
 import java.io.IOException;
+import java.time.LocalDate;
 import java.util.*;
 
 @Controller
@@ -78,10 +79,38 @@ public class QnaController {
     if (qna == null) {
       throw new Exception("해당 번호의 게시글이 없습니다!");
     }
-
     Map map = new HashMap();
     map.put("qna", qna);
     return map;
+  }
+
+  @GetMapping("answerdetail")
+  public Map answerdetail(int no) throws Exception {
+    Qna qna = qnaService.get(no);
+    if (qna == null) {
+      throw new Exception("해당 번호의 게시글이 없습니다!");
+    }
+    Map map = new HashMap();
+    map.put("qna", qna);
+    return map;
+  }
+
+  @PostMapping("update")
+  public String update(
+          Qna qna,
+          Part[] files,
+          HttpSession session)
+          throws Exception {
+    qna.setWriter((Member) session.getAttribute("loginMember"));
+    qna.setAttachedFiles(saveAttachedFiles(files));
+
+    checkOwner(qna.getNo(), session);
+
+    if (!qnaService.update(qna)) {
+      throw new Exception("게시글을 변경할 수 없습니다!");
+    }
+
+    return "redirect:list";
   }
 
   @GetMapping("updateform")
@@ -96,33 +125,33 @@ public class QnaController {
     return map;
   }
 
-    // 관리자 응답폼 예정
-//  @GetMapping("answerform")
-//  public Map answerform(int no) throws Exception {
-//    Qna qna = qnaService.get(no);
-//    if (qna == null) {
-//      throw new Exception("해당 번호의 게시글이 없습니다!");
-//    }
-//
-//    Map map = new HashMap();
-//    map.put("qna", qna);
-//    return map;
-//  }
-
-  @PostMapping("update")
-  public String update(
-      Qna qna,
-      Part[] files,
-      HttpSession session)
-          throws Exception {
-    qna.setWriter((Member) session.getAttribute("loginMember"));
-    qna.setAttachedFiles(saveAttachedFiles(files));
-
-    checkOwner(qna.getNo(), session);
-
-    if (!qnaService.update(qna)) {
-      throw new Exception("게시글을 변경할 수 없습니다!");
+  @GetMapping("answerform")
+  public Map answerform(int no) throws Exception {
+    Qna qna = qnaService.get(no);
+    if (qna == null) {
+      throw new Exception("해당 번호의 게시글이 없습니다!");
     }
+
+    Map map = new HashMap();
+    map.put("qna", qna);
+    return map;
+  }
+
+  @PostMapping("answerupdate")
+  public String answerUpdate(
+          Qna qna,
+          HttpSession session)
+          throws Exception {
+
+
+      qnaService.answerUpdate(qna);
+//    qna.setAttachedFiles(saveAttachedFiles(files));
+//
+//    checkOwner(qna.getNo(), session);
+
+//    if (!qnaService.update(qna)) {
+//      throw new Exception("게시글을 변경할 수 없습니다!");
+//    }
 
     return "redirect:list";
   }
