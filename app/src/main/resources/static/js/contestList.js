@@ -6,7 +6,7 @@ let sortParam = "";
 function selectNum() {
   // 셀렉트박스 옵션 선택한 값 가져오기
   noParam =  document.getElementById("noType").options[document.getElementById("noType").selectedIndex].value;
-  window.location.href="/onemoa/contest/contestList?" + "no=" + noParam;
+  window.location.href="/onemoa/admin/contest/contestList?" + "no=" + noParam;
 }
 
 // 두번째 카테고리 검색
@@ -15,7 +15,7 @@ function selectNum2() {
   noParam = $("select[id=noType] option:selected").text();
   // 셀렉트박스 옵션 선택한 값 가져오기
   onoParam =  document.getElementById("onoType").options[document.getElementById("onoType").selectedIndex].value;
-  window.location.href = "/onemoa/contest/contestList?" + "no=" + noParam + "&ono=" + onoParam;
+  window.location.href = "/onemoa/admin/contest/contestList?" + "no=" + noParam + "&ono=" + onoParam;
 }
 
 let createdSort = document.getElementById("sortCreatDate");
@@ -87,9 +87,9 @@ document.querySelector("#sortCreatDate").onclick = (e) => {
   noParam = $("select[id=noType] option:selected").text();
   onoParam = $("select[id=onoType] option:selected").text();
   if(onoParam == "기관명") {
-    window.location.href = "/onemoa/contest/contestList?" + "no=" +  noParam + sortCd;
+    window.location.href = "/onemoa/admin/contest/contestList?" + "no=" +  noParam + sortCd;
   } else {
-    window.location.href = "/onemoa/contest/contestList?" + "no=" +  noParam + "&ono=" + onoParam + sortCd;
+    window.location.href = "/onemoa/admin/contest/contestList?" + "no=" +  noParam + "&ono=" + onoParam + sortCd;
   }
 }
 
@@ -117,9 +117,9 @@ document.querySelector("#sortEndDate").onclick = (e) => {
   noParam = $("select[id=noType] option:selected").text();
   onoParam = $("select[id=onoType] option:selected").text();
   if(onoParam == "기관명") {
-    window.location.href = "/onemoa/contest/contestList?" + "no=" +  noParam + sortEd;
+    window.location.href = "/onemoa/admin/contest/contestList?" + "no=" +  noParam + sortEd;
   } else {
-    window.location.href = "/onemoa/contest/contestList?" + "no=" +  noParam + "&ono=" + onoParam + sortEd;
+    window.location.href = "/onemoa/admin/contest/contestList?" + "no=" +  noParam + "&ono=" + onoParam + sortEd;
   }
 }
 
@@ -147,9 +147,9 @@ document.querySelector("#sortViewCount").onclick = (e) => {
   noParam = $("select[id=noType] option:selected").text();
   onoParam = $("select[id=onoType] option:selected").text();
   if(onoParam == "기관명") {
-    window.location.href = "/onemoa/contest/contestList?" + "no=" +  noParam + sortVw;
+    window.location.href = "/onemoa/admin/contest/contestList?" + "no=" +  noParam + sortVw;
   } else {
-    window.location.href = "/onemoa/contest/contestList?" + "no=" +  noParam + "&ono=" + onoParam + sortVw;
+    window.location.href = "/onemoa/admin/contest/contestList?" + "no=" +  noParam + "&ono=" + onoParam + sortVw;
   }
 }
 
@@ -177,8 +177,8 @@ document.querySelector("#sortReward").onclick = (e) => {
   noParam = $("select[id=noType] option:selected").text();
   onoParam = $("select[id=onoType] option:selected").text();
   if(onoParam == "기관명") {
-    window.location.href = "/onemoa/contest/contestList?" + "no=" +  noParam + rewardSort;
+    window.location.href = "/onemoa/admin/contest/contestList?" + "no=" +  noParam + rewardSort;
   } else {
-    window.location.href = "/onemoa/contest/contestList?" + "no=" +  noParam + "&ono=" + onoParam + rewardSort;
+    window.location.href = "/onemoa/admin/contest/contestList?" + "no=" +  noParam + "&ono=" + onoParam + rewardSort;
   }
 }

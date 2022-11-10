@@ -33,7 +33,7 @@
   </tr>
   <tr>
     <th>직업</th>
-    <td><input name='jobNo' type='number' value='' maxlength="6" oninput="maxLengthCheck(this)"></td>
+    <td><input name='jobNo' type='number' value=''  max='6'></td>
   </tr>
   <tr>
     <th>우편번호</th>
@@ -54,14 +54,6 @@
 </p>
 </form>
 
-
-<script>
-  function maxLengthCheck(e) {
-    if (e.value.length >= e.maxlength) {
-        alert('1~6까지만 넣을 수 있습니다.');
-    }
-  }
-</script>
 
 </body>
 </html>
