@@ -1,3 +1,5 @@
+let memberNo = "";
+
 // 공모전 상세페이지
 $(".con").click(function () {
   contestNumber = $(this).attr("id"); // 공모전 번호
@@ -86,6 +88,7 @@ function dis2(){
     url: "/onemoa/contest/contestTeam/teamRecruitForm",
     success: function (result) {
         console.log(result);
+        memberNo = result.no;
         $("#teamRecruitFormReaderNo").attr("value", result.no)
         $("#teamRecruitFormReaderProfile").attr("src", "/onemoa/member/files/" + result.profile);
         $("#teamRecruitFormReaderNickname").html(result.nickname);
@@ -107,11 +110,40 @@ function dis2(){
     success: function (result2) {
       console.log(result2);
       for (let i = 0; i < result2.length; i++) {
-        console.log(result2[i].title);
+        $("#xx-portfolioBox").append("<option value='" + result2[i].ptNo  + "'>" + result2[i].title + "</option>");
       }
     },
   });
 }
+let selectPortfolioNumber = "";
+let selectPortfolioText = "";
+
+function portfolioBoxChange() {
+  selectPortfolioNumber = document.getElementById("xx-portfolioBox").options[document.getElementById("xx-portfolioBox").selectedIndex].value
+  selectPortfolioText = document.getElementById("xx-portfolioBox").options[document.getElementById("xx-portfolioBox").selectedIndex].text;
+  let aList = "";
+  aList += "<li>" +
+      "<a href='/onemoa/portfolio/firstportfolio?ptNo=" + selectPortfolioNumber + "'" + "onClick=\"window.open(this.href, '', 'width=1000px, height=1080px')\"; target=\"_blank\">" + selectPortfolioText + "</a>" + "</li>";
+  $("#innerPortfolio").append(aList);
+}
+let selectRecruNumber = "";
+let selectRecruText = "";
+let selectPersonnelNumber = "";
+let selectPersonnelText = "";
+
+function personnelSelect() {
+  selectRecruNumber = document.getElementById("xx-recru").options[document.getElementById("xx-recru").selectedIndex].value;
+  selectRecruText = document.getElementById("xx-recru").options[document.getElementById("xx-recru").selectedIndex].text;
+  selectPersonnelNumber = document.getElementById("xx-personnel").options[document.getElementById("xx-personnel").selectedIndex].value;
+  selectPersonnelText = document.getElementById("xx-personnel").options[document.getElementById("xx-personnel").selectedIndex].text;
+  let bList = "";
+  bList += "<li>"
+      + "<span id='" + selectRecruNumber + "'>" + selectRecruText + "</span>"
+      + "<span id='" + selectPersonnelNumber + "'>" + selectPersonnelText + "</span>"
+      +"</li>";
+  $("#innerRecruitment").append(bList);
+}
+
 
 function clo2(){
   if ($('.modal3').css('display') == 'show'){
@@ -123,23 +155,61 @@ function clo2(){
   }
 }
 
-
-
 function dis3(){
-  console.log(contestNumber)// 공모전 번호;
+  console.log()
   if ($('.modal4').css('display') == 'none'){
     $('.modal3').show();
     $('.modal4').show();
   } else{
     $('.modal4').hide();
   }
-  //
-  // $.ajax({
-  //   type: "POST",
-  //   url: "/onemoa/contest/contestTeam/teamRecruit",
-  //
-  // });
 }
+
+
+// 팀원 모집하기 등록 버튼
+$("#leaderJoin").click(function () {
+  let textArea = $("#teamRecruitFormReaderIntroduction").val();
+  let portfolios = [];
+  let recruitments = [];
+
+  let aLength = $("#innerPortfolio").find("a").length;
+  let aeq = "";
+  for(let i=0; i<aLength; i++) {
+    aeq = $("#innerPortfolio").find("a").eq(i);
+    portfolios[i] = aeq.attr("href");
+  }
+
+  let sLength = $("#innerRecruitment").find("span").length;
+  let seq = "";
+  for(let i=0; i<sLength; i++){
+    seq = $("#innerRecruitment").find("span").eq(i);
+    recruitments[i] = seq.attr("id");
+  }
+
+  console.log(contestNumber)// 공모전 번호;
+  console.log(memberNo);
+  console.log(textArea);
+  console.log(portfolios);
+  console.log(recruitments);
+
+
+
+  $.ajax({
+    type: "POST",
+    url: "/onemoa/contest/contestTeam/teamRecruit",
+    data: {
+      "contestNumber": contestNumber,
+      "memberNo": memberNo,
+      "textArea": textArea,
+      "portfolios": portfolios,
+      "recruitments": recruitments,
+    },
+    success: function (result) {
+      console.log(result);
+    },
+  });
+});
+
 function clo3(){
   if ($('.modal4').css('display') == 'show'){
     $('.modal4').hide();
@@ -190,7 +260,6 @@ function clo5(){
 
 // 포폴 추가 버튼
 $(document).on("click","button[name=addStaff]",function(){
-
   var addStaffText =
       '<div name="hhhhhh" class="hhhhhh">'+
       '<select name="port" class="po">'+
@@ -205,7 +274,6 @@ $(document).on("click","button[name=addStaff]",function(){
   var trHtml = $( "div[name=hhhhhh]:last" ); //last를 사용하여 trStaff라는 명을 가진 마지막 태그 호출
 
   trHtml.after(addStaffText); //마지막 trStaff명 뒤에 붙인다.
-
 });
 
 // 모집분야 추가 버튼

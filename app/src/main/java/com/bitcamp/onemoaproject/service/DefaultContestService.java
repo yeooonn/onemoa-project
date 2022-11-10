@@ -97,4 +97,21 @@ public class DefaultContestService implements ContestService{
   public boolean contestDeleteAttachedFile(int fileNo) throws Exception {
     return contestDao.deleteFile(fileNo) > 0;
   }
+  
+  @Transactional
+  @Override
+  public void addTeam(ContestTeam contestTeam) throws Exception {
+    // 1) 팀원모집하기 등록
+    if (contestDao.insertTeam(contestTeam) == 0) {
+      throw new Exception("팀원모집하기 등록 실패!");
+    }
+    // 2) 팀장 포트폴리오 등록
+    if (contestTeam.getContestTeamPortfolios().size() > 0) {
+      contestDao.insertTeamFiles(contestTeam);
+    }
+    // 3) 팀 모집분야 등록
+    if (contestTeam.getContestTeamFields().size() > 0) {
+      contestDao.insertTeamField(contestTeam);
+    }
+  }
 }
