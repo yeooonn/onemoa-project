@@ -65,8 +65,8 @@ public class ContestController {
     model.addAttribute("teams",contestService.getTeamList(contestNumber));
     return model.getAttribute("teams");
   }
-
-  // 공모전 팀원 모집하기 폼
+  
+  // 공모전 팀원 모집하기 폼(회원정보)
   @PostMapping("contestTeam/teamRecruitForm")
   @ResponseBody
   public Object contestTeamTeamRecruit(HttpSession session, Model model) throws Exception {
@@ -80,7 +80,8 @@ public class ContestController {
     loginMember.setStatus(false);
     return loginMember;
   }
-
+  
+  // 공모전 팀원 모집하기 폼(회원 포트폴리오)
   @PostMapping("contestTeam/teamRecruitForm2")
   @ResponseBody
   public Object contestTeamTeamRecruit2(HttpSession session, Model model) throws Exception {
@@ -90,6 +91,7 @@ public class ContestController {
     return model.getAttribute("portfolio");
   }
   
+  // 공모전 팀원구해요 등록
   @PostMapping("contestTeam/teamRecruit")
   @ResponseBody
   public String contestTeamRecruit(HttpSession session,
@@ -123,6 +125,13 @@ public class ContestController {
       return "true";
     }
     return "false";
+  }
+  
+  // 공모전 팀전 팀장 상세보기 페이지
+  @PostMapping("contestTeam/readerDetail")
+  public void contestReaderDetail(int contestNumber, int memberNumber) {
+    System.out.println("contestNumber = " + contestNumber);
+    System.out.println("memberNumber = " + memberNumber);
   }
 
   // 공모전 썸네일 첨부파일 처리
