@@ -3,6 +3,7 @@ package com.bitcamp.onemoaproject.dao;
 import com.bitcamp.onemoaproject.vo.contest.Contest;
 import com.bitcamp.onemoaproject.vo.contest.ContestAttachedFile;
 import com.bitcamp.onemoaproject.vo.contest.ContestTeam;
+import com.bitcamp.onemoaproject.vo.contest.ContestTeamPortfolio;
 import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
@@ -39,4 +40,10 @@ public interface ContestDao {
   int deleteFile(int fileNo); // 공모전 게시글의 첨부파일 삭제
   
   List<ContestTeam> findByTeamNo(int contestNumber); // 공모전 팀원구해요 목록 검색
+  
+  int insertTeam(ContestTeam contestTeam); // 공모전 팀원구해요 등록
+  
+  int insertTeamFiles(ContestTeam contestTeam); // 공모전 팀원구해요:포트폴리오 등록
+  
+  int insertTeamField(ContestTeam contestTeam); // 공모전 팀원구해요:모집분야 등록
 }

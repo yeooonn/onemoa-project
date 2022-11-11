@@ -180,64 +180,64 @@
           <button class="closebtn3" onclick="clo2()"><img src="../img/x.png"></button>
           <div class="modal_body3">
 
-            <div class="teamJangD">
-              <p class="pp">팀원 모집하기</p>
-              <ul class="tjd">
-                <li>
-                  <div class="tjdimg">
-                    <img id="teamRecruitFormReaderProfile" src="../img/profile1.png">
-                  </div>
-                  <input type="hidden" id="teamRecruitFormReaderNo">
-                  <p id="teamRecruitFormReaderNickname">닉네임</p>
-                </li>
-                <li>
-                  <textarea name="teamRecruitFormReaderIntroduction" cols="70" rows="50" class="tjdtxt" placeholder="나를 소개하는 글을 입력해주세요."></textarea>
-                </li>
-              </ul>
-            </div>
-
-            <div class="portfolio">
-              <p>포트폴리오
-                <button name="addStaff"><img src="../img/plus.png"></button>
-              </p>
-              <div name="hhhhhh">
-                <select id="xx-portfolioBox" name="port" class="po">
-                  <option value="포트폴리오를 선택해주세요." selected>포트폴리오를 선택해주세요.</option>
-<!--                  <option value="포트폴리오1">포트폴리오1</option>-->
-<!--                  <option value="포트폴리오2">포트폴리오2</option>-->
-<!--                  <option value="포트폴리오3">포트폴리오3</option>-->
-                </select>
+              <div class="teamJangD">
+                <p class="pp">팀원 모집하기</p>
+                <ul class="tjd">
+                  <li>
+                    <div class="tjdimg">
+                      <img id="teamRecruitFormReaderProfile" src="../img/profile1.png">
+                    </div>
+                    <input type="hidden" id="teamRecruitFormReaderNo">
+                    <p id="teamRecruitFormReaderNickname">닉네임</p>
+                  </li>
+                  <li>
+                    <textarea id="teamRecruitFormReaderIntroduction" name="teamRecruitFormReaderIntroduction" cols="70" rows="50" class="tjdtxt" placeholder="나를 소개하는 글을 입력해주세요."></textarea>
+                  </li>
+                </ul>
               </div>
-            </div>
 
-            <div class="recruitment">
-              <p>모집분야와 인원을 선택해주세요.
-                <button name="addStaff2"><img src="../img/plus.png"></button>
-              </p>
-              <div name = "rrr" class="recruit">
-                <select name="recru" class="re">
-                  <option value="모집분야를 선택해주세요." selected>모집분야를 선택해주세요.</option>
-                  <option value="촐영">촐영</option>
-                  <option value="편집">편집</option>
-                  <option value="음향">음향</option>
-                </select>
-                <select name="personnel" class="re2">
-                  <option value="인원" selected>인원</option>
-                  <option value="1">1</option>
-                  <option value="2">2</option>
-                  <option value="3">3</option>
-                  <option value="4">4</option>
-                  <option value="5">5</option>
-                  <option value="6">6</option>
-                </select>
+              <div class="portfolio">
+                <p>포트폴리오
+                  <button name="addStaff"><img src="../img/plus.png"></button>
+                </p>
+                <div name="hhhhhh">
+                  <select id="xx-portfolioBox" name="port" class="po" onchange="portfolioBoxChange()">
+                    <option value="포트폴리오를 선택해주세요." selected>포트폴리오를 선택해주세요.</option>
+                  </select>
+                  <ul id="innerPortfolio"></ul>
+                </div>
               </div>
-            </div>
 
-            <div class="teammate">
-              <button class="tm" onclick="dis3()">팀원 모집하기</button>
-              <button class="tm" onclick="clo2()">뒤로가기</button>
-            </div>
+              <div class="recruitment">
+                <p>모집분야와 인원을 선택해주세요.
+                  <button name="addStaff2"><img src="../img/plus.png"></button>
+                </p>
+                <div name = "rrr" class="recruit">
+                  <select id="xx-recru" name="recru" class="re">
+                    <option value="모집분야를 선택해주세요." selected>모집분야를 선택해주세요.</option>
+                    <option value="촬영">촬영</option>
+                    <option value="편집">편집</option>
+                    <option value="음향">음향</option>
+                  </select>
+                  <select  id="xx-personnel" name="personnel" class="re2" onchange="personnelSelect()">
+                    <option value="인원" selected>인원</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                  </select>
+                </div>
+                <ul id="innerRecruitment">
 
+                </ul>
+              </div>
+
+              <div class="teammate">
+                <button class="tm" onclick="dis3()">팀원 모집하기</button>
+                <button class="tm" onclick="clo2()">뒤로가기</button>
+              </div>
           </div>
         </div><!--modal3-->
 
@@ -247,7 +247,7 @@
             <button class="closebtn4" onclick="clo3()"><img src="../img/x.png"></button>
             <p>팀원을 모집하시겠습니까?</p>
             <div class="teamb">
-              <span><button onclick="dis()">확인</button></span>
+              <span><button id="leaderJoin">확인</button></span>
               <span><button onclick="clo3()">취소</button></span>
             </div>
           </div>

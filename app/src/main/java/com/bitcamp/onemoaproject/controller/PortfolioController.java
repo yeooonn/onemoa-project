@@ -34,11 +34,6 @@ public class PortfolioController {
     this.sc = sc;
   }
 
-  @GetMapping("portfolio1")
-  public String portfolio1() {
-    return "portfolio/portfolio1";
-  }
-
   @GetMapping("portfolioList")
   public String list(Model model, HttpSession session) throws Exception {
     Member loginMember = (Member) session.getAttribute("loginMember");

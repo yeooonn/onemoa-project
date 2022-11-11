@@ -56,13 +56,24 @@
     <id column="tno" property="tno"/>
     <result column="cont" property="cont"/>
     <result column="cdt" property="cdt"/>
-
 <!--  -->
     <association property="reader" javaType="Member">
       <id column="mno" property="no"/>
       <result column="nick" property="nickname"/>
       <result column="profile" property="profile"/>
     </association>
+
+    <collection property="contestTeamPortfolios" ofType="ContestTeamPortfolio">
+      <id column="tpno" property="tpno"/>
+      <result column="tno" property="tno"/>
+      <result column="fpath" property="fpath"/>
+    </collection>
+
+    <collection property="contestTeamFields" ofType="ContestTeamField">
+      <id column="tfno" property="tfno"/>
+      <result column="tno" property="name"/>
+      <result column="size" property="size"/>
+    </collection>
   </resultMap>
 
 <!-- 공모전 리스트 -->
@@ -292,5 +303,30 @@
       join member m on m.mno = t.mno
     where ctstno=#{value};
   </select>
+
+
+<!-- 공모전 팀원 모집하기 -->
+  <insert id="insertTeam" useGeneratedKeys="true" keyColumn="tno" keyProperty="tno">
+    insert into team(ctstno, mno, cont)
+    values
+      (#{ctstno}, #{mno}, #{cont})
+  </insert>
+
+  <!-- 팀원 모집하기 포트폴리오 목록 -->
+  <insert id="insertTeamFiles" parameterType="contestTeam">
+    insert into team_portfolio(tno, fpath)
+    values
+    <foreach collection="contestTeamPortfolios" item="file" separator=",">
+      (#{tno}, #{file.fpath})
+    </foreach>
+  </insert>
+
+  <insert id="insertTeamField" parameterType="contestTeam">
+    insert into team_field(tno, name, size, type)
+    values
+    <foreach collection="contestTeamFields" item="field" separator=",">
+      (#{tno}, #{field.name}, #{field.size}, true)
+    </foreach>
+  </insert>
 
 </mapper>

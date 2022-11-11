@@ -6,21 +6,27 @@ import com.bitcamp.onemoaproject.service.PortfolioService;
 import com.bitcamp.onemoaproject.vo.Member;
 import com.bitcamp.onemoaproject.vo.contest.Contest;
 import com.bitcamp.onemoaproject.vo.contest.ContestAttachedFile;
+import com.bitcamp.onemoaproject.vo.contest.ContestTeam;
+import com.bitcamp.onemoaproject.vo.contest.ContestTeamField;
+import com.bitcamp.onemoaproject.vo.contest.ContestTeamPortfolio;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.servlet.http.Part;
+import org.apache.tomcat.util.json.JSONParser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
@@ -83,6 +89,41 @@ public class ContestController {
     model.addAttribute("portfolio", portfolioService.list2(loginMember.getNo()));
     System.out.println("model.getAttribute(\"portfolio\") = " + model.getAttribute("portfolio"));
     return model.getAttribute("portfolio");
+  }
+  
+  @PostMapping("contestTeam/teamRecruit")
+  @ResponseBody
+  public String contestTeamRecruit(HttpSession session,
+      Model model, int contestNumber, int memberNo, String textArea,
+      @RequestParam(value="portfolios[]") List<String> portfolios,
+      @RequestParam(value="recruitments[]") List<String> recruitments) throws Exception {
+    Member loginMember = (Member) session.getAttribute("loginMember");
+    List<ContestTeamPortfolio> contestTeamPortfolios = new ArrayList<>();
+    List<ContestTeamField> contestTeamFields = new ArrayList<>();
+    ContestTeam contestTeam = new ContestTeam();
+    
+    if(loginMember != null){
+      contestTeam.setCtstno(contestNumber);
+      contestTeam.setMno(memberNo);
+      contestTeam.setCont(textArea);
+  
+      for (String portfolio : portfolios) {
+        contestTeamPortfolios.add(new ContestTeamPortfolio(portfolio));
+      }
+      contestTeam.setContestTeamPortfolios(contestTeamPortfolios);
+  
+      for (int i = 0; i < recruitments.size(); i+=2) {
+        contestTeamFields.add(new ContestTeamField(recruitments.get(i), recruitments.get(i+1)));
+      }
+      contestTeam.setContestTeamFields(contestTeamFields);
+  
+      System.out.println("contestTeamPortfolios = " + contestTeamPortfolios);
+      System.out.println("contestTeamFields = " + contestTeamFields);
+      System.out.println("contestTeam = " + contestTeam);
+      contestService.addTeam(contestTeam);
+      return "true";
+    }
+    return "false";
   }
 
   // 공모전 상세정보(관리자 페이지)
