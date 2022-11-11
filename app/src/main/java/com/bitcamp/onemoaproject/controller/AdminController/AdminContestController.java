@@ -72,7 +72,7 @@ public class AdminContestController {
       throw new Exception("공모전 게시글을 변경할 수 없습니다.");
     }
 
-    return "redirect:contestList";
+    return "redirect:contestList?no=all";
   }
 
   // 공모전 글등록(관리자 페이지)

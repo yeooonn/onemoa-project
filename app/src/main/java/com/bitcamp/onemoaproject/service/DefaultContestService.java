@@ -5,6 +5,8 @@ import com.bitcamp.onemoaproject.dao.ContestDao;
 import com.bitcamp.onemoaproject.vo.contest.Contest;
 import com.bitcamp.onemoaproject.vo.contest.ContestAttachedFile;
 import com.bitcamp.onemoaproject.vo.contest.ContestTeam;
+import com.bitcamp.onemoaproject.vo.contest.ContestTeamField;
+import com.bitcamp.onemoaproject.vo.contest.ContestTeamFieldMember;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -113,5 +115,21 @@ public class DefaultContestService implements ContestService{
     if (contestTeam.getContestTeamFields().size() > 0) {
       contestDao.insertTeamField(contestTeam);
     }
+  }
+  
+  // 공모전 팀장 상세보기 페이지
+  @Override
+  public ContestTeam getTeamReader(int contestNo, int memberNo) throws Exception {
+    return contestDao.findByReader(contestNo, memberNo);
+  }
+  
+  @Override
+  public List<ContestTeamField> getTeamField(int teamNo) throws Exception {
+    return contestDao.findByTeamField(teamNo);
+  }
+  
+  @Override
+  public List<ContestTeamField> getFieldMember(int fieldNo) throws Exception {
+    return contestDao.findByTeamFieldMember(fieldNo);
   }
 }

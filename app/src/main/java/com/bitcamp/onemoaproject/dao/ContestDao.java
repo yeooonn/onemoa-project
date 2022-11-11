@@ -3,10 +3,13 @@ package com.bitcamp.onemoaproject.dao;
 import com.bitcamp.onemoaproject.vo.contest.Contest;
 import com.bitcamp.onemoaproject.vo.contest.ContestAttachedFile;
 import com.bitcamp.onemoaproject.vo.contest.ContestTeam;
+import com.bitcamp.onemoaproject.vo.contest.ContestTeamField;
+import com.bitcamp.onemoaproject.vo.contest.ContestTeamFieldMember;
 import com.bitcamp.onemoaproject.vo.contest.ContestTeamPortfolio;
 import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 @Mapper
 public interface ContestDao {
@@ -46,4 +49,10 @@ public interface ContestDao {
   int insertTeamFiles(ContestTeam contestTeam); // 공모전 팀원구해요:포트폴리오 등록
   
   int insertTeamField(ContestTeam contestTeam); // 공모전 팀원구해요:모집분야 등록
+  
+  ContestTeam findByReader(@Param("contestNo") int contestNo,  @Param("memberNo") int memberNo);
+  
+  List<ContestTeamField> findByTeamField(int teamNo);
+  
+  List<ContestTeamField> findByTeamFieldMember(int fieldNo);
 }

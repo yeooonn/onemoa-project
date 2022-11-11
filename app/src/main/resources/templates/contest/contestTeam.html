@@ -263,12 +263,12 @@
               <ul class="tjd2">
                 <li>
                   <div class="tjdimg2">
-                    <img src="../img/profile1.png">
+                    <img id="xx-readerProfile" src="../img/profile1.png">
                   </div>
-                  <p>닉네임</p>
+                  <p id="xx-readerNickname">닉네임</p>
                 </li>
                 <li>
-                  <p>[나를 소개하는 글]
+                  <p id="xx-readerContent">[나를 소개하는 글]
                     안녕하세요!
                     저는 편집을 많이 해봤고 수상경험도 있습니다!
                     제가 촬영이 부족하여 촬영을 잘 해주시는 분을 구하고
@@ -284,23 +284,23 @@
 
             <div class="portfolio2">
               <p>포트폴리오</p>
-              <ul>
-                <li><a href="portfolio1">- https://onemoa/portfolio1</a></li>
-                <li><a href="https://onemoa/portfolio2">- https://onemoa/portfolio2</a></li>
-                <li><a href="https://onemoa/portfolio3">- https://onemoa/portfolio3</a></li>
+              <ul id="xx-readerPortfolios">
+<!--                <li><a href="portfolio1">- https://onemoa/portfolio1</a></li>-->
+<!--                <li><a href="https://onemoa/portfolio2">- https://onemoa/portfolio2</a></li>-->
+<!--                <li><a href="https://onemoa/portfolio3">- https://onemoa/portfolio3</a></li>-->
               </ul>
             </div>
 
             <div class="portfolio2">
               <p>팀원구해요</p>
-              <ul>
+              <ul id="xx-readerField">
                 <li>모집인원 5명 (촬영 3 / 편집 2 / 음향 1)</li>
                 <li><span>모집중&nbsp;&nbsp;&nbsp;</span> 촬영 <span>2</span> / 편집 <span>2</span> / 음향 <span>0</span></li>
                 <button class="tmm" onclick="dis5()">팀원 지원하기</button>
               </ul>
             </div>
 
-            <div class="portfolio2">
+            <div class="portfolio2" id="xx-fieldMemberUl">
               <ul>
                 <li><img src="../img/profile1.png"></li>
                 <li>
@@ -309,32 +309,7 @@
                 </li>
                 <li><p><a href="#"></a>지원자 보기</p></li>
               </ul>
-              <ul>
-                <li><img src="../img/profile2.png"></li>
-                <li>
-                  <p>촬영 지원합니다!</p>
-                  <p><a href="#">수정</a><a href="#">삭제</a></p>
-                </li>
-                <li><p><a href="#"></a>지원자 보기</p></li>
-              </ul>
-              <ul>
-                <li><img src="../img/profile3.png"></li>
-                <li>
-                  <p>촬영 지원합니다!</p>
-                  <p><a href="#">수정</a><a href="#">삭제</a></p>
-                </li>
-                <li><p><a href="#"></a>지원자 보기</p></li>
-              </ul>
-              <ul>
-                <li><img src="../img/profile4.png"></li>
-                <li>
-                  <p>촬영 지원합니다!</p>
-                  <p><a href="#">수정</a><a href="#">삭제</a></p>
-                </li>
-                <li><p><a href="#"></a>지원자 보기</p></li>
-              </ul>
             </div>
-
           </div>
         </div><!--modal5-->
 
@@ -402,8 +377,8 @@
                   <p>|</p>
                   <p data-th-text="${contest.title}">치킨브랜드에 어울리는 브랜드명</p>
                   <p>|</p>
-                  <p data-th-if="${contest.team == 'individual'}">개인전</p>
-                  <p data-th-if="${contest.team == 'match'}">팀전</p>
+                  <p data-th-if="${contest.team == '개인전'}">개인전</p>
+                  <p data-th-if="${contest.team == '팀전'}">팀전</p>
                   <p>|</p>
                   <p data-th-text="${contest.contOrg.orgName}"></p>
                 </div>

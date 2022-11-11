@@ -186,21 +186,15 @@ $("#leaderJoin").click(function () {
     recruitments[i] = seq.attr("id");
   }
 
-  console.log(contestNumber)// 공모전 번호;
-  console.log(memberNo);
-  console.log(textArea);
-  console.log(portfolios);
-  console.log(recruitments);
-
   $.ajax({
     type: "POST",
     url: "/onemoa/contest/contestTeam/teamRecruit",
     data: {
-      "contestNumber": contestNumber,
-      "memberNo": memberNo,
-      "textArea": textArea,
-      "portfolios": portfolios,
-      "recruitments": recruitments,
+      "contestNumber": contestNumber, // 공모전 번호;
+      "memberNo": memberNo, // 팀장 번호
+      "textArea": textArea, // 팀장 소개글
+      "portfolios": portfolios, // 팀장 포트폴리오
+      "recruitments": recruitments, // 모집분류
     },
     statusCode: {
       500: function (result) {
@@ -213,6 +207,7 @@ $("#leaderJoin").click(function () {
       },
     },
     success: function dis(){
+      team();
       if ($('.modal2').css('display') == 'none'){
         $('.modal2').show();
         $('.modal3').hide();
@@ -234,27 +229,6 @@ $("#leaderJoin").click(function () {
   });
 });
 
-// function dis(){
-//   if ($('.modal2').css('display') == 'none'){
-//     $('.modal2').show();
-//     $('.modal3').hide();
-//     $('.modal4').hide();
-//     body.style.overflow = 'hidden';
-//   } else{
-//     $('.modal2').hide();
-//     body.style.overflow = 'auto';
-//   }
-// }
-// function clo(){
-//   if ($('.modal2').css('display') == 'show'){
-//     $('.modal2').hide();
-//
-//   } else{
-//     $('.modal2').hide();
-//     body.style.overflow = 'auto';
-//   }
-// }
-
 function clo3(){
   if ($('.modal4').css('display') == 'show'){
     $('.modal4').hide();
@@ -268,8 +242,8 @@ function clo3(){
 // 팀장 상세보기
 function dis4(clicked_id) {
   memberNo = clicked_id;
-  console.log(contestNumber);
-  console.log("teamJangDetail2 : "+ memberNo);
+
+  // modal5 팀장상세보기
   if ($('.modal5').css('display') == 'none'){
     $('.modal2').show();
     $('.modal5').show();
@@ -278,6 +252,7 @@ function dis4(clicked_id) {
     $('.modal5').hide();
   }
 
+  // 팀장 정보 정보 요청
     $.ajax({
     type: "POST",
     url: "/onemoa/contest/contestTeam/readerDetail",
@@ -286,35 +261,87 @@ function dis4(clicked_id) {
       "memberNumber": memberNo,
     },
     success: function (result) {
-      alert("통신완료!!");
+      console.log(result);
+      let teamNumber = result.tno; // 팀번호
+      let teamCont = result.cont; // 팀장 소개글
+      let readerNumber = result.reader.no; // 팀장 번호
+      let readerNickame = result.reader.nickname; // 팀장 닉네임
+      let readerProfile = result.reader.profile;
+      let readerPortfoliosList = "";
+      for (let i = 0; i < result.contestTeamPortfolios.length; i++) {
+        readerPortfoliosList += "<li>" +
+            "<a href='" + result.contestTeamPortfolios[i].fpath + "'" + "onClick=\"window.open(this.href, '', 'width=1000px, height=1080px')\"; target=\"_blank\">" + "http://onemoa.com" + result.contestTeamPortfolios[i].fpath +"</li>"
+      }
+
+      $("#xx-readerProfile").attr("src", "/onemoa/member/files/" + readerProfile);
+      $("#xx-readerNickname").text(readerNickame);
+      $("#xx-readerContent").text(teamCont);
+      $("#xx-readerPortfolios").html(readerPortfoliosList);
+
+      // 팀장이 등록한 팀 분류 정보 요청
+      $.ajax({
+        type: "POST",
+        url: "/onemoa/contest/contestTeam/readerField",
+        data: {"teamNumber": teamNumber},
+        success: function (result2) {
+          let fieldHead = "";
+          let fieldList = "";
+          let fieldSize = 0;
+          for (let i = 0; i < result2.length; i++) {
+            fieldList += "<span>" + result2[i].name + "</span>"
+                + "<span>" + result2[i].size + "</span>"
+            fieldSize += Number(result2[i].size);
+          }
+          fieldHead = "<li>" +  "모집인원 " + fieldSize + " 명" + fieldList + "</li>" + "<button class=\"tmm\" onclick=\"dis5()\">팀원 지원하기</button>"
+          $("#xx-readerField").html(fieldHead);
+        },
+      });
+
+      $.ajax({
+        type: "POST",
+        url: "/onemoa/contest/contestTeam/fieldList",
+        data: {"teamNumber": teamNumber},
+        success: function (result3) {
+          console.log(result3);
+          let fieldMember = "";
+          for (let i = 0; i < result3.length; i++) {
+            for (let j = 0; j < result3[i].contestTeamFieldMembers.length; j++) {
+                // console.log(result3[i].contestTeamFieldMembers[j].tfmno);
+                // console.log(result3[i].contestTeamFieldMembers[j].cont);
+                // console.log(result3[i].contestTeamFieldMembers[j].applicant.nickname);
+                // console.log(result3[i].contestTeamFieldMembers[j].applicant.profile);
+                fieldMember +=
+                    "<ul>" +
+                    "<li>" +
+                    "<img src='/onemoa/member/files/" + result3[i].contestTeamFieldMembers[j].applicant.profile + "'>" +
+                    "</li>" +
+                    "<li>" +
+                      "<p>" + result3[i].contestTeamFieldMembers[j].cont + "</p>" +
+                      "<p><a href=\"#\">수정</a><a href=\"#\">삭제</a></p>" +
+                    "</li>" +
+                    "<li>" +
+                    "<p>" +
+                    "<a href='#' id='tfmno-" + result3[i].contestTeamFieldMembers[j].tfmno + "' onclick='fieldMemberDetail(this.id)'>지원자보기</a>" +
+                    "</p></li></ul>";
+            }
+          }
+          // console.log(fieldMember);
+          $("#xx-fieldMemberUl").html(fieldMember);
+        },
+      });
     },
   });
 }
 
-// function dis4(){
-//   if ($('.modal5').css('display') == 'none'){
-//     $('.modal2').show();
-//     $('.modal5').show();
-//   } else{
-//     $('.modal2').show();
-//     $('.modal5').hide();
-//   }
-//
-//   memberNo = $(this).attr("id");
-//
-//   $.ajax({
-//     type: "POST",
-//     url: "/onemoa/contest/contestTeam/readerDetail",
-//     data: {
-//       "contestNumber": contestNumber,
-//       "memberNumber": memberNo,
-//     },
-//     success: function (result) {
-//       alert("통신완료!!");
-//     },
-//   });
-// }
+// 지원자 보기
+function fieldMemberDetail(clicked_id) {
+  let fieldMemberNumber = clicked_id;
+  console.log(fieldMemberNumber);
+  fieldMemberNumber = Number(fieldMemberNumber.substring(6));
+  console.log(fieldMemberNumber);
+}
 
+// modal5 팀장상세보기 닫기 버튼
 function clo4(){
   if ($('.modal5').css('display') == 'show'){
     $('.modal5').hide();
@@ -325,6 +352,7 @@ function clo4(){
   }
 }
 
+// 팀원 지원하기 버튼
 function dis5(){
   if ($('.modal6').css('display') == 'none'){
     $('.modal4').show();
@@ -334,6 +362,8 @@ function dis5(){
     $('.modal6').hide();
   }
 }
+
+
 function clo5(){
   if ($('.modal5').css('display') == 'show'){
     $('.modal5').hide();
