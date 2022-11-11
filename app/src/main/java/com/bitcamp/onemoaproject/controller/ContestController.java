@@ -121,9 +121,9 @@ public class ContestController {
       System.out.println("contestTeamFields = " + contestTeamFields);
       System.out.println("contestTeam = " + contestTeam);
       contestService.addTeam(contestTeam);
-
+      return "true";
     }
-    return null;
+    return "false";
   }
 
   // 공모전 상세정보(관리자 페이지)
