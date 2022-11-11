@@ -54,7 +54,7 @@
     #{jobNo},
     #{bank},
     #{account},
-    '85d79cc2-9991-422c-995f-88d76f46562f',
+    'profile1.png',
     #{token},
     #{status}
     );

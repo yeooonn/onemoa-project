@@ -33,6 +33,9 @@ public class PortfolioController {
     this.portfolioService = portfolioService;
     this.sc = sc;
   }
+  
+  @GetMapping("portfolioForm")
+  public void form(){}
 
   @GetMapping("portfolioList")
   public String list(Model model, HttpSession session) throws Exception {
