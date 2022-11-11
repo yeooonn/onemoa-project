@@ -65,7 +65,6 @@ $(".con").click(function () {
 function clo(){
   if ($('.modal2').css('display') == 'show'){
     $('.modal2').hide();
-
   } else{
     $('.modal2').hide();
     body.style.overflow = 'auto';
@@ -115,6 +114,7 @@ function dis2(){
     },
   });
 }
+
 let selectPortfolioNumber = "";
 let selectPortfolioText = "";
 
@@ -126,6 +126,7 @@ function portfolioBoxChange() {
       "<a href='/onemoa/portfolio/firstportfolio?ptNo=" + selectPortfolioNumber + "'" + "onClick=\"window.open(this.href, '', 'width=1000px, height=1080px')\"; target=\"_blank\">" + selectPortfolioText + "</a>" + "</li>";
   $("#innerPortfolio").append(aList);
 }
+
 let selectRecruNumber = "";
 let selectRecruText = "";
 let selectPersonnelNumber = "";
@@ -143,7 +144,6 @@ function personnelSelect() {
       +"</li>";
   $("#innerRecruitment").append(bList);
 }
-
 
 function clo2(){
   if ($('.modal3').css('display') == 'show'){
@@ -192,8 +192,6 @@ $("#leaderJoin").click(function () {
   console.log(portfolios);
   console.log(recruitments);
 
-
-
   $.ajax({
     type: "POST",
     url: "/onemoa/contest/contestTeam/teamRecruit",
@@ -204,11 +202,58 @@ $("#leaderJoin").click(function () {
       "portfolios": portfolios,
       "recruitments": recruitments,
     },
-    success: function (result) {
-      console.log(result);
+    statusCode: {
+      500: function (result) {
+        swal({
+          title: "이미 등록하신 공모전입니다.",
+          icon: "error",
+          closeOnClickOutside : false}).then(() =>{
+          window.location.href = "/onemoa/";
+        });
+      },
     },
+    success: function dis(){
+      if ($('.modal2').css('display') == 'none'){
+        $('.modal2').show();
+        $('.modal3').hide();
+        $('.modal4').hide();
+        body.style.overflow = 'hidden';
+      } else{
+        $('.modal2').hide();
+        body.style.overflow = 'auto';
+      }
+    },
+    error: function (result) {
+      swal({
+        title: "이미 등록하신 공모전입니다.",
+        icon: "error",
+        closeOnClickOutside : false}).then(() =>{
+        window.location.href = "/onemoa/";
+      });
+    }
   });
 });
+
+// function dis(){
+//   if ($('.modal2').css('display') == 'none'){
+//     $('.modal2').show();
+//     $('.modal3').hide();
+//     $('.modal4').hide();
+//     body.style.overflow = 'hidden';
+//   } else{
+//     $('.modal2').hide();
+//     body.style.overflow = 'auto';
+//   }
+// }
+// function clo(){
+//   if ($('.modal2').css('display') == 'show'){
+//     $('.modal2').hide();
+//
+//   } else{
+//     $('.modal2').hide();
+//     body.style.overflow = 'auto';
+//   }
+// }
 
 function clo3(){
   if ($('.modal4').css('display') == 'show'){
@@ -220,7 +265,11 @@ function clo3(){
   }
 }
 
-function dis4(){
+// 팀장 상세보기
+function dis4(clicked_id) {
+  memberNo = clicked_id;
+  console.log(contestNumber);
+  console.log("teamJangDetail2 : "+ memberNo);
   if ($('.modal5').css('display') == 'none'){
     $('.modal2').show();
     $('.modal5').show();
@@ -228,7 +277,44 @@ function dis4(){
     $('.modal2').show();
     $('.modal5').hide();
   }
+
+    $.ajax({
+    type: "POST",
+    url: "/onemoa/contest/contestTeam/readerDetail",
+    data: {
+      "contestNumber": contestNumber,
+      "memberNumber": memberNo,
+    },
+    success: function (result) {
+      alert("통신완료!!");
+    },
+  });
 }
+
+// function dis4(){
+//   if ($('.modal5').css('display') == 'none'){
+//     $('.modal2').show();
+//     $('.modal5').show();
+//   } else{
+//     $('.modal2').show();
+//     $('.modal5').hide();
+//   }
+//
+//   memberNo = $(this).attr("id");
+//
+//   $.ajax({
+//     type: "POST",
+//     url: "/onemoa/contest/contestTeam/readerDetail",
+//     data: {
+//       "contestNumber": contestNumber,
+//       "memberNumber": memberNo,
+//     },
+//     success: function (result) {
+//       alert("통신완료!!");
+//     },
+//   });
+// }
+
 function clo4(){
   if ($('.modal5').css('display') == 'show'){
     $('.modal5').hide();
@@ -329,7 +415,8 @@ function team(){
           // console.log("팀장 회원번호 : " + result[i].reader.no);
           // console.log("팀장 닉네임 : " + result[i].reader.nickname);
           // console.log("팀장 프로필파일경로 : " + result[i].reader.profile);
-          listList += "<li>" + "<a href='" + "#'" + "onclick=\"dis4()\"" + "id='" + result[i].tno + "'" +  ">"
+          // listList += "<li class='teamJangDetail1'>" + "<a href='" + "#'" + "onclick='dis4()'" + "class='teamJangDetail2'" + "id='" + result[i].tno + "'" +  ">"
+          listList += "<li onclick='dis4(this.id)'"  + "id='" + result[i].reader.no + "'" + ">"
               + "<img src='/onemoa/member/files/"
               + result[i].reader.profile + "'"
               + "onmouseover=\"this.src='../img/profile11.png'\""
@@ -337,7 +424,6 @@ function team(){
               + result[i].reader.profile
               + "'"
               + "\">"
-              + "</a>"
               + "<br>"
               + "<p>" + result[i].reader.nickname
               + "</p>"
