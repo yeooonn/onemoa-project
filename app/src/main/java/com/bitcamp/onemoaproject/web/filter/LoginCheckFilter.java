@@ -44,7 +44,8 @@ public class LoginCheckFilter implements Filter {
       if (servletPath.toLowerCase().endsWith("add")
           || servletPath.toLowerCase().endsWith("update")
           || servletPath.toLowerCase().endsWith("delete")
-          || servletPath.toLowerCase().contains("mypage")) {
+          || servletPath.toLowerCase().contains("mypage")
+          || servletPath.toLowerCase().contains("form")) {
 
         Member loginMember = (Member) httpRequest.getSession().getAttribute("loginMember");
         if (loginMember == null) { // 로그인 하지 않았다

@@ -8,6 +8,6 @@ import lombok.ToString;
 @Setter
 @ToString
 public class ContestCategory {
-  private int no;
-  private String categoryName;
+  private int no; // 공모전 카테고리 번호
+  private String categoryName; // 공모전 카테고리명
 }

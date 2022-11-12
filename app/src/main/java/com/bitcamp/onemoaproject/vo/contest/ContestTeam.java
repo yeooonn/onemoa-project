@@ -11,13 +11,15 @@ import lombok.ToString;
 @Setter
 @ToString
 public class ContestTeam {
-  private int tno;
-  private int ctstno;
-  private int mno;
-  private String cont;
-  private Date cdt;
-  private Member reader;
+  private int tno; // 팀원모집번호
+  private int ctstno; // 공모전번호
+  private int mno; // 팀장 회원번호
+  private String cont; // 팀장 소개글
+  private Date cdt; // 등록일
+  private Member reader; // 팀장 정보
   
+  // 팀장 포트폴리오를 저장할 필드
   private List<ContestTeamPortfolio> contestTeamPortfolios;
+  // 모집분야를 저장할 필드
   private List<ContestTeamField> contestTeamFields;
 }

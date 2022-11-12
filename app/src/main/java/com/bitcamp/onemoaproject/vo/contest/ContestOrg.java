@@ -8,8 +8,8 @@ import lombok.ToString;
 @Setter
 @ToString
 public class ContestOrg {
-  private int no;
-  private String orgName;
+  private int no; // 기관분류번호
+  private String orgName; // 기관명
   
   public ContestOrg(int no, String orgName) {
     this.no = no;

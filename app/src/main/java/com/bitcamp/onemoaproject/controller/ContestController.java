@@ -2,6 +2,7 @@ package com.bitcamp.onemoaproject.controller;
 
 import com.bitcamp.onemoaproject.vo.contest.ContestTeam;
 import com.bitcamp.onemoaproject.vo.contest.ContestTeamField;
+import com.bitcamp.onemoaproject.vo.contest.ContestTeamFieldMember;
 import com.bitcamp.onemoaproject.vo.contest.ContestTeamPortfolio;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -129,39 +130,28 @@ public class ContestController {
   
   // 공모전 팀전 팀장 상세보기 페이지
   @PostMapping("contestTeam/readerDetail")
-  public void contestReaderDetail(int contestNumber, int memberNumber) {
-    System.out.println("contestNumber = " + contestNumber);
-    System.out.println("memberNumber = " + memberNumber);
+  @ResponseBody
+  public ContestTeam contestReaderDetail(int contestNumber, int memberNumber) throws Exception {
+    ContestTeam contestTeam = contestService.getTeamReader(contestNumber, memberNumber);
+    return contestTeam;
   }
-
-  // 공모전 썸네일 첨부파일 처리
-  private String saveThumbNailFile(Part files2) throws IOException {
-    String dirPath = sc.getRealPath("/contest/files");
-
-    if (files2.getSize() != 0) { // 썸네일 파일 사이즈가 0이 아니라면
-      String filename = UUID.randomUUID().toString(); // 첨부파일의 UUID
-      files2.write(dirPath + "/" + filename);
-
-      return filename;
-    }
-    return null;
+  
+  // 공모전 팀장 모집분야 조회
+  @PostMapping("contestTeam/readerField")
+  @ResponseBody
+  public List<ContestTeamField> contestReaderField(int teamNumber) throws Exception{
+    System.out.println("teamNumber = " + teamNumber);
+    List<ContestTeamField> contestTeamField = contestService.getTeamField(teamNumber);
+    return contestTeamField;
   }
-
-  // 공모전 일반 첨부파일 처리
-  private List<ContestAttachedFile> saveAttachedFiles(Part[] files) throws IOException, ServletException {
-    List<ContestAttachedFile> contestAttachedFiles = new ArrayList<>();
-    String dirPath = sc.getRealPath("/contest/files");
-
-    for (Part part : files) {
-      if (part.getSize() == 0) {
-        continue;
-      }
-
-      String filename = UUID.randomUUID().toString(); // 첨부파일의 UUID
-      String realFilename = part.getSubmittedFileName(); // 첨부파일의 실제파일명 (KakaoTalk_Photo_2022-09-15-20-31-04.jpeg)
-      part.write(dirPath + "/" + filename);
-      contestAttachedFiles.add(new ContestAttachedFile(realFilename, filename));
-    }
-    return contestAttachedFiles;
+  
+  // 공모전 팀원모집분야 지원자 조회
+  @PostMapping("contestTeam/fieldList")
+  @ResponseBody
+  public List<ContestTeamField> contestTeamFieldList(int teamNumber) throws Exception {
+    List<ContestTeamField> contestTeamFieldList = contestService.getFieldMember(
+        teamNumber);
+    System.out.println("contestTeamFieldList = " + contestTeamFieldList);
+    return contestTeamFieldList;
   }
 }

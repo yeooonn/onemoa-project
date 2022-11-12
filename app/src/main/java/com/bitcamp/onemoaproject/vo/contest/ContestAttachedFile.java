@@ -8,10 +8,10 @@ import lombok.ToString;
 @Setter
 @ToString
 public class ContestAttachedFile {
-  private int ctstFno;
-  private String fName;
-  private String filepath;
-  private int ctstNo;
+  private int ctstFno; // 공모전 첨부파일번호
+  private String fName; // 공모전 파일이름
+  private String filepath; // 공모전 파일경로
+  private int ctstNo; // 공모전 번호
   
   public ContestAttachedFile() {}
   
