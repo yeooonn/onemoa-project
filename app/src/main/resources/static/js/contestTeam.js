@@ -165,6 +165,20 @@ function dis3(){
   }
 }
 
+// modal6에서 팀원 지원하기 버튼
+function dis6(){
+  teamReaderDetail();
+
+  if ($('.modal6').css('display') == 'none'){
+    $('.modal6').hide();
+    $('.modal5').show();
+  } else{
+    $('.modal6').hide();
+    $('.modal5').show();
+  }
+}
+
+
 
 // 팀원 모집하기 등록 버튼
 $("#leaderJoin").click(function () {
@@ -251,9 +265,12 @@ function dis4(clicked_id) {
     $('.modal2').show();
     $('.modal5').hide();
   }
+  teamReaderDetail();
+}
 
+function teamReaderDetail() {
   // 팀장 정보 정보 요청
-    $.ajax({
+  $.ajax({
     type: "POST",
     url: "/onemoa/contest/contestTeam/readerDetail",
     data: {
@@ -274,7 +291,8 @@ function dis4(clicked_id) {
       }
 
       $("#xx-readerProfile").attr("src", "/onemoa/member/files/" + readerProfile);
-      $("#xx-readerNickname").text(readerNickame);
+      $("#xx-readerNickname1").text(readerNickame + "님 상세정보");
+      $("#xx-readerNickname2").text(readerNickame);
       $("#xx-readerContent").text(teamCont);
       $("#xx-readerPortfolios").html(readerPortfoliosList);
 
@@ -306,23 +324,23 @@ function dis4(clicked_id) {
           let fieldMember = "";
           for (let i = 0; i < result3.length; i++) {
             for (let j = 0; j < result3[i].contestTeamFieldMembers.length; j++) {
-                // console.log(result3[i].contestTeamFieldMembers[j].tfmno);
-                // console.log(result3[i].contestTeamFieldMembers[j].cont);
-                // console.log(result3[i].contestTeamFieldMembers[j].applicant.nickname);
-                // console.log(result3[i].contestTeamFieldMembers[j].applicant.profile);
-                fieldMember +=
-                    "<ul>" +
-                    "<li>" +
-                    "<img src='/onemoa/member/files/" + result3[i].contestTeamFieldMembers[j].applicant.profile + "'>" +
-                    "</li>" +
-                    "<li>" +
-                      "<p>" + result3[i].contestTeamFieldMembers[j].cont + "</p>" +
-                      "<p><a href=\"#\">수정</a><a href=\"#\">삭제</a></p>" +
-                    "</li>" +
-                    "<li>" +
-                    "<p>" +
-                    "<a href='#' id='tfmno-" + result3[i].contestTeamFieldMembers[j].tfmno + "' onclick='fieldMemberDetail(this.id)'>지원자보기</a>" +
-                    "</p></li></ul>";
+              // console.log(result3[i].contestTeamFieldMembers[j].tfmno);
+              // console.log(result3[i].contestTeamFieldMembers[j].cont);
+              // console.log(result3[i].contestTeamFieldMembers[j].applicant.nickname);
+              // console.log(result3[i].contestTeamFieldMembers[j].applicant.profile);
+              fieldMember +=
+                  "<ul>" +
+                  "<li>" +
+                  "<img src='/onemoa/member/files/" + result3[i].contestTeamFieldMembers[j].applicant.profile + "'>" +
+                  "</li>" +
+                  "<li>" +
+                  "<p>" + result3[i].contestTeamFieldMembers[j].cont + "</p>" +
+                  "<p><a href=\"#\">수정</a><a href=\"#\">삭제</a></p>" +
+                  "</li>" +
+                  "<li>" +
+                  "<p>" +
+                  "<a href='#' id='tfmno-" + result3[i].contestTeamFieldMembers[j].tfmno + "' onclick='fieldMemberDetail(this.id)'>지원자보기</a>" +
+                  "</p></li></ul>";
             }
           }
           // console.log(fieldMember);
@@ -352,7 +370,7 @@ function clo4(){
   }
 }
 
-// 팀원 지원하기 버튼
+// 팀장 상세보기에서 팀원 지원하기 버튼
 function dis5(){
   if ($('.modal6').css('display') == 'none'){
     $('.modal4').show();
@@ -364,6 +382,7 @@ function dis5(){
 }
 
 
+
 function clo5(){
   if ($('.modal5').css('display') == 'show'){
     $('.modal5').hide();
@@ -373,6 +392,7 @@ function clo5(){
     $('.modal2').show();
   }
 }
+
 
 // 포폴 추가 버튼
 $(document).on("click","button[name=addStaff]",function(){
