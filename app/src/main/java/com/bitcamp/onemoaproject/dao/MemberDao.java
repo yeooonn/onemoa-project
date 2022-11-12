@@ -29,7 +29,12 @@ public interface MemberDao {
   // - SQL에서 참조할 파라미터라고 애노테이션으로 표시해야한다.
   Member findByEmailPassword(@Param("email") String email, @Param("password") String password);
   
+  // 이메일로 쿼리 조회
   Member findByEmail(String email);
   
+  // 닉네임으로 쿼리 조회
   Member findByNickName(String nickname);
+  
+  // 회원 포트폴리오 목록 조회
+  List<Member> findByMemberPortfolio(int fieldMemberNo);
 }

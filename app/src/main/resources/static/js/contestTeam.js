@@ -268,6 +268,8 @@ function dis4(clicked_id) {
   teamReaderDetail();
 }
 
+let readerNumber = 0;
+
 function teamReaderDetail() {
   // 팀장 정보 정보 요청
   $.ajax({
@@ -281,7 +283,7 @@ function teamReaderDetail() {
       console.log(result);
       let teamNumber = result.tno; // 팀번호
       let teamCont = result.cont; // 팀장 소개글
-      let readerNumber = result.reader.no; // 팀장 번호
+      readerNumber = result.reader.no; // 팀장 번호
       let readerNickame = result.reader.nickname; // 팀장 닉네임
       let readerProfile = result.reader.profile;
       let readerPortfoliosList = "";
@@ -302,6 +304,7 @@ function teamReaderDetail() {
         url: "/onemoa/contest/contestTeam/readerField",
         data: {"teamNumber": teamNumber},
         success: function (result2) {
+          console.log(result2);
           let fieldHead = "";
           let fieldList = "";
           let fieldSize = 0;
@@ -379,8 +382,30 @@ function dis5(){
     $('.modal4').show();
     $('.modal6').hide();
   }
+  fieldMemberDetail();
 }
 
+// 지원자 회원 정보 조회
+function fieldMemberDetail(){
+  $.ajax({
+    type: "POST",
+    url: "/onemoa/contest/contestTeam/fieldMemberDetail",
+    data: {"readerNumber": readerNumber},
+    success: function (result) {
+      console.log(result);
+      let fieldMemberNumber = result[0].no;
+      let fieldMemberNickname = result[0].nickname;
+      let fieldMemberProfile = result[0].profile;
+
+      $("#xx-fieldMemberProfile").attr("src","/onemoa/member/files/" + fieldMemberProfile);
+      $("#xx-fieldMemberNickname").html(fieldMemberNickname);
+      for (let i = 0; i < result[0].portfoliosList.length; i++) {
+        console.log(result[0].portfoliosList[i].ptNo);
+        console.log(result[0].portfoliosList[i].title);
+      }
+    },
+  });
+}
 
 
 function clo5(){

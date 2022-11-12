@@ -30,4 +30,6 @@ public interface MemberService {
   boolean delete(int no) throws Exception;
   
   List<Member> list() throws Exception;
+  
+  List<Member> getFieldMemberPortfolio(int fieldMemberNo) throws Exception;
 }

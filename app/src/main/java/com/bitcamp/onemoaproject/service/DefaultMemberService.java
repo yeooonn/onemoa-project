@@ -75,4 +75,9 @@ public class DefaultMemberService implements MemberService {
   public List<Member> list() throws Exception {
     return memberDao.findAll();
   }
+  
+  @Override
+  public List<Member> getFieldMemberPortfolio(int fieldMemberNo) throws Exception {
+    return memberDao.findByMemberPortfolio(fieldMemberNo);
+  }
 }

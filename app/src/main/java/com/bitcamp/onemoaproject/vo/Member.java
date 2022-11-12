@@ -1,6 +1,8 @@
 package com.bitcamp.onemoaproject.vo;
 
+import com.bitcamp.onemoaproject.vo.portfolio.Portfolio;
 import java.sql.Date;
+import java.util.List;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -27,4 +29,6 @@ public class Member {
   private String token;
   private boolean status;
   private String interests;
+  
+  private List<Portfolio> portfoliosList;
 }

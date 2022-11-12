@@ -21,6 +21,14 @@
     <result column="profile" property="profile"/>
     <result column="token" property="token"/>
     <result column="status" property="status"/>
+
+    <collection property="portfoliosList" ofType="Portfolio">
+      <id column="ptno" property="ptNo"/>
+      <result column="mno" property="mno"/>
+      <result column="title" property="title"/>
+      <result column="cont" property="cont"/>
+      <result column="cdt" property="createdDate"/>
+    </collection>
   </resultMap>
 
   <!-- 회원가입 -->
@@ -82,6 +90,7 @@
       mno=#{no} AND name=#{name} AND email=#{email}
   </update>
 
+  <!-- 회원 조회 -->
   <select id="findByNo" resultMap="memberMap">
     select
     mno,
@@ -96,10 +105,12 @@
     mno=#{value}
   </select>
 
+ <!-- 모든 회원 조회 -->
   <select id="findAll" resultMap="memberMap">
     select mno, email, nick, name, tel, cdt, pstno, base_addr, detail_addr, jno, bank, account, profile, status from member order by mno;
   </select>
 
+  <!-- 로그인시 이메일 페스워드 확인 쿼리 -->
   <select id="findByEmailPassword" resultMap="memberMap">
     select
     mno,
@@ -111,14 +122,17 @@
     email=#{email} and pwd=sha2(#{password},256)
   </select>
 
+ <!-- 이메일 확인 -->
   <select id="findByEmail" resultMap="memberMap">
     select email from member where email=#{email}
   </select>
 
+  <!-- 닉네임 확인 -->
   <select id="findByNickName" resultMap="memberMap">
     select nick from member where nick=#{nickname}
   </select>
 
+  <!-- 사용자 정보 업데이트-->
   <update id="update" parameterType="Member">
     update member set
       name=#{name},
@@ -128,6 +142,7 @@
       mno=#{no}
   </update>
 
+ <!-- 사용자 패스워드 업데이트 -->
   <update id="updatePassword" parameterType="Member">
     update member set
     pwd=sha2(#{password},256)
@@ -135,7 +150,20 @@
     mno=#{no}
   </update>
 
+ <!-- 사용자 삭제 -->
   <delete id="delete">
     delete from member where mno=#{value}
   </delete>
+
+  <select id="findByMemberPortfolio" resultMap="memberMap">
+    select
+      m.mno,
+      m.nick,
+      m.profile,
+      p.ptno,
+      p.title
+    from member m
+      join portfolio p on m.mno = p.mno
+    where m.mno=#{value}
+  </select>
 </mapper>

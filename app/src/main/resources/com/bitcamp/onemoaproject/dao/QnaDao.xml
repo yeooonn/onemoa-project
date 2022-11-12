@@ -79,7 +79,7 @@
         q.qnano=#{value}
   </select>
 
-  <select id="findFilesByQna" resultMap="attachedFileMap">
+  <select id="findFilesByQna" resultMap="qnaAttachedFileMap">
       select
       qnafno,
         filepath,
