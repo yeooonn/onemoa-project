@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="ko">
 <head>
     <meta charset="UTF-8">
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" rel="stylesheet">
@@ -11,6 +11,7 @@
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.js"></script>
     <script src="http://localhost:3333/onemoa/js/login.js"></script>
+    <title>onemoa mypage</title>
 </head>
 <body>
 <form action='answerupdate' method="post" enctype="multipart/form-data">
@@ -39,7 +40,7 @@
                 <th>첨부파일</th>
                 <td colspan="3">
                     <ul>
-                        <li data-th-each="file : ${qna.attachedFiles}" style="float:left; margin-right:5%; list-style:none; width:10%">
+                        <li data-th-each="file : ${qna.qnaAttachedFiles}" style="float:left; margin-right:5%; list-style:none; width:10%">
                             <a href="files/test.gif"
                                data-th-href="@{/qna/files/{path}(path=${file.filepath})}">
                                 <img data-th-src="@{/qna/files/{path}(path=${file.filepath})}" style="width:100%; height:auto;"/>
@@ -47,11 +48,10 @@
                         </li>
                     </ul>
                 </td>
-
             </tr>
             <tr>
                 <th>답글 내용</th>
-                <td colspan="3"><textarea name="answer" style="resize: none;" rows='4' cols='30'></textarea></td>
+                <td colspan="3"><textarea name="answer" style="resize: none;" rows='4' cols='30' required></textarea></td>
             </tr>
             <tr>
                 <th>답글 일시</th>
@@ -65,9 +65,9 @@
 <!--        <input hidden name="files" type="file" multiple accept="image/*">-->
         <button><a href="./list">목록</a></button>
         <button type='submit'>답변 완료</button>
+        <button><a href='delete?no=1'
+                   data-th-href="@{delete(no=${qna.no})}">삭제</a></button>
     </div>
 </form>
-</script>
-
 </body>
 </html>

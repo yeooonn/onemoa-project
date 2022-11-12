@@ -19,9 +19,7 @@ public interface QnaDao {
 
     int delete(int no);
 
-//  int deleteByMember(int memberNo);
-
-     List<Qna> findAll();
+    List<Qna> findAll();
 
     int insertFiles(Qna qna);
 
@@ -33,7 +31,7 @@ public interface QnaDao {
 
   int deleteFiles(int qnaNo);
 
-  int deleteFilesByMemberBoards(int memberNo);
+//  int deleteFilesByMemberBoards(int memberNo);
 
 }
 

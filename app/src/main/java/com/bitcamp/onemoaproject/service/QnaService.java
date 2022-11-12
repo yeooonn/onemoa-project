@@ -15,6 +15,8 @@ public interface QnaService {
   boolean answerUpdate(Qna qna) throws Exception;
   Qna get(int no) throws Exception;
 
+
+
   boolean delete(int no) throws Exception;
 
   List<Qna> list() throws Exception;
