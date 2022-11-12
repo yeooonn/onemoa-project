@@ -9,7 +9,7 @@ repositories {
     mavenCentral()
 }
 
-dependencies {dependencies {
+dependencies {
     // spring-webmvc 관련 라이브러리
     implementation 'org.springframework.boot:spring-boot-starter-web'
 

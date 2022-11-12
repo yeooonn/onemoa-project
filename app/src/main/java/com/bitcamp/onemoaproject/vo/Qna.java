@@ -20,7 +20,7 @@ public class Qna {
   private Date answerCdt;
   private QnaCategory category;
   private Member writer;
-  private List<AttachedFile> attachedFiles;
+  private List<QnaAttachedFile> qnaAttachedFiles;
 }
 
 

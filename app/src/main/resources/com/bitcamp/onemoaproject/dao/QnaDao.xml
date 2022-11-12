@@ -22,7 +22,7 @@
       <result column="name" property="name"/>
     </association>
 
-    <collection property="attachedFiles" ofType="attachedFile">
+    <collection property="qnaAttachedFiles" ofType="QnaAttachedFile">
       <id column="qnafno" property="no"/>
       <result column="fname" property="filename"/>
       <result column="fpath" property="filepath"/>
@@ -32,7 +32,7 @@
   <!-- 새로운 리절트 맵이다. 변수를 담을 수 있는 수납함
   (resultMap) qna, no 클래스 느낌. 담을수 있는 서랍임.
   -->
-  <resultMap type="attachedFile" id="attachedFileMap">
+  <resultMap type="QnaAttachedFile" id="qnaAttachedFileMap">
     <id column="qnafno" property="no"/>
     <result column="fname" property="filename"/>
     <result column="fpath" property="filepath"/>
@@ -148,7 +148,7 @@
   </delete>
 
   <!-- 이 쿼리문 됨..-->
-  <select id="findFileByNo" resultMap="attachedFileMap">
+  <select id="findFileByNo" resultMap="qnaAttachedFileMap">
     select
       qnafno,
       fpath,
