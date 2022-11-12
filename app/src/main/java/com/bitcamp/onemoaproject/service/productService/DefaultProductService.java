@@ -79,8 +79,8 @@ public class DefaultProductService implements ProductService {
   }
 
   @Override
-  public int countProductListTotal() {
-    return productDao.countProductList();
+  public int countProductListTotal(String code) {
+    return productDao.countProductList(code);
   }
 
 //  public double getReviewAvg(int productNo) throws Exception {

@@ -1,11 +1,16 @@
 package com.bitcamp.onemoaproject.vo.paging;
 
+import lombok.ToString;
+import org.apache.tomcat.util.buf.CharsetCache;
+
+@ToString
 public class Criteria {
 
     private String code;
 
     private int page;
     private int perPageNum;
+    private String categoryCode;
 
     public int getPageStart() {
         return (this.page-1)*perPageNum;
@@ -14,6 +19,7 @@ public class Criteria {
     public Criteria() {
         this.page = 1;
         this.perPageNum = 3;
+        this.categoryCode = null;
     }
 
     public int getPage() {
@@ -53,6 +59,14 @@ public class Criteria {
                 ", page=" + page +
                 ", perPageNum=" + perPageNum +
                 '}';
+    }
+
+    public String getCategoryCode() {
+        return categoryCode;
+    }
+
+    public void setCategoryCode(String categoryCode) {
+        this.categoryCode = categoryCode;
     }
 }
 

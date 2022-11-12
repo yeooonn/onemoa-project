@@ -21,6 +21,10 @@ dependencies {
 
     // mybatis-spring 관련 라이브러리
     implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:2.2.2'
+    implementation 'org.springframework.boot:spring-boot-starter-websocket'
+    
+    // 채팅 관련 라이브러리
+    implementation 'org.springframework.boot:spring-boot-starter-web'
 
     // mariadb jdbc driver 관련 라이브러리
     runtimeOnly 'org.mariadb.jdbc:mariadb-java-client'

@@ -2,7 +2,6 @@ package com.bitcamp.onemoaproject.service;
 
 import com.bitcamp.onemoaproject.dao.WishDao;
 import com.bitcamp.onemoaproject.vo.Member;
-import com.bitcamp.onemoaproject.vo.Wish;
 import com.bitcamp.onemoaproject.vo.product.Product;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

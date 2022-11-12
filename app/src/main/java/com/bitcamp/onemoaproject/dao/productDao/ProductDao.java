@@ -41,7 +41,7 @@ public interface ProductDao {
   public List<Map<String, Object>> selectProductList(Criteria cri) ;
 
   // 게시판 글의 개수를 세기위한 메소드
-  public int countProductList();
+  public int countProductList(String code);
 
 //  double getReviewAvg(int productNo);
 

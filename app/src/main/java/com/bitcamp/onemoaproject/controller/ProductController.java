@@ -83,31 +83,20 @@ public class ProductController {
     return attachedFiles;
   }
 
-
-//  @GetMapping("list")
-//  public void list(Model model) throws Exception {
-//    model.addAttribute("products", productService.list());
-//    model.addAttribute("productCategories", productCategoryService.list());
-//    // System.out.println(productCategoryService.list());
-//  }
-
   @RequestMapping("list")
-  public ModelAndView list(String code, Criteria cri) {
+  public ModelAndView list(Criteria cri, String code) {
 
     ModelAndView mav = new ModelAndView("product/list");
-
+    
+    // 페이징에서 사용하는 설정
     PageMaker pageMaker = new PageMaker();
-    cri.setCode(code);
+    cri.setCategoryCode(code);
     pageMaker.setCri(cri);
-    pageMaker.setTotalCount(productService.countProductListTotal());
-
-    System.out.println("code = " + code + ", cri = " + cri);
-
+    pageMaker.setTotalCount(productService.countProductListTotal(code));
     List<Map<String,Object>> products = productService.selectProductList(cri);
     mav.addObject("products", products);
     mav.addObject("pageMaker", pageMaker);
     mav.addObject("productCategories", productCategoryService.list());
-
 
     return mav;
   }
@@ -124,7 +113,6 @@ public class ProductController {
     System.out.println("wishCheck = " + wishCheck);
     int wishCount = wishService.getCount(no);
     System.out.println("wishCount = " + wishCount);
-    
 
     if (count != 0) { // 후기글의 개수가 0이 아니면
       double average = productReviewService.getReviewAverage(no);
