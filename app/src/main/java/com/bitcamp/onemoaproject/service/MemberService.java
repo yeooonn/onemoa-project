@@ -3,6 +3,8 @@ package com.bitcamp.onemoaproject.service;
 import com.bitcamp.onemoaproject.vo.Member;
 import java.util.List;
 
+import java.util.List;
+
 // 비즈니스 로직을 수행하는 객체의 사용규칙(호출규칙)
 public interface MemberService {
   

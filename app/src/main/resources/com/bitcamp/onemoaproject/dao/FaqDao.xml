@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bitcamp.onemoaproject.dao.FaqDao">
+
+  <resultMap type="faq" id="faqMap">
+    <id column="faqno" property="no"/>
+    <result column="title" property="title"/>
+    <result column="cont" property="content"/>
+    <result column="type" property="type"/>
+  </resultMap>
+
+  <select id="findAll" resultMap="faqMap">
+      select
+      faqno,
+      title,
+      cont
+       from
+      faq
+      order by
+        faqno desc
+  </select>
+
+    <select id="findByNo" resultMap="faqMap">
+    select
+      faqno,
+      title,
+      cont,
+      type
+      from
+      faq
+      where
+      faqno=#{value}
+  </select>
+
+  <insert id="insert" parameterType="faq"
+          useGeneratedKeys="true" keyColumn="faqno" keyProperty="no">
+    insert into faq(title,cont,type)
+    values(#{title},#{content},#{type})
+  </insert>
+
+  <update id="update" parameterType="faq">
+    update faq set
+      title=#{title},
+      cont=#{content}
+    where faqno=#{no}
+  </update>
+
+  <delete id="delete">
+    delete from faq
+    where faqno=#{value}
+  </delete>
+
+<!--  <delete id="deleteByMember">-->
+<!--    delete from app_board -->
+<!--    where mno=#{value}-->
+<!--  </delete>-->
+
+</mapper>
+
+
+
