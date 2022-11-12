@@ -1,7 +1,7 @@
 package com.bitcamp.onemoaproject.service;
 
 import com.bitcamp.onemoaproject.dao.QnaDao;
-import com.bitcamp.onemoaproject.vo.AttachedFile;
+import com.bitcamp.onemoaproject.vo.QnaAttachedFile;
 import com.bitcamp.onemoaproject.vo.Qna;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -25,7 +25,7 @@ public class DefaultQnaService implements QnaService {
     }
 
     // 2) 첨부파일 등록
-    if (qna.getAttachedFiles().size() > 0) {
+    if (qna.getQnaAttachedFiles().size() > 0) {
       qnaDao.insertFiles(qna);
     }
   }
@@ -39,7 +39,7 @@ public class DefaultQnaService implements QnaService {
     }
 
     // 2) 첨부파일 추가
-    if (qna.getAttachedFiles().size() > 0) {
+    if (qna.getQnaAttachedFiles().size() > 0) {
       qnaDao.insertFiles(qna);
     }
     return true;
@@ -73,7 +73,7 @@ public class DefaultQnaService implements QnaService {
   }
 
   @Override
-  public AttachedFile getAttachedFile(int fileNo) throws Exception {
+  public QnaAttachedFile getAttachedFile(int fileNo) throws Exception {
     return qnaDao.findFileByNo(fileNo);
   }
 

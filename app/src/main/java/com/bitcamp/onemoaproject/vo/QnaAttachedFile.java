@@ -7,19 +7,19 @@ import lombok.ToString;
 @Getter
 @Setter
 @ToString
-public class AttachedFile {
+public class QnaAttachedFile {
   private int no;
   private String filename;
   private String filepath;
   private int qnaNo;
 
 
-  public AttachedFile() {
+  public QnaAttachedFile() {
   }
 
-  public AttachedFile(String filename, String filepath) { this.filename = filename; this.filepath = filepath;}
+  public QnaAttachedFile(String filename, String filepath) { this.filename = filename; this.filepath = filepath;}
 
-  public AttachedFile(String filepath) {
+  public QnaAttachedFile(String filepath) {
     this.filepath = filepath;
   }
 }

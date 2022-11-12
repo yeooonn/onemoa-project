@@ -1,6 +1,6 @@
 package com.bitcamp.onemoaproject.service;
 
-import com.bitcamp.onemoaproject.vo.AttachedFile;
+import com.bitcamp.onemoaproject.vo.QnaAttachedFile;
 import com.bitcamp.onemoaproject.vo.Qna;
 
 import java.util.List;
@@ -19,7 +19,7 @@ public interface QnaService {
 
   List<Qna> list() throws Exception;
 
-  AttachedFile getAttachedFile(int fileNo) throws Exception;
+  QnaAttachedFile getAttachedFile(int fileNo) throws Exception;
 
   boolean deleteAttachedFile(int fileNo) throws Exception;
 

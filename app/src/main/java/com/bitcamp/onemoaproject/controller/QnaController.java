@@ -1,7 +1,7 @@
 package com.bitcamp.onemoaproject.controller;
 
 import com.bitcamp.onemoaproject.service.QnaService;
-import com.bitcamp.onemoaproject.vo.AttachedFile;
+import com.bitcamp.onemoaproject.vo.QnaAttachedFile;
 import com.bitcamp.onemoaproject.vo.Member;
 import com.bitcamp.onemoaproject.vo.Qna;
 import org.springframework.stereotype.Controller;
@@ -16,7 +16,6 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpSession;
 import javax.servlet.http.Part;
 import java.io.IOException;
-import java.time.LocalDate;
 import java.util.*;
 
 @Controller
@@ -42,16 +41,16 @@ public class QnaController {
           @RequestParam("files") Part[] files,
           HttpSession session
   ) throws Exception {
-    qna.setAttachedFiles(saveAttachedFiles(files));
+    qna.setQnaAttachedFiles(saveAttachedFiles(files));
     qna.setWriter((Member) session.getAttribute("loginMember"));
 
     qnaService.add(qna);
     return "redirect:list";
   }
 
-  private List<AttachedFile> saveAttachedFiles(Part[] files)
+  private List<QnaAttachedFile> saveAttachedFiles(Part[] files)
           throws IOException, ServletException {
-    List<AttachedFile> attachedFiles = new ArrayList<>();
+    List<QnaAttachedFile> attachedFiles = new ArrayList<>();
     String dirPath = sc.getRealPath("/qna/files");
 
     for (Part part : files) {
@@ -62,7 +61,7 @@ public class QnaController {
       System.out.println(originname);
       String filename = UUID.randomUUID().toString();
       part.write(dirPath + "/" + filename);
-      attachedFiles.add(new AttachedFile(originname, filename));
+      attachedFiles.add(new QnaAttachedFile(originname, filename));
       }
 
     return attachedFiles;
@@ -102,7 +101,7 @@ public class QnaController {
           HttpSession session)
           throws Exception {
     qna.setWriter((Member) session.getAttribute("loginMember"));
-    qna.setAttachedFiles(saveAttachedFiles(files));
+    qna.setQnaAttachedFiles(saveAttachedFiles(files));
 
     checkOwner(qna.getNo(), session);
 
@@ -183,7 +182,7 @@ public class QnaController {
       HttpSession session)
           throws Exception {
 
-    AttachedFile attachedFile = qnaService.getAttachedFile(no);
+    QnaAttachedFile attachedFile = qnaService.getAttachedFile(no);
 
     Member loginMember = (Member) session.getAttribute("loginMember");
     Qna qna = qnaService.get(attachedFile.getQnaNo());

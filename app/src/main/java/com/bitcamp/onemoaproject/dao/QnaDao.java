@@ -1,6 +1,6 @@
 package com.bitcamp.onemoaproject.dao;
 
-import com.bitcamp.onemoaproject.vo.AttachedFile;
+import com.bitcamp.onemoaproject.vo.QnaAttachedFile;
 import com.bitcamp.onemoaproject.vo.Qna;
 import org.apache.ibatis.annotations.Mapper;
 
@@ -25,9 +25,9 @@ public interface QnaDao {
 
     int insertFiles(Qna qna);
 
-   AttachedFile findFileByNo(int fileNo);
+   QnaAttachedFile findFileByNo(int fileNo);
 
-   List<AttachedFile> findFilesByQna(int qnaNo);
+   List<QnaAttachedFile> findFilesByQna(int qnaNo);
 
   int deleteFile(int fileNo);
 
