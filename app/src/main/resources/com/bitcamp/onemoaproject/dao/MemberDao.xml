@@ -116,18 +116,25 @@
   <!-- 로그인시 이메일 페스워드 확인 쿼리 -->
   <select id="findByEmailPassword" resultMap="memberMap">
     select
+      mno,
+      email,
+      pwd
+    from
+      member
+    where
+    email=#{email} and pwd=sha2(#{password},256) and status=1
+  </select>
+
+  <!-- 이메일 확인 -->
+  <select id="findByEmail" resultMap="memberMap">
+    select
     mno,
     email,
     pwd
     from
     member
     where
-    email=#{email} and pwd=sha2(#{password},256)
-  </select>
-
- <!-- 이메일 확인 -->
-  <select id="findByEmail" resultMap="memberMap">
-    select email from member where email=#{email}
+    email=#{email}
   </select>
 
   <!-- 닉네임 확인 -->
@@ -139,10 +146,48 @@
   <update id="update" parameterType="Member">
     update member set
       name=#{name},
+      nick=#{nickname},
       email=#{email},
-      pwd=sha2(#{password},256)
+      jno=#{jobNo},
+      pstno=#{postNo},
+      base_addr=#{baseAddr},
+      detail_addr=#{detailAddr},
+      pwd=sha2(#{password},256),
+      bank=#{bank},
+      account=#{account},
+      profile=#{profile}
     where
       mno=#{no}
+  </update>
+
+  <update id="updateStatus" parameterType="Member">
+    update member set
+    status=0
+    where
+    email=#{email}
+  </update>
+
+  <update id="myinfoUpdate" parameterType="Member">
+    update member set
+      name=#{name},
+      nick=#{nickname},
+      email=#{email},
+      jno=#{jobNo},
+      pstno=#{postNo},
+      base_addr=#{baseAddr},
+      detail_addr=#{detailAddr},
+      bank=#{bank},
+      account=#{account},
+      profile=#{profile}
+    where
+    mno=#{no}
+  </update>
+
+  <update id="modifyPasswd" parameterType="Member">
+    update member set
+    pwd=sha2(#{newPassword},256)
+    where
+    email=#{email}
   </update>
 
  <!-- 사용자 패스워드 업데이트 -->
