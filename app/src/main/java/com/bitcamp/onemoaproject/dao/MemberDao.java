@@ -1,27 +1,27 @@
 package com.bitcamp.onemoaproject.dao;
 
-import com.bitcamp.onemoaproject.vo.Member;
 import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
+import com.bitcamp.onemoaproject.vo.Member;
 
 @Mapper
 public interface MemberDao {
-  // 회원 등록
+
   int insert(Member member);
-  
-  // 회원 이름과 이메일 검색
-  Member findByIdEmail(String name, String email);
-  
-  // 회원 패스워드 초기화
-  int updatePwd(Member member);
-  
+
   Member findByNo(int no);
-  
+
+  Member findByEmail(String email);
+
   int update(Member member);
-  
+
+  int updateStatus(String email);
+
+  int myinfoUpdate(Member member);
+
   int delete(int no);
-  
+
   List<Member> findAll();
   
   //  Member findByEmailPassword(String email, String password);
@@ -37,4 +37,23 @@ public interface MemberDao {
   
   // 회원 포트폴리오 목록 조회
   List<Member> findByMemberPortfolio(int fieldMemberNo);
+
+  void modifyPasswd(
+      @Param("email") String email, 
+      @Param("newPassword") String newPassword);
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

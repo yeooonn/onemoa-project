@@ -11,7 +11,7 @@ import lombok.ToString;
 @Setter
 @ToString
 public class Member {
-  
+
   private int no;
   private String email;
   private String password;
@@ -27,7 +27,7 @@ public class Member {
   private String account;
   private String profile;
   private String token;
-  private boolean status;
+  private int status;
   private String interests;
   
   private List<Portfolio> portfoliosList;
