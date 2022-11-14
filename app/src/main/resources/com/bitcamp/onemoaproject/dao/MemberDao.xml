@@ -93,12 +93,12 @@
   <!-- 회원 조회 -->
   <select id="findByNo" resultMap="memberMap">
     select
-    mno,
-    name,
-    email,
-    cdt,
-    nick,
-    profile
+      mno,
+      name,
+      email,
+      cdt,
+      nick,
+      profile,
       pstno,
       base_addr,
       detail_addr
