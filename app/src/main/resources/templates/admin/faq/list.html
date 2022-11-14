@@ -41,9 +41,8 @@
                         <tr>
                             <th>번호</th>
                             <th style="max-width: 60%;">제목</th>
+                            <th>유저타입</th>
                         </tr>
-                        <tr>
-
                         <tr data-th-each="faq, state : ${faqs}">
                             <td data-th-text="${state.count}">100</td>
                             <td>
@@ -51,7 +50,8 @@
                                    data-th-href="@{detail(no=${faq.no})}"
                                    data-th-text="${faq.title == ''} ? '(제목없음)' : ${faq.title}">제목</a>
                                 </td>
-                                </td>
+                            <td data-th-text="${faq.type}">
+                            </td>
                             </tr>
                     </table>
                 <p>

@@ -1,10 +1,12 @@
 package com.bitcamp.onemoaproject.controller;
 
+import com.bitcamp.onemoaproject.service.DefaultOrderService;
 import com.bitcamp.onemoaproject.service.DefaultWishService;
 import com.bitcamp.onemoaproject.service.productService.ProductCategoryService;
 import com.bitcamp.onemoaproject.service.productService.ProductReviewService;
 import com.bitcamp.onemoaproject.service.productService.ProductService;
 import com.bitcamp.onemoaproject.vo.Member;
+import com.bitcamp.onemoaproject.vo.order.Order;
 import com.bitcamp.onemoaproject.vo.paging.Criteria;
 import com.bitcamp.onemoaproject.vo.paging.PageMaker;
 import com.bitcamp.onemoaproject.vo.product.AttachedFile;
@@ -39,8 +41,11 @@ public class MypageController {
   @Autowired
   DefaultWishService wishService;
 
+  @Autowired
+  DefaultOrderService orderService;
+
   @RequestMapping("productList")
-  public Model list(Model model, HttpSession session) throws Exception {
+  public Model productList(Model model, HttpSession session) throws Exception {
 
     Member member = (Member) session.getAttribute("loginMember");
     List<Product> products = productService.list(member.getNo());
@@ -49,6 +54,24 @@ public class MypageController {
     
     model.addAttribute("products", products);
 
+    return model;
+  }
+
+  @RequestMapping("salesList")
+  public Model salesList(Model model, HttpSession session) throws Exception {
+    Member member = (Member) session.getAttribute("loginMember");
+    List<Order> sales = orderService.salesList(member.getNo());
+    System.out.println("sales = " + sales);
+    model.addAttribute("sales", sales);
+    return model;
+  }
+
+  @RequestMapping("buysList")
+  public Model buyList(Model model, HttpSession session) throws Exception {
+    Member member = (Member) session.getAttribute("loginMember");
+    List<Order> buys = orderService.buysList(member.getNo());
+    System.out.println("buys = " + buys);
+    model.addAttribute("buys", buys);
     return model;
   }
 }

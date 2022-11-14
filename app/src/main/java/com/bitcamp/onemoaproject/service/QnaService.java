@@ -19,7 +19,6 @@ public interface QnaService {
   boolean delete(int no) throws Exception;
   List<Qna> list() throws Exception;
   List<Qna> list(int no) throws Exception;
-  List<Qna> list2(int mno) throws Exception;
   QnaAttachedFile getAttachedFile(int fileNo) throws Exception;
 
   boolean deleteAttachedFile(int fileNo) throws Exception;

@@ -56,23 +56,6 @@
       qnano desc
     </select>
 
-<!--  <select id="findAll2" resultMap="qnaMap">-->
-<!--    select-->
-<!--    q.qnano,-->
-<!--    q.title,-->
-<!--    q.cont,-->
-<!--    q.cdt,-->
-<!--    q.answer,-->
-<!--    q.answerCdt,-->
-<!--    m.mno,-->
-<!--    m.name-->
-<!--    from-->
-<!--    qna q-->
-<!--    join member m on q.mno = m.mno-->
-<!--    where-->
-<!--    m.mno=#{value};-->
-<!--  </select>-->
-
     <select id="findByNo" resultMap="qnaMap">
       select
         q.qnano,

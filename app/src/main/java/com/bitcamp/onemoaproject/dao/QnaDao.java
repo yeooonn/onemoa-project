@@ -23,8 +23,6 @@ public interface QnaDao {
 
     List<Qna> findAll(int no);
 
-    List<Qna> findAll2(int mno);
-
     int insertFiles(Qna qna);
 
     QnaAttachedFile findFileByNo(int fileNo);

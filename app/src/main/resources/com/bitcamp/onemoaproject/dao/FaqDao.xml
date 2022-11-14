@@ -15,7 +15,8 @@
       select
       faqno,
       title,
-      cont
+      cont,
+      type
        from
       faq
       order by

@@ -15,7 +15,7 @@ import java.util.List;
 import java.util.Map;
 
 @Service
-public class DefaultOrderService {
+public class DefaultOrderService implements OrderService {
 
   @Autowired
   OrderDao orderDao;
@@ -27,12 +27,7 @@ public class DefaultOrderService {
   }
 
   public boolean update(Order order) throws Exception {
-
-    if (orderDao.update(order) == 0) {
-      return false;
-    }
-
-      return true;
+    return orderDao.update(order) != 0;
   }
 
   public Order get(int no) throws Exception {
@@ -43,7 +38,19 @@ public class DefaultOrderService {
     return orderDao.delete(no) > 0;
   }
 
+  public List<Order> list() throws Exception {
+    return orderDao.findAll();
+  }
 
+  public List<Order> salesList(int no) throws Exception {
+    return orderDao.findBySellerNo(no);
+  }
+
+  public List<Order> buysList(int no) throws Exception {
+  return orderDao.findByBuyerNo(no);
+  }
+
+//
 //  public List<Order> list() throws Exception {
 //    return orderDao.list();
 //  }
