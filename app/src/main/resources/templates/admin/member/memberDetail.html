@@ -39,7 +39,7 @@
     </tr>
     <tr>
     <th>직업</th>
-    <td><input name='jobNo' type='number' value=''  max='6'
+    <td><input name='jobNo' type='number' value='' max='6'
      data-th-value="${member.jobNo}"></td>
   </tr>
     <tr>
@@ -56,6 +56,37 @@
       <th>상세주소</th><td><input name='detailAddr' type='text' 
           value='홍길동' data-th-value="${member.detailAddr}" 
           size='60'></td>
+    </tr>
+    <tr>
+      <th>수익금 출금 은행</th>
+      <td>
+        <select id="bank" name="bank" class="bank" data-th-value="${member.bank}">
+          <option value="0" data-th-selected="${member.bank}">수익금을 출금할 은행을 선택해주세요</option>
+          <option value="우리은행" data-th-selected="${member.bank}=='우리은행'">우리은행</option>
+          <option value="국민은행" data-th-selected="${member.bank}=='국민은행'">국민은행</option>
+          <option value="신한은행" data-th-selected="${member.bank}=='신한은행'">신한은행</option>
+          <option value="농협은행" data-th-selected="${member.bank}=='농협은행'">농협은행</option>
+        </select>
+      </td>
+    </tr>
+    <tr>
+      <th>수익금 출금 계좌</th><td><input name='account' type='text' 
+          value='홍길동' data-th-value="${member.account}" 
+          size='60'></td>
+    </tr>
+    <tr>
+      <th>직업</th>
+      <td>
+        <select id="jobNo" name="jobNo" class="job">
+          <option value="0" selected>직업을 선택해주세요.</option>
+          <option value="1">프리랜서</option>
+          <option value="2">직장인</option>
+          <option value="3">소상공인</option>
+          <option value="4">스타트업 창업</option>
+          <option value="5">대학(원)생</option>
+          <option value="6">취업준비생</option>
+        </select>
+      </td>
     </tr>
     <tr>
       <th>등록일</th><td data-th-text="${member.createdDate}">2022-1-1</td>

@@ -1,19 +1,18 @@
 <!DOCTYPE html>
-<html lang="ko" xmlns:data-th-="http://www.w3.org/1999/xhtml">
+<html lang="ko">
   <head>
     <meta charset = "UTF-8">
     <title>onemoa mypage</title>
-    <link href="../css/onemoa.css" rel="stylesheet">
-    <link href="../css/onemoaMypage.css" rel="stylesheet">
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-    <script src="../js/onemoa.js"></script>
+    <link href="/onemoa/css/onemoa.css" rel="stylesheet">
+    <link href="/onemoa/css/onemoaMypage.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="/onemoa/js/onemoa.js"></script>
   </head>
   <body style="overflow-x: hidden">
     
-     <!-- login modal -->
     <div class="modal"style="position: absolute; z-index: 1;">
       <div class="modal_body">
-        <div class="login_container">
+        <div calss="login_container">
           <button class="closebtn"><img src="../img/x.png"></button>
           <p>로그인</p>
           <form action='login' method="post">
@@ -38,7 +37,7 @@
             <a href="#"><img src="../img/google.png"></a>
           </div>
           <div class="sign">
-            <a href="joinForm"><img src="../img/signup.png"></a>
+            <a href="joinForm.html"><img src="../img/signup.png"></a>
           </div>
         </div>
       </div>
@@ -57,7 +56,7 @@
 
       <div class="menu">
         <ul class="secnav">
-          <li><a href="../contest/contestTeam"><p>공모전</p></a></li>
+          <li><a href="contestTeam.html"><p>공모전</p></a></li>
           <li><a href="#"><p>재능판매</p></a></li>
         </ul>
       </div>
@@ -74,47 +73,45 @@
             <p>마이원모아</p>
             <span class="mybar">
           </div>
-          
           <ul class="mynav">
-            <li><a class="font" href="portfolioList">나의 포트폴리오</a></li>
+            <li><a class="font2" href="../portfolio/portfolioList">나의 포트폴리오</a></li>
             <li><a class="font2" href="">구매관리</a></li>
             <li><a class="font2" href="">판매관리</a></li>
             <li><a class="font2" href="">나의 서비스관리</a></li>
             <li><a class="font2" href="">결제내역</a></li>
             <li><a class="font2" href="">1:1 문의내역</a></li>
             <li class="menu">
-              <a class="font2" href="myinfo">계정설정</a>
+              <a class="font" href="myinfo.html">계정설정</a>
               <ul class="hide">
                 <li><a class="font2" href="../mypage/myinfo">내정보수정</a></li>
-                <li><a class="font2" href="../mypage/changepw">비밀번호변경</a></li>
+                <li><a class="font" href="../mypage/changepw">비밀번호변경</a></li>
                 <li><a class="font2" href="../mypage/leave">회원탈퇴</a></li>
               </ul>
             </li>
           </ul>
-          
         </div>
       </li>
       <li class="mypageArea">
         <div class="mypagePortfolio">
-          <p class="mptxt2">나의 포트폴리오<span class="addport"><a href="portfolioForm">포트폴리오 등록하기</a></span></p>
-          <div class="portfolioBoxCon">
-            <ul class="portfolioList">
-              <li data-th-each="portfolio : ${portfolios}">
-                <a href='portfolioDetail?ptNo=1' data-th-href="@{portfolioDetail?(ptNo=${portfolio.ptNo})}"><img data-th-src="${'/onemoa/portfolio/files/'+ portfolio.attachedFiles[0].filepath}" style="width: 255px; height: 255px;"></a>
-                <p data-th-text="${portfolio.title}">포폴제목</p>
+          <p class="mptxt2">비밀번호변경</p>
+          <form action="checkpassword" method="post">
+          <div class="changepw">
+            <p>현재 비밀번호</p>
+            <input name='password' type='password' id='password' placeholder="현재 비밀번호를 입력해 주세요.">
+            <ul class="checkp">
+              <li>
+                <p>변경할 비밀번호</p>
+                <input name='newPassword' type='password' id='newPassword' placeholder="변경할 비밀번호를 입력해 주세요.">
+              </li>
+              <li>
+                <p>한번 더 입력</p>
+                <input name='newPasswordConfirm' type='password' id='newPasswordConfirm' placeholder="변경할 비밀번호를 입력해 주세요.">
               </li>
             </ul>
           </div>
-        </div>
-        
-        
-        <ul class="portfolioList">
-          <li data-th-each="portfolio : ${portfolios}">
-          <a href="firstportfolio?ptNo=1" onClick="window.open(this.href, '', 'width=1000px, height=1080px')"; target="_blank"  data-th-href="@{firstportfolio?(ptNo=${portfolio.ptNo})}">- https://onemoa/portfolio1</a>
-          </li>
-        </ul>
-        
-        
+        <button type="submit" class="changepwbtn">비밀번호 변경하기</button>
+        </form>
+        </div><!--mypagePortfolio-->
       </li>
     </ul>
 
@@ -152,29 +149,6 @@
         modal.style.display = 'none';
         body.style.overflow = 'auto';
       });
-      
-
-      // 로그인 ajax 비동기 처리
-      $(".loginbtn").click(function () {
-        var email = $("#email").val();
-        var password = $("#password").val();
-        var saveEmail = $("input[type=checkbox][name=saveEmail]:checked").val();
-
-        $.ajax({
-          type: "POST",
-          url: "/onemoa/login",
-          data: {email: email, password: password, saveEmail: saveEmail},
-          success: function (result) {
-            if(result == "true") {
-              window.location.reload();
-            } else if (result == "false") {
-              document.getElementById("emailPasswordCheck").style.display = "block";
-              document.getElementById("emailPasswordCheck").value="이메일 또는 비밀번호가 일치하지 않습니다.";
-              document.getElementById("emailPasswordCheck").style.color="red";
-            }
-          },
-        });
-      }); 
     </script>
 
   </body>
