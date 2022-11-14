@@ -4,6 +4,7 @@ import com.bitcamp.onemoaproject.service.QnaService;
 import com.bitcamp.onemoaproject.vo.QnaAttachedFile;
 import com.bitcamp.onemoaproject.vo.Member;
 import com.bitcamp.onemoaproject.vo.Qna;
+import com.bitcamp.onemoaproject.vo.portfolio.Portfolio;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -65,25 +66,21 @@ public class QnaController {
   }
 
   @GetMapping("list")
-  public void list(Model model) throws Exception {
+  public void list(Model model, HttpSession session) throws Exception {
+    Member member = (Member) session.getAttribute("loginMember");
+    if(member != null) {
+      model.addAttribute("qnas", qnaService.list(member.getNo()));
+    } else {
     model.addAttribute("qnas", qnaService.list());
+    }
   }
-
-//  @GetMapping("mylist") // 회원별 리스트 구현중
-//  public void mylist(Model model, HttpSession session) throws Exception {
+//
+//  @GetMapping("list")
+//  public String list111(Model model, HttpSession session) throws Exception {
 //    Member loginMember = (Member) session.getAttribute("loginMember");
-//    qna.setWriter((Member) session.getAttribute("loginMember"));
-//    model.addAttribute("qnas", qnaService.list());
-//    qnaService.getWriter().getNo() loginMember.getNo())
+//    model.addAttribute("qnas", qnaService.list2(loginMember.getNo()));
+//    return "qna/list";
 //  }
-//    private void checkOwner(int qnaNo, HttpSession session) throws Exception {
-//      Member loginMember = (Member) session.getAttribute("loginMember");
-//      if (qnaService.get(qnaNo).getWriter().getNo() != loginMember.getNo()) {
-//        throw new Exception("게시글 작성자가 아닙니다.");
-//      }
-//    }
-
-
 
   @GetMapping("detail")
   public Map detail(int no) throws Exception {
@@ -114,6 +111,13 @@ public class QnaController {
     return "redirect:list";
   }
 
+  private void checkOwner(int qnaNo, HttpSession session) throws Exception {
+    Member loginMember = (Member) session.getAttribute("loginMember");
+    if (qnaService.get(qnaNo).getWriter().getNo() != loginMember.getNo()) {
+      throw new Exception("게시글 작성자가 아닙니다.");
+    }
+  }
+
   @GetMapping("updateform")
   public Map updateform(int no) throws Exception {
     Qna qna = qnaService.get(no);
@@ -126,20 +130,13 @@ public class QnaController {
     return map;
   }
 
-  private void checkOwner(int qnaNo, HttpSession session) throws Exception {
-    Member loginMember = (Member) session.getAttribute("loginMember");
-    if (qnaService.get(qnaNo).getWriter().getNo() != loginMember.getNo()) {
-      throw new Exception("게시글 작성자가 아닙니다.");
-    }
-  }
-
   @GetMapping("delete")
   public String delete(
       int no,
       HttpSession session)
           throws Exception {
 
-    checkOwner(no, session);
+//    checkOwner(no, session);
     if (!qnaService.delete(no)) {
       throw new Exception("게시글을 삭제할 수 없습니다.");
     }

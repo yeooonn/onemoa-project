@@ -72,6 +72,16 @@ public class DefaultQnaService implements QnaService {
   }
 
   @Override
+  public List<Qna> list(int no) throws Exception {
+    return qnaDao.findAll(no);
+  }
+
+  @Override
+  public List<Qna> list2(int mno) throws Exception {
+    return qnaDao.findAll2(mno);
+  }
+
+  @Override
   public QnaAttachedFile getAttachedFile(int fileNo) throws Exception {
     return qnaDao.findFileByNo(fileNo);
   }

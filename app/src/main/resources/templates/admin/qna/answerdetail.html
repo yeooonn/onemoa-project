@@ -39,7 +39,7 @@
                   <th>작성자</th>
                   <td data-th-text="${qna.writer.name}"></td>
                   <td>문의일시</td>
-                  <td data-th-text="${qna.createdDate}"></td>
+                  <td data-th-text="${#temporals.format(qna.createdDate, 'yy-MM-dd HH:mm')}">답글일시</td>
                 </tr>
                 <tr>
                   <th>제목</th>
@@ -71,7 +71,7 @@
                     </tr>
                     <tr>
                         <th>답글 일시</th>
-                        <td colspan="3" data-th-text="${qna.answerCdt}"></td>
+                        <td colspan="3" data-th-text="${#temporals.format(qna.answerCdt, 'yy-MM-dd HH:mm')}">답글일시</td>
                     </tr>
               </table>
             <input type="hidden" name='no'

@@ -49,9 +49,29 @@
     from
       qna q
       join member m on q.mno = m.mno
+      <if test="no != null">
+      where q.mno=#{value}
+      </if>
     order by
       qnano desc
-  </select>
+    </select>
+
+<!--  <select id="findAll2" resultMap="qnaMap">-->
+<!--    select-->
+<!--    q.qnano,-->
+<!--    q.title,-->
+<!--    q.cont,-->
+<!--    q.cdt,-->
+<!--    q.answer,-->
+<!--    q.answerCdt,-->
+<!--    m.mno,-->
+<!--    m.name-->
+<!--    from-->
+<!--    qna q-->
+<!--    join member m on q.mno = m.mno-->
+<!--    where-->
+<!--    m.mno=#{value};-->
+<!--  </select>-->
 
     <select id="findByNo" resultMap="qnaMap">
       select
@@ -84,7 +104,7 @@
       from
         qna
       where
-      qnano = #{value}
+      qnano=#{value}
   </select>
 
   <insert id="insert" parameterType="qna"

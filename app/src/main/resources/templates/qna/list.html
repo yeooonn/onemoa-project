@@ -35,9 +35,8 @@ p { margin-bottom: -15px;
                     data-th-text="${qna.title == ''} ? '(제목없음)' : ${qna.title}">제목</a>
                 </td>
                 <td data-th-text="${qna.writer.name}">홍길동</td>
-                <td data-th-text="${qna.createdDate}">2022-1-1</td>
-                <td data-th-text="${qna.answerCdt}">2022-1-1</td>
-            <tr>
+            <td data-th-text="${#temporals.format(qna.createdDate, 'yyyy-MM-dd')}">문의일시</td>
+            <td data-th-text="${#temporals.format(qna.answerCdt, 'yyyy-MM-dd')}">문의일시</td>
          </tr>
         </table>
         <button type="button" class="btn btn-primary btn-sm" id="backToMain"><a href='form'>글 작성하기</a></button>
