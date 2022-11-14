@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html>
 <head>
   <meta charset="UTF-8">
@@ -7,9 +7,12 @@
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
   <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
+  <link href="/onemoa/css/onemoa.css" rel="stylesheet">
+  <script src="/onemoa/js/login.js"></script>
 </head>
 
 <body>
+<div data-th-replace="/fragments/nav.html :: fragment-nav"></div>
     <form action='update' method="post" enctype="multipart/form-data">
       <h1 style="text-align: center; margin-top:70px;">1:1문의 상세정보</h1>
             <div class="container">
@@ -45,7 +48,7 @@
                     <th class="thstyle">첨부파일</th>
                     <td colspan="3">
                       <ul>
-                          <li data-th-each="file : ${qna.attachedFiles}" style="float:left; margin-right:5%; list-style:none; width:10%">
+                          <li data-th-each="file : ${qna.qnaAttachedFiles}" style="float:left; margin-right:5%; list-style:none; width:10%">
                               <a href="files/test.gif"
                                  data-th-href="@{/qna/files/{path}(path=${file.filepath})}">
                                   <img data-th-src="@{/qna/files/{path}(path=${file.filepath})}" style="width:100%; height:auto;"/>
@@ -75,6 +78,7 @@
                data-th-value="${qna.no}"
                readonly>
     </form>
+<footer data-th-replace="/fragments/footer.html :: fragment-footer"></footer>
     <script th:inline="javascript">
         $(document).ready(function(){
             console.log([[${qna.category.name}]]);

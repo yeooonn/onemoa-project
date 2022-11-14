@@ -68,7 +68,6 @@ public class DefaultQnaService implements QnaService {
 
   @Override
   public List<Qna> list() throws Exception {
-    System.out.println("qna/list 호출됨!");
     return qnaDao.findAll();
   }
 

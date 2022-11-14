@@ -9,6 +9,7 @@ import java.util.List;
 public interface FaqDao {
 
      int insert(Faq faq);
+
      Faq findByNo(int no);
 
      int update(Faq faq);
@@ -16,8 +17,6 @@ public interface FaqDao {
      int delete(int no);
 
      List<Faq> findAll();
-
-     //  int deleteByMember(int memberNo);
 }
 
 

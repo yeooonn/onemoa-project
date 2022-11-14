@@ -3,6 +3,7 @@ package com.bitcamp.onemoaproject.controller;
 import com.bitcamp.onemoaproject.service.FaqService;
 import com.bitcamp.onemoaproject.vo.Faq;
 import com.bitcamp.onemoaproject.vo.Member;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,38 +19,18 @@ import java.util.Map;
 @RequestMapping("/faq/")
 public class FaqController {
 
+  @Autowired
   ServletContext sc;
+  @Autowired
   FaqService faqService;
-
-  public FaqController(FaqService faqService, ServletContext sc) {
-    System.out.println("FaqController() 호출됨!");
-    this.faqService = faqService;
-    this.sc = sc;
-  }
-
-  @GetMapping("form")
-  public void form() throws Exception {
-  }
-
-  @PostMapping("add")
-  public String add(
-      Faq faq,
-      HttpSession session) throws Exception {
-
-    faq.setWriter((Member) session.getAttribute("loginMember"));
-    faqService.add(faq);
-    return "redirect:list";
-  }
 
   @GetMapping("list")
   public void list(Model model) throws Exception {
-    System.out.println("faq/list 호출!");
     model.addAttribute("faqs", faqService.list());
   }
 
   @GetMapping("detail")
   public Map detail(int no) throws Exception {
-    System.out.println("faq/detail 호출!");
     Faq faq = faqService.get(no);
     if (faq == null) {
       throw new Exception("해당 번호의 게시글이 없습니다!");
@@ -57,33 +38,6 @@ public class FaqController {
     Map map = new HashMap();
     map.put("faq", faq);
     return map;
-  }
-
-  @PostMapping("update")
-  public String update(Faq faq) throws Exception {
-    faqService.update(faq);
-
-    return "redirect:list";
-  }
-
-//  private void checkOwner(int boardNo, HttpSession session) throws Exception {
-//    Member loginMember = (Member) session.getAttribute("loginMember");
-//    if (faqService.get(boardNo).getWriter().getNo() != loginMember.getNo()) {
-//      throw new Exception("게시글 작성자가 아닙니다.");
-//    }
-//  }
-
-  @GetMapping("delete")
-  public String delete(int no) throws Exception {
-    System.out.println("faq/delete 호출!");
-    faqService.delete(no);
-
-//    checkOwner(no, session);
-//    if (!faqService.delete(no)) {
-//      throw new Exception("게시글을 삭제할 수 없습니다.");
-//    }
-
-    return "redirect:list";
   }
 }
 

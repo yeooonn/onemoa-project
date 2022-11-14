@@ -29,9 +29,6 @@
     </collection>
   </resultMap>
 
-  <!-- 새로운 리절트 맵이다. 변수를 담을 수 있는 수납함
-  (resultMap) qna, no 클래스 느낌. 담을수 있는 서랍임.
-  -->
   <resultMap type="QnaAttachedFile" id="qnaAttachedFileMap">
     <id column="qnafno" property="no"/>
     <result column="fname" property="filename"/>
@@ -79,7 +76,7 @@
         q.qnano=#{value}
   </select>
 
-  <select id="findFilesByQna" resultMap="attachedFileMap">
+  <select id="findFilesByQna" resultMap="qnaAttachedFileMap">
       select
       qnafno,
         filepath,
@@ -111,7 +108,6 @@
     where qnano=#{no}
   </update>
 
-  <!-- 이 쿼리문 됨..-->
   <delete id="delete">
     delete from qna
     where qnano=#{value}
@@ -125,12 +121,11 @@
   <insert id="insertFiles" parameterType="qna">
     insert into qna_file(fname, fpath, qnano)
     values
-    <foreach collection="attachedFiles" item="file" separator=",">
+    <foreach collection="qnaAttachedFiles" item="file" separator=",">
       (#{file.filename},#{file.filepath},#{no})
     </foreach>
   </insert>
 
-  <!-- 이 쿼리문 됨..-->
   <delete id="deleteFiles">
     delete from qna_file
     where qnano=#{value}
@@ -141,13 +136,11 @@
 <!--    where qnano in (select qnano from qna where mno = #{value})-->
 <!--  </delete>-->
 
-  <!-- 이 쿼리문 됨..-->
   <delete id="deleteFile">
     delete from qna_file
     where qnafno=#{value}
   </delete>
 
-  <!-- 이 쿼리문 됨..-->
   <select id="findFileByNo" resultMap="qnaAttachedFileMap">
     select
       qnafno,
