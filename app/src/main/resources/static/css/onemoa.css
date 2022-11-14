@@ -2497,6 +2497,7 @@ label[for="label-a"] {
   width: 15vw;
   margin-left: 4vw;
   margin-right: 3vw;
+  margin-top: 3vw;
 }
 
 #productList ul {
@@ -2523,13 +2524,13 @@ label[for="label-a"] {
 
 #productList .menu p, button {
   cursor:pointer;
+  margin-top: 0px;
 }
 
 #productList .menu .hide {display:none;}
 
 .menu .cate1 {
   font-size: 1.8vw;
-  margin-top: 30px;
 }
 
 .product_container {
@@ -2537,7 +2538,7 @@ label[for="label-a"] {
   gap: 40px 25px;
   grid-template-rows: 18rem 18rem 18rem 18rem;
   grid-template-columns: 1fr 1fr 1fr 1fr;
-  margin-top: 2.5vw;
+  margin-top: 4vw;
   margin-right: 3vw;
 }
 
@@ -2546,18 +2547,11 @@ label[for="label-a"] {
   margin: auto;
 }
 
-.item > img {
-  width: 100%;
-  min-height: 200px;
-  margin-bottom: 20px
-}
-
-.item p {
-  font-size: 1.4vw;
-  margin-top: 5px;
-  margin-bottom: 5px;
-}
-
+/*.item > img {*/
+/*  margin: 0px auto;*/
+/*  width: 90%;*/
+/*  min-height: 200px;*/
+/*}*/
 .banner {
   height: 25vw;
   width: 100%;

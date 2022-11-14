@@ -2,9 +2,11 @@ package com.bitcamp.onemoaproject.controller;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.servlet.http.Part;
 
+import com.bitcamp.onemoaproject.service.DefaultWishService;
 import com.bitcamp.onemoaproject.service.productService.ProductReviewService;
 import com.bitcamp.onemoaproject.vo.Member;
 import com.bitcamp.onemoaproject.vo.paging.Criteria;
@@ -12,7 +14,6 @@ import com.bitcamp.onemoaproject.vo.paging.PageMaker;
 import com.bitcamp.onemoaproject.vo.product.AttachedFile;
 import com.bitcamp.onemoaproject.vo.product.Product;
 import com.bitcamp.onemoaproject.vo.product.ProductReview;
-import com.fasterxml.jackson.databind.util.JSONPObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -37,6 +38,8 @@ public class ProductController {
   ProductCategoryService productCategoryService;
   @Autowired
   ProductReviewService productReviewService;
+  @Autowired
+  DefaultWishService wishService;
 
   @GetMapping("form")
   public void form(Model model) throws Exception {
@@ -48,12 +51,29 @@ public class ProductController {
   public String add(
       Product product,
       @RequestParam("files") Part[] files,
-      HttpSession session) throws Exception {
+      HttpSession session, HttpServletRequest request, @RequestParam("sendReferrer") String sendReferrer) throws Exception {
+    System.out.println("sendReferrer = " + sendReferrer);
+    System.out.println("product = " + product);
 
     product.setAttachedFiles(saveAttachedFiles(files));
     product.setWriter((Member) session.getAttribute("loginMember"));
-    System.out.println("product.getWriter() = " + product.getWriter());
-    productService.add(product);
+
+    product.setThumbnail("defaultgoods.png");
+
+    if (product.getAttachedFiles().size() > 0) {
+
+      List<AttachedFile> attachedFiles;
+      attachedFiles = product.getAttachedFiles();
+      product.setThumbnail(attachedFiles.get(0).getFilepath());
+      System.out.println(attachedFiles.get(0).getFilepath());
+
+    }
+
+    String referer2 = request.getHeader("Referer");
+    System.out.println("referer2 = " + referer2);
+
+   //  System.out.println("product.getWriter() = " + product.getWriter());
+//    productService.add(product);
     return "redirect:list";
   }
 
@@ -86,41 +106,40 @@ public class ProductController {
 //  }
 
   @RequestMapping("list")
-  public ModelAndView openProductList(Criteria cri) {
+  public ModelAndView list(String code, Criteria cri, HttpSession session) throws Exception {
 
     ModelAndView mav = new ModelAndView("product/list");
 
     PageMaker pageMaker = new PageMaker();
+    cri.setCode(code);
     pageMaker.setCri(cri);
     pageMaker.setTotalCount(productService.countProductListTotal());
 
+    System.out.println("code = " + code + ", cri = " + cri);
+
     List<Map<String,Object>> products = productService.selectProductList(cri);
+    System.out.println("products = " + products);
+
     mav.addObject("products", products);
     mav.addObject("pageMaker", pageMaker);
     mav.addObject("productCategories", productCategoryService.list());
+
     return mav;
   }
 
-  @GetMapping("listf")
-  public String list(Model model, String code, Criteria cri) throws Exception {
-    PageMaker pageMaker = new PageMaker();
-    pageMaker.setCri(cri);
-    pageMaker.setTotalCount(productService.countProductListTotal());
-
-    model.addAttribute("productCategories", productCategoryService.list());
-    model.addAttribute("products", productService.list(code));
-    model.addAttribute("pageMaker", pageMaker);
-    return "product/list";
-  }
-
-
   @GetMapping("detail")
-  public Map detail(int no) throws Exception {
+  public Map detail(int no, HttpSession session) throws Exception {
 
     Map map = new HashMap();
 
     Product product = productService.get(no);
     int count = productReviewService.count(no);
+
+    int wishCheck = wishService.get((Member) session.getAttribute("loginMember"), product);
+    System.out.println("wishCheck = " + wishCheck);
+    int wishCount = wishService.getCount(no);
+    System.out.println("wishCount = " + wishCount);
+    
 
     if (count != 0) { // 후기글의 개수가 0이 아니면
       double average = productReviewService.getReviewAverage(no);
@@ -137,8 +156,37 @@ public class ProductController {
 
     map.put("count", count);
     map.put("product", product);
+    map.put("wishCheck", wishCheck);
+    map.put("wishCount", wishCount);
+
+
   //  map.put("average", average);
   //  System.out.println(average);
+
+    return map;
+  }
+
+  @PostMapping("like")
+  @ResponseBody
+  public Map<String, Integer> like(@RequestParam("productNo") int productNo, HttpSession session) throws Exception {
+
+    Map<String, Integer> map = new HashMap<>();
+
+    Member member = (Member) session.getAttribute("loginMember");
+    Product product = productService.get(productNo);
+
+    if (wishService.get(member, product) == 0) {
+      wishService.add(member, productNo);
+      map.put("result", 1);
+      System.out.println("-> 좋아요");
+    } else {
+      wishService.delete(member, product);
+      map.put("result", 0);
+      System.out.println("-> 좋아요 취소");
+    }
+
+    map.put("count",wishService.getCount(productNo));
+
     return map;
   }
 

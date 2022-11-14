@@ -3,11 +3,14 @@ package com.bitcamp.onemoaproject.vo.paging;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
+import org.springframework.web.util.UriComponents;
+import org.springframework.web.util.UriComponentsBuilder;
 
 @Getter
 @Setter
 @ToString
 public class PageMaker {
+
     private Criteria cri;
     private int totalCount;
     private int startPage;
@@ -36,4 +39,5 @@ public class PageMaker {
         this.totalCount = totalCount;
         calcData();
     }
+
 }

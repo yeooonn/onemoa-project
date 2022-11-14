@@ -99,10 +99,13 @@
     cdt,
     nick,
     profile
+      pstno,
+      base_addr,
+      detail_addr
     from
-    member
+      member
     where
-    mno=#{value}
+      mno=#{value}
   </select>
 
  <!-- 모든 회원 조회 -->

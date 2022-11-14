@@ -3,11 +3,11 @@ package com.bitcamp.onemoaproject.dao.productDao;
 import java.util.List;
 import java.util.Map;
 
+import com.bitcamp.onemoaproject.vo.Wish;
 import com.bitcamp.onemoaproject.vo.paging.Criteria;
 import com.bitcamp.onemoaproject.vo.product.AttachedFile;
 import com.bitcamp.onemoaproject.vo.product.Product;
 import org.apache.ibatis.annotations.Mapper;
-import com.bitcamp.onemoaproject.vo.product.Product;
 
 @Mapper
 public interface ProductDao {
@@ -24,11 +24,13 @@ public interface ProductDao {
 
   List<Product> findByCategory(String code);
 
+  List<Product> findByWriter(int no);
+
   int insertFiles(Product product);
 
   AttachedFile findFileByNo(int fileNo);
 
-  List<AttachedFile> findFilesByProduct(int ProductNo);
+  List<AttachedFile> findFilesByProduct(int productNo);
 
   int deleteFile(int fileNo);
 
@@ -39,7 +41,7 @@ public interface ProductDao {
   List<Product> findCategorized(String code);
 
   // 페이징에 필요한 메소드
-  public List<Map<String, Object>> selectProductList(Criteria cri);
+  public List<Map<String, Object>> selectProductList(Criteria cri) ;
 
   // 게시판 글의 개수를 세기위한 메소드
   public int countProductList();

@@ -1,6 +1,9 @@
 package com.bitcamp.onemoaproject.vo.paging;
 
 public class Criteria {
+
+    private String code;
+
     private int page;
     private int perPageNum;
 
@@ -35,5 +38,21 @@ public class Criteria {
         }
     }
 
+    public String getCode() {
+        return code;
+    }
 
+    public void setCode(String code) {
+        this.code = code;
+    }
+
+    @Override
+    public String toString() {
+        return "Criteria{" +
+                "code='" + code + '\'' +
+                ", page=" + page +
+                ", perPageNum=" + perPageNum +
+                '}';
+    }
 }
+

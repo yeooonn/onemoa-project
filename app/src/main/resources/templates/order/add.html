@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>onemoa v</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.js"></script>
+    <script src="../js/login.js"></script>
+    <link href="../css/onemoa.css" rel="stylesheet">
+    <!-- jQuery -->
+    <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js" ></script>
+    <!-- iamport.payment.js -->
+    <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.2.0.js"></script>
+    <!-- sweet alert -->
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <style>
+        #border {
+            display: block;
+            background-color: #999;
+            height: 1px;
+            margin-top: 30px;
+            width: 100%;
+        }
+
+        #payment {
+            border: none;
+            background: #707fc2;
+            width: 10%;
+            padding: 10px;
+        }
+
+        #productTitle {
+            margin-top: 30px;
+        }
+
+        .orderForm {
+            min-height: 700px;
+        }
+
+        .container {
+            margin: 3vw 5.2vw;
+        }
+
+        .panel {
+            min-height: 100px;
+        }
+
+        .panel img {
+            margin:30px 30px;
+            float: left;
+            border: #ddd solid 1px;
+        }
+
+        .panel .table {
+            margin: 10px 10px;
+            width: 95%;
+        }
+
+    </style>
+</head>
+<body style="overflow-x: hidden">
+<div data-th-replace="/fragments/nav.html :: fragment-nav"></div>
+<span id="border"></span>
+<div class="orderForm">
+<div class="container">
+<form action="add" method="post">
+
+    <div class="panel panel-default">
+        <div class="panel-heading">결제 내역</div>
+        <table class="table">
+            <thead>
+            <tr>
+                <th>상품명</th>
+                <th>결제금액</th>
+                <th>결제일시</th>
+                <th>주문상태</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>
+                  <a href="" data-th-href="@{/product/detail(no=${order.product.no})}" data-th-text="${order.product.title}">상품명</p></a>
+                </td>
+                <td id="productPrice" data-th-value="${order.product.price}" data-th-text="${#numbers.formatInteger(order.product.price, 3, 'COMMA')} + ' 원'">상품 가격</td>
+                <td data-th-text="${#temporals.format(order.createdDate, 'yy-MM-dd HH:mm')}">결제일시</td>
+                <td data-th-text="${order.status}">주문상태</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+        <div id="comment"><span><img src="../img/info_icon.png" width="15px" height="15px"></span> 상세 결제 내역 및 주문 접수 현황은 <a href="/mypage/productList">마이페이지</a>에서 조회 가능합니다.</div>
+</form>
+</div>
+</div>
+<footer data-th-replace="/fragments/footer.html :: fragment-footer"></footer>
+</body>
+</html>

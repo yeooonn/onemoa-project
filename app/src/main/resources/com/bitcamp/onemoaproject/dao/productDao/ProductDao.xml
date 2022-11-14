@@ -9,11 +9,12 @@
     <result column="title" property="title"/>
     <result column="cont" property="content"/>
     <result column="rule" property="rule"/>
+    <result column="selfintro" property="selfIntro"/>
     <result column="price" property="price"/>
     <result column="vw_cnt" property="viewCount"/>
     <result column="cdt" property="createdDate"/>
-    <result column="thumbnail" property="thumbnailPath"/>
-    <result column="thumbnailpath" property="thumbnail"/>
+    <result column="thumbnail" property="thumbnail"/>
+    <result column="thumbnailpath" property="thumbnailPath"/>
 
     <association property="writer" javaType="member">
       <id column="mno" property="no"/>
@@ -55,7 +56,7 @@
 			p.cdt,
 			p.thumbnail,
 			p.thumbnailpath,
-            pf.fpath
+      pf.fpath
     from
       product p
       join product_file pf on p.pno=pf.pno
@@ -92,6 +93,7 @@
       p.thumbnail,
       p.thumbnailpath,
       p.rule,
+      p.selfintro,
       m.mno,
       m.profile,
       m.nick,
@@ -107,28 +109,46 @@
       p.pno=#{value};
   </select>
 
-    <!--
-    <select id="findByNo" resultMap="productMap">
-        select
-        p.pno,
-        p.pcno,
-        p.title,
-        p.cont,
-        p.price,
-        p.vw_cnt,
-        p.cdt,
-        p.thumbnail,
-        p.thumbnailpath,
-        (select round(avg(scope),2)
-        from product_review where pno=p.pno) as scope
-        from
-        product p
-        left outer join product_review rv
-        on p.pno = rv.pno
-        where
-        p.pno=#{value}
-    </select>
-    -->
+  <select id="findByWriter" resultMap="productMap">
+    select
+      p.pno,
+      p.pcno,
+      p.title,
+      p.cont,
+      p.price,
+      p.vw_cnt,
+      p.cdt,
+      p.thumbnail,
+      p.rule
+    from
+      product p
+    where
+      p.mno=#{value};
+  </select>
+
+
+  <!--
+  <select id="findByNo" resultMap="productMap">
+      select
+      p.pno,
+      p.pcno,
+      p.title,
+      p.cont,
+      p.price,
+      p.vw_cnt,
+      p.cdt,
+      p.thumbnail,
+      p.thumbnailpath,
+      (select round(avg(scope),2)
+      from product_review where pno=p.pno) as scope
+      from
+      product p
+      left outer join product_review rv
+      on p.pno = rv.pno
+      where
+      p.pno=#{value}
+  </select>
+  -->
 
 <!--<select id="findFilesByProduct" resultMap="attachedFileMap">-->
 <!--    select -->
@@ -143,8 +163,8 @@
 
 <insert id="insert" parameterType="product"
           useGeneratedKeys="true" keyColumn="pno" keyProperty="no">
-    insert into product(pcno, mno, title, cont, price, rule)
-    values(#{productCategory.code},#{writer.no},#{title},#{content},#{price},#{rule})
+    insert into product(pcno, mno, title, cont, price, rule, selfintro, thumbnail)
+    values(#{productCategory.code},#{writer.no},#{title},#{content},#{price},#{rule},#{selfIntro},#{thumbnail})
 </insert>
 
 <!--
@@ -206,33 +226,31 @@
       where bfno = #{value}
   </select>
   -->
-  <select id="selectProductList" resultType="hashMap" parameterType="hashMap">
-    <![CDATA[
+  <select id="selectProductList" resultMap="productMap" parameterType="criteria">
    select
-			pf.pno,
+      p.pno,
 			p.pcno,
 			p.title,
-			p.cont,
 			p.price,
-            p.vw_cnt,
+      p.vw_cnt,
 			p.cdt,
-            pf.fpath
+      p.thumbnail
     from product p
-      join product_file pf on p.pno = pf.pno
-    group by pf.pno
+      where p.pcno=#{code}
     order by
-      pno desc
-      limit #{pageStart}, #{perPageNum}
-        ]]>
+    p.pno desc
+    limit #{pageStart}, #{perPageNum}
   </select>
 
-    <select id="countProductList" resultType="Integer">
-        <![CDATA[
+    <select id="countProductList" parameterType="String" resultType="Integer">
         SELECT
             count(*)
         FROM
             product
-    ]]>
+        <if test="code != null">
+        WHERE
+            pcno=#{code}
+        </if>
     </select>
-  
+
 </mapper>

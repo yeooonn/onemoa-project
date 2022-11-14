@@ -58,8 +58,6 @@ public class DefaultProductService implements ProductService {
     return productDao.delete(no) > 0;
   }
 
-
-
   @Override
   public AttachedFile getAttachedFile(int fileNo) throws Exception {
     return productDao.findFileByNo(fileNo);
@@ -73,6 +71,11 @@ public class DefaultProductService implements ProductService {
   @Override
   public List<Product> list(String code) throws Exception {
     return productDao.findByCategory(code);
+  }
+
+  @Override
+  public List<Product> list(int no) throws Exception {
+    return productDao.findByWriter(no);
   }
 
   @Override
