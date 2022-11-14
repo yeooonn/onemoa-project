@@ -79,6 +79,12 @@ DROP TABLE IF EXISTS job RESTRICT;
 -- 1대1대화 첨부파일
 DROP TABLE IF EXISTS message_file RESTRICT;
 
+-- 포트폴리오 주소
+DROP TABLE IF EXISTS team_portfolio RESTRICT;
+
+-- 포트폴리오 주소2
+DROP TABLE IF EXISTS team_member_portfolio RESTRICT;
+
 -- 회원
 CREATE TABLE member (
   mno         INTEGER      NOT NULL COMMENT '회원번호', -- 회원번호
@@ -145,7 +151,7 @@ CREATE TABLE contest (
   page      VARCHAR(255) NULL     COMMENT '홈페이지', -- 홈페이지
   size      INTEGER      NULL     COMMENT '참가인원', -- 참가인원
   qual      VARCHAR(255) NULL     COMMENT '참가자격', -- 참가자격
-  team      BOOLEAN      NOT NULL COMMENT '팀여부', -- 팀여부
+  team      VARCHAR(255) NOT NULL COMMENT '팀여부', -- 팀여부
   reward    INTEGER      NULL     COMMENT '상금', -- 상금
   thumbnail VARCHAR(255) NOT NULL COMMENT '썸네일' -- 썸네일
 )
@@ -163,16 +169,17 @@ ALTER TABLE contest
 
 -- 재능판매
 CREATE TABLE product (
-  pno           INTEGER      NOT NULL COMMENT '재능판매번호', -- 재능판매번호
-  pcno          VARCHAR(255) NOT NULL COMMENT '재능판매카테고리번호', -- 재능판매카테고리번호
-  mno           INTEGER      NOT NULL COMMENT '회원번호', -- 회원번호
-  title         VARCHAR(255) NOT NULL COMMENT '제목', -- 제목
-  cont          MEDIUMTEXT   NOT NULL COMMENT '내용', -- 내용
-  price         INTEGER      NOT NULL COMMENT '가격', -- 가격
-  vw_cnt        INTEGER      NOT NULL DEFAULT 0 COMMENT '조회수', -- 조회수
-  cdt           DATE         NOT NULL DEFAULT now() COMMENT '작성일', -- 작성일
-  thumbnail     VARCHAR(255) NULL     COMMENT '썸네일파일이름', -- 썸네일파일이름
-  thumbnailpath VARCHAR(255) NULL     COMMENT '썸네일파일경로' -- 썸네일파일경로
+  pno       INTEGER      NOT NULL COMMENT '재능판매번호', -- 재능판매번호
+  pcno      VARCHAR(255) NOT NULL COMMENT '재능판매카테고리번호', -- 재능판매카테고리번호
+  mno       INTEGER      NOT NULL COMMENT '회원번호', -- 회원번호
+  title     VARCHAR(255) NOT NULL COMMENT '제목', -- 제목
+  cont      MEDIUMTEXT   NOT NULL COMMENT '내용', -- 내용
+  price     INTEGER      NOT NULL COMMENT '가격', -- 가격
+  vw_cnt    INTEGER      NOT NULL DEFAULT 0 COMMENT '조회수', -- 조회수
+  cdt       DATE         NOT NULL DEFAULT now() COMMENT '작성일', -- 작성일
+  thumbnail VARCHAR(255) NULL     COMMENT '썸네일파일이름', -- 썸네일파일이름
+  rule      MEDIUMTEXT   NULL     COMMENT '룰룰', -- 룰룰
+  selfintro MEDIUMTEXT   NULL     COMMENT '자기소개' -- 자기소개
 )
 COMMENT '재능판매';
 
@@ -292,10 +299,10 @@ CREATE TABLE qna (
   qnacno    INTEGER      NOT NULL COMMENT '카테고리 번호', -- 카테고리 번호
   title     VARCHAR(255) NOT NULL COMMENT '제목', -- 제목
   cont      MEDIUMTEXT   NOT NULL COMMENT '내용', -- 내용
-  cdt       DATE         NOT NULL DEFAULT now() COMMENT '등록일', -- 등록일
+  cdt       DATETIME     NOT NULL DEFAULT now() COMMENT '등록일', -- 등록일
   mno       INTEGER      NOT NULL COMMENT '회원번호', -- 회원번호
   answer    MEDIUMTEXT   NULL     COMMENT '답변내용', -- 답변내용
-  answercdt DATE         NULL     COMMENT '답변일시' -- 답변일시
+  answercdt DATETIME     NULL     COMMENT '답변일시' -- 답변일시
 )
 COMMENT '1 : 1 문의';
 
@@ -337,7 +344,7 @@ CREATE TABLE product_review (
   title VARCHAR(255) NOT NULL COMMENT '제목', -- 제목
   cont  MEDIUMTEXT   NOT NULL COMMENT '내용', -- 내용
   cdt   DATE         NOT NULL DEFAULT now() COMMENT '작성일', -- 작성일
-  scope INTEGER      NOT NULL COMMENT '별점' -- 별점
+  score INTEGER      NOT NULL COMMENT '별점' -- 별점
 )
 COMMENT '후기 게시판';
 
@@ -480,20 +487,24 @@ ALTER TABLE team
       tno -- 팀원모집번호
     );
 
+-- 팀원모집 유니크 인덱스
+CREATE UNIQUE INDEX UIX_team
+  ON team ( -- 팀원모집
+    ctstno ASC, -- 공모전번호
+    mno ASC     -- 회원번호
+  );
+
 ALTER TABLE team
   MODIFY COLUMN tno INTEGER NOT NULL AUTO_INCREMENT COMMENT '팀원모집번호';
 
 -- 팀원모집분야지원
 CREATE TABLE team_field_member (
-  tfmno  INTEGER      NOT NULL COMMENT '팀원모집분야지원번호', -- 팀원모집분야지원번호
-  tfno   INTEGER      NOT NULL COMMENT '모집분야번호', -- 모집분야번호
-  mno    INTEGER      NOT NULL COMMENT '회원번호', -- 회원번호
-  cont   MEDIUMTEXT   NOT NULL COMMENT '자기소개', -- 자기소개
-  cdt    DATE         NOT NULL DEFAULT now() COMMENT '등록일', -- 등록일
-  type   BOOLEAN      NOT NULL COMMENT '상태', -- 상태
-  fpath1 VARCHAR(255) NULL     COMMENT '포트폴리오1', -- 포트폴리오1
-  fpath2 VARCHAR(255) NULL     COMMENT '포트폴리오2', -- 포트폴리오2
-  fpath3 VARCHAR(255) NULL     COMMENT '포트폴리오3' -- 포트폴리오3
+  tfmno INTEGER    NOT NULL COMMENT '팀원모집분야지원번호', -- 팀원모집분야지원번호
+  tfno  INTEGER    NOT NULL COMMENT '모집분야번호', -- 모집분야번호
+  mno   INTEGER    NOT NULL COMMENT '회원번호', -- 회원번호
+  cont  MEDIUMTEXT NOT NULL COMMENT '자기소개', -- 자기소개
+  cdt   DATE       NOT NULL DEFAULT now() COMMENT '등록일', -- 등록일
+  type  BOOLEAN    NOT NULL COMMENT '상태' -- 상태
 )
 COMMENT '팀원모집분야지원';
 
@@ -513,7 +524,7 @@ CREATE TABLE team_field (
   tno  INTEGER      NOT NULL COMMENT '팀원모집번호', -- 팀원모집번호
   name VARCHAR(255) NOT NULL COMMENT '모집분야', -- 모집분야
   size INTEGER      NOT NULL COMMENT '인원', -- 인원
-  type BOOLEAN      NOT NULL COMMENT '상태' -- 상태
+  type BOOLEAN      NOT NULL DEFAULT true COMMENT '상태' -- 상태
 )
 COMMENT '모집분야';
 
@@ -587,13 +598,14 @@ ALTER TABLE admin_member
 
 -- 주문내역
 CREATE TABLE product_order (
-  pono    INTEGER      NOT NULL COMMENT '구매번호', -- 구매번호
-  mno     INTEGER      NOT NULL COMMENT '회원번호', -- 회원번호
-  pno     INTEGER      NOT NULL COMMENT '재능판매번호', -- 재능판매번호
-  cdt     DATE         NOT NULL DEFAULT now() COMMENT '주문날짜', -- 주문날짜
-  payment VARCHAR(255) NOT NULL COMMENT '결제수단', -- 결제수단
-  paycdt  DATE         NOT NULL COMMENT '결제날짜', -- 결제날짜
-  status  VARCHAR(255) NOT NULL COMMENT '진행상태' -- 진행상태
+  pono        INTEGER      NOT NULL COMMENT '구매번호', -- 구매번호
+  mno         INTEGER      NOT NULL COMMENT '회원번호', -- 회원번호
+  pno         INTEGER      NOT NULL COMMENT '재능판매번호', -- 재능판매번호
+  pstno       VARCHAR(10)  NOT NULL COMMENT '우편번호', -- 우편번호
+  base_addr   VARCHAR(255) NOT NULL COMMENT '기본주소', -- 기본주소
+  detail_addr VARCHAR(255) NOT NULL COMMENT '상세주소', -- 상세주소
+  cdt         DATETIME     NOT NULL DEFAULT now() COMMENT '주문날짜', -- 주문날짜
+  status      VARCHAR(255) NOT NULL DEFAULT '결제완료' COMMENT '진행상태' -- 진행상태
 )
 COMMENT '주문내역';
 
@@ -669,6 +681,42 @@ ALTER TABLE message_file
 
 ALTER TABLE message_file
   MODIFY COLUMN msgfno INTEGER NOT NULL AUTO_INCREMENT COMMENT '첨부파일번호';
+
+-- 포트폴리오 주소
+CREATE TABLE team_portfolio (
+  tpno  INTEGER      NOT NULL COMMENT '포트폴리오 번호', -- 포트폴리오 번호
+  tno   INTEGER      NULL     COMMENT '팀원모집번호', -- 팀원모집번호
+  fpath VARCHAR(255) NULL     COMMENT '리더 포트폴리오 웹주소' -- 리더 포트폴리오 웹주소
+)
+COMMENT '포트폴리오 주소';
+
+-- 포트폴리오 주소
+ALTER TABLE team_portfolio
+  ADD CONSTRAINT PK_team_portfolio -- 포트폴리오 주소 기본키
+    PRIMARY KEY (
+      tpno -- 포트폴리오 번호
+    );
+
+ALTER TABLE team_portfolio
+  MODIFY COLUMN tpno INTEGER NOT NULL AUTO_INCREMENT COMMENT '포트폴리오 번호';
+
+-- 포트폴리오 주소2
+CREATE TABLE team_member_portfolio (
+  tmpno INTEGER      NOT NULL COMMENT '포트폴리오 번호', -- 포트폴리오 번호
+  tfmno INTEGER      NULL     COMMENT '팀원모집분야지원번호', -- 팀원모집분야지원번호
+  fpath VARCHAR(255) NULL     COMMENT '지원자포트폴리오 웹주소' -- 지원자포트폴리오 웹주소
+)
+COMMENT '포트폴리오 주소2';
+
+-- 포트폴리오 주소2
+ALTER TABLE team_member_portfolio
+  ADD CONSTRAINT PK_team_member_portfolio -- 포트폴리오 주소2 기본키
+    PRIMARY KEY (
+      tmpno -- 포트폴리오 번호
+    );
+
+ALTER TABLE team_member_portfolio
+  MODIFY COLUMN tmpno INTEGER NOT NULL AUTO_INCREMENT COMMENT '포트폴리오 번호';
 
 -- 회원
 ALTER TABLE member
@@ -968,4 +1016,24 @@ ALTER TABLE message_file
     )
     REFERENCES message ( -- 1대1대화
       msgno -- 메신저번호
+    );
+
+-- 포트폴리오 주소
+ALTER TABLE team_portfolio
+  ADD CONSTRAINT FK_team_TO_team_portfolio -- 팀원모집 -> 포트폴리오 주소
+    FOREIGN KEY (
+      tno -- 팀원모집번호
+    )
+    REFERENCES team ( -- 팀원모집
+      tno -- 팀원모집번호
+    );
+
+-- 포트폴리오 주소2
+ALTER TABLE team_member_portfolio
+  ADD CONSTRAINT FK_team_field_member_TO_team_member_portfolio -- 팀원모집분야지원 -> 포트폴리오 주소2
+    FOREIGN KEY (
+      tfmno -- 팀원모집분야지원번호
+    )
+    REFERENCES team_field_member ( -- 팀원모집분야지원
+      tfmno -- 팀원모집분야지원번호
     );
