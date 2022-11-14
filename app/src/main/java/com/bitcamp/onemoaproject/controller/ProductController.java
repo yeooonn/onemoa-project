@@ -72,8 +72,8 @@ public class ProductController {
     String referer2 = request.getHeader("Referer");
     System.out.println("referer2 = " + referer2);
 
-   //  System.out.println("product.getWriter() = " + product.getWriter());
-//    productService.add(product);
+    System.out.println("product.getWriter() = " + product.getWriter());
+    productService.add(product);
     return "redirect:list";
   }
 

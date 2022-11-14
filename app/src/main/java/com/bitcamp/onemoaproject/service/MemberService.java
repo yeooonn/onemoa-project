@@ -30,6 +30,12 @@ public interface MemberService {
   List<Member> getFieldMemberPortfolio(int fieldMemberNo) throws Exception;
 
   void modifyPasswd(String email, String newPassword);
+  
+  Member getNickName(String nickname);
+  
+  Member getIdEmail(String name, String email);
+  
+  boolean updatePwd(Member member);
 }
 
 

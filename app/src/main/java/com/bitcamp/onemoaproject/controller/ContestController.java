@@ -79,7 +79,7 @@ public class ContestController {
       System.out.println("model.getAttribute(\"member\") = " + model.getAttribute("member"));
       return model.getAttribute("member");
     }
-    loginMember.setStatus(false);
+    loginMember.setStatus(0);
     return loginMember;
   }
   

@@ -12,8 +12,6 @@ public interface MemberDao {
 
   Member findByNo(int no);
 
-  Member findByEmail(String email);
-
   int update(Member member);
 
   int updateStatus(String email);
