@@ -3,6 +3,7 @@ package com.bitcamp.onemoaproject.controller;
 import com.bitcamp.onemoaproject.vo.contest.ContestTeam;
 import com.bitcamp.onemoaproject.vo.contest.ContestTeamField;
 import com.bitcamp.onemoaproject.vo.contest.ContestTeamFieldMember;
+import com.bitcamp.onemoaproject.vo.contest.ContestTeamFieldMemberPortfolio;
 import com.bitcamp.onemoaproject.vo.contest.ContestTeamPortfolio;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -173,15 +174,28 @@ public class ContestController {
   @ResponseBody
   public String fieldMemberAdd(HttpSession session, String textArea,
       @RequestParam(value = "portfolios1[]") List<String> portfolios1,
-      @RequestParam(value = "selectObj[]") List<String> selectObj) {
-    System.out.println("session.getAttribute(\"loginMember\") = " + session.getAttribute("loginMember"));
-    System.out.println("textArea = " + textArea);
-    System.out.println("portfolios1 = " + portfolios1);
-    System.out.println("selectObj = " + selectObj);
-//    textArea = asdfasdfasdf
-//    portfolios1 = [/onemoa/portfolio/firstportfolio?ptNo=9, /onemoa/portfolio/firstportfolio?ptNo=12]
-//    select_obj = 6, 7
-//    selectObj = [6,  7]
+      @RequestParam(value = "selectObj[]") List<Integer> selectObj) throws Exception {
+    Member loginMember = (Member) session.getAttribute("loginMember");
+
+    if (selectObj.size() > 0) {
+      
+      for (int i = 0; i < selectObj.size(); i++) {
+        ContestTeamFieldMember contestTeamFieldMember = new ContestTeamFieldMember();
+        List<ContestTeamFieldMemberPortfolio>  contestTeamFieldMemberPortfolios = new ArrayList<>();
+        
+        contestTeamFieldMember.setTfno(selectObj.get(i)); // 팀원 모집분야 번호 0번째
+        contestTeamFieldMember.setMno(loginMember.getNo()); // 지원자 회원 번호
+        contestTeamFieldMember.setCont(textArea);
+        contestTeamFieldMember.setType(false);
+  
+        for (String portfolio1 : portfolios1) {
+          contestTeamFieldMemberPortfolios.add(new ContestTeamFieldMemberPortfolio(portfolio1));
+        }
+        contestTeamFieldMember.setContestTeamFieldMemberPortfolioList(contestTeamFieldMemberPortfolios);
+        contestService.addFieldMember(contestTeamFieldMember);
+        System.out.println("ContestTeamFieldMember = " + contestTeamFieldMember);
+      }
+    }
     return "true";
   }
 }

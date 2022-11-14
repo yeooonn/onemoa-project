@@ -113,29 +113,27 @@
   </resultMap>
 
   <!-- 팀원모집분야지원자 -->
-  <resultMap type="ContestTeamFieldMember" id="contestTeamFieldMemberMap">
+  <resultMap type="contestTeamFieldMember" id="contestTeamFieldMemberMap">
     <id column="tfmno" property="tfmno"/>
     <result column="tfno" property="tfno"/>
     <result column="mno" property="mno"/>
     <result column="cont" property="cont"/>
     <result column="date" property="date"/>
     <result column="type" property="type"/>
-    <result column="type" property="type"/>
 
     <!-- 조인결과에서 팀원모집분야지원자에 여러개의 포트폴리오를 담을 경우  -->
-    <collection property="contestTeamFieldMemberPortfolios" ofType="ContestTeamFieldMemberPortfolio">
+    <collection property="contestTeamFieldMemberPortfolioList" ofType="ContestTeamFieldMemberPortfolio">
       <id column="tmpno" property="tmpno"/>
       <result column="tfmno" property="tfmno"/>
       <result column="fpath" property="fpath"/>
     </collection>
   </resultMap>
 
-  <!-- 팀원모집분야지원자의 포트폴리오 -->
+  <!-- 팀원모집분야 지원 포트폴리오 -->
   <resultMap type="ContestTeamFieldMemberPortfolio" id="contestTeamFieldMemberPortfolioMap">
-    <id column="tfno" property="tfno"/>
-    <result column="tno" property="tno"/>
-    <result column="name" property="name"/>
-    <result column="size" property="size"/>
+    <id column="tmpno" property="tmpno"/>
+    <result column="tfmno" property="tfmno"/>
+    <result column="fpath" property="fpath"/>
   </resultMap>
 
   <!-- 공모전 리스트 -->
@@ -442,4 +440,22 @@
       join member m on m.mno = tfm.mno
     where tf.tno=#{value};
   </select>
+
+  <!-- 팀원모집분야 등록 -->
+  <insert id="insertFieldMember" useGeneratedKeys="true" keyColumn="tfmno" keyProperty="tfmno">
+    insert into team_field_member(tfno, mno, cont, type)
+    values
+    (#{tfno}, #{mno}, #{cont}, #{type})
+  </insert>
+
+  <!-- 팀원 모집 포트폴리오 등록 -->
+  <insert id="insertFieldMemberPortfolio" parameterType="contestTeamFieldMember">
+    insert into team_member_portfolio(tfmno, fpath)
+    values
+    <foreach collection="contestTeamFieldMemberPortfolioList" item="file" separator=",">
+      (#{tfmno}, #{file.fpath})
+    </foreach>
+  </insert>
+
+
 </mapper>

@@ -132,4 +132,17 @@ public class DefaultContestService implements ContestService{
   public List<ContestTeamField> getFieldMember(int fieldNo) throws Exception {
     return contestDao.findByTeamFieldMember(fieldNo);
   }
+  
+  @Transactional
+  @Override
+  public void addFieldMember(ContestTeamFieldMember contestTeamFieldMember) throws Exception {
+    // 1) 팀원지원하기 등록
+    if (contestDao.insertFieldMember(contestTeamFieldMember) == 0) {
+      throw new Exception("팀원지원하기 등록 실패!");
+    }
+    // 2) 팀원지원하기 포트폴리오 등록
+    if (contestTeamFieldMember.getContestTeamFieldMemberPortfolioList().size() > 0) {
+      contestDao.insertFieldMemberPortfolio(contestTeamFieldMember);
+    }
+  }
 }

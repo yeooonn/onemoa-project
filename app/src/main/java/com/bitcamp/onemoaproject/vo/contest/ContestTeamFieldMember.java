@@ -21,6 +21,6 @@ public class ContestTeamFieldMember {
   private Member applicant;
   
   // 지원자 포트폴리오를 저장할 필드
-  private List<ContestTeamFieldMemberPortfolio> contestTeamFieldMemberPortfolios;
+  private List<ContestTeamFieldMemberPortfolio> contestTeamFieldMemberPortfolioList;
   
 }

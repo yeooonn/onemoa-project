@@ -34,4 +34,6 @@ public interface ContestService {
   List<ContestTeamField> getTeamField(int teamNo) throws Exception;
   // 팀원모집분야지원자 조회
   List<ContestTeamField> getFieldMember(int fieldNo) throws Exception;
+  
+  void addFieldMember(ContestTeamFieldMember contestTeamFieldMember) throws Exception;
 }
