@@ -75,4 +75,10 @@ public class DefaultMemberService implements MemberService {
   public List<Member> list() throws Exception {
     return memberDao.findAll();
   }
+  
+  // 팀원모집분야 지원자 리스트
+  @Override
+  public List<Member> getFieldMemberPortfolio(int fieldMemberNo) throws Exception {
+    return memberDao.findByMemberPortfolio(fieldMemberNo);
+  }
 }

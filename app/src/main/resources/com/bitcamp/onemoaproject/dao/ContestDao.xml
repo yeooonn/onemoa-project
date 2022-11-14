@@ -412,6 +412,7 @@
   <!-- 팀장 상세보기 팀분류 출력 -->
   <select id="findByTeamField" resultMap="contestTeamFieldsMap">
     select
+      tfno,
       tno,
       name,
       size,

@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
+import javax.lang.model.SourceVersion;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpSession;
@@ -32,7 +33,7 @@ import com.bitcamp.onemoaproject.vo.contest.ContestAttachedFile;
 @Controller
 @RequestMapping("contest")
 public class ContestController {
-
+  
   @Autowired
   ServletContext sc;
   @Autowired
@@ -41,7 +42,7 @@ public class ContestController {
   MemberService memberService;
   @Autowired
   PortfolioService portfolioService;
-
+  
   // 공모전 목록 출력
   @GetMapping("contestTeam")
   public void contestTeamList(Model model, String no, String ono, String sortCd) throws Exception {
@@ -50,7 +51,7 @@ public class ContestController {
     model.addAttribute("ono", ono);
     model.addAttribute("sortCd", sortCd);
   }
-
+  
   // 공모전 디테일
   @PostMapping("contestTeam/detail")
   @ResponseBody
@@ -58,12 +59,12 @@ public class ContestController {
     Contest contest = contestService.get(contestNumber);
     return contest;
   }
-
+  
   // 공모전 팀원구해요
   @PostMapping("contestTeam/teamList")
   @ResponseBody
   public Object contestTeamTeamList(Model model, int contestNumber) throws Exception {
-    model.addAttribute("teams",contestService.getTeamList(contestNumber));
+    model.addAttribute("teams", contestService.getTeamList(contestNumber));
     return model.getAttribute("teams");
   }
   
@@ -72,8 +73,8 @@ public class ContestController {
   @ResponseBody
   public Object contestTeamTeamRecruit(HttpSession session, Model model) throws Exception {
     Member loginMember = (Member) session.getAttribute("loginMember");
-
-    if(loginMember != null){
+    
+    if (loginMember != null) {
       model.addAttribute("member", memberService.get(loginMember.getNo()));
       System.out.println("model.getAttribute(\"member\") = " + model.getAttribute("member"));
       return model.getAttribute("member");
@@ -97,28 +98,28 @@ public class ContestController {
   @ResponseBody
   public String contestTeamRecruit(HttpSession session,
       Model model, int contestNumber, int memberNo, String textArea,
-      @RequestParam(value="portfolios[]") List<String> portfolios,
-      @RequestParam(value="recruitments[]") List<String> recruitments) throws Exception {
+      @RequestParam(value = "portfolios[]") List<String> portfolios,
+      @RequestParam(value = "recruitments[]") List<String> recruitments) throws Exception {
     Member loginMember = (Member) session.getAttribute("loginMember");
     List<ContestTeamPortfolio> contestTeamPortfolios = new ArrayList<>();
     List<ContestTeamField> contestTeamFields = new ArrayList<>();
     ContestTeam contestTeam = new ContestTeam();
     
-    if(loginMember != null){
+    if (loginMember != null) {
       contestTeam.setCtstno(contestNumber);
       contestTeam.setMno(memberNo);
       contestTeam.setCont(textArea);
-  
+      
       for (String portfolio : portfolios) {
         contestTeamPortfolios.add(new ContestTeamPortfolio(portfolio));
       }
       contestTeam.setContestTeamPortfolios(contestTeamPortfolios);
-  
-      for (int i = 0; i < recruitments.size(); i+=2) {
-        contestTeamFields.add(new ContestTeamField(recruitments.get(i), recruitments.get(i+1)));
+      
+      for (int i = 0; i < recruitments.size(); i += 2) {
+        contestTeamFields.add(new ContestTeamField(recruitments.get(i), recruitments.get(i + 1)));
       }
       contestTeam.setContestTeamFields(contestTeamFields);
-  
+      
       System.out.println("contestTeamPortfolios = " + contestTeamPortfolios);
       System.out.println("contestTeamFields = " + contestTeamFields);
       System.out.println("contestTeam = " + contestTeam);
@@ -128,7 +129,7 @@ public class ContestController {
     return "false";
   }
   
-  // 공모전 팀전 팀장 상세보기 페이지
+  // 공모전 팀전 팀장 상세보기
   @PostMapping("contestTeam/readerDetail")
   @ResponseBody
   public ContestTeam contestReaderDetail(int contestNumber, int memberNumber) throws Exception {
@@ -139,7 +140,7 @@ public class ContestController {
   // 공모전 팀장 모집분야 조회
   @PostMapping("contestTeam/readerField")
   @ResponseBody
-  public List<ContestTeamField> contestReaderField(int teamNumber) throws Exception{
+  public List<ContestTeamField> contestReaderField(int teamNumber) throws Exception {
     System.out.println("teamNumber = " + teamNumber);
     List<ContestTeamField> contestTeamField = contestService.getTeamField(teamNumber);
     return contestTeamField;
@@ -153,5 +154,34 @@ public class ContestController {
         teamNumber);
     System.out.println("contestTeamFieldList = " + contestTeamFieldList);
     return contestTeamFieldList;
+  }
+  
+  // 공모전 팀원모집분야 지원자 상세정보
+  @PostMapping("contestTeam/fieldMemberDetail")
+  @ResponseBody
+  public List<Member> fieldMemberDetail(HttpSession session, int readerNumber) throws Exception {
+    Member loginMember = (Member) session.getAttribute("loginMember");
+    if (loginMember != null) {
+      List<Member> member = memberService.getFieldMemberPortfolio(loginMember.getNo());
+      return member;
+    }
+    return null;
+  }
+  
+  // 공모전 팀원모집분야 지원자 지원하기
+  @PostMapping("contestTeam/fieldMemberAdd")
+  @ResponseBody
+  public String fieldMemberAdd(HttpSession session, String textArea,
+      @RequestParam(value = "portfolios1[]") List<String> portfolios1,
+      @RequestParam(value = "selectObj[]") List<String> selectObj) {
+    System.out.println("session.getAttribute(\"loginMember\") = " + session.getAttribute("loginMember"));
+    System.out.println("textArea = " + textArea);
+    System.out.println("portfolios1 = " + portfolios1);
+    System.out.println("selectObj = " + selectObj);
+//    textArea = asdfasdfasdf
+//    portfolios1 = [/onemoa/portfolio/firstportfolio?ptNo=9, /onemoa/portfolio/firstportfolio?ptNo=12]
+//    select_obj = 6, 7
+//    selectObj = [6,  7]
+    return "true";
   }
 }
