@@ -50,9 +50,12 @@ public interface ContestDao {
   
   int insertTeamField(ContestTeam contestTeam); // 공모전 팀원구해요:모집분야 등록
   
+  // 팀장 상세보기 정보
   ContestTeam findByReader(@Param("contestNo") int contestNo,  @Param("memberNo") int memberNo);
   
+  // 팀장 상세보기의 팀분류
   List<ContestTeamField> findByTeamField(int teamNo);
   
+  // 팀원모집분야 지원자 리스트
   List<ContestTeamField> findByTeamFieldMember(int fieldNo);
 }

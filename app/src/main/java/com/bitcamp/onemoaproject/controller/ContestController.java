@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
+import javax.lang.model.SourceVersion;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpSession;
@@ -128,7 +129,7 @@ public class ContestController {
     return "false";
   }
   
-  // 공모전 팀전 팀장 상세보기 페이지
+  // 공모전 팀전 팀장 상세보기
   @PostMapping("contestTeam/readerDetail")
   @ResponseBody
   public ContestTeam contestReaderDetail(int contestNumber, int memberNumber) throws Exception {
@@ -155,11 +156,32 @@ public class ContestController {
     return contestTeamFieldList;
   }
   
+  // 공모전 팀원모집분야 지원자 상세정보
   @PostMapping("contestTeam/fieldMemberDetail")
   @ResponseBody
   public List<Member> fieldMemberDetail(HttpSession session, int readerNumber) throws Exception {
     Member loginMember = (Member) session.getAttribute("loginMember");
-    List<Member> member = memberService.getFieldMemberPortfolio(loginMember.getNo());
-    return member;
+    if (loginMember != null) {
+      List<Member> member = memberService.getFieldMemberPortfolio(loginMember.getNo());
+      return member;
+    }
+    return null;
+  }
+  
+  // 공모전 팀원모집분야 지원자 지원하기
+  @PostMapping("contestTeam/fieldMemberAdd")
+  @ResponseBody
+  public String fieldMemberAdd(HttpSession session, String textArea,
+      @RequestParam(value = "portfolios1[]") List<String> portfolios1,
+      @RequestParam(value = "selectObj[]") List<String> selectObj) {
+    System.out.println("session.getAttribute(\"loginMember\") = " + session.getAttribute("loginMember"));
+    System.out.println("textArea = " + textArea);
+    System.out.println("portfolios1 = " + portfolios1);
+    System.out.println("selectObj = " + selectObj);
+//    textArea = asdfasdfasdf
+//    portfolios1 = [/onemoa/portfolio/firstportfolio?ptNo=9, /onemoa/portfolio/firstportfolio?ptNo=12]
+//    select_obj = 6, 7
+//    selectObj = [6,  7]
+    return "true";
   }
 }

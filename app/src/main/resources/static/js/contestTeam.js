@@ -71,12 +71,12 @@ function clo(){
   }
 }
 
-// 공모전 팀원구해요 팀원 모집하기 폼
+// 공모전 팀원구해요 : 팀원 모집하기 버튼 -> 팀원 모집하기 폼
 function dis2(){
   console.log(contestNumber)// 공모전 번호;
   if ($('.modal3').css('display') == 'none'){
-    $('.modal3').show();
-    $('.modal2').hide();
+    $('.modal3').show(); // 팀원모집하기 모달
+    $('.modal2').hide(); // 공모전 팀원구해요 창(팀 팀장 리스트)
   } else{
     $('.modal3').hide();
     $('.modal2').hide();
@@ -115,28 +115,20 @@ function dis2(){
   });
 }
 
-let selectPortfolioNumber = "";
-let selectPortfolioText = "";
-
 function portfolioBoxChange() {
-  selectPortfolioNumber = document.getElementById("xx-portfolioBox").options[document.getElementById("xx-portfolioBox").selectedIndex].value
-  selectPortfolioText = document.getElementById("xx-portfolioBox").options[document.getElementById("xx-portfolioBox").selectedIndex].text;
+  let selectPortfolioNumber = document.getElementById("xx-portfolioBox").options[document.getElementById("xx-portfolioBox").selectedIndex].value
+  let selectPortfolioText = document.getElementById("xx-portfolioBox").options[document.getElementById("xx-portfolioBox").selectedIndex].text;
   let aList = "";
   aList += "<li>" +
       "<a href='/onemoa/portfolio/firstportfolio?ptNo=" + selectPortfolioNumber + "'" + "onClick=\"window.open(this.href, '', 'width=1000px, height=1080px')\"; target=\"_blank\">" + selectPortfolioText + "</a>" + "</li>";
   $("#innerPortfolio").append(aList);
 }
 
-let selectRecruNumber = "";
-let selectRecruText = "";
-let selectPersonnelNumber = "";
-let selectPersonnelText = "";
-
 function personnelSelect() {
-  selectRecruNumber = document.getElementById("xx-recru").options[document.getElementById("xx-recru").selectedIndex].value;
-  selectRecruText = document.getElementById("xx-recru").options[document.getElementById("xx-recru").selectedIndex].text;
-  selectPersonnelNumber = document.getElementById("xx-personnel").options[document.getElementById("xx-personnel").selectedIndex].value;
-  selectPersonnelText = document.getElementById("xx-personnel").options[document.getElementById("xx-personnel").selectedIndex].text;
+  let selectRecruNumber = document.getElementById("xx-recru").options[document.getElementById("xx-recru").selectedIndex].value;
+  let selectRecruText = document.getElementById("xx-recru").options[document.getElementById("xx-recru").selectedIndex].text;
+  let selectPersonnelNumber = document.getElementById("xx-personnel").options[document.getElementById("xx-personnel").selectedIndex].value;
+  let selectPersonnelText = document.getElementById("xx-personnel").options[document.getElementById("xx-personnel").selectedIndex].text;
   let bList = "";
   bList += "<li>"
       + "<span id='" + selectRecruNumber + "'>" + selectRecruText + "</span>"
@@ -165,11 +157,8 @@ function dis3(){
   }
 }
 
-// modal6에서 팀원 지원하기 버튼
-function dis6(){
-  teamReaderDetail();
-
-  if ($('.modal6').css('display') == 'none'){
+function closeTest() {
+  if ($('.modal6').css('display') == 'show'){
     $('.modal6').hide();
     $('.modal5').show();
   } else{
@@ -177,7 +166,6 @@ function dis6(){
     $('.modal5').show();
   }
 }
-
 
 
 // 팀원 모집하기 등록 버튼
@@ -269,6 +257,7 @@ function dis4(clicked_id) {
 }
 
 let readerNumber = 0;
+let teamNumber;
 
 function teamReaderDetail() {
   // 팀장 정보 정보 요청
@@ -281,7 +270,7 @@ function teamReaderDetail() {
     },
     success: function (result) {
       console.log(result);
-      let teamNumber = result.tno; // 팀번호
+      teamNumber = result.tno; // 팀번호
       let teamCont = result.cont; // 팀장 소개글
       readerNumber = result.reader.no; // 팀장 번호
       let readerNickame = result.reader.nickname; // 팀장 닉네임
@@ -304,7 +293,7 @@ function teamReaderDetail() {
         url: "/onemoa/contest/contestTeam/readerField",
         data: {"teamNumber": teamNumber},
         success: function (result2) {
-          console.log(result2);
+          console.log("result2: " + result2);
           let fieldHead = "";
           let fieldList = "";
           let fieldSize = 0;
@@ -327,10 +316,6 @@ function teamReaderDetail() {
           let fieldMember = "";
           for (let i = 0; i < result3.length; i++) {
             for (let j = 0; j < result3[i].contestTeamFieldMembers.length; j++) {
-              // console.log(result3[i].contestTeamFieldMembers[j].tfmno);
-              // console.log(result3[i].contestTeamFieldMembers[j].cont);
-              // console.log(result3[i].contestTeamFieldMembers[j].applicant.nickname);
-              // console.log(result3[i].contestTeamFieldMembers[j].applicant.profile);
               fieldMember +=
                   "<ul>" +
                   "<li>" +
@@ -342,11 +327,10 @@ function teamReaderDetail() {
                   "</li>" +
                   "<li>" +
                   "<p>" +
-                  "<a href='#' id='tfmno-" + result3[i].contestTeamFieldMembers[j].tfmno + "' onclick='fieldMemberDetail(this.id)'>지원자보기</a>" +
+                  "<a href='#' id='tfmno-" + result3[i].contestTeamFieldMembers[j].tfmno + "' onclick='fieldMemberDetailView(this.id)'>지원자보기</a>" +
                   "</p></li></ul>";
             }
           }
-          // console.log(fieldMember);
           $("#xx-fieldMemberUl").html(fieldMember);
         },
       });
@@ -355,7 +339,7 @@ function teamReaderDetail() {
 }
 
 // 지원자 보기
-function fieldMemberDetail(clicked_id) {
+function fieldMemberDetailView(clicked_id) {
   let fieldMemberNumber = clicked_id;
   console.log(fieldMemberNumber);
   fieldMemberNumber = Number(fieldMemberNumber.substring(6));
@@ -373,16 +357,18 @@ function clo4(){
   }
 }
 
-// 팀장 상세보기에서 팀원 지원하기 버튼
+// 팀장 상세보기에서 팀원 모집하기 버튼
 function dis5(){
+  fieldMemberDetail();
+  fieldMemberDetailField();
+
   if ($('.modal6').css('display') == 'none'){
-    $('.modal4').show();
-    $('.modal6').show();
+    $('.modal4').show(); // 팀원 모집확인 모달 창 -> 확인 필요
+    $('.modal6').show(); // 팀원 지원하기 모달 창
   } else{
     $('.modal4').show();
     $('.modal6').hide();
   }
-  fieldMemberDetail();
 }
 
 // 지원자 회원 정보 조회
@@ -392,21 +378,116 @@ function fieldMemberDetail(){
     url: "/onemoa/contest/contestTeam/fieldMemberDetail",
     data: {"readerNumber": readerNumber},
     success: function (result) {
-      console.log(result);
+      if (result === '') {
+        swal({
+          title: "로그인이 필요한 화면입니다.",
+          text: "로그인 창으로 이동합니다.",
+          icon: "error",
+          closeOnClickOutside : false}).then(() =>{
+          window.location.href = "/onemoa/pageLogin";
+        });
+      }
       let fieldMemberNumber = result[0].no;
       let fieldMemberNickname = result[0].nickname;
       let fieldMemberProfile = result[0].profile;
+      let optionList = "";
 
       $("#xx-fieldMemberProfile").attr("src","/onemoa/member/files/" + fieldMemberProfile);
       $("#xx-fieldMemberNickname").html(fieldMemberNickname);
       for (let i = 0; i < result[0].portfoliosList.length; i++) {
-        console.log(result[0].portfoliosList[i].ptNo);
-        console.log(result[0].portfoliosList[i].title);
+        // $("#xx-fieldMemberPortfolioSelectBox").append("<option value='" + result[0].portfoliosList[i].ptNo  + "'>" + result[0].portfoliosList[i].title + "</option>");
+        optionList += "<option value='" + result[0].portfoliosList[i].ptNo + "'>" + result[0].portfoliosList[i].title + "</option>";
       }
+      $("#xx-fieldMemberPortfolioSelectBox").html(optionList);
     },
   });
 }
+// 지원자페이지에서 지원분야 조회
+function fieldMemberDetailField() {
+  console.log("fieldMemberDetailField():" + teamNumber);
+  $.ajax({
+    type: "POST",
+    url: "/onemoa/contest/contestTeam/readerField",
+    data: {"teamNumber": teamNumber},
+    success: function (result){
+      console.log(result);
+      let inputList = "";
+      for (let i = 0; i < result.length; i++) {
+        inputList += "<p><input type=\"checkbox\" value='" + result[i].tfno + "'" + ">" + result[i].name + "</p>"
+      }
+      $("#xx-innerRecruitment").html(inputList);
+    }
+  })
+}
 
+
+// modal6에서 팀원 지원하기 버튼
+function dis6(){
+  teamJoin();
+  teamReaderDetail(); // 팀장 상세보기 모달창
+  if ($('.modal6').css('display') == 'show'){
+    $('.modal6').hide();
+    $('.modal5').show();
+  } else{
+    $('.modal6').hide();
+    $('.modal5').show();
+  }
+}
+
+// 팀원 지원하기
+function teamJoin() {
+  let textArea = $("#xx-fieldMemberContent").val();
+  let portfolios1 = [];
+  let select_obj = "";
+  let selectObj;
+
+  let aLength = $("#innerPortfolio2").find("a").length;
+
+  // 포트폴리오 select option 에서 선택한 값 가져오기
+  for(let i=0; i<aLength; i++) {
+    portfolios1[i] = $("#innerPortfolio2").find("a").eq(i).attr("href");
+  }
+
+  // 팀원분류 체크박스 체크된값 가져오기
+  $('input[type="checkbox"]:checked').each(function (index) {
+    if (index != 0) {
+      select_obj += ', ';
+    }
+    select_obj += $(this).val();
+  });
+
+  console.log(textArea);
+  console.log(portfolios1);
+  selectObj = select_obj.split(",");
+  console.log(selectObj);
+
+
+  $.ajax({
+    type: "POST",
+    url: "/onemoa/contest/contestTeam/fieldMemberAdd",
+    data: {
+      "textArea": textArea,
+      "portfolios1": portfolios1,
+      "selectObj": selectObj,
+    },
+    success: function (result) {
+      console.log("teamJoin()");
+      console.log(result);
+    }
+  });
+}
+
+let selectPortfolioNumber1 = "";
+let selectPortfolioText1 = "";
+function fieldMemberDetailPortfolioBoxChange() {
+  console.log("fieldMemberDetailPortfolioBoxChange()");
+  selectPortfolioNumber1 = document.getElementById("xx-fieldMemberPortfolioSelectBox").options[document.getElementById("xx-fieldMemberPortfolioSelectBox").selectedIndex].value;
+  selectPortfolioText1 = document.getElementById("xx-fieldMemberPortfolioSelectBox").options[document.getElementById("xx-fieldMemberPortfolioSelectBox").selectedIndex].text;
+  let aList2 = "";
+  aList2 += "<li>" + "<a href='/onemoa/portfolio/firstportfolio?ptNo=" + selectPortfolioNumber1 + "'" + "onClick=\"window.open(this.href, '', 'width=1000px, height=1080px')\"; target=\"_blank\">" + selectPortfolioText1 + "</a>" + "</li>";
+  console.log(aList2);
+  $("#innerPortfolio2").append(aList2);
+}
 
 function clo5(){
   if ($('.modal5').css('display') == 'show'){
@@ -417,7 +498,6 @@ function clo5(){
     $('.modal2').show();
   }
 }
-
 
 // 포폴 추가 버튼
 $(document).on("click","button[name=addStaff]",function(){
