@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <title>onemoa v</title>
+  <link rel="stylesheet" type="text/css" href="reset.css" />
   <link href="/onemoa/css/onemoa.css" rel="stylesheet">
   <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.js"></script>
@@ -20,6 +21,7 @@
     }
 
     .row {
+      padding: 15px 10px;
       border: solid 1px #dbdbe5;
       border-radius: 4px;
 
@@ -32,20 +34,67 @@
       transition-duration: 0.3s;
       -webkit-transition-property: box-shadow;
       transition-property: box-shadow;
+
+      height: 21vw;
+      width: 15.3vw;
+
+      /*max-height: 330px;*/
+      /*min-height: 330px;*/
     }
     .row:hover {
       box-shadow: 0 0 8px rgba(0, 0, 0, 0.6);
     }
 
     .thumbnail {
+      horiz-align: center;
       text-align: center;
-      min-height: 300px;
+
+      /*min-height: 250px;*/
+      /*max-width: 200px;*/
     }
 
     .thumbnail > img {
-      margin-top: 10px;
-      height: 200px;
-      width: 90%;
+      max-height: 10vw;
+      width: 100%;
+    }
+
+    .row > p {
+      margin-top: 0px;
+      font-size: 1.2vw;
+      margin-bottom: 5px;
+      text-align: right;
+    }
+
+    .caption > p {
+      max-height: 40px;
+      min-height: 40px;
+      margin-top: 5px;
+      margin-bottom: 15px;
+      font-size: 1.2vw;
+      text-align: left;
+    }
+
+    .details {
+      vertical-align: center;
+    }
+
+    .details img {
+      margin-top: 1px;
+    }
+
+    .details p {
+      display: inline;
+      margin-top: 0px;
+      font-size: 1vw;
+    }
+
+    #price {
+      text-align: right;
+    }
+
+    #price > p {
+      margin-top: 1vw;
+      margin-bottom: 1vw;
     }
 
   </style>
@@ -76,23 +125,35 @@
       </ul>
     </nav>
 
-       <section id="product">
+       <section>
          <div class="product_container">
-            <a href="#" data-th-href="@{detail(no=${product.no})}" class="item" data-th-each= "product : ${products}">
-<!--              <img data-th-src="'/onemoa/product/files/' + ${product.filepath}" alt="">-->
+           <div data-th-each= "product : ${products}">
+            <a href="#" data-th-href="@{detail(no=${product.no})}" class="item">
               <!-- bootstrap card -->
               <div class="row">
                 <div class="col-sm-6 col-md-4">
                   <div class="thumbnail">
-                    <img src="../img/naver.png" alt="...">
+                    <img data-th-src="@{/product/files/{path}(path=${product.thumbnail})}" alt="">
+<!--                    <img src="../img/naver.png" alt="...">-->
                     <div class="caption">
                       <p data-th-text="${product.title}">Thumbnail label</p>
-                      <p data-th-text="${#numbers.formatInteger(product.price, 3, 'COMMA')} + ' 원'">판매 가격</p>
                     </div>
                   </div>
+
+                  <div class="details">
+                      <img src="../img/activeheart.png" />
+                      <p>1개 |</p>
+                      <img src="../img/star.png" />
+                      <p>5.0 점</p>
+                  </div>
+                  <div id="price">
+                   <p data-th-text="${#numbers.formatInteger(product.price, 3, 'COMMA')} + ' 원'">판매 가격</p>
+                  </div>
+
                 </div>
               </div>
             </a>
+           </div>
          </div>
        </section>
 
@@ -134,9 +195,5 @@
       })});
   </script>
 
-<script>
-  let test1 = [[${products}]];
-  console.log(test1);
-</script>
 </body>
 </html>

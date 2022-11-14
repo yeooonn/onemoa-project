@@ -9,14 +9,11 @@ import javax.servlet.http.Part;
 import com.bitcamp.onemoaproject.service.DefaultWishService;
 import com.bitcamp.onemoaproject.service.productService.ProductReviewService;
 import com.bitcamp.onemoaproject.vo.Member;
-import com.bitcamp.onemoaproject.vo.Wish;
 import com.bitcamp.onemoaproject.vo.paging.Criteria;
 import com.bitcamp.onemoaproject.vo.paging.PageMaker;
 import com.bitcamp.onemoaproject.vo.product.AttachedFile;
 import com.bitcamp.onemoaproject.vo.product.Product;
 import com.bitcamp.onemoaproject.vo.product.ProductReview;
-import com.fasterxml.jackson.databind.annotation.JsonAppend;
-import com.fasterxml.jackson.databind.util.JSONPObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -54,12 +51,29 @@ public class ProductController {
   public String add(
       Product product,
       @RequestParam("files") Part[] files,
-      HttpSession session) throws Exception {
+      HttpSession session, HttpServletRequest request, @RequestParam("sendReferrer") String sendReferrer) throws Exception {
+    System.out.println("sendReferrer = " + sendReferrer);
+    System.out.println("product = " + product);
 
     product.setAttachedFiles(saveAttachedFiles(files));
     product.setWriter((Member) session.getAttribute("loginMember"));
+
+    product.setThumbnail("defaultgoods.png");
+
+    if (product.getAttachedFiles().size() > 0) {
+
+      List<AttachedFile> attachedFiles;
+      attachedFiles = product.getAttachedFiles();
+      product.setThumbnail(attachedFiles.get(0).getFilepath());
+      System.out.println(attachedFiles.get(0).getFilepath());
+
+    }
+
+    String referer2 = request.getHeader("Referer");
+    System.out.println("referer2 = " + referer2);
+
    //  System.out.println("product.getWriter() = " + product.getWriter());
-    productService.add(product);
+//    productService.add(product);
     return "redirect:list";
   }
 
@@ -92,7 +106,7 @@ public class ProductController {
 //  }
 
   @RequestMapping("list")
-  public ModelAndView list(String code, Criteria cri) {
+  public ModelAndView list(String code, Criteria cri, HttpSession session) throws Exception {
 
     ModelAndView mav = new ModelAndView("product/list");
 
@@ -104,10 +118,11 @@ public class ProductController {
     System.out.println("code = " + code + ", cri = " + cri);
 
     List<Map<String,Object>> products = productService.selectProductList(cri);
+    System.out.println("products = " + products);
+
     mav.addObject("products", products);
     mav.addObject("pageMaker", pageMaker);
     mav.addObject("productCategories", productCategoryService.list());
-
 
     return mav;
   }

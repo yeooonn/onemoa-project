@@ -27,6 +27,10 @@
       pno=#{product.no}
   </select>
 
+
+
+<!--  findWishsByProductNo-->
+
   <select id="findByProductNo" resultType="java.lang.Integer">
     select
       count(*)

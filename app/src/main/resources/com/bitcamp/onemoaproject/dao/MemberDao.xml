@@ -84,14 +84,17 @@
 
   <select id="findByNo" resultMap="memberMap">
     select
-    mno,
-    name,
-    email,
-    cdt
+      mno,
+      name,
+      email,
+      cdt,
+      pstno,
+      base_addr,
+      detail_addr
     from
-    member
+      member
     where
-    mno=#{value}
+      mno=#{value}
   </select>
 
   <select id="findAll" resultMap="memberMap">

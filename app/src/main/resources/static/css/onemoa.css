@@ -2550,13 +2550,6 @@ label[for="label-a"] {
 /*  width: 90%;*/
 /*  min-height: 200px;*/
 /*}*/
-
-.item p {
-  font-size: 1.2vw;
-  margin-top: 5px;
-  margin-bottom: 5px;
-}
-
 .banner {
   height: 25vw;
   width: 100%;

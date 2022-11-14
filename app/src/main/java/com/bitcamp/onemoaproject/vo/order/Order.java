@@ -1,22 +1,22 @@
 package com.bitcamp.onemoaproject.vo.order;
 
 import com.bitcamp.onemoaproject.vo.Member;
+import com.bitcamp.onemoaproject.vo.product.Product;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
-
-import java.sql.Date;
+import java.time.LocalDateTime;
 
 @Getter
 @Setter
 @ToString
 public class Order {
-
     private int no;
+    private Product product;
     private Member buyer;
-    private Date createdDate;
-    private String payment;
-    private Date paymentDate;
+    private LocalDateTime createdDate;
+    private String postNo;
+    private String baseAddr;
+    private String detailAddr;
     private String status;
-
 }

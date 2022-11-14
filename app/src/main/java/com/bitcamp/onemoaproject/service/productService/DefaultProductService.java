@@ -74,6 +74,11 @@ public class DefaultProductService implements ProductService {
   }
 
   @Override
+  public List<Product> list(int no) throws Exception {
+    return productDao.findByWriter(no);
+  }
+
+  @Override
   public List<Map<String, Object>> selectProductList(Criteria cri) {
     return productDao.selectProductList(cri);
   }
