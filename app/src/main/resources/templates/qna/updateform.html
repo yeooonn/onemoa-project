@@ -34,7 +34,7 @@
                     <th class="thstyle">작성자</th>
                         <td data-th-text="${qna.writer.name}">user1</td>
                     <td style="font-size: 20px; font-weight:800;">문의일시</td>
-                       <td data-th-text="${qna.createdDate}">문의일자</td>
+                       <td data-th-text="${#temporals.format(qna.createdDate, 'yy-MM-dd HH:mm')}">문의일자</td>
                 </tr>
                 <tr>
                     <th class="thstyle">제목</th>
@@ -65,7 +65,7 @@
                     </tr>
                     <tr>
                         <th class="thstyle">답글 일시</th>
-                        <td colspan="3" data-th-text="${qna.answerCdt}"></td>
+                        <td colspan="3" data-th-text="${#temporals.format(qna.createdDate, 'yy-MM-dd HH:mm')}">문의일시</td>
                     </tr>
               </table>
                 <button ><a href="./list">목록</a></button>

@@ -62,7 +62,6 @@ public class AdminQnaController {
           HttpSession session)
           throws Exception {
 
-
       qnaService.answerUpdate(qna);
 //    qna.setAttachedFiles(saveAttachedFiles(files));
 //

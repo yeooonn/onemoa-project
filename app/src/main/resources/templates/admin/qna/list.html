@@ -34,7 +34,7 @@
         <div>
             <h1 style="text-align: center;">1:1 문의 목록</h1>
             <div class="container">
-                <table class="table">
+                <table style="width: 100vw" class="table">
                     <tr>
                         <th>번호</th>
                         <th>제목</th>
@@ -53,13 +53,10 @@
                                data-th-text="${qna.title == ''} ? '(제목없음)' : ${qna.title}">제목</a>
                         </td>
                         <td data-th-text="${qna.writer.name}">홍길동</td>
-                        <td data-th-text="${qna.createdDate}">2022-1-1</td>
+                    <td data-th-text="${#temporals.format(qna.createdDate, 'yyyy-MM-dd')}">2022-1-1</td>
                         <td data-th-if="${qna.answer == null}"><a href='detail?no=1'
                                                                   data-th-href="@{answerdetail(no=${qna.no})}">답변대기</a></td>
                         <td data-th-if="${qna.answer != null}">답변완료</td>
-                    </tr>
-                    <tr>
-                        </td>
                     </tr>
             </div>
         </div>

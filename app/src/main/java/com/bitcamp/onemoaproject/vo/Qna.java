@@ -5,7 +5,7 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
-import java.sql.Date;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Getter
@@ -15,9 +15,9 @@ public class Qna {
   private int no;
   private String title;
   private String content;
-  private Date createdDate;
+  private LocalDateTime createdDate;
   private String answer;
-  private Date answerCdt;
+  private LocalDateTime answerCdt;
   private QnaCategory category;
   private Member writer;
   private List<QnaAttachedFile> qnaAttachedFiles;
