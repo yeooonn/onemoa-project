@@ -91,7 +91,7 @@
       cdt,
       pf.fname,
       pf.fpath
-    from 
+    from
 	    portfolio
 	    join portfolio_file pf on portfolio.ptno = pf.ptno
     where
@@ -140,14 +140,24 @@
     where ptfno=#{value}
   </delete>
 
-
-
-
-
-
-
-
-
-
-
+<!-- 포트폴리오 번호로 포트폴리오 회원 첨부파일 조회 -->
+  <select id="findByPno" resultMap="portfolioMap">
+    select
+    pf.ptno,
+    pf.ptfno,
+    p.mno,
+    p.title,
+    p.cont,
+    p.cdt,
+    m.nick,
+    m.profile,
+    pf.fname,
+    pf.fpath
+    from
+    portfolio p
+    left outer join portfolio_file pf on p.ptno = pf.ptno
+    join member m on m.mno = p.mno
+    where
+    p.ptNo=#{value};
+  </select>
 </mapper>

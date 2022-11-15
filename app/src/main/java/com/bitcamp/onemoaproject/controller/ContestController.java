@@ -198,4 +198,13 @@ public class ContestController {
     }
     return "true";
   }
+  
+  // 공모전 팀원 상세보기(지원자보기)
+  @PostMapping("contestTeam/fieldMemberDetailView")
+  @ResponseBody
+  public ContestTeamFieldMember fieldMemberDetailView(HttpSession session, int fmNumber){
+    Member loginMember = (Member) session.getAttribute("loginMember");
+    System.out.println("fmNumber = " + fmNumber);
+    return contestService.getFieldMemberDetail(fmNumber);
+  }
 }

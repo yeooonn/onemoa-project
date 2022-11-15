@@ -34,6 +34,8 @@ public interface ContestService {
   List<ContestTeamField> getTeamField(int teamNo) throws Exception;
   // 팀원모집분야지원자 조회
   List<ContestTeamField> getFieldMember(int fieldNo) throws Exception;
-  
+  // 팀원 지원하기 지원자 등록 + 포트폴리오 등록
   void addFieldMember(ContestTeamFieldMember contestTeamFieldMember) throws Exception;
+  // 공모전 팀원 상세보기(지원자보기)
+  ContestTeamFieldMember getFieldMemberDetail(int fmNo);
 }

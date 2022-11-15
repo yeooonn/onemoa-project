@@ -33,6 +33,9 @@ public interface PortfolioDao {
   int deleteFiles(int no);
 
   int deleteFilesByMemberPortfolios(int memberNo);
+  
+  // 포트폴리오 번호로 포트폴리오 조회
+  List<Portfolio> findByPno(int ptNo);
 }
 
 

@@ -121,6 +121,21 @@
     <result column="date" property="date"/>
     <result column="type" property="type"/>
 
+    <!-- 조인결과에서 팀원모집분야지원자에 한개의 회원을 담을 경우 -->
+    <association property="applicant" javaType="Member">
+      <id column="mno" property="no"/>
+      <result column="nick" property="nickname"/>
+      <result column="profile" property="profile"/>
+    </association>
+
+    <association property="teamField" javaType="ContestTeamField">
+      <id column="tfno" property="tfno"/>
+      <result column="tno" property="tno"/>
+      <result column="name" property="name"/>
+      <result column="size" property="size"/>
+      <result column="type" property="type"/>
+    </association>
+
     <!-- 조인결과에서 팀원모집분야지원자에 여러개의 포트폴리오를 담을 경우  -->
     <collection property="contestTeamFieldMemberPortfolioList" ofType="ContestTeamFieldMemberPortfolio">
       <id column="tmpno" property="tmpno"/>
@@ -457,5 +472,26 @@
     </foreach>
   </insert>
 
+  <!-- 공모전 팀원 상세보기(지원자보기) -->
+  <select id="findByFieldMemberDetailView" resultMap="contestTeamFieldMemberMap">
+    select
+      tfm.tfmno,
+      tfm.tfno,
+      tfm.mno,
+      tfm.cont,
+      tfm.cdt,
+      tfm.type,
+      tf.tno,
+      tf.name,
+      tf.size,
+      m.nick,
+      m.profile,
+      tmp.fpath
+    from team_field_member tfm
+      join team_field tf on tf.tfno = tfm.tfno
+      join team_member_portfolio tmp on tfm.tfmno = tmp.tfmno
+      join member m on m.mno = tfm.mno
+    where tfm.tfmno=#{value};
+  </select>
 
 </mapper>

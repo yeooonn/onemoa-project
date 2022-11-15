@@ -10,6 +10,7 @@ import java.util.UUID;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpSession;
+import javax.sound.sampled.Port;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -75,20 +76,27 @@ public class PortfolioController {
   }
 
   @GetMapping("firstportfolio")
-  public Map firstportfolio(Model model, HttpSession session, int ptNo) throws Exception {
-    Member loginMember = (Member) session.getAttribute("loginMember");
-    model.addAttribute("portfolios", portfolioService.list(loginMember.getNo()));
-    Portfolio portfolio = portfolioService.get(ptNo);
-
-    if (portfolio == null) {
-      throw new Exception("해당 번호의 게시글이 없습니다!");
-    }
-
-    Map map = new HashMap();
-    map.put("portfolio", portfolio);
-    //    map.get("portfolio");
-    //    System.out.println(map.get("portfolio"));
-    return map;
+  public void firstportfolio(Model model, int ptNo) throws Exception {
+    System.out.println("ptNo = " + ptNo);
+    // 포트폴리오 번호로 조회한 포트폴리오
+    List<Portfolio> portfolio = portfolioService.getPortfolio(ptNo);
+    model.addAttribute("portfolio", portfolio);
+    // 포트폴리오 번호로 조회한 포트폴리오에서 사용자 번호로
+    // 해당 사용자의 모든 포트폴리오 리스트 가져오기
+    model.addAttribute("portfolios", portfolioService.list(portfolio.get(0).getMno()));
+//    Member loginMember = (Member) session.getAttribute("loginMember");
+//    model.addAttribute("portfolios", portfolioService.list(loginMember.getNo()));
+//    Portfolio portfolio = portfolioService.get(ptNo);
+//
+//    if (portfolio == null) {
+//      throw new Exception("해당 번호의 게시글이 없습니다!");
+//    }
+//
+//    Map map = new HashMap();
+//    map.put("portfolio", portfolio);
+//    //    map.get("portfolio");
+//    //    System.out.println(map.get("portfolio"));
+//    return map;
   }
 
 

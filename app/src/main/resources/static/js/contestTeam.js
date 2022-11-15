@@ -6,11 +6,11 @@ $(".con").click(function () {
   let contestTeam = $(this).attr("value"); // 공모전 팀여부(true/false)
   console.log(contestTeam);
   // 공모전 개인전(false=0)이라면 상세보기 '팀원구해요' 태그 닫기
-  if(contestTeam == "individual") {
+  if(contestTeam == "개인전") {
     document.querySelector("#contestTypeTeam").style.display = "none";
   }
   // 공모전 팀전(true=1)이라면 상세보기 '팀원구해요' 태그 열기
-  if(contestTeam == "match") {
+  if(contestTeam == "팀전") {
     document.querySelector("#contestTypeTeam").style.display = "block";
   }
 
@@ -327,7 +327,7 @@ function teamReaderDetail() {
                   "</li>" +
                   "<li>" +
                   "<p>" +
-                  "<a href='#' id='tfmno-" + result3[i].contestTeamFieldMembers[j].tfmno + "' onclick='fieldMemberDetailView(this.id)'>지원자보기</a>" +
+                  "<a href='#' id='tfmno-" + result3[i].contestTeamFieldMembers[j].tfmno + "' onclick='dis7(this.id)'>지원자보기</a>" +
                   "</p></li></ul>";
             }
           }
@@ -338,12 +338,83 @@ function teamReaderDetail() {
   });
 }
 
-// 지원자 보기
-function fieldMemberDetailView(clicked_id) {
+// modal8 팀원 상세보기(지원자보기) 버튼
+function dis7(clicked_id) {
+  if ($(".modal8").css("display") == "none") {
+    $(".modal5").hide();
+    $(".modal8").show();
+  } else {
+    $(".modal8").hide();
+  }
+
   let fieldMemberNumber = clicked_id;
   console.log(fieldMemberNumber);
   fieldMemberNumber = Number(fieldMemberNumber.substring(6));
   console.log(fieldMemberNumber);
+  fieldMemberDetailView(fieldMemberNumber)
+}
+
+// modal8 팀원 상세보기(지원자보기) 닫기 & 뒤로가기 버튼 -> 팀장 상세보기
+function clo7(){
+  if ($('.modal8').css('display') == 'show'){
+    $('.modal8').hide();
+    $('.modal5').show();
+  } else{
+    $('.modal8').hide();
+    $('.modal5').show();
+  }
+}
+
+// 지원자 데이터 상세 조회
+// 공모전 팀원 상세보기(지원자보기)
+function fieldMemberDetailView(fieldMemberNumber) {
+  $.ajax({
+    type: "POST",
+    url: "/onemoa/contest/contestTeam/fieldMemberDetailView",
+    data: {"fmNumber": fieldMemberNumber},
+    success: function (result) {
+      console.log(result);
+      console.log(result.teamField.name);
+      console.log(result.applicant.nickname);
+      let fieldMemberDetailHeader = result.teamField.name + "을 지원한 " + result.applicant.nickname +"님 입니다.";
+      $("#xx-fieldMemberDetailHeader").html(fieldMemberDetailHeader);
+      $("#xx-fieldMemberDetailProfile").attr("src", "/onemoa/member/files/" + result.applicant.profile);
+      $("#xx-fieldMemberDetailNickname2").text(result.applicant.nickname);
+      $("#xx-fieldMemberDetailContent").text(result.cont);
+
+      let portfolioLength = result.contestTeamFieldMemberPortfolioList.length;
+      let liList = "";
+      for (let i = 0; i < portfolioLength; i++) {
+        liList += "<li><a href='" + result.contestTeamFieldMemberPortfolioList[i].fpath + "'"
+            + "onClick=\"window.open(this.href, '', 'width=1000px, height=1080px')\"; target=\"_blank\">"
+            + "https://onemoa.com" + result.contestTeamFieldMemberPortfolioList[i].fpath + "</a></li>"
+      }
+      $("#xx-fieldMemberDetailPortfolios2").html(liList);
+    },
+  });
+}
+
+// 팀원 채택하기 버튼
+function dis8(){
+  if ($('.modal9').css('display') == 'none'){
+    $('.modal8').show();
+    $('.modal9').show();
+  } else{
+    $('.modal8').hide();
+    $('.modal9').hide();
+    $('.modal5').show();
+  }
+}
+
+// 팀원 채택하기 취소 버튼
+function clo8(){
+  if ($('.modal9').css('display') == 'show'){
+    $('.modal9').hide();
+    $('.modal8').show();
+  } else{
+    $('.modal9').hide();
+    $('.modal8').show();
+  }
 }
 
 // modal5 팀장상세보기 닫기 버튼

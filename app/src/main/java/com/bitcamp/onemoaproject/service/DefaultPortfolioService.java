@@ -79,7 +79,11 @@ public class DefaultPortfolioService implements PortfolioService {
   public boolean deleteAttachedFile(int ptfNo) throws Exception {
     return portfolioDao.deleteFile(ptfNo) > 0;
   }
-
+  
+  @Override
+  public List<Portfolio> getPortfolio(int ptNo) {
+    return portfolioDao.findByPno(ptNo);
+  }
 }
 
 

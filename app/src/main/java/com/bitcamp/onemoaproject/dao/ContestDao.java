@@ -62,4 +62,7 @@ public interface ContestDao {
   
   // 팀원 모집 포트폴리오 등록
   int insertFieldMemberPortfolio(ContestTeamFieldMember contestTeamFieldMember);
+  
+  // 공모전 팀원 상세보기(지원자보기)
+  ContestTeamFieldMember findByFieldMemberDetailView(int fmNo);
 }
