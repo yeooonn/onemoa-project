@@ -1,7 +1,11 @@
-package com.bitcamp.onemoaproject.controller.mypageController;
+package com.bitcamp.onemoaproject.controller;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
@@ -13,7 +17,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.multipart.MultipartFile;
 import com.bitcamp.onemoaproject.service.MemberService;
+import com.bitcamp.onemoaproject.service.PortfolioService;
 import com.bitcamp.onemoaproject.vo.Member;
+import com.bitcamp.onemoaproject.vo.portfolio.Portfolio;
+import com.bitcamp.onemoaproject.vo.portfolio.PortfolioAttachedFile;
 
 @Controller
 @RequestMapping("mypage")
@@ -21,15 +28,19 @@ public class MypageMemberController {
 
   ServletContext sc;
   MemberService memberService;
+  PortfolioService portfolioService;
 
-  public MypageMemberController(MemberService memberService, ServletContext sc) {
+  public MypageMemberController(MemberService memberService, ServletContext sc, PortfolioService portfolioService) {
     System.out.println("MemberController() 호출됨!");
     this.memberService = memberService;
     this.sc = sc;
+    this.portfolioService = portfolioService;
   }
 
   @GetMapping("changepw")
-  public void changepw() throws Exception {
+  public void changepw(HttpSession session, Model model) throws Exception {
+    Member loginMember = (Member) session.getAttribute("loginMember");
+    model.addAttribute("member", memberService.get(loginMember.getNo()));
   }
 
   @PostMapping("checkpassword")
@@ -62,16 +73,22 @@ public class MypageMemberController {
   }
 
   @GetMapping("changepwResult")
-  public void changepwResult(HttpSession session) throws Exception {
+  public void changepwResult(HttpSession session, Model model) throws Exception {
+    Member loginMember = (Member) session.getAttribute("loginMember");
+    model.addAttribute("member", memberService.get(loginMember.getNo()));
     session.invalidate(); // 현재 세션을 무효화시킨다.
   }
 
   @GetMapping("myinfoResult")
-  public void myinfoResult() throws Exception {
+  public void myinfoResult(HttpSession session, Model model) throws Exception {
+    Member loginMember = (Member) session.getAttribute("loginMember");
+    model.addAttribute("member", memberService.get(loginMember.getNo()));
   }
 
   @GetMapping("leave")
-  public void leave() throws Exception {
+  public void leave(HttpSession session, Model model) throws Exception {
+    Member loginMember = (Member) session.getAttribute("loginMember");
+    model.addAttribute("member", memberService.get(loginMember.getNo()));
   }
 
   @GetMapping("leaveHere")
@@ -83,7 +100,9 @@ public class MypageMemberController {
   }
 
   @GetMapping("leaveResult")
-  public void leaveResult(HttpSession session) throws Exception {
+  public void leaveResult(HttpSession session, Model model) throws Exception {
+    Member loginMember = (Member) session.getAttribute("loginMember");
+    model.addAttribute("member", memberService.get(loginMember.getNo()));
     session.invalidate(); // 현재 세션을 무효화시킨다.
   }
 
@@ -101,9 +120,17 @@ public class MypageMemberController {
   @PostMapping("myinfoUpdate")
   public String myinfoUpdate(Member member, MultipartFile files, HttpSession session) throws Exception {
 
+    System.out.println(files.getSize());
     member.setProfile(saveProfile(files));
+    System.out.println(member.getProfile());
 
-    if (!memberService.myinfoUpdate(member)) {
+    if (files.getSize() != 0) {
+      memberService.myinfoUpdate(member);
+      System.out.println(memberService.myinfoUpdate(member));
+    }
+
+    if (!memberService.myinfoUpdate2(member)) {
+      System.out.println(memberService.myinfoUpdate2(member));
       throw new Exception("회원 변경 오류입니다!");
     }
 
@@ -123,6 +150,144 @@ public class MypageMemberController {
     return null;
   }
 
+  // mypage portfolio 
+
+  @GetMapping("portfolioForm")
+  public void form(){}
+
+  @GetMapping("portfolioList")
+  public String list(Model model, HttpSession session) throws Exception {
+    Member loginMember = (Member) session.getAttribute("loginMember");
+    model.addAttribute("portfolios", portfolioService.list(loginMember.getNo()));
+    model.addAttribute("member", memberService.get(loginMember.getNo()));
+
+    return "mypage/portfolioList";
+  }
+
+  @PostMapping("portfolioAdd") 
+  public String add(
+      Portfolio portfolio,
+      MultipartFile[] files,
+      HttpSession session) throws Exception {
+
+    portfolio.setAttachedFiles(saveAttachedFiles(files));
+    portfolio.setMember((Member) session.getAttribute("loginMember"));
+
+    portfolioService.add(portfolio);
+    System.out.println("인서트 성공!");
+    return "redirect:portfolioList";
+  }
+
+  @GetMapping("portfolioDetail")
+  public Map portfolioDetail(int ptNo, HttpSession session, Model model) throws Exception {
+    Member loginMember = (Member) session.getAttribute("loginMember");
+    model.addAttribute("member", memberService.get(loginMember.getNo()));
+    Portfolio portfolio = portfolioService.get(ptNo);
+    if (portfolio == null) {
+      throw new Exception("해당 번호의 게시글이 없습니다!");
+    }
+
+    Map map = new HashMap();
+    map.put("portfolio", portfolio);
+    //    map.get("portfolio");
+    //    System.out.println(map.get("portfolio"));
+    return map;
+  }
+
+  @GetMapping("firstportfolio")
+  public Map firstportfolio(Model model, HttpSession session, int ptNo) throws Exception {
+    Member loginMember = (Member) session.getAttribute("loginMember");
+    model.addAttribute("portfolios", portfolioService.list(loginMember.getNo()));
+
+    Portfolio portfolio = portfolioService.get(ptNo);
+
+    if (portfolio == null) {
+      throw new Exception("해당 번호의 게시글이 없습니다!");
+    }
+
+    Map map = new HashMap();
+    map.put("portfolio", portfolio);
+    //    map.get("portfolio");
+    //    System.out.println(map.get("portfolio"));
+    return map;
+  }
+
+
+  @PostMapping("portfolioUpdate")
+  public String update(
+      Portfolio portfolio,
+      MultipartFile[] files,
+      HttpSession session) 
+          throws Exception {
+
+    portfolio.setAttachedFiles(saveAttachedFiles(files));
+    // checkOwner(contest.getNo(), session);
+
+
+
+    System.out.println("portfolio: "+ portfolio);
+
+    if (!portfolioService.update(portfolio)) {
+      throw new Exception("게시글을 변경할 수 없습니다!");
+    }
+
+    return "redirect:portfolioList";
+  }
+
+  @GetMapping("portfolioDelete")
+  public String delete(
+      int ptNo, 
+      HttpSession session) 
+          throws Exception {
+
+    // checkOwner(no, session);
+    if (!portfolioService.delete(ptNo)) {
+      throw new Exception("게시글을 삭제할 수 없습니다.");
+    }
+
+    return "redirect:portfolioList";
+  }
+
+  private List<PortfolioAttachedFile> saveAttachedFiles(MultipartFile[] files)
+      throws IOException, ServletException {
+    List<PortfolioAttachedFile> attachedFiles = new ArrayList<>();
+    String dirPath = sc.getRealPath("/portfolio/files");
+
+    for (MultipartFile part : files) {
+      if (part.isEmpty()) {
+        continue;
+      }
+
+      String filepath = UUID.randomUUID().toString();
+      String filename = part.getOriginalFilename();
+      part.transferTo(new File(dirPath + "/" + filepath));
+      attachedFiles.add(new PortfolioAttachedFile(filename, filepath));
+
+    }
+    return attachedFiles;
+  }
+
+  @GetMapping("fileDelete")
+  public String fileDelete(
+      int ptfNo,
+      HttpSession session) 
+          throws Exception {
+
+    PortfolioAttachedFile attachedFile = portfolioService.getAttachedFile(ptfNo); 
+
+    // Member loginMember = (Member) session.getAttribute("loginMember");
+    Portfolio portfolio = portfolioService.get(attachedFile.getPtNo()); 
+
+    //    if (contest.getWriter().getNo() != loginMember.getNo()) {
+    //      throw new Exception("게시글 작성자가 아닙니다.");
+    //    }
+
+    if (!portfolioService.deleteAttachedFile(ptfNo)) {
+      throw new Exception("게시글 첨부파일을 삭제할 수 없습니다.");
+    }
+
+    return "redirect:portfolioDetail?ptNo=" + portfolio.getPtNo();
+  }
 
 }
 

@@ -39,7 +39,8 @@ public class LoginCheckFilter implements Filter {
     //    System.out.println("httpRequest.getServletPath()" + httpRequest.getServletPath());
 
     if (!servletPath.startsWith("/css") 
-        && !servletPath.startsWith("/js")) {
+        && !servletPath.startsWith("/js")
+        && !servletPath.startsWith("/admin")) {
       // 콘텐트를 틍록, 변경, 삭제하는 경우 로그인 여부를 확인한다.
       if (servletPath.toLowerCase().endsWith("add")
           || servletPath.toLowerCase().endsWith("update")

@@ -6,6 +6,7 @@
   <resultMap type="adminMember" id="adminMemberMap">
     <id column="amno" property="no"/>
     <result column="id" property="email"/>
+    <result column="pwd" property="password"/>
   </resultMap>
 
   <select id="findAll" resultMap="adminMemberMap">
@@ -16,6 +17,16 @@
       admin_member
     order by
       id;
+  </select>
+  
+  <select id="findByEmailPassword" resultMap="adminMemberMap">
+    select
+      id,
+      pwd
+    from
+      admin_member
+    where
+    id=#{email} and pwd=sha2(#{password},256)
   </select>
 
 </mapper>

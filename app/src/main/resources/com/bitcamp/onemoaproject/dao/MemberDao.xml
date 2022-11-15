@@ -118,7 +118,9 @@
     select
       mno,
       email,
-      pwd
+      pwd,
+      profile,
+      nick
     from
       member
     where
@@ -179,6 +181,21 @@
       bank=#{bank},
       account=#{account},
       profile=#{profile}
+    where
+    mno=#{no}
+  </update>
+  
+  <update id="myinfoUpdate2" parameterType="Member">
+    update member set
+      name=#{name},
+      nick=#{nickname},
+      email=#{email},
+      jno=#{jobNo},
+      pstno=#{postNo},
+      base_addr=#{baseAddr},
+      detail_addr=#{detailAddr},
+      bank=#{bank},
+      account=#{account}
     where
     mno=#{no}
   </update>
