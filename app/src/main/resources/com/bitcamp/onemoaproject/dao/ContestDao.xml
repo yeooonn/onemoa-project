@@ -91,6 +91,7 @@
     <result column="tno" property="tno"/>
     <result column="name" property="name"/>
     <result column="size" property="size"/>
+    <result column="type" property="type"/>
 
     <!-- 조인결과에서 모집분야에 여러개의 팀원모집분야지원자를 담을 경우  -->
     <collection property="ContestTeamFieldMembers" ofType="ContestTeamFieldMember">
@@ -99,7 +100,7 @@
       <result column="mno" property="mno"/>
       <result column="cont" property="cont"/>
       <result column="date" property="date"/>
-      <result column="type" property="type"/>
+      <result column="types" property="type"/>
 
       <!-- 조인결과에서 팀원모집분야지원자에 한개의 회원을 담을 경우 -->
       <association property="applicant" javaType="Member">
@@ -445,7 +446,7 @@
       tfm.tfno,
       tfm.cont,
       tfm.cdt,
-      tfm.type,
+      tfm.type as types,
       m.mno,
       m.nick,
       m.profile

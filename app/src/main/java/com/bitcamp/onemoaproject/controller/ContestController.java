@@ -186,7 +186,7 @@ public class ContestController {
         contestTeamFieldMember.setTfno(selectObj.get(i)); // 팀원 모집분야 번호 0번째
         contestTeamFieldMember.setMno(loginMember.getNo()); // 지원자 회원 번호
         contestTeamFieldMember.setCont(textArea);
-        contestTeamFieldMember.setType(false);
+        contestTeamFieldMember.setType("false");
   
         for (String portfolio1 : portfolios1) {
           contestTeamFieldMemberPortfolios.add(new ContestTeamFieldMemberPortfolio(portfolio1));
@@ -211,19 +211,25 @@ public class ContestController {
   // 공모전 팀원 선택하기
   @PostMapping("contestTeam/fieldMemberChoice")
   @ResponseBody
-  public String fieldMemberChoice(int fmNo, String cType) throws Exception{
-    System.out.println("fmNo = " + fmNo);
-    System.out.println("cType = " + cType);
-    if (cType == null) {
-      cType = "지원";
+  public String fieldMemberChoice(int fmNo, String cType, int reNumber, HttpSession session) throws Exception{
+    Member loginMember = (Member) session.getAttribute("loginMember");
+    System.out.println("reNumber = " + reNumber);
+    System.out.println("loginMember.getNo() = " + loginMember.getNo());
+    if (loginMember.getNo() == reNumber) {
+      System.out.println("fmNo = " + fmNo);
+      System.out.println("cType = " + cType);
+      String booleanValue = "미승인";
+      if (cType == null) {
+        cType = "지원";
+      }
+      if (cType.contains("취소")) {
+        contestService.updateFieldMemberType(fmNo, booleanValue);
+      } else if (cType.contains("지원")) {
+        booleanValue = "승인";
+        contestService.updateFieldMemberType(fmNo, booleanValue);
+      }
+      return "성공";
     }
-    boolean booleanValue = false;
-    if (cType.contains("취소")) {
-      contestService.updateFieldMemberType(fmNo, false);
-    } else if (cType.contains("지원")) {
-      contestService.updateFieldMemberType(fmNo, true);
-    }
-//    contestService.updateFieldMemberType(fmNo);
-    return "성공";
+    return "실패";
   }
 }

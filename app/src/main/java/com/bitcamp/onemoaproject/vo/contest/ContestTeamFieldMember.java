@@ -17,7 +17,7 @@ public class ContestTeamFieldMember {
   private int mno; // 회원번호
   private String cont; // 자기소개
   private Date date; // 등록날짜
-  private boolean type; // 승인,거절
+  private String type; // 승인,거절
   private Member applicant;
   private ContestTeamField teamField;
   
