@@ -1437,11 +1437,13 @@ label[for="label-a"] {
 .teamJangD2 .tjd2 li .tjdimg2 img {
   width: 100%;
   height: auto;
+  border-radius: 70%;
+  overflow: hidden;
   margin-left: 15%;
 }
 .teamJangD2 .tjd2 li:nth-of-type(1) p {
-  position: relative;
-  left: 25%;
+  text-align: center;
+  margin-left: 20%;
 }
 .teamJangD2 .tjd2 li p {
   font-size: 1.254vw;
@@ -1473,7 +1475,6 @@ label[for="label-a"] {
 .portfolio2:nth-of-type(3) ul li:nth-of-type(1) {
   color: #000;
   margin-top: 35px;
-
 }
 .portfolio2:nth-of-type(3) ul li:nth-of-type(2) {
   margin-top: 15px;
@@ -1514,7 +1515,7 @@ label[for="label-a"] {
   float: left;
 }
 .portfolio2:nth-of-type(4) ul li img {
-  width: 15%;
+  width: 50%;
   margin-left: 20%;
   border-radius: 70%;
   overflow: hidden;
@@ -1540,17 +1541,17 @@ label[for="label-a"] {
   font-size: 0.938vw;
   float: right;
 }
-.portfolio2:nth-of-type(4) ul li:nth-of-type(2) p:nth-of-type(2) span:nth-of-type(1) {
+.portfolio2:nth-of-type(4) ul li:nth-of-type(2) p:nth-of-type(2) a:nth-of-type(1) {
   position: relative;
   left: -10px;
 }
-.portfolio2:nth-of-type(4) ul li:nth-of-type(2) p:nth-of-type(2) span {
+.portfolio2:nth-of-type(4) ul li:nth-of-type(2) p:nth-of-type(2) {
   cursor: pointer;
 }
-.portfolio2:nth-of-type(4) ul li:nth-of-type(2) p:nth-of-type(2) span:hover {
+.portfolio2:nth-of-type(4) ul li:nth-of-type(2) p:nth-of-type(2) a:nth-of-type(1):hover {
   color: blue;
 }
-.portfolio2:nth-of-type(4) ul li:nth-of-type(2) p:nth-of-type(2) span:nth-of-type(2):hover {
+.portfolio2:nth-of-type(4) ul li:nth-of-type(2) p:nth-of-type(2) a:nth-of-type(2):hover {
   color: red;
 }
 .portfolio2:nth-of-type(4) ul li:nth-of-type(3) p {
@@ -1619,29 +1620,33 @@ label[for="label-a"] {
   text-align: left;
   font-weight: bold;
 }
+.teamOne .tjd {
+  width: 100%;
+}
 .teamOne .tjd li {
   float: left;
+  width: 20%;
   margin-top: 50px;
+}
+.teamOne .tjd li:nth-of-type(2) {
+  width: 70%;
 }
 .teamOne .tjd li .tjdimg {
   width: 100%;
   height: 155px;
 }
 .teamOne .tjd li .tjdimg img {
-  width: 80.326%;
+  width: 20.326%;
   height: auto;
-  margin-left: 14%;
-}
-.teamOne .tjd li .tjdimg img {
-  width: 80.326%;
-  height: auto;
+  border-radius: 70%;
+  overflow: hidden;
   margin-left: 14%;
 }
 .teamOne .tjd li p {
   font-size: 1.254vw;
   text-align: center;
-  position: relative;
-  left: 2%;
+  margin-left:32%;
+  float:left;
 }
 .teamOne .tjd .tjdtxt {
   background-color: #bcc5e9;
@@ -1683,7 +1688,10 @@ label[for="label-a"] {
   margin-right: 50%;
   margin-bottom: 10px;
 }
-
+.hhhhhh2 {
+  width: 100%;
+  height: 70px;
+}
 .hhhhhh2 .mi2 {
   float: left;
 }
@@ -1701,7 +1709,7 @@ label[for="label-a"] {
   border-bottom: 1px solid #909090;
   float: left;
 }
-.recruitment p:nth-of-type(1) {
+.recruitment .choice {
   text-align: left;
   font-size: 1.354vw;
   font-weight: bold;
@@ -1717,19 +1725,17 @@ label[for="label-a"] {
   font-weight: normal;
 }
 .teammate {
-  text-align: center;
+  width: 100%;
 }
 .teammate .tm {
   border: none;
   background-color: transparent;
-  margin-right: 3%;
   font-size: 1.354vw;
   width: 15%;
   height: 80px;
   background-color: #707fc2;
   border: 1px solid #707fc2;
   margin-top: 100px;
-  margin-bottom: 100px;
   color: #fff;
   border-radius: 10px;
 }
@@ -1741,7 +1747,7 @@ label[for="label-a"] {
 .teammate .tm:nth-of-type(2) {
   border: none;
   background-color: transparent;
-  margin-right: 3%;
+  margin-right: 0.5%;
   font-size: 1.354vw;
   width: 15%;
   height: 80px;
