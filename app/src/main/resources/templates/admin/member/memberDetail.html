@@ -12,7 +12,7 @@
 </head>
 <body>
   <h1>회원 상세 정보</h1>
-  <form action='memberUpdate' method="post">
+  <form action='memberUpdate' method="post" id='adminMemberUpdate'>
   <table border='1'>
     <tr>
       <th>번호</th><td><input name='no' type='number' 
@@ -38,10 +38,10 @@
       <th>암호</th><td><input name='password' type='password' size='10'></td>
     </tr>
     <tr>
-    <th>직업</th>
-    <td><input name='jobNo' type='number' value='' max='6'
-     data-th-value="${member.jobNo}"></td>
-  </tr>
+      <th>직업</th>
+      <td><input name='jobNo' type='number' value='0' max='6' id="adminJobNO"
+       data-th-value="${member.jobNo}"></td>
+    </tr>
     <tr>
       <th>우편번호</th><td><input name='postNo' type='text' 
           value='홍길동' data-th-value="${member.postNo}" 
@@ -75,28 +75,29 @@
           size='60'></td>
     </tr>
     <tr>
-      <th>직업</th>
-      <td>
-        <select id="jobNo" name="jobNo" class="job">
-          <option value="0" selected>직업을 선택해주세요.</option>
-          <option value="1">프리랜서</option>
-          <option value="2">직장인</option>
-          <option value="3">소상공인</option>
-          <option value="4">스타트업 창업</option>
-          <option value="5">대학(원)생</option>
-          <option value="6">취업준비생</option>
-        </select>
-      </td>
-    </tr>
-    <tr>
       <th>등록일</th><td data-th-text="${member.createdDate}">2022-1-1</td>
     </tr>
+    
   </table>
   <p>
-    <button type='submit'>변경</button>
+    <button type='button' id="checkMember">변경</button>
     <button><a href='memberDelete?no=1' data-th-href="@{memberDelete(no=${member.no})}">삭제</a></button>
   </p>
   </form>
+<script>
 
+  document.getElementById("checkMember").addEventListener("click", function() {
+
+      const adminMemberUpdate = document.getElementById("adminMemberUpdate");
+      const jobNoCheck = document.getElementById("adminJobNO");
+
+      if (jobNoCheck.value == 0) {
+        alert("직업을 입력해주세요!");
+      } else {
+    	  adminMemberUpdate.submit();
+        return true;
+      }
+  });
+  </script>
 </body>
 </html>

@@ -61,7 +61,7 @@ function showInterestCheckboxes() {
 }
 
 
-// 회원가입시 닉네임중복체크와 이메일인증을 했는지 체크
+// 회원수정시 닉네임중복체크와 이메일인증을 했는지 체크
 var isnickname = false;
 var isemailauth = false;
 
@@ -171,56 +171,6 @@ $(function() {
     });
   });
 });
-
-
-$(document).ready(function() {
-  $("form").submit(function(e) {
-    const pwd = $("#password").val();
-    const pwdCk = $("#password-ck").val();
-    const joinForm = document.getElementById("join_frm");
-    const jobNoCheck = document.getElementById("jobNo");
-
-    // const jobNo = $("")
-    if (pwd != pwdCk) {
-      document.getElementById("password-cked").value = "비밀번호가 일치하지 않습니다.";
-      document.getElementById("password-cked").style.display = "block";
-      document.getElementById("password").focus();
-      return false;
-    }
-    if (pwd.length < 8) {
-      document.getElementById("password-cked").value = "8자 이상으로 입력해주세요.";
-      document.getElementById("password-cked").style.display = "block";
-      document.getElementById("password").focus();
-      return false;
-    } else if (pwd.length > 8) {
-      document.getElementById("password-cked").style.display = "none";
-    }
-    if (isnickname == false) {
-      document.getElementById("nicknameCheckBox").value = "닉네임 중복검사가 필요합니다.";
-      document.getElementById("nicknameCheckBox").style.display = "red";
-      document.getElementById("nicknameCheckBox").style.display = "block";
-      document.getElementById("nickname").focus();
-      return false;
-    }
-    if (isemailauth == false) {
-      document.getElementById("emailAuthCheckBox").value = "이메일 인증이 필요합니다.";
-      document.getElementById("emailAuthCheckBox").style.color = "red";
-      document.getElementById("emailAuthCheckBox").style.display = "block";
-      document.getElementById("joinEmail").focus();
-      return false;
-    }
-    if (jobNoCheck.options[jobNoCheck.selectedIndex].value == 0) {
-      document.getElementById("jobNoCheckBox").value = "직업을 선택해 주세요.";
-      document.getElementById("jobNoCheckBox").style.color = "red";
-      document.getElementById("jobNoCheckBox").style.display = "block";
-      return false;
-    } else {
-      joinForm.submit();
-      return true;
-    }
-  });
-});
-
 
 /* 마이페이지 메뉴 */
 $(document).ready(function(){

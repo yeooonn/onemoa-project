@@ -7,7 +7,7 @@
     <link href="/onemoa/css/onemoaMypage.css" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-    <script src="/onemoa/js/myinfo.js"></script>  
+    <script src="/onemoa/js/myinfo.js"></script> 
   </head>
   <body style="overflow-x: hidden">
     
@@ -50,7 +50,7 @@
         <ul class="firstnav">
           <li data-th-if="${session.loginMember != null}"><a href="http://localhost:3333/onemoa/logout" data-th-text="로그아웃">로그아웃</a></li>
           <li><button class="btn-open-popup" data-th-if="${session.loginMember == null}">로그인</button></li>
-          <li><a href="../portfolio/portfolioList">마이페이지</a></li>
+          <li><a href="../mypage/portfolioList">마이페이지</a></li>
           <li><a href="#">메시지</a></li>
         </ul>
       </div>
@@ -75,7 +75,7 @@
             <span class="mybar">
           </div>
           <ul class="mynav">
-            <li><a class="font2" href="../portfolio/portfolioList">나의 포트폴리오</a></li>
+            <li><a class="font2" href="../mypage/portfolioList">나의 포트폴리오</a></li>
             <li><a class="font2" href="">구매관리</a></li>
             <li><a class="font2" href="">판매관리</a></li>
             <li><a class="font2" href="">나의 서비스관리</a></li>
@@ -96,18 +96,18 @@
         <div class="mypagePortfolio">
           <p class="mptxt2">내정보수정</p>
 
-          <form action="myinfoUpdate" method="post">
+          <form id="myinfo" action="myinfoUpdate" method="post" enctype="multipart/form-data">
           <div class="mypageArea3">
-            <img data-th-src="${'/onemoa/member/files/' + member.profile}">
+            <img data-th-src="${'/onemoa/member/files/' + member.profile}" id="preProfile">
             <label class="porfile" for="porfile"><p class="profilupdate">프로필 변경</p></label>
-            <input name='files' type="file" multiple id="porfile" style="display: none">
+            <input name='files' type="file" id="porfile" data-th-value="${member.profile}" style="display: none" onchange="readURL(this);">
           </div>
           <div class="mypageArea3">
           <input name='no' type='hidden' value='1' data-th-value="${member.no}" readonly>
           <input name='name' type='hidden' value='홍길동' data-th-value="${member.name}" readonly size='60'>
           
             <div class="joinForm-grid-item">
-              <p data-th-text="${member.nickname}">닉네임</p>
+              <p>닉네임</p>
             </div>
             <div class="joinForm-grid-item">
               <input
@@ -142,26 +142,8 @@
                     maxlength="30"
                     required
                     data-th-value="${member.email}"
+                    readonly
                 />
-                <button type="button" id="email_auth_btn" class="email_auth_btn">
-                  인증번호 받기
-                </button>
-              </div>
-            </div>
-            <div class="joinForm-grid-item" id="email-auth-box">
-              <input
-                  class="mail-input-check"
-                  id="email-auth-key"
-                  name="emailAuthkey"
-                  placeholder="인증번호 입력"
-              />
-              <button
-                  type="button"
-                  id="email_auth_check_btn"
-                  class="email_auth_check_btn"
-              >
-                인증하기
-              </button>
             </div>
 
             <div class="joinForm-grid-item">
@@ -276,7 +258,7 @@
                 </div>
               </div><!-- interest-selectBox -->
             </div><!-- interest-multiselect  -->
-          <button type="submit" class="myinfobtn">수정하기</button>
+          <button type="button" class="myinfobtn" id="checkboxCheck">수정하기</button>
           </div><!--mypageArea3-->
           </form>
             
@@ -298,8 +280,34 @@
        
       </div>
     </footer>
-
+    
     <script>
+    $("#checkboxCheck").click(function() {
+
+    	  console.log("test");
+    	    const myinfo = document.getElementById("myinfo");
+    	    const jobNoCheck = document.getElementById("jobNo");
+    	    console.log("test");
+    	    // const jobNo = $("")
+    	    if (isnickname == false) {
+    	      document.getElementById("nicknameCheckBox").value = "닉네임 중복검사가 필요합니다.";
+    	      document.getElementById("nicknameCheckBox").style.display = "red";
+    	      document.getElementById("nicknameCheckBox").style.display = "block";
+    	      document.getElementById("nickname").focus();
+    	    }
+
+    	    if (jobNoCheck.options[jobNoCheck.selectedIndex].value == 0) {
+    	      document.getElementById("jobNoCheckBox").value = "직업을 선택해 주세요.";
+    	      document.getElementById("jobNoCheckBox").style.color = "red";
+    	      document.getElementById("jobNoCheckBox").style.display = "block";
+    	    } else {
+    	      myinfo.submit();
+    	      return true;
+    	    }
+    	});
+    </script>
+
+  <script>
       const body = document.querySelector('body');
       const modal = document.querySelector('.modal');
       const btnOpenPopup = document.querySelector('.btn-open-popup');
@@ -318,7 +326,19 @@
         modal.style.display = 'none';
         body.style.overflow = 'auto';
       });
-    </script>
+      
+      function readURL(input) {
+          if (input.files && input.files[0]) {
+            var reader = new FileReader();
+            reader.onload = function(e) {
+              document.getElementById('preProfile').src = e.target.result;
+              document.getElementById('preProfile').style.display = "block";
+            };
+            reader.readAsDataURL(input.files[0]);
+          }
+        }  
+    </script>  
+    
     
   </body>
 </html>

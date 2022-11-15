@@ -49,7 +49,7 @@
         <ul class="firstnav">
           <li data-th-if="${session.loginMember != null}"><a href="http://localhost:3333/onemoa/logout" data-th-text="로그아웃">로그아웃</a></li>
           <li><button class="btn-open-popup" data-th-if="${session.loginMember == null}">로그인</button></li>
-          <li><a href="../portfolio/portfolioList">마이페이지</a></li>
+          <li><a href="../mypage/portfolioList">마이페이지</a></li>
           <li><a href="#">메시지</a></li>
         </ul>
       </div>
@@ -65,8 +65,8 @@
     <ul class="myPage">
       <li class="mypageArea">
         <div class="nick">
-          <img src="../img/profile1.png">
-          <p>닉네임님</p>
+          <img data-th-src="${'/onemoa/member/files/' + member.profile}">
+          <p data-th-text="${member.nickname}">닉네임님</p>
         </div>
         <div class="mypageNav">
           <div class="myonemoa">
@@ -74,7 +74,7 @@
             <span class="mybar">
           </div>
           <ul class="mynav">
-            <li><a class="font2" href="../portfolio/portfolioList">나의 포트폴리오</a></li>
+            <li><a class="font2" href="../mypage/portfolioList">나의 포트폴리오</a></li>
             <li><a class="font2" href="">구매관리</a></li>
             <li><a class="font2" href="">판매관리</a></li>
             <li><a class="font2" href="">나의 서비스관리</a></li>

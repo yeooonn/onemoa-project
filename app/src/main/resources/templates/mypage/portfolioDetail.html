@@ -15,8 +15,8 @@
     <ul class="myPage">
       <li class="mypageArea2">
         <div class="nick">
-          <img src="../img/profile1.png">
-          <p>닉네임님</p>
+          <img data-th-src="${'/onemoa/member/files/' + member.profile}">
+         <p data-th-text="${member.nickname}">닉네임님</p>
         </div>
         <div class="mypageNav">
           <div class="myonemoa">
@@ -52,14 +52,14 @@
                 <tr>
                   <td>
                     <label class="portFile" for="portFile">첨부파일<img class="portFileimg" src="../img/upload.png"></label>
-                    <input name='files' type="file" multiple  id="portFile" class="pbtn" >
+                    <input name='files' type="file" multiple  id="portFile" class="pbtn" onchange="readURL(this);">
                   </td>
                 </tr>
               </table>
               <div class="addfile">
-                <p>추가할 파일 미리보기</p>
-                <div class="addfilecon">
-                  <!-- <img id ="preimg" class="preimg" src ="" > -->
+                <p style="font-size: 1vw;">추가할 파일 미리보기</p>
+                <div class="addfilecon" style="border:1px solid #999; width: 95%; height: auto; padding: 10px;">
+                  <img id ="preimg" class="preimg" src ="" style="width: 260px; height: 260px; display:none;">
                 </div>
               </div>
               
@@ -93,18 +93,19 @@
     	  window.location.href = "portfolioDelete?ptNo=[[${portfolio.ptNo}]]";
       });
    
-      /* function readURL(input) {
-    	  
-    	  if (input.files && input.files[0]) {
-    	    var reader = new FileReader();
-    	    reader.onload = function(e) {
-    	      document.getElementById('preimg').src = e.target.result;
-    	      document.getElementById('preimg').style.display = "block";
-    	    };
-    	    reader.readAsDataURL(input.files[0]);
-    	  }
-    	}  
-    	 */
+      function readURL(input) {
+          
+          if (input.files && input.files[0]) {
+            var reader = new FileReader();
+            reader.onload = function(e) {
+              document.getElementById('preimg').src = e.target.result;
+              document.getElementById('preimg').style.display = "block";
+            };
+            reader.readAsDataURL(input.files[0]);
+          }
+        }  
+      
+      /* 
     	 var sel_files = [];
     	 
          $(document).ready(function() {
@@ -126,7 +127,7 @@
                  }
                  reader.readAsDataURL(f);
              });
-         }
+         } */
   
 
    

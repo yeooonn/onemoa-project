@@ -34,6 +34,9 @@ header {
 }
 .myPage .mypageArea .nick img {
   width: 100%;
+  height: auto;
+  border-radius: 70%;
+  overflow: hidden;
 }
 .myPage .mypageArea .nick p {
   margin-bottom: 80px;
@@ -297,6 +300,7 @@ header {
   border-radius: 5px;
   background-color: #707fc2;
   font-size: 0.9vw;
+  margin-left: 5px;
 }
 .myPage .mypageArea2 .mypagePortfolio .portfolioBoxCon2 .portsub:hover {
   background-color: #4a5480;
@@ -311,7 +315,7 @@ header {
 .myPage .mypageArea2 .mypagePortfolio .portfolioBoxCon2 .portbtns {
   margin: 0 auto;
 }
-.myPage .mypageArea2 .mypagePortfolio .portfolioBoxCon2 .portbtns a {
+.myPage .mypageArea2 .mypagePortfolio .portfolioBoxCon2 .portbtns .portsub {
   border: none;
   background-color: transparent;
   text-align: center;
@@ -321,15 +325,22 @@ header {
   background-color: rgb(111, 114, 123);
   font-size: 0.9vw;
 }
-.myPage .mypageArea2 .mypagePortfolio .portfolioBoxCon2 .portbtns a:hover {
+.myPage .mypageArea2 .mypagePortfolio .portfolioBoxCon2 .portbtns .portsub:hover {
   background-color: rgb(84, 86, 92);
   transition: all .3s;
 }
-.myPage .mypageArea2 .mypagePortfolio .portfolioBoxCon2 .portbtns a:nth-of-type(2) {
+.myPage .mypageArea2 .mypagePortfolio .portfolioBoxCon2 .portbtns .portsub:nth-of-type(2) {
   background-color: #70a5c2;
 }
-.myPage .mypageArea2 .mypagePortfolio .portfolioBoxCon2 .portbtns a:nth-of-type(2):hover {
+.myPage .mypageArea2 .mypagePortfolio .portfolioBoxCon2 .portbtns .portsub:nth-of-type(2):hover {
   background-color: #4d7489;
+  transition: all .3s;
+}
+.myPage .mypageArea2 .mypagePortfolio .portfolioBoxCon2 .portbtns .portsub:nth-of-type(3) {
+  background-color: #707fc2;
+}
+.myPage .mypageArea2 .mypagePortfolio .portfolioBoxCon2 .portbtns .portsub:nth-of-type(3):hover {
+  background-color: #4a5480;
   transition: all .3s;
 }
 .myPage .mypageArea2 .mypagePortfolio .portfolioBoxCon2 .portAddbtn {
@@ -396,6 +407,9 @@ header {
 }
 .myPage .mypageArea3:nth-of-type(1) img {
   width: 100%;
+  height: auto;
+  border-radius: 70%;
+  overflow: hidden;
 }
 .myPage .mypageArea3 .profilupdate {
   font-size: 1.1vw;
@@ -418,14 +432,14 @@ header {
 .myPage .mypageArea3 .myinfobtn {
   font-size: 1.1vw;
   padding: 10px 0px;
-  width: 62%;
+  width: 62.5%;
   height: 50px;
   line-height: 30px;
   border-radius: 5px;
   background-color: #707fc2;
   color: #fff;
   text-align: center;
-  margin-right: 18%;
+  margin-right: 38%;
   border:none;
   margin-top: 20px;
 }
@@ -441,6 +455,7 @@ header {
 }
 
 /* 폼 */
+
 .joinForm-flex-container {
   display: flex;
   justify-content: center;
@@ -485,6 +500,7 @@ header {
   height: 50px;
   border-radius: 3px;
   border: 1px solid #cdcdcd;
+  margin-top: 0;
 }
 .joinForm-grid-item .nickname-input::placeholder {
   color: #a3a3a3;
@@ -495,6 +511,8 @@ header {
   background-color: #83879a;
   color: #fff;
   border-radius: 5px;
+  position: relative;
+  left: -16.5%;
 }
 .joinForm-grid-item .nickname_check_btn:hover {
   background-color: #575a68;
@@ -513,6 +531,7 @@ header {
   height: 50px;
   border-radius: 3px;
   border: 1px solid #cdcdcd;
+  margin-top: 0;
 }
 .joinForm-grid-item .email-input::placeholder {
   color: #a3a3a3;
@@ -523,6 +542,8 @@ header {
   height: 50px;
   border-radius: 3px;
   border: 1px solid #cdcdcd;
+  position: relative;
+  left: -16.5%;
 }
 .joinForm-grid-item .mail-input-check::placeholder {
   color: #a3a3a3;
@@ -533,6 +554,8 @@ header {
   background-color: #83879a;
   color: #fff;
   border-radius: 5px;
+  position: relative;
+  left: -16.5%;
 }
 .joinForm-grid-item .email_auth_btn:hover {
   background-color: #575a68;
@@ -635,6 +658,7 @@ header {
 .joinForm-grid-item .job {
   padding-left: 1.1%;
   font-size: 1vw;
+  width: 61%;
   height: 50px;
   border-radius: 3px;
   border: 1px solid #cdcdcd;
@@ -828,6 +852,8 @@ header {
   border-radius: 5px;
   border: none;
   margin-top: 20px;
+  margin-left: -0.5px;
+  float: left;
 }
 .mypageArea .changepwbtn:hover {
   background-color: #4c5684;
