@@ -31,7 +31,6 @@ public class DefaultOrderService {
     if (orderDao.update(order) == 0) {
       return false;
     }
-
       return true;
   }
 

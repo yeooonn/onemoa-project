@@ -58,17 +58,17 @@
 
         <div class="categoryA-container">
           <label for="categoryA">상위 카테고리 선택</label><br />
-          <select name="categoryA" class="productForm-category" id="categoryA" onchange="setUpperCategory()">
+          <select name="categoryA" class="productForm-category" id="categoryA" onchange="setUpperCategory()" required>
             <div>
-            <option value="">상위 카테고리 선택</option>
-            <option value="" data-th-each="category : ${productCategories}" data-th-value="${category.code}" data-th-text="${category.name}">상위카테고리</option>
+            <option value="" >상위 카테고리 선택</option>
+            <option data-th-each="category : ${productCategories}" data-th-value="${category.code}" data-th-text="${category.name}">상위카테고리</option>
             </div>
           </select>
         </div>
         <div class="categoryB-container">
           <div class="">
             <label for="code">하위 카테고리 선택</label><br />
-            <select name="productCategory.code" class="productForm-category" id="code">
+            <select name="productCategory.code" class="productForm-category" id="code" required>
               <option value="">하위 카테고리 선택</option>
 <!--              <option data-th-each= "child : ${category.children}" data-th-if="" data-th-value="${child.code}" data-th-text="${child.name}">하위카테고리</option>-->
             </select>
@@ -95,7 +95,7 @@
       <div class="productForm-grid-item">
         <div class="productForm-grid-item2">
           <span>메인이미지등록(필수) 0/4</span>
-          <input class="productForm-inputbox1" name="files" type="file" multiple accept="image/*"/>
+          <input class="productForm-inputbox1" name="files" type="file" multiple accept="image/*" required onchange="addFile(this)"/>
 <!--          <img width="200px" src="/img/productFromMain.png" onclick="document.all.files1.click();"/>-->
         </div>
         <input id="productListReferrer" type="hidden" name="sendReferrer">

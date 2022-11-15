@@ -22,6 +22,21 @@
     position: relative;
   }
 
+  #detail-4 {
+    display: flex;
+    justify-content: center;
+    border : solid #c4c4c4 2px ;
+    border-radius: 4px;
+    min-height: 40vw;
+    max-height: 40vw;
+    margin-bottom: 0.5vw;
+    text-align: center;
+  }
+
+  #detail-4 img {
+    margin: auto;
+  }
+
   div > p {
     word-break: keep-all;
     margin-top: 1%;
@@ -131,6 +146,7 @@
     padding-top: 0.5%;
     padding-bottom: 1%;
     position: fixed;
+    min-width: 30vw;
   }
 
   #top > div {
@@ -270,6 +286,48 @@
     width: 15%;
   }
 
+  .box {
+    padding: 0.5vw 0.5vw;
+    max-width: 60vw;
+    min-width: 40vw;
+    width:100%;
+    max-height: 20vw;
+    min-height: 10vw;
+    margin:0 auto;
+  }
+
+  #tab ul {
+    white-space:nowrap;
+    overflow-x: auto;
+    text-align:center}
+
+  #tab ul li {
+    display:inline-block;
+    margin-right: 2vw;
+  }
+
+  #tab ul li img {
+    min-height: 9vw;
+    max-height: 9vw;
+  }
+
+  #tab ul li img:hover {
+    transform: scale(1.2);
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.6);
+  }
+
+  .progress-container {
+    width: 100%;
+    height: 8px;
+    background: #ccc;
+  }
+
+  .progress-bar {
+    height: 8px;
+    background: #04AA6D;
+    width: 0%;
+  }
+
 </style>
 </head>
 <body style="overflow-x: hidden">
@@ -281,19 +339,21 @@
 <!--</div>-->
 <div><input hidden id="productNo" type="number" name="no"  data-th-value="${product.no}"></div>
 <div class="wrap">
-    <div id="detail-5">
-        <ul class="attached-file-container">
-          <li data-th-each="file : ${product.attachedFiles}">
-            <a href="files/test.gif"
-               data-th-href="@{/product/files/{path}(path=${file.filepath})}">
-              <img data-th-src="@{/product/files/{path}(path=${file.filepath})}" alt="첨부이미지" src=""></a>
-          </li>
-        </ul>
+    <div id="detail-4" data-th-if="${!#lists.isEmpty(product.attachedFiles)}">
+      <img class="focused-img" data-th-src="@{/product/files/{path}(path=${product.thumbnail})}" height="90%" width="90%" />
     </div>
-    <div id="detail-6">
-      <div>판매자 포트폴리오1<a href=""></a></div>
-      <div>판매자 포트폴리오2<a href=""></a></div>
-      <div>판매자 포트폴리오3<a href=""></a></div>
+    <div id="detail-5">
+      <div class="box">
+        <div id="tab" style="overflow:scroll;">
+          <ul id="horiScroll">
+            <li data-th-each="file : ${product.attachedFiles}">
+<!--              <a data-th-href="@{/product/files/{path}(path=${file.filepath})}">-->
+                <img class="attached-image" data-th-src="@{/product/files/{path}(path=${file.filepath})}">
+<!--              </a>-->
+            </li>
+          </ul>
+        </div>
+      </div>
     </div>
     <div class="commonBorder"></div>
 
@@ -369,7 +429,7 @@
     </div>
     <div id="detail3-2">
       <table id="reviewList">
-        <tr class="reviewLine" data-th-each="review, stat : ${reviews}">
+        <tr class="reviewLine" data-th-each="review : ${reviews}">
           <td id="starRow">
             <div class="star-rating">
               <span data-th-if="${review.score == 5}" style="width:100%"></span>
@@ -438,6 +498,14 @@
       });
     });
   });
+</script>
+<script>
+ $(".attached-image").click(function () {
+  const clickedImg = $(this).attr('src');
+  console.log(clickedImg);
+  $(".focused-img").attr('src', clickedImg);
+
+ });
 </script>
 </body>
 </html>
