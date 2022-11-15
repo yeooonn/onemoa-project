@@ -1514,9 +1514,16 @@ label[for="label-a"] {
   float: left;
 }
 .portfolio2:nth-of-type(4) ul li img {
-  width: 45%;
+  width: 15%;
   margin-left: 20%;
+  border-radius: 70%;
+  overflow: hidden;
 }
+/*.portfolio2:nth-of-type(4) ul li img {*/
+/*  width: 45%;*/
+/*  margin-left: 20%;*/
+/*  border-radius: 70%;*/
+/*}*/
 .portfolio2:nth-of-type(4) ul li:nth-of-type(2) {
   width: 60%;
   height: 60px;
@@ -1619,6 +1626,11 @@ label[for="label-a"] {
 .teamOne .tjd li .tjdimg {
   width: 100%;
   height: 155px;
+}
+.teamOne .tjd li .tjdimg img {
+  width: 80.326%;
+  height: auto;
+  margin-left: 14%;
 }
 .teamOne .tjd li .tjdimg img {
   width: 80.326%;

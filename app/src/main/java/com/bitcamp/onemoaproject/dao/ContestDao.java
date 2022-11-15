@@ -5,11 +5,9 @@ import com.bitcamp.onemoaproject.vo.contest.ContestAttachedFile;
 import com.bitcamp.onemoaproject.vo.contest.ContestTeam;
 import com.bitcamp.onemoaproject.vo.contest.ContestTeamField;
 import com.bitcamp.onemoaproject.vo.contest.ContestTeamFieldMember;
-import com.bitcamp.onemoaproject.vo.contest.ContestTeamPortfolio;
 import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
-import org.springframework.web.bind.annotation.RequestMapping;
 
 @Mapper
 public interface ContestDao {
@@ -58,4 +56,16 @@ public interface ContestDao {
   
   // 팀원모집분야 지원자 리스트
   List<ContestTeamField> findByTeamFieldMember(int fieldNo);
+  
+  // 팀원모집분야 등록
+  int insertFieldMember(ContestTeamFieldMember contestTeamFieldMember);
+  
+  // 팀원 모집 포트폴리오 등록
+  int insertFieldMemberPortfolio(ContestTeamFieldMember contestTeamFieldMember);
+  
+  // 공모전 팀원 상세보기(지원자보기)
+  ContestTeamFieldMember findByFieldMemberDetailView(int fmNo);
+  
+  // 공모전 팀원 채택하기
+  int updateFieldMemberType(int fmNo);
 }

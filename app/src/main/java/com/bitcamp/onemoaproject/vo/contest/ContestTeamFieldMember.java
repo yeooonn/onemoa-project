@@ -19,8 +19,9 @@ public class ContestTeamFieldMember {
   private Date date; // 등록날짜
   private boolean type; // 승인,거절
   private Member applicant;
+  private ContestTeamField teamField;
   
   // 지원자 포트폴리오를 저장할 필드
-  private List<ContestTeamFieldMemberPortfolio> contestTeamFieldMemberPortfolios;
+  private List<ContestTeamFieldMemberPortfolio> contestTeamFieldMemberPortfolioList;
   
 }

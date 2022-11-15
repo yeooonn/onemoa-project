@@ -123,13 +123,42 @@ public class DefaultContestService implements ContestService{
     return contestDao.findByReader(contestNo, memberNo);
   }
   
+  // 팀 모집분야 조회
   @Override
   public List<ContestTeamField> getTeamField(int teamNo) throws Exception {
     return contestDao.findByTeamField(teamNo);
   }
   
+  // 팀원모집분야지원자 조회
   @Override
   public List<ContestTeamField> getFieldMember(int fieldNo) throws Exception {
     return contestDao.findByTeamFieldMember(fieldNo);
+  }
+  
+  // 팀원 지원하기 지원자 등록 + 포트폴리오 등록
+  @Transactional
+  @Override
+  public void addFieldMember(ContestTeamFieldMember contestTeamFieldMember) throws Exception {
+    // 1) 팀원지원하기 등록
+    if (contestDao.insertFieldMember(contestTeamFieldMember) == 0) {
+      throw new Exception("팀원지원하기 등록 실패!");
+    }
+    // 2) 팀원지원하기 포트폴리오 등록
+    if (contestTeamFieldMember.getContestTeamFieldMemberPortfolioList().size() > 0) {
+      contestDao.insertFieldMemberPortfolio(contestTeamFieldMember);
+    }
+  }
+  
+  // 공모전 팀원 상세보기(지원자보기)
+  @Override
+  public ContestTeamFieldMember getFieldMemberDetail(int fmNo) throws Exception{
+    return contestDao.findByFieldMemberDetailView(fmNo);
+  }
+  
+  // 공모전 팀원 채택하기
+  
+  @Override
+  public boolean updateFieldMemberType(int fmNo) throws Exception {
+      return contestDao.updateFieldMemberType(fmNo) > 0;
   }
 }

@@ -9,6 +9,13 @@
   <script src="/onemoa/js/login.js"></script>
   <script src="/onemoa/node_modules/sweetalert/dist/sweetalert.min.js"></script>
 </head>
+<style>
+  /*#xx-fieldMemberUl img {*/
+  /*  width: 15%;*/
+  /*  height: auto;*/
+  /*  border-radius: 70%;*/
+  /*}*/
+</style>
 <body style="overflow-x: hidden">
   <div data-th-replace="/fragments/nav.html :: fragment-nav"></div>
 
@@ -316,7 +323,7 @@
         <!-- modal6 팀원지원하기 -->
         <div class="modal6" style="position: absolute; z-index: 1;">
 <!--          <button class="closebtn6" onclick="clo2()"><img src="../img/x.png"></button>-->
-          <button class="closebtn6" onclick="closeTest()"><img src="../img/x.png"></button>
+          <button class="closebtn6" onclick="closeTest()"><img src="/onemoa/img/x.png"></button>
           <div class="modal_body6">
 
             <div class="teamOne">
@@ -324,7 +331,7 @@
               <ul class="tjd">
                 <li>
                   <div class="tjdimg">
-                    <img id="xx-fieldMemberProfile" src="../img/profile1.png">
+                    <img id="xx-fieldMemberProfile" src="/onemoa/img/profile1.png">
                   </div>
                   <p id="xx-fieldMemberNickname">닉네임</p>
                 </li>
@@ -336,7 +343,7 @@
 
             <div class="portfolio">
               <p>포트폴리오
-                <button name="addStaff3"><img src="../img/plus.png"></button>
+                <button name="addStaff3"><img src="/onemoa/img/plus.png"></button>
               </p>
               <div name="hhhhhh2">
                 <select name="port2" class="po2" id="xx-fieldMemberPortfolioSelectBox" onchange="fieldMemberDetailPortfolioBoxChange()">
@@ -362,6 +369,88 @@
 
           </div>
         </div><!--modal6-->
+
+
+        <!--modal7 팀원지원하기확인-->
+        <div class="modal7" style="position: absolute; z-index: 1;">
+          <div class="modal_body7">
+            <button class="closebtn7" onclick="clo5()"><img src="/onemoa/img/x.png"></button>
+            <p>팀원으로 지원을하시겠습니까?</p>
+            <div class="teamb7">
+              <span><button onclick="dis5()">확인</button></span>
+              <span><button onclick="clo6()">취소</button></span>
+            </div>
+          </div>
+        </div><!--modal7-->
+
+        <!-- modal8 팀원상세보기 -->
+        <div class="modal8" style="position: absolute; z-index: 1;">
+          <button class="closebtn8" onclick="clo7()"><img src="/onemoa/img/x.png"></button>
+          <div class="modal_body8">
+
+            <div class="teamJangD8">
+              <p id="xx-fieldMemberDetailHeader" class="pp8">을 지원한 님 입니다.</p>
+              <ul class="tjd8">
+                <li>
+                  <div class="tjdimg8">
+                    <img id="xx-fieldMemberDetailProfile" src="/onemoa/img/profile1.png">
+                  </div>
+                  <p id="xx-fieldMemberDetailNickname2">닉네임</p>
+                </li>
+                <li>
+                  <p id="xx-fieldMemberDetailContent">
+                    [나를 소개하는 글]
+                    안녕하세요!
+                    저는 서울에 살고있고 편집 일을 시작한지 3년된 28살 프리랜서입니다!
+                    저도 그 공모전에 같이 참여하고 싶은데
+                    제 포트폴리오 보시고 연락주시면 감사하겠습니다 :)
+                  </p>
+                </li>
+              </ul>
+            </div>
+
+            <div class="portfolio2">
+              <p>포트폴리오</p>
+              <ul id="xx-fieldMemberDetailPortfolios2">
+                <li><a href="https://onemoa/portfolio1">- https://onemoa/portfolio1</a></li>
+                <li><a href="https://onemoa/portfolio2">- https://onemoa/portfolio2</a></li>
+                <li><a href="https://onemoa/portfolio3">- https://onemoa/portfolio3</a></li>
+              </ul>
+            </div>
+
+            <div class="teammate8">
+              <button id="tm8" class="tm8" onclick="dis8()">팀원 채택하기</button>
+              <button class="tm8" onclick="clo7()">뒤로가기</button>
+            </div>
+
+          </div>
+        </div><!--modal8-->
+
+        <!--modal9 팀원채택하기확인-->
+        <div class="modal9" style="position: absolute; z-index: 1;">
+          <div class="modal_body9">
+            <button class="closebtn9" onclick="clo8()"><img src="/onemoa/img/x.png"></button>
+            <p>팀원으로 지원을하시겠습니까?</p>
+            <div class="teamb9">
+              <span><button id="teamb9" onclick="dis8(this.value)">확인</button></span>
+              <span><button onclick="clo8()">취소</button></span>
+            </div>
+          </div>
+        </div><!--modal9-->
+
+
+<!--        &lt;!&ndash;modal10 팀원취소하기확인&ndash;&gt;-->
+<!--        <div class="modal10" style="position: absolute; z-index: 1;">-->
+<!--          <div class="modal_body10">-->
+<!--            <button class="closebtn10" onclick="clo8()"><img src="/onemoa/img/x.png"></button>-->
+<!--            <p>팀원으로 지원을하시겠습니까?</p>-->
+<!--            <div class="teamb10">-->
+<!--              <span><button id="teamb10" onclick="dis8(this.value)">확인</button></span>-->
+<!--              <span><button onclick="clo8()">취소</button></span>-->
+<!--            </div>-->
+<!--          </div>-->
+<!--        </div>&lt;!&ndash;modal9&ndash;&gt;-->
+
 
         <!-- 콘테스트 리스트-->
         <div data-th-each="contest : ${contests}">
