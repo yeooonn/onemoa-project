@@ -97,28 +97,16 @@ public class ProductController {
     return attachedFiles;
   }
 
-
-//  @GetMapping("list")
-//  public void list(Model model) throws Exception {
-//    model.addAttribute("products", productService.list());
-//    model.addAttribute("productCategories", productCategoryService.list());
-//    // System.out.println(productCategoryService.list());
-//  }
-
   @RequestMapping("list")
-  public ModelAndView list(String code, Criteria cri, HttpSession session) throws Exception {
+  public ModelAndView list(Criteria cri, String code) {
 
     ModelAndView mav = new ModelAndView("product/list");
 
     PageMaker pageMaker = new PageMaker();
-    cri.setCode(code);
+    cri.setCategoryCode(code);
     pageMaker.setCri(cri);
-    pageMaker.setTotalCount(productService.countProductListTotal());
-
-    System.out.println("code = " + code + ", cri = " + cri);
-
+    pageMaker.setTotalCount(productService.countProductListTotal(code));
     List<Map<String,Object>> products = productService.selectProductList(cri);
-    System.out.println("products = " + products);
 
     mav.addObject("products", products);
     mav.addObject("pageMaker", pageMaker);
