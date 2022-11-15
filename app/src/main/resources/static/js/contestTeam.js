@@ -120,7 +120,7 @@ function portfolioBoxChange() {
   let selectPortfolioText = document.getElementById("xx-portfolioBox").options[document.getElementById("xx-portfolioBox").selectedIndex].text;
   let aList = "";
   aList += "<li>" +
-      "<a href='/onemoa/portfolio/firstportfolio?ptNo=" + selectPortfolioNumber + "'" + "onClick=\"window.open(this.href, '', 'width=1000px, height=1080px')\"; target=\"_blank\">" + selectPortfolioText + "</a>" + "</li>";
+      "<a href='/onemoa/mypage/firstportfolio?ptNo=" + selectPortfolioNumber + "'" + "onClick=\"window.open(this.href, '', 'width=1000px, height=1080px')\"; target=\"_blank\">" + selectPortfolioText + "</a>" + "</li>";
   $("#innerPortfolio").append(aList);
 }
 
@@ -579,7 +579,7 @@ function fieldMemberDetailPortfolioBoxChange() {
   selectPortfolioNumber1 = document.getElementById("xx-fieldMemberPortfolioSelectBox").options[document.getElementById("xx-fieldMemberPortfolioSelectBox").selectedIndex].value;
   selectPortfolioText1 = document.getElementById("xx-fieldMemberPortfolioSelectBox").options[document.getElementById("xx-fieldMemberPortfolioSelectBox").selectedIndex].text;
   let aList2 = "";
-  aList2 += "<li>" + "<a href='/onemoa/portfolio/firstportfolio?ptNo=" + selectPortfolioNumber1 + "'" + "onClick=\"window.open(this.href, '', 'width=1000px, height=1080px')\"; target=\"_blank\">" + selectPortfolioText1 + "</a>" + "</li>";
+  aList2 += "<li>" + "<a href='/onemoa/mypage/firstportfolio?ptNo=" + selectPortfolioNumber1 + "'" + "onClick=\"window.open(this.href, '', 'width=1000px, height=1080px')\"; target=\"_blank\">" + selectPortfolioText1 + "</a>" + "</li>";
   console.log(aList2);
   $("#innerPortfolio2").append(aList2);
 }
@@ -604,7 +604,7 @@ $(document).on("click","button[name=addStaff]",function(){
       '<option value="포트폴리오2">포트폴리오2</option>'+
       '<option value="포트폴리오3">포트폴리오3</option>'+
       '</select>'+
-      '<button name="minus" class="mi"><img src="../img/minus.png"></button>'+
+      '<button name="minus" class="mi"><img src="/img/minus.png"></button>'+
       '</div>';
 
   var trHtml = $( "div[name=hhhhhh]:last" ); //last를 사용하여 trStaff라는 명을 가진 마지막 태그 호출
@@ -632,7 +632,7 @@ $(document).on("click","button[name=addStaff2]",function(){
       '<option value="5">5</option>'+
       '<option value="6">6</option>'+
       '</select>'+
-      '<button name="minus" class="mi2"><img src="../img/minus.png"></button>'+
+      '<button name="minus" class="mi2"><img src="/img/minus.png"></button>'+
       '</div>';
 
   var trHtml = $( "div[name=rrr]:last" ); //last를 사용하여 trStaff라는 명을 가진 마지막 태그 호출
@@ -715,7 +715,7 @@ $(document).on("click","button[name=addStaff3]",function(){
       '<option value="포트폴리오2">포트폴리오2</option>'+
       '<option value="포트폴리오3">포트폴리오3</option>'+
       '</select>'+
-      '<button name="minus2" class="mi2"><img src="../img/minus.png"></button>'+
+      '<button name="minus2" class="mi2"><img src="/img/minus.png"></button>'+
       '</div>';
 
   var trHtml2 = $( "div[name=hhhhhh2]:last" ); //last를 사용하여 trStaff라는 명을 가진 마지막 태그 호출
