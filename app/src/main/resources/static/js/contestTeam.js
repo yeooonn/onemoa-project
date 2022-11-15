@@ -321,9 +321,9 @@ function teamReaderDetail() {
           for (let i = 0; i < result3.length; i++) {
             for (let j = 0; j < result3[i].contestTeamFieldMembers.length; j++) {
                 fieldMember +=
-                    "<ul>" +
-                    "<li>" +
-                    "<img src='/onemoa/member/files/" + result3[i].contestTeamFieldMembers[j].applicant.profile + "'>" +
+                    "<ul style='width: 100%; height: 120px;'>" +
+                    "<li style='float:left; width: 20%;'>" +
+                    "<img src='/onemoa/member/files/" + result3[i].contestTeamFieldMembers[j].applicant.profile + "'style='width: 50%; margin-left: 20%;border-radius: 70%;overflow: hidden;'>" +
                     "</li>" +
                     "<li>" +
                     "<p>" + result3[i].contestTeamFieldMembers[j].cont + "</p>" +
@@ -579,7 +579,7 @@ function fieldMemberDetailPortfolioBoxChange() {
   selectPortfolioNumber1 = document.getElementById("xx-fieldMemberPortfolioSelectBox").options[document.getElementById("xx-fieldMemberPortfolioSelectBox").selectedIndex].value;
   selectPortfolioText1 = document.getElementById("xx-fieldMemberPortfolioSelectBox").options[document.getElementById("xx-fieldMemberPortfolioSelectBox").selectedIndex].text;
   let aList2 = "";
-  aList2 += "<li>" + "<a href='/onemoa/mypage/firstportfolio?ptNo=" + selectPortfolioNumber1 + "'" + "onClick=\"window.open(this.href, '', 'width=1000px, height=1080px')\"; target=\"_blank\">" + selectPortfolioText1 + "</a>" + "</li>";
+  aList2 += "<li style='margin-left: 1%; height: 30px;'>" + "<a href='/onemoa/mypage/firstportfolio?ptNo=" + selectPortfolioNumber1 + "'" + "onClick=\"window.open(this.href, '', 'width=1000px, height=1080px')\"; target=\"_blank\">" + selectPortfolioText1 + "</a>" + "</li>";
   console.log(aList2);
   $("#innerPortfolio2").append(aList2);
 }
@@ -673,7 +673,7 @@ function team(){
               + "onmouseout=\"" + "this.src='/onemoa/member/files/"
               + result[i].reader.profile
               + "'"
-              + "\">"
+              + "\" style=' width: 100%; height: auto; border-radius: 70%; overflow: hidden; '>"
               + "<br>"
               + "<p>" + result[i].reader.nickname
               + "</p>"
