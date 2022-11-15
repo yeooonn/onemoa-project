@@ -497,10 +497,9 @@
   <update id="updateFieldMemberType" parameterType="ContestTeamFieldMember">
     update
       team_field_member
-    set
-      type=true
-    where
-      tfmno=#{value};
+      set type=#{booleanValue}
+      where
+      tfmno=#{fmNo};
   </update>
 
 </mapper>

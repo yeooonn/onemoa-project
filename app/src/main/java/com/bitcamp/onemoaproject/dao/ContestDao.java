@@ -67,5 +67,5 @@ public interface ContestDao {
   ContestTeamFieldMember findByFieldMemberDetailView(int fmNo);
   
   // 공모전 팀원 채택하기
-  int updateFieldMemberType(int fmNo);
+  int updateFieldMemberType(@Param("fmNo") int fmNo, @Param("booleanValue") boolean booleanValue);
 }
