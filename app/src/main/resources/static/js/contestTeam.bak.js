@@ -321,20 +321,19 @@ function teamReaderDetail() {
           for (let i = 0; i < result3.length; i++) {
             for (let j = 0; j < result3[i].contestTeamFieldMembers.length; j++) {
                 fieldMember +=
-                    "<ul style='width: 100%; height: 120px;'>" +
-                    "<li style='float:left; width: 20%;'>" +
-                    "<img src='/onemoa/member/files/" + result3[i].contestTeamFieldMembers[j].applicant.profile + "'style='width: 50%; margin-left: 20%;border-radius: 70%;overflow: hidden;'>" +
+                    "<ul>" +
+                    "<li>" +
+                    "<img src='/onemoa/member/files/" + result3[i].contestTeamFieldMembers[j].applicant.profile + "'>" +
                     "</li>" +
                     "<li>" +
                     "<p>" + result3[i].contestTeamFieldMembers[j].cont + "</p>" +
                     "<p><a href=\"#\">수정</a><a href=\"#\">삭제</a></p>" +
                     "</li>" +
-                    "<li>" +
-                    "<p>" +
-                    "<a href='#' id='tfmno-" + result3[i].contestTeamFieldMembers[j].tfmno + "' onclick='dis7(this.id)'>지원자보기</a>" +
+                    "<li>" + "<p>" +
+                    "<a href='#' id='tfmno-" + result3[i].contestTeamFieldMembers[j].tfmno + "' onclick='dis7(this.id, this.text)'>지원자보기</a>" +
                     "</p></li></ul>";
+              }
             }
-          }
           $("#xx-fieldMemberUl").html(fieldMember);
         },
       });
@@ -342,15 +341,16 @@ function teamReaderDetail() {
   });
 }
 
-// ;
+
 // console.log(result3[i].contestTeamFieldMembers[j].type);
-// if(result3[i].contestTeamFieldMembers[j].applicant.type != true) {
-//   fieldMember +=
-// } else {
+// if(result3[i].contestTeamFieldMembers[j].type == false) {
 //   fieldMember +=  "<p>" +
-//       "<a href='#' id='tfmno-" + result3[i].contestTeamFieldMembers[j].tfmno + "' onclick='dis9(this.id)'>팀원취소</a>" +
+//       "<a href='#' id='tfmno-" + result3[i].contestTeamFieldMembers[j].tfmno + "' onclick='dis7(this.id, this.text)'>지원자보기</a>" +
 //       "</p></li></ul>";
-// }
+// } else if(result3[i].contestTeamFieldMembers[j].type == true) {
+//   fieldMember +=  "<p>" +
+//       "<a href='#' id='tfmno-" + result3[i].contestTeamFieldMembers[j].tfmno + "' onclick='dis9(this.id, this.text)'>팀원취소</a>" +
+//       "</p></li></ul>";
 
 // modal8 팀원 상세보기(지원자보기) 버튼
 function dis7(clicked_id) {
@@ -409,10 +409,10 @@ function fieldMemberDetailView(fieldMemberNumber) {
 }
 
 // 팀원 채택하기 버튼
-function dis8(clicked_value){
-  console.log(clicked_value)
+function dis8(clicked_value, text){
   let choiceNumber = clicked_value;
-
+  let ccc = text;
+  console.log(text)
   if ($('.modal9').css('display') == 'none'){
     $('.modal8').show();
     $('.modal9').show();
@@ -425,8 +425,9 @@ function dis8(clicked_value){
   $.ajax({
     type: "POST",
     url: "/onemoa/contest/contestTeam/fieldMemberChoice",
-    data: {"fmNo": choiceNumber},
+    data: {"fmNo": choiceNumber, "cType": ccc},
     success: function(result){
+      console.log("팀원 채택완료")
       console.log(result);
     }
   });
@@ -441,6 +442,27 @@ function clo8(){
     $('.modal9').hide();
     $('.modal8').show();
   }
+}
+
+// 팀원취소 버튼
+function dis9(clicked_id, text) {
+  let fieldMemberNumber = clicked_id;
+  let ccc = text;
+  console.log(fieldMemberNumber);
+  console.log(ccc);
+  fieldMemberNumber = Number(fieldMemberNumber.substring(6));
+  console.log(fieldMemberNumber);
+  fieldMemberDetailView(fieldMemberNumber)
+
+  $.ajax({
+    type: "POST",
+    url: "/onemoa/contest/contestTeam/fieldMemberChoice",
+    data: {"fmNo": fieldMemberNumber, "cType": ccc},
+    success: function (result) {
+      console.log("팀원 취소완료")
+      console.log(result);
+    },
+  });
 }
 
 // modal5 팀장상세보기 닫기 버튼
@@ -582,7 +604,7 @@ function fieldMemberDetailPortfolioBoxChange() {
   selectPortfolioNumber1 = document.getElementById("xx-fieldMemberPortfolioSelectBox").options[document.getElementById("xx-fieldMemberPortfolioSelectBox").selectedIndex].value;
   selectPortfolioText1 = document.getElementById("xx-fieldMemberPortfolioSelectBox").options[document.getElementById("xx-fieldMemberPortfolioSelectBox").selectedIndex].text;
   let aList2 = "";
-  aList2 += "<li style='margin-left: 1%; height: 30px;'>" + "<a href='/onemoa/mypage/firstportfolio?ptNo=" + selectPortfolioNumber1 + "'" + "onClick=\"window.open(this.href, '', 'width=1000px, height=1080px')\"; target=\"_blank\">" + selectPortfolioText1 + "</a>" + "</li>";
+  aList2 += "<li>" + "<a href='/onemoa/mypage/firstportfolio?ptNo=" + selectPortfolioNumber1 + "'" + "onClick=\"window.open(this.href, '', 'width=1000px, height=1080px')\"; target=\"_blank\">" + selectPortfolioText1 + "</a>" + "</li>";
   console.log(aList2);
   $("#innerPortfolio2").append(aList2);
 }
@@ -676,7 +698,7 @@ function team(){
               + "onmouseout=\"" + "this.src='/onemoa/member/files/"
               + result[i].reader.profile
               + "'"
-              + "\" style=' width: 100%; height: auto; border-radius: 70%; overflow: hidden; '>"
+              + "\">"
               + "<br>"
               + "<p>" + result[i].reader.nickname
               + "</p>"
