@@ -208,10 +208,22 @@ public class ContestController {
     return contestService.getFieldMemberDetail(fmNumber);
   }
   
+  // 공모전 팀원 선택하기
   @PostMapping("contestTeam/fieldMemberChoice")
   @ResponseBody
-  public String fieldMemberChoice(int fmNo) throws Exception{
-    contestService.updateFieldMemberType(fmNo);
+  public String fieldMemberChoice(int fmNo, String cType) throws Exception{
+    System.out.println("fmNo = " + fmNo);
+    System.out.println("cType = " + cType);
+    if (cType == null) {
+      cType = "지원";
+    }
+    boolean booleanValue = false;
+    if (cType.contains("취소")) {
+      contestService.updateFieldMemberType(fmNo, false);
+    } else if (cType.contains("지원")) {
+      contestService.updateFieldMemberType(fmNo, true);
+    }
+//    contestService.updateFieldMemberType(fmNo);
     return "성공";
   }
 }
