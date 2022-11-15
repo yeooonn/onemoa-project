@@ -100,7 +100,6 @@
       <result column="cont" property="cont"/>
       <result column="date" property="date"/>
       <result column="type" property="type"/>
-      <result column="type" property="type"/>
 
       <!-- 조인결과에서 팀원모집분야지원자에 한개의 회원을 담을 경우 -->
       <association property="applicant" javaType="Member">
@@ -493,5 +492,15 @@
       join member m on m.mno = tfm.mno
     where tfm.tfmno=#{value};
   </select>
+
+
+  <update id="updateFieldMemberType" parameterType="ContestTeamFieldMember">
+    update
+      team_field_member
+    set
+      type=true
+    where
+      tfmno=#{value};
+  </update>
 
 </mapper>

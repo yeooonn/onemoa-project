@@ -37,5 +37,8 @@ public interface ContestService {
   // 팀원 지원하기 지원자 등록 + 포트폴리오 등록
   void addFieldMember(ContestTeamFieldMember contestTeamFieldMember) throws Exception;
   // 공모전 팀원 상세보기(지원자보기)
-  ContestTeamFieldMember getFieldMemberDetail(int fmNo);
+  ContestTeamFieldMember getFieldMemberDetail(int fmNo) throws Exception;
+  
+  // 공모전 팀원 채택하기
+  boolean updateFieldMemberType(int fmNo) throws Exception;
 }

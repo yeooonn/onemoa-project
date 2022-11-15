@@ -151,7 +151,14 @@ public class DefaultContestService implements ContestService{
   
   // 공모전 팀원 상세보기(지원자보기)
   @Override
-  public ContestTeamFieldMember getFieldMemberDetail(int fmNo) {
+  public ContestTeamFieldMember getFieldMemberDetail(int fmNo) throws Exception{
     return contestDao.findByFieldMemberDetailView(fmNo);
+  }
+  
+  // 공모전 팀원 채택하기
+  
+  @Override
+  public boolean updateFieldMemberType(int fmNo) throws Exception {
+      return contestDao.updateFieldMemberType(fmNo) > 0;
   }
 }

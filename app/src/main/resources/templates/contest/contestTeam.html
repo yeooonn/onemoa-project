@@ -419,7 +419,7 @@
             </div>
 
             <div class="teammate8">
-              <button class="tm8" onclick="dis8()">팀원 채택하기</button>
+              <button id="tm8" class="tm8" onclick="dis8()">팀원 채택하기</button>
               <button class="tm8" onclick="clo7()">뒤로가기</button>
             </div>
 
@@ -432,11 +432,24 @@
             <button class="closebtn9" onclick="clo8()"><img src="/onemoa/img/x.png"></button>
             <p>팀원으로 지원을하시겠습니까?</p>
             <div class="teamb9">
-              <span><button onclick="dis8()">확인</button></span>
+              <span><button id="teamb9" onclick="dis8(this.value)">확인</button></span>
               <span><button onclick="clo8()">취소</button></span>
             </div>
           </div>
         </div><!--modal9-->
+
+
+<!--        &lt;!&ndash;modal10 팀원취소하기확인&ndash;&gt;-->
+<!--        <div class="modal10" style="position: absolute; z-index: 1;">-->
+<!--          <div class="modal_body10">-->
+<!--            <button class="closebtn10" onclick="clo8()"><img src="/onemoa/img/x.png"></button>-->
+<!--            <p>팀원으로 지원을하시겠습니까?</p>-->
+<!--            <div class="teamb10">-->
+<!--              <span><button id="teamb10" onclick="dis8(this.value)">확인</button></span>-->
+<!--              <span><button onclick="clo8()">취소</button></span>-->
+<!--            </div>-->
+<!--          </div>-->
+<!--        </div>&lt;!&ndash;modal9&ndash;&gt;-->
 
 
         <!-- 콘테스트 리스트-->

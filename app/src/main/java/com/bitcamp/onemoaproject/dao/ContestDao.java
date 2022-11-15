@@ -65,4 +65,7 @@ public interface ContestDao {
   
   // 공모전 팀원 상세보기(지원자보기)
   ContestTeamFieldMember findByFieldMemberDetailView(int fmNo);
+  
+  // 공모전 팀원 채택하기
+  int updateFieldMemberType(int fmNo);
 }

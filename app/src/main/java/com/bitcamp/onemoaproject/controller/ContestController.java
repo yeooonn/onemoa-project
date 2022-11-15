@@ -202,9 +202,16 @@ public class ContestController {
   // 공모전 팀원 상세보기(지원자보기)
   @PostMapping("contestTeam/fieldMemberDetailView")
   @ResponseBody
-  public ContestTeamFieldMember fieldMemberDetailView(HttpSession session, int fmNumber){
+  public ContestTeamFieldMember fieldMemberDetailView(HttpSession session, int fmNumber) throws Exception{
     Member loginMember = (Member) session.getAttribute("loginMember");
     System.out.println("fmNumber = " + fmNumber);
     return contestService.getFieldMemberDetail(fmNumber);
+  }
+  
+  @PostMapping("contestTeam/fieldMemberChoice")
+  @ResponseBody
+  public String fieldMemberChoice(int fmNo) throws Exception{
+    contestService.updateFieldMemberType(fmNo);
+    return "성공";
   }
 }
