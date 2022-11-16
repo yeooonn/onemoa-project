@@ -10,6 +10,15 @@
 </select>
 <script>
   $("#selectBox").append("<option vlaue='10'>포트폴리오 입니다.</option>");
+  $.ajax({
+    type: "POST",
+    url: "/onemoa/test1",
+    success: function (result) {
+      console.log(result);
+      console.log(result.contest.title);
+      console.log(result.member.nickname);
+    }
+  })
 </script>
 </body>
 </html>

@@ -349,7 +349,7 @@ function fieldMemberList() {
       for (let i = 0; i < result3.length; i++) {
         for (let j = 0; j < result3[i].contestTeamFieldMembers.length; j++) {
           let type = result3[i].contestTeamFieldMembers[j].type;
-          if(uNumber !== readerNumber){
+          if(uNumber != readerNumber){
             console.log("일반 사용자");
             fieldMember +=
                 "<ul style='width: 100%; height: 150px;'>" +
@@ -365,7 +365,7 @@ function fieldMemberList() {
                 "<a href='#' id='tfmno-" + result3[i].contestTeamFieldMembers[j].tfmno + "' onclick='dis7(this.id, this.text)'>지원자보기</a>" +
                 "</p></li></ul>";
           }
-          else if (type === "미승인") {
+          else if (type == "미승인") {
             console.log("if");
             console.log(type);
             fieldMember +=
@@ -423,15 +423,15 @@ function dis7(clicked_id) {
   console.log(readerNumber);
   console.log($("#uNumber").val());
   let uNumber = $("#uNumber").val();
-  console.log(uNumber === readerNumber);
-  let temp = uNumber === readerNumber;
-  if (temp === true) {
+  console.log(uNumber == readerNumber);
+  let temp = uNumber == readerNumber;
+  if (temp == true) {
     console.log("if")
     $("#teammate8").html(
         "<button id=\"tm8\" class=\"tm8\" onclick=\"dis8()\">팀원 채택하기</button>\n"
         + "<button class=\"tm8\" onclick=\"clo7()\">뒤로가기</button>"
     )
-  } else if (temp === false) {
+  } else if (temp == false) {
     console.log("else if")
     $("#teammate8").html(
         "<button class=\"tm8\" onclick=\"clo7()\">뒤로가기</button>"
