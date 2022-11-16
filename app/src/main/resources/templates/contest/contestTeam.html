@@ -18,7 +18,7 @@
 </style>
 <body style="overflow-x: hidden">
   <div data-th-replace="/fragments/nav.html :: fragment-nav"></div>
-
+  <input type="hidden" id="uNumber" data-th-if="${member != null}"data-th-value="${member.no}"/>
   <div class="contest">
     <div class="contestbg">
       <img src="/onemoa/img/contestbg.png">
@@ -32,13 +32,16 @@
       </ul>
       <ul class="contype">
         <li>
-          <input type="button" id="sorter-orgType02" class="orgTypeType" name="1" value="대기업">
+          <a href="." class="orgType" value="1" data-th-if="${ono==1}" data-th-text="${ono}"></a>
+          <a href="." class="orgType" value="1" data-th-if="${ono!=1}"  data-th-text="대기업"></a>
         </li>
         <li>
-          <input type="button" id="sorter-orgType03" class="orgTypeType" name="2" value="공공기관">
+          <a href="." class="orgType" value="2" data-th-if="${ono==2}" data-th-text="${ono}"></a>
+          <a href="." class="orgType" value="2" data-th-if="${ono!=2}"  data-th-text="공공기관"></a>
         </li>
         <li>
-          <input type="button" id="sorter-orgType04" class="orgTypeType" name="3" value="자영업자">
+          <a href="." class="orgType" value="3" data-th-if="${ono==3}" data-th-text="${ono}"></a>
+          <a href="." class="orgType" value="3" data-th-if="${ono!=3}"  data-th-text="자영업자"></a>
         </li>
       </ul>
 
@@ -46,7 +49,7 @@
         <li><a href="#">상금 순</a></li>
         <li><a href="#">조회 순</a></li>
         <li><a href="#">마감임박 순</a></li>
-        <li><input type="button" id="sortCreatDate" data-type="" data-th-data-type="${sortCd}" value="최신등록 순"></li>
+        <li><a href="." class="sortType" data-type="" data-th-data-type="${sortCd}" value="최신등록 순">최신등록 순</a></li>
       </ul>
     </div>
 
@@ -254,7 +257,7 @@
             <button class="closebtn4" onclick="clo3()"><img src="../img/x.png"></button>
             <p>팀원을 모집하시겠습니까?</p>
             <div class="teamb">
-              <span><button id="leaderJoin">확인</button></span>
+              <span><button onclick="dis()">확인</button></span>
               <span><button onclick="clo3()">취소</button></span>
             </div>
           </div>
@@ -417,9 +420,9 @@
               </ul>
             </div>
 
-            <div class="teammate8">
-              <button id="tm8" class="tm8" onclick="dis8()">팀원 채택하기</button>
-              <button class="tm8" onclick="clo7()">뒤로가기</button>
+            <div id="teammate8" class="teammate8">
+<!--              <button id="tm8" class="tm8" onclick="dis8()">팀원 채택하기</button>-->
+<!--              <button class="tm8" onclick="clo7()">뒤로가기</button>-->
             </div>
 
           </div>

@@ -68,4 +68,7 @@ public interface ContestDao {
   
   // 공모전 팀원 채택하기
   int updateFieldMemberType(@Param("fmNo") int fmNo, @Param("booleanValue") String booleanValue);
+  
+  // 공모전 조회수 증가
+  int updateViewCount(int no);
 }

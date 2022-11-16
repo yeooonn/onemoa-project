@@ -273,6 +273,14 @@
     cont.ctstno=#{value};
   </select>
 
+<!-- 공모전 조회수 증가 -->
+  <update id="updateViewCount" parameterType="contest">
+    update
+      contest
+    set vw_cnt = vw_cnt + 1
+    where ctstno=#{value};
+  </update>
+
 <!-- 공모전 등록 -->
   <insert id="insert" parameterType="contest"
     useGeneratedKeys="true" keyColumn="ctstno" keyProperty="ctstNo">

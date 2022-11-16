@@ -169,9 +169,8 @@ function closeTest() {
   }
 }
 
-
 // 팀원 모집하기 등록 버튼
-$("#leaderJoin").click(function () {
+function leaderjoin() {
   let textArea = $("#teamRecruitFormReaderIntroduction").val();
   let portfolios = [];
   let recruitments = [];
@@ -210,8 +209,7 @@ $("#leaderJoin").click(function () {
         });
       },
     },
-    success: function dis(){
-      team();
+    success: function() {
       if ($('.modal2').css('display') == 'none'){
         $('.modal2').show();
         $('.modal3').hide();
@@ -231,7 +229,21 @@ $("#leaderJoin").click(function () {
       });
     }
   });
-});
+};
+
+function dis(){
+  leaderjoin();
+
+  if ($('.modal2').css('display') == 'none'){
+    $('.modal2').show();
+    $('.modal3').hide();
+    $('.modal4').hide();
+    body.style.overflow = 'hidden';
+  } else{
+    $('.modal2').hide();
+    body.style.overflow = 'auto';
+  }
+}
 
 function clo3(){
   if ($('.modal4').css('display') == 'show'){
@@ -322,11 +334,31 @@ function fieldMemberList() {
     success: function (result3) {
       console.log("팀원 지원자 모든 리스트");
       console.log(result3);
+      console.log(readerNumber);
+      console.log($("#uNumber").val());
+      let uNumber = $("#uNumber").val();
+      console.log(uNumber != readerNumber);
       let fieldMember = "";
       for (let i = 0; i < result3.length; i++) {
         for (let j = 0; j < result3[i].contestTeamFieldMembers.length; j++) {
           let type = result3[i].contestTeamFieldMembers[j].type;
-          if(type === "미승인") {
+          if(uNumber != readerNumber){
+            console.log("일반 사용자");
+            fieldMember +=
+                "<ul style='width: 100%; height: 120px;'>" +
+                "<li style='float:left; width: 20%;'>" +
+                "<img src='/onemoa/member/files/" + result3[i].contestTeamFieldMembers[j].applicant.profile + "'style='width: 50%; margin-left: 20%;border-radius: 70%;overflow: hidden;'>" +
+                "</li>" +
+                "<li>" +
+                "<p>" + result3[i].contestTeamFieldMembers[j].cont + "</p>" +
+                "<p><a href=\"#\">수정</a><a href=\"#\">삭제</a></p>" +
+                "</li>" +
+                "<li>" +
+                "<p>" +
+                "<a href='#' id='tfmno-" + result3[i].contestTeamFieldMembers[j].tfmno + "' onclick='dis7(this.id, this.text)'>지원자보기</a>" +
+                "</p></li></ul>";
+          }
+          else if (type === "미승인") {
             console.log("if");
             console.log(type);
             fieldMember +=
@@ -380,6 +412,21 @@ function dis7(clicked_id) {
   fieldMemberNumber = Number(fieldMemberNumber.substring(6));
   console.log(fieldMemberNumber);
   fieldMemberDetailView(fieldMemberNumber)
+
+  console.log(readerNumber);
+  console.log($("#uNumber").val());
+  let uNumber = $("#uNumber").val();
+  console.log(uNumber == readerNumber);
+  if (uNumber === readerNumber) {
+    $("#teammate8").html(
+        "<button id=\"tm8\" class=\"tm8\" onclick=\"dis8()\">팀원 채택하기</button>\n"
+        + "<button class=\"tm8\" onclick=\"clo7()\">뒤로가기</button>"
+    )
+  } else {
+    $("#teammate8").html(
+        "<button class=\"tm8\" onclick=\"clo7()\">뒤로가기</button>"
+    )
+  }
 }
 
 // modal8 팀원 상세보기(지원자보기) 닫기 & 뒤로가기 버튼 -> 팀장 상세보기
@@ -780,10 +827,12 @@ $(document).on("click","button[name=minus2]",function(){
 });
 
 // 페이지 필터 타입(전체, 대기업, 공공기관, 자영업자)
-$(".orgTypeType").click(function () {
+$(".orgType").click(function (e) {
+  e.preventDefault();
+
   let url = location.href;
   let urlParam = location.search;
-  let orgNumber = $(this).attr("name");
+  let orgNumber = $(this).attr("value");
   if (url.includes("ono")) {
     window.location.href = url.substring(url.lastIndexOf("&"), length) + "&ono=" + orgNumber;
   }
@@ -792,8 +841,10 @@ $(".orgTypeType").click(function () {
   }
 });
 
-let createdSort = document.getElementById("sortCreatDate");
-let createdSortType = createdSort.getAttribute("data-type");
+//let createdSort = document.querySelector("sortType");
+let createdSort = $(".sortType");
+//let createdSortType = createdSort.getAttribute("data-type");
+let createdSortType = createdSort.attr("data-type");
 let flag = "최신등록 순";
 
 if (createdSortType == "" || createdSortType == null) {
@@ -804,7 +855,10 @@ if (createdSortType == "" || createdSortType == null) {
   createdSort.innerHTML = "제목^";
 }
 
-document.querySelector("#sortCreatDate").onclick = (e) => {
+// document.querySelector(".sortType").onclick = (e) => {
+$(".sortType").click(function(e) {
+  e.preventDefault();
+
   let flag = "최신등록순";
   if (createdSortType == "" || createdSortType == null) {
     createdSortType = "desc";
@@ -839,4 +893,4 @@ document.querySelector("#sortCreatDate").onclick = (e) => {
   } else if (url.includes("no")) {
     window.location.href = "/onemoa/contest/contestTeam" + urlParam + sortCd;
   }
-}
+});
