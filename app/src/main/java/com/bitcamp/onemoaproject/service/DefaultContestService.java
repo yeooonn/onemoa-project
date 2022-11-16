@@ -158,7 +158,13 @@ public class DefaultContestService implements ContestService{
   // 공모전 팀원 채택하기
   
   @Override
-  public boolean updateFieldMemberType(int fmNo, boolean booleanValue) throws Exception {
+  public boolean updateFieldMemberType(int fmNo, String booleanValue) throws Exception {
       return contestDao.updateFieldMemberType(fmNo, booleanValue) > 0;
+  }
+  
+  // 공모전 조회수 증가
+  @Override
+  public int addViewCount(int no) throws Exception {
+    return contestDao.updateViewCount(no);
   }
 }

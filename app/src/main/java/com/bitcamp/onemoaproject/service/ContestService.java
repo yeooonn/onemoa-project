@@ -40,5 +40,8 @@ public interface ContestService {
   ContestTeamFieldMember getFieldMemberDetail(int fmNo) throws Exception;
   
   // 공모전 팀원 채택하기
-  boolean updateFieldMemberType(int fmNo, boolean booleanValue) throws Exception;
+  boolean updateFieldMemberType(int fmNo, String booleanValue) throws Exception;
+  
+  // 공모전 조회수 증가
+  int addViewCount(int no) throws Exception;
 }
