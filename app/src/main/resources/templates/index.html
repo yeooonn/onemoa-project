@@ -7,6 +7,53 @@
   <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.js"></script>
   <script src="/onemoa/js/login.js"></script>
+  <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css"
+  />
+  <style>
+    /*html,*/
+    /*body {*/
+    /*  position: relative;*/
+    /*  height: 100%;*/
+    /*}*/
+    /*body {*/
+    /*  background: #eee;*/
+    /*  font-family: Helvetica Neue, Helvetica, Arial, sans-serif;*/
+    /*  font-size: 14px;*/
+    /*  color: #000;*/
+    /*  margin: 0;*/
+    /*  padding: 0;*/
+    /*}*/
+    .swiper {
+      width: 100%;
+      height: 100%;
+    }
+    .swiper-slide {
+      text-align: center;
+      font-size: 18px;
+      background: #ffffff;
+      /* Center slide text vertically */
+      display: -webkit-box;
+      display: -ms-flexbox;
+      display: -webkit-flex;
+      display: flex;
+      -webkit-box-pack: center;
+      -ms-flex-pack: center;
+      -webkit-justify-content: center;
+      justify-content: center;
+      -webkit-box-align: center;
+      -ms-flex-align: center;
+      -webkit-align-items: center;
+      align-items: center;
+    }
+    .swiper-slide img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  </style>
 </head>
 <body style="overflow-x: hidden">
   <div data-th-replace="/fragments/nav.html :: fragment-nav"></div>
@@ -64,63 +111,26 @@
     <div class="mainContest">
       <p>인기 공모전</p>
       <ul class="mcon">
-        <li><a href="#"><img src="./img/mainc1.png" onmouseover="this.src='./img/mainc11.png'" onmouseout="this.src='./img/mainc1.png'"></a></li>
-        <li><a href="#"><img src="./img/mainc2.png" onmouseover="this.src='./img/mainc22.png'" onmouseout="this.src='./img/mainc2.png'"></a></li>
-        <li><a href="#"><img src="./img/mainc3.png" onmouseover="this.src='./img/mainc33.png'" onmouseout="this.src='./img/mainc3.png'"></a></li>
-        <li><a href="#"><img src="./img/mainc4.png" onmouseover="this.src='./img/mainc44.png'" onmouseout="this.src='./img/mainc4.png'"></a></li>
+        <li><a href="/onemoa/contest/contestTeam?no=all"><img src="./img/mainc1.png" onmouseover="this.src='./img/mainc11.png'" onmouseout="this.src='./img/mainc1.png'"></a></li>
+        <li><a href="/onemoa/contest/contestTeam?no=all&ono=1"><img src="./img/mainc2.png" onmouseover="this.src='./img/mainc22.png'" onmouseout="this.src='./img/mainc2.png'"></a></li>
+        <li><a href="/onemoa/contest/contestTeam?no=all&ono=2"><img src="./img/mainc3.png" onmouseover="this.src='./img/mainc33.png'" onmouseout="this.src='./img/mainc3.png'"></a></li>
+        <li><a href="/onemoa/contest/contestTeam?no=all&ono=3"><img src="./img/mainc4.png" onmouseover="this.src='./img/mainc44.png'" onmouseout="this.src='./img/mainc4.png'"></a></li>
       </ul>
     </div>
 
-    <div class="slidebox">
-      <input type="radio" name="slide" id="slide01" checked>
-      <input type="radio" name="slide" id="slide02">
-      <input type="radio" name="slide" id="slide03">
-      <input type="radio" name="slide" id="slide04">
-      <ul class="slidelist">
-        <li class="slideitem">
-          <a href="#"><img src="./img/maincon.png"></a>
-          <a href="#"><img src="./img/maincon.png"></a>
-          <a href="#"><img src="./img/maincon.png"></a>
-          <a href="#"><img src="./img/maincon.png"></a>
-        </li>
-        <li class="slideitem">
-          <a href="#"><img src="./img/maincon.png"></a>
-          <a href="#"><img src="./img/maincon.png"></a>
-          <a href="#"><img src="./img/maincon.png"></a>
-          <a href="#"><img src="./img/maincon.png"></a>
-        </li>
-        <li class="slideitem">
-          <a href="#"><img src="./img/maincon.png"></a>
-          <a href="#"><img src="./img/maincon.png"></a>
-          <a href="#"><img src="./img/maincon.png"></a>
-          <a href="#"><img src="./img/maincon.png"></a>
-        </li>
-        <li class="slideitem">
-          <a href="#"><img src="./img/maincon.png"></a>
-          <a href="#"><img src="./img/maincon.png"></a>
-          <a href="#"><img src="./img/maincon.png"></a>
-          <a href="#"><img src="./img/maincon.png"></a>
-        </li>
-
-      </ul>
-      <div class="slide-control">
-        <div class="control01">
-          <label for="slide04" class="prev"></label>
-          <label for="slide02" class="next"></label>
-        </div>
-        <div class="control02">
-          <label for="slide01" class="prev"></label>
-          <label for="slide03" class="next"></label>
-        </div>
-        <div class="control03">
-          <label for="slide02" class="prev"></label>
-          <label for="slide04" class="next"></label>
-        </div>
-        <div class="control04">
-          <label for="slide03" class="prev"></label>
-          <label for="slide01" class="next"></label>
+    <div class="swiper mySwiper">
+      <div class="swiper-wrapper">
+        <div class="swiper-slide" data-th-each="contest: ${contests}">
+          <ul>
+            <li><img data-th-src="@{/contest/files/{path}(path=${contest.thumbNail})}"></li>
+            <li><p data-th-text="${contest.contCategory.categoryName}"></p></li>
+            <li><p data-th-text="${contest.title}"></p></li>
+          </ul>
         </div>
       </div>
+      <div class="swiper-button-next"></div>
+      <div class="swiper-button-prev"></div>
+      <div class="swiper-pagination"></div>
     </div>
 
     <div class="mainReview">
@@ -139,8 +149,28 @@
       </div>
     </div>
 
+
   <footer data-th-replace="/fragments/footer.html :: fragment-footer"></footer>
+    <script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
 
     <script src="js/onemoa.js"></script>
+
+    <script>
+      let swiper = new Swiper(".mySwiper", {
+        slidesPerView: 5,
+        spaceBetween: 30,
+        slidesPerGroup: 3,
+        loop: true,
+        loopFillGroupWithBlank: true,
+        pagination: {
+          el: ".swiper-pagination",
+          clickable: true,
+        },
+        navigation: {
+          nextEl: ".swiper-button-next",
+          prevEl: ".swiper-button-prev",
+        },
+      });
+    </script>
 </body>
 </html>

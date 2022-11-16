@@ -1,6 +1,8 @@
 package com.bitcamp.onemoaproject.dao;
 
+import com.bitcamp.onemoaproject.vo.paging.Criteria;
 import java.util.List;
+import java.util.Map;
 import org.apache.ibatis.annotations.Mapper;
 import com.bitcamp.onemoaproject.vo.Notice;
 
@@ -18,6 +20,12 @@ public interface NoticeDao {
   //  int deleteByMember(int memberNo);
 
   List<Notice> findAll();
+  
+  // 공지사항 페이징
+  List<Map<String, Object>> findAllList(Criteria cri);
+  
+  // 공지사항의 글의 개수 조회
+  int findAllCount();
 
   // int insertFiles(Notice notice);
 

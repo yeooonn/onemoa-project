@@ -71,4 +71,8 @@ public interface ContestDao {
   
   // 공모전 조회수 증가
   int updateViewCount(int no);
+  
+  // 메인페이지 인기 공모전
+  List<Contest> findByMain();
+  
 }

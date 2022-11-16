@@ -4,7 +4,7 @@
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.bitcamp.onemoaproject.dao.ContestDao">
 
-<!-- 공모전 -->
+  <!-- 공모전 -->
   <resultMap type="contest" id="contestMap">
     <id column="ctstno" property="ctstNo"/>
     <result column="orgno" property="orgNo"/>
@@ -46,7 +46,7 @@
     </collection>
   </resultMap>
 
-<!-- 공모전 첨부파일 -->
+  <!-- 공모전 첨부파일 -->
   <resultMap type="contestAttachedFile" id="contestAttachedFileMap">
     <id column="ctstfno" property="ctstFno"/>
     <result column="fname" property="fName"/>
@@ -137,7 +137,8 @@
     </association>
 
     <!-- 조인결과에서 팀원모집분야지원자에 여러개의 포트폴리오를 담을 경우  -->
-    <collection property="contestTeamFieldMemberPortfolioList" ofType="ContestTeamFieldMemberPortfolio">
+    <collection property="contestTeamFieldMemberPortfolioList"
+      ofType="ContestTeamFieldMemberPortfolio">
       <id column="tmpno" property="tmpno"/>
       <result column="tfmno" property="tfmno"/>
       <result column="fpath" property="fpath"/>
@@ -238,7 +239,7 @@
     </if>
   </select>
 
-<!-- 공모전 상세정보 -->
+  <!-- 공모전 상세정보 -->
   <select id="findByNo" resultMap="contestMap">
     select
     cont.ctstno,
@@ -273,18 +274,19 @@
     cont.ctstno=#{value};
   </select>
 
-<!-- 공모전 조회수 증가 -->
+  <!-- 공모전 조회수 증가 -->
   <update id="updateViewCount" parameterType="contest">
     update
-      contest
+    contest
     set vw_cnt = vw_cnt + 1
     where ctstno=#{value};
   </update>
 
-<!-- 공모전 등록 -->
+  <!-- 공모전 등록 -->
   <insert id="insert" parameterType="contest"
     useGeneratedKeys="true" keyColumn="ctstno" keyProperty="ctstNo">
-    INSERT INTO `contest` (`orgno`, `ctgno`, `title`, `subcont`, `sdate`, `edate`, `vw_cnt`, `org`, `appl`, `cont`, `page`, `size`, `qual`, `team`, `reward`, `thumbnail`)
+    INSERT INTO `contest` (`orgno`, `ctgno`, `title`, `subcont`, `sdate`, `edate`, `vw_cnt`, `org`,
+    `appl`, `cont`, `page`, `size`, `qual`, `team`, `reward`, `thumbnail`)
     VALUES
     (
     #{orgNo},
@@ -305,7 +307,7 @@
     #{thumbNail});
   </insert>
 
-<!-- 공모전 첨부파일 등록 -->
+  <!-- 공모전 첨부파일 등록 -->
   <insert id="insertFiles" parameterType="contest">
     insert into contest_file(fname,fpath,ctstno)
     values
@@ -314,7 +316,7 @@
     </foreach>
   </insert>
 
-<!-- 공모전 수정 -->
+  <!-- 공모전 수정 -->
   <update id="update" parameterType="contest">
     update contest set
     orgno=#{orgNo},
@@ -334,65 +336,65 @@
     where ctstno=#{ctstNo}
   </update>
 
-<!-- 공모전 썸네일 첨부파일 수정 -->
+  <!-- 공모전 썸네일 첨부파일 수정 -->
   <update id="updateThumbnailFile" parameterType="contest">
     update contest set
     thumbnail=#{thumbNail}
     where ctstno=#{ctstNo}
   </update>
 
-<!-- 공모전 삭제 -->
+  <!-- 공모전 삭제 -->
   <delete id="delete">
     delete from contest
     where ctstno=#{value}
   </delete>
 
-<!-- 공모전 첨부파일 삭제 -->
+  <!-- 공모전 첨부파일 삭제 -->
   <delete id="deleteFiles">
     delete from contest_file
     where ctstno=#{value}
   </delete>
 
-<!-- 공모전 게시글의 첨부파일 삭제하기 위해 첨부파일 번호 검색 -->
+  <!-- 공모전 게시글의 첨부파일 삭제하기 위해 첨부파일 번호 검색 -->
   <select id="findFileByNo" resultMap="contestAttachedFileMap">
     select
-      ctstfno,
-      fname,
-      fpath,
-      ctstno
+    ctstfno,
+    fname,
+    fpath,
+    ctstno
     from
-      contest_file
+    contest_file
     where
-      ctstfno = #{value}
+    ctstfno = #{value}
   </select>
 
-<!-- 공모전 게시글의 첨부파일 삭제 -->
+  <!-- 공모전 게시글의 첨부파일 삭제 -->
   <delete id="deleteFile">
     delete from contest_file
     where ctstfno=#{value}
   </delete>
 
-<!-- 공모전 팀원구해요 목록 검색 -->
+  <!-- 공모전 팀원구해요 목록 검색 -->
   <select id="findByTeamNo" resultMap="contestTeamMap">
     select
-      t.tno,
-      t.ctstno,
-      t.mno,
-      t.cont,
-      t.cdt,
-      m.nick,
-      m.profile
+    t.tno,
+    t.ctstno,
+    t.mno,
+    t.cont,
+    t.cdt,
+    m.nick,
+    m.profile
     from team t
-      join member m on m.mno = t.mno
+    join member m on m.mno = t.mno
     where ctstno=#{value};
   </select>
 
 
-<!-- 공모전 팀원 모집 -->
+  <!-- 공모전 팀원 모집 -->
   <insert id="insertTeam" useGeneratedKeys="true" keyColumn="tno" keyProperty="tno">
     insert into team(ctstno, mno, cont)
     values
-      (#{ctstno}, #{mno}, #{cont})
+    (#{ctstno}, #{mno}, #{cont})
   </insert>
 
   <!-- 팀원 모집 포트폴리오 목록 -->
@@ -416,28 +418,28 @@
   <!-- 팀장 상세보기 정보 출력 -->
   <select id="findByReader" resultMap="contestTeamMap">
     select
-      t.tno,
-      t.ctstno,
-      t.mno,
-      t.cont,
-      t.cdt,
-      m.nick,
-      m.profile,
-      tp.fpath
+    t.tno,
+    t.ctstno,
+    t.mno,
+    t.cont,
+    t.cdt,
+    m.nick,
+    m.profile,
+    tp.fpath
     from team t
-      join member m on m.mno = t.mno
-      join team_portfolio tp on t.tno = tp.tno
+    join member m on m.mno = t.mno
+    join team_portfolio tp on t.tno = tp.tno
     where ctstno=#{contestNo} and m.mno=#{memberNo};
   </select>
 
   <!-- 팀장 상세보기 팀분류 출력 -->
   <select id="findByTeamField" resultMap="contestTeamFieldsMap">
     select
-      tfno,
-      tno,
-      name,
-      size,
-      type
+    tfno,
+    tno,
+    name,
+    size,
+    type
     from team_field
     where tno=#{value};
   </select>
@@ -445,22 +447,22 @@
   <!-- 팀원모집분야 지원자 리스트 -->
   <select id="findByTeamFieldMember" resultMap="contestTeamFieldsMap">
     select
-      tf.tfno,
-      tf.tno,
-      tf.name,
-      tf.size,
-      tf.type,
-      tfm.tfmno,
-      tfm.tfno,
-      tfm.cont,
-      tfm.cdt,
-      tfm.type as types,
-      m.mno,
-      m.nick,
-      m.profile
+    tf.tfno,
+    tf.tno,
+    tf.name,
+    tf.size,
+    tf.type,
+    tfm.tfmno,
+    tfm.tfno,
+    tfm.cont,
+    tfm.cdt,
+    tfm.type as types,
+    m.mno,
+    m.nick,
+    m.profile
     from team_field tf
-      join team_field_member tfm on tf.tfno = tfm.tfno
-      join member m on m.mno = tfm.mno
+    join team_field_member tfm on tf.tfno = tfm.tfno
+    join member m on m.mno = tfm.mno
     where tf.tno=#{value};
   </select>
 
@@ -483,32 +485,46 @@
   <!-- 공모전 팀원 상세보기(지원자보기) -->
   <select id="findByFieldMemberDetailView" resultMap="contestTeamFieldMemberMap">
     select
-      tfm.tfmno,
-      tfm.tfno,
-      tfm.mno,
-      tfm.cont,
-      tfm.cdt,
-      tfm.type,
-      tf.tno,
-      tf.name,
-      tf.size,
-      m.nick,
-      m.profile,
-      tmp.fpath
+    tfm.tfmno,
+    tfm.tfno,
+    tfm.mno,
+    tfm.cont,
+    tfm.cdt,
+    tfm.type,
+    tf.tno,
+    tf.name,
+    tf.size,
+    m.nick,
+    m.profile,
+    tmp.fpath
     from team_field_member tfm
-      join team_field tf on tf.tfno = tfm.tfno
-      join team_member_portfolio tmp on tfm.tfmno = tmp.tfmno
-      join member m on m.mno = tfm.mno
+    join team_field tf on tf.tfno = tfm.tfno
+    join team_member_portfolio tmp on tfm.tfmno = tmp.tfmno
+    join member m on m.mno = tfm.mno
     where tfm.tfmno=#{value};
   </select>
 
 
+  <!-- 팀채택하기 승인 취소 -->
   <update id="updateFieldMemberType" parameterType="ContestTeamFieldMember">
     update
-      team_field_member
-      set type=#{booleanValue}
-      where
-      tfmno=#{fmNo};
+    team_field_member
+    set type=#{booleanValue}
+    where
+    tfmno=#{fmNo};
   </update>
 
+  <!-- 메인페이지 인기 공모전 -->
+  <select id="findByMain" resultMap="contestMap">
+    select
+      c.ctstno,
+      cc.name ccname,
+      c.title,
+      c.thumbnail
+    from contest c
+      join contest_category cc on cc.ctgno = c.ctgno
+    order by
+      c.vw_cnt desc
+    limit 1, 12;
+  </select>
 </mapper>

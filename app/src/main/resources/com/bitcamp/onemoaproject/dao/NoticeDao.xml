@@ -40,6 +40,27 @@
       cdt desc
   </select>
 
+  <!-- 페이징 -->
+  <select id="findAllList" resultMap="noticeMap" parameterType="criteria">
+    select
+      ntcno,
+      title,
+      cdt
+      from
+      notice
+    order by
+      ntcno desc
+    limit #{pageStart}, #{perPageNum}
+  </select>
+
+  <!-- 페이징을 위해 게시글 개수 조회 -->
+  <select id="findAllCount" resultType="Integer">
+    select
+      count(*)
+    from
+      notice
+  </select>
+
   <select id="findByNo" resultMap="noticeMap">
     select
       ntcno,

@@ -1,6 +1,9 @@
 package com.bitcamp.onemoaproject.service;
 
+import com.bitcamp.onemoaproject.vo.paging.Criteria;
 import java.util.List;
+import java.util.Map;
+import java.util.concurrent.ExecutionException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -74,7 +77,18 @@ public class DefaultNoticeService implements NoticeService {
   public boolean delete(int no) throws Exception {
     return noticeDao.delete(no) > 0;
   }
-
+  
+  // 페이징
+  @Override
+  public List<Map<String, Object>> list(Criteria cri) throws Exception {
+    return noticeDao.findAllList(cri);
+  }
+  
+  @Override
+  public int listCount() throws ExecutionException {
+    return noticeDao.findAllCount();
+  }
+  
   //  @Override
   //  public boolean deleteAttachedFile(int fileNo) throws Exception {
   //    // TODO Auto-generated method stub

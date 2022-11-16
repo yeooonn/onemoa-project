@@ -1,9 +1,13 @@
 package com.bitcamp.onemoaproject.controller;
 
+import com.bitcamp.onemoaproject.vo.paging.Criteria;
+import com.bitcamp.onemoaproject.vo.paging.PageMaker;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpSession;
+import org.springframework.boot.Banner.Mode;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -84,11 +88,25 @@ public class NoticeController {
   //    return attachedFiles;
   //  }
 
+//  @GetMapping("list")
+//  public void list(Model model) throws Exception {
+//    model.addAttribute("notices", noticeService.list());
+//  }
+  
+  // 페이징
   @GetMapping("list")
-  public void list(Model model) throws Exception {
-    model.addAttribute("notices", noticeService.list());
+  public void list(Criteria cri, Model model) throws Exception {
+    //model.addAttribute("notices", noticeService.list());
+    PageMaker pageMaker = new PageMaker();
+    pageMaker.setCri(cri);
+    pageMaker.setTotalCount(noticeService.listCount());
+    List<Map<String, Object>> notices = noticeService.list(cri);
+  
+    model.addAttribute("notices", notices);
+    model.addAttribute("pageMaker", pageMaker);
+    System.out.println("pageMaker = " + pageMaker);
   }
-
+  
   @GetMapping("detail")
   public Map detail(int no) throws Exception {
 

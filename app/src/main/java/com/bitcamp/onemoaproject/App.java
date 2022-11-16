@@ -1,9 +1,11 @@
 package com.bitcamp.onemoaproject;
 
+import com.bitcamp.onemoaproject.service.ContestService;
 import com.bitcamp.onemoaproject.vo.Member;
 import com.bitcamp.onemoaproject.vo.contest.Contest;
 import java.util.HashMap;
 import java.util.Map;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.stereotype.Controller;
@@ -20,6 +22,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 public class App {
   
+  @Autowired
+  ContestService contestService;
+  
   public static void main(String[] args) {
     System.out.println("비트캠프 프로젝트!");
     SpringApplication.run(App.class, args);
@@ -33,6 +38,7 @@ public class App {
   @GetMapping("/")
   public String welcome(@CookieValue(name = "email", defaultValue = "") String email, Model model) {
     model.addAttribute("email", email);
+    model.addAttribute("contests", contestService.listMain());
     return "index";
   }
   
