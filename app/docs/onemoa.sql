@@ -504,7 +504,7 @@ CREATE TABLE team_field_member (
   mno   INTEGER    NOT NULL COMMENT '회원번호', -- 회원번호
   cont  MEDIUMTEXT NOT NULL COMMENT '자기소개', -- 자기소개
   cdt   DATE       NOT NULL DEFAULT now() COMMENT '등록일', -- 등록일
-  type  BOOLEAN    NOT NULL COMMENT '상태' -- 상태
+  type  varchar(20)NOT NULL COMMENT '미승인' -- 상태
 )
 COMMENT '팀원모집분야지원';
 
