@@ -41,6 +41,9 @@ public interface MemberDao {
   void modifyPasswd(
       @Param("email") String email, 
       @Param("newPassword") String newPassword);
+  
+  // 사용자 패스워드 체크
+  int passwordCheck(@Param("password") String password, @Param("mno") int mno);
 }
 
 

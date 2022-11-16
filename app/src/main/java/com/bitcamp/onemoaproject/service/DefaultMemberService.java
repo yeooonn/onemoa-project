@@ -100,6 +100,13 @@ public class DefaultMemberService implements MemberService {
   public boolean updatePwd(Member member) {
     return false;
   }
+  
+  // 사용자 패스워드 체크
+  
+  @Override
+  public int getPasswordCheck(String password, int mno) {
+    return memberDao.passwordCheck(password, mno);
+  }
 }
 
 

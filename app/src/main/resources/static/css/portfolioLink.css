@@ -20,12 +20,14 @@
 }
 .portfolioLinkClick .portpart .portfolio1 li {
   float: left;
+  width: 32%;
 }
 .portfolioLinkClick .portpart .portfolio1 li:nth-of-type(2) {
-  font-size: 2vw;
+  font-size: 1.8vw;
   font-weight: bold;
-  line-height: 100px;
-  margin-left: 5%;
+  margin-left: 4%;
+  margin-top: 43px;
+  width: 50%;
 }
 .portfolioLinkClick .portpart .bar {
   display: block;

@@ -51,25 +51,26 @@ public class MypageMemberController {
     Member loginMember = (Member) session.getAttribute("loginMember");
     String email = loginMember.getEmail();
     Member member = memberService.get(loginMember.getNo());
-
-    // boolean isPasswdRight = BCrypt.checkpw(password, member.getPassword());
-
-    // System.out.println(isPasswdRight);
-
-    //    if(!password.equals(member.getPassword())) { // 현제 비밀번호가 일치하기않으면
-    //      throw new Exception("현제 패스워드가 일치하지 않습니다.");
-    //    }
-
-    // 2. 새 비밀번호, 새비밀번호 확인 맞는지 체크
-    if (newPassword.equals(newPasswordConfirm) == false) { // 새 비밀번호와 새 비밀번호 확인이 일치하기않으면
-      throw new Exception("새 비밀번호와 새 비밀번호 확인이 서로 일치하지 않습니다.");
+    
+    int result = memberService.getPasswordCheck(password, loginMember.getNo());
+    System.out.println("result = " + result);
+  
+    if (result > 0) {
+//      if(!password.equals(member.getPassword())) { // 현제 비밀번호가 일치하기않으면
+//        throw new Exception("현제 패스워드가 일치하지 않습니다.");
+//      }
+  //       2. 새 비밀번호, 새비밀번호 확인 맞는지 체크
+      if (newPassword.equals(newPasswordConfirm) == false) { // 새 비밀번호와 새 비밀번호 확인이 일치하기않으면
+        throw new Exception("새 비밀번호와 새 비밀번호 확인이 서로 일치하지 않습니다.");
+      }
+  //       3. DB 비밀번호 변경
+      memberService.modifyPasswd(email, newPassword);
+      return "redirect:changepwResult";
     }
-
-    // 3. DB 비밀번호 변경
-    memberService.modifyPasswd(email, newPassword);
-
-    return "redirect:changepwResult"; 
-
+    
+    else {
+      return "redirect:changepwResult";
+    }
   }
 
   @GetMapping("changepwResult")
@@ -194,6 +195,7 @@ public class MypageMemberController {
     map.put("portfolio", portfolio);
     //    map.get("portfolio");
     //    System.out.println(map.get("portfolio"));
+    System.out.println("portfolio = " + portfolio);
     return map;
   }
 

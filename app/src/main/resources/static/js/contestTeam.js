@@ -139,6 +139,8 @@ function personnelSelect() {
   $("#innerRecruitment").append(bList);
 }
 
+
+
 function clo2(){
   if ($('.modal3').css('display') == 'show'){
     $('.modal3').hide();
@@ -168,6 +170,11 @@ function closeTest() {
     $('.modal5').show();
   }
 }
+
+function clo6(){
+  $('.modal7').hide();
+}
+
 
 // 팀원 모집하기 등록 버튼
 function leaderjoin() {
@@ -342,10 +349,10 @@ function fieldMemberList() {
       for (let i = 0; i < result3.length; i++) {
         for (let j = 0; j < result3[i].contestTeamFieldMembers.length; j++) {
           let type = result3[i].contestTeamFieldMembers[j].type;
-          if(uNumber != readerNumber){
+          if(uNumber !== readerNumber){
             console.log("일반 사용자");
             fieldMember +=
-                "<ul style='width: 100%; height: 120px;'>" +
+                "<ul style='width: 100%; height: 150px;'>" +
                 "<li style='float:left; width: 20%;'>" +
                 "<img src='/onemoa/member/files/" + result3[i].contestTeamFieldMembers[j].applicant.profile + "'style='width: 50%; margin-left: 20%;border-radius: 70%;overflow: hidden;'>" +
                 "</li>" +
@@ -362,7 +369,7 @@ function fieldMemberList() {
             console.log("if");
             console.log(type);
             fieldMember +=
-                "<ul style='width: 100%; height: 120px;'>" +
+                "<ul style='width: 100%; height: 150px;'>" +
                 "<li style='float:left; width: 20%;'>" +
                 "<img src='/onemoa/member/files/" + result3[i].contestTeamFieldMembers[j].applicant.profile + "'style='width: 50%; margin-left: 20%;border-radius: 70%;overflow: hidden;'>" +
                 "</li>" +
@@ -378,7 +385,7 @@ function fieldMemberList() {
             console.log("else");
             console.log(type);
             fieldMember +=
-                "<ul style='width: 100%; height: 120px;'>" +
+                "<ul style='width: 100%; height: 150px;'>" +
                 "<li style='float:left; width: 20%;'>" +
                 "<img src='/onemoa/member/files/" + result3[i].contestTeamFieldMembers[j].applicant.profile + "'style='width: 50%; margin-left: 20%;border-radius: 70%;overflow: hidden;'>" +
                 "</li>" +
@@ -416,13 +423,16 @@ function dis7(clicked_id) {
   console.log(readerNumber);
   console.log($("#uNumber").val());
   let uNumber = $("#uNumber").val();
-  console.log(uNumber == readerNumber);
-  if (uNumber === readerNumber) {
+  console.log(uNumber === readerNumber);
+  let temp = uNumber === readerNumber;
+  if (temp === true) {
+    console.log("if")
     $("#teammate8").html(
         "<button id=\"tm8\" class=\"tm8\" onclick=\"dis8()\">팀원 채택하기</button>\n"
         + "<button class=\"tm8\" onclick=\"clo7()\">뒤로가기</button>"
     )
-  } else {
+  } else if (temp === false) {
+    console.log("else if")
     $("#teammate8").html(
         "<button class=\"tm8\" onclick=\"clo7()\">뒤로가기</button>"
     )
@@ -553,11 +563,23 @@ function dis5(){
   fieldMemberDetailField();
 
   if ($('.modal6').css('display') == 'none'){
-    $('.modal4').show(); // 팀원 모집확인 모달 창 -> 확인 필요
+    $('.modal5').show(); // 팀원 모집확인 모달 창 -> 확인 필요 -> 확인완료
     $('.modal6').show(); // 팀원 지원하기 모달 창
   } else{
-    $('.modal4').show();
+     $('.modal5').show();
     $('.modal6').hide();
+    $('.modal7').hide();
+  }
+}
+
+// 팀원지원하기 뒤로가기 버튼
+function clob(){
+  if ($('.modal6').css('display') == 'show'){
+    $('.modal6').hide();
+    $('.modal5').show();
+  } else{
+    $('.modal6').hide();
+    $('.modal5').show();
   }
 }
 
@@ -615,14 +637,14 @@ function fieldMemberDetailField() {
 function dis6(){
   teamJoin();
   teamReaderDetail(); // 팀장 상세보기 모달창
-
-  if ($('.modal6').css('display') == 'show'){
-    $('.modal6').hide();
-    $('.modal5').show();
+  
+  if ($('.modal7').css('display') == 'none'){
+    $('.modal6').show();
+    $('.modal7').show();
   } else{
-    $('.modal6').hide();
-    $('.modal5').show();
+    $('.modal7').hide();
   }
+
 }
 
 // 팀원 지원하기
@@ -681,13 +703,7 @@ function fieldMemberDetailPortfolioBoxChange() {
 }
 
 function clo5(){
-  if ($('.modal5').css('display') == 'show'){
-    $('.modal5').hide();
-    $('.modal2').show();
-  } else{
-    $('.modal5').hide();
-    $('.modal2').show();
-  }
+    $('.modal7').hide();
 }
 
 // 포폴 추가 버튼

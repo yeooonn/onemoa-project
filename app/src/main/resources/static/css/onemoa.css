@@ -763,6 +763,7 @@ label[for="label-a"] {
   display: block;
 }
 .contest .contestContents .contestBox .con li .contesttext {
+  width: 100%;
   height: 110px;
   overflow: hidden;
 }
@@ -959,12 +960,18 @@ label[for="label-a"] {
 }
 .person .teamJang {
   width: 90%;
-  height: 550px;
+  height: auto;
   margin-left: 7%;
   margin-top: 60px;
 }
+.teamJang::after {
+  content: "";
+  clear: both;
+  display: table;
+}
 .person .teamJang li {
   width: 15%;
+  height: auto;
   margin-right: 5%;
   float: left;
   margin-bottom: 50px;
@@ -994,7 +1001,9 @@ label[for="label-a"] {
   height: 71px;
   border: 1px solid #707fc2;
   margin: 30px auto;
-  border-radius: 5%;
+  padding-top: -15px;
+  border-radius: 5px;
+  cursor: pointer;
 }
 .insert .insertbtn > p {
   font-size: 1.250vw;
@@ -1122,6 +1131,7 @@ label[for="label-a"] {
   padding-top: 80px;
   padding-left: 4.029%;
   padding-right: 4.029%;
+  padding-bottom: 280px;
   background-color: rgb(255, 255, 255);
   border-radius: 10px;
   box-shadow: 0 2px 3px 0 rgba(34, 36, 38, 0.15);
@@ -1147,6 +1157,10 @@ label[for="label-a"] {
 .teamJangD .tjd li {
   float: left;
   margin-top: 50px;
+  width: 13%;
+}
+.teamJangD .tjd li:nth-of-type(2) {
+  width: 70%;
 }
 .teamJangD .tjd li .tjdimg {
   width: 100%;
@@ -1155,13 +1169,15 @@ label[for="label-a"] {
 .teamJangD .tjd li .tjdimg img {
   width: 80.326%;
   height: auto;
+  border-radius: 70%;
+  overflow: hidden;
   margin-left: 14%;
 }
 .teamJangD .tjd li p {
   font-size: 1.254vw;
   text-align: center;
   position: relative;
-  left: 2%;
+  left: 10%;
 }
 .teamJangD .tjd .tjdtxt {
   background-color: #bcc5e9;
@@ -1200,8 +1216,12 @@ label[for="label-a"] {
   height: 50px;
   padding-left: 10px;
   float: left;
-  margin-right: 50%;
+  margin-right: 100%;
+  margin-bottom: 20px;
+}
+.portfolio .popopo li {
   margin-bottom: 10px;
+  margin-left: 1%;
 }
 
 .hhhhhh .mi {
@@ -1241,7 +1261,12 @@ label[for="label-a"] {
   padding-left: 10px;
   float: left;
   margin-bottom: 10px;
-  margin-right: 60%;
+  margin-right: 67%;
+  margin-bottom: 20px;
+}
+.recruitment .rerere li {
+  margin-bottom: 10px;
+  margin-left: 1%;
 }
 .recruitment button {
   background-color: transparent;
@@ -1343,27 +1368,30 @@ label[for="label-a"] {
   padding-top: 70px;
   padding-bottom: 40px;
 }
-.modal_body4 .teamb span button {
+.modal_body4 .teamb {
   border: none;
   background-color: transparent;
   color: #fff;
+  width: 100%;
 }
-.modal_body4 .teamb span {
+.modal_body4 .teamb .leaderJoinBtn {
   padding: 10px 20px;
   border: 1px solid #707fc2;
   border-radius: 5px;
-  margin-left: 1%;
   background-color: #707fc2;
   color: #fff;
+  position: relative;
+  right: 34%;
+  margin-right: -10px;
 }
-.modal_body4 .teamb span:hover {
+.modal_body4 .teamb .leaderJoinBtn:hover {
   background-color: #48527d;
 }
-.modal_body4 .teamb span:nth-of-type(2) {
+.modal_body4 .teamb .leaderJoinBtn:nth-of-type(2) {
   background-color: #a5a5a5;
   border: 1px solid #a5a5a5;
 }
-.modal_body4 .teamb span:nth-of-type(2):hover {
+.modal_body4 .teamb .leaderJoinBtn:nth-of-type(2):hover {
   background-color: #6c6d70;
 }
 
@@ -1415,8 +1443,13 @@ label[for="label-a"] {
   text-align: left;
   font-weight: bold;
 }
+.teamJangD2 .tjd2 {
+  width: 100%;
+  height: auto;
+}
 .teamJangD2 .tjd2 li:nth-of-type(1) {
   width: 30%;
+  height: auto;
 }
 .teamJangD2 .tjd2 li:nth-of-type(2) {
   width: 60%;
@@ -1432,7 +1465,7 @@ label[for="label-a"] {
 }
 .teamJangD2 .tjd2 li .tjdimg2 {
   width: 50%;
-  height: 155px;
+  height: 250px;
 }
 .teamJangD2 .tjd2 li .tjdimg2 img {
   width: 100%;
@@ -1443,7 +1476,8 @@ label[for="label-a"] {
 }
 .teamJangD2 .tjd2 li:nth-of-type(1) p {
  text-align: center;
- margin-left: 20%;
+ margin-left: 18%;
+ width: 100%;
 }
 .teamJangD2 .tjd2 li p {
   font-size: 1.254vw;
@@ -1510,7 +1544,7 @@ label[for="label-a"] {
 }
 .portfolio2:nth-of-type(4) ul {
   width: 100%;
-  height: 120px;
+  height: 150px;
 }
 .portfolio2:nth-of-type(4) ul li {
   float: left;
@@ -1530,13 +1564,14 @@ label[for="label-a"] {
   width: 60%;
   height: 60px;
   background-color: #bcc5e9;
-  padding-left: 3%;
+  padding-left: 1.3%;
   border-radius: 10px;
-  margin-top: 20px;
+  margin-top: 2.3%;
   margin-left: -2%;
 }
 .portfolio2:nth-of-type(4) ul li:nth-of-type(2) p {
   font-weight: normal;
+  font-size: 1vw;
 }
 .portfolio2:nth-of-type(4) ul li:nth-of-type(2) p:nth-of-type(2) {
   font-size: 0.938vw;
@@ -1558,14 +1593,16 @@ label[for="label-a"] {
 .portfolio2:nth-of-type(4) ul li:nth-of-type(3) p {
   font-weight: normal;
   width: 100%;
-  height: 60px;
   border: 1px solid #707fc2;
   color: #707fc2;
   padding-left: 20px;
   padding-right: 20px;
-  padding-top: 20px;
+  padding-top: 15px;
+  padding-bottom: 12px;
   border-radius: 10px;
-  margin-left: 33%;
+  margin-left: 23%;
+  margin-top: 22%;
+  font-size: 1.2vw;
 }
 .portfolio2:nth-of-type(4) ul li:nth-of-type(3) p:hover {
   background-color: #707fc2;
@@ -1596,11 +1633,11 @@ label[for="label-a"] {
   width: 80%;
   height: 830px;
   padding-top: 80px;
+  padding-bottom: 280px;
   padding-left: 4.029%;
   padding-right: 4.029%;
   background-color: rgb(255, 255, 255);
   border-radius: 10px;
-  box-shadow: 0 2px 3px 0 rgba(34, 36, 38, 0.15);
   transform: translateX(-50%) translateY(-50%);
 }
 .closebtn6 {
@@ -1644,6 +1681,7 @@ label[for="label-a"] {
   margin-left: 14%;
 }
 .teamOne .tjd li p {
+  margin-top: 17%;
   font-size: 1.254vw;
   text-align: center;
   margin-left:32%;
@@ -1727,6 +1765,8 @@ label[for="label-a"] {
 }
 .teammate {
   width: 100%;
+  position: relative;
+  right: 30%;
 }
 .teammate .tm {
   border: none;
@@ -1737,6 +1777,7 @@ label[for="label-a"] {
   background-color: #707fc2;
   border: 1px solid #707fc2;
   margin-top: 100px;
+  margin-bottom: 100px;
   color: #fff;
   border-radius: 10px;
 }
@@ -1809,29 +1850,33 @@ label[for="label-a"] {
   padding-top: 70px;
   padding-bottom: 40px;
 }
-.modal_body7 .teamb7 span button {
+.modal_body7 .teamb7 {
   border: none;
   background-color: transparent;
   color: #fff;
+  width: 100%;
 }
-.modal_body7 .teamb7 span {
+.modal_body7 .teamb7 .leaderJoinBtn {
   padding: 10px 20px;
   border: 1px solid #707fc2;
   border-radius: 5px;
-  margin-left: 1%;
   background-color: #707fc2;
   color: #fff;
+  position: relative;
+  right: 34%;
+  margin-right: -10px;
 }
-.modal_body7 .teamb7 span:hover {
+.modal_body7 .teamb7 .leaderJoinBtn:hover {
   background-color: #48527d;
 }
-.modal_body7 .teamb7 span:nth-of-type(2) {
+.modal_body7 .teamb7 .leaderJoinBtn:nth-of-type(2) {
   background-color: #a5a5a5;
   border: 1px solid #a5a5a5;
 }
-.modal_body7 .teamb7 span:nth-of-type(2):hover {
+.modal_body7 .teamb7 .leaderJoinBtn:nth-of-type(2):hover {
   background-color: #6c6d70;
 }
+
 
 /* modal8 팀원상세보기 */
 .modal8 {
@@ -1856,11 +1901,11 @@ label[for="label-a"] {
   width: 80%;
   height: 830px;
   padding-top: 80px;
+  padding-bottom: 280px;
   padding-left: 4.029%;
   padding-right: 4.029%;
   background-color: rgb(255, 255, 255);
   border-radius: 10px;
-  box-shadow: 0 2px 3px 0 rgba(34, 36, 38, 0.15);
   transform: translateX(-50%) translateY(-50%);
 }
 .closebtn8 {
@@ -1936,11 +1981,12 @@ label[for="label-a"] {
 }
 .teammate8 {
   text-align: center;
+  position: relative;
+  right: 35%;
 }
 .teammate8 .tm8 {
   border: none;
   background-color: transparent;
-  margin-right: 3%;
   font-size: 1.354vw;
   width: 15%;
   height: 80px;
@@ -1959,7 +2005,6 @@ label[for="label-a"] {
 .teammate8 .tm8:nth-of-type(2) {
   border: none;
   background-color: transparent;
-  margin-right: 3%;
   font-size: 1.354vw;
   width: 15%;
   height: 80px;

@@ -24,18 +24,18 @@
             <span class="mybar">
           </div>
           <ul class="mynav">
-            <li><a href="portfolioList">나의 포트폴리오</a></li>
-            <li><a href="">구매관리</a></li>
-            <li><a href="">판매관리</a></li>
-            <li><a href="">나의 서비스관리</a></li>
-            <li><a href="">결제내역</a></li>
-            <li><a href="">1:1 문의내역</a></li>
+            <li><a class="font" href="portfolioList">나의 포트폴리오</a></li>
+            <li><a class="font2" href="">구매관리</a></li>
+            <li><a class="font2" href="">판매관리</a></li>
+            <li><a class="font2" href="">나의 서비스관리</a></li>
+            <li><a class="font2" href="">결제내역</a></li>
+            <li><a class="font2" href="">1:1 문의내역</a></li>
             <li class="menu">
-              <a class="font" href="myinfo.html">계정설정</a>
+              <a class="font2" href="myinfo.html">계정설정</a>
               <ul class="hide">
-                <li><a class="font2" href="../mypage/myinfo">내정보수정</a></li>
-                <li><a class="font2" href="../mypage/changepw">비밀번호변경</a></li>
-                <li><a class="font" href="../mypage/leave">회원탈퇴</a></li>
+                <li><a class="font2" href="/onemoa/mypage/myinfo">내정보수정</a></li>
+                <li><a class="font2" href="/onemoa/mypage/changepw">비밀번호변경</a></li>
+                <li><a class="font2" href="/onemoa/mypage/leave">회원탈퇴</a></li>
               </ul>
             </li>
           </ul>
@@ -58,7 +58,7 @@
                 </tr>
                 <tr>
                   <td>
-                    <label class="portFile" for="portFile">첨부파일<img class="portFileimg" src="../img/upload.png"></label>
+                    <label class="portFile" for="portFile">첨부파일<img class="portFileimg" src="/onemoa/img/upload.png"></label>
                     <input name='files' type="file" multiple  id="portFile" class="pbtn" onchange="readURL(this);">
                   </td>
                 </tr>
@@ -69,39 +69,35 @@
                   <img id ="preimg" class="preimg" src ="" style="width: 260px; height: 260px; display:none;">
                 </div>
               </div>
-              
+
               <p style="font-size: 1vw;">이미 추가된 파일</p>
               <ul class="portfolioimglist" id="imgrolling">
-                <li data-th-each="file : ${portfolio.attachedFiles}">
-                  <img data-th-src="${'/onemoa/portfolio/files/'+ portfolio.attachedFiles[0].filepath}" style="width: 260px; height: 260px;">
-                  <p style="font-size:1vw;"><a href="fileDelete?ptfNo=${file.ptfNo}" data-th-href="@{fileDelete(ptfNo=${file.ptfNo})}">삭제</a></p>
-                </li>
               </ul>
               <span></span>
               <p class="portbtns">
                 <button id="list-btn" type='button' class="portsub">목록보기</button>
                 <button id="delete-btn" type='button' class="portsub">삭제하기</button>
                 <button type='submit' class="portsub">수정하기</button>
-              </p> 
+              </p>
             </form>
           </div>
         </div>
       </li>
     </ul>
-    
+
 
     <script>
 
       $("#list-btn").click(() => {
     	  window.location.href = "portfolioList";
       });
-      
+
       $("#delete-btn").click(() => {
     	  window.location.href = "portfolioDelete?ptNo=[[${portfolio.ptNo}]]";
       });
-   
+
       function readURL(input) {
-          
+
           if (input.files && input.files[0]) {
             var reader = new FileReader();
             reader.onload = function(e) {
@@ -110,23 +106,23 @@
             };
             reader.readAsDataURL(input.files[0]);
           }
-        }  
-      
-      /* 
+        }
+
+      /*
     	 var sel_files = [];
-    	 
+
          $(document).ready(function() {
              $("#portFile").on("change", handleImgsFilesSelect);
-         }); 
-  
+         });
+
          function handleImgsFilesSelect(e) {
              var files = e.target.files;
              var filesArr = Array.prototype.slice.call(files);
-  
+
              filesArr.forEach(function(f) {
-  
+
                  sel_files.push(f);
-  
+
                  var reader = new FileReader();
                  reader.onload = function(e) {
                      var img_html = "<img src=\"" + e.target.result + "\" />";
@@ -135,11 +131,11 @@
                  reader.readAsDataURL(f);
              });
          } */
-  
 
-   
+
+
     </script>
-    
+
     <script th:inline="javascript">
       let files = [[${portfolio}]];
       let test1 = files.attachedFiles;
@@ -147,16 +143,16 @@
       let imgList = "";
       for (let i=0; i < test1.length; i++) {
     	  console.log(test1[i].filepath);
-    	  imgList += "<li>" + 
+    	  imgList += "<li>" +
     		  "<img src='" + "/onemoa/portfolio/files/"
-          + test1[i].filepath + "'style='width: 260px; height: 260px;''>" + "<p style='font-size:1vw;text-align:center;'><a href='" + "/onemoa/portfolio/fileDelete?ptfNo="+ test1[i].ptfNo + "'>삭제</a></p>" +"</li>"
+          + test1[i].filepath + "'style='width: 260px; height: 260px;''>" + "<p style='font-size:1vw;text-align:center;'><a href='" + "/onemoa/mypage/fileDelete?ptfNo="+ test1[i].ptfNo + "'>삭제</a></p>" +"</li>"
       }
       console.log(imgList);
       $("#imgrolling").html(imgList);
-      
+
     </script>
-    
-    
+
+
     <footer data-th-replace="/fragments/footer.html :: fragment-footer"></footer>
   </body>
 </html>

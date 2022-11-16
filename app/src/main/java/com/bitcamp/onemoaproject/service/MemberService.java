@@ -36,6 +36,9 @@ public interface MemberService {
   Member getIdEmail(String name, String email);
 
   boolean updatePwd(Member member);
+  
+  // 사용자 패스워드 체크
+  int getPasswordCheck(String password, int mno);
 }
 
 

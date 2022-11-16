@@ -231,4 +231,12 @@
       join portfolio p on m.mno = p.mno
     where m.mno=#{value}
   </select>
+
+<!-- 사용자 패스워드 체크-->
+  <select id="passwordCheck" resultType="Integer">
+    select
+      count(*)
+    from member
+      where pwd=sha2(#{password},256) and mno=#{mno};
+  </select>
 </mapper>
