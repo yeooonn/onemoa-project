@@ -44,4 +44,7 @@ public interface ContestService {
   
   // 공모전 조회수 증가
   int addViewCount(int no) throws Exception;
+  
+  // 메인페이지 인기 공모전
+  List<Contest> listMain();
 }

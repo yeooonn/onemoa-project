@@ -167,4 +167,11 @@ public class DefaultContestService implements ContestService{
   public int addViewCount(int no) throws Exception {
     return contestDao.updateViewCount(no);
   }
+  
+  // 메인페이지 인기 공모전
+  
+  @Override
+  public List<Contest> listMain() {
+    return contestDao.findByMain();
+  }
 }
