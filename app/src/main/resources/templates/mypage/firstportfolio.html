@@ -14,10 +14,10 @@
         <ul class="portfolio1">
           <li>
             <div class="proimgsize">
-              <img src="../img/small.png" data-th-src="@{/member/files/{path}(path=${portfolio[0].Member.profile})}" style="width:20%; height: auto">
+              <img src="../img/small.png" data-th-src="@{/member/files/{path}(path=${portfolio[0].Member.profile})}" style="width:90%; height: auto;  border-radius: 70%; overflow: hidden;">
             </div>
           </li>
-          <li data-th-text=" ${portfolio[0].Member.nickname}">닉네임님 포트폴리오</li>
+          <li data-th-text=" ${portfolio[0].Member.nickname + '님 포트폴리오'}">닉네임님 포트폴리오</li>
         </ul>
         <span class="bar"></span>
 
@@ -37,7 +37,7 @@
         <span class="bar"></span>
 
         <div class="otherport">
-          <p data-th-text="${portfolio[0].Member.nickname}">닉네임님의 다른 포트폴리오</p><span>님의 다른 포트폴리오</span>
+          <p data-th-text="${portfolio[0].Member.nickname+'님의 다른 포트폴리오'}">닉네임님의 다른 포트폴리오</p>
           <ul class="otherlist">
             <li data-th-each="portfolio : ${portfolios}">
               <a href='firstportfolio?ptNo=1' data-th-href="@{firstportfolio?(ptNo=${portfolio.ptNo})}"><img data-th-src="${'/onemoa/portfolio/files/'+ portfolio.attachedFiles[0].filepath}" style="width:90%; height: auto;"></a>

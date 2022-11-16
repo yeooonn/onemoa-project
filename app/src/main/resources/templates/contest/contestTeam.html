@@ -115,7 +115,7 @@
 
             <div class="contestdtype">
               <p onclick="team()"><a href="#">상세정보</a></p>
-              <p id="contestTypeTeam" onclick="team()">팀원구해요</a></p>
+              <p id="contestTypeTeam" onclick="team()"><a href="#">팀원구해요</a></p>
               <span></span>
             </div>
 
@@ -171,13 +171,13 @@
 <!--                  <p>닉네임</p>-->
 <!--                </li>-->
               </ul>
-
               <div class="insert">
                 <p>나를 등록하고, <span>나에게 필요한 팀원을 구해보세요.</span></p>
                 <div class="insertbtn">
                   <p onclick="dis2()">팀원 모집하기</p>
                 </div>
               </div>
+
             </div>
           </div>
         </div><!--modal2-->
@@ -192,7 +192,7 @@
                 <ul class="tjd">
                   <li>
                     <div class="tjdimg">
-                      <img id="teamRecruitFormReaderProfile" src="../img/profile1.png">
+                      <img id="teamRecruitFormReaderProfile" src="../img/profile1.png" style="width: 100%; height: auto; border-radius: 70%; overflow: hidden; margin-left: 14%;">
                     </div>
                     <input type="hidden" id="teamRecruitFormReaderNo">
                     <p id="teamRecruitFormReaderNickname">닉네임</p>
@@ -204,21 +204,17 @@
               </div>
 
               <div class="portfolio">
-                <p>포트폴리오
-                  <button name="addStaff"><img src="../img/plus.png"></button>
-                </p>
+                <p>포트폴리오</p>
                 <div name="hhhhhh">
                   <select id="xx-portfolioBox" name="port" class="po" onchange="portfolioBoxChange()">
                     <option value="포트폴리오를 선택해주세요." selected>포트폴리오를 선택해주세요.</option>
                   </select>
-                  <ul id="innerPortfolio"></ul>
                 </div>
+                  <ul id="innerPortfolio" class="popopo"></ul>
               </div>
 
               <div class="recruitment">
-                <p>모집분야와 인원을 선택해주세요.
-                  <button name="addStaff2"><img src="../img/plus.png"></button>
-                </p>
+                <p>모집분야와 인원을 선택해주세요.</p>
                 <div name = "rrr" class="recruit">
                   <select id="xx-recru" name="recru" class="re">
                     <option value="모집분야를 선택해주세요." selected>모집분야를 선택해주세요.</option>
@@ -226,7 +222,7 @@
                     <option value="편집">편집</option>
                     <option value="음향">음향</option>
                   </select>
-                  <select  id="xx-personnel" name="personnel" class="re2" onchange="personnelSelect()">
+                  <select id="xx-personnel" name="personnel" class="re2" onchange="personnelSelect()">
                     <option value="인원" selected>인원</option>
                     <option value="1">1</option>
                     <option value="2">2</option>
@@ -236,9 +232,7 @@
                     <option value="6">6</option>
                   </select>
                 </div>
-                <ul id="innerRecruitment">
-
-                </ul>
+                <ul id="innerRecruitment" class="rerere"></ul>
               </div>
 
               <div class="teammate">
@@ -254,8 +248,8 @@
             <button class="closebtn4" onclick="clo3()"><img src="../img/x.png"></button>
             <p>팀원을 모집하시겠습니까?</p>
             <div class="teamb">
-              <span><button id="leaderJoin">확인</button></span>
-              <span><button onclick="clo3()">취소</button></span>
+              <button class="leaderJoinBtn" id="leaderJoin">확인</button>
+              <button class="leaderJoinBtn" onclick="clo3()">취소</button>
             </div>
           </div>
         </div><!--modal4-->
@@ -308,14 +302,7 @@
             </div>
 
             <div class="portfolio2" id="xx-fieldMemberUl">
-              <ul>
-                <li><img src="../img/profile1.png"></li>
-                <li>
-                  <p>촬영 지원합니다!</p>
-                  <p><a href="#">수정</a><a href="#">삭제</a></p>
-                </li>
-                <li><p><a href="#"></a>지원자 보기</p></li>
-              </ul>
+              
             </div>
           </div>
         </div><!--modal5-->
@@ -363,7 +350,7 @@
             <div class="teammate">
 <!--              <button class="tm" onclick="dis3()">팀원 지원하기</button>-->
               <button class="tm" onclick="dis6()">팀원 지원하기</button>
-              <button class="tm" onclick="clo2()">뒤로가기</button>
+              <button class="tm" onclick="clob()">뒤로가기</button>
             </div>
 
           </div>
@@ -375,10 +362,12 @@
           <div class="modal_body7">
             <button class="closebtn7" onclick="clo5()"><img src="/onemoa/img/x.png"></button>
             <p>팀원으로 지원을하시겠습니까?</p>
+            
             <div class="teamb7">
-              <span><button onclick="dis5()">확인</button></span>
-              <span><button onclick="clo6()">취소</button></span>
+              <button class="leaderJoinBtn" id="leaderJoin" onclick="dis5()">확인</button>
+              <button class="leaderJoinBtn" onclick="clo6()">취소</button>
             </div>
+            
           </div>
         </div><!--modal7-->
 

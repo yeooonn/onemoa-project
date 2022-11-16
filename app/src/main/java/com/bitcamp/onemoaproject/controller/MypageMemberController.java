@@ -296,7 +296,7 @@ public class MypageMemberController {
       throw new Exception("게시글 첨부파일을 삭제할 수 없습니다.");
     }
 
-    return "redirect:portfolioDetail?ptNo=" + portfolio.getPtNo();
+    return "redirect:mypage/portfolioDetail?ptNo=" + portfolio.getPtNo();
   }
 
 }
