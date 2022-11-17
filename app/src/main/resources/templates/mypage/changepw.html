@@ -97,7 +97,7 @@
           <form action="checkpassword" method="post" id='check'>
           <div class="changepw">
             <p>현재 비밀번호</p>
-            <input name='password' type='password' id='password' placeholder="현재 비밀번호를 입력해 주세요.">
+            <input name='currentPassword' type='password' id='currentPassword' placeholder="현재 비밀번호를 입력해 주세요.">
             <ul class="checkp">
               <li>
                 <p>변경할 비밀번호</p>
@@ -129,22 +129,47 @@
       </div>
     </footer>
 
-
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
   <script>
     document.getElementById("changePw").addEventListener("click", function(){
   	  
   	  const check = document.getElementById("check");
+  	  const currentPassword = document.getElementById("currentPassword").value;
   	  const newPassword = document.getElementById("newPassword");
   	  const newPasswordConfirm = document.getElementById("newPasswordConfirm");
-  
-  	  if (newPassword.value == '') {
-  		  alert("새 비밀번호를 입력해주세요!");
-  	  } else if (newPassword.value != '' && newPasswordConfirm.value == '') {
-  	      alert("새 비밀번호를 한번 더 입력해주세요!");
-  	  }
-  	  else {
-  		  check.submit();
-  	  }
+  	  console.log(currentPassword);
+  	  
+  	  $.ajax({
+  		  type: "POST",
+  		  url: "/onemoa/mypage/checkCurrentPassword",
+  		  data: {"password":currentPassword},
+  		  success: function(result) {
+  			  console.log(result)
+  			  if (result == 'false') {
+    				swal({
+    				  text: "현재비빌번호와 일치하지 않습니다!",
+    				  icon: "error",
+    				});
+  			  } else if (newPassword.value == '') {
+    				swal({
+              text: "새 비밀번호를 입력해주세요!",
+              icon: "error",
+            });
+		      } else if (newPassword.value != '' && newPasswordConfirm.value == '') {
+		    	  swal({
+              text: "새 비밀번호를 한번 더 입력해주세요!",
+              icon: "error",
+            });
+		      } else if (newPassword.value != newPasswordConfirm.value) {
+		    	  swal({
+              text: "새 비밀번호와 새 비밀번호 확인이 일치하지 않습니다!",
+              icon: "error",
+            });
+		      } else {
+		        check.submit(); 
+		      }
+   		  }
+  	  })
     });
   </script>
     

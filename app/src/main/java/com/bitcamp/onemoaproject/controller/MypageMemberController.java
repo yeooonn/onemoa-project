@@ -15,6 +15,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import com.bitcamp.onemoaproject.service.MemberService;
 import com.bitcamp.onemoaproject.service.PortfolioService;
@@ -50,27 +51,31 @@ public class MypageMemberController {
     // 1. 현재 비밀번호 맞는지 체크
     Member loginMember = (Member) session.getAttribute("loginMember");
     String email = loginMember.getEmail();
-    Member member = memberService.get(loginMember.getNo());
-    
+
+    // 2. 새 비밀번호, 새비밀번호 확인 맞는지 체크
+    if (newPassword.equals(newPasswordConfirm) == false) { // 새 비밀번호와 새 비밀번호 확인이 일치하기않으면
+      throw new Exception("새 비밀번호와 새 비밀번호 확인이 서로 일치하지 않습니다.");
+    }
+    // 3. DB 비밀번호 변경
+    memberService.modifyPasswd(email, newPassword);
+    return "redirect:changepwResult";
+  }
+
+
+  @ResponseBody
+  @PostMapping("checkCurrentPassword")
+  public String checkCurrentPassowrd(String password, HttpSession session) throws Exception {
+    // 1. 현재 비밀번호 맞는지 체크
+    Member loginMember = (Member) session.getAttribute("loginMember");
+
     int result = memberService.getPasswordCheck(password, loginMember.getNo());
     System.out.println("result = " + result);
-  
+
     if (result > 0) {
-//      if(!password.equals(member.getPassword())) { // 현제 비밀번호가 일치하기않으면
-//        throw new Exception("현제 패스워드가 일치하지 않습니다.");
-//      }
-  //       2. 새 비밀번호, 새비밀번호 확인 맞는지 체크
-      if (newPassword.equals(newPasswordConfirm) == false) { // 새 비밀번호와 새 비밀번호 확인이 일치하기않으면
-        throw new Exception("새 비밀번호와 새 비밀번호 확인이 서로 일치하지 않습니다.");
-      }
-  //       3. DB 비밀번호 변경
-      memberService.modifyPasswd(email, newPassword);
-      return "redirect:changepwResult";
+      return "true";
     }
-    
-    else {
-      return "redirect:changepwResult";
-    }
+    return "false";
+
   }
 
   @GetMapping("changepwResult")
