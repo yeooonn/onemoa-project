@@ -35,7 +35,7 @@ public class FaqController {
 
   // 페이징 적용
   @GetMapping("list")
-  public void list(Criteria cri, Model model, String type) throws Exception {
+  public void list(Criteria cri, Model model) throws Exception {
     PageMaker pageMaker = new PageMaker();
     pageMaker.setCri(cri);
     pageMaker.setTotalCount(faqService.listCount());

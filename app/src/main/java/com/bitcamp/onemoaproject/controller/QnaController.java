@@ -32,7 +32,6 @@ public class QnaController {
   @GetMapping("form")
   public void form() throws Exception {
   }
-
   @PostMapping("add")
   public String add(
           Qna qna,
