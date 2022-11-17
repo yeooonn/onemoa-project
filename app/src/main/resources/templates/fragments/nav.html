@@ -45,19 +45,19 @@
 
   <header>
     <div class="nav">
-      <a href="/onemoa/"><p class="logo">ONEMOA</p></a>
+      <a href="/onemoa/" style="text-decoration-line: none"><p class="logo">ONEMOA</p></a>
       <ul class="firstnav">
-        <li data-th-if="${session.loginMember != null}"><a href="/onemoa/logout" data-th-text="로그아웃">로그아웃</a></li>
-        <li><button class="btn-open-popup" data-th-if="${session.loginMember == null}">로그인</button></li>
-        <li><a href="/onemoa/portfolio/portfolioList">마이페이지</a></li>
-          <li><a href="#">메시지</a></li>
+        <li data-th-if="${session.loginMember != null}"><a href="/onemoa/logout" data-th-text="로그아웃" style="text-decoration-line: none">로그아웃</a></li>
+        <li><button class="btn-open-popup" data-th-if="${session.loginMember == null}" style="text-decoration-line: none">로그인</button></li>
+        <li><a href="/onemoa/portfolio/portfolioList" style="text-decoration-line: none">마이페이지</a></li>
+          <li><a href="#" style="text-decoration-line: none">메시지</a></li>
       </ul>
     </div>
 
     <div class="menu">
       <ul class="secnav">
-        <li><a href="/onemoa/contest/contestTeam?no=all"><p>공모전</p></a></li>
-        <li><a href="/onemoa/product/list"><p>재능판매</p></a></li>
+        <li><a href="/onemoa/contest/contestTeam?no=all" style="text-decoration-line: none"><p>공모전</p></a></li>
+        <li><a href="/onemoa/product/list" style="text-decoration-line: none"><p>재능판매</p></a></li>
       </ul>
     </div>
   </header>

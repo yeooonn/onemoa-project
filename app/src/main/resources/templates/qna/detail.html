@@ -3,16 +3,17 @@
 <head>
   <meta charset="UTF-8">
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" rel="stylesheet">
-    <link href="http://localhost:3333/onemoa/css/onemoa.css" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.js"></script>
-    <script src="http://localhost:3333/onemoa/js/login.js"></script>
     <link href="/onemoa/css/onemoa.css" rel="stylesheet">
     <script src="/onemoa/js/login.js"></script>
     <title>onemoa</title>
 </head>
 <style>
+    p {
+    margin-bottom: -3px;
+    }
     .tableStyle {
         text-align: center;
         vertical-align:center;
@@ -30,10 +31,10 @@
 <form action='updateform' method="get" enctype="multipart/form-data">
     <span id="border"></span>
 <h1 style="text-align: center; margin-top:70px;">1:1문의 상세정보</h1>
-        <div class="container">
+        <div style=" margin-left: 20vw; margin-right: 15vw; margin-bottom: 100px; margin-top: 40px;" class="container">
                 <table class="table">
                 <tr>
-                  <th class="tableStyle" style="width:15vw;">문의항목</th>
+                  <th class="tableStyle" style="width:10vw;">문의항목</th>
                   <td colspan="3" data-th-text="${qna.category.name}"></td>
                 </tr>
                 <tr>
@@ -76,8 +77,8 @@
                    value='1'
                    data-th-value="${qna.no}"
                    readonly>
-                   <button><a href="./list">목록</a></button>
-                  <button type='submit'>수정</button>
+                   <button style="padding:3px 7px;"><a href="./list" style="text-decoration-line: none; color: black;">목록</a></button>
+                  <button style="padding:3px 7px; text-decoration-line: none" type='submit'>수정</button>
 
         </div>
     </form>
