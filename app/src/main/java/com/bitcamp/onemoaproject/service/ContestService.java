@@ -6,10 +6,14 @@ import com.bitcamp.onemoaproject.vo.contest.ContestTeam;
 import com.bitcamp.onemoaproject.vo.contest.ContestTeamField;
 import com.bitcamp.onemoaproject.vo.contest.ContestTeamFieldMember;
 import java.util.List;
+import java.util.Map;
+import java.util.concurrent.ExecutionException;
 
 public interface ContestService {
   // 공모전 리스트
-  List<Contest> list(String no, String ono, String sortCd) throws Exception;
+  List<Map<String, Object>> list(Map map) throws Exception;
+  // 공모전의 글 개수 조회
+  int listCount() throws ExecutionException;
   // 공모전 리스트
   List<Contest> list2(String no, String ono, String sortCd, String sortEd, String sortVw, String sortRw) throws Exception;
   // 공모전 상세정보
