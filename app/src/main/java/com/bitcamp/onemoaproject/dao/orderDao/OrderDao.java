@@ -1,7 +1,8 @@
-package com.bitcamp.onemoaproject.dao;
+package com.bitcamp.onemoaproject.dao.orderDao;
 
 import com.bitcamp.onemoaproject.vo.Qna;
 import com.bitcamp.onemoaproject.vo.order.Order;
+import com.bitcamp.onemoaproject.vo.order.OrderStatus;
 import com.bitcamp.onemoaproject.vo.product.AttachedFile;
 import com.bitcamp.onemoaproject.vo.product.Product;
 import org.apache.ibatis.annotations.Mapper;
@@ -26,6 +27,11 @@ public interface OrderDao {
 
   // 구매자의 회원번호로 구매내역 조회
   List<Order> findByBuyerNo(int no);
+
+//  int updateStatus(OrderStatus orderStatus, int orderNo);
+
+  int updateStatus(int orderStatus, int orderNo);
+
 }
 
 

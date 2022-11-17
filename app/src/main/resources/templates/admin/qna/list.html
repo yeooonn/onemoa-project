@@ -11,7 +11,14 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     <script src="/onemoa/js/onemoa.js"></script>
 </head>
+<style>
+    .tableStyle {
+        text-align: center;
+    }
+</style>
 <body>
+<div><img id="noticeBanner" src="../img/contestbg.png" alt=""></div>
+<div id="underBanner"></div>
 <ul class="myPage">
     <li class="mypageArea">
         <div class="mypageNav">
@@ -32,19 +39,19 @@
     </li>
     <li class="mypageArea">
         <div>
-            <h1 style="text-align: center;">1:1 문의 목록</h1>
+            <h1 style="text-align: center; padding-right: 10vw">1:1 문의 목록</h1>
             <div class="container">
-                <table style="width: 100vw" class="table">
+                <table style="width: 50vw" class="table">
                     <tr>
-                        <th>번호</th>
-                        <th>제목</th>
-                        <th>작성자</th>
-                        <th>등록일</th>
-                        <th>답변상태</th>
+                        <th class="tableStyle">번호</th>
+                        <th class="tableStyle">제목</th>
+                        <th class="tableStyle">작성자</th>
+                        <th class="tableStyle">등록일</th>
+                        <th class="tableStyle">답변상태</th>
 
                     <tr data-th-each="qna : ${qnas}">
-                        <td data-th-text="${qna.no}">100</td>
-                        <td>
+                        <td  class="tableStyle" data-th-text="${qna.no}">100</td>
+                        <td  class="tableStyle">
                             <!--        <tr data-th-each="qna, state : ${qnas}">-->
                             <!--            <td data-th-text="${state.count}">100</td>-->
                             <!--            <td>-->
@@ -52,11 +59,11 @@
                                data-th-href="@{answerdetail(no=${qna.no})}"
                                data-th-text="${qna.title == ''} ? '(제목없음)' : ${qna.title}">제목</a>
                         </td>
-                        <td data-th-text="${qna.writer.name}">홍길동</td>
-                    <td data-th-text="${#temporals.format(qna.createdDate, 'yyyy-MM-dd')}">2022-1-1</td>
-                        <td data-th-if="${qna.answer == null}"><a href='detail?no=1'
+                        <td class="tableStyle" data-th-text="${qna.writer.name}">홍길동</td>
+                    <td class="tableStyle" data-th-text="${#temporals.format(qna.createdDate, 'yyyy-MM-dd')}">2022-1-1</td>
+                        <td class="tableStyle" data-th-if="${qna.answer == null}"><a href='detail?no=1'
                                                                   data-th-href="@{answerdetail(no=${qna.no})}">답변대기</a></td>
-                        <td data-th-if="${qna.answer != null}">답변완료</td>
+                        <td class="tableStyle" data-th-if="${qna.answer != null}">답변완료</td>
                     </tr>
             </div>
         </div>

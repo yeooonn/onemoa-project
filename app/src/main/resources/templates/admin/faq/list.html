@@ -11,6 +11,11 @@
         <script src="/onemoa/js/onemoa.js"></script>
     </head>
 </head>
+<style>
+    .tableStyle {
+        text-align: center;
+    }
+</style>
 <body>
 <ul class="myPage">
     <li class="mypageArea">
@@ -39,18 +44,18 @@
 <!--                    <table>-->
                     <table class="table">
                         <tr>
-                            <th>번호</th>
-                            <th style="max-width: 60%;">제목</th>
-                            <th>유저타입</th>
+                            <th class="tableStyle">번호</th>
+                            <th class="tableStyle">제목</th>
+                            <th class="tableStyle">유저타입</th>
                         </tr>
                         <tr data-th-each="faq, state : ${faqs}">
-                            <td data-th-text="${state.count}">100</td>
-                            <td>
+                            <td class="tableStyle" style="width: 5vw" data-th-text="${state.count}">100</td>
+                            <td class="tableStyle" style="width: 80vw">
                                 <a href='detail?no=1'
                                    data-th-href="@{detail(no=${faq.no})}"
                                    data-th-text="${faq.title == ''} ? '(제목없음)' : ${faq.title}">제목</a>
                                 </td>
-                            <td data-th-text="${faq.type}">
+                            <td class="tableStyle" style="width: 10vw" data-th-text="${faq.type}">
                             </td>
                             </tr>
                     </table>

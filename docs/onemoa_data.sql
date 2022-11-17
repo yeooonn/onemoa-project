@@ -169,3 +169,11 @@ insert into qna_category (qnacno, name) value(2, '서비스 관련');
 insert into qna_category (qnacno, name) value(3, '가입/인증 관련');
 insert into qna_category (qnacno, name) value(4, '계정 정보 관련');
 insert into qna_category (qnacno, name) value(5, '개인 정보 관련');
+
+-- 직업번호 테이블
+insert into status_category (scno, name) values (1, '프리랜서');
+insert into status_category (scno, name) values (2, '직장인');
+insert into status_category (scno, name) values (3, '소상공인');
+insert into status_category (scno, name) values (4, '스타트업 창업자');
+insert into status_category (scno, name) values (5, '대학(원)생');
+insert into status_category (scno, name) values (6, '취업준비생');

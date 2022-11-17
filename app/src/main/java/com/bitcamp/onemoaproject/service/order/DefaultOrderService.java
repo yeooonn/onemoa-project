@@ -1,24 +1,20 @@
-package com.bitcamp.onemoaproject.service;
+package com.bitcamp.onemoaproject.service.order;
 
-import com.bitcamp.onemoaproject.dao.OrderDao;
-import com.bitcamp.onemoaproject.dao.productDao.ProductDao;
-import com.bitcamp.onemoaproject.service.productService.ProductService;
+import com.bitcamp.onemoaproject.dao.orderDao.OrderDao;
 import com.bitcamp.onemoaproject.vo.order.Order;
-import com.bitcamp.onemoaproject.vo.paging.Criteria;
-import com.bitcamp.onemoaproject.vo.product.AttachedFile;
-import com.bitcamp.onemoaproject.vo.product.Product;
+import com.bitcamp.onemoaproject.vo.order.OrderStatus;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-import java.util.Map;
 
 @Service
 public class DefaultOrderService implements OrderService {
 
+
   @Autowired
   OrderDao orderDao;
+
 
   public void add(Order order) throws Exception {
     if (orderDao.insert(order) == 0) {
@@ -26,9 +22,15 @@ public class DefaultOrderService implements OrderService {
     }
   }
 
-  public boolean update(Order order) throws Exception {
-    return orderDao.update(order) != 0;
+
+//  public boolean update(OrderStatus orderStatus, int orderNo) {
+//    return orderDao.updateStatus(orderStatus, orderNo) != 0;
+//  }
+
+  public boolean update(int orderStatus, int orderNo) {
+    return orderDao.updateStatus(orderStatus, orderNo) != 0;
   }
+
 
   public Order get(int no) throws Exception {
     return orderDao.findByNo(no);
@@ -47,8 +49,9 @@ public class DefaultOrderService implements OrderService {
   }
 
   public List<Order> buysList(int no) throws Exception {
-  return orderDao.findByBuyerNo(no);
+    return orderDao.findByBuyerNo(no);
   }
+
 
 //
 //  public List<Order> list() throws Exception {

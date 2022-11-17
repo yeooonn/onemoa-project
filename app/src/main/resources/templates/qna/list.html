@@ -2,45 +2,68 @@
 <html lang="ko">
 <head>
 <meta charset="UTF-8">
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" rel="stylesheet">
     <link href="/onemoa/css/onemoa.css" rel="stylesheet">
     <script src="/onemoa/js/login.js"></script>
 </head>
 <style>
-p { margin-bottom: -15px;
+.tableStyle {
+    text-align: center;
 }
-</style>
 
+</style>
 <body>
 <div data-th-replace="/fragments/nav.html :: fragment-nav"></div>
-<h1 style="text-align: center;">1:1 문의 목록</h1>
-    <div class="container">
-        <table class="table">
+<div><img id="noticeBanner" src="../img/contestbg.png" alt=""></div>
+<div id="underBanner"></div>
+<h1 style="text-align: center; padding-right: 10vw">1:1 문의 목록</h1>
+        <div style="margin-left: 20vw; margin-right: 20vw;">
+        <table style="margin-bottom: 5vw;" class="table">
           <tr>
-            <th>번호</th>
-            <th width="60%">제목</th>
-              <th>작성자</th>
-              <th>문의일</th>
-              <th>답변 등록일</th>
+            <th class="tableStyle">No</th>
+            <th class="tableStyle">제목</th>
+              <th class="tableStyle">작성자</th>
+              <th class="tableStyle">문의일</th>
+              <th class="tableStyle">답변 등록일</th>
 
             <tr data-th-each="qna : ${qnas}">
-                <td data-th-text="${qna.no}">100</td>
-                <td>
+                <td class="tableStyle" style="width: 5vw" data-th-text="${qna.no}">100</td>
+                <td class="tableStyle" style="width: 70vw" >
                   <a href='detail?no=1'
                     data-th-href="@{detail(no=${qna.no})}"
                     data-th-text="${qna.title == ''} ? '(제목없음)' : ${qna.title}">제목</a>
                 </td>
-                <td data-th-text="${qna.writer.name}">홍길동</td>
-            <td data-th-text="${#temporals.format(qna.createdDate, 'yyyy-MM-dd')}">문의일시</td>
-            <td data-th-text="${#temporals.format(qna.answerCdt, 'yyyy-MM-dd')}">문의일시</td>
+                <td class="tableStyle" style="width: 10vw"  data-th-text="${qna.writer.name}">홍길동</td>
+            <td class="tableStyle" style="width: 15vw"  data-th-text="${#temporals.format(qna.createdDate, 'yyyy-MM-dd')}">문의일시</td>
+            <td class="tableStyle" style="width: 12vw"  data-th-text="${#temporals.format(qna.answerCdt, 'yyyy-MM-dd')}">답변일시</td>
          </tr>
         </table>
+            <!-- 페이징 -->
+            <ul class="pagination justify-content-center">
+                <li class="page-item disabled" th:if="${pageMaker.prev}">
+                    <a class="page-link"
+                       th:href="@{list(pageMaker.startPage-1)}" aria-label="Previous">
+                        <span aria-hidden="true">이전페이지</span>
+                    </a>
+                </li>
+                <th:block th:each="pageNum: ${#numbers.sequence(pageMaker.startPage, pageMaker.endPage)}">
+                    <li class="page-item">
+                        <a class="page-link" th:href="@{list(page=${pageNum})}"><i th:text="${pageNum}"></i></a>
+                    </li>
+                </th:block>
+                <li class="page-item" th:if="${pageMaker.next && pageMaker.endPage >0}">
+                    <a class="page-link" th:href="@{list(page=${pageMaker.endPage+1})}" aria-label="Next">
+                        <span aria-hidden="true">다음페이지</span>
+                    </a>
+                </li>
+            </ul>
         <button type="button" class="btn btn-primary btn-sm" id="backToMain"><a href='form'>글 작성하기</a></button>
-    </div>
+        </div>
+            </div>
 <footer data-th-replace="/fragments/footer.html :: fragment-footer"></footer>
 </body>
 </html>

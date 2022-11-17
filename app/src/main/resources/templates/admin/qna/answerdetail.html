@@ -14,8 +14,9 @@
     <title>onemoa mypage</title>
 </head>
 <style>
-    div > th {
-        vertical-align: center;
+    .tableStyle {
+        text-align: center;
+        vertical-align:center;
     }
 
     #border {
@@ -32,25 +33,25 @@
         <div class="container">
                 <table class="table">
                 <tr>
-                  <th class="thstyle" style="width:120px;">문의항목</th>
+                  <th class="tableStyle" style="width:15vw;">문의항목</th>
                   <td colspan="3" data-th-text="${qna.category.name}"></td>
                 </tr>
                 <tr>
-                  <th>작성자</th>
+                  <th class="tableStyle">작성자</th>
                   <td data-th-text="${qna.writer.name}"></td>
-                  <td>문의일시</td>
-                  <td data-th-text="${#temporals.format(qna.createdDate, 'yy-MM-dd HH:mm')}">답글일시</td>
+                  <td style="font-weight:700; text-align: right">문의일시</td>
+                  <td style="text-align: left" data-th-text="${#temporals.format(qna.createdDate, 'yy-MM-dd HH:mm')}">답글일시</td>
                 </tr>
                 <tr>
-                  <th>제목</th>
+                  <th class="tableStyle">제목</th>
                   <td colspan="3"><textarea style="resize: none;" rows='1' cols='60' data-th-text="${qna.title}" readonly>></textarea></td>
                 </tr>
                 <tr>
-                  <th>문의내용</th>
+                  <th class="tableStyle">문의내용</th>
                   <td colspan="3"><textarea style="resize: none;" rows='4' cols='60' data-th-text="${qna.content}" readonly>></textarea></td>
                 </tr>
                 <tr>
-                  <th>첨부파일</th>
+                  <th class="tableStyle">첨부파일</th>
                   <td colspan="3">
                       <ul>
                           <li data-th-each="file : ${qna.qnaAttachedFiles}" style="float:left; margin-right:5%; list-style:none; width:10%">
@@ -64,13 +65,13 @@
 
                     </tr>
                     <tr>
-                        <th>답글 내용</th>
+                        <th class="tableStyle">답글 내용</th>
                         <td colspan="3" data-th-text="${qna.answer}">
 
                         </td>
                     </tr>
                     <tr>
-                        <th>답글 일시</th>
+                        <th class="tableStyle">답글 일시</th>
                         <td colspan="3" data-th-text="${#temporals.format(qna.answerCdt, 'yy-MM-dd HH:mm')}">답글일시</td>
                     </tr>
               </table>

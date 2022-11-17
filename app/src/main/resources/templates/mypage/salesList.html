@@ -3,14 +3,28 @@
 <head>
   <meta charset = "UTF-8">
   <title>onemoa mypage</title>
-  <link href="../css/onemoa.css" rel="stylesheet">
-  <link href="../css/onemoaMypage.css" rel="stylesheet">
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
   <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+  <link href="/onemoa/css/onemoa.css" rel="stylesheet">
+  <link href="/onemoa/css/onemoaMypage.css" rel="stylesheet">
   <script src="/onemoa/js/login.js"></script>
-  <script src="../js/onemoa.js"></script>
+  <script src="/onemoa/js/onemoa.js"></script>
   <style>
     .mypageArea {
       min-height: 60vw;
+    }
+
+    .mptxt2 {
+      width: 100%;
+    }
+    p {
+      margin-top: -2px;
+    }
+
+    #empty {
+      text-align: center;
+      margin-top: 20%;
     }
 
     .row {
@@ -97,17 +111,18 @@
       margin-bottom: 0px;
     }
 
-    #userBtn {
+    .userBtn {
       float: left;
-      position: fixed;
-      display: none;
+    }
+
+    .tableStyle {
+      text-align: center;
     }
 
   </style>
 </head>
 <body style="overflow-x: hidden">
 <div data-th-replace="/fragments/nav.html :: fragment-nav"></div>
-
 <ul class="myPage">
   <li class="mypageArea">
     <div class="nick">
@@ -132,48 +147,111 @@
   </li>
   <li class="mypageArea">
     <div class="mypagePortfolio">
-      <p class="mptxt2">판매관리<span class="addport"><a href="/onemoa/product/form">새 판매글 등록하기</a></span></p>
+      <p class="mptxt2" style="width: 100%">판매관리<span class="addport"><a href="/onemoa/product/form">새 판매글 등록하기</a></span></p>
       <div class="portfolioBoxCon">
         <ul class="portfolioList">
-          <li data-th-each="sale: ${sales}">
-            <a href="#" data-th-href="@{/order/detail(no=${sale.no})}" class="item">
-              <!-- bootstrap card -->
-              <div class="row">
-                <div class="col-sm-6 col-md-4">
-                  <div class="thumbnail">
-<!--                    <img data-th-src="@{/order/files/{path}(path=${product.thumbnail})}" alt="">-->
-                    <!--                    <img src="../img/naver.png" alt="...">-->
-                    <div class="caption">
-                      <p data-th-text="${sale.product.title}">Thumbnail label</p>
-                    </div>
-                  </div>
-
-                  <div id="price">
-                    <p data-th-text="${#numbers.formatInteger(sale.product.price, 3, 'COMMA')} + ' 원'">판매 가격</p>
-                    <p data-th-text="${sale.product.price}"></p>
-                  </div>
-
-                </div>
-              </div>
-            </a>
-<!--            <a href='portfolioDetail?ptNo=1' data-th-href="@{portfolioDetail?(ptNo=${portfolio.ptNo})}"><img data-th-src="${'/onemoa/portfolio/files/'+ portfolio.attachedFiles[0].filepath}" style="width: 255px; height: 255px;"></a>-->
-          </li>
+          <div id="empty" data-th-if="${#lists.isEmpty(sales)}"><img data-th-src="@{../img/emptysell.png}" width="20%" height="20%"/>
+            <p><br>판매한 상품이 없습니다.</p></div>
+          <div data-th-if="${!#lists.isEmpty(sales)}">
+          <table class="table">
+            <th class="tableStyle">주문번호</th>
+            <th class="tableStyle">상품이름</th>
+            <th class="tableStyle">주문자</th>
+            <th class="tableStyle">결제금액</th>
+            <th class="tableStyle">결제일시</th>
+            <th class="tableStyle">주문상태</th>
+            <th class="tableStyle">상태변경</th>
+              <tr data-th-each="sale: ${sales}">
+                <td class="tableStyle" data-th-value="${sale.no}" data-th-text="${sale.no}">상품번호들어가요오</td>
+                <td class="tableStyle" data-th-text="${sale.product.title}">상품이름들어가요오</td>
+                <td class="tableStyle" data-th-text="${sale.buyer.nickname}">주문한사람들어가요오</td>
+                <td class="tableStyle" data-th-text="${#numbers.formatInteger(sale.product.price, 3, 'COMMA')} + ' 원'">결제금액들어가요오</td>
+                <td class="tableStyle" data-th-text="${#temporals.format(sale.createdDate, 'yyyy-MM-dd')}">결제일시들어가요</td>
+                  <td class="tableStyle">
+                    <select id="selectBox2" name="orderStatus.no" disabled>
+                      <option id="nowStatus" selected data-th-value="${sale.orderStatus.no}"
+                              data-th-text="${sale.orderStatus.name}"></option>
+                      <option data-th-each="oStatus : ${orderStatuses}"
+                              data-th-if="${sale.orderStatus.no != oStatus.no}"
+                              data-th-value="${oStatus.no}"
+                              value="${oStatus.no}"
+                              data-th-text="${oStatus.name}"></option>
+                    </select>
+                  </td>
+                  <td class="tableStyle">
+                    <button class="userBtn" data-th-id="'update-btn-'+${sale.no}" data-th-onclick="edit([[${sale.no}]])">수정하기</button>
+                    <button class="userBtn" data-th-id="'save-btn-'+${sale.no}" hidden>저장하기</button>
+                  </td>
+              </tr>
+            </table>
+          </div>
         </ul>
       </div>
     </div>
-
-
-    <ul class="portfolioList">
-<!--      <li data-th-each="portfolio : ${portfolios}">-->
-<!--        <a href="firstportfolio?ptNo=1" onClick="window.open(this.href, '', 'width=1000px, height=1080px')"; target="_blank"  data-th-href="@{firstportfolio?(ptNo=${portfolio.ptNo})}">- https://onemoa/portfolio1</a>-->
-<!--      </li>-->
-    </ul>
-
   </li>
 </ul>
-
-<footer data-th-replace="/fragments/footer.html :: fragment-footer"></footer>
 <script>
+
+  const edit = function (saleNo) {
+    console.log(saleNo);
+    $("#update-btn-" + saleNo).closest("tr").find("select").attr("disabled", false);
+    $("#update-btn-" + saleNo).attr("style", "display:none");
+    $("#save-btn-" + saleNo).attr("style", "display:block");
+
+    $("#save-btn-"  + saleNo).off().click(function (){
+      const orderStatus = $("#update-btn-" + saleNo).closest("tr").find("select").val();
+      const orderNo = $("#update-btn-" + saleNo).closest("tr").children('td:eq(0)').attr("value");
+
+      console.log("변경한 주문상태 값(value) : " + orderStatus);
+      console.log("고유한 주문 번호(value) : " + orderNo);
+
+      $.ajax({
+        type: "POST",
+        url: "/onemoa/mypage/updateStatus",
+        data: {"orderNo": orderNo, "orderStatus": orderStatus},
+        success: function (result) {
+          $("#update-btn-" + saleNo).closest("tr").find("select").attr("disabled", true);
+          $("#update-btn-" + saleNo).attr("style", "display:block");
+          $("#save-btn-" + saleNo).attr("style", "display:none");
+        }
+      })
+    });
+  }
+
+
 </script>
+<footer data-th-replace="/fragments/footer.html :: fragment-footer"></footer>
 </body>
 </html>
+
+<!--선택된 벨류값을 인풋에 넣어줘라 자바스크립트로-->
+<!--1. 업데이트로 disabled 풀렸을때-->
+<!--수정 버튼으로 변경되고-->
+<!--수정 누르면 변경되고-->
+<!--다시 1번 상태로-->
+<!--
+
+-->
+
+<!--<li data-th-each="sale: ${sales}">-->
+<!--  <a href="#" data-th-href="@{/order/detail(no=${sale.no})}" class="item">-->
+<!--    &lt;!&ndash; bootstrap card &ndash;&gt;-->
+<!--    <div class="row">-->
+<!--      <div class="col-sm-6 col-md-4">-->
+<!--        <div class="thumbnail">-->
+<!--          &lt;!&ndash;                    <img data-th-src="@{/order/files/{path}(path=${product.thumbnail})}" alt="">&ndash;&gt;-->
+<!--          &lt;!&ndash;                    <img src="../img/naver.png" alt="...">&ndash;&gt;-->
+<!--          <div class="caption">-->
+<!--            <p data-th-text="${sale.product.title}">Thumbnail label</p>-->
+<!--          </div>-->
+<!--        </div>-->
+
+<!--        <div id="price">-->
+<!--          <p data-th-text="${#numbers.formatInteger(sale.product.price, 3, 'COMMA')} + ' 원'">판매 가격</p>-->
+<!--          <p data-th-text="${sale.product.price}"></p>-->
+<!--        </div>-->
+
+<!--      </div>-->
+<!--    </div>-->
+<!--  </a>-->
+<!--</li>-->

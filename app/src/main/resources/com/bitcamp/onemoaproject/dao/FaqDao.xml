@@ -13,26 +13,26 @@
 
   <select id="findAll" resultMap="faqMap">
       select
-      faqno,
-      title,
-      cont,
-      type
-       from
-      faq
+        faqno,
+        title,
+        cont,
+        type
+      from
+        faq
       order by
         faqno desc
   </select>
 
     <select id="findByNo" resultMap="faqMap">
     select
-      faqno,
-      title,
-      cont,
-      type
-      from
-      faq
+        faqno,
+        title,
+        cont,
+        type
+        from
+        faq
       where
-      faqno=#{value}
+        faqno=#{value}
   </select>
 
   <insert id="insert" parameterType="faq"
@@ -52,6 +52,27 @@
     delete from faq
     where faqno=#{value}
   </delete>
+
+  <select id="findAllList" resultMap="faqMap" parameterType="criteria">
+    select
+      faqno,
+      title,
+      cont,
+      type
+    from
+      faq
+    order by
+      faqno desc
+    limit #{pageStart}, #{perPageNum}
+  </select>
+
+  <!-- 페이징을 위해 게시글 개수 조회 -->
+  <select id="findAllCount" resultType="Integer">
+    select
+      count(*)
+    from
+      faq
+  </select>
 
 <!--  <delete id="deleteByMember">-->
 <!--    delete from app_board -->

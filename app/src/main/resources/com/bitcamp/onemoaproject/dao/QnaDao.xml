@@ -97,18 +97,24 @@
   </insert>
 
   <update id="update" parameterType="qna">
-    update qna set
+    update
+      qna
+    set
       title=#{title},
       cont=#{content},
       qnacno=#{category.no}
-    where qnano=#{no}
+    where
+      qnano=#{no}
   </update>
 
   <update id="answerUpdate" parameterType="qna">
-    update qna set
-    answer=#{answer},
-    answercdt=now()
-    where qnano=#{no}
+    update
+      qna
+    set
+      answer=#{answer},
+      answercdt=now()
+    where
+      qnano=#{no}
   </update>
 
   <delete id="delete">

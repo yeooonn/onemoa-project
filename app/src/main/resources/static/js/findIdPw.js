@@ -5,7 +5,7 @@ $("#findByIdBtn").click(() => {
   $.ajax({
     type: "POST",
     url: "/onemoa/member/findById",
-    data: {name: name, email, email},
+    data: {name: name, email: email},
     success: function (result) {
       $("#memberId").css("display", "block");
       $("#memberId").val(email);

@@ -2,34 +2,45 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.bitcamp.onemoaproject.dao.OrderDao">
+<mapper namespace="com.bitcamp.onemoaproject.dao.orderDao.OrderDao">
 
   <resultMap type="order" id="orderMap">
     <id column="pono" property="no"/>
     <result column="cdt" property="createdDate"/>
-    <result column="status" property="status"/>
     <result column="pstno" property="postNo"/>
     <result column="base_addr" property="baseAddr"/>
     <result column="detail_addr" property="detailAddr"/>
 
     <association property="buyer" javaType="member">
       <id column="mno" property="no"/>
+      <result column="nick" property="nickname"/>
+    </association>
+
+    <association property="orderStatus" javaType="orderStatus">
+      <id column="scno" property="no"/>
+      <result column="name" property="name"/>
     </association>
 
     <association property="product" javaType="product">
       <id column="pno" property="no"/>
+      <result column="mno" property="no"/>
       <result column="title" property="title"/>
       <result column="price" property="price"/>
       <result column="thumbnail" property="thumbnail"/>
-    </association>
 
+      <association property="writer" javaType="member">
+        <id column="mno" property="no"/>
+        <result column="nick" property="nickname"/>
+        <result column="profile" property="profile"/>
+      </association>
+    </association>
   </resultMap>
 
   <select id="findAll" resultMap="orderMap">
     select
       o.pono,
       o.pno,
-      o.status,
+      o.scno,
       o.cdt,
       p.title
     from
@@ -43,37 +54,52 @@
     select
       o.pono,
       o.pno,
-      o.status,
+      o.scno,
       o.cdt,
       p.title,
       p.mno,
-      p.price
+      p.price,
+      m.nick,
+      os.scno,
+      os.name
     from
       product_order o
       join product p on o.pno=p.pno
+      join member m on o.mno=m.mno
+      join order_status os on os.scno=o.scno
     where
       p.mno=#{value}
+    order by
+      cdt desc
   </select>
 
   <select id="findByBuyerNo" resultMap="orderMap">
     select
       o.pono,
       o.pno,
-      o.status,
+      o.scno,
       o.cdt,
-      p.title
+      p.title,
+      p.price,
+      m.nick,
+      os.scno,
+      os.name
     from
       product_order o
-      join product p on o.pno = p.pno
+      join product p on o.pno=p.pno
+      join member m on p.mno=m.mno
+      join order_status os on os.scno=o.scno
     where
       o.mno=#{value}
+    order by
+      cdt desc
   </select>
 
   <select id="findByNo" resultMap="orderMap">
     select
       o.pono,
       o.pno,
-      o.status,
+      o.scno,
       o.cdt,
       p.title,
       p.price,
@@ -95,10 +121,27 @@
 
 <!--  </update>-->
 
+<!--  <update id="updateStatus">-->
+<!--    update-->
+<!--      product_order-->
+<!--    set-->
+<!--      scno=#{orderStatus.no}-->
+<!--    where-->
+<!--      pono=#{orderNo}-->
+<!--  </update>-->
+
+  <update id="updateStatus">
+    update
+    product_order
+    set
+    scno=#{orderStatus}
+    where
+    pono=#{orderNo}
+  </update>
+
   <delete id="delete">
     delete
     from product_order
     where pono=#{value}
   </delete>
-
 </mapper>

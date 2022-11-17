@@ -13,10 +13,10 @@
 </head>
 <body>
 <form action='add' method="post">
-    <h1 style="text-align: center;">새글을 입력해주세요.</h1>
-    <div class="container">
+    <h1 style="text-align: center;">새 FAQ 등록</h1>
+    <div style="width: 40vw;" class="container">
         <table class="table">
-            <th>타입</th>
+            <th style="text-align:center">타입</th>
             <td>
             <select name="type">
                 <option value="타입을 선택해주세요." selected>타입을 선택해주세요.</option>
@@ -25,12 +25,12 @@
             </select>
             </td>
             <tr>
-                <th>제목</th>
-                <td><input name="title" style="width: 50%;" placeholder="제목을 입력해주세요."></td>
+                <th style="text-align:center">제목</th>
+                <td><input name="title" style="width: 43%;" placeholder="제목을 입력해주세요." required></td>
             </tr>
             <tr>
-                <th>설명</th>
-                <td><textarea name="content" style="resize: none;" rows='10' cols='60' placeholder="내용을 입력해주세요."></textarea></td>
+                <th style="text-align:center">내용</th>
+                <td><textarea name="content" style="resize: none;" rows='10' cols='60' placeholder="내용을 입력해주세요." required></textarea></td>
             </tr>
         </table>
     <p style="text-align: center; float:left;">
