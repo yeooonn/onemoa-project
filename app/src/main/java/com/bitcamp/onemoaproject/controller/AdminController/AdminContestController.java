@@ -1,8 +1,13 @@
 package com.bitcamp.onemoaproject.controller.AdminController;
 
+import com.bitcamp.onemoaproject.vo.Member;
+import com.bitcamp.onemoaproject.vo.paging.Criteria;
+import com.bitcamp.onemoaproject.vo.paging.PageMaker;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
@@ -43,14 +48,32 @@ public class AdminContestController {
 
   // 공모전 목록(관리자 페이지)
   @GetMapping("contestList")
-  public String list(Model model, String no, String ono, String sortCd, String sortEd, String sortVw, String sortRw) throws Exception {
-    model.addAttribute("contests", contestService.list2(no, ono, sortCd, sortEd, sortVw, sortRw));
+  public String list(Criteria cri, Model model, String no, String ono, String sortCd, String sortEd, String sortVw, String sortRw) throws Exception {
+    if (no == null) {
+      no = "all";
+    }
+    cri.setPerPageNum(10);
+    PageMaker pageMaker = new PageMaker();
+    pageMaker.setCri(cri);
+    pageMaker.setTotalCount(contestService.listCount());
+  
+    Map<String, Object> map = new HashMap<>();
+    map.put("cri", cri);
+    map.put("no", no);
+    map.put("ono", ono);
+    map.put("sortCd", sortCd);
+    map.put("sortEd", sortEd);
+    map.put("sortVw", sortVw);
+    map.put("sortRw", sortRw);
+  
+    model.addAttribute("contests", contestService.list(map));
     model.addAttribute("no", no);
     model.addAttribute("ono", ono);
     model.addAttribute("sortCd", sortCd);
     model.addAttribute("sortEd", sortEd);
     model.addAttribute("sortVw", sortVw);
     model.addAttribute("sortRw", sortRw);
+    model.addAttribute("pageMaker", pageMaker);
     return "admin/contest/contestList";
   }
 

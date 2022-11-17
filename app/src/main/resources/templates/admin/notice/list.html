@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset = "UTF-8">
+    <title>onemoa mypage</title>
+    <link href="/onemoa/css/onemoa.css" rel="stylesheet">
+    <link href="/onemoa/css/onemoaMypage.css" rel="stylesheet">
+    <link href="/onemoa/css/onemoaManage.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="/onemoa/js/onemoa.js"></script>
+  </head>
+
+</head>
+<body>
+  <ul class="myPage">
+    <li class="mypageArea">
+      <div class="mypageNav">
+        <div class="myonemoa">
+          <p>관리자페이지</p>
+          <span class="mybar">
+        </div>
+        <ul class="mynav">
+          <li><a class="font2" href="/onemoa/admin/member/memberList">회원관리</a></li>
+          <li><a class="font2" href="/onemoa/admin/contest/contestList">공모전관리</a></li>
+          <li><a class="font2" href="">재능판매관리</a></li>
+          <li><a class="font2" href="/onemoa/admin/qna/list">1:1문의관리</a></li>
+          <li><a class="font2" href="/onemoa/admin/faq/list">FAQ관리</a></li>
+          <li><a class="font" href="/onemoa/admin/notice/list">공지사항관리</a></li>
+          <li><a class="font2" href="">카테고리관리</a></li>
+        </ul>
+      </div>
+    </li>
+    <li class="mypageArea">
+      <div class="contestList">
+        <h1>공지사항관리</h1>
+
+        <table class="table">
+          <thead>
+          <tr>
+            <th class="tableStyle" style="width: 5vw">No</th>
+            <th class="tableStyle" style="width: 50vw">제목</th>
+            <th class="tableStyle" style="width: 10vw">작성자</th>
+            <th class="tableStyle" style="width: 10vw">등록일</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr data-th-each="notice, state : ${notices}">
+            <td class="tableStyle" data-th-text="${notice.no}">3</td>
+            <td class="tableStyle">
+              <a href='detail?no=1'
+                 data-th-href="@{detail(no=${notice.no})}"
+                 data-th-text="${notice.title == ''} ? '(제목없음)' : ${notice.title}">제목</a>
+            </td>
+            <td class="tableStyle">관리자</td>
+            <td class="tableStyle" data-th-text="${notice.createdDate}">등록일</td>
+          </tr>
+          </tbody>
+        </table>
+        <button type="button" class="btn btn-primary btn-sm" id="backToMain"><a href="./form">새 공지사항 등록</a></button>
+      </div>
+    </li>
+  </ul>
+
+  <div class="nextBox">
+    <nav class="xx-nav" aria-label="pagination">
+      <ul class="xx-pagination">
+        <li data-th-if="${pageMaker.prev}">
+          <a data-th-href="@{list(pageMaker.startPage-1)}"><span aria-hidden="true">이전페이지</span><span class="xx-visuallyhidden">previous set of pages</span></a>
+        </li>
+        <data-th-block data-th-each="pageNum: ${#numbers.sequence(pageMaker.startPage, pageMaker.endPage)}">
+          <li><a data-th-href="@{list(page=${pageNum})}"><span class="xx-visuallyhidden">page </span><span data-th-text="${pageNum}"></span></a></li>
+        </data-th-block>
+        <li data-th-if="${pageMaker.next && pageMaker.endPage >0}">
+          <a data-th-href="@{list(page=${pageMaker.endPage+1})}"><span class="xx-visuallyhidden">next set of pages</span><span aria-hidden="true">다음페이지</span></a>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</body>
+</html>
+
+
+
+    
