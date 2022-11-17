@@ -63,6 +63,26 @@
                                                                   data-th-href="@{answerdetail(no=${qna.no})}">답변대기</a></td>
                         <td class="tableStyle" data-th-if="${qna.answer != null}">답변완료</td>
                     </tr>
+                    </table>
+                <!-- 페이징 -->
+                <ul class="pagination justify-content-center">
+                    <li class="page-item disabled" th:if="${pageMaker.prev}">
+                        <a class="page-link"
+                           th:href="@{list(pageMaker.startPage-1)}" aria-label="Previous">
+                            <span aria-hidden="true">이전페이지</span>
+                        </a>
+                    </li>
+                    <th:block th:each="pageNum: ${#numbers.sequence(pageMaker.startPage, pageMaker.endPage)}">
+                        <li class="page-item">
+                            <a class="page-link" th:href="@{list(page=${pageNum})}"><i th:text="${pageNum}"></i></a>
+                        </li>
+                    </th:block>
+                    <li class="page-item" th:if="${pageMaker.next && pageMaker.endPage >0}">
+                        <a class="page-link" th:href="@{list(page=${pageMaker.endPage+1})}" aria-label="Next">
+                            <span aria-hidden="true">다음페이지</span>
+                        </a>
+                    </li>
+                </ul>
             </div>
         </div>
     </li>

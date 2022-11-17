@@ -73,7 +73,7 @@ public class QnaController {
     model.addAttribute("qnas", qnaService.list());
     }
   }
-//
+
 //  @GetMapping("list")
 //  public String list111(Model model, HttpSession session) throws Exception {
 //    Member loginMember = (Member) session.getAttribute("loginMember");

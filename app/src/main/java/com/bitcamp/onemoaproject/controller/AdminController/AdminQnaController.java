@@ -4,6 +4,8 @@ import com.bitcamp.onemoaproject.service.QnaService;
 import com.bitcamp.onemoaproject.vo.Member;
 import com.bitcamp.onemoaproject.vo.Qna;
 import com.bitcamp.onemoaproject.vo.QnaAttachedFile;
+import com.bitcamp.onemoaproject.vo.paging.Criteria;
+import com.bitcamp.onemoaproject.vo.paging.PageMaker;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -40,9 +42,17 @@ public class AdminQnaController {
     return map;
   }
 
+  // 페이징 적용
   @GetMapping("list")
-  public void list(Model model) throws Exception {
-    model.addAttribute("qnas", qnaService.list());
+  public void list(Criteria cri, Model model) throws Exception {
+    PageMaker pageMaker = new PageMaker();
+    pageMaker.setCri(cri);
+    pageMaker.setTotalCount(qnaService.listCount());
+    List<Map<String, Object>> qnas = qnaService.list(cri);
+
+    model.addAttribute("qnas", qnas);
+    model.addAttribute("pageMaker", pageMaker);
+    System.out.println("pageMaker = " + pageMaker);
   }
 
   @GetMapping("answerdetail")

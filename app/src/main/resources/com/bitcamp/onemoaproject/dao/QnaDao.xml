@@ -161,6 +161,30 @@
       where
     qnafno=#{value}
   </select>
+
+  <!-- 페이징 -->
+  <select id="findAllList" resultMap="qnaMap" parameterType="criteria">
+    select
+      q.qnano,
+      q.title,
+      q.cdt,
+      m.name
+    from
+      qna q
+      join member m on q.mno=m.mno
+    order by
+      qnano desc
+    limit #{pageStart}, #{perPageNum}
+  </select>
+
+  <!-- 페이징을 위해 게시글 개수 조회 -->
+  <select id="findAllCount" resultType="Integer">
+    select
+      count(*)
+    from
+      qna
+  </select>
+
 </mapper>
 
 

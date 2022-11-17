@@ -3,11 +3,14 @@ package com.bitcamp.onemoaproject.service;
 import com.bitcamp.onemoaproject.dao.QnaDao;
 import com.bitcamp.onemoaproject.vo.QnaAttachedFile;
 import com.bitcamp.onemoaproject.vo.Qna;
+import com.bitcamp.onemoaproject.vo.paging.Criteria;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Map;
+import java.util.concurrent.ExecutionException;
 
 @Service
 public class DefaultQnaService implements QnaService {
@@ -84,6 +87,17 @@ public class DefaultQnaService implements QnaService {
   @Override
   public boolean deleteAttachedFile(int fileNo) throws Exception {
     return qnaDao.deleteFile(fileNo) > 0;
+  }
+
+  // 페이징
+  @Override
+  public List<Map<String, Object>> list(Criteria cri) throws Exception {
+    return qnaDao.findAllList(cri);
+  }
+
+  @Override
+  public int listCount() throws ExecutionException {
+    return qnaDao.findAllCount();
   }
 
 }
