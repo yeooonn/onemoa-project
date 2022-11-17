@@ -6,11 +6,14 @@
         <link href="/onemoa/css/onemoa.css" rel="stylesheet">
         <link href="/onemoa/css/onemoaMypage.css" rel="stylesheet">
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-        <link href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" rel="stylesheet">
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
         <script src="/onemoa/js/onemoa.js"></script>
     </head>
 </head>
+<style>
+    .tableStyle {
+        text-align: center;
+    }
+</style>
 <body>
 <ul class="myPage">
     <li class="mypageArea">
@@ -21,10 +24,10 @@
             </div>
             <ul class="mynav">
                 <li><a class="font2" href="/onemoa/admin/member/memberList">회원관리</a></li>
-                <li><a class="font" href="contestList">공모전관리</a></li>
+                <li><a class="font2" href="/onemoa/admin/contest/contestList">공모전관리</a></li>
                 <li><a class="font2" href="">재능판매관리</a></li>
-                <li><a class="font2" href="">1:1문의관리</a></li>
-                <li><a class="font2" href="">FAQ관리</a></li>
+                <li><a class="font2" href="/onemoa/admin/qna/list">1:1문의관리</a></li>
+                <li><a class="font" href="/onemoa/admin/faq/list">FAQ관리</a></li>
                 <li><a class="font2" href="">공지사항관리</a></li>
                 <li><a class="font2" href="">카테고리관리</a></li>
             </ul>
@@ -39,19 +42,19 @@
 <!--                    <table>-->
                     <table class="table">
                         <tr>
-                            <th>번호</th>
-                            <th style="max-width: 60%;">제목</th>
+                            <th class="tableStyle">번호</th>
+                            <th class="tableStyle">제목</th>
+                            <th class="tableStyle">유저타입</th>
                         </tr>
-                        <tr>
-
                         <tr data-th-each="faq, state : ${faqs}">
-                            <td data-th-text="${state.count}">100</td>
-                            <td>
+                            <td class="tableStyle" style="width: 5vw" data-th-text="${state.count}">100</td>
+                            <td class="tableStyle" style="width: 80vw">
                                 <a href='detail?no=1'
                                    data-th-href="@{detail(no=${faq.no})}"
                                    data-th-text="${faq.title == ''} ? '(제목없음)' : ${faq.title}">제목</a>
                                 </td>
-                                </td>
+                            <td class="tableStyle" style="width: 10vw" data-th-text="${faq.type}">
+                            </td>
                             </tr>
                     </table>
                 <p>

@@ -2,10 +2,13 @@ package com.bitcamp.onemoaproject.service;
 
 import com.bitcamp.onemoaproject.dao.FaqDao;
 import com.bitcamp.onemoaproject.vo.Faq;
+import com.bitcamp.onemoaproject.vo.paging.Criteria;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Map;
+import java.util.concurrent.ExecutionException;
 
 @Service
 public class DefaultFaqService implements FaqService {
@@ -43,6 +46,21 @@ public class DefaultFaqService implements FaqService {
   @Override
   public List<Faq> list() throws Exception {
     return faqDao.findAll();
+  }
+
+  public List<Faq> list(String type) {
+    return faqDao.findAll(type);
+  }
+
+  // 페이징
+  @Override
+  public List<Map<String, Object>> list(Criteria cri) throws Exception {
+    return faqDao.findAllList(cri);
+  }
+
+  @Override
+  public int listCount() throws ExecutionException {
+    return faqDao.findAllCount();
   }
 }
 

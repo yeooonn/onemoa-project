@@ -18,6 +18,14 @@
     }
   </style>
 </head>
+<style>
+
+    .tableStyle {
+        text-align: center;
+    }
+
+</style>
+
 <body style="overflow-x: hidden">
 
 <div data-th-replace="/fragments/nav.html :: fragment-nav"></div>
@@ -31,23 +39,22 @@
       <table class="table">
         <thead>
          <tr>
-           <th>No</th>
-           <th>제목</th>
-           <th>작성자</th>
-           <th>등록일</th>
+           <th class="tableStyle" style="width: 5vw">No</th>
+           <th class="tableStyle" style="width: 50vw">제목</th>
+           <th class="tableStyle" style="width: 10vw">작성자</th>
+           <th class="tableStyle" style="width: 10vw">등록일</th>
          </tr>
         </thead>
         <tbody>
          <tr data-th-each="notice, state : ${notices}">
-<!--          <td th:utext="${state.count}">3</td>-->
-          <td data-th-text="${notice.no}">3</td>
-          <td>
+          <td class="tableStyle" th:utext="${state.count}">3</td>
+          <td class="tableStyle">
             <a href='detail?no=1'
               data-th-href="@{detail(no=${notice.no})}"
               data-th-text="${notice.title == ''} ? '(제목없음)' : ${notice.title}">제목</a>  
           </td>
-          <td>관리자</td>
-          <td data-th-text="${notice.createdDate}">등록일</td>
+          <td class="tableStyle">관리자</td>
+          <td class="tableStyle" data-th-text="${notice.createdDate}">등록일</td>
           <!-- 수정/삭제 버튼  -->
          </tr>
         </tbody>

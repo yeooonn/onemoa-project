@@ -87,7 +87,7 @@
                 </td>
                 <td id="productPrice" data-th-value="${order.product.price}" data-th-text="${#numbers.formatInteger(order.product.price, 3, 'COMMA')} + ' 원'">상품 가격</td>
                 <td data-th-text="${#temporals.format(order.createdDate, 'yy-MM-dd HH:mm')}">결제일시</td>
-                <td data-th-text="${order.status}">주문상태</td>
+                <td data-th-text="${order.orderStatus.name}">주문상태</td>
             </tr>
             </tbody>
         </table>

@@ -10,6 +10,7 @@
         <result column="cont" property="content"/>
         <result column="cdt" property="createdDate"/>
         <result column="score" property="score"/>
+        <result column="pono" property="pono"/>
 
         <association property="writer" javaType="member">
             <id column="mno" property="no"/>
@@ -29,14 +30,13 @@
             <result column="thumbnailpath" property="thumbnail"/>
             <result column="scope" property="scope"/>
         </association>
-
     </resultMap>
 
     <select id="findAll" resultMap="productReviewMap">
         select
           prno,
           mno,
-          pno,
+          pono,
           title,
           cont,
           cdt,
@@ -62,7 +62,7 @@
           product_review rw
           join member m on rw.mno=m.mno
         where
-          pno=#{value}
+          pono=#{value}
     </select>
 
     <select id="getAverage" resultType="double">
@@ -71,7 +71,7 @@
         from
           product_review rv
         where
-          pno=#{value}
+          pono=#{value}
     </select>
 
     <select id="count" resultType="java.lang.Integer">
@@ -80,7 +80,7 @@
         from
           product_review
         where
-          pno=#{value}
+          pono=#{value}
     </select>
 
 </mapper>

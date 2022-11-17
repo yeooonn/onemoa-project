@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<html lang="ko">
 <head>
   <meta charset="UTF-8">
   <link href="/onemoa/css/onemoa.css" rel="stylesheet">
@@ -9,6 +10,16 @@
   <title>onemoa</title>
 
 </head>
+<style>
+  #backToMain a {
+    color : white;
+  }
+
+  #backToMain a:hover{
+    color : white;
+    text-decoration: none;
+  }
+</style>
 <body>
 <div data-th-replace="/fragments/nav.html :: fragment-nav"></div>
 <div><img id="noticeBanner" src="../img/contestbg.png" alt=""></div>
@@ -23,9 +34,8 @@
       </tr>
       <tr>
         <th>내용</th>
-        <td data-th-utext="${faq.content}">내용</td>
+        <td data-th-text="${faq.content}">내용</td>
       </tr>
-      <tr>
       </tbody>
     </table>
     <div class="buttons">
