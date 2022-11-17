@@ -524,7 +524,7 @@ footer .detail span {
   top: 50%;
   left: 50%;
   width: 29.833%;
-  height: 50%;
+  height: 60%;
   padding: 40px;
   text-align: center;
   background-color: rgb(255, 255, 255);
@@ -651,9 +651,9 @@ label[for="label-a"] {
 .contest .contestctg .conctg li:nth-of-type(1) {
   margin-left: 4.687%;
 }
-.contest .contestctg .conctg li:nth-of-type(2) a {
-  color: #000;
-}
+/*.contest .contestctg .conctg li:nth-of-type(2) a {*/
+/*  color: #000;*/
+/*}*/
 .contest .contestctg .conctg li:hover a {
   color: #000;
   border-bottom: 2px solid #000;
@@ -671,9 +671,9 @@ label[for="label-a"] {
   float: left;
   margin-right: 1.093%;
 }
-.contest .contestctg .contype li:nth-of-type(1) a {
-  color: #000;
-}
+/*.contest .contestctg .contype li:nth-of-type(1) a {*/
+/*  color: #000;*/
+/*}*/
 .contest .contestctg .contype li:hover a {
   color: #000;
 }
@@ -693,9 +693,9 @@ label[for="label-a"] {
   position: relative;
   right: 4.687%;
 }
-.contest .contestctg .contype2 li:nth-of-type(4) a {
-  color: #000;
-}
+/*.contest .contestctg .contype2 li:nth-of-type(4) a {*/
+/*  color: #000;*/
+/*}*/
 .contest .contestctg .contype2 li:hover a {
   color: #000;
 }
@@ -2574,30 +2574,23 @@ label[for="label-a"] {
   margin-inline-end: 0px;
   padding-inline-start: 10px;
 }
-
 #productList li {
   text-decoration: none;
   list-style: none;
   margin-bottom: 5px;
 }
-
-
 #productList .menu a
 {
   cursor:pointer;
 }
-
 #productList .menu p, button {
   cursor:pointer;
   margin-top: 0px;
 }
-
 #productList .menu .hide {display:none;}
-
 .menu .cate1 {
   font-size: 1.8vw;
 }
-
 .product_container {
   display: grid;
   gap: 40px 25px;
@@ -2606,12 +2599,10 @@ label[for="label-a"] {
   margin-top: 4vw;
   margin-right: 3vw;
 }
-
 .item > * {
   display: block;
   margin: auto;
 }
-
 /*.item > img {*/
 /*  margin: 0px auto;*/
 /*  width: 90%;*/
@@ -2621,8 +2612,6 @@ label[for="label-a"] {
   height: 25vw;
   width: 100%;
 }
-
-
 .options {
   float: right;
   display: block;
@@ -2630,35 +2619,74 @@ label[for="label-a"] {
   margin-bottom: 1vw;
   margin-right: 3vw;
 }
-
 .options a {
   float: right;
   display: inline;
   margin-bottom: 0;
   margin-right: 10px;
 }
-
 #maincategory {
   font-size: 2.5vw;
   margin-top: 1vw;
   margin-left: 1vw;
 }
-
 #underBanner {
   min-height :20px;
   padding-top: 2.5vw;
   padding-left: 4vw;
   padding-right: 3vw;
 }
-
 #underBanner p, button {
   font-size: 2.7vw;
   margin: 0 0;
-
 }
-
 #underBanner p span, button {
   font-size: 1vw;
   margin: 0 0 0 20px;
   float : right;
+}
+.font {
+  font-weight: bold;
+}
+.font2 {
+  font-weight: normal;
+}
+/*페이징 css*/
+.xx-visuallyhidden {
+  border: 0;
+  clip: rect(0 0 0 0);
+  height: auto;
+  margin: 0;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px;
+  white-space: nowrap;
+}
+.xx-nav {
+  display: flex;
+  justify-content: center;
+  border-top: 1px solid #eee;
+  margin-top: 1em;
+  padding-top: .5em;
+}
+.xx-pagination {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+}
+.xx-pagination li {
+  margin: 0 1px;
+}
+.xx-pagination a {
+  display: block;
+  padding: .5em 1em;
+  border: 1px solid #999;
+  border-radius: .2em;
+  text-decoration: none;
+}
+.xx-pagination a[aria-current="page"] {
+  background-color: #333;
+  color: #fff;
 }

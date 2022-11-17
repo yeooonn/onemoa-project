@@ -5,6 +5,8 @@ import com.bitcamp.onemoaproject.vo.contest.ContestTeamField;
 import com.bitcamp.onemoaproject.vo.contest.ContestTeamFieldMember;
 import com.bitcamp.onemoaproject.vo.contest.ContestTeamFieldMemberPortfolio;
 import com.bitcamp.onemoaproject.vo.contest.ContestTeamPortfolio;
+import com.bitcamp.onemoaproject.vo.paging.Criteria;
+import com.bitcamp.onemoaproject.vo.paging.PageMaker;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -47,12 +49,36 @@ public class ContestController {
   
   // 공모전 목록 출력
   @GetMapping("contestTeam")
-  public void contestTeamList(Model model, String no, String ono, String sortCd, HttpSession session) throws Exception {
+  public void contestTeamList(Criteria cri, Model model, String no, String ono, String sortCd, String sortEd,
+      String sortVw, String sortRw, HttpSession session) throws Exception {
+    if (no == null) {
+      no = "all";
+    }
+    System.out.println("no = " + no);
+  
+    cri.setPerPageNum(5);
+    PageMaker pageMaker = new PageMaker();
+    pageMaker.setCri(cri);
+    pageMaker.setTotalCount(contestService.listCount());
+  
+    Map<String, Object> map = new HashMap<>();
+    map.put("cri", cri);
+    map.put("no", no);
+    map.put("ono", ono);
+    map.put("sortCd", sortCd);
+    map.put("sortEd", sortEd);
+    map.put("sortVw", sortVw);
+    map.put("sortRw", sortRw);
+    
     Member loginMember = (Member) session.getAttribute("loginMember");
-    model.addAttribute("contests", contestService.list(no, ono, sortCd));
+    model.addAttribute("contests", contestService.list(map));
     model.addAttribute("no", no);
     model.addAttribute("ono", ono);
     model.addAttribute("sortCd", sortCd);
+    model.addAttribute("sortEd", sortEd);
+    model.addAttribute("sortVw", sortVw);
+    model.addAttribute("sortRw", sortRw);
+    model.addAttribute("pageMaker", pageMaker);
     model.addAttribute("member", loginMember);
   }
   
