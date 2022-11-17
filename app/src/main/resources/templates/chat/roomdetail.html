@@ -41,7 +41,7 @@
 <!--<script src="/webjars/sockjs-client/1.1.2/sockjs.min.js"></script>-->
 <!--<script src="/webjars/stomp-websocket/2.3.3-1/stomp.min.js"></script>-->
 <script>
-    var sock = new SockJS("/ws/chat");
+    var sock = new SockJS("/onemoa/ws/chat");
     var ws = Stomp.over(sock);
     var reconnect = 0;
     var vm = new Vue({
@@ -61,10 +61,10 @@
         },
         methods: {
             findRoom: function() {
-                axios.get('/chat/room/'+this.roomId).then(response => { this.room = response.data; });
+                axios.get('/onemoa/chat/room/enter/'+this.roomId).then(response => { this.room = response.data; });
             },
             sendMessage: function() {
-                ws.send("/app/chat/message", {}, JSON.stringify({type:'TALK', roomId:this.roomId, sender:this.sender, message:this.message}));
+                ws.send("/onemoa/app/chat/message", {}, JSON.stringify({type:'TALK', roomId:this.roomId, sender:this.sender, message:this.message}));
                 this.message = '';
             },
             recvMessage: function(recv) {
@@ -76,11 +76,11 @@
     function connect() {
         // pub/sub event
         ws.connect({}, function(frame) {
-            ws.subscribe("/topic/chat/room/"+vm.$data.roomId, function(message) {
+            ws.subscribe("/onemoa/topic/chat/room/"+vm.$data.roomId, function(message) {
                 var recv = JSON.parse(message.body);
                 vm.recvMessage(recv);
             });
-            ws.send("/app/chat/message", {}, JSON.stringify({type:'ENTER', roomId:vm.$data.roomId, sender:vm.$data.sender}));
+            ws.send("/onemoa/app/chat/message", {}, JSON.stringify({type:'ENTER', roomId:vm.$data.roomId, sender:vm.$data.sender}));
         }, function(error) {
             if(reconnect++ <= 5) {
                 setTimeout(function() {
