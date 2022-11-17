@@ -75,8 +75,8 @@
             enterRoom: function (roomId) {
                 var sender = prompt('대화명을 입력해 주세요.');
                 if (sender !== "") {
-                    localStorage.setItem('onemoa.sender', sender);
-                    localStorage.setItem('onemoa.roomId', roomId);
+                    localStorage.setItem('ws.sender', sender);
+                    localStorage.setItem('ws.roomId', roomId);
                     location.href = "room/enter/" + roomId;
                 }
             }
