@@ -47,7 +47,8 @@
         </thead>
         <tbody>
          <tr data-th-each="notice, state : ${notices}">
-          <td class="tableStyle" th:utext="${state.count}">3</td>
+<!--          <td class="tableStyle" th:utext="${state.count}">3</td>-->
+          <td class="tableStyle" data-th-text="${notice.no}">3</td>
           <td class="tableStyle">
             <a href='detail?no=1'
               data-th-href="@{detail(no=${notice.no})}"
@@ -59,27 +60,21 @@
          </tr>
         </tbody>
       </table>
-<!--      <button type="button" class="btn btn-primary btn-sm" id="backToMain"><a href="./form">새 글</a></button>-->
       <button type="button" class="btn btn-primary btn-sm" id="backToMain"><a href="/onemoa/">메인으로 돌아가기</a></button>
     <!-- 페이징 -->
-    <ul class="pagination justify-content-center">
-      <li class="page-item disabled" th:if="${pageMaker.prev}">
-        <a class="page-link"
-           th:href="@{list(pageMaker.startPage-1)}" aria-label="Previous">
-          <span aria-hidden="true">이전페이지</span>
-        </a>
-      </li>
-      <th:block th:each="pageNum: ${#numbers.sequence(pageMaker.startPage, pageMaker.endPage)}">
-        <li class="page-item">
-          <a class="page-link" th:href="@{list(page=${pageNum})}"><i th:text="${pageNum}"></i></a>
+    <nav class="xx-nav" aria-label="pagination">
+      <ul class="xx-pagination">
+        <li data-th-if="${pageMaker.prev}">
+          <a data-th-href="@{list(pageMaker.startPage-1)}"><span aria-hidden="true">이전페이지</span><span class="xx-visuallyhidden">previous set of pages</span></a>
         </li>
-      </th:block>
-      <li class="page-item" th:if="${pageMaker.next && pageMaker.endPage >0}">
-        <a class="page-link" th:href="@{list(page=${pageMaker.endPage+1})}" aria-label="Next">
-          <span aria-hidden="true">다음페이지</span>
-        </a>
-      </li>
-    </ul>
+        <data-th-block data-th-each="pageNum: ${#numbers.sequence(pageMaker.startPage, pageMaker.endPage)}">
+          <li><a data-th-href="@{list(page=${pageNum})}"><span class="xx-visuallyhidden">page </span><span data-th-text="${pageNum}"></span></a></li>
+        </data-th-block>
+        <li data-th-if="${pageMaker.next && pageMaker.endPage >0}">
+          <a data-th-href="@{list(page=${pageMaker.endPage+1})}"><span class="xx-visuallyhidden">next set of pages</span><span aria-hidden="true">다음페이지</span></a>
+        </li>
+      </ul>
+    </nav>
   </div>
 </main>
 
