@@ -169,9 +169,15 @@ public class DefaultContestService implements ContestService{
   }
   
   // 메인페이지 인기 공모전
-  
   @Override
   public List<Contest> listMain() {
     return contestDao.findByMain();
+  }
+  
+  
+  // 마이페이지 공모전 팀전 참가내역
+  @Override
+  public List<Contest> myContestList(int mno) {
+    return contestDao.findAllByMyContestList(mno);
   }
 }

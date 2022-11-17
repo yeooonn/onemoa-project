@@ -33,4 +33,7 @@ public class Contest {
   
   // 첨부파일을 저장할 필드
   private List<ContestAttachedFile> contestAttachedFiles;
+  
+  // 공모전팀을 저장할 필드
+  private ContestTeam contestTeams;
 }

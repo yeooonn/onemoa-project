@@ -97,6 +97,7 @@ public class NoticeController {
   @GetMapping("list")
   public void list(Criteria cri, Model model) throws Exception {
     //model.addAttribute("notices", noticeService.list());
+    cri.setPerPageNum(10);
     PageMaker pageMaker = new PageMaker();
     pageMaker.setCri(cri);
     pageMaker.setTotalCount(noticeService.listCount());

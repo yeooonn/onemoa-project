@@ -47,4 +47,7 @@ public interface ContestService {
   
   // 메인페이지 인기 공모전
   List<Contest> listMain();
+  
+  // 마이페이지 공모전 팀전 참가내역
+  List<Contest> myContestList(int mno);
 }
