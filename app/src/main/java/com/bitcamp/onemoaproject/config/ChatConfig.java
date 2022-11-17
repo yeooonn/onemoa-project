@@ -20,6 +20,6 @@ public class ChatConfig implements WebSocketMessageBrokerConfigurer {
 
         registry.enableSimpleBroker("/queue", "/topic");
 
-        registry.setApplicationDestinationPrefixes("/onemoa");
+        registry.setApplicationDestinationPrefixes("/app");
     }
 }

@@ -36,6 +36,7 @@ public class ChatRoomController {
     @GetMapping("/room/enter/{roomId}")
     public String roomDetail(Model model, @PathVariable String roomId) {
         model.addAttribute("roomId", roomId);
+        System.out.println(roomId);
         return "/chat/roomdetail";
     }
     // 특정 채팅방 조회

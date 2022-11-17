@@ -5,9 +5,6 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="/webjars/bootstrap/4.3.1/dist/css/bootstrap.min.css">
     <style>
         [v-cloak] {
             display: none;
@@ -36,17 +33,17 @@
     <div></div>
 </div>
 <!-- JavaScript -->
-<script src="/webjars/vue/2.5.16/dist/vue.min.js"></script>
-<script src="/webjars/axios/0.17.1/dist/axios.min.js"></script>
-<script src="/webjars/sockjs-client/1.1.2/sockjs.min.js"></script>
-<script src="/webjars/stomp-websocket/2.3.3-1/stomp.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script src="/webjars/sockjs-client/sockjs.min.js"></script>
+<script src="/webjars/stomp-websocket/stomp.min.ks"></script>
+
+<!--<script src="/webjars/sockjs-client/1.1.2/sockjs.min.js"></script>-->
+<!--<script src="/webjars/stomp-websocket/2.3.3-1/stomp.min.js"></script>-->
 <script>
-    //alert(document.title);
-    // websocket & stomp initialize
-    var sock = new SockJS("/ws/chat");
+    var sock = new SockJS("/onemoa/chat");
     var ws = Stomp.over(sock);
     var reconnect = 0;
-    // vue.js
     var vm = new Vue({
         el: '#app',
         data: {
@@ -54,16 +51,17 @@
             room: {},
             sender: '',
             message: '',
+
             messages: []
         },
         created() {
-            this.roomId = localStorage.getItem('wschat.roomId');
-            this.sender = localStorage.getItem('wschat.sender');
+            this.roomId = localStorage.getItem('onemoa.roomId');
+            this.sender = localStorage.getItem('onemoa.sender');
             this.findRoom();
         },
         methods: {
             findRoom: function() {
-                axios.get('/chat/room/'+this.roomId).then(response => { this.room = response.data; });
+                axios.get('room/'+this.roomId).then(response => { this.room = response.data; });
             },
             sendMessage: function() {
                 ws.send("/app/chat/message", {}, JSON.stringify({type:'TALK', roomId:this.roomId, sender:this.sender, message:this.message}));
@@ -87,7 +85,7 @@
             if(reconnect++ <= 5) {
                 setTimeout(function() {
                     console.log("connection reconnect");
-                    sock = new SockJS("/ws/chat");
+                    sock = new SockJS("chat");
                     ws = Stomp.over(sock);
                     connect();
                 },10*1000);
