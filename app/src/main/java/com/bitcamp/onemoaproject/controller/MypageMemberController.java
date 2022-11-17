@@ -1,5 +1,6 @@
 package com.bitcamp.onemoaproject.controller;
 
+import com.bitcamp.onemoaproject.service.ContestService;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -10,6 +11,7 @@ import java.util.UUID;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpSession;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -29,6 +31,9 @@ public class MypageMemberController {
   ServletContext sc;
   MemberService memberService;
   PortfolioService portfolioService;
+  
+  @Autowired
+  ContestService contestService;
 
   public MypageMemberController(MemberService memberService, ServletContext sc, PortfolioService portfolioService) {
     System.out.println("MemberController() 호출됨!");
@@ -300,7 +305,14 @@ public class MypageMemberController {
 
     return "redirect:portfolioDetail?ptNo=" + portfolio.getPtNo();
   }
-
+  
+  // 마이페이지 공모전 참여내역
+  @GetMapping("contestList")
+  public void myContestList(Model model, HttpSession session) throws Exception{
+    Member loginMember = (Member) session.getAttribute("loginMember");
+    model.addAttribute("member", memberService.get(loginMember.getNo()));
+    model.addAttribute("contests", contestService.myContestList(loginMember.getNo()));
+  }
 }
 
 

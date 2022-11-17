@@ -37,6 +37,15 @@
       <result column="ccname" property="categoryName"/>
     </association>
 
+    <!--  조인결과에서 한개의 공모전에 한개의 팀을 담을 경우  -->
+    <association property="contestTeams" javaType="ContestTeam">
+      <id column="tno" property="tno"/>
+      <result column="ctstno" property="ctstno"/>
+      <result column="mno" property="mno"/>
+      <result column="cont" property="cont"/>
+      <result column="teamcdt" property="cdt"/>
+    </association>
+
     <!-- 조인 결과에서 같은 공모전에 여러 개의 첨부 파일 데이터를 담을 경우 -->
     <!-- ofType이 담기는 collection이라는 뜻이다  -->
     <collection property="contestAttachedFiles" ofType="contestAttachedFile">
@@ -526,5 +535,34 @@
     order by
       c.vw_cnt desc
     limit 1, 12;
+  </select>
+
+  <!-- 마이페이지 공모전 팀전 참가내역 -->
+  <select id="findAllByMyContestList" resultMap="contestMap">
+    select
+      c.ctstno,
+      co.name coname,
+      cc.name ccname,
+      c.title,
+      c.subcont,
+      c.cdt,
+      c.sdate,
+      c.edate,
+      c.vw_cnt,
+      c.org,
+      c.appl,
+      c.cont,
+      c.page,
+      c.size,
+      c.qual,
+      c.team,
+      c.reward,
+      c.thumbnail,
+      t.cdt teamcdt
+    from contest c
+      join contest_category cc on c.ctgno = cc.ctgno
+      join contest_organization co on c.orgno = co.orgno
+      join team t on c.ctstno = t.ctstno
+    where t.mno = #{mno};
   </select>
 </mapper>

@@ -14,10 +14,15 @@ public class Criteria {
 
     public Criteria() {
         this.page = 1;
-        this.perPageNum = 10;
+        this.perPageNum = 16;
         this.categoryCode = null;
     }
-
+    
+    public Criteria(int page, int perPageNum) {
+        this.page = page;
+        this.perPageNum = perPageNum;
+    }
+    
     public int getPage() {
         return page;
     }
@@ -31,13 +36,19 @@ public class Criteria {
     public int getPerPageNum() {
         return perPageNum;
     }
+    
+    // 게시판별로 한페이지에 보여줄 개수 정하기위해서 주석처리
+    //    public void setPerPageNum(int pageCount) {
+//        int cnt = this.perPageNum;
+//        if(pageCount != cnt) {
+//            this.perPageNum = cnt;
+//        } else {
+//            this.perPageNum = pageCount;
+//        }
+//    }
+    // 게시판별로 한페이지에 보여줄 개수 정하기위해서 설정
     public void setPerPageNum(int pageCount) {
-        int cnt = this.perPageNum;
-        if(pageCount != cnt) {
-            this.perPageNum = cnt;
-        } else {
-            this.perPageNum = pageCount;
-        }
+        this.perPageNum = pageCount;
     }
 
     public String getCode() {

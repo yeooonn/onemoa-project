@@ -75,4 +75,6 @@ public interface ContestDao {
   // 메인페이지 인기 공모전
   List<Contest> findByMain();
   
+  // 마이페이지 공모전 팀전 참가내역
+  List<Contest> findAllByMyContestList(int mno);
 }

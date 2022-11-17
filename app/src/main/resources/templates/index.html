@@ -118,13 +118,14 @@
       </ul>
     </div>
 
+    <!--  메인페이지 인기 공모전 스위퍼  -->
     <div class="swiper mySwiper">
       <div class="swiper-wrapper">
         <div class="swiper-slide" data-th-each="contest: ${contests}">
           <ul>
-            <li><img data-th-src="@{/contest/files/{path}(path=${contest.thumbNail})}"></li>
-            <li><p data-th-text="${contest.contCategory.categoryName}"></p></li>
-            <li><p data-th-text="${contest.title}"></p></li>
+            <li><img data-th-src="@{/contest/files/{path}(path=${contest.thumbNail})}" style="height: 400px"></li>
+            <li><p data-th-text="${contest.contCategory.categoryName}" style="font-size: medium"></p></li>
+            <li><p data-th-text="${contest.title}" style="font-size: medium"></p></li>
           </ul>
         </div>
       </div>
