@@ -61,7 +61,7 @@
         },
         methods: {
             findRoom: function() {
-                axios.get('room/'+this.roomId).then(response => { this.room = response.data; });
+                axios.get('/chat/room/'+this.roomId).then(response => { this.room = response.data; });
             },
             sendMessage: function() {
                 ws.send("/app/chat/message", {}, JSON.stringify({type:'TALK', roomId:this.roomId, sender:this.sender, message:this.message}));
