@@ -3,6 +3,8 @@ package com.bitcamp.onemoaproject.controller.AdminController;
 import com.bitcamp.onemoaproject.service.FaqService;
 import com.bitcamp.onemoaproject.vo.Faq;
 import com.bitcamp.onemoaproject.vo.Member;
+import com.bitcamp.onemoaproject.vo.paging.Criteria;
+import com.bitcamp.onemoaproject.vo.paging.PageMaker;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpSession;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @Controller
@@ -37,10 +40,21 @@ public class AdminFaqController {
             return "redirect:list";
         }
 
+        // 페이징 적용
         @GetMapping("list")
-        public void list(Model model) throws Exception {
-            model.addAttribute("faqs", faqService.list());
+        public void list(Criteria cri, Model model) throws Exception {
+            PageMaker pageMaker = new PageMaker();
+            pageMaker.setCri(cri);
+            pageMaker.setTotalCount(faqService.listCount());
+            List<Map<String, Object>> faqs = faqService.list(cri);
+
+            model.addAttribute("faqs", faqs);
+            model.addAttribute("pageMaker", pageMaker);
+            System.out.println("pageMaker = " + pageMaker);
         }
+
+
+
 
         @GetMapping("detail")
         public Map detail(int no) throws Exception {

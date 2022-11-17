@@ -18,16 +18,27 @@
             <p>관리자페이지</p>
             <span class="mybar">
         </div>
-        <ul class="mynav">
-          <li><a class="font2" href="/onemoa/admin/member/memberList">회원관리</a></li>
-          <li><a class="font2" href="/onemoa/admin/contest/contestList">공모전관리</a></li>
-          <li><a class="font2" href="">재능판매관리</a></li>
-          <li><a class="font2" href="/onemoa/admin/qna/list">1:1문의관리</a></li>
-          <li><a class="font" href="/onemoa/admin/faq/list">FAQ관리</a></li>
-          <li><a class="font2" href="">공지사항관리</a></li>
-          <li><a class="font2" href="">카테고리관리</a></li>
-        </ul>
-      </div>
+                <!-- 페이징 -->
+                <ul class="pagination justify-content-center">
+                    <li class="page-item disabled" th:if="${pageMaker.prev}">
+                        <a class="page-link"
+                           th:href="@{list(pageMaker.startPage-1)}" aria-label="Previous">
+                            <span aria-hidden="true">이전페이지</span>
+                        </a>
+                    </li>
+                    <th:block th:each="pageNum: ${#numbers.sequence(pageMaker.startPage, pageMaker.endPage)}">
+                        <li class="page-item">
+                            <a class="page-link" th:href="@{list(page=${pageNum})}"><i th:text="${pageNum}"></i></a>
+                        </li>
+                    </th:block>
+                    <li class="page-item" th:if="${pageMaker.next && pageMaker.endPage >0}">
+                        <a class="page-link" th:href="@{list(page=${pageMaker.endPage+1})}" aria-label="Next">
+                            <span aria-hidden="true">다음페이지</span>
+                        </a>
+                    </li>
+                </ul>
+           </div>
+         </div>
     </li>
     <li class="mypageArea">
       <div class="member">
