@@ -10,57 +10,7 @@
   </head>
   <body style="overflow-x: hidden">
     
-    <div class="modal"style="position: absolute; z-index: 1;">
-      <div class="modal_body">
-        <div calss="login_container">
-          <button class="closebtn"><img src="../img/x.png"></button>
-          <p>로그인</p>
-          <form action='login' method="post">
-            <table class="input_login" >
-              <tr>
-                <td><input name='email' type='email' id='email' value="user1@test.com" placeholder="이메일을 입력해 주세요." data-th-value="${email}"></td>
-              </tr>
-              <tr>
-                <td><input name='password' type='password' id='password' placeholder="패스워드를 입력해 주세요."></td>
-              </tr>
-            </table>
-            <label for="label-a"><input type="checkbox" name="saveEmail" id="email2">이메일 유지<br></label>
-            <p class="find"><a href = "#">아이디 찾기</a> / <a href = "#">패스워드 찾기</a></p>
-            <p>
-              <button type='submit' class="loginbtn" id="adminCheck"><img src="../img/loginbtn.png"></button>
-            </p>
-          </form>
-          <div class="sns">
-            <p class="snsp">SNS로 간편하게 로그인하세요.</p>
-            <a href="#"><img src="../img/kakao.png"></a>
-            <a href="#"><img src="../img/naver.png"></a>
-            <a href="#"><img src="../img/google.png"></a>
-          </div>
-          <div class="sign">
-            <a href="joinForm.html"><img src="../img/signup.png"></a>
-          </div>
-        </div>
-      </div>
-    </div>
-    
-    <header>
-      <div class="nav">
-        <a href="/onemoa"><p class="logo">ONEMOA</p></a>
-        <ul class="firstnav">
-          <li data-th-if="${session.loginMember != null}"><a href="http://localhost:3333/onemoa/logout" data-th-text="로그아웃">로그아웃</a></li>
-          <li><button class="btn-open-popup" data-th-if="${session.loginMember == null}">로그인</button></li>
-          <li><a href="../mypage/portfolioList">마이페이지</a></li>
-          <li><a href="#">메시지</a></li>
-        </ul>
-      </div>
-
-      <div class="menu">
-        <ul class="secnav">
-          <li><a href="contestTeam.html"><p>공모전</p></a></li>
-          <li><a href="#"><p>재능판매</p></a></li>
-        </ul>
-      </div>
-    </header>
+    <div data-th-replace="/fragments/nav.html :: fragment-nav"></div>
     
     <ul class="myPage">
       <li class="mypageArea">
@@ -75,9 +25,10 @@
           </div>
           <ul class="mynav">
             <li><a class="font2" href="../mypage/portfolioList">나의 포트폴리오</a></li>
+            <li><a class="font2" href="/onemoa/mypage/contestList">공모전관리</a></li>
             <li><a class="font2" href="">구매관리</a></li>
             <li><a class="font2" href="">판매관리</a></li>
-            <li><a class="font2" href="">나의 서비스관리</a></li>
+            <li><a class="font2" href="">상품관리</a></li>
             <li><a class="font2" href="">결제내역</a></li>
             <li><a class="font2" href="">1:1 문의내역</a></li>
             <li class="menu">
@@ -104,19 +55,7 @@
     </ul>
 
 
-    <footer>
-      <ul class="footerMenu">
-        <li><a href="#"><p>공지사항</p></a></li>
-        <li><a href="#"><p>1 : 1 문의</p></a></li>
-      </ul>
-      <div class="detail">
-        
-          (주)ONEMOA  | 서울시 강남구 비트캠프 8층 | 대표 : 000 | 개인정보관리책임자 : 000 | 고객센터 : 1234-1234
-          <span>고객센터 영업시간 10:30 ~ 18:00 ( 점심시간 13:00 ~ 14:00) 주말, 공휴일 휴무 | ONEMOA@onemoa.com | </span>
-          <span>Copyright 2022 ONEMOA lnc.All rights reserved</span>
-       
-      </div>
-    </footer>
+    <footer data-th-replace="/fragments/footer.html :: fragment-footer"></footer>
 
     <script>
       const body = document.querySelector('body');

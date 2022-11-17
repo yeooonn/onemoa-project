@@ -58,8 +58,24 @@
   padding: 7px 10px;
 }
 
-
-
+/* faq detail */
+.faqtable td th {
+  border: 1px solid black;
+  border-collapse: collapse;
+  padding: 10px;
+}
+.faqtable td {
+  border: 1px solid black;
+  border-collapse: collapse;
+  padding: 10px;
+}
+.FAQ p {
+  margin-right: 47%;
+}
+.FAQ p button {
+  margin-right: -10px;
+}
+ 
 
 
 
