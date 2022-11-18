@@ -43,7 +43,24 @@
          </tr>
         </table>
         </div>
-            </div>
+</div>
+
+<!--      <div class="nextBox">-->
+<!--        <nav class="xx-nav" aria-label="pagination">-->
+<!--          <ul class="xx-pagination">-->
+<!--            <li data-th-if="${pageMaker.prev}">-->
+<!--              <a data-th-href="@{list(pageMaker.startPage-1)}"><span aria-hidden="true">이전페이지</span><span class="xx-visuallyhidden">previous set of pages</span></a>-->
+<!--            </li>-->
+<!--            <data-th-block data-th-each="pageNum: ${#numbers.sequence(pageMaker.startPage, pageMaker.endPage)}">-->
+<!--              <li><a data-th-href="@{list(page=${pageNum})}"><span class="xx-visuallyhidden">page </span><span data-th-text="${pageNum}"></span></a></li>-->
+<!--            </data-th-block>-->
+<!--            <li data-th-if="${pageMaker.next && pageMaker.endPage >0}">-->
+<!--              <a data-th-href="@{list(page=${pageMaker.endPage+1})}"><span class="xx-visuallyhidden">next set of pages</span><span aria-hidden="true">다음페이지</span></a>-->
+<!--            </li>-->
+<!--          </ul>-->
+<!--        </nav>-->
+<!--      </div>-->
+
 <footer data-th-replace="/fragments/footer.html :: fragment-footer"></footer>
 </body>
 </html>
