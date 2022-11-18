@@ -1,6 +1,5 @@
 package com.bitcamp.onemoaproject.controller;
 
-import com.bitcamp.onemoaproject.service.ContestService;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -13,14 +12,17 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
+import com.bitcamp.onemoaproject.service.ContestService;
 import com.bitcamp.onemoaproject.service.MemberService;
 import com.bitcamp.onemoaproject.service.PortfolioService;
+import com.bitcamp.onemoaproject.vo.Interest;
 import com.bitcamp.onemoaproject.vo.Member;
 import com.bitcamp.onemoaproject.vo.portfolio.Portfolio;
 import com.bitcamp.onemoaproject.vo.portfolio.PortfolioAttachedFile;
@@ -32,7 +34,7 @@ public class MypageMemberController {
   ServletContext sc;
   MemberService memberService;
   PortfolioService portfolioService;
-  
+
   @Autowired
   ContestService contestService;
 
@@ -128,12 +130,32 @@ public class MypageMemberController {
 
   }
 
+  @Transactional
   @PostMapping("myinfoUpdate")
-  public String myinfoUpdate(Member member, MultipartFile files, HttpSession session) throws Exception {
+  public String myinfoUpdate(Member member, MultipartFile files, HttpSession session,
+      String design, String it, String video, String marketing, String translate,
+      String write, String business) throws Exception {
 
-    System.out.println(files.getSize());
+    Member loginMember = (Member) session.getAttribute("loginMember"); 
     member.setProfile(saveProfile(files));
-    System.out.println(member.getProfile());
+
+    // 기존 관심사 삭제
+    memberService.deleteInterest(loginMember.getNo());
+
+    String[] interestName = {design, it, video, marketing, translate, write, business};
+
+    for (int i = 0; i < 7; i++) {
+      if (interestName[i] != null) {
+        Interest interest = new Interest();
+        interest.setMno(loginMember.getNo());
+        interest.setPcno(interestName[i]);
+
+        // 새 관심사 추가
+        if (memberService.addInterest(interest) == 0) {
+          throw new Exception("관심사 등록에 실패하였습니다!");
+        }
+      }
+    }
 
     if (files.getSize() != 0) {
       memberService.myinfoUpdate(member);
@@ -310,7 +332,7 @@ public class MypageMemberController {
 
     return "redirect:portfolioDetail?ptNo=" + portfolio.getPtNo();
   }
-  
+
   // 마이페이지 공모전 참여내역
   @GetMapping("contestList")
   public void myContestList(Model model, HttpSession session) throws Exception{

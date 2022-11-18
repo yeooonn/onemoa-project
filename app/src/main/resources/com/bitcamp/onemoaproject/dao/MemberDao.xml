@@ -30,6 +30,11 @@
       <result column="cdt" property="createdDate"/>
     </collection>
   </resultMap>
+  
+  <resultMap type="interest" id="interestMap">
+    <id column="mno" property="mno"/>
+    <id column="pcno" property="pcno"/>
+  </resultMap>
 
   <!-- 회원가입 -->
   <insert id="insert" parameterType="member">
@@ -239,4 +244,43 @@
     from member
       where pwd=sha2(#{password},256) and mno=#{mno};
   </select>
+  
+  <!-- 내정보수정 관심사 추가 -->
+  <insert id="addInterest" parameterType="interest">
+    insert into
+    interest (
+      mno,
+      pcno
+    )
+    values (
+      #{mno},
+      #{pcno}
+    )
+  </insert>
+  
+   <!-- 내정보수정 관심사 삭제 -->
+  <delete id="deleteInterest">
+    delete from interest where mno=#{mno}
+  </delete>
 </mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.bitcamp.onemoaproject.dao.ContestDao;
 import com.bitcamp.onemoaproject.dao.MemberDao;
+import com.bitcamp.onemoaproject.vo.Interest;
 import com.bitcamp.onemoaproject.vo.Member;
 
 @Service 
@@ -100,12 +101,22 @@ public class DefaultMemberService implements MemberService {
   public boolean updatePwd(Member member) {
     return false;
   }
-  
+
   // 사용자 패스워드 체크
-  
+
   @Override
   public int getPasswordCheck(String password, int mno) {
     return memberDao.passwordCheck(password, mno);
+  }
+
+  @Override
+  public int addInterest(Interest interest) {
+    return memberDao.addInterest(interest);
+  }
+
+  @Override
+  public int deleteInterest(int no) {
+    return memberDao.deleteInterest(no);
   }
 }
 
