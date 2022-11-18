@@ -1,8 +1,8 @@
 package com.bitcamp.onemoaproject.service;
 
 import com.bitcamp.onemoaproject.dao.QnaDao;
-import com.bitcamp.onemoaproject.vo.QnaAttachedFile;
-import com.bitcamp.onemoaproject.vo.Qna;
+import com.bitcamp.onemoaproject.vo.qna.QnaAttachedFile;
+import com.bitcamp.onemoaproject.vo.qna.Qna;
 import com.bitcamp.onemoaproject.vo.paging.Criteria;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -99,7 +99,6 @@ public class DefaultQnaService implements QnaService {
   public int listCount() throws ExecutionException {
     return qnaDao.findAllCount();
   }
-
 }
 
 

@@ -1,10 +1,9 @@
 package com.bitcamp.onemoaproject.controller;
 
 import com.bitcamp.onemoaproject.service.QnaService;
-import com.bitcamp.onemoaproject.vo.QnaAttachedFile;
+import com.bitcamp.onemoaproject.vo.qna.QnaAttachedFile;
 import com.bitcamp.onemoaproject.vo.Member;
-import com.bitcamp.onemoaproject.vo.Qna;
-import com.bitcamp.onemoaproject.vo.portfolio.Portfolio;
+import com.bitcamp.onemoaproject.vo.qna.Qna;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -70,16 +69,9 @@ public class QnaController {
     if(member != null) {
       model.addAttribute("qnas", qnaService.list(member.getNo()));
     } else {
-    model.addAttribute("qnas", qnaService.list());
+      model.addAttribute("qnas", qnaService.list());
     }
   }
-
-//  @GetMapping("list")
-//  public String list111(Model model, HttpSession session) throws Exception {
-//    Member loginMember = (Member) session.getAttribute("loginMember");
-//    model.addAttribute("qnas", qnaService.list2(loginMember.getNo()));
-//    return "qna/list";
-//  }
 
   @GetMapping("detail")
   public Map detail(int no) throws Exception {

@@ -1,4 +1,4 @@
-package com.bitcamp.onemoaproject.vo;
+package com.bitcamp.onemoaproject.vo.qna;
 
 import lombok.Getter;
 import lombok.Setter;

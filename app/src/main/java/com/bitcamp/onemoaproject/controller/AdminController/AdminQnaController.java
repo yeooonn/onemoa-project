@@ -1,9 +1,7 @@
 package com.bitcamp.onemoaproject.controller.AdminController;
 
 import com.bitcamp.onemoaproject.service.QnaService;
-import com.bitcamp.onemoaproject.vo.Member;
-import com.bitcamp.onemoaproject.vo.Qna;
-import com.bitcamp.onemoaproject.vo.QnaAttachedFile;
+import com.bitcamp.onemoaproject.vo.qna.Qna;
 import com.bitcamp.onemoaproject.vo.paging.Criteria;
 import com.bitcamp.onemoaproject.vo.paging.PageMaker;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,13 +10,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.ServletContext;
-import javax.servlet.ServletException;
 import javax.servlet.http.HttpSession;
-import javax.servlet.http.Part;
-import java.io.IOException;
 import java.util.*;
 
 @Controller

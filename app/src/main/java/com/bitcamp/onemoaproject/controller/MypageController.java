@@ -1,6 +1,5 @@
 package com.bitcamp.onemoaproject.controller;
 
-import com.bitcamp.onemoaproject.service.order.DefaultOrderService;
 import com.bitcamp.onemoaproject.service.DefaultWishService;
 import com.bitcamp.onemoaproject.service.order.OrderService;
 import com.bitcamp.onemoaproject.service.order.OrderStatusService;
@@ -79,6 +78,8 @@ public class MypageController {
     if (!orderService.update(orderStatus, orderNo)) {
       throw new Exception("주문 상태를 변경할 수 없습니다!");
     }
+  }
+}
 
 //int orderNo = Integer.parseInt(no);
 //    System.out.println("orderNo = " + orderNo);
@@ -86,6 +87,3 @@ public class MypageController {
 //    if (!orderService.update(orderStatus, orderNo)) {
 //      throw new Exception("주문 상태를 변경할 수 없습니다!");
 //    }
-
-  }
-}

@@ -53,9 +53,6 @@ public class AdminFaqController {
             System.out.println("pageMaker = " + pageMaker);
         }
 
-
-
-
         @GetMapping("detail")
         public Map detail(int no) throws Exception {
             Faq faq = faqService.get(no);

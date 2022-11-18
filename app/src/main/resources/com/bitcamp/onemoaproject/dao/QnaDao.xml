@@ -167,8 +167,8 @@
     select
       q.qnano,
       q.title,
-      q.cdt,
-      m.name
+      m.name,
+      q.cdt
     from
       qna q
       join member m on q.mno=m.mno

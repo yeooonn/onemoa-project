@@ -1,9 +1,8 @@
 package com.bitcamp.onemoaproject.service;
 
-import com.bitcamp.onemoaproject.vo.QnaAttachedFile;
-import com.bitcamp.onemoaproject.vo.Qna;
+import com.bitcamp.onemoaproject.vo.qna.QnaAttachedFile;
+import com.bitcamp.onemoaproject.vo.qna.Qna;
 import com.bitcamp.onemoaproject.vo.paging.Criteria;
-import com.bitcamp.onemoaproject.vo.portfolio.Portfolio;
 
 import java.util.List;
 import java.util.Map;
@@ -30,7 +29,6 @@ public interface QnaService {
   List<Map<String, Object>> list(Criteria cri) throws Exception;
 
   int listCount() throws ExecutionException;
-
 }
 
 

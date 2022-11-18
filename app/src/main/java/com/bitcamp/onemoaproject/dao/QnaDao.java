@@ -1,7 +1,7 @@
 package com.bitcamp.onemoaproject.dao;
 
-import com.bitcamp.onemoaproject.vo.QnaAttachedFile;
-import com.bitcamp.onemoaproject.vo.Qna;
+import com.bitcamp.onemoaproject.vo.qna.QnaAttachedFile;
+import com.bitcamp.onemoaproject.vo.qna.Qna;
 import com.bitcamp.onemoaproject.vo.paging.Criteria;
 import org.apache.ibatis.annotations.Mapper;
 
@@ -38,8 +38,12 @@ public interface QnaDao {
     // Qna 페이징
     List<Map<String, Object>> findAllList(Criteria cri);
 
+    List<Map<String, Object>> findAllList(Criteria cri, int no);
     // Qna 글의 개수 조회
     int findAllCount();
+
+    int findAllCount(int no);
+
 
 //  int deleteFilesByMemberBoards(int memberNo);
 

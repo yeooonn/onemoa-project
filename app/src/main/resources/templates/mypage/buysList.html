@@ -165,7 +165,16 @@
                 <td class="tableStyle" data-th-text="${#temporals.format(buy.createdDate, 'yyyy-MM-dd')}">결제일시들어가요</td>
                 <td class="tableStyle" data-th-text="${buy.orderStatus.name}">주문상태들어가요</td>
                 <td class="tableStyle" style="border: none;">
-                  <button class="userBtn" data-th-id="'review-btn-'+${buy.no}" data-th-onclick="edit([[${buy.no}]])">후기남기기</button>
+                  <button>
+                    <a class="userBtn" data-th-id="'review-btn-'+${buy.no}" data-th-onclick="edit([[${buy.no}]])"
+                    href="" onclick="openPop()">후기남기기</a>
+                  </button>
+
+<!--                  <a href="#" data-th-href="@{/mypage/review/Form(no=${buy.no})}"-->
+<!--                     onclick="window.open(this.href, '_blank', 'width=1200, height=1000, top=Math.ceil(( window.outerHeight - 800 )/5) , left=Math.ceil(( window.outerWidth - 800 )/8'); return false;" class="item">-->
+
+                  <!--                  <button class="userBtn" data-th-id="'review-btn-'+${buy.no}" data-th-onclick="edit([[${buy.no}]])">-->
+<!--                    <a href="" onclick="openPop()">후기남기기</a></button>-->
                 </td>
               </tr>
           </table>
@@ -177,29 +186,50 @@
 </ul>
 <script>
 
-  const edit = function (buyNo) {
-    console.log(buyNo);
-    $("#update-btn-" + buyNo).closest("tr").find("select").attr("disabled", false);
-    $("#review-btn--" + buyNo).attr("style", "display:none");
+  const edit = function (reviewNo) {
+    console.log(reviewNo);
+    $("review-btn-" + reviewNo).closest("tr").find("button")
 
-    $("#review-btn-" + buyNo).off().click(function () {
-      const orderNo = $("#review-btn-" + buyNo).closest("tr").children('td:eq(0)').attr("value");
+   $($("review-btn-" + reviewNo).closest("tr").find("button")).off().click(function (){
+     function openPop() {
+         window.open('/onemoa/review/Form', '리뷰팝업', 'width=700px,height=800px, scrollbars=yes resizable=no');
+       }})};
 
-      console.log("변경한 주문상태 값(value) : " + orderStatus);
-      console.log("고유한 주문 번호(value) : " + orderNo);
+    //
+    // const orderStatus = $("#update-btn-" + saleNo).closest("tr").find("select").val();
+    // const orderNo = $("#update-btn-" + saleNo).closest("tr").children('td:eq(0)').attr("value");
+    //
+    // const winopen function openPop(){
+    //     let popup = window.open('/onemoa/review/Form', '리뷰팝업', 'width=700px,height=800px, scrollbars=yes resizable=no');
+    //   }}
+    //
+    // }
+    // document.getElementById("userBtn").onclick = function() {myFunction()};
+    // function myFunction() {
+    //   window.open('/onemoa/review/Form', '리뷰팝업', 'width=700px,height=800px, scrollbars=yes resizable=no');
+    // }
+    //
 
-      $.ajax({
-        type: "POST",
-        url: "/onemoa/mypage/updateStatus",
-        data: {"orderNo": orderNo, "orderStatus": orderStatus},
-        success: function (result) {
-          $("#update-btn-" + saleNo).closest("tr").find("select").attr("disabled", true);
-          $("#update-btn-" + saleNo).attr("style", "display:block");
-          $("#save-btn-" + saleNo).attr("style", "display:none");
-        }
-      })
-    });
-  }
+
+    // $("#review-btn-" + reviewNo).off().click(function () {
+    //   const orderNo = $("#review-btn-" + buyNo).closest("tr").children('td:eq(0)').attr("value");
+    //
+    // }
+  //
+  //     $.ajax({
+  //       type: "POST",
+  //       url: "/onemoa/mypage/updateStatus",
+  //       data: {"orderNo": orderNo, "orderStatus": orderStatus},
+  //       success: function (result) {
+  //         $("#update-btn-" + saleNo).closest("tr").find("button")
+  //         $("#update-btn-" + saleNo).attr("style", "display:block");
+  //         $("#save-btn-" + saleNo).attr("style", "display:none");
+  //       }
+  //     })
+  //   });
+  // }
+  //
+
 </script>
 <footer data-th-replace="/fragments/footer.html :: fragment-footer"></footer>
 </body>

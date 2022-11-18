@@ -1,6 +1,7 @@
-package com.bitcamp.onemoaproject.vo;
+package com.bitcamp.onemoaproject.vo.qna;
 
 
+import com.bitcamp.onemoaproject.vo.Member;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
