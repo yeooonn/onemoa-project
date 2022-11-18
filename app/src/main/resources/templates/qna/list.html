@@ -28,7 +28,7 @@
             <th class="tableStyle">제목</th>
               <th class="tableStyle">작성자</th>
               <th class="tableStyle">문의일</th>
-              <th class="tableStyle">답변 등록일</th>
+              <th class="tableStyle">답변 상태</th>
 
             <tr data-th-each="qna : ${qnas}">
                 <td class="tableStyle" style="width: 5vw" data-th-text="${qna.no}">100</td>
@@ -39,27 +39,28 @@
                 </td>
                 <td class="tableStyle" style="width: 10vw"  data-th-text="${qna.writer.name}">홍길동</td>
             <td class="tableStyle" style="width: 15vw"  data-th-text="${#temporals.format(qna.createdDate, 'yyyy-MM-dd')}">문의일시</td>
-            <td class="tableStyle" style="width: 12vw"  data-th-text="${#temporals.format(qna.answerCdt, 'yyyy-MM-dd')}">답변일시</td>
+            <td class="tableStyle" style="width: 12vw" data-th-if="${qna.answer != null}"  data-th-text="${#temporals.format(qna.answerCdt, 'yyyy-MM-dd')}">답변일시</td>
+            <td class="tableStyle" style="width: 12vw" data-th-if="${qna.answer == null}" >답변대기중</td>
          </tr>
         </table>
         </div>
 </div>
 
-<!--      <div class="nextBox">-->
-<!--        <nav class="xx-nav" aria-label="pagination">-->
-<!--          <ul class="xx-pagination">-->
-<!--            <li data-th-if="${pageMaker.prev}">-->
-<!--              <a data-th-href="@{list(pageMaker.startPage-1)}"><span aria-hidden="true">이전페이지</span><span class="xx-visuallyhidden">previous set of pages</span></a>-->
-<!--            </li>-->
-<!--            <data-th-block data-th-each="pageNum: ${#numbers.sequence(pageMaker.startPage, pageMaker.endPage)}">-->
-<!--              <li><a data-th-href="@{list(page=${pageNum})}"><span class="xx-visuallyhidden">page </span><span data-th-text="${pageNum}"></span></a></li>-->
-<!--            </data-th-block>-->
-<!--            <li data-th-if="${pageMaker.next && pageMaker.endPage >0}">-->
-<!--              <a data-th-href="@{list(page=${pageMaker.endPage+1})}"><span class="xx-visuallyhidden">next set of pages</span><span aria-hidden="true">다음페이지</span></a>-->
-<!--            </li>-->
-<!--          </ul>-->
-<!--        </nav>-->
-<!--      </div>-->
+      <div class="nextBox">
+        <nav class="xx-nav" aria-label="pagination">
+          <ul class="xx-pagination">
+            <li data-th-if="${pageMaker.prev}">
+              <a data-th-href="@{list(pageMaker.startPage-1)}"><span aria-hidden="true">이전페이지</span><span class="xx-visuallyhidden">previous set of pages</span></a>
+            </li>
+            <data-th-block data-th-each="pageNum: ${#numbers.sequence(pageMaker.startPage, pageMaker.endPage)}">
+              <li><a data-th-href="@{list(page=${pageNum})}"><span class="xx-visuallyhidden">page </span><span data-th-text="${pageNum}"></span></a></li>
+            </data-th-block>
+            <li data-th-if="${pageMaker.next && pageMaker.endPage >0}">
+              <a data-th-href="@{list(page=${pageMaker.endPage+1})}"><span class="xx-visuallyhidden">next set of pages</span><span aria-hidden="true">다음페이지</span></a>
+            </li>
+          </ul>
+        </nav>
+      </div>
 
 <footer data-th-replace="/fragments/footer.html :: fragment-footer"></footer>
 </body>

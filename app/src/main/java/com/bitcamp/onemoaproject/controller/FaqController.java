@@ -38,6 +38,7 @@ public class FaqController {
   public void list(Criteria cri, Model model) throws Exception {
     PageMaker pageMaker = new PageMaker();
     pageMaker.setCri(cri);
+    cri.setPerPageNum(10);
     pageMaker.setTotalCount(faqService.listCount());
     List<Map<String, Object>> faqs = faqService.list(cri);
 

@@ -162,8 +162,31 @@
     qnafno=#{value}
   </select>
 
+  <!-- 전체 페이징 -->
+  <select id="findAllList" resultMap="qnaMap" parameterType="HashMap">
+    select
+    q.qnano,
+    q.title,
+    m.name,
+    q.cdt
+    from
+    qna q
+    join member m on q.mno=m.mno
+    order by
+    qnano desc
+    limit #{cri.pageStart}, #{cri.perPageNum}
+  </select>
+
+  <!-- 전체 페이징을 위해 게시글 개수 조회 -->
+  <select id="findAllCount" resultType="Integer">
+    select
+    count(*)
+    from
+    qna
+  </select>
+
   <!-- 페이징 -->
-  <select id="findAllList" resultMap="qnaMap" parameterType="criteria">
+  <select id="findAllList2" resultMap="qnaMap" parameterType="HashMap">
     select
       q.qnano,
       q.title,
@@ -172,17 +195,21 @@
     from
       qna q
       join member m on q.mno=m.mno
+    where
+      m.mno=#{memberNo}
     order by
       qnano desc
-    limit #{pageStart}, #{perPageNum}
+    limit #{cri.pageStart}, #{cri.perPageNum}
   </select>
 
   <!-- 페이징을 위해 게시글 개수 조회 -->
-  <select id="findAllCount" resultType="Integer">
+  <select id="findAllCount2" resultType="Integer">
     select
       count(*)
     from
       qna
+    where
+      mno=#{memberNo}
   </select>
 
 </mapper>
