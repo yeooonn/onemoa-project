@@ -3,12 +3,16 @@
 <head>
   <meta charset="UTF-8">
   <title>onemoa v</title>
+<!--  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">-->
   <link rel="stylesheet" type="text/css" href="reset.css" />
-  <link href="/onemoa/css/onemoa.css" rel="stylesheet">
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
   <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.js"></script>
+  <link href="/onemoa/css/onemoa.css" rel="stylesheet">
   <script src="/onemoa/js/login.js"></script>
+<!--  <link href="/onemoa/css/pagination.css"/>-->
   <style>
+
     #newProduct {
       position: fixed;
       top: 45vw;
@@ -21,7 +25,8 @@
     }
 
     .row {
-      padding: 15px 10px;
+      overflow: hidden;
+      padding: 8px 8px;
       border: solid 1px #dbdbe5;
       border-radius: 4px;
 
@@ -35,26 +40,30 @@
       -webkit-transition-property: box-shadow;
       transition-property: box-shadow;
 
-      height: 21vw;
+      height: 19vw;
       width: 15.3vw;
 
-      /*max-height: 330px;*/
-      /*min-height: 330px;*/
     }
     .row:hover {
       box-shadow: 0 0 8px rgba(0, 0, 0, 0.6);
     }
 
     .thumbnail {
+      margin-right: 0px;
+      margin-bottom: 0px;
       horiz-align: center;
       text-align: center;
+      min-height: 10vw;
+      border: none;
+      padding: 0px;
+    }
 
-      /*min-height: 250px;*/
-      /*max-width: 200px;*/
+    .thumbnail .caption {
+      padding: 5px;
     }
 
     .thumbnail > img {
-      max-height: 10vw;
+      height: 10vw;
       width: 100%;
     }
 
@@ -66,11 +75,12 @@
     }
 
     .caption > p {
-      max-height: 40px;
-      min-height: 40px;
-      margin-top: 5px;
-      margin-bottom: 15px;
-      font-size: 1.2vw;
+      word-break: break-all;
+      max-height: 2.5vw;
+      min-height: 2.5vw;
+      margin-top: 0vw;
+      margin-bottom: 0vw;
+      font-size: 1vw;
       text-align: left;
     }
 
@@ -93,8 +103,13 @@
     }
 
     #price > p {
-      margin-top: 1vw;
-      margin-bottom: 1vw;
+      margin-top: 0vw;
+      margin-bottom: 0vw;
+    }
+
+    #pagenation {
+      padding-left: 22vw;
+      text-align: center;
     }
 
   </style>
@@ -117,7 +132,7 @@
         <li class="menu" data-th-each= "category : ${productCategories}">
           <p class="cate1" data-th-text="${category.name}">상위 카테고리</p>
           <ul class="hide">
-            <a href="#" data-th-href="@{list(code=${child.code})}" data-th-each= "child : ${category.children}" data-th-text="${child.name}">하위 카테고리</a>
+            <a data-th-href="@{list(code=${child.code})}" data-th-each= "child : ${category.children}" data-th-text="${child.name}">하위 카테고리</a>
           </ul>
         </li>
       </ul>
@@ -129,7 +144,7 @@
             <a href="#" data-th-href="@{detail(no=${product.no})}" class="item">
               <!-- bootstrap card -->
               <div class="row">
-                <div class="col-sm-6 col-md-4">
+                <div>
                   <div class="thumbnail">
                     <img data-th-src="@{/product/files/{path}(path=${product.thumbnail})}" alt="">
 <!--                    <img src="../img/naver.png" alt="...">-->
@@ -155,39 +170,44 @@
          </div>
        </section>
 
-     <oi class = "pagingContainer">
-       <li class="page-firstPage" th:if="${pageMaker.prev}">
-         <a class="page-link" th:href="@{list(pageMaker.startPage-1)}" aria-label="Previous">
-           <span aria-hidden="true">이전페이지</span>
-         </a>
-       </li>
-       <th:block th:each="pageNum: ${#numbers.sequence(pageMaker.startPage, pageMaker.endPage)}">
-         <li class="page-1to5List">
-           <a class="page-link" th:href="@{list(page=${pageNum})}"><i th:text="${pageNum}"></i></a>
-         </li>
-       </th:block>
-       <li class="page-nextPage" th:if="${pageMaker.next && pageMaker.endPage >0}">
-         <a class="page-link" th:href="@{list(page=${pageMaker.endPage+1})}" aria-label="Next">
-           <span aria-hidden="true">다음페이지</span>
-         </a>
-       </li>
-     </oi>
-
     <a href="form"><button class="button" id="newProduct">새 글 작성하기</button></a>
+
    </main>
+
+    <div id="pagenation">
+      <ul class="pagination justify-content-center">
+        <li class="page-item disabled" th:if="${pageMaker.prev}">
+          <a class="page-link"
+             th:href="@{list(pageMaker.startPage-1)}" aria-label="Previous">
+            <span aria-hidden="true">이전페이지</span>
+          </a>
+        </li>
+        <th:block th:each="pageNum: ${#numbers.sequence(pageMaker.startPage, pageMaker.endPage)}">
+          <li class="page-item">
+            <a class="page-link" th:href="@{list(page=${pageNum})}"><i th:text="${pageNum}"></i></a>
+          </li>
+        </th:block>
+        <li class="page-item" th:if="${pageMaker.next && pageMaker.endPage >0}">
+          <a class="page-link" th:href="@{list(page=${pageMaker.endPage+1})}" aria-label="Next">
+            <span aria-hidden="true">다음페이지</span>
+          </a>
+        </li>
+      </ul>
+    </div>
 
   <footer data-th-replace="/fragments/footer.html :: fragment-footer"></footer>
   <script>
-    $(document).ready(function(){
+    $(document).ready(function() {
       $(".menu>p").click(function(){
         $(this).addClass("selected");
+
         var submenu = $(this).next("ul");
 
         // submenu 가 화면상에 보일때는 위로 보드랍게 접고 아니면 아래로 보드랍게 펼치기
-        if(submenu.is(":visible") ){
+        if (submenu.is(":visible") ){
           submenu.slideUp();
           $(this).removeClass("selected");
-        }else{
+        } else {
           submenu.slideDown();
         }
       })});

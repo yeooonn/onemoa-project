@@ -19,7 +19,6 @@ public class Product {
   private int viewCount;
   private Date createdDate;
   private String thumbnail;
-  private String thumbnailPath;
   private Member writer;
   private ProductCategory productCategory;
   private List<AttachedFile> attachedFiles;

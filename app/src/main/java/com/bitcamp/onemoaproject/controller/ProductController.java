@@ -46,7 +46,7 @@ public class ProductController {
     model.addAttribute("productCategories", productCategoryService.list());
     System.out.println(productCategoryService.list());
   }
-  
+
   @PostMapping("add") // 재능판매 게시판 : 게시글 등록
   public String add(
       Product product,
@@ -186,17 +186,20 @@ public class ProductController {
 
     product.setAttachedFiles(saveAttachedFiles(files));
 
-    checkOwner(product.getNo(), session);
+    int pNo = product.getNo();
+
+    checkOwner(pNo, session);
 
     if (!productService.update(product)) {
       throw new Exception("게시글을 변경할 수 없습니다.");
     }
 
-    return "redirect:list";
+    return "redirect:/mypage/productDetail?no=" + pNo;
   }
 
   private void checkOwner(int boardNo, HttpSession session) throws Exception {
     Member loginMember = (Member) session.getAttribute("loginMember");
+
     if (productService.get(boardNo).getWriter().getNo() != loginMember.getNo()) {
       throw new Exception("게시글 작성자가 아닙니다.");
     }
@@ -216,29 +219,29 @@ public class ProductController {
     return "redirect:list";
   }
 
-  @GetMapping("fileDelete")
-  public String fileDelete(
-          @RequestParam("no") int no,
-          HttpSession session)
-          throws Exception {
-
-    AttachedFile attachedFile = productService.getAttachedFile(no);
-
-    // 게시글의 작성자가 로그인 사용자인지 검사한다. (남의 것 삭제할 수 있으면 안되니까)
-    Member loginMember = (Member) session.getAttribute("loginMember");
-    Product product = productService.get(attachedFile.getProductNo());
-
-    if (product.getWriter().getNo() != loginMember.getNo()) {
-      throw new Exception("게시글 작성자가 아닙니다.");
-    }
-
-    // 첨부파일을 삭제한다.
-    if (!productService.deleteAttachedFile(no)) {
-      throw new Exception("게시글 첨부파일 삭제 실패!");
-    }
-
-    return "redirect:detail?no=" + product.getNo();
-  }
+//  @GetMapping("fileDelete")
+//  public String fileDelete(
+//          @RequestParam("no") int no,
+//          HttpSession session)
+//          throws Exception {
+//
+//    AttachedFile attachedFile = productService.getAttachedFile(no);
+//
+//    // 게시글의 작성자가 로그인 사용자인지 검사한다. (남의 것 삭제할 수 있으면 안되니까)
+//    Member loginMember = (Member) session.getAttribute("loginMember");
+//    Product product = productService.get(attachedFile.getProductNo());
+//
+//    if (product.getWriter().getNo() != loginMember.getNo()) {
+//      throw new Exception("게시글 작성자가 아닙니다.");
+//    }
+//
+//    // 첨부파일을 삭제한다.
+//    if (!productService.deleteAttachedFile(no)) {
+//      throw new Exception("게시글 첨부파일 삭제 실패!");
+//    }
+//
+//    return "redirect:detail?no=" + product.getNo();
+//  }
 
   @ResponseBody
   @GetMapping("getSubCategories")

@@ -46,36 +46,36 @@
 
     <select id="findAll" resultMap="productMap">
         select
-        p.pno,
-        p.pcno,
-        p.title,
-        p.cont,
-        p.price,
-        p.vw_cnt,
-        p.cdt,
-        p.thumbnail,
-        pf.fpath
+          p.pno,
+          p.pcno,
+          p.title,
+          p.cont,
+          p.price,
+          p.vw_cnt,
+          p.cdt,
+          p.thumbnail,
+          pf.fpath
         from
-        product p
-        join product_file pf on p.pno=pf.pno
+          product p
+          join product_file pf on p.pno=pf.pno
         order by
-        pno desc
+          pno desc
     </select>
 
     <select id="findByCategory" resultMap="productMap" parameterType="java.lang.String">
         select
-        pno,
-        pcno,
-        title,
-        cont,
-        price,
-        vw_cnt,
-        cdt,
-        thumbnail,
+          pno,
+          pcno,
+          title,
+          cont,
+          price,
+          vw_cnt,
+          cdt,
+          thumbnail,
         from
-        product
+          product
         where
-        pcno=#{code}
+          pcno=#{code}
     </select>
 
     <select id="findByNo" resultMap="productMap">
@@ -107,19 +107,21 @@
 
     <select id="findByWriter" resultMap="productMap">
         select
-        p.pno,
-        p.pcno,
-        p.title,
-        p.cont,
-        p.price,
-        p.vw_cnt,
-        p.cdt,
-        p.thumbnail,
-        p.rule
+          p.pno,
+          p.pcno,
+          p.title,
+          p.cont,
+          p.price,
+          p.vw_cnt,
+          p.cdt,
+          p.thumbnail,
+          p.rule
         from
-        product p
+          product p
         where
-        p.mno=#{value};
+          p.mno=#{value}
+        order by
+          p.pno desc
     </select>
 
     <insert id="insert" parameterType="product"
@@ -166,4 +168,34 @@
         </if>
     </select>
 
+    <update id="update" parameterType="product">
+        update
+          product
+        set
+          price=#{price},
+          title=#{title},
+          cont=#{content},
+          rule=#{rule},
+          selfintro=#{selfIntro},
+          cdt=now()
+        where pno=#{no}
+    </update>
+
+    <select id="findFileByNo" resultMap="attachedFileMap">
+        select
+          pfno,
+          fpath,
+          pno
+        from
+          product_file
+        where
+          pfno = #{value}
+    </select>
+
+
+    <delete id="deleteFile">
+        delete
+        from product_file
+        where pfno=#{value}
+    </delete>
 </mapper>
