@@ -22,32 +22,13 @@
           <li><a class="font2" href="/onemoa/admin/member/memberList">회원관리</a></li>
           <li><a class="font2" href="/onemoa/admin/contest/contestList">공모전관리</a></li>
           <li><a class="font2" href="">재능판매관리</a></li>
-          <li><a class="font" href="/onemoa/admin/qna/list">1:1문의관리</a></li>
-          <li><a class="font2" href="/onemoa/admin/faq/list">FAQ관리</a></li>
+          <li><a class="font2" href="/onemoa/admin/qna/list">1:1문의관리</a></li>
+          <li><a class="font" href="/onemoa/admin/faq/list">FAQ관리</a></li>
           <li><a class="font2" href="/onemoa/admin/notice/list">공지사항관리</a></li>
           <li><a class="font2" href="">카테고리관리</a></li>
         </ul>
-                <!-- 페이징 -->
-                <ul class="pagination justify-content-center">
-                    <li class="page-item disabled" th:if="${pageMaker.prev}">
-                        <a class="page-link"
-                           th:href="@{list(pageMaker.startPage-1)}" aria-label="Previous">
-                            <span aria-hidden="true">이전페이지</span>
-                        </a>
-                    </li>
-                    <th:block th:each="pageNum: ${#numbers.sequence(pageMaker.startPage, pageMaker.endPage)}">
-                        <li class="page-item">
-                            <a class="page-link" th:href="@{list(page=${pageNum})}"><i th:text="${pageNum}"></i></a>
-                        </li>
-                    </th:block>
-                    <li class="page-item" th:if="${pageMaker.next && pageMaker.endPage >0}">
-                        <a class="page-link" th:href="@{list(page=${pageMaker.endPage+1})}" aria-label="Next">
-                            <span aria-hidden="true">다음페이지</span>
-                        </a>
-                    </li>
-                </ul>
-           </div>
-         </div>
+        </div>
+      </div>
     </li>
     <li class="mypageArea">
       <div class="member">
@@ -59,7 +40,8 @@
             <th>유저타입</th>
           </tr>
           <tr data-th-each="faq, state : ${faqs}">
-            <td data-th-text="${state.count}">100</td>
+<!--            <td data-th-text="${state.count}">100</td>-->
+            <td data-th-text="${faq.no}">100</td>
             <td>
               <a href='detail?no=1'
                  data-th-href="@{detail(no=${faq.no})}"
@@ -71,6 +53,22 @@
         <p>
           <button class="memberlistbtn"><a href='form'>새 FAQ 등록</a></button>
         </p>
+      </div>
+
+      <div class="nextBox">
+        <nav class="xx-nav" aria-label="pagination">
+          <ul class="xx-pagination">
+            <li data-th-if="${pageMaker.prev}">
+              <a data-th-href="@{list(pageMaker.startPage-1)}"><span aria-hidden="true">이전페이지</span><span class="xx-visuallyhidden">previous set of pages</span></a>
+            </li>
+            <data-th-block data-th-each="pageNum: ${#numbers.sequence(pageMaker.startPage, pageMaker.endPage)}">
+              <li><a data-th-href="@{list(page=${pageNum})}"><span class="xx-visuallyhidden">page </span><span data-th-text="${pageNum}"></span></a></li>
+            </data-th-block>
+            <li data-th-if="${pageMaker.next && pageMaker.endPage >0}">
+              <a data-th-href="@{list(page=${pageMaker.endPage+1})}"><span class="xx-visuallyhidden">next set of pages</span><span aria-hidden="true">다음페이지</span></a>
+            </li>
+          </ul>
+        </nav>
       </div>
     </li>
   </ul>
