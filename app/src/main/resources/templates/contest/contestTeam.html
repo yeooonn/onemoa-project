@@ -9,13 +9,6 @@
   <script src="/onemoa/js/login.js"></script>
   <script src="/onemoa/node_modules/sweetalert/dist/sweetalert.min.js"></script>
 </head>
-<style>
-  /*#xx-fieldMemberUl img {*/
-  /*  width: 15%;*/
-  /*  height: auto;*/
-  /*  border-radius: 70%;*/
-  /*}*/
-</style>
 <body style="overflow-x: hidden">
   <div data-th-replace="/fragments/nav.html :: fragment-nav"></div>
   <input type="hidden" id="uNumber" data-th-if="${member != null}"data-th-value="${member.no}"/>
@@ -26,30 +19,32 @@
 
     <div class="contestctg">
       <ul class="conctg">
-        <li><a href="/onemoa/contest/contestTeam?no=all">전체</a></li>
-        <li><a href="/onemoa/contest/contestTeam?no=개인전">개인전</a></li>
-        <li><a href="/onemoa/contest/contestTeam?no=팀전">팀전</a></li>
+        <li><a class="noType font" href="/onemoa/contest/contestTeam?no=all" data-th-value="${no}">전체</a></li>
+        <li><a class="noType font" href="/onemoa/contest/contestTeam?no=개인전" data-th-value="${no}">개인전</a></li>
+        <li><a class="noType font" href="/onemoa/contest/contestTeam?no=팀전" data-th-value="${no}">팀전</a></li>
       </ul>
       <ul class="contype">
         <li>
-          <a href="." class="orgType" value="1" data-th-if="${ono==1}" data-th-text="${ono}"></a>
-          <a href="." class="orgType" value="1" data-th-if="${ono!=1}"  data-th-text="대기업"></a>
+          <a href="#" class="font orgType" value="1" data-th-if="${ono==1}" data-type="" data-th-text="${ono}"></a>
+          <a href="#" class="orgType font" value="1" data-th-if="${ono!=1}" data-th-text="대기업"></a>
         </li>
         <li>
-          <a href="." class="orgType" value="2" data-th-if="${ono==2}" data-th-text="${ono}"></a>
-          <a href="." class="orgType" value="2" data-th-if="${ono!=2}"  data-th-text="공공기관"></a>
+          <a href="#" class="orgType font" value="2" data-th-if="${ono==2}" data-th-text="${ono}"></a>
+          <a href="#" class="orgType font" value="2" data-th-if="${ono!=2}" data-th-text="공공기관"></a>
         </li>
         <li>
-          <a href="." class="orgType" value="3" data-th-if="${ono==3}" data-th-text="${ono}"></a>
-          <a href="." class="orgType" value="3" data-th-if="${ono!=3}"  data-th-text="자영업자"></a>
+          <a href="#" class="orgType font" value="3" data-th-if="${ono==3}" data-th-text="${ono}"></a>
+          <a href="#" class="orgType font" value="3" data-th-if="${ono!=3}" data-th-text="자영업자"></a>
         </li>
       </ul>
 
+      <input id="onoType" type="hidden" data-th-value="${ono}">
+
       <ul class="contype2">
-        <li><a href="#">상금 순</a></li>
-        <li><a href="#">조회 순</a></li>
-        <li><a href="#">마감임박 순</a></li>
-        <li><a href="." class="sortType" data-type="" data-th-data-type="${sortCd}" value="최신등록 순">최신등록 순</a></li>
+        <li><a href="." class="font" id="sortReward" value="sortRw" data-type="" data-th-data-type="${sortRw}">상금순</a></li>
+        <li><a href="." class="font" id="sortViewCount" value="sortVw" data-type="" data-th-data-type="${sortVw}">조회순</a></li>
+        <li><a href="." class="font" id="sortEndDate" value="sortEd" data-type="" data-th-data-type="${sortEd}">마감임박순</a></li>
+        <li><a href="." class="font" id="sortCreatDate" value="sortCd" data-type="" data-th-data-type="${sortCd}">등록순</a></li>
       </ul>
     </div>
 
@@ -485,11 +480,19 @@
     </div>
 
     <div class="nextBox">
-      <p>
-        <span><a href="#">1</a></span>
-        <span><a href="#">2</a></span>
-        <span><a href="#">3</a></span>
-      </p>
+      <nav class="xx-nav" aria-label="pagination">
+        <ul class="xx-pagination">
+          <li data-th-if="${pageMaker.prev}">
+            <a data-th-href="@{contestTeam(pageMaker.startPage-1)}"><span aria-hidden="true">이전페이지</span><span class="xx-visuallyhidden">previous set of pages</span></a>
+          </li>
+          <data-th-block data-th-each="pageNum: ${#numbers.sequence(pageMaker.startPage, pageMaker.endPage)}">
+            <li><a data-th-href="@{contestTeam(page=${pageNum})}"><span class="xx-visuallyhidden">page </span><span data-th-text="${pageNum}"></span></a></li>
+          </data-th-block>
+          <li data-th-if="${pageMaker.next && pageMaker.endPage >0}">
+            <a data-th-href="@{contestTeam(page=${pageMaker.endPage+1})}"><span class="xx-visuallyhidden">next set of pages</span><span aria-hidden="true">다음페이지</span></a>
+          </li>
+        </ul>
+      </nav>
     </div>
   </div>
 

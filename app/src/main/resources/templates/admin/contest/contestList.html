@@ -25,7 +25,7 @@
           <li><a class="font2" href="">재능판매관리</a></li>
           <li><a class="font2" href="/onemoa/admin/qna/list">1:1문의관리</a></li>
           <li><a class="font2" href="/onemoa/admin/faq/list">FAQ관리</a></li>
-          <li><a class="font2" href="">공지사항관리</a></li>
+          <li><a class="font2" href="/onemoa/admin/notice/list">공지사항관리</a></li>
           <li><a class="font2" href="">카테고리관리</a></li>
         </ul>
       </div>
@@ -86,6 +86,22 @@
       </div>
     </li>
   </ul>
+
+  <div class="nextBox">
+    <nav class="xx-nav" aria-label="pagination">
+      <ul class="xx-pagination">
+        <li data-th-if="${pageMaker.prev}">
+          <a data-th-href="@{contestList(pageMaker.startPage-1)}"><span aria-hidden="true">이전페이지</span><span class="xx-visuallyhidden">previous set of pages</span></a>
+        </li>
+        <data-th-block data-th-each="pageNum: ${#numbers.sequence(pageMaker.startPage, pageMaker.endPage)}">
+          <li><a data-th-href="@{contestList(page=${pageNum})}"><span class="xx-visuallyhidden">page </span><span data-th-text="${pageNum}"></span></a></li>
+        </data-th-block>
+        <li data-th-if="${pageMaker.next && pageMaker.endPage >0}">
+          <a data-th-href="@{contestList(page=${pageMaker.endPage+1})}"><span class="xx-visuallyhidden">next set of pages</span><span aria-hidden="true">다음페이지</span></a>
+        </li>
+      </ul>
+    </nav>
+  </div>
 <script src="/onemoa/js/contestList.js"></script>
 </body>
 </html>

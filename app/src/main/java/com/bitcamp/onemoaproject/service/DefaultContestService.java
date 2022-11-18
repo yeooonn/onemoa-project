@@ -8,6 +8,8 @@ import com.bitcamp.onemoaproject.vo.contest.ContestTeam;
 import com.bitcamp.onemoaproject.vo.contest.ContestTeamField;
 import com.bitcamp.onemoaproject.vo.contest.ContestTeamFieldMember;
 import java.util.List;
+import java.util.Map;
+import java.util.concurrent.ExecutionException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -20,8 +22,13 @@ public class DefaultContestService implements ContestService{
   
   // 공모전 모든 게시글 검색
   @Override
-  public List<Contest> list(String no, String ono, String sortCd) throws Exception {
-    return contestDao.findAll(no, ono, sortCd);
+  public List<Map<String, Object>> list(Map map) throws Exception {
+    return contestDao.findAll(map);
+  }
+  
+  @Override
+  public int listCount() throws ExecutionException {
+    return contestDao.findAllContestCount();
   }
   
   // 공모전 모든 게시글 검색

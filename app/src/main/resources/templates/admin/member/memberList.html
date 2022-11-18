@@ -21,7 +21,7 @@
         <div class="mypageNav">
           <div class="myonemoa">
             <p>관리자페이지</p>
-            <span class="mybar">
+            <span class="mybar"></span>
           </div>
           <ul class="mynav">
             <li><a class="font" href="/onemoa/admin/member/memberList">회원관리</a></li>
@@ -29,7 +29,7 @@
             <li><a class="font2" href="">재능판매관리</a></li>
             <li><a class="font2" href="/onemoa/admin/qna/list">1:1문의관리</a></li>
             <li><a class="font2" href="/onemoa/admin/faq/list">FAQ관리</a></li>
-            <li><a class="font2" href="">공지사항관리</a></li>
+            <li><a class="font2" href="/onemoa/admin/notice/list">공지사항관리</a></li>
             <li><a class="font2" href="">카테고리관리</a></li>
           </ul>
         </div>
@@ -42,11 +42,13 @@
               <th>번호</th>
               <th>이름(회원수정하기)</th>
               <th>이메일</th>
+              <th>가입일</th>
             </tr>
             <tr data-th-each="member : ${members}">
               <td data-th-text="${member.no}">1</td>
               <td><a href='memberDetail?no=1' data-th-href="@{memberDetail(no=${member.no})}" data-th-text="${member.name}">홍길동</a></td>
               <td data-th-text="${member.email}">hong@test.com</td>
+              <td data-th-text="${member.createdDate}">2022-11-17</td>
             </tr>
           </table>
           <p>
