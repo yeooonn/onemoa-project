@@ -1,6 +1,8 @@
 package com.bitcamp.onemoaproject.controller;
 
 import com.bitcamp.onemoaproject.service.QnaService;
+import com.bitcamp.onemoaproject.vo.paging.Criteria;
+import com.bitcamp.onemoaproject.vo.paging.PageMaker;
 import com.bitcamp.onemoaproject.vo.qna.QnaAttachedFile;
 import com.bitcamp.onemoaproject.vo.Member;
 import com.bitcamp.onemoaproject.vo.qna.Qna;
@@ -64,13 +66,36 @@ public class QnaController {
   }
 
   @GetMapping("list")
-  public void list(Model model, HttpSession session) throws Exception {
+  public String list(Criteria cri, Model model, HttpSession session) throws Exception {
     Member member = (Member) session.getAttribute("loginMember");
-    if(member != null) {
-      model.addAttribute("qnas", qnaService.list(member.getNo()));
-    } else {
-      model.addAttribute("qnas", qnaService.list());
+  
+    if (member == null) {
+      PageMaker pageMaker = new PageMaker();
+      cri.setPerPageNum(10);
+      pageMaker.setCri(cri);
+      pageMaker.setTotalCount(qnaService.listCount());
+  
+      Map<String, Object> map = new HashMap<>();
+      map.put("cri", cri);
+  
+      model.addAttribute("qnas", qnaService.list(map));
+      model.addAttribute("pageMaker", pageMaker);
+      
+      return "qna/list";
     }
+    
+    PageMaker pageMaker = new PageMaker();
+    cri.setPerPageNum(10);
+    pageMaker.setCri(cri);
+    pageMaker.setTotalCount(qnaService.listCount2(member.getNo()));
+  
+    Map<String, Object> map = new HashMap<>();
+    map.put("cri", cri);
+    map.put("memberNo", member.getNo());
+    
+    model.addAttribute("qnas", qnaService.list2(map));
+    model.addAttribute("pageMaker", pageMaker);
+    return "qna/list";
   }
 
   @GetMapping("detail")
