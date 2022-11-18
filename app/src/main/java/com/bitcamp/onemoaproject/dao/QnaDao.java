@@ -36,15 +36,13 @@ public interface QnaDao {
     int deleteFiles(int qnaNo);
 
     // Qna 페이징
-    List<Map<String, Object>> findAllList(Map map);
-    
-    // 사용자 QnA 페이징
-    List<Map<String, Object>> findAllList2(Map map);
-    
+    List<Map<String, Object>> findAllList(Criteria cri);
+
+    List<Map<String, Object>> findAllList(Criteria cri, int no);
     // Qna 글의 개수 조회
     int findAllCount();
 
-    int findAllCount2(int no);
+    int findAllCount(int no);
 
 
 //  int deleteFilesByMemberBoards(int memberNo);

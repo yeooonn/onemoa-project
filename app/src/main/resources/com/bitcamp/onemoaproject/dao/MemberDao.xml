@@ -37,7 +37,8 @@
   </resultMap>
 
   <!-- 회원가입 -->
-  <insert id="insert" parameterType="member">
+  <insert id="insert" parameterType="member"
+    useGeneratedKeys="true" keyColumn="mno" keyProperty="no">
     insert into
     member (
     email,
@@ -69,7 +70,7 @@
     #{account},
     'profile1.png',
     #{token},
-    #{status}
+    1
     );
   </insert>
 

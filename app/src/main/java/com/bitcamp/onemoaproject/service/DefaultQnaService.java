@@ -73,18 +73,12 @@ public class DefaultQnaService implements QnaService {
   public List<Qna> list() throws Exception {
     return qnaDao.findAll();
   }
-  
-  // 전체 페이징
+
   @Override
-  public List<Map<String, Object>> list(Map map) throws Exception {
-    return qnaDao.findAllList(map);
+  public List<Qna> list(int no) throws Exception {
+    return qnaDao.findAll(no);
   }
-  
-  @Override
-  public int listCount() throws ExecutionException {
-    return qnaDao.findAllCount();
-  }
-  
+
   @Override
   public QnaAttachedFile getAttachedFile(int fileNo) throws Exception {
     return qnaDao.findFileByNo(fileNo);
@@ -94,16 +88,16 @@ public class DefaultQnaService implements QnaService {
   public boolean deleteAttachedFile(int fileNo) throws Exception {
     return qnaDao.deleteFile(fileNo) > 0;
   }
-  
-  // 사용자 QnA 페이징
+
+  // 페이징
   @Override
-  public List<Map<String, Object>> list2(Map map) throws Exception {
-    return qnaDao.findAllList2(map);
+  public List<Map<String, Object>> list(Criteria cri) throws Exception {
+    return qnaDao.findAllList(cri);
   }
 
   @Override
-  public int listCount2(int no) throws ExecutionException {
-    return qnaDao.findAllCount2(no);
+  public int listCount() throws ExecutionException {
+    return qnaDao.findAllCount();
   }
 }
 
