@@ -1,6 +1,7 @@
 package com.bitcamp.onemoaproject.vo.product;
 
 import com.bitcamp.onemoaproject.vo.Member;
+import java.util.List;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -19,4 +20,6 @@ public class ProductReview {
   private Date createdDate;
   private int score;
   // private double scope;
+  
+  List<ProductReviewAttachedFile> productReviewAttachedFiles;
 }

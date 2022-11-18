@@ -33,4 +33,9 @@ public class DefaultProductReviewService implements ProductReviewService {
   public List<ProductReview> list(int no) {
     return productReviewDao.findByProductNo(no);
   }
+  
+  @Override
+  public List<ProductReview> listMainReview() {
+    return productReviewDao.findAllByMainReview();
+  }
 }

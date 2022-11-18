@@ -15,6 +15,8 @@ public interface ProductReviewDao {
   List<ProductReview> findAll();
 
   List<ProductReview> findByProductNo(int no);
+  
+  List<ProductReview> findAllByMainReview();
 }
 
 

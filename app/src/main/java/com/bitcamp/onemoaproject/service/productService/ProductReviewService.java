@@ -13,4 +13,6 @@ public interface ProductReviewService {
     List<ProductReview> list(int no);
 
     List<ProductReview> list();
+    
+    List<ProductReview> listMainReview();
 }
