@@ -1,6 +1,7 @@
 package com.bitcamp.onemoaproject.service;
 
 import java.util.List;
+import com.bitcamp.onemoaproject.vo.Interest;
 import com.bitcamp.onemoaproject.vo.Member;
 
 // 비즈니스 로직을 수행하는 객체의 사용규칙(호출규칙)
@@ -36,9 +37,13 @@ public interface MemberService {
   Member getIdEmail(String name, String email);
 
   boolean updatePwd(Member member);
-  
+
   // 사용자 패스워드 체크
   int getPasswordCheck(String password, int mno);
+
+  int addInterest(Interest interest);
+
+  int deleteInterest(int no);
 }
 
 

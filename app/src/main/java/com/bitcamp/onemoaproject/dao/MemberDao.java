@@ -3,6 +3,7 @@ package com.bitcamp.onemoaproject.dao;
 import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
+import com.bitcamp.onemoaproject.vo.Interest;
 import com.bitcamp.onemoaproject.vo.Member;
 
 @Mapper
@@ -41,9 +42,13 @@ public interface MemberDao {
   void modifyPasswd(
       @Param("email") String email, 
       @Param("newPassword") String newPassword);
-  
+
   // 사용자 패스워드 체크
   int passwordCheck(@Param("password") String password, @Param("mno") int mno);
+
+  int addInterest(Interest interest);
+
+  int deleteInterest(int no);
 }
 
 
