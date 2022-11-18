@@ -524,7 +524,7 @@ footer .detail span {
   top: 50%;
   left: 50%;
   width: 29.833%;
-  height: 60%;
+  height: 50%;
   padding: 40px;
   text-align: center;
   background-color: rgb(255, 255, 255);
@@ -2690,3 +2690,27 @@ label[for="label-a"] {
   background-color: #333;
   color: #fff;
 }
+
+/* 메인페이지 콘테스트 돌아가는 것 */
+
+.swiper {
+  width: 100%;
+  height: 100%;
+}
+.swiper-slide {
+  text-align: center;
+  font-size: 18px;
+  background: #ffffff;
+}
+.swiper-slide img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+
+
+
+
+

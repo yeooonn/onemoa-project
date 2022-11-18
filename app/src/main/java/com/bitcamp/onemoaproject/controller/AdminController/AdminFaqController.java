@@ -44,7 +44,6 @@ public class AdminFaqController {
         @GetMapping("list")
         public void list(Criteria cri, Model model) throws Exception {
             PageMaker pageMaker = new PageMaker();
-            cri.setPerPageNum(10);
             pageMaker.setCri(cri);
             pageMaker.setTotalCount(faqService.listCount());
             List<Map<String, Object>> faqs = faqService.list(cri);

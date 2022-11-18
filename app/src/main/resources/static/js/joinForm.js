@@ -130,6 +130,7 @@ $(function() {
         email: email
       },
       success: function(data) {
+        console.log(data);
         if (data == "false") {
           document.getElementById("emailAuthCheckBox").style.display = "block";
           document.getElementById("emailAuthCheckBox").style.color = "red";

@@ -39,15 +39,10 @@ public class AdminQnaController {
   // 페이징 적용
   @GetMapping("list")
   public void list(Criteria cri, Model model) throws Exception {
-    cri.setPerPageNum(10);
     PageMaker pageMaker = new PageMaker();
     pageMaker.setCri(cri);
     pageMaker.setTotalCount(qnaService.listCount());
-    
-    Map<String, Object> map = new HashMap<>();
-    map.put("cri", cri);
-    
-    List<Map<String, Object>> qnas = qnaService.list(map);
+    List<Map<String, Object>> qnas = qnaService.list(cri);
 
     model.addAttribute("qnas", qnas);
     model.addAttribute("pageMaker", pageMaker);

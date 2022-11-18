@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import com.bitcamp.onemoaproject.service.MailService;
 import com.bitcamp.onemoaproject.service.MemberService;
+import com.bitcamp.onemoaproject.vo.Interest;
 import com.bitcamp.onemoaproject.vo.Mail;
 import com.bitcamp.onemoaproject.vo.Member;
 
@@ -26,9 +27,28 @@ public class MemberController {
 
   // 회원 등록
   @PostMapping("add")
-  public String add(Member member) throws Exception {
+  public String add(Member member, String design, String it, String video, String translate,
+      String marketing, String write, String business) throws Exception {
+
     memberService.add(member);
-    return "redirect:../";
+
+    String[] interestName = {design, it, video, translate, marketing, write, business};
+
+    for (int i = 0; i < 7; i++) {
+      if (interestName[i] != null) {
+        Interest interest = new Interest();
+        System.out.println("dddDDDD");
+        interest.setMno(member.getNo());
+        System.out.println("jjjjj");
+        interest.setPcno(interestName[i]);
+
+        if (memberService.addInterest(interest) == 0) {
+          throw new Exception("관심사 등록에 실패하였습니다!");
+        }
+      }
+    }
+
+    return "redirect:/";
   }
 
   // 아이디 찾기 / 패스워드 초기화 폼
