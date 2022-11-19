@@ -36,85 +36,85 @@
     <result column="qnano" property="qnaNo"/>
   </resultMap>
 
-    <select id="findAll" resultMap="qnaMap">
+  <select id="findAll" resultMap="qnaMap">
     select
-      q.qnano,
-      q.title,
-      q.cont,
-      q.cdt,
-      q.answer,
-      q.answerCdt,
-      m.mno,
-      m.name
+    q.qnano,
+    q.title,
+    q.cont,
+    q.cdt,
+    q.answer,
+    q.answerCdt,
+    m.mno,
+    m.name
     from
-      qna q
-      join member m on q.mno = m.mno
-      <if test="no != null">
+    qna q
+    join member m on q.mno = m.mno
+    <if test="no != null">
       where q.mno=#{value}
-      </if>
+    </if>
     order by
-      qnano desc
-    </select>
+    qnano desc
+  </select>
 
-    <select id="findByNo" resultMap="qnaMap">
-      select
-        q.qnano,
-        q.qnacno,
-        q.title,
-        q.cont,
-        q.cdt,
-        q.answer,
-        q.answercdt,
-        m.mno,
-        m.name,
-        qf.qnafno,
-        qf.fpath,
-        qc.name as qcname
-      from
-        qna q
-        join member m on q.mno = m.mno
-        join qna_category qc on qc.qnacno = q.qnacno
-        left outer join qna_file qf on q.qnano = qf.qnano
-      where
-        q.qnano=#{value}
+  <select id="findByNo" resultMap="qnaMap">
+    select
+    q.qnano,
+    q.qnacno,
+    q.title,
+    q.cont,
+    q.cdt,
+    q.answer,
+    q.answercdt,
+    m.mno,
+    m.name,
+    qf.qnafno,
+    qf.fpath,
+    qc.name as qcname
+    from
+    qna q
+    join member m on q.mno = m.mno
+    join qna_category qc on qc.qnacno = q.qnacno
+    left outer join qna_file qf on q.qnano = qf.qnano
+    where
+    q.qnano=#{value}
   </select>
 
   <select id="findFilesByQna" resultMap="qnaAttachedFileMap">
-      select
-      qnafno,
-        filepath,
-      qnano
-      from
-        qna
-      where
-      qnano=#{value}
+    select
+    qnafno,
+    filepath,
+    qnano
+    from
+    qna
+    where
+    qnano=#{value}
   </select>
 
   <insert id="insert" parameterType="qna"
-          useGeneratedKeys="true" keyColumn="qnano" keyProperty="no">
+    useGeneratedKeys="true" keyColumn="qnano" keyProperty="no">
     insert into qna(title,cont,mno,qnacno)
     values(#{title},#{content},#{writer.no},#{category.no})
   </insert>
 
   <update id="update" parameterType="qna">
     update
-      qna
+    qna
     set
-      title=#{title},
-      cont=#{content},
-      qnacno=#{category.no}
+    title=#{title},
+    cont=#{content},
+    qnacno=#{category.no}
     where
-      qnano=#{no}
+    qnano=#{no}
   </update>
 
   <update id="answerUpdate" parameterType="qna">
     update
-      qna
+    qna
     set
-      answer=#{answer},
-      answercdt=now()
+    answer=#{answer},
+    answercdt=now()
     where
-      qnano=#{no}
+    qnano=#{no}
   </update>
 
   <delete id="delete">
@@ -122,10 +122,10 @@
     where qnano=#{value}
   </delete>
 
-<!--  <delete id="deleteByMember">-->
-<!--    delete from app_board -->
-<!--    where mno=#{value}-->
-<!--  </delete>-->
+  <!--  <delete id="deleteByMember">-->
+  <!--    delete from app_board -->
+  <!--    where mno=#{value}-->
+  <!--  </delete>-->
 
   <insert id="insertFiles" parameterType="qna">
     insert into qna_file(fname, fpath, qnano)
@@ -140,10 +140,10 @@
     where qnano=#{value}
   </delete>
 
-<!--  <delete id="deleteFilesByMemberBoards">-->
-<!--    delete from qna_file-->
-<!--    where qnano in (select qnano from qna where mno = #{value})-->
-<!--  </delete>-->
+  <!--  <delete id="deleteFilesByMemberBoards">-->
+  <!--    delete from qna_file-->
+  <!--    where qnano in (select qnano from qna where mno = #{value})-->
+  <!--  </delete>-->
 
   <delete id="deleteFile">
     delete from qna_file
@@ -152,41 +152,63 @@
 
   <select id="findFileByNo" resultMap="qnaAttachedFileMap">
     select
-      qnafno,
-      fpath,
-      qnano,
-      fname
+    qnafno,
+    fpath,
+    qnano,
+    fname
     from
-      qna_file
-      where
+    qna_file
+    where
     qnafno=#{value}
   </select>
 
   <!-- 페이징 -->
   <select id="findAllList" resultMap="qnaMap" parameterType="criteria">
     select
-      q.qnano,
-      q.title,
-      m.name,
-      q.cdt
+    q.qnano,
+    q.title,
+    m.name,
+    q.cdt
     from
-      qna q
-      join member m on q.mno=m.mno
+    qna q
+    join member m on q.mno=m.mno
     order by
-      qnano desc
-    limit #{pageStart}, #{perPageNum}
+    qnano desc
+    limit #{cri.pageStart}, #{cri.perPageNum}
   </select>
 
   <!-- 페이징을 위해 게시글 개수 조회 -->
   <select id="findAllCount" resultType="Integer">
     select
+    count(*)
+    from
+    qna
+  </select>
+
+  <!-- 페이징 -->
+  <select id="findAllList2" resultMap="qnaMap" parameterType="HashMap">
+    select
+    q.qnano,
+    q.title,
+    m.name,
+    q.cdt
+    from
+    qna q
+    join member m on q.mno=m.mno
+    where m.mno=#{memberNo}
+    order by
+    qnano desc
+    limit #{cri.pageStart}, #{cri.perPageNum}
+  </select>
+
+  <!-- 페이징을 위해 게시글 개수 조회 -->
+  <select id="findAllCount2" resultType="Integer">
+    select
       count(*)
     from
       qna
+    where
+     mno=#{memberNo}
   </select>
 
 </mapper>
-
-
-
-
