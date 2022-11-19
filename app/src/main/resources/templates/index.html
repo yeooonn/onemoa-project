@@ -7,11 +7,7 @@
   <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.js"></script>
   <script src="/onemoa/js/login.js"></script>
-  <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css"
-  />
-  
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css"/>
 </head>
 <body style="overflow-x: hidden">
   <div data-th-replace="/fragments/nav.html :: fragment-nav"></div>
@@ -77,41 +73,33 @@
     </div>
 
     <!--  메인페이지 인기 공모전 스위퍼  -->
-    <div class="swiper mySwiper">
-      <div class="swiper-wrapper">
-        <div class="swiper-slide" data-th-each="contest: ${contests}">
-          <ul>
-            <li><img data-th-src="@{/contest/files/{path}(path=${contest.thumbNail})}" style="height: 400px"></li>
-            <li><p data-th-text="${contest.contCategory.categoryName}" style="font-size: medium"></p></li>
-            <li><p data-th-text="${contest.title}" style="font-size: medium"></p></li>
-          </ul>
+    <div class="contestWidth" style="position: relative;">
+      <div class="swiper mySwiper">
+        <div class="swiper-wrapper">
+          <div class="swiper-slide" data-th-each="contest: ${contests}">
+            <ul>
+              <li><img data-th-src="@{/contest/files/{path}(path=${contest.thumbNail})}" style="height: auto"></li>
+              <li><p data-th-text="${contest.contCategory.categoryName}" style="font-size: 1vw; color: gray;"></p></li>
+              <li><p data-th-text="${contest.title}" style="font-size: 1.2vw"></p></li>
+            </ul>
+          </div>
         </div>
       </div>
-      <div class="swiper-button-next"></div>
-      <div class="swiper-button-prev"></div>
-      <div class="swiper-pagination"></div>
+        <div class="swiper-button-next" style="position: absolute; top: 40%; right: 4.5%;"></div>
+        <div class="swiper-button-prev" style="position: absolute; top: 40%; left: 4.5%;"></div>
     </div>
 
     <div class="mainReview">
-      <p>ONEMOA 에서 거래한 다른 사람들의 <span>다양한 리얼 후기를 만나보세요. </span></p>
+      <p class="reviews">ONEMOA 에서 거래한 다른 사람들의 <span>다양한 리얼 후기를 만나보세요. </span></p>
       <div class="gallery">
         <ul class="clearfix">
           <li data-th-each="review : ${reviews}">
-            <div data-th-each="file : ${review.productReviewAttachedFiles}">
-              <img src="./img/mainre.png" data-th-src="@{product/reviewfiles/{path}(path=${file.filepath})}" style="width: 317px; height: 200px">
-              <span data-th-text="${review.writer.nickname}" style="font-size: small"></span>
-              <span data-th-text="${review.score}" style="font-size: small"></span>
-              <span data-th-text="${review.title}" style="font-size: small"></span>
-              <span data-th-text="${review.content}" style="font-size: small"></span>
-            </div>
+              <img data-th-each="file : ${review.productReviewAttachedFiles}" src="./img/mainre.png" data-th-src="@{product/reviewfiles/{path}(path=${file.filepath})}" style="display: inline-block; width: 100%; height: 200px;">
+              <p class="rev" data-th-text="${review.writer.nickname}" style="font-size: 1vw; color: gray;"></p>
+              <p class="rev" data-th-text="${'별점'+ review.score}" style="font-size: 1vw; color: blue;"></p>
+              <p data-th-text="${review.title}" style="font-size: 1vw;"></p>
+              <p data-th-text="${review.content}"></p>
           </li>
-<!--          <li><img src="./img/mainre.png"></li>-->
-<!--          <li><img src="./img/mainre.png"></li>-->
-<!--          <li><img src="./img/mainre.png"></li>-->
-<!--          <li><img src="./img/mainre.png"></li>-->
-<!--          <li><img src="./img/mainre.png"></li>-->
-<!--          <li><img src="./img/mainre.png"></li>-->
-<!--          <li><img src="./img/mainre.png"></li>-->
         </ul>
       </div>
     </div>

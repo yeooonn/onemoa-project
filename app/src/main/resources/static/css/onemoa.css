@@ -428,13 +428,15 @@ label.right {
 
 /* maiinReview - 연정 */
 .mainReview {
-  margin-top: 162px;
+  margin-top: 30px;
+}
+.mainReview .reviews {
+  margin-bottom: -30px;
 }
 .mainReview p {
-  margin-bottom: 62px;
   font-size: 1.6667vw;
   font-weight: bold;
-  padding-left: 8.531%;
+  padding: 8%;
   color: #333;
 }
 .mainReview p span {
@@ -454,8 +456,8 @@ label.right {
 }
 .gallery {
   width: 100%;
-  height: 650px;
-  margin: 20px auto;
+  height: auto;
+  margin-bottom: 150px;
   overflow: hidden;
   padding-left: 0;
 }
@@ -464,13 +466,41 @@ label.right {
   position: relative;
   left: -300px;
 }
-.gallery ul li img {
+.gallery ul li {
+  width: 7%;
+  height: 470px;
   float: left;
+  border: 1px solid black;
+  border-radius: 10px;
+  overflow: hidden;
+  margin-right: 1%;
+}
+.gallery ul li img {
   width: 8.328%;
   height: auto;
   box-sizing: border-box;
-  padding: 15px;
   text-align: center;
+}
+.gallery ul li p {
+  width: 40%;
+}
+.gallery ul li .rev {
+  float: left;
+}
+.gallery ul li .rev:nth-of-type(2) {
+  width: 30%;
+  margin-left: 30%;
+  text-align: right;
+}
+.gallery ul li p:nth-of-type(4) {
+  width: 100%;
+  height: 80px;
+  overflow: scroll;
+  margin-top: -55px;
+  font-size: 1vw; 
+  color: #666; 
+  font-weight: normal; 
+  margin-bottom: 30px;
 }
 
 /* footer - 연정 */
@@ -2692,15 +2722,22 @@ label[for="label-a"] {
 }
 
 /* 메인페이지 콘테스트 돌아가는 것 */
-
+.contestWidth {
+  padding: 0 8.5%;
+}
 .swiper {
   width: 100%;
   height: 100%;
+  overflow: auto;
 }
 .swiper-slide {
-  text-align: center;
+  text-align: left;
   font-size: 18px;
   background: #ffffff;
+}
+.swiper-slide ul li:nth-of-type(3) {
+  margin-top: -15px;
+  font-weight: bold;
 }
 .swiper-slide img {
   display: block;
@@ -2708,9 +2745,8 @@ label[for="label-a"] {
   height: 100%;
   object-fit: cover;
 }
-
-
-
-
+.swiper-pagination {
+  border: 1px solid red;
+}
 
 
