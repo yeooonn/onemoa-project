@@ -7,7 +7,9 @@
   <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.js"></script>
   <script src="/onemoa/js/login.js"></script>
-  <script src="/onemoa/node_modules/sweetalert/dist/sweetalert.min.js"></script>
+<!--  <script src="/onemoa/node_modules/sweetalert/dist/sweetalert.min.js"></script>-->
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
 </head>
 <body style="overflow-x: hidden">
   <div data-th-replace="/fragments/nav.html :: fragment-nav"></div>
@@ -19,13 +21,13 @@
 
     <div class="contestctg">
       <ul class="conctg">
-        <li><a class="noType font" href="/onemoa/contest/contestTeam?no=all" data-th-value="${no}">전체</a></li>
-        <li><a class="noType font" href="/onemoa/contest/contestTeam?no=개인전" data-th-value="${no}">개인전</a></li>
-        <li><a class="noType font" href="/onemoa/contest/contestTeam?no=팀전" data-th-value="${no}">팀전</a></li>
+        <li><a class="noType" href="/onemoa/contest/contestTeam?no=all" data-th-value="${no}">전체</a></li>
+        <li><a class="noType" href="/onemoa/contest/contestTeam?no=개인전" data-th-value="${no}">개인전</a></li>
+        <li><a class="noType" href="/onemoa/contest/contestTeam?no=팀전" data-th-value="${no}">팀전</a></li>
       </ul>
       <ul class="contype">
         <li>
-          <a href="#" class="font orgType" value="1" data-th-if="${ono==1}" data-type="" data-th-text="${ono}"></a>
+          <a href="#" class="orgType font" value="1" data-th-if="${ono==1}" data-type="" data-th-text="${ono}"></a>
           <a href="#" class="orgType font" value="1" data-th-if="${ono!=1}" data-th-text="대기업"></a>
         </li>
         <li>
@@ -418,8 +420,10 @@
             <button class="closebtn9" onclick="clo8()"><img src="/onemoa/img/x.png"></button>
             <p>팀원으로 지원을하시겠습니까?</p>
             <div class="teamb9">
-              <span><button id="teamb9" onclick="dis8(this.value)">확인</button></span>
-              <span><button onclick="clo8()">취소</button></span>
+<!--              <span><button id="teamb9" onclick="dis8(this.value)">확인</button></span>-->
+<!--              <span><button onclick="clo8()">취소</button></span>-->
+              <button class="memberSelectBtn" id="teamb9" onclick="dis8(this.value)">확인</button>
+              <button class="memberSelectBtn" onclick="clo8()">취소</button>
             </div>
           </div>
         </div><!--modal9-->
@@ -498,5 +502,48 @@
 
   <footer data-th-replace="/fragments/footer.html :: fragment-footer"></footer>
   <script src="/onemoa/js/contestTeam.js"></script>
+  <script th:inline="javascript">
+
+    // 공모전 페이지 전체, 개인전, 팀전 클릭시 클릭한 링크 색상 변경
+    let test = [[${no}]];
+    console.log(test);
+    let noLength = $(".conctg").find("a").length;
+    for (let i = 0; i < noLength; i++) {
+      if ($(".conctg").find("a").eq(0).attr("value") == 'all') {
+        $(".conctg").find("a").eq(0).css("color", "black");
+      }
+      else if ($(".conctg").find("a").eq(0).attr("value") == $(".conctg").find("a").eq(i).text()) {
+        $(".conctg").find("a").eq(i).css("color", "black");
+      }
+    }
+
+
+    // 공모전 페이지 대기업, 공공기관, 자영업자 클릭시 클릭한 링크 색상 변경
+    let urlParam = window.location.search.substring("ono");
+    let onoValue = urlParam.substring(urlParam.lastIndexOf("=")+1, urlParam.length);
+
+    if (window.location.search.includes("ono")) {
+      console.log(onoValue);
+      switch (onoValue) {
+        case '1':
+          $(".contype").find("a").eq(0).css("color", "black");
+          break;
+        case '2':
+          $(".contype").find("a").eq(1).css("color", "black");
+          break;
+        case '3':
+          $(".contype").find("a").eq(2).css("color", "black");
+          break;
+      }
+    };
+
+    // 리로드???
+    window.onpageshow = function(e) {
+      if (e.persisted || (window.performance && window.performance.navigation.type === 2)) {
+        window.location.reload();
+        console.log("리로드 완료");
+      }
+    }
+  </script>
 </body>
 </html>
