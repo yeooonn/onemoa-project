@@ -2064,29 +2064,55 @@ label[for="label-a"] {
   padding-top: 70px;
   padding-bottom: 40px;
 }
-.modal_body9 .teamb9 span button {
+.modal_body9 .teamb9 {
   border: none;
   background-color: transparent;
   color: #fff;
+  width: 100%;
 }
-.modal_body9 .teamb9 span {
+.modal_body9 .teamb9 .memberSelectBtn {
   padding: 10px 20px;
   border: 1px solid #707fc2;
   border-radius: 5px;
-  margin-left: 1%;
   background-color: #707fc2;
   color: #fff;
+  position: relative;
+  right: 34%;
+  margin-right: -10px;
 }
-.modal_body9 .teamb9 span:hover {
+.modal_body9 .teamb9 .memberSelectBtn:hover {
   background-color: #48527d;
 }
-.modal_body9 .teamb9 span:nth-of-type(2) {
+.modal_body9 .teamb9 .memberSelectBtn:nth-of-type(2) {
   background-color: #a5a5a5;
   border: 1px solid #a5a5a5;
 }
-.modal_body9 .teamb9 span:nth-of-type(2):hover {
+.modal_body9 .teamb9 .memberSelectBtn:nth-of-type(2):hover {
   background-color: #6c6d70;
 }
+/*.modal_body9 .teamb9 span button {*/
+/*  border: none;*/
+/*  background-color: transparent;*/
+/*  color: #fff;*/
+/*}*/
+/*.modal_body9 .teamb9 span {*/
+/*  padding: 10px 20px;*/
+/*  border: 1px solid #707fc2;*/
+/*  border-radius: 5px;*/
+/*  margin-left: 1%;*/
+/*  background-color: #707fc2;*/
+/*  color: #fff;*/
+/*}*/
+/*.modal_body9 .teamb9 span:hover {*/
+/*  background-color: #48527d;*/
+/*}*/
+/*.modal_body9 .teamb9 span:nth-of-type(2) {*/
+/*  background-color: #a5a5a5;*/
+/*  border: 1px solid #a5a5a5;*/
+/*}*/
+/*.modal_body9 .teamb9 span:nth-of-type(2):hover {*/
+/*  background-color: #6c6d70;*/
+/*}*/
 
 /* 주영 joinForm CSS...*/
 .login-header {

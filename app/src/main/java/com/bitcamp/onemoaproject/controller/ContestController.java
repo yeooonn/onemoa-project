@@ -102,16 +102,20 @@ public class ContestController {
   // 공모전 팀원 모집하기 폼(회원정보)
   @PostMapping("contestTeam/teamRecruitForm")
   @ResponseBody
-  public Object contestTeamTeamRecruit(HttpSession session, Model model) throws Exception {
+  public Member contestTeamTeamRecruit(HttpSession session) throws Exception {
+    System.out.println("session.getAttribute(\"loginMember\") = " + session.getAttribute("loginMember"));
     Member loginMember = (Member) session.getAttribute("loginMember");
-    
-    if (loginMember != null) {
-      model.addAttribute("member", memberService.get(loginMember.getNo()));
-      System.out.println("model.getAttribute(\"member\") = " + model.getAttribute("member"));
-      return model.getAttribute("member");
+  
+    System.out.println("loginMember = " + loginMember);
+    if (loginMember == null) {
+      // loginMember.setStatus(0);
+      return null;
     }
-    loginMember.setStatus(0);
-    return loginMember;
+    
+    else  {
+      Member member = memberService.get(loginMember.getNo());
+      return member;
+    }
   }
   
   // 공모전 팀원 모집하기 폼(회원 포트폴리오)
@@ -194,7 +198,10 @@ public class ContestController {
   @ResponseBody
   public List<Member> fieldMemberDetail(HttpSession session, int readerNumber) throws Exception {
     Member loginMember = (Member) session.getAttribute("loginMember");
-    if (loginMember != null) {
+    if (loginMember.getNo() == readerNumber) {
+      return null;
+    }
+    else if (loginMember != null) {
       List<Member> member = memberService.getFieldMemberPortfolio(loginMember.getNo());
       return member;
     }

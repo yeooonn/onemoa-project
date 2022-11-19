@@ -25,10 +25,10 @@
     </style>
 <body>
 <div data-th-replace="/fragments/nav.html :: fragment-nav"></div>
-<div><img id="noticeBanner" src="../img/contestbg.png" alt=""></div>
+<div><img id="noticeBanner" src="/onemoa/img/contestbg.png" alt=""></div>
 <div id="underBanner"></div>
-        <div style="margin-left:20vw;" class="container">
-        <h1 style="text-align: center; padding-right: 6vw;">FAQ게시판</h1>
+        <div class="container">
+        <h1 style="text-align: center;">FAQ게시판</h1>
         <table class="table">
             <tr>
                 <th class="tableStyle" style="width: 5vw">No</th>
@@ -48,25 +48,20 @@
                 </td>
             </tr>
         </table>
-        <!-- 페이징 -->
-        <ul class="pagination justify-content-center">
-            <li class="page-item disabled" th:if="${pageMaker.prev}">
-                <a class="page-link"
-                   th:href="@{list(pageMaker.startPage-1)}" aria-label="Previous">
-                    <span aria-hidden="true">이전페이지</span>
-                </a>
-            </li>
-            <th:block th:each="pageNum: ${#numbers.sequence(pageMaker.startPage, pageMaker.endPage)}">
-                <li class="page-item">
-                    <a class="page-link" th:href="@{list(page=${pageNum})}"><i th:text="${pageNum}"></i></a>
-                </li>
-            </th:block>
-            <li class="page-item" th:if="${pageMaker.next && pageMaker.endPage >0}">
-                <a class="page-link" th:href="@{list(page=${pageMaker.endPage+1})}" aria-label="Next">
-                    <span aria-hidden="true">다음페이지</span>
-                </a>
-            </li>
-        </ul>
+            <!-- 페이징 -->
+            <nav class="xx-nav" aria-label="pagination">
+                <ul class="xx-pagination">
+                    <li data-th-if="${pageMaker.prev}">
+                        <a data-th-href="@{list(pageMaker.startPage-1)}"><span aria-hidden="true">이전페이지</span><span class="xx-visuallyhidden">previous set of pages</span></a>
+                    </li>
+                    <data-th-block data-th-each="pageNum: ${#numbers.sequence(pageMaker.startPage, pageMaker.endPage)}">
+                        <li><a data-th-href="@{list(page=${pageNum})}"><span class="xx-visuallyhidden">page </span><span data-th-text="${pageNum}"></span></a></li>
+                    </data-th-block>
+                    <li data-th-if="${pageMaker.next && pageMaker.endPage >0}">
+                        <a data-th-href="@{list(page=${pageMaker.endPage+1})}"><span class="xx-visuallyhidden">next set of pages</span><span aria-hidden="true">다음페이지</span></a>
+                    </li>
+                </ul>
+            </nav>
         <button type="button" class="btn btn-primary btn-sm" id="backToMain"><a href="/onemoa/">메인으로 돌아가기</a></button>
     </div>
 </div>

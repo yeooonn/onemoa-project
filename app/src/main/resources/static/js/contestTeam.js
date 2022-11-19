@@ -1,6 +1,6 @@
 let memberNo = "";
-let readerNumber = 0;
-let teamNumber;
+let readerNumber = 0; // 팀장 mno
+let teamNumber; //
 
 // 공모전 상세페이지
 $(".con").click(function () {
@@ -71,11 +71,39 @@ function clo(){
     $('.modal2').hide();
     body.style.overflow = 'auto';
   }
+
+  // 리로드???
+  window.location.reload();
 }
 
 // 공모전 팀원구해요 : 팀원 모집하기 버튼 -> 팀원 모집하기 폼
 function dis2(){
   console.log(contestNumber)// 공모전 번호;
+
+  $.ajax({
+    type: "POST",
+    url: "/onemoa/contest/contestTeam/teamRecruitForm",
+    success: function (result) {
+      console.log("팀원구해요");
+      if(result.no == undefined){
+        swal({
+          title: "로그인이 필요한 화면입니다.",
+          text: "로그인 창으로 이동합니다.",
+          icon: "error",
+          closeOnClickOutside : false}).then(() =>{
+          window.location.href = "/onemoa/pageLogin";
+        });
+      }
+      else {
+        memberNo = result.no;
+        $("#teamRecruitFormReaderNo").attr("value", result.no)
+        $("#teamRecruitFormReaderProfile").attr("src", "/onemoa/member/files/" + result.profile);
+        $("#teamRecruitFormReaderNickname").html(result.nickname);
+        teamRecruitForm2();
+      }
+    },
+  });
+
   if ($('.modal3').css('display') == 'none'){
     $('.modal3').show(); // 팀원모집하기 모달
     $('.modal2').hide(); // 공모전 팀원구해요 창(팀 팀장 리스트)
@@ -83,28 +111,9 @@ function dis2(){
     $('.modal3').hide();
     $('.modal2').hide();
   }
+}
 
-  $.ajax({
-    type: "POST",
-    url: "/onemoa/contest/contestTeam/teamRecruitForm",
-    success: function (result) {
-        console.log(result);
-        memberNo = result.no;
-        $("#teamRecruitFormReaderNo").attr("value", result.no)
-        $("#teamRecruitFormReaderProfile").attr("src", "/onemoa/member/files/" + result.profile);
-        $("#teamRecruitFormReaderNickname").html(result.nickname);
-    },
-    error: function () {
-      swal({
-        title: "로그인이 필요한 화면입니다.",
-        text: "로그인 창으로 이동합니다.",
-        icon: "error",
-        closeOnClickOutside : false}).then(() =>{
-          window.location.href = "/onemoa/pageLogin";
-      });
-    }
-  });
-
+function teamRecruitForm2() {
   $.ajax({
     type: "POST",
     url: "/onemoa/contest/contestTeam/teamRecruitForm2",
@@ -121,9 +130,15 @@ function portfolioBoxChange() {
   let selectPortfolioNumber = document.getElementById("xx-portfolioBox").options[document.getElementById("xx-portfolioBox").selectedIndex].value
   let selectPortfolioText = document.getElementById("xx-portfolioBox").options[document.getElementById("xx-portfolioBox").selectedIndex].text;
   let aList = "";
-  aList += "<li>" +
-      "<a href='/onemoa/mypage/firstportfolio?ptNo=" + selectPortfolioNumber + "'" + "onClick=\"window.open(this.href, '', 'width=1000px, height=1080px')\"; target=\"_blank\">" + selectPortfolioText + "</a>" + "</li>";
+  aList += "<li value='ptNo" + selectPortfolioNumber + "'>" +
+      "<a href='/onemoa/mypage/firstportfolio?ptNo=" + selectPortfolioNumber + "'" + "onClick=\"window.open(this.href, '', 'width=1000px, height=1080px')\"; target=\"_blank\">" + selectPortfolioText + "</a>" + "&nbsp&nbsp&nbsp" + "<span class='portfolioDeleteBtn' id='ptNo" + selectPortfolioNumber + "'" + ">삭제</span>" + "</li>";
   $("#innerPortfolio").append(aList);
+
+  $(".portfolioDeleteBtn").click(function (e) {
+    e.preventDefault();
+    $(this).parent().remove();
+    $(this).remove();
+  });
 }
 
 function personnelSelect() {
@@ -358,7 +373,7 @@ function fieldMemberList() {
                 "</li>" +
                 "<li>" +
                 "<p>" + result3[i].contestTeamFieldMembers[j].cont + "</p>" +
-                "<p><a href=\"#\">수정</a><a href=\"#\">삭제</a></p>" +
+                // "<p><a href=\"#\">수정</a><a href=\"#\">삭제</a></p>" +
                 "</li>" +
                 "<li>" +
                 "<p>" +
@@ -375,7 +390,7 @@ function fieldMemberList() {
                 "</li>" +
                 "<li>" +
                 "<p>" + result3[i].contestTeamFieldMembers[j].cont + "</p>" +
-                "<p><a href=\"#\">수정</a><a href=\"#\">삭제</a></p>" +
+                // "<p><a href=\"#\">수정</a><a href=\"#\">삭제</a></p>" +
                 "</li>" +
                 "<li>" +
                 "<p>" +
@@ -391,7 +406,7 @@ function fieldMemberList() {
                 "</li>" +
                 "<li>" +
                 "<p>" + result3[i].contestTeamFieldMembers[j].cont + "</p>" +
-                "<p><a href=\"#\">수정</a><a href=\"#\">삭제</a></p>" +
+                // "<p><a href=\"#\">수정</a><a href=\"#\">삭제</a></p>" +
                 "</li>" +
                 "<li>" +
                 "<p style='border:#6F9475; background-color:#6F9475; color:#ffffff'>" +
@@ -559,6 +574,7 @@ function clo4(){
 
 // 팀장 상세보기에서 팀원 모집하기 버튼
 function dis5(){
+  teamReaderDetail(); // 팀장 상세보기 리로드
   fieldMemberDetail();
   fieldMemberDetailField();
 
@@ -590,7 +606,9 @@ function fieldMemberDetail(){
     url: "/onemoa/contest/contestTeam/fieldMemberDetail",
     data: {"readerNumber": readerNumber},
     success: function (result) {
-      if (result === '') {
+      console.log("지원자 회원 정보 조회")
+      console.log(result);
+      if (result == '') {
         swal({
           title: "로그인이 필요한 화면입니다.",
           text: "로그인 창으로 이동합니다.",
@@ -697,9 +715,15 @@ function fieldMemberDetailPortfolioBoxChange() {
   selectPortfolioNumber1 = document.getElementById("xx-fieldMemberPortfolioSelectBox").options[document.getElementById("xx-fieldMemberPortfolioSelectBox").selectedIndex].value;
   selectPortfolioText1 = document.getElementById("xx-fieldMemberPortfolioSelectBox").options[document.getElementById("xx-fieldMemberPortfolioSelectBox").selectedIndex].text;
   let aList2 = "";
-  aList2 += "<li style='margin-left: 1%; height: 30px;'>" + "<a href='/onemoa/mypage/firstportfolio?ptNo=" + selectPortfolioNumber1 + "'" + "onClick=\"window.open(this.href, '', 'width=1000px, height=1080px')\"; target=\"_blank\">" + selectPortfolioText1 + "</a>" + "</li>";
+  aList2 += "<li style='margin-left: 1%; height: 30px;'>" + "<a href='/onemoa/mypage/firstportfolio?ptNo=" + selectPortfolioNumber1 + "'" + "onClick=\"window.open(this.href, '', 'width=1000px, height=1080px')\"; target=\"_blank\">" + selectPortfolioText1 + "</a>" + "&nbsp&nbsp&nbsp" + "<span class='portfolio2DeleteBtn'>삭제</span>" + "</li>";
   console.log(aList2);
   $("#innerPortfolio2").append(aList2);
+
+  $(".portfolio2DeleteBtn").click(function (e) {
+    e.preventDefault();
+    $(this).parent().remove();
+    $(this).remove();
+  });
 }
 
 function clo5(){
