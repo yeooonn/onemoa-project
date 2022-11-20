@@ -19,4 +19,5 @@ public class Order {
     private String baseAddr;
     private String detailAddr;
     private OrderStatus orderStatus;
+    private OrderReview orderReview;
 }

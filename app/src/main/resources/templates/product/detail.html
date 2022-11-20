@@ -429,19 +429,19 @@
     </div>
     <div id="detail3-2">
       <table id="reviewList">
-        <tr class="reviewLine" data-th-each="review : ${reviews}">
+        <tr class="reviewLine" data-th-each="orderReview : ${reviews}">
           <td id="starRow">
             <div class="star-rating">
-              <span data-th-if="${review.score == 5}" style="width:100%"></span>
-              <span data-th-if="${review.score == 4}" style="width:80%"></span>
-              <span data-th-if="${review.score == 3}" style="width:60%"></span>
-              <span data-th-if="${review.score == 2}" style="width:40%"></span>
-              <span data-th-if="${review.score == 1}" style="width:20%"></span>
+              <span data-th-if="${orderReview.score == 5}" style="width:100%"></span>
+              <span data-th-if="${orderReview.score == 4}" style="width:80%"></span>
+              <span data-th-if="${orderReview.score == 3}" style="width:60%"></span>
+              <span data-th-if="${orderReview.score == 2}" style="width:40%"></span>
+              <span data-th-if="${orderReview.score == 1}" style="width:20%"></span>
             </div>
-            <span><p data-th-value="${review.score}" data-th-text="${review.score}">후기 별점</p></span>
+            <span><p data-th-value="${orderReview.score}" data-th-text="${orderReview.score}">후기 별점</p></span>
           </td>
-          <td><p data-th-text="${review.content}">후기 내용</p></td>
-          <td><p id="rwCreatedDate" data-th-text="${review.createdDate}">작성일</p></td>
+          <td><p data-th-text="${orderReview.content}">후기 내용</p></td>
+          <td><p id="rwCreatedDate" data-th-text="${orderReview.createdDate}">작성일</p></td>
         </tr>
       </table>
     </div>

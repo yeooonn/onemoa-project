@@ -1,6 +1,7 @@
 package com.bitcamp.onemoaproject.controller;
 
 import com.bitcamp.onemoaproject.service.DefaultWishService;
+import com.bitcamp.onemoaproject.service.order.OrderReviewService;
 import com.bitcamp.onemoaproject.service.order.OrderService;
 import com.bitcamp.onemoaproject.service.order.OrderStatusService;
 import com.bitcamp.onemoaproject.service.productService.ProductCategoryService;
@@ -8,6 +9,7 @@ import com.bitcamp.onemoaproject.service.productService.ProductReviewService;
 import com.bitcamp.onemoaproject.service.productService.ProductService;
 import com.bitcamp.onemoaproject.vo.Member;
 import com.bitcamp.onemoaproject.vo.order.Order;
+import com.bitcamp.onemoaproject.vo.order.OrderReview;
 import com.bitcamp.onemoaproject.vo.order.OrderStatus;
 import com.bitcamp.onemoaproject.vo.product.Product;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,6 +41,9 @@ public class MypageController {
   @Autowired
   OrderStatusService orderStatusService;
 
+  @Autowired
+  OrderReviewService orderReviewService;
+
   @RequestMapping("productList")
   public Model productList(Model model, HttpSession session) throws Exception {
 
@@ -65,8 +70,22 @@ public class MypageController {
   @RequestMapping("buysList")
   public Model buyList(Model model, HttpSession session) throws Exception {
     Member member = (Member) session.getAttribute("loginMember");
+
     List<Order> buys = orderService.buysList(member.getNo());
+
+    System.out.println("buys = " + buys);
+//    List<OrderReview> orderReviews = new ArrayList<>();
+//    int orderNo;
+//    OrderReview orderReview;
+    // 마이페이지에 있는 주문건에 대해 작성 완료된 리뷰들 반환
+//    for (Order order : buys) {
+//     orderNo = order.getNo();
+//     orderReview = orderReviewService.get(orderNo);
+//     orderReviews.add(orderReview);
+//    }
+//    System.out.println("orderReviews = " + orderReviews);
     model.addAttribute("buys", buys);
+//    model.addAttribute("orderReviews", orderReviews);
     return model;
   }
 
