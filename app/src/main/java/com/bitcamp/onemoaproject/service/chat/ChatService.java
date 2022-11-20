@@ -1,4 +1,4 @@
-package com.bitcamp.onemoaproject.service;
+package com.bitcamp.onemoaproject.service.chat;
 
 import com.bitcamp.onemoaproject.vo.chat.ChatRoom;
 import lombok.RequiredArgsConstructor;

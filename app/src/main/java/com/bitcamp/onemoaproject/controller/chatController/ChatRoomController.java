@@ -1,6 +1,6 @@
-package com.bitcamp.onemoaproject.controller.controller;
+package com.bitcamp.onemoaproject.controller.chatController;
 
-import com.bitcamp.onemoaproject.service.ChatService;
+import com.bitcamp.onemoaproject.service.chat.ChatService;
 import com.bitcamp.onemoaproject.vo.chat.ChatRoom;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;

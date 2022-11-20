@@ -71,7 +71,7 @@
         price,
         vw_cnt,
         cdt,
-        thumbnail,
+        thumbnail
         from
         product
         where

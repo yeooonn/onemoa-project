@@ -1,4 +1,4 @@
-package com.bitcamp.onemoaproject.controller.controller;
+package com.bitcamp.onemoaproject.controller.chatController;
 
 import com.bitcamp.onemoaproject.vo.chat.ChatMessage;
 import lombok.RequiredArgsConstructor;
