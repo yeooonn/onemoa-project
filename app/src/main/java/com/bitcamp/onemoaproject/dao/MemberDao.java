@@ -49,6 +49,9 @@ public interface MemberDao {
   int addInterest(Interest interest);
 
   int deleteInterest(int no);
+  
+  // test
+  List<Member> findAllTest();
 }
 
 

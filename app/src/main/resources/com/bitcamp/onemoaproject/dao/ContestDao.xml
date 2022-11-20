@@ -445,17 +445,17 @@
   <!-- 팀장 상세보기 정보 출력 -->
   <select id="findByReader" resultMap="contestTeamMap">
     select
-    t.tno,
-    t.ctstno,
-    t.mno,
-    t.cont,
-    t.cdt,
-    m.nick,
-    m.profile,
-    tp.fpath
+      t.tno,
+      t.ctstno,
+      t.mno,
+      t.cont,
+      t.cdt,
+      m.nick,
+      m.profile,
+      tp.fpath
     from team t
-    join member m on m.mno = t.mno
-    join team_portfolio tp on t.tno = tp.tno
+      join member m on m.mno = t.mno
+      left outer join team_portfolio tp on t.tno = tp.tno
     where ctstno=#{contestNo} and m.mno=#{memberNo};
   </select>
 

@@ -4,12 +4,12 @@
     <meta charset = "UTF-8">
     <title>onemoa mypage</title>
     <link href="/onemoa/css/onemoa.css" rel="stylesheet">
+    <link href="/onemoa/css/admin.css" rel="stylesheet"/>
     <link href="/onemoa/css/onemoaMypage.css" rel="stylesheet">
     <link href="/onemoa/css/onemoaManage.css" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="/onemoa/js/onemoa.js"></script>
   </head>
-
 </head>
 <body>
   <ul class="myPage">
@@ -17,7 +17,7 @@
       <div class="mypageNav">
         <div class="myonemoa">
           <p>관리자페이지</p>
-          <span class="mybar">
+          <span class="mybar"></span>
         </div>
         <ul class="mynav">
           <li><a class="font2" href="/onemoa/admin/member/memberList">회원관리</a></li>
@@ -53,7 +53,7 @@
         <a href="."  id="sortViewCount" value="sortVw" data-type="" data-th-data-type="${sortVw}">조회순</a>
         <a href="." id="sortReward" value="sortRw" data-type="" data-th-data-type="${sortRw}">상금순</a>
 
-        <table class="contesttable" border='1'>
+        <table class="type01">
           <tr>
             <th>공모전번호</th>
             <th>기관명</th>

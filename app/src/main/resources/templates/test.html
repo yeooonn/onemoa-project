@@ -1,12 +1,41 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.js"></script>
     <title>Document</title>
   </head>
   <body>
-    <span onclick=""></span>
+  <button id='searchBtn' value="1">검색</button><br>
+  <div id="memberList">
+    <table border='1' id="xx-board-table">
+      <thead>
+      <tr>
+        <th>번호</th>
+        <th>이름</th>
+        <th>이메일</th>
+        <th>닉네임</th>
+        <th>가입일</th>
+      </tr>
+    <div th:replace="testAjax :: memberList">testAjax.html</div>
+    </table>
+  </div>
+  <script>
+    let boardTableBody = $("#xx-board-table > tbody");
+    $("#searchBtn").click(function () {
+      console.log($(this).val());
+      boardTableBody.load("testAjax");
+      $.ajax({
+        type:"GET",
+        url:"/onemoa/testAjax",
+        success:function(result) {
+          $("#memberList").html(result);
+        }
+      });
+    });
+  </script>
   </body>
 </html>
