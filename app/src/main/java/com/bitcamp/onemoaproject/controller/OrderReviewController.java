@@ -45,23 +45,26 @@ public class OrderReviewController {
     return map;
   }
 
-    @PostMapping("reviewAdd")
-    public String reviewAdd(
-            int orderNo,
-            OrderReview orderReview,
-            @RequestParam(value = "files", required = false) Part[] files,
-            HttpSession session
+  @PostMapping("reviewAdd")
+  public String reviewAdd(
+          int orderNo,
+          OrderReview orderReview,
+          @RequestParam(value = "files", required = false) Part[] files,
+          HttpSession session
   ) throws Exception {
 
-      Order order = orderService.get(orderNo);
-      orderReview.setOrder(order);
-      orderReview.setOrderReviewAttachedFiles(saveAttachedFiles(files));
-      orderReview.setWriter((Member) session.getAttribute("loginMember"));
+    Order order = orderService.get(orderNo);
+    orderReview.setOrder(order);
+    orderReview.setOrderReviewAttachedFiles(saveAttachedFiles(files));
 
-      System.out.println("orderReview = " + orderReview);
-      orderReviewService.reviewAdd(orderReview);
-      return "redirect:/";
-    }
+    System.out.println("files = " + Arrays.toString(files));
+
+    orderReview.setWriter((Member) session.getAttribute("loginMember"));
+
+    System.out.println("orderReview = " + orderReview);
+    orderReviewService.reviewAdd(orderReview);
+    return "redirect:/";
+  }
 
   private List<OrderReviewAttachedFile> saveAttachedFiles(Part[] files)
           throws IOException, ServletException {
@@ -77,15 +80,14 @@ public class OrderReviewController {
       String filename = UUID.randomUUID().toString();
       part.write(dirPath + "/" + filename);
       attachedFiles.add(new OrderReviewAttachedFile(originname, filename));
-      }
-
+    }
     return attachedFiles;
   }
 
   @GetMapping("list")
   public void list(Model model, HttpSession session) throws Exception {
     Member member = (Member) session.getAttribute("loginMember");
-    if(member != null) {
+    if (member != null) {
       model.addAttribute("orderReviews", orderReviewService.list(member.getNo()));
     } else {
       model.addAttribute("orderReviews", orderReviewService.list());
@@ -102,34 +104,34 @@ public class OrderReviewController {
     map.put("order", order);
     map.put("orderReview", orderReview);
     return map;
-
-
   }
-//  @PostMapping("reviewUpdate")
-//  public String reviewUpdate(
-//          OrderReview orderReview,
-//          Part[] files,
-//          HttpSession session)
-//          throws Exception {
-//    orderReview.setWriter((Member) session.getAttribute("loginMember"));
-//    orderReview.setOrderReviewAttachedFile(saveAttachedFiles(files));
-//
+
+  @PostMapping("reviewUpdate")
+  public String reviewUpdate(
+          OrderReview orderReview,
+          Part[] files,
+          HttpSession session)
+          throws Exception {
+    orderReview.setWriter((Member) session.getAttribute("loginMember"));
+    orderReview.setOrderReviewAttachedFiles(saveAttachedFiles(files));
 //    checkOwner(orderReview.getNo(), session);
-//
-//    if (!orderReviewService.reviewUpdate(orderReview)) {
-//      throw new Exception("게시글을 변경할 수 없습니다!");
+
+    System.out.println("orderReview = " + orderReview);
+
+    if (!orderReviewService.reviewUpdate(orderReview)) {
+      throw new Exception("게시글을 변경할 수 없습니다!");
+    }
+
+    return "redirect:list";
+  }
+
+//  private void checkOwner(int OrderNo, HttpSession session) throws Exception {
+//    Member loginMember = (Member) session.getAttribute("loginMember");
+//    if (orderReviewService.get(OrderNo).getWriter().getNo() != loginMember.getNo()) {
+//      throw new Exception("게시글 작성자가 아닙니다.");
 //    }
-//
-//    return "redirect:list";
 //  }
 
-  private void checkOwner(int OrderReviewNo, HttpSession session) throws Exception {
-    Member loginMember = (Member) session.getAttribute("loginMember");
-    if (orderReviewService.get(OrderReviewNo).getWriter().getNo() != loginMember.getNo()) {
-      throw new Exception("게시글 작성자가 아닙니다.");
-    }
-  }
-//
 //  @GetMapping("delete")
 //  public String delete(
 //      int no,
@@ -143,27 +145,27 @@ public class OrderReviewController {
 //
 //    return "redirect:list";
 //  }
-//
-//  @GetMapping("fileDelete")
-//  public String fileDelete(
-//      int no,
-//      HttpSession session)
-//          throws Exception {
-//
-//    OrderReviewAttachedFile attachedFile = orderReviewService.getAttachedFile(no);
-//
-//    Member loginMember = (Member) session.getAttribute("loginMember");
-//    OrderReview orderReview = orderReviewService.get(attachedFile.getNo());
-//
-//    if (orderReview.getWriter().getNo() != loginMember.getNo()) {
-//      throw new Exception("게시글 작성자가 아닙니다.");
-//    }
-//
-//    if (!orderReviewService.deleteAttachedFile(no)) {
-//      throw new Exception("게시글 첨부파일을 삭제할 수 없습니다.");
-//    }
-//
-//    return "redirect:updateform?no=" + orderReview.getNo();
-  }
 
+  @GetMapping("fileDelete")
+  public String fileDelete(
+          int no,
+          HttpSession session)
+          throws Exception {
+
+    OrderReviewAttachedFile attachedFile = orderReviewService.getAttachedFile(no);
+
+    Member loginMember = (Member) session.getAttribute("loginMember");
+    OrderReview orderReview = orderReviewService.get(attachedFile.getNo());
+
+    if (orderReview.getWriter().getNo() != loginMember.getNo()) {
+      throw new Exception("게시글 작성자가 아닙니다.");
+    }
+
+    if (!orderReviewService.deleteAttachedFile(no)) {
+      throw new Exception("게시글 첨부파일을 삭제할 수 없습니다.");
+    }
+
+    return "redirect:updateform?no=" + orderReview.getNo();
+  }
+}
 

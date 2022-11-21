@@ -29,6 +29,8 @@ public interface OrderReviewDao {
 
     int deleteFiles(int No);
 
+    OrderReview findByNo2(int no);
+
     //    int delete(int no);
 
     //  int deleteFilesByMemberBoards(int memberNo);

@@ -3,6 +3,7 @@ package com.bitcamp.onemoaproject.service.order;
 import com.bitcamp.onemoaproject.vo.order.OrderReview;
 import com.bitcamp.onemoaproject.vo.order.OrderReviewAttachedFile;
 import com.bitcamp.onemoaproject.vo.paging.Criteria;
+import com.bitcamp.onemoaproject.vo.product.ProductReview;
 import com.bitcamp.onemoaproject.vo.qna.Qna;
 import com.bitcamp.onemoaproject.vo.qna.QnaAttachedFile;
 
@@ -22,8 +23,16 @@ public interface OrderReviewService {
     OrderReviewAttachedFile getAttachedFile(int fileNo) throws Exception;
     boolean deleteAttachedFile(int fileNo) throws Exception;
 
-    //    boolean delete(int no) throws Exception;
+//    int count(int no);
+
+//    double getReviewAverage(int no);
+
+//    List<ProductReview> list(int no);
+//
+//    List<ProductReview> list();
 }
+
+//    boolean delete(int no) throws Exception;
 
 
 

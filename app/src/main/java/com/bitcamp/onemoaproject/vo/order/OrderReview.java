@@ -1,7 +1,6 @@
 package com.bitcamp.onemoaproject.vo.order;
 
 import com.bitcamp.onemoaproject.vo.Member;
-import com.bitcamp.onemoaproject.vo.product.Product;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -19,8 +18,9 @@ public class OrderReview {
     private String content;
     private Date createdDate;
     private Member writer;
-    private int score;
+    private double score;
     private Order order;
+    private int status;
     // 첨부파일을 저장할 필드
     private List<OrderReviewAttachedFile> orderReviewAttachedFiles;
 }

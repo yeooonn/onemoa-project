@@ -222,7 +222,8 @@
     }
 
   </style>
-<body style="overflow-x: hidden">
+  <!--<body style="overflow-x: hidden">-->
+<body style="overflow-x: hidden" onload="checkLoaded()">
 <div data-th-replace="/fragments/nav.html :: fragment-nav"></div>
 <ul class="myPage">
   <li class="mypageArea">
@@ -254,15 +255,15 @@
           <div id="empty" data-th-if="${#lists.isEmpty(buys)}"><img data-th-src="@{../img/emptycart.png}" width="20%" height="20%"/>
             <p><br>구매한 상품이 없습니다.</p></div>
           <div data-th-if="${!#lists.isEmpty(buys)}">
-          <table class="table">
-            <tr>
-            <th class="tableStyle">상품번호</th>
-            <th class="tableStyle">상품이름</th>
-            <th class="tableStyle">판매자</th>
-            <th class="tableStyle">결제금액</th>
-            <th class="tableStyle">결제일시</th>
-            <th class="tableStyle">주문상태</th>
-            </tr>
+            <table class="table">
+              <tr>
+                <th class="tableStyle">상품번호</th>
+                <th class="tableStyle">상품이름</th>
+                <th class="tableStyle">판매자</th>
+                <th class="tableStyle">결제금액</th>
+                <th class="tableStyle">결제일시</th>
+                <th class="tableStyle">주문상태</th>
+              </tr>
               <tr data-th-each="buy : ${buys}">
                 <td class="tableStyle" data-th-text="${buy.no}">상품번호들어가요오</td>
                 <td class="tableStyle" data-th-text="${buy.product.title}">상품이름들어가요오</td>
@@ -276,19 +277,19 @@
                        data-th-href="@{/order/review/reviewForm(no=${buy.no})}"
                        onclick="window.open(this.href, '_blank', 'width=800, height=800'); return false;" style="text-decoration: none;
                   color:blue;">
-                  후기작성
+                      후기작성
                     </a>
                   </button>
                   <button data-th-if="${buy.orderReview != null}" data-th-id="'orderReviewWritten-btn-'+${buy.no}">
                     <a class="userBtn"
-                      data-th-href="@{/order/review/reviewDetail(no=${buy.no})}"
+                       data-th-href="@{/order/review/reviewDetail(no=${buy.no})}"
                        onclick="window.open(this.href, '_blank', 'width=800, height=800'); return false;" style="text-decoration: none;
                        color:red;">
-                  후기보기</a>
+                      후기보기</a>
                   </button>
                 </td>
               </tr>
-          </table>
+            </table>
           </div>
         </ul>
       </div>
@@ -298,130 +299,130 @@
 <div class="background">
   <div class="window">
     <div class="popup">
-        <!-- Nav tabs -->
-        <ul class="nav nav-tabs" role="tablist">
-          <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">일반리뷰</a></li>
-          <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">포토리뷰</a></li>
-        </ul>
+      <!-- Nav tabs -->
+      <ul class="nav nav-tabs" role="tablist">
+        <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">일반리뷰</a></li>
+        <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">포토리뷰</a></li>
+      </ul>
       <button id="show">팝업열기</button>
-        <!-- Tab panes -->
-        <div class="tab-content">
-          <div role="tabpanel" class="tab-pane active" id="home">
-            <div class="tab-content">
-              <h1 style="text-align: center; margin-top:70px;">리뷰를 입력해주세요.</h1>
-              <form id="review-add-form" action='reviewAdd' method="post" enctype="multipart/form-data">
-                <div class="container">
-                  <table  style="width: 650px; height: auto;" class="table">
-                    <tr>
-                      <th>
-                        상품 정보
-                      </th>
-<!--                      <td colspan="2">-->
-<!--                        <img data-th-src="@{/product/files/{path}(path=${buy.product.thumbnail})}"-->
-<!--                             style="width: 100px; height: 100px;">-->
-                      </td>
-                    </tr>
-                    <tr>
-                      <th>상품 이름</th>
-<!--                      <td data-th-text="${buy.product.title}">-->
-<!--                      </td>-->
-                    </tr>
-                    <tr>
-                      <th>별점 주기</th>
-                      <td>
+      <!-- Tab panes -->
+      <div class="tab-content">
+        <div role="tabpanel" class="tab-pane active" id="home">
+          <div class="tab-content">
+            <h1 style="text-align: center; margin-top:70px;">리뷰를 입력해주세요.</h1>
+            <form id="review-add-form" action='reviewAdd' method="post" enctype="multipart/form-data">
+              <div class="container">
+                <table  style="width: 650px; height: auto;" class="table">
+                  <tr>
+                    <th>
+                      상품 정보
+                    </th>
+                    <!--                      <td colspan="2">-->
+                    <!--                        <img data-th-src="@{/product/files/{path}(path=${buy.product.thumbnail})}"-->
+                    <!--                             style="width: 100px; height: 100px;">-->
+                    </td>
+                  </tr>
+                  <tr>
+                    <th>상품 이름</th>
+                    <!--                      <td data-th-text="${buy.product.title}">-->
+                    <!--                      </td>-->
+                  </tr>
+                  <tr>
+                    <th>별점 주기</th>
+                    <td>
                                 <span class="star">
                                         ★★★★★
                                 <span>★★★★★</span>
                                 <input name="score" style="transform: translateY(-27px);"
                                        type="range" oninput="drawStar(this)" value="1" step="1" min="0" max="10">
                                 </span>
-                      </td>
-                    </tr>
-                    <tr>
-                      <th>리뷰 제목</th>
-                      <td colspan="5"><textarea name="title" style="resize: none;" rows='auto' cols='70' required></textarea></td>
-                    </tr>
-                    <tr>
-                      <th>리뷰 내용</th>
-                      <td colspan="5"><textarea name="content" style="resize: none;" rows='10' cols='70' required></textarea></td>
-                    </tr>
-                  </table>
-                  <div style="display: flex; justify-content: center;">
-                    <button type='button' style="display: flex; justify-content: center;" class="btn btn-primary btn-sm" id="review-add">리뷰 등록하기</button>
-                  </div>
-<!--                  <input hidden type="number"-->
-<!--                         data-th-value="${buy.no}"-->
-<!--                         name="orderNo" readonly/>-->
-<!--                  <input style="display:none" name="files" type="file" multiple accept="image/*">-->
+                    </td>
+                  </tr>
+                  <tr>
+                    <th>리뷰 제목</th>
+                    <td colspan="5"><textarea name="title" style="resize: none;" rows='auto' cols='70' required></textarea></td>
+                  </tr>
+                  <tr>
+                    <th>리뷰 내용</th>
+                    <td colspan="5"><textarea name="content" style="resize: none;" rows='10' cols='70' required></textarea></td>
+                  </tr>
+                </table>
+                <div style="display: flex; justify-content: center;">
+                  <button type='button' style="display: flex; justify-content: center;" class="btn btn-primary btn-sm" id="review-add">리뷰 등록하기</button>
                 </div>
-              </form>
-            </div>
+                <!--                  <input hidden type="number"-->
+                <!--                         data-th-value="${buy.no}"-->
+                <!--                         name="orderNo" readonly/>-->
+                <!--                  <input style="display:none" name="files" type="file" multiple accept="image/*">-->
+              </div>
+            </form>
           </div>
+        </div>
 
-          <!--  포토 리뷰 -->
-          <div role="tabpanel" class="tab-pane" id="profile">
-            <div class="tab-content">
-              <h1 style="text-align: center; margin-top:70px;">리뷰를 입력해주세요.</h1>
-              <form id="review-add-form1" action='reviewAdd' method="post" enctype="multipart/form-data">
-                <div class="container">
-                  <table class="table">
-                    <tr>
-                      <th>
-                        상품 정보
-                      </th>
-<!--                      <td colspan="2">-->
-<!--                        <img data-th-src="@{/product/files/{path}(path=${buy.product.thumbnail})}"-->
-<!--                             style="width: 100px; height: 100px;"></td>-->
-                    </tr>
-                    <tr>
-                      <th>상품 이름</th>
-<!--                      <td data-th-text="${buy.product.title}"></td>-->
-                    </tr>
-                    <tr>
-                      <th>별점 주기</th>
-                      <td>
+        <!--  포토 리뷰 -->
+        <div role="tabpanel" class="tab-pane" id="profile">
+          <div class="tab-content">
+            <h1 style="text-align: center; margin-top:70px;">리뷰를 입력해주세요.</h1>
+            <form id="review-add-form1" action='reviewAdd' method="post" enctype="multipart/form-data">
+              <div class="container">
+                <table class="table">
+                  <tr>
+                    <th>
+                      상품 정보
+                    </th>
+                    <!--                      <td colspan="2">-->
+                    <!--                        <img data-th-src="@{/product/files/{path}(path=${buy.product.thumbnail})}"-->
+                    <!--                             style="width: 100px; height: 100px;"></td>-->
+                  </tr>
+                  <tr>
+                    <th>상품 이름</th>
+                    <!--                      <td data-th-text="${buy.product.title}"></td>-->
+                  </tr>
+                  <tr>
+                    <th>별점 주기</th>
+                    <td>
                                 <span class="star1">
                                         ★★★★★
                                 <span>★★★★★</span>
                                 <input name="score" style="transform: translateY(-27px);"
                                        type="range" oninput="drawStar1(this)" value="1" step="1" min="0" max="10">
                                 </span>
-                      </td>
-                    </tr>
-                    <tr>
-                      <th>리뷰 제목</th>
-                      <td colspan="5"><textarea name="title" style="resize: none;" rows='auto' cols='70' required></textarea></td>
-                    </tr>
-                    <tr>
-                      <th>리뷰 내용</th>
-                      <td colspan="5"><textarea name="content" style="resize: none;" rows='10' cols='70' required></textarea></td>
-                    </tr>
-                    <tr>
-                      <th>첨부파일</th>
-                      <td colspan="3">
-                        <input name="files" type="file" multiple accept="image/*"></td>
-                    </tr>
-                  </table>
-                  <div style="display: flex; justify-content: center;">
-                    <button type='button' class="btn btn-primary btn-sm" id="review-add1">리뷰 등록하기</button>
-                  </div>
-<!--                  <input hidden type="number"-->
-<!--                         data-th-value="${buy.no}"-->
-<!--                         name="orderNo" readonly>-->
-<!--                  <input style="display:none" name="files" type="file" multiple accept="image/*">-->
+                    </td>
+                  </tr>
+                  <tr>
+                    <th>리뷰 제목</th>
+                    <td colspan="5"><textarea name="title" style="resize: none;" rows='auto' cols='70' required></textarea></td>
+                  </tr>
+                  <tr>
+                    <th>리뷰 내용</th>
+                    <td colspan="5"><textarea name="content" style="resize: none;" rows='10' cols='70' required></textarea></td>
+                  </tr>
+                  <tr>
+                    <th>첨부파일</th>
+                    <td colspan="3">
+                      <input name="files" type="file" multiple accept="image/*"></td>
+                  </tr>
+                </table>
+                <div style="display: flex; justify-content: center;">
+                  <button type='button' class="btn btn-primary btn-sm" id="review-add1">리뷰 등록하기</button>
                 </div>
-              </form>
-            </div>
+                <!--                  <input hidden type="number"-->
+                <!--                         data-th-value="${buy.no}"-->
+                <!--                         name="orderNo" readonly>-->
+                <!--                  <input style="display:none" name="files" type="file" multiple accept="image/*">-->
+              </div>
+            </form>
           </div>
+        </div>
       </div>
     </div>
 
-      <button id="close">팝업닫기</button>
-    </div>
-    <div>
-      <div></div>
-    </div>
+    <button id="close">팝업닫기</button>
   </div>
+  <div>
+    <div></div>
+  </div>
+</div>
 </div>
 
 <script>
@@ -447,10 +448,16 @@
   // $('#myTabs a:last').tab('show') // Select last tab
   // $('#myTabs li:eq(2) a').tab('show') // Select third tab (0-indexed)
 </script>
-<script>
-  $(window).load(function () {
-    console.log("reload");
-  })
+<script th:inline="javascript">
+
+  function checkLoaded() {
+
+    // console.log([[${buys}]].at(0))
+    console.log([[${buys}]].at(0)['orderReview'])
+    console.log("Loaded")
+    // console.log(window.location)
+  }
+
 </script>
 <footer data-th-replace="/fragments/footer.html :: fragment-footer"></footer>
 </body>

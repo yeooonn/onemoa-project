@@ -15,9 +15,17 @@
 <body>
 <div data-th-replace="/fragments/nav.html :: fragment-nav"></div>
 <div>
-<h1 style="text-align: center; margin-top:70px;">1:1문의 새글</h1>
+<h1 style="text-align: center; margin-right: 8vw; margin-top:70px;">1:1문의 새글</h1>
+
 <form action='add' method="post" enctype="multipart/form-data">
+
+
+    <div></div>
+    <div></div>
+    <div></div>
     <div class="container">
+        <button type="button" class="btn btn-primary btn-sm" id="backToMain"><a href="./list">목록</a></button>
+        <button type='submit' class="btn btn-primary btn-sm" id="backToMain">등록하기</button>
         <table class="table">
         <tr>
             <th>문의항목</th>
@@ -42,12 +50,10 @@
         </tr>
         <tr>
             <th>첨부파일</th>
-            <td colspan="3"><input name="files" type="file" multiple accept="image/*"></td>
+            <td colspan="3" style="margin-bottom: 50px;"><input name="files" type="file" multiple accept="image/*"></td>
         </tr>
     </table>
-        <button type="button" class="btn btn-primary btn-sm" id="backToMain"><a href="./list">목록</a></button>
-        <button type='submit' class="btn btn-primary btn-sm" id="backToMain">등록하기</button>
-    </div>
+</div></div></div>
 <footer data-th-replace="/fragments/footer.html :: fragment-footer"></footer>
 </form>
 </body>

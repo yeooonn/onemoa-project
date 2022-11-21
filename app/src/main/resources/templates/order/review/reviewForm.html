@@ -103,7 +103,7 @@
                                         ★★★★★
                                 <span>★★★★★</span>
                                 <input name="score" style="transform: translateY(-27px);"
-                                       type="range" oninput="drawStar(this)" value="1" step="1" min="0" max="10">
+                                       type="range" oninput="drawStar(this)" value="1" step="0.5" min="1" max="5">
                                 </span>
                                 </td>
                             </tr>
@@ -119,6 +119,7 @@
                             <div style="display: flex; justify-content: center;">
                                 <button type='button' class="btn btn-primary btn-sm" id="review-add">리뷰 등록하기</button>
                             </div>
+                        <input hidden name="status" value="0">
                         <input hidden type="number"
                                data-th-value="${order.no}"
                                name="orderNo" readonly>
@@ -153,7 +154,7 @@
                                         ★★★★★
                                 <span>★★★★★</span>
                                 <input name="score" style="transform: translateY(-27px);"
-                                       type="range" oninput="drawStar1(this)" value="1" step="1" min="0" max="10">
+                                       type="range" oninput="drawStar1(this)" value="1" step="0.5" min="1" max="5">
                                 </span>
                                 </td>
                             </tr>
@@ -175,6 +176,7 @@
                             <button type='button' class="btn btn-primary btn-sm" id="review-add1"
                         >리뷰 등록하기</button>
                         </div>
+                        <input hidden name="status" value="1">
                         <input hidden type="number"
                                data-th-value="${order.no}"
                                name="orderNo" readonly>
@@ -189,32 +191,38 @@
 </body>
 </html>
 <script>
+  console.log('window.opener', window.opener);
+  console.log('window.parent', window.parent);
 
-     $("#review-add").click(function() {
-         setTimeout(function() {
-             $('#review-add-form').submit();
-             console.log("before reload shilheang");
-             window.opener.location.reload();
-             console.log("after reload shilheang");
-         }, 100);
-     });
+  $("#review-add").click(function() {
+    setTimeout(function () {
+      $('#review-add-form').submit()
+    }, 100);
 
-     $("#review-add1").click(function() {
-         setTimeout(function() {
-             $('#review-add-form1').submit();
-             window.opener.location.reload();
-         }, 100);
-     });
+    setTimeout(function () {
+      window.opener.location.href = window.opener.location.href
+    }, 5000);
 
-     const drawStar = (target) => {
-         document.querySelector(`.star span`).style.width = `${target.value * 10}%`;
-         // string 으로 나감
-     }
+    // opener.parent.location.reload(true)
+    // setTimeout(() => {window.self.close();}, 100);
+  });
 
-     const drawStar1 = (target) => {
-         document.querySelector(`.star1 span`).style.width = `${target.value * 10}%`;
-         // string 으로 나감
-     }
+  $("#review-add1").click(function() {
+    setTimeout(function() {
+      $('#review-add-form1').submit();
+      window.opener.location.reload();
+    }, 100);
+  });
+
+  const drawStar = (target) => {
+    document.querySelector(`.star span`).style.width = `${target.value * 20}%`;
+    // string 으로 나감
+  }
+
+  const drawStar1 = (target) => {
+    document.querySelector(`.star1 span`).style.width = `${target.value * 20}%`;
+    // string 으로 나감
+  }
 
      // 탭 바꾸는 js
      $('#myTabs a').click(function (e) {

@@ -38,7 +38,6 @@
     <association property="orderReview" javaType="orderReview">
         <id column="prno" property="no"/>
     </association>
-
   </resultMap>
 
   <resultMap type="orderReview" id="orderReviewMap">

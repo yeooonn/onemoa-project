@@ -3,6 +3,7 @@ package com.bitcamp.onemoaproject.service.order;
 import com.bitcamp.onemoaproject.dao.orderDao.OrderReviewDao;
 import com.bitcamp.onemoaproject.vo.order.OrderReview;
 import com.bitcamp.onemoaproject.vo.order.OrderReviewAttachedFile;
+import com.bitcamp.onemoaproject.vo.product.ProductReview;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -50,6 +51,10 @@ public class DefaultOrderReviewService implements OrderReviewService {
     return orderReviewDao.findByNo(no);
   }
 
+  public OrderReview get2(int no) throws Exception {
+    return orderReviewDao.findByNo2(no);
+  }
+
   @Override
   public List<OrderReview> list() throws Exception {
     return orderReviewDao.findAll();
@@ -69,6 +74,26 @@ public class DefaultOrderReviewService implements OrderReviewService {
   public boolean deleteAttachedFile(int fileNo) throws Exception {
     return orderReviewDao.deleteFile(fileNo) > 0;
   }
+//  @Override
+//  public int count(int no) {
+//    return productReviewDao.count(no);
+//  }
+//
+//  @Override
+//  public double getReviewAverage(int no) {
+//    System.out.println(productReviewDao.getAverage(no));
+//    return productReviewDao.getAverage(no);
+//  }
+//
+//  @Override
+//  public List<ProductReview> list() {
+//    return productReviewDao.findAll();
+//  }
+//
+//  @Override
+//  public List<ProductReview> list(int no) {
+//    return productReviewDao.findByProductNo(no);
+//  }
 }
 
 

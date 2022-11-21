@@ -89,16 +89,15 @@
 <body>
 
 <div>
-
     <div class="tab-content">
-        <div role="tabpanel" class="tab-pane active" id="home">
+        <div>
             <div class="tab-content">
-                <h1 style="text-align: center; margin-top:70px;">리뷰 확인하기</h1>
-                <form id="review-add-form" action='reviewAdd' method="post" enctype="multipart/form-data">
+                <h1 style="text-align: center; margin-top:70px;">리뷰 확인 및 수정</h1>
+                <form id="review-add-form" action='reviewUpdate' method="post" enctype="multipart/form-data">
                     <div class="container">
                         <table class="table">
                             <tr>
-                                <th>
+                                <th style="min-width: 80px">
                                     상품 정보
                                 </th>
                                 <td colspan="4">
@@ -111,15 +110,14 @@
                             </tr>
                             <tr>
                                 <th>별점
-                                    <td class="reviewLine" data-th-each="orderReview : ${orderReview}">
-                                        <td id="starRow">
-<!--                                            <div class="star-rating">-->
-<!--                                                <span data-th-if="${orderReview.score == 5}" style="width:100%"></span>-->
-<!--                                                <span data-th-if="${orderReview.score == 4}" style="width:80%"></span>-->
-<!--                                                <span data-th-if="${orderReview.score == 3}" style="width:60%"></span>-->
-<!--                                                <span data-th-if="${orderReview.score == 2}" style="width:40%"></span>-->
-<!--                                                <span data-th-if="${orderReview.score == 1}" style="width:20%"></span>-->
-<!--                                            </div>-->
+                                    <td id="starRow" class="reviewLine" data-th-each="orderReview : ${orderReview}">
+                                            <div class="star-rating">
+                                                <span data-th-if="${orderReview.score == 5}" style="width:100%"></span>
+                                                <span data-th-if="${orderReview.score == 4}" style="width:80%"></span>
+                                                <span data-th-if="${orderReview.score == 3}" style="width:60%"></span>
+                                                <span data-th-if="${orderReview.score == 2}" style="width:40%"></span>
+                                                <span data-th-if="${orderReview.score == 1}" style="width:20%"></span>
+                                            </div>
                                             <span><p data-th-value="${orderReview.score}" data-th-text="${orderReview.score}">후기 별점</p></span>
                                             <td>작성일</td>
                                             <td><p id="rwCreatedDate" data-th-text="${orderReview.createdDate}">작성일</p></td>
@@ -129,7 +127,7 @@
                             </tr>
                             <tr>
                                 <th>리뷰 제목</th>
-                                <td colspan="5"><textarea name="title" style="resize: none;" rows='10' cols='70' data-th-text="${orderReview.title}">후기 제목</textarea></td>
+                                <td colspan="5"><textarea name="title" style="resize: none;" rows='auto' cols='70'  data-th-text="${orderReview.title}">후기 제목</textarea></td>
                             </tr>
                             <tr>
                                 <th>리뷰 내용</th>
@@ -137,23 +135,24 @@
                             </tr>
                             <th data-th-if="${!#lists.isEmpty(orderReview.orderReviewAttachedFiles)}" class="tableStyle">첨부파일</th>
                             <td colspan="5" data-th-if="${!#lists.isEmpty(orderReview.orderReviewAttachedFiles)}" class="tableStyle">
-                                <ul><td colspan="5"><textarea name="content" style="resize: none;" rows='10' cols='70' data-th-text="${orderReview.title}">후기 제목</textarea></td>
+                                <ul>
                                     <li data-th-each="file : ${orderReview.orderReviewAttachedFiles}" style="float:left; margin-right:5%; list-style:none; width:10%">
                                        <a href="files/test.gif"
-                                         data-th-href="@{/orderReview/files/{path}(path=${file.filepath})}">
-                                         <img data-th-src="@{/orderReview/files/{path}(path=${file.filepath})}" style="width:100%; height:auto;"/>
+                                         data-th-href="@{/review/files/{path}(path=${file.filepath})}">
+                                         <img data-th-src="@{/review/files/{path}(path=${file.filepath})}" style="width:100%; height:auto;"/>
                                        </a>
                                     </li>
                                 </ul>
                             </td>
                         </table>
                             <div style="display: flex; justify-content: center;">
-                                <button type='button' class="btn btn-primary btn-sm" id="review-add">수정하기</button>
+<!--                                <button type='button' class="btn btn-primary btn-sm" id="review-update">수정하기</button>-->
                             </div>
                         <input hidden type="number"
                                data-th-value="${order.no}"
                                name="orderNo" readonly>
-                        <input data-th-if="${#lists.isEmpty(orderReview.orderReviewAttachedFiles)}" style="display:none" name="files" type="file" multiple accept="image/*">
+                        <input data-th-if="${#lists.isEmpty(orderReview.orderReviewAttachedFiles)}"
+                               style="display:none" name="files" type="file" multiple accept="image/*">
                     </div>
                 </form>
             </div>
