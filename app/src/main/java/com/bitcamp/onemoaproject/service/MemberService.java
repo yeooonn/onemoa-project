@@ -44,6 +44,8 @@ public interface MemberService {
   int addInterest(Interest interest);
 
   int deleteInterest(int no);
+  
+  List<Member> listTest() throws Exception;
 }
 
 

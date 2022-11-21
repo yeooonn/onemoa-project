@@ -30,7 +30,6 @@
         vertical-align: top;
         border: 1px solid #ccc;
       }
-
     </style>
   </head>
   <body style="overflow-x: hidden">
@@ -46,7 +45,7 @@
         <div class="mypageNav">
           <div class="myonemoa">
             <p>마이원모아</p>
-            <span class="mybar">
+            <span class="mybar"></span>
           </div>
           
           <ul class="mynav">
@@ -88,31 +87,15 @@
                 <tr data-th-each="contest : ${contests}">
                   <td data-th-text="${contest.ctstNo}"></td>
                   <td data-th-text="${contest.contOrg.orgName}"></td>
-                  <td data-th-text="${contest.contCategory.categoryName}"><a href=""></td>
-                  <td data-th-text="${contest.title}"></td>
+                  <td data-th-text="${contest.contCategory.categoryName}"></td>
+                  <td><a data-th-href="@{contestDetail(no=${contest.ctstNo})}" data-th-text="${contest.title}"></a></td>
                   <td data-th-text="${contest.contestTeams.cdt}"></td>
                 </tr>
               </tbody>
             </table>
           </div>
         </div>
-<!--          <p class="mptxt2">나의 포트폴리오<span class="addport"><a href="portfolioForm">포트폴리오 등록하기</a></span></p>-->
-<!--          <div class="portfolioBoxCon">-->
-<!--            <ul class="portfolioList">-->
-<!--              <li data-th-each="portfolio : ${portfolios}">-->
-<!--                <a href='portfolioDetail?ptNo=1' data-th-href="@{portfolioDetail?(ptNo=${portfolio.ptNo})}"><img data-th-src="${'/onemoa/portfolio/files/'+ portfolio.attachedFiles[0].filepath}" style="width: 255px; height: 255px;"></a>-->
-<!--                <p data-th-text="${portfolio.title}">포폴제목</p>-->
-<!--              </li>-->
-<!--            </ul>-->
-<!--          </div>-->
-<!--        </div>-->
-<!--        <ul class="portfolioList">-->
-<!--          <li data-th-each="portfolio : ${portfolios}">-->
-<!--          <a href="firstportfolio?ptNo=1" onClick="window.open(this.href, '', 'width=1000px, height=1080px')"; target="_blank"  data-th-href="@{firstportfolio?(ptNo=${portfolio.ptNo})}">- https://onemoa/portfolio1</a>-->
-<!--          </li>-->
-<!--        </ul>-->
       </li>
-
     </ul>
 
   <footer data-th-replace="/fragments/footer.html :: fragment-footer"></footer>

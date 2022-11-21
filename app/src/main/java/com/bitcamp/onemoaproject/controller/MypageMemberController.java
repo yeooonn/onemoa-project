@@ -1,5 +1,6 @@
 package com.bitcamp.onemoaproject.controller;
 
+import com.bitcamp.onemoaproject.vo.contest.ContestTeam;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -335,10 +336,32 @@ public class MypageMemberController {
 
   // 마이페이지 공모전 참여내역
   @GetMapping("contestList")
-  public void myContestList(Model model, HttpSession session) throws Exception{
+  public String myContestList(Model model, HttpSession session) throws Exception{
     Member loginMember = (Member) session.getAttribute("loginMember");
     model.addAttribute("member", memberService.get(loginMember.getNo()));
     model.addAttribute("contests", contestService.myContestList(loginMember.getNo()));
+    return "mypage/contest/contestList";
+  }
+  
+  @GetMapping("contestDetail")
+  public String myContestDetail(Model model, HttpSession session, int no) throws Exception {
+    Member loginMember = (Member) session.getAttribute("loginMember");
+    model.addAttribute("member", memberService.get(loginMember.getNo()));
+    model.addAttribute("contest", contestService.get(no));
+    System.out.println("no = " + no);
+    return "mypage/contest/contestDetail";
+  }
+  
+  @GetMapping("contestTeamDetail")
+  public String myContestTeamDetail(Model model, HttpSession session, int no) throws Exception {
+    Member loginMember = (Member) session.getAttribute("loginMember");
+    model.addAttribute("member", memberService.get(loginMember.getNo()));
+    model.addAttribute("leader", contestService.getTeamReader(no, loginMember.getNo()));
+    ContestTeam team = contestService.getTeamReader(no, loginMember.getNo());
+    System.out.println("team.getTno() = " + team.getTno());
+    model.addAttribute("fields", contestService.getTeamField(team.getTno()));
+    model.addAttribute("fieldMembers", contestService.getFieldMember(team.getTno()));
+    return "mypage/contest/contestTeamDetail";
   }
 }
 

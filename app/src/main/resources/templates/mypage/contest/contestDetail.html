@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:data-th-="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset = "UTF-8">
+    <title>onemoa mypage</title>
+<!--    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">-->
+<!--    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>-->
+    <link href="/onemoa/css/onemoa.css" rel="stylesheet">
+    <link href="/onemoa/css/onemoaMypage.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="/onemoa/js/onemoa.js"></script>
+    <style>
+      table.type01 {
+        border-collapse: collapse;
+        text-align: left;
+        line-height: 1.5;
+        margin : 20px 10px;
+        width: 91%;
+      }
+      table.type01 th {
+        width: 150px;
+        padding: 10px;
+        font-weight: bold;
+        vertical-align: top;
+        border: 1px solid #ccc;
+      }
+      table.type01 td {
+        width: 350px;
+        padding: 10px;
+        vertical-align: top;
+        border: 1px solid #ccc;
+      }
+    </style>
+  </head>
+  <body style="overflow-x: hidden">
+
+  <div data-th-replace="/fragments/nav.html :: fragment-nav"></div>
+
+  <ul class="myPage">
+      <li class="mypageArea">
+        <div class="nick">
+          <img data-th-src="${'/onemoa/member/files/' + member.profile}">
+          <p data-th-text="${member.nickname}">닉네임님</p>
+        </div>
+        <div class="mypageNav">
+          <div class="myonemoa">
+            <p>마이원모아</p>
+            <span class="mybar"></span>
+          </div>
+          
+          <ul class="mynav">
+            <li><a class="font2" href="/onemoa/mypage/portfolioList">나의 포트폴리오</a></li>
+            <li><a class="font" href="/onemoa/mypage/contestList">공모전관리</a></li>
+            <li><a class="font2" href="">구매관리</a></li>
+            <li><a class="font2" href="">판매관리</a></li>
+            <li><a class="font2" href="">상품관리</a></li>
+            <li><a class="font2" href="">결제내역</a></li>
+            <li><a class="font2" href="">1:1 문의내역</a></li>
+            <li class="menu">
+              <a class="font2" href="myinfo">계정설정</a>
+              <ul class="hide">
+                <li><a class="font2" href="../mypage/myinfo">내정보수정</a></li>
+                <li><a class="font2" href="../mypage/changepw">비밀번호변경</a></li>
+                <li><a class="font2" href="../mypage/leave">회원탈퇴</a></li>
+              </ul>
+            </li>
+          </ul>
+          
+        </div>
+
+      </li>
+      <li class="mypageArea">
+        <div class="mypagePortfolio">
+          <p class="mptxt2">공모전 팀전 참가내역</p>
+          <div class="mypageContestListBox">
+                <div class="contestDetail">
+                  <p>공모전 상세정보</p>
+                  <ul class="detail">
+                    <li>
+                      <div class="detailimg">
+                        <img id="contestDetailImage" src="../img/condico.png" data-th-src="@{/contest/files/{path}(path=${contest.thumbNail})}">
+                      </div>
+                    </li>
+                    <li>
+                      <table class="contable">
+                        <tr>
+                          <td>주최</td>
+                          <td id="contestDetailContOrg" data-th-text="${contest.org}">해외자원개발진흥재단</td>
+                        </tr>
+                        <tr>
+                          <td>주관</td>
+                          <td id="contestDetailOrg" data-th-text="${contest.org}">해외자원개발진흥재단</td>
+                        </tr>
+                        <tr>
+                          <td>공모전분야</td>
+                          <td id="contestDetailCategory" data-th-text="${contest.contCategory.categoryName}">디자인</td>
+                        </tr>
+                        <tr>
+                          <td>접수방법</td>
+                          <td id="contestDetailAppl" data-th-text="${contest.appl}">이메일</td>
+                        </tr>
+                        <tr>
+                          <td>참가자격</td>
+                          <td id="contestDetailQual" data-th-text="${contest.qual}">대학생 | 일반인 | 초등학생 | 중학생 | 고등학생</td>
+                        </tr>
+                        <tr>
+                          <td>접수기간</td>
+                          <td id="contestDetailReceptionPeriod">
+                            <span data-th-text="${contest.sDate} + ' ~ ' + ${contest.eDate}" style="display: inline;"></span>
+<!--                            </span> ~ <span data-th-text="${contest.eDate}" style="display: inline;"></span>-->
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>상금</td>
+                          <td id="contestDetailReward">
+                            <span data-th-text="${contest.reward}" style="display: inline;"></span> 만원
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>홈페이지</td>
+                          <td id="contestDetailPage" data-th-src="${contest.page}">해외자원개발진흥재단</td>
+                        </tr>
+                        <tr>
+                          <td>[첨부파일]</td>
+                          <td id="xNameList" data-th-each="file : ${contest.contestAttachedFiles}">
+                            <span>[첨부파일]</span>
+                            <a data-th-href="@{/contest/files/{path}(path=${file.filepath})}"><span data-th-text="${file.fName}"></span></a>
+<!--                            <span>제8회 해외자원개발 바로알기 공모전 참가 신청서</span>-->
+<!--                            <span>및 개인정보 이용 동의서.hwp</span>-->
+                          </td>
+                        </tr>
+                      </table>
+                    </li>
+                  </ul>
+                </div>
+
+                <div class="contestdtype">
+                  <p onclick="team()"><a href="#">상세정보</a></p>
+                  <p id="contestTypeTeam" onclick="team()"><a data-th-href="@{contestTeamDetail(no=${contest.ctstNo})}">팀원구해요</a></p>
+                  <span></span>
+                </div>
+
+                <!-- 상세정보 -->
+                <div class="contestIn">
+                  <div class="basicInformation">
+                    <img  src="../img/condico.png">
+                    <p>공모전 상세정보</p>
+                  </div>
+
+                  <table class="contestInformation">
+                    <tr>
+                      <td><span>></span>공모전명</td>
+                      <td id="contestDetailTitle" data-th-text="${contest.title}">디자인 콘테스트</td>
+                    </tr>
+                    <tr>
+                      <td><span>></span>주최명</td>
+                      <td id="contestDetailOrg2" data-th-text="${contest.org}">해외자원개발진흥재단</td>
+                    </tr>
+                    <tr>
+                      <td><span>></span>공모전 설명</td>
+                      <td id="contestDetailCont" data-th-text="${contest.cont}">저희 회사는 한국 식품을 해외로 수출하고 있는 수출전문업체입니다. 본 라면의 주 타겟층은 한국 식품을 좋아하고 한국 라면을 좋아하는 해외 일반 20,30대입니다. 지금까지 많은 제품들을 디자인 업체를 통해서 해왔지만 항상 먼가가 아쉬웠기에 원모아를 통해서 디자인 공모전을 해보고자 합니다. 정말 정말 많은 분들의 참여를 바랍니다.</td>
+                    </tr>
+                  </table>
+
+                  <div class="longcontext">
+                    <p><img src="../img/o.png">접수방법</p>
+                    <p>
+                      - 재단 홈페이지(www.onemoa.or.kr)의 공지사항에서 참가신청서 양식 다운로드, 작성 후 작품 파일(대용량 첨부)과 함께 사무국 메일(onemoa@test.or.kr)로 제출
+                      <span>⨳ 접수 확인 후 접수 확인 메일 발송 예정</span>
+                    </p>
+                  </div>
+
+                  <div class="longcontext2">
+                    <p><img src="../img/o.png">유의사항 (기타사항)</p>
+                    <p>- 응모자는 본인의 이름(실명)으로 응모해야 하며, 팀의 경우 대표자와 팀원 전체의 인적사항을 기재해야 합니다.</p>
+                    <p>- 공모 요강에 준하지 않는 작품은 심사 대상에서 제외될 수 있습니다.</p>
+                    <p>- 동일인(팀)에 대한 중복시상은 하지 않습니다.</p>
+                    <p>- 출품작은 미발표된 순수 창작물이어야 하며, 타인의 작품을 표절, 도용, 모방하면 수상을 취소할 수 있습니다.</p>
+                    <p>- 모든 출품작에 대한 저작권은 출품자에게 있습니다.</p>
+                    <p>- 상금에 대한 제세공과금은 수상자가 부담합니다.</p>
+                    <p>- 기타 요강에 명시되지 않은 내용은 주최 측 정책에 따릅니다.</p>
+                  </div>
+                </div>
+
+
+                <!-- 팀원구해요 -->
+                <div class="person" style="display: none;">
+<!--                  <p>안녕하세요, <span>잘 부탁드립니다!</span></p>-->
+<!--                  <ul id="teamReaderList" class="teamJang">-->
+<!--                    &lt;!&ndash;                <li>&ndash;&gt;-->
+<!--                    &lt;!&ndash;                  <a href="#" onclick="dis4()"><img src="../img/profile1.png" onmouseover="this.src='../img/profile11.png'" onmouseout="this.src='../img/profile1.png'"></a>&ndash;&gt;-->
+<!--                    &lt;!&ndash;                  <p>닉네임</p>&ndash;&gt;-->
+<!--                    &lt;!&ndash;                </li>&ndash;&gt;-->
+<!--                  </ul>-->
+<!--                  <div class="insert">-->
+<!--                    <p>나를 등록하고, <span>나에게 필요한 팀원을 구해보세요.</span></p>-->
+<!--                    <div class="insertbtn">-->
+<!--                      <p onclick="dis2()">팀원 모집하기</p>-->
+<!--                    </div>-->
+<!--                  </div>-->
+                </div>
+          </div>
+        </div>
+      </li>
+    </ul>
+
+  <footer data-th-replace="/fragments/footer.html :: fragment-footer"></footer>
+  <script>
+    // $('.modal2').show();
+  </script>
+  </body>
+</html>

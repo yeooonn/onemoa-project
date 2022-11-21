@@ -118,6 +118,11 @@ public class DefaultMemberService implements MemberService {
   public int deleteInterest(int no) {
     return memberDao.deleteInterest(no);
   }
+  
+  @Override
+  public List<Member> listTest() throws Exception {
+    return memberDao.findAllTest();
+  }
 }
 
 
