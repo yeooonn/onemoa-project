@@ -47,7 +47,7 @@ public class OrderController {
     model.addAttribute("product", product);
   }
 
-//  @ResponseBody
+  @ResponseBody
   @PostMapping("add") // 재능판매 게시판 : 게시글 등록
   public String add(@RequestParam("no") int no, Order order, HttpSession session, Model model) throws Exception {
 

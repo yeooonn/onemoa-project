@@ -1,6 +1,7 @@
 package com.bitcamp.onemoaproject.controller;
 
 import com.bitcamp.onemoaproject.service.DefaultWishService;
+import com.bitcamp.onemoaproject.service.order.OrderReviewService;
 import com.bitcamp.onemoaproject.service.order.OrderService;
 import com.bitcamp.onemoaproject.service.order.OrderStatusService;
 import com.bitcamp.onemoaproject.service.productService.ProductCategoryService;
@@ -10,18 +11,22 @@ import com.bitcamp.onemoaproject.vo.Member;
 import com.bitcamp.onemoaproject.vo.order.Order;
 import com.bitcamp.onemoaproject.vo.order.OrderStatus;
 import com.bitcamp.onemoaproject.vo.product.Product;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpSession;
-import java.util.*;
+import java.util.List;
 
 // CRUD 요청을 처리하는 페이지 컨트롤러들을 한 개의 클래스로 합친다.
 @Controller // 페이지 컨트롤러에 붙이는 애노테이션
 @RequestMapping("/mypage/")
+@Slf4j
 public class MypageController {
 
   @Autowired
@@ -38,6 +43,9 @@ public class MypageController {
   OrderService orderService;
   @Autowired
   OrderStatusService orderStatusService;
+
+  @Autowired
+  OrderReviewService orderReviewService;
 
   @RequestMapping("productList")
   public Model productList(Model model, HttpSession session) throws Exception {
@@ -64,11 +72,15 @@ public class MypageController {
 
   @RequestMapping("buysList")
   public Model buyList(Model model, HttpSession session) throws Exception {
+    log.info("{}", "butsList 호출됨!");
     Member member = (Member) session.getAttribute("loginMember");
+
     List<Order> buys = orderService.buysList(member.getNo());
-    model.addAttribute("buys", buys);
-    return model;
-  }
+
+        System.out.println("buys = " + buys);
+        model.addAttribute("buys", buys);
+        return model;
+    }
 
   @ResponseBody
   @RequestMapping("updateStatus")

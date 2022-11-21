@@ -34,6 +34,19 @@
         <result column="profile" property="profile"/>
       </association>
     </association>
+
+    <association property="orderReview" javaType="orderReview">
+        <id column="prno" property="no"/>
+    </association>
+  </resultMap>
+
+  <resultMap type="orderReview" id="orderReviewMap">
+    <id column="prno" property="revNo"/>
+    <result column="title" property="title"/>
+    <result column="cont" property="content"/>
+    <result column="cdt" property="createdDate"/>
+    <result column="score" property="score"/>
+    <result column="status" property="status"/>
   </resultMap>
 
   <select id="findAll" resultMap="orderMap">
@@ -81,14 +94,17 @@
       o.cdt,
       p.title,
       p.price,
+      p.thumbnail,
       m.nick,
       os.scno,
-      os.name
+      os.name,
+      pr.prno
     from
       product_order o
       join product p on o.pno=p.pno
       join member m on p.mno=m.mno
       join order_status os on os.scno=o.scno
+      left outer join product_review pr on pr.pono=o.pono
     where
       o.mno=#{value}
     order by
