@@ -2209,6 +2209,9 @@ label[for="label-a"] {
   background-color: #83879a;
   color: #fff;
   border-radius: 5px;
+  position : relative;
+  right: 15%;
+  top: 5px;
 }
 .joinForm-grid-item .nickname_check_btn:hover {
   background-color: #575a68;
@@ -2247,6 +2250,9 @@ label[for="label-a"] {
   background-color: #83879a;
   color: #fff;
   border-radius: 5px;
+  position : relative;
+  right: 15%;
+  top: 5px;
 }
 .joinForm-grid-item .email_auth_btn:hover {
   background-color: #575a68;
@@ -2261,6 +2267,9 @@ label[for="label-a"] {
   background-color: #83879a;
   color: #fff;
   border-radius: 5px;
+  position : relative;
+  right: 15%;
+  top: 5px;
 }
 .joinForm-grid-item .email_auth_check_btn:hover {
   background-color: #575a68;
@@ -2458,9 +2467,8 @@ label[for="label-a"] {
   transition: all .3s;
 }
 .joinForm-footer-bnt {
-  margin-right: 2%;
   position: relative;
-  left: -6.5%;
+  left: -9.5%;
 }
 #sample6_postcode {
   width: 35%;
