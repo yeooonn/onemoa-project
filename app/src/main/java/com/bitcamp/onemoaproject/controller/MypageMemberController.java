@@ -360,6 +360,7 @@ public class MypageMemberController {
     ContestTeam team = contestService.getTeamReader(no, loginMember.getNo());
     System.out.println("team.getTno() = " + team.getTno());
     model.addAttribute("fields", contestService.getTeamField(team.getTno()));
+    model.addAttribute("fieldMembers", contestService.getFieldMember(team.getTno()));
     return "mypage/contest/contestTeamDetail";
   }
 }
