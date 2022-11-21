@@ -6,5 +6,5 @@ import java.util.List;
 import java.util.Map;
 
 public interface FindChatService {
-    List<Map<Integer, Object>> findChatRoom(FindChat findChat);
+    void add(FindChat findChat) throws Exception;
 }

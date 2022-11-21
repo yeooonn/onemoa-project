@@ -4,20 +4,16 @@
         "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.bitcamp.onemoaproject.dao.FindChatDao">
 
-    <resultMap id="findChatRoomMap" type="findChat">
+    <resultMap id="message" type="findChat">
         <id column="msgno" property="no"/>
-        <result column="mno" property="buyer"/>
-        <result column="mno2" property="seller"/>
+        <id column="mno" property="buyer"/>
+        <id column="mno2" property="seller"/>
+        <result column="cont" property="content"/>
     </resultMap>
 
-    <select id="findChatRoom" resultMap="findChatRoomMap">
-        select
-        msgno,
-        mno,
-        mno2
-        from
-        message
-        where
-        mno=1;
-    </select>
+    <insert id="add" parameterType="findChat"
+            useGeneratedKeys="true" keyColumn="msgno" keyProperty="no">
+        insert into message(mno,mno2)
+        values (#{buyer}, #{product.writer.no})
+    </insert>
 </mapper>

@@ -1,19 +1,29 @@
 package com.bitcamp.onemoaproject.controller.chatController;
 
 import com.bitcamp.onemoaproject.service.chat.ChatService;
+import com.bitcamp.onemoaproject.service.chat.FindChatService;
+import com.bitcamp.onemoaproject.vo.Member;
 import com.bitcamp.onemoaproject.vo.chat.ChatRoom;
+import com.bitcamp.onemoaproject.vo.chat.FindChat;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 @Controller
-@RequiredArgsConstructor
 @RequestMapping("/chat")
 public class ChatRoomController {
-    private final ChatService chatService;
+
+    @Autowired
+    ChatService chatService;
+
+    @Autowired
+    FindChatService findChatService;
+//    private final ChatService chatService;
 
     // 채팅 리스트 화면
     @GetMapping("/room")
@@ -43,5 +53,20 @@ public class ChatRoomController {
     @ResponseBody
     public ChatRoom roomInfo(@PathVariable String roomId) {
         return chatService.findById(roomId);
+    }
+
+    @GetMapping("/add")
+    public String add(FindChat findChat,HttpSession session, int sellerNo) throws Exception {
+        Member member = (Member) session.getAttribute("loginMember");
+        findChat.setBuyer(member.getNo());
+        findChat.setSeller(sellerNo);
+        System.out.println(findChat);
+        return "redirect:add";
+    }
+
+    @PostMapping("/add")
+    public String add(FindChat findChat) {
+        System.out.println(findChat);
+        return "redirect:room";
     }
 }

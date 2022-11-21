@@ -9,6 +9,5 @@ import java.util.Map;
 @Mapper
 public interface FindChatDao {
 
-    List<Map<Integer, Object>> findChatRoom(FindChat findChat);
-
+    int insert(FindChat findChat);
 }

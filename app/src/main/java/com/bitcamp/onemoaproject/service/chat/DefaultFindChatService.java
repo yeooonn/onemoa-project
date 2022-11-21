@@ -15,7 +15,11 @@ public class DefaultFindChatService implements FindChatService{
     FindChatDao findChatDao;
 
     @Override
-    public List<Map<Integer, Object>> findChatRoom(FindChat findChat) {
-        return findChatDao.findChatRoom(findChat);
+    public void add(FindChat findChat) throws Exception {
+        if (findChatDao.insert(findChat) == 0) {
+            throw new Exception("채팅방 개설 실패!");
+        } else {
+            findChatDao.insert(findChat);
+        }
     }
 }

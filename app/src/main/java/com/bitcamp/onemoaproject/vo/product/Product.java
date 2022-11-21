@@ -25,6 +25,5 @@ public class Product {
   private List<AttachedFile> attachedFiles;
   private String rule;
   private String selfIntro;
-//  private List<Wish> wishlist;
 }
 
