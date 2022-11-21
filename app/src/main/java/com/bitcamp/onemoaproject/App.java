@@ -60,8 +60,8 @@ public class App {
   public String welcome(@CookieValue(name = "email", defaultValue = "") String email, Model model) {
     model.addAttribute("email", email);
     model.addAttribute("contests", contestService.listMain());
-    model.addAttribute("reviews", productReviewService.listMainReview());
-    System.out.println("re = " + productReviewService.listMainReview());
+//    model.addAttribute("reviews", productReviewService.listMainReview());
+//    System.out.println("re = " + productReviewService.listMainReview());
     return "index";
   }
   

@@ -1,4 +1,4 @@
-package com.bitcamp.onemoaproject.dao.productDao;
+package com.bitcamp.onemoaproject.dao.product;
 
 import com.bitcamp.onemoaproject.vo.product.ProductReview;
 import org.apache.ibatis.annotations.Mapper;

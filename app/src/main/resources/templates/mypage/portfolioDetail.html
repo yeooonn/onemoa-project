@@ -24,19 +24,19 @@
             <span class="mybar">
           </div>
           <ul class="mynav">
-            <li><a class="font" href="portfolioList">나의 포트폴리오</a></li>
-            <li><a class="font2" href="/onemoa/mypage/contestList">공모전관리</a></li>
-            <li><a class="font2" href="">구매관리</a></li>
-            <li><a class="font2" href="">판매관리</a></li>
-            <li><a class="font2" href="">상품관리</a></li>
+            <li><a class="font" href="../mypage/portfolioList">포트폴리오 관리</a></li>
+            <li><a class="font2" href="/onemoa/mypage/contestList">공모전 관리</a></li>
+            <li><a class="font2" href="/onemoa/mypage/buysList">구매 관리</a></li>
+            <li><a class="font2" href="/onemoa/mypage/salesList">판매 관리</a></li>
+            <li><a class="font2" href="/onemoa/mypage/productList">상품 관리</a></li>
             <li><a class="font2" href="">결제내역</a></li>
             <li><a class="font2" href="">1:1 문의내역</a></li>
             <li class="menu">
-              <a class="font2" href="myinfo.html">계정설정</a>
+              <a class="font2" href="myinfo">계정설정</a>
               <ul class="hide">
-                <li><a class="font2" href="/onemoa/mypage/myinfo">내정보수정</a></li>
-                <li><a class="font2" href="/onemoa/mypage/changepw">비밀번호변경</a></li>
-                <li><a class="font2" href="/onemoa/mypage/leave">회원탈퇴</a></li>
+                <li><a class="font2" href="../mypage/myinfo">내정보수정</a></li>
+                <li><a class="font2" href="../mypage/changepw">비밀번호변경</a></li>
+                <li><a class="font2" href="../mypage/leave">회원탈퇴</a></li>
               </ul>
             </li>
           </ul>
@@ -44,12 +44,12 @@
       </li>
       <li class="mypageArea2">
         <div class="mypagePortfolio">
-          <p class="mptxt">나의 포트폴리오 등록하기</p>
+          <p class="mptxt">포트폴리오 등록하기</p>
           <div class="portfolioBoxCon2">
             <form action='portfolioUpdate' method="post" enctype="multipart/form-data">
               <table style="width:100%;">
                <tr style="display:none;">
-                 <td>내 포트폴리오 번호 <input class="ptNo" name='ptNo' type='number' value='포트폴리오 번호: 1' placeholder="포트폴리오 번호:" data-th-value="${portfolio.ptNo}" readonly></td>
+                 <td>포트폴리오 번호 <input class="ptNo" name='ptNo' type='number' value='포트폴리오 번호: 1' placeholder="포트폴리오 번호:" data-th-value="${portfolio.ptNo}" readonly></td>
                 </tr>
                 <tr>
                   <td><input name='title' type='text' size='60' placeholder="포트폴리오 제목을 입력해주세요." data-th-value="${portfolio.title}"></td>

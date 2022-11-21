@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpSession;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 // CRUD 요청을 처리하는 페이지 컨트롤러들을 한 개의 클래스로 합친다.
 @Controller // 페이지 컨트롤러에 붙이는 애노테이션

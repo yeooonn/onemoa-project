@@ -2,7 +2,7 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.bitcamp.onemoaproject.dao.orderDao.OrderStatusDao">
+<mapper namespace="com.bitcamp.onemoaproject.dao.order.OrderStatusDao">
 
   <resultMap type="orderStatus" id="orderStatusMap">
       <id column="scno" property="no"/>

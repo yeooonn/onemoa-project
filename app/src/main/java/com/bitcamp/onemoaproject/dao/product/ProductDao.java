@@ -1,9 +1,8 @@
-package com.bitcamp.onemoaproject.dao.productDao;
+package com.bitcamp.onemoaproject.dao.product;
 
 import java.util.List;
 import java.util.Map;
 
-import com.bitcamp.onemoaproject.vo.Wish;
 import com.bitcamp.onemoaproject.vo.paging.Criteria;
 import com.bitcamp.onemoaproject.vo.product.AttachedFile;
 import com.bitcamp.onemoaproject.vo.product.Product;

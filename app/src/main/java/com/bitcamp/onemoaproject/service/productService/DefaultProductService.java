@@ -7,7 +7,7 @@ import com.bitcamp.onemoaproject.vo.paging.Criteria;
 import com.bitcamp.onemoaproject.vo.product.AttachedFile;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import com.bitcamp.onemoaproject.dao.productDao.ProductDao;
+import com.bitcamp.onemoaproject.dao.product.ProductDao;
 import com.bitcamp.onemoaproject.vo.product.Product;
 import org.springframework.transaction.annotation.Transactional;
 
