@@ -1,30 +1,22 @@
 package com.bitcamp.onemoaproject.controller;
 
-import com.bitcamp.onemoaproject.service.DefaultOrderService;
-import com.bitcamp.onemoaproject.service.DefaultWishService;
+
 import com.bitcamp.onemoaproject.service.MemberService;
-import com.bitcamp.onemoaproject.service.productService.ProductCategoryService;
-import com.bitcamp.onemoaproject.service.productService.ProductReviewService;
+import com.bitcamp.onemoaproject.service.order.OrderService;
 import com.bitcamp.onemoaproject.service.productService.ProductService;
 import com.bitcamp.onemoaproject.vo.Member;
 import com.bitcamp.onemoaproject.vo.order.Order;
-import com.bitcamp.onemoaproject.vo.paging.Criteria;
-import com.bitcamp.onemoaproject.vo.paging.PageMaker;
-import com.bitcamp.onemoaproject.vo.product.AttachedFile;
 import com.bitcamp.onemoaproject.vo.product.Product;
-import com.bitcamp.onemoaproject.vo.product.ProductReview;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.ServletContext;
-import javax.servlet.ServletException;
 import javax.servlet.http.HttpSession;
-import javax.servlet.http.Part;
-import java.io.IOException;
-import java.util.*;
 
 // CRUD 요청을 처리하는 페이지 컨트롤러들을 한 개의 클래스로 합친다.
 @Controller // 페이지 컨트롤러에 붙이는 애노테이션
@@ -41,7 +33,7 @@ public class OrderController {
   MemberService memberService;
 
   @Autowired
-  DefaultOrderService orderService;
+  OrderService orderService;
 
   @PostMapping("form")
   public void form(Model model, int no, HttpSession session) throws Exception {

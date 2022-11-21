@@ -107,9 +107,45 @@
       margin-bottom: 0vw;
     }
 
-    #pagenation {
-      padding-left: 22vw;
-      text-align: center;
+    /*페이징 css*/
+    .xx-visuallyhidden {
+      border: 0;
+      clip: rect(0 0 0 0);
+      height: auto;
+      margin: 0;
+      overflow: hidden;
+      padding: 0;
+      position: absolute;
+      width: 1px;
+      white-space: nowrap;
+    }
+    .xx-nav {
+      display: flex;
+      justify-content: center;
+      margin-top: 1em;
+      margin-bottom: 3em;
+      padding-top: .5em;
+      margin-left: 22vw;
+    }
+    .xx-pagination {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+    }
+    .xx-pagination li {
+      margin: 0 1px;
+    }
+    .xx-pagination a {
+      display: block;
+      padding: .5em 1em;
+      border: 1px solid #999;
+      border-radius: .2em;
+      text-decoration: none;
+    }
+    .xx-pagination a[aria-current="page"] {
+      background-color: #333;
+      color: #fff;
     }
 
   </style>

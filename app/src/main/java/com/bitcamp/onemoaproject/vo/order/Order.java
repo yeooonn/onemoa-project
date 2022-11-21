@@ -18,5 +18,6 @@ public class Order {
     private String postNo;
     private String baseAddr;
     private String detailAddr;
-    private String status;
+    private OrderStatus orderStatus;
+    private OrderReview orderReview;
 }

@@ -7,8 +7,10 @@ import javax.servlet.http.HttpSession;
 import javax.servlet.http.Part;
 
 import com.bitcamp.onemoaproject.service.DefaultWishService;
+import com.bitcamp.onemoaproject.service.order.OrderReviewService;
 import com.bitcamp.onemoaproject.service.productService.ProductReviewService;
 import com.bitcamp.onemoaproject.vo.Member;
+import com.bitcamp.onemoaproject.vo.order.OrderReview;
 import com.bitcamp.onemoaproject.vo.paging.Criteria;
 import com.bitcamp.onemoaproject.vo.paging.PageMaker;
 import com.bitcamp.onemoaproject.vo.product.AttachedFile;
@@ -36,8 +38,10 @@ public class ProductController {
   ProductService productService;
   @Autowired
   ProductCategoryService productCategoryService;
+
   @Autowired
-  ProductReviewService productReviewService;
+  OrderReviewService orderReviewService;
+
   @Autowired
   DefaultWishService wishService;
 
@@ -121,28 +125,30 @@ public class ProductController {
     Map map = new HashMap();
 
     Product product = productService.get(no);
-    int count = productReviewService.count(no);
+    int count = orderReviewService.count(no);
+    System.out.println("count = " + count);
 
     int wishCheck = wishService.get((Member) session.getAttribute("loginMember"), product);
+
     System.out.println("wishCheck = " + wishCheck);
     int wishCount = wishService.getCount(no);
     System.out.println("wishCount = " + wishCount);
     
 
-    if (count != 0) { // 후기글의 개수가 0이 아니면
-      double average = productReviewService.getReviewAverage(no);
-      map.put("average", average);
-
-      List<ProductReview> productReviews = productReviewService.list(no);
-      map.put("reviews", productReviews);
-    }
+//    if (count != 0) { // 후기글의 개수가 0이 아니면
+//      double average = orderReviewService.getReviewAverage(no);
+//      map.put("average", average);
+//
+//      List<OrderReview> orderReviews = orderReviewService.list(no);
+//      map.put("reviews", orderReviews);
+//    }
 //     double average = Math.round(productReviewService.getReviewAverage(no) * 100) / 100.0;
 
     if (product == null) {
       throw new Exception("해당 번호의 게시글이 없습니다!");
     }
 
-    map.put("count", count);
+//    map.put("count", count);
     map.put("product", product);
     map.put("wishCheck", wishCheck);
     map.put("wishCount", wishCount);
