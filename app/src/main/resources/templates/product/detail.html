@@ -25,8 +25,7 @@
   #detail-4 {
     display: flex;
     justify-content: center;
-    border : solid #c4c4c4 2px ;
-    border-radius: 4px;
+    border : solid #c4c4c4 1px ;
     min-height: 40vw;
     max-height: 40vw;
     margin-bottom: 0.5vw;
@@ -38,7 +37,6 @@
   }
 
   div > p {
-    word-break: keep-all;
     margin-top: 1%;
     margin-left: 1%;
     margin-right: 1%;
@@ -55,8 +53,14 @@
   }
 
   .commonBorder {
-    height: 30px;
+    display: flex;
+    justify-content : center;
+    align-items: center;
+    height: 5vw;
+    font-size: 1.6vw;
+    padding-top: 3px;
   }
+
 
   #breadc {
     margin-top: 5%;
@@ -67,8 +71,7 @@
 
   #detail-5 {
     display: grid;
-    border : solid #c4c4c4 2px ;
-    border-radius: 4px;
+    border : solid #c4c4c4 1px ;
   }
 
   #detail-6 {
@@ -76,31 +79,32 @@
     grid-template-columns: 3.3fr 3.3fr 3.3fr;
     height: 20px;
   }
+
   #detail2 {
-    border : solid #c4c4c4 2px ;
+    border : solid #c4c4c4 1px ;
     border-radius: 4px;
     max-width: 60vw;
     min-width: 40vw;
   }
 
   #detail2-1 {
-    border-bottom: solid #c4c4c4 2px;
+    border-bottom: solid #c4c4c4 1px;
   }
 
   #detail2-2 {
-    border-bottom: solid #c4c4c4 2px;
+    border-bottom: solid #c4c4c4 1px;
   }
 
   #detail2-3 {
-    border-bottom: solid #c4c4c4 2px;
+    border-bottom: solid #c4c4c4 1px;
   }
 
   #detail2-4 {
-    border-bottom: solid #c4c4c4 2px;
+    border-bottom: solid #c4c4c4 1px;
   }
 
   #detail2-5 {
-    border-bottom: solid #c4c4c4 2px;
+    border-bottom: solid #c4c4c4 1px;
   }
 
   #detail2-6 {
@@ -132,13 +136,13 @@
   }
 
   #detail3-2 {
-    border-top: solid #c4c4c4 2px;
+    border-top: solid #c4c4c4 1px;
     margin-top: 15px;
     padding-top: 10px;
   }
 
   #top {
-    border : solid #c4c4c4 2px ;
+    border : solid #c4c4c4 1px ;
     border-radius: 4px;
     background-color: #f8f6f6;
     margin-left : 61%;
@@ -147,6 +151,7 @@
     padding-bottom: 1%;
     position: fixed;
     min-width: 30vw;
+    max-width: 30vw;
   }
 
   #top > div {
@@ -175,7 +180,7 @@
   #top .horizonLine {
     display: block;
     height: 10px;
-    border-bottom: solid 2px #c4c4c4;
+    border-bottom: solid 1px #c4c4c4;
     margin-left: 3%;
     margin-right: 3%;
     margin-bottom: 3%;
@@ -255,15 +260,13 @@
 
   .heart div {
     display: inline;
-    font-size: 1.8vw;
-    margin-left: 5px;
-    margin-top: 3px;
+    margin: 0px 20px 0px 10px;
   }
 
-  #avgOfReviews {
-    display: inline;
-    font-size: 1.2vw;
+  #aboutReviews {
+    margin-left: 10px;
   }
+
 
   .star-rating {
     width: 101px;
@@ -328,6 +331,11 @@
     width: 0%;
   }
 
+  #sellerIntro > p {
+    word-break: break-all;
+  }
+
+
 </style>
 </head>
 <body style="overflow-x: hidden">
@@ -355,20 +363,19 @@
         </div>
       </div>
     </div>
-    <div class="commonBorder"></div>
+    <div class="commonBorder">
+      <div class="heart">
+        <img src="../img/deadheart.png" alt="heartClicked" width="25px" height="25px" >
+        <p hidden id="checkLike" data-th-value="${wishCheck}"></p>
+        <div id="wishCnt" data-th-text="${wishCount}"></div>
+      </div>
+        <img src="../img/star.png" width="25px" height="25px"/>
+      <span id="aboutReviews" data-th-text="${average} == null and ${count} == 0 ? ' 후기 없음' : ' ' + ${average} + ' 점 ( 후기 : ' + ${count} + ' 개 ) '">별점 평균</span>
+    </div>
 
   <div id="top">
-      <div class="heart">
-        <img src="../img/deadheart.png" alt="heartClicked" width="30px" height="33px" >
-        <p hidden id="checkLike" data-th-value="${wishCheck}"></p>
-      <div id="wishCnt" data-th-text="${wishCount}"></div>
-      </div>
-    <div><p id="title" class="head" data-th-text="${product.title}">제목</p></div>
+    <div style="word-break:break-all;"><p id="title" class="head" data-th-text="${product.title}">제목</p></div>
     <div><p class="head" data-th-text="${#numbers.formatInteger(product.price, 3, 'COMMA')} + ' 원'">가격</p></div>
-      <div>
-        <img src="../img/star.png" /><p id="avgOfReviews" class="head" data-th-text="${average} == null ? ' 후기 없음' : ' ' + ${average} + ' 점'">별점 평균</p></span>
-        <p class="head" id="reviewInfo" data-th-text="${count} == 0 ? '' : ' ( 후기 : ' + ${count} + '개 ) '">후기 개수</p>
-      </div>
 
     <div class="horizonLine"></div>
       <div id="seller-info">
@@ -393,7 +400,7 @@
 
   <div id="detail2">
     <div id="detail2-1" class="head"><p>서비스 설명</p></div>
-    <div id="detail2-2"><p data-th-utext="${product.content}">서비스 설명 내용</div>
+    <div id="detail2-2" style="word-break: break-all"><p data-th-utext="${product.content}" style="max-width: 100%">서비스 설명 내용</p></div>
     <div id="detail2-3" class="head"><p>수정 및 재진행</p></div>
     <div id="detail2-4"><p data-th-utext="${product.rule}">
       시안은 1개이며 간단한 레이아웃/텍스트 조정에 한해 무료 2회로 진행합니다.

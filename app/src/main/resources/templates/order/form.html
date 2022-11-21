@@ -35,7 +35,7 @@
             IMP.request_pay({
                 pg : 'kakaopay',
                 pay_method : 'kakaopay',
-                merchant_uid: self.crypto.randomUUID(),
+                merchant_uid: 'parseInt(Date.now() + (Math.random() * 1000))',
                 name : '[[${product.title}]]',
                 amount : '[[${product.price}]]',
                 buyer_email : 'Iamport@chai.finance',

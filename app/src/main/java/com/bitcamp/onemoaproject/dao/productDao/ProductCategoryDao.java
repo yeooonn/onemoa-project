@@ -24,5 +24,10 @@ public interface ProductCategoryDao {
     List<ProductCategory> findAll();
 
     List<Map> findByParent(String code);
+
+    String findByChild(String code);
+
+    String findNameByCode(String code);
+
 //
 }

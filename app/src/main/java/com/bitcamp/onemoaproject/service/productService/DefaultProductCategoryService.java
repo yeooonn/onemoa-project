@@ -23,4 +23,9 @@ public class DefaultProductCategoryService implements ProductCategoryService {
   @Override
   public List<Map> getSubCategories(String code) { return productCategoryDao.findByParent(code); }
 
+  @Override
+  public String getUpperCategory(String code) { return productCategoryDao.findByChild(code);}
+
+  @Override
+  public String getCategoryName(String code) { return productCategoryDao.findNameByCode(code);}
 }

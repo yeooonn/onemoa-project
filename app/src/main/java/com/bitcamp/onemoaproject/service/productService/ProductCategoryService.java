@@ -11,4 +11,7 @@ public interface ProductCategoryService {
 
     List<Map> getSubCategories(String code);
 
+    String getUpperCategory(String code);
+
+    String getCategoryName(String code);
 }

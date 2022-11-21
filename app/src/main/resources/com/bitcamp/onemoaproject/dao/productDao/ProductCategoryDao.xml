@@ -21,27 +21,48 @@
   </resultMap>
 
   <select id="findAll" resultMap="productCategoryMap">
-      select
-          c.pcno,
-          c.pctier,
-          c.pcname,
-          c.pcparent,
-          c2.pcno spcno,
-          c2.pctier spctier,
-          c2.pcname spcname,
-          c2.pcparent spcparent
-      from product_category c
+    select
+      c.pcno,
+      c.pctier,
+      c.pcname,
+      c.pcparent,
+      c2.pcno spcno,
+      c2.pctier spctier,
+      c2.pcname spcname,
+      c2.pcparent spcparent
+    from
+      product_category c
       inner join product_category c2 on c2.pcparent=c.pcno
   </select>
 
   <select id="findByParent" parameterType="String" resultMap="selectMap">
-      select
-        pcno,
-        pcname
-      from
-        product_category
-      where
-        pcparent=#{code}
+    select
+      pcno,
+      pcname
+    from
+      product_category
+    where
+      pcparent=#{code}
   </select>
+
+  <select id="findByChild" parameterType="String" resultType="String">
+    select
+      c.pcname
+    from
+      product_category c
+      inner join product_category c2 on c2.pcparent=c.pcno
+    where
+      c2.pcno=#{code}
+  </select>
+
+  <select id="findNameByCode" parameterType="String" resultType="String">
+    select
+      pcname
+    from
+      product_category
+    where
+      pcno=#{code}
+  </select>
+
 
 </mapper>

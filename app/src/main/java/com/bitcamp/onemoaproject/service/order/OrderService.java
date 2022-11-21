@@ -1,7 +1,7 @@
 package com.bitcamp.onemoaproject.service.order;
 
+
 import com.bitcamp.onemoaproject.vo.order.Order;
-import com.bitcamp.onemoaproject.vo.order.OrderStatus;
 
 import java.util.List;
 

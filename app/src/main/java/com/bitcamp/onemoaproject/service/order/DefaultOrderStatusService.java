@@ -1,8 +1,8 @@
 package com.bitcamp.onemoaproject.service.order;
 
-import com.bitcamp.onemoaproject.dao.orderDao.OrderDao;
-import com.bitcamp.onemoaproject.dao.orderDao.OrderStatusDao;
-import com.bitcamp.onemoaproject.vo.order.Order;
+
+import com.bitcamp.onemoaproject.dao.order.OrderDao;
+import com.bitcamp.onemoaproject.dao.order.OrderStatusDao;
 import com.bitcamp.onemoaproject.vo.order.OrderStatus;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

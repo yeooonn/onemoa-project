@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bitcamp.onemoaproject.dao.order.OrderReviewDao">
+
+  <resultMap type="orderReview" id="orderReviewMap">
+    <id column="prno" property="no"/>
+    <result column="title" property="title"/>
+    <result column="cont" property="content"/>
+    <result column="cdt" property="createdDate"/>
+    <result column="score" property="score"/>
+    <result column="status" property="status"/>
+
+    <association property="writer" javaType="member">
+      <id column="mno" property="no"/>
+      <result column="name" property="name"/>
+    </association>
+
+    <association property="order" javaType="order">
+      <id column="pono" property="no"/>
+      <result column="pstno" property="pstno"/>
+      <result column="cdt" property="createdDate"/>
+      <result column="scno" property="scno"/>
+
+    <association property="product" javaType="product">
+      <id column="pno" property="no"/>
+      <result column="title" property="title"/>
+      <result column="cont" property="content"/>
+      <result column="rule" property="rule"/>
+      <result column="price" property="price"/>
+      <result column="vw_cnt" property="viewCount"/>
+      <result column="cdt" property="createdDate"/>
+      <result column="thumbnail" property="thumbnail"/>
+    </association>
+
+    </association>
+
+    <collection property="orderReviewAttachedFiles" ofType="orderReviewAttachedFile">
+      <id column="prfno" property="no"/>
+      <result column="fname" property="filename"/>
+      <result column="fpath" property="filepath"/>
+    </collection>
+
+  </resultMap>
+
+  <resultMap type="OrderReviewAttachedFile" id="orderReviewAttachedFileMap">
+    <id column="prfno" property="no"/>
+    <result column="fname" property="filename"/>
+    <result column="fpath" property="filepath"/>
+    <result column="prno" property="prno"/>
+  </resultMap>
+
+  <select id="findAll" resultMap="orderReviewMap">
+    select
+      o.prno,
+      m.mno,
+      o.pono,
+      o.title,
+      o.cont,
+      o.cdt,
+      o.score
+    from
+      order_review o
+      join member m on o.mno = m.mno
+    <if test="no != null">
+      where o.mno=#{value}
+    </if>
+    order by
+      cdt desc
+  </select>
+
+  <select id="findAllByProduct" resultMap="orderReviewMap">
+    select
+      or.prno,
+      or.cont,
+      or,cdt,
+      or.score,
+      or.status,
+    from
+      product p
+      join product_order po on p.pno=po.pno
+      join order_review or on po.pono=or.pono
+    where
+      p.pno=#{value}
+  </select>
+
+  <select id="findByNo" resultMap="orderReviewMap">
+    select
+      o.prno,
+      o.title,
+      o.cont,
+      o.cdt,
+      o.mno,
+      of.prfno,
+      of.fpath,
+      o.score
+    from
+      order_review o
+      join member m on o.mno = m.mno
+      left outer join order_review_file of on o.prno = of.prno
+    where
+      o.pono=#{value}
+  </select>
+
+  <select id="findFilesByOrderReview" resultMap="orderReviewAttachedFileMap">
+    select
+      prfno,
+      filepath,
+      prno
+    from
+      order_review
+    where
+      prfno=#{value}
+  </select>
+
+
+
+  <insert id="insert" parameterType="OrderReview"
+          useGeneratedKeys="true" keyColumn="prno" keyProperty="no">
+    insert into
+    order_review(title,cont,mno,score,pono)
+    values(#{title},#{content},#{writer.no},#{score},#{order.no})
+  </insert>
+
+  <!--    <update id="reviewUpdate" parameterType="OrderReview">-->
+  <!--        update-->
+  <!--        qna-->
+  <!--        set-->
+  <!--        title=#{title},-->
+  <!--        cont=#{content},-->
+  <!--        qnacno=#{category.no}-->
+  <!--        where-->
+  <!--        qnano=#{no}-->
+  <!--    </update>-->
+
+  <update id="orderReviewUpdate" parameterType="orderReview">
+    update
+      order_review
+    set
+      title=#{title},
+      cont=#{content},
+      score=#{score}
+    where
+      prno=#{no}
+  </update>
+
+  <delete id="delete">
+    delete from order_review
+    where prno=#{value}
+  </delete>
+
+  <!--  <delete id="deleteByMember">-->
+  <!--    delete from app_board -->
+  <!--    where mno=#{value}-->
+  <!--  </delete>-->
+
+  <insert id="insertFiles" parameterType="orderReview">
+    insert
+    into
+    order_review_file(fname, fpath, prno)
+    values
+    <foreach collection="orderReviewAttachedFiles" item="file" separator=",">
+      (#{file.filename},#{file.filepath},#{no})
+    </foreach>
+  </insert>
+
+  <delete id="deleteFiles">
+    delete from
+    order_review_file
+    where prno=#{value}
+  </delete>
+
+  <!--  <delete id="deleteFilesByMemberBoards">-->
+  <!--    delete from qna_file-->
+  <!--    where qnano in (select qnano from qna where mno = #{value})-->
+  <!--  </delete>-->
+
+  <delete id="deleteFile">
+    delete from order_review_file
+    where prfno=#{value}
+  </delete>
+
+  <select id="findFileByNo" resultMap="orderReviewAttachedFileMap">
+    select
+      prfno,
+      fpath,
+      prno,
+      fname
+    from
+      order_review_file
+    where
+      prfno=#{value}
+  </select>
+
+  <select id="getAverage" resultType="double">
+    select
+      round(avg(or.score), 1) average
+    from
+      product p
+      join product_order po on p.pno=po.pno
+      join order_review or on po.pono=or.pono
+    where
+      p.pno=#{value}
+  </select>
+
+  <select id="countReviews" resultType="java.lang.Integer">
+    select
+      count(score)
+    from
+      product p
+      join product_order po on p.pno=po.pno
+      join order_review rw on po.pono=rw.pono
+    where
+      p.pno=#{value}
+  </select>
+
+</mapper>

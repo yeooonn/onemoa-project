@@ -7,8 +7,10 @@ import javax.servlet.http.HttpSession;
 import javax.servlet.http.Part;
 
 import com.bitcamp.onemoaproject.service.DefaultWishService;
+import com.bitcamp.onemoaproject.service.order.OrderReviewService;
 import com.bitcamp.onemoaproject.service.productService.ProductReviewService;
 import com.bitcamp.onemoaproject.vo.Member;
+import com.bitcamp.onemoaproject.vo.order.OrderReview;
 import com.bitcamp.onemoaproject.vo.paging.Criteria;
 import com.bitcamp.onemoaproject.vo.paging.PageMaker;
 import com.bitcamp.onemoaproject.vo.product.AttachedFile;
@@ -36,8 +38,10 @@ public class ProductController {
   ProductService productService;
   @Autowired
   ProductCategoryService productCategoryService;
+
   @Autowired
-  ProductReviewService productReviewService;
+  OrderReviewService orderReviewService;
+
   @Autowired
   DefaultWishService wishService;
 
@@ -46,7 +50,7 @@ public class ProductController {
     model.addAttribute("productCategories", productCategoryService.list());
     System.out.println(productCategoryService.list());
   }
-  
+
   @PostMapping("add") // 재능판매 게시판 : 게시글 등록
   public String add(
       Product product,
@@ -121,28 +125,30 @@ public class ProductController {
     Map map = new HashMap();
 
     Product product = productService.get(no);
-    int count = productReviewService.count(no);
+    int count = orderReviewService.count(no);
+    System.out.println("count = " + count);
 
     int wishCheck = wishService.get((Member) session.getAttribute("loginMember"), product);
+
     System.out.println("wishCheck = " + wishCheck);
     int wishCount = wishService.getCount(no);
     System.out.println("wishCount = " + wishCount);
     
 
-    if (count != 0) { // 후기글의 개수가 0이 아니면
-      double average = productReviewService.getReviewAverage(no);
-      map.put("average", average);
-
-      List<ProductReview> productReviews = productReviewService.list(no);
-      map.put("reviews", productReviews);
-    }
+//    if (count != 0) { // 후기글의 개수가 0이 아니면
+//      double average = orderReviewService.getReviewAverage(no);
+//      map.put("average", average);
+//
+//      List<OrderReview> orderReviews = orderReviewService.list(no);
+//      map.put("reviews", orderReviews);
+//    }
 //     double average = Math.round(productReviewService.getReviewAverage(no) * 100) / 100.0;
 
     if (product == null) {
       throw new Exception("해당 번호의 게시글이 없습니다!");
     }
 
-    map.put("count", count);
+//    map.put("count", count);
     map.put("product", product);
     map.put("wishCheck", wishCheck);
     map.put("wishCount", wishCount);
@@ -186,17 +192,20 @@ public class ProductController {
 
     product.setAttachedFiles(saveAttachedFiles(files));
 
-    checkOwner(product.getNo(), session);
+    int pNo = product.getNo();
+
+    checkOwner(pNo, session);
 
     if (!productService.update(product)) {
       throw new Exception("게시글을 변경할 수 없습니다.");
     }
 
-    return "redirect:list";
+    return "redirect:/mypage/productDetail?no=" + pNo;
   }
 
   private void checkOwner(int boardNo, HttpSession session) throws Exception {
     Member loginMember = (Member) session.getAttribute("loginMember");
+
     if (productService.get(boardNo).getWriter().getNo() != loginMember.getNo()) {
       throw new Exception("게시글 작성자가 아닙니다.");
     }
@@ -216,29 +225,29 @@ public class ProductController {
     return "redirect:list";
   }
 
-  @GetMapping("fileDelete")
-  public String fileDelete(
-          @RequestParam("no") int no,
-          HttpSession session)
-          throws Exception {
-
-    AttachedFile attachedFile = productService.getAttachedFile(no);
-
-    // 게시글의 작성자가 로그인 사용자인지 검사한다. (남의 것 삭제할 수 있으면 안되니까)
-    Member loginMember = (Member) session.getAttribute("loginMember");
-    Product product = productService.get(attachedFile.getProductNo());
-
-    if (product.getWriter().getNo() != loginMember.getNo()) {
-      throw new Exception("게시글 작성자가 아닙니다.");
-    }
-
-    // 첨부파일을 삭제한다.
-    if (!productService.deleteAttachedFile(no)) {
-      throw new Exception("게시글 첨부파일 삭제 실패!");
-    }
-
-    return "redirect:detail?no=" + product.getNo();
-  }
+//  @GetMapping("fileDelete")
+//  public String fileDelete(
+//          @RequestParam("no") int no,
+//          HttpSession session)
+//          throws Exception {
+//
+//    AttachedFile attachedFile = productService.getAttachedFile(no);
+//
+//    // 게시글의 작성자가 로그인 사용자인지 검사한다. (남의 것 삭제할 수 있으면 안되니까)
+//    Member loginMember = (Member) session.getAttribute("loginMember");
+//    Product product = productService.get(attachedFile.getProductNo());
+//
+//    if (product.getWriter().getNo() != loginMember.getNo()) {
+//      throw new Exception("게시글 작성자가 아닙니다.");
+//    }
+//
+//    // 첨부파일을 삭제한다.
+//    if (!productService.deleteAttachedFile(no)) {
+//      throw new Exception("게시글 첨부파일 삭제 실패!");
+//    }
+//
+//    return "redirect:detail?no=" + product.getNo();
+//  }
 
   @ResponseBody
   @GetMapping("getSubCategories")
