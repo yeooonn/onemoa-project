@@ -2,13 +2,8 @@ package com.bitcamp.onemoaproject.service.order;
 
 import com.bitcamp.onemoaproject.vo.order.OrderReview;
 import com.bitcamp.onemoaproject.vo.order.OrderReviewAttachedFile;
-import com.bitcamp.onemoaproject.vo.paging.Criteria;
-import com.bitcamp.onemoaproject.vo.product.ProductReview;
 
-import javax.servlet.ServletResponse;
 import java.util.List;
-import java.util.Map;
-import java.util.concurrent.ExecutionException;
 
 public interface OrderReviewService {
 
@@ -25,6 +20,9 @@ public interface OrderReviewService {
     int count(int no);
 
     double getReviewAverage(int no);
+    
+    // 메인페이지 후기 목록 : 1121추가
+    List<OrderReview> listMainReview();
 
 }
 

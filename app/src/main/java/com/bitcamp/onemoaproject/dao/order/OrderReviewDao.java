@@ -37,7 +37,9 @@ public interface OrderReviewDao {
     int countReviews(int no);
 
     double getAverage(int no);
-
+    
+    // 메인페이지 후기 목록 : 1121추가
+    List<OrderReview> findAllByMainReview();
 }
 
 

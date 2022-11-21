@@ -90,7 +90,11 @@ public class DefaultOrderReviewService implements OrderReviewService {
     System.out.println(orderReviewDao.getAverage(no));
     return orderReviewDao.getAverage(no);
   }
-
+  
+  @Override
+  public List<OrderReview> listMainReview() {
+    return orderReviewDao.findAllByMainReview();
+  }
 }
 
 
