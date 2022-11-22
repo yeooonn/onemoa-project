@@ -88,27 +88,27 @@
 
   <select id="findByBuyerNo" resultMap="orderMap">
     select
-    o.pono,
-    o.pno,
-    o.scno,
-    o.cdt,
-    p.title,
-    p.price,
-    p.thumbnail,
-    m.nick,
-    os.scno,
-    os.name,
-    pr.prno
+      o.pono,
+      o.pno,
+      o.scno,
+      o.cdt,
+      p.title,
+      p.price,
+      p.thumbnail,
+      m.nick,
+      os.scno,
+      os.name,
+      pr.prno
     from
-    product_order o
-    join product p on o.pno=p.pno
-    join member m on p.mno=m.mno
-    join order_status os on os.scno=o.scno
-    left outer join product_review pr on pr.pono=o.pono
+      product_order o
+      join product p on o.pno=p.pno
+      join member m on p.mno=m.mno
+      join order_status os on os.scno=o.scno
+      left outer join order_review pr on pr.pono=o.pono
     where
-    o.mno=#{value}
+      o.mno=#{value}
     order by
-    cdt desc
+      cdt desc
   </select>
 
   <select id="findByNo" resultMap="orderMap">
@@ -131,6 +131,8 @@
     insert into product_order(mno, pno, pstno, base_addr, detail_addr)
     values(#{buyer.no}, #{product.no}, #{postNo}, #{baseAddr}, #{detailAddr})
   </insert>
+
+
   <!-- -->
 
   <!--  <update id="update" >-->

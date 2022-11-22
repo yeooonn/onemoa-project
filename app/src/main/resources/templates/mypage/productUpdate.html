@@ -10,21 +10,15 @@
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
   <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
+  <link rel="stylesheet"href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css" />
   <link href="../css/onemoa.css" rel="stylesheet" />
   <script src="/onemoa/js/login.js"></script>
+
   <style>
     .length1 {
       margin-left: 15vw;
       margin-right: 15vw;
-    }
-    .pbn {
-      width: 100%
-    }
-    .categoryA-container{
-      float: left;
-    }
-
-    .categoryB-container{
     }
 
     .rule {
@@ -38,8 +32,45 @@
       min-height: 60px;
     }
 
-    .productForm-category {
-      margin-bottom: 10px;
+    .orgin-file {
+      margin: 1vw;
+      padding: 1vw;
+      background: #efefef;
+      border-radius: 4px;
+      text-align: left;
+    }
+
+    .orgin-file span, a {
+      font-size: 1.3vw;
+      text-decoration: none;
+    }
+
+    .file-del-btn {
+      margin-bottom: 1vw;
+      margin-right: 0.5vw;
+    }
+
+    .productForm-grid-item {
+      margin: 1vw 0;
+      font-size: 1.5vw;
+    }
+
+
+    .productForm-grid-item2 {
+      height: auto;
+      overflow: hidden;
+    }
+
+    .btn-default {
+      padding: 0.6vw 1vw;
+      font-size: 1.3vw;
+    }
+
+    .productForm-grid-item {
+      margin: 1vw 0;
+      font-size: 1.1vw;
+      height: auto;
+      overflow: hidden;
     }
 
 
@@ -48,34 +79,13 @@
 <body style="overflow-x: hidden">
 
   <div class=length1>
-    <form id="update-form" action="/onemoa/product/update2" method="POST" enctype="multipart/form-data" onsubmit="return test()">
+    <form id="update-form" action="/onemoa/product/update" method="POST" enctype="multipart/form-data" >
       <input id="productNo" hidden data-th-value="${product.no}" name="no">
       <div class="productForm-grid-container">
-        <div class="productForm-grid-item"><p>재능판매 수정</p></div>
+        <h1>재능판매 수정하기</h1>
         <div class="productForm-grid-item">
+          <span data-th-text="${upperCategoryName} +' | '+ ${subCategoryName}"></span>
         </div>
-
-        <div class="categoryA-container">
-          <label for="categoryA">상위 카테고리 선택</label><br />
-          <select name="categoryA" class="productForm-category" id="categoryA" onchange="setUpperCategory()" >
-            <div>
-              <option value="">상위 카테고리 선택</option>
-              <option data-th-each="category : ${productCategories}" data-th-value="${category.code}" data-th-text="${category.name}">상위카테고리</option>
-            </div>
-          </select>
-        </div>
-        <div class="categoryB-container">
-          <div class="">
-            <label for="code">하위 카테고리 선택</label><br />
-            <select data-th-value="${product.productCategory.code}" name="productCategory.code" class="productForm-category" id="code" >
-              <option value="">하위 카테고리 선택</option>
-            </select>
-        <p data-th-text="${product.productCategory.code}"></p><p data-th-text="${upperCategoryName}"></p>
-        <p data-th-text="${subCategoryName}"></p>
-
-          </div>
-        </div>
-      </div>
         <div class="productForm-grid-item">
         <div id="productDetail" class="input-group">
           <span class="input-group-addon">가격</span>
@@ -85,36 +95,32 @@
           <span class="input-group-addon">제목</span>
           <input data-th-value="${product.title}" name="title" id="title" type="text" class="form-control" maxlength="100"/>
         </div>
-        <textarea name="content" style="width: 90%; height: 90%"/>
-        <div class="productForm-grid-item">수정 및 재진행</div>
-        <textarea name="rule"></textarea>
-        <div class="productForm-grid-item">판매자 소개글</div>
-        <textarea name="selfIntro" class="rule"></textarea>
+          <div class="productForm-grid-item">[ 서비스 설명 ]</div>
+          <textarea required name="content" style="width: 90%; height: 90%"></textarea>
+          <div class="productForm-grid-item" placeholder="수정 및 재진행 규칙을 적어주세요." >[ 수정 및 재진행 ]</div>
+          <textarea required name="rule" class="rule"></textarea>
+          <div class="productForm-grid-item">[ 판매자 소개글 ]</div>
+          <textarea required name="selfIntro" class="rule" placeholder="구매자에게 자신을 소개해주세요!"></textarea>
       </div>
 
       <div class="productForm-grid-item">
         <div class="productForm-grid-item2">
-          <span>메인이미지등록(필수)</span>
-          <input id="addFile" class="productForm-inputbox1" name="files" type="file" multiple accept="image/*" />
-<!--          <img width="200px" src="/img/productFromMain.png" onclick="document.all.files1.click();"/>-->
-          <!-- 긁어온거  -->
-
-          <ul id="originAttached"><p>[[${product.attachedFiles.size()}]]</p>
-<!--            <li>-->
-<!--              <img data-th-src="${'/onemoa/product/files/' + product.thumbnail}" style="width:100%; height:auto;"/>-->
-<!--            </li>-->
-            <li data-th-each="file : ${product.AttachedFiles}" style="float:left; margin-right:5%; list-style:none; width:50%">
-              <a href="files/test.gif"
+          <div>첨부파일 (필수등록)
+            <input id="addFile" name="files1" type="file" multiple accept="image/*"/>
+          </div>
+          <ul id="originAttached">
+            <li data-th-each="file : ${product.attachedFiles}" style="float:left; list-style:none; width:50%">
+              <div class="orgin-file" data-th-if="${file.no != 0}">
+              <a data-th-if="${file.no != 0}" data-th-id="${file.no}" onclick="productDelete(this.id)">
+                <img class="file-del-btn" src="/onemoa/img/fileDel.png" style="width: 40px; cursor: pointer"/>
+              </a><span data-th-text="${file.filename}"></span>
+              <a href="files/test.gif" data-th-if="${file.filepath != null}"
                  data-th-href="@{/product/files/{path}(path=${file.filepath})}">
                 <img data-th-src="@{/product/files/{path}(path=${file.filepath})}" style="width:100%; height:auto;"/>
-<!--                [<a href="fileDelete?no=1"-->
-<!--                    data-th-href="@{productFileDelete(no=${file.no})}" onclick="productDete()">삭제</a>]-->
-                [<a href=""
-                    data-th-id="${file.no}" onclick="productDelete(this.id)">삭제</a>]
               </a>
+              </div>
             </li>
           </ul>
-
         </div>
         <input id="productListReferrer" type="hidden" name="sendReferrer">
         <div class="productForm-grid-item">
@@ -122,7 +128,9 @@
           <button id="backToMypage" type="button" class="btn btn-default" onclick="window.close()">취소</button>
         </div>
       </div>
+    </div>
     </form>
+    <div id="underBanner"></div>
   </div>
   <script>
     $(document).ready(function() {
@@ -223,13 +231,32 @@
    return false;
   }
 </script>
-<script>
+<script th:inline="javascript">
   $("#update-form").submit( (e) => {
     console.log("===================> 변경");
 
-    console.log($("#originAttached > li").length);
+    var originFiles = $("#originAttached > li").length;
+    var newFiles = $("#addFile")[0].files.length;
+    var check = [[${product.attachedFiles}]][0].no;
 
-    return false;
+    console.log("원래파일개수" + originFiles);
+    console.log("새로운 첨부파일 개수" + newFiles);
+    console.log(check);
+
+      if (check == 0 && newFiles == 0) {
+          swal("", "첨부파일을 1개 이상 첨부해주세요!", "error");
+          return false;
+          // self.close();
+
+      } else {
+          return true;
+      // self.close();
+      }
+
+
+
+
+
   });
 
 </script>

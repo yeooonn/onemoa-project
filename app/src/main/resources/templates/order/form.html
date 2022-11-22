@@ -35,7 +35,7 @@
             IMP.request_pay({
                 pg : 'kakaopay',
                 pay_method : 'kakaopay',
-                merchant_uid: 'parseInt(Date.now() + (Math.random() * 1000))',
+                merchant_uid: parseInt(Date.now() + (Math.random() * 1000)),
                 name : '[[${product.title}]]',
                 amount : '[[${product.price}]]',
                 buyer_email : 'Iamport@chai.finance',
@@ -47,16 +47,6 @@
                 if (rsp.success) {
                     console.log(rsp);
                     document.addOrder.submit();
-                    // $.ajax({
-                    //     type: "POST",
-                    //     url: "/onemoa/order/add",
-                    //     data: {'no': productNo },
-                    //     success: function (response) {
-                    //         location.href = "/onemoa/order/detail?no=" + productNo
-                    //     },
-                    //     error: function (response) {
-                    //     }
-                    // });
 
                 } else {
                     console.log(rsp);

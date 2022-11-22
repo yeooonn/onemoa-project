@@ -126,8 +126,8 @@
 <ul class="myPage">
   <li class="mypageArea">
     <div class="nick">
-      <img src="../img/profile1.png">
-      <p>닉네임님</p>
+      <img data-th-src="${'/onemoa/member/files/' + session.loginMember.profile}">
+      <p data-th-text="${session.loginMember.nickname}">닉네임님</p>
     </div>
     <div class="mypageNav">
       <div class="myonemoa">

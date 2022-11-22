@@ -12,6 +12,10 @@
   <script src="../js/login.js"></script>
   <script src="../js/onemoa.js"></script>
   <style>
+    p {
+      word-wrap: break-word;
+    }
+
     .wrap {
       margin-bottom: 5%;
       margin-top: 1%;
@@ -339,12 +343,7 @@
   </style>
 </head>
 <body style="overflow-x: hidden">
-<div data-th-replace="/fragments/nav.html :: fragment-nav"></div>
 <form action="/onemoa/mypage/productUpdate" method="GET">
-  <!--<div id = breadc>-->
-  <!--  <span>디자인></span>-->
-  <!--  <span data-th-text="${product.productCategory.code}">로고 디자인</span>-->
-  <!--</div>-->
   <div><input hidden id="productNo" type="number" name="no"  data-th-value="${product.no}"></div>
   <div class="wrap">
     <div id="detail-4" data-th-if="${!#lists.isEmpty(product.attachedFiles)}">
@@ -355,9 +354,7 @@
         <div id="tab" style="overflow:scroll;">
           <ul id="horiScroll">
             <li data-th-each="file : ${product.attachedFiles}">
-              <!--              <a data-th-href="@{/product/files/{path}(path=${file.filepath})}">-->
-              <img class="attached-image" data-th-src="@{/product/files/{path}(path=${file.filepath})}">
-              <!--              </a>-->
+              <img data-th-if="${file.filepath != null}" class="attached-image" data-th-src="@{/product/files/{path}(path=${file.filepath})}">
             </li>
           </ul>
         </div>
@@ -370,7 +367,7 @@
         <div id="wishCnt" data-th-text="${wishCount}"></div>
       </div>
       <img src="../img/star.png" width="25px" height="25px"/>
-      <span id="aboutReviews" data-th-text="${average} == null and ${count} == 0 ? ' 후기 없음' : ' ' + ${average} + ' 점 ( 후기 : ' + ${count} + ' 개 ) '">별점 평균</span>
+      <span id="aboutReviews" data-th-text="${average} == null or ${count} == null ? ' 후기 없음' : ' ' + ${average} + ' 점 ( 후기 : ' + ${count} + ' 개 ) '">별점 평균</span>
     </div>
 
     <div id="top">
@@ -470,7 +467,6 @@
     }
     const productNo = $("#productNo").attr("value");
 
-    console.log(productNo);
 
     $(".heart").on("click", function () {
       $.ajax({
@@ -513,5 +509,6 @@
 
   });
 </script>
+
 </body>
 </html>

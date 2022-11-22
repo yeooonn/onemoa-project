@@ -1,29 +1,26 @@
 package com.bitcamp.onemoaproject.controller;
 
-import javax.servlet.ServletContext;
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
-import javax.servlet.http.Part;
-
 import com.bitcamp.onemoaproject.service.DefaultWishService;
 import com.bitcamp.onemoaproject.service.order.OrderReviewService;
-import com.bitcamp.onemoaproject.service.productService.ProductReviewService;
+import com.bitcamp.onemoaproject.service.productService.ProductCategoryService;
+import com.bitcamp.onemoaproject.service.productService.ProductService;
 import com.bitcamp.onemoaproject.vo.Member;
 import com.bitcamp.onemoaproject.vo.order.OrderReview;
 import com.bitcamp.onemoaproject.vo.paging.Criteria;
 import com.bitcamp.onemoaproject.vo.paging.PageMaker;
 import com.bitcamp.onemoaproject.vo.product.AttachedFile;
 import com.bitcamp.onemoaproject.vo.product.Product;
-import com.bitcamp.onemoaproject.vo.product.ProductReview;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import com.bitcamp.onemoaproject.service.productService.ProductCategoryService;
-import com.bitcamp.onemoaproject.service.productService.ProductService;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.ServletContext;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+import javax.servlet.http.Part;
 import java.io.IOException;
 import java.util.*;
 
@@ -54,12 +51,12 @@ public class ProductController {
   @PostMapping("add") // 재능판매 게시판 : 게시글 등록
   public String add(
       Product product,
-      @RequestParam("files") Part[] files,
+      @RequestParam("files1") Part[] files1,
       HttpSession session, HttpServletRequest request, @RequestParam("sendReferrer") String sendReferrer) throws Exception {
     System.out.println("sendReferrer = " + sendReferrer);
     System.out.println("product = " + product);
 
-    product.setAttachedFiles(saveAttachedFiles(files));
+    product.setAttachedFiles(saveAttachedFiles(files1));
     product.setWriter((Member) session.getAttribute("loginMember"));
 
     product.setThumbnail("defaultgoods.png");
@@ -68,6 +65,7 @@ public class ProductController {
 
       List<AttachedFile> attachedFiles;
       attachedFiles = product.getAttachedFiles();
+      System.out.println("attachedFiles = " + attachedFiles);
       product.setThumbnail(attachedFiles.get(0).getFilepath());
       System.out.println(attachedFiles.get(0).getFilepath());
 
@@ -81,12 +79,12 @@ public class ProductController {
     return "redirect:list";
   }
 
-  private List<AttachedFile> saveAttachedFiles(Part[] files)
+  private List<AttachedFile> saveAttachedFiles(Part[] files1)
           throws IOException, ServletException {
     List<AttachedFile> attachedFiles = new ArrayList<>();
     String dirPath = sc.getRealPath("/product/files");
 
-    for (Part part : files) {
+    for (Part part : files1) {
       if (part.getSize() == 0) {
         continue;
       }
@@ -116,6 +114,7 @@ public class ProductController {
     mav.addObject("pageMaker", pageMaker);
     mav.addObject("productCategories", productCategoryService.list());
 
+
     return mav;
   }
 
@@ -135,20 +134,20 @@ public class ProductController {
     System.out.println("wishCount = " + wishCount);
     
 
-//    if (count != 0) { // 후기글의 개수가 0이 아니면
-//      double average = orderReviewService.getReviewAverage(no);
-//      map.put("average", average);
-//
-//      List<OrderReview> orderReviews = orderReviewService.list(no);
-//      map.put("reviews", orderReviews);
-//    }
+    if (count != 0) { // 후기글의 개수가 0이 아니면
+      double average = orderReviewService.getReviewAverage(no);
+      map.put("average", average);
+
+      List<OrderReview> orderReviews = orderReviewService.listByPno(no);
+      map.put("reviews", orderReviews);
+    }
 //     double average = Math.round(productReviewService.getReviewAverage(no) * 100) / 100.0;
 
     if (product == null) {
       throw new Exception("해당 번호의 게시글이 없습니다!");
     }
 
-//    map.put("count", count);
+    map.put("count", count);
     map.put("product", product);
     map.put("wishCheck", wishCheck);
     map.put("wishCount", wishCount);
@@ -187,14 +186,22 @@ public class ProductController {
   @PostMapping("update")
   public String update(
           Product product,
-          Part[] files,
+          Part[] files1,
           HttpSession session) throws Exception {
 
-    product.setAttachedFiles(saveAttachedFiles(files));
+    product.setAttachedFiles(saveAttachedFiles(files1));
 
     int pNo = product.getNo();
-
     checkOwner(pNo, session);
+
+    if (product.getAttachedFiles().size() > 0) {
+
+      List<AttachedFile> attachedFiles;
+      attachedFiles = product.getAttachedFiles();
+      System.out.println("attachedFiles = " + attachedFiles);
+      product.setThumbnail(attachedFiles.get(0).getFilepath());
+      System.out.println(attachedFiles.get(0).getFilepath());
+    }
 
     if (!productService.update(product)) {
       throw new Exception("게시글을 변경할 수 없습니다.");
