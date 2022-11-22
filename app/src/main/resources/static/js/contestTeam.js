@@ -131,7 +131,7 @@ function portfolioBoxChange() {
   let selectPortfolioText = document.getElementById("xx-portfolioBox").options[document.getElementById("xx-portfolioBox").selectedIndex].text;
   let aList = "";
   aList += "<li value='ptNo" + selectPortfolioNumber + "'>" +
-      "<a href='/onemoa/mypage/firstportfolio?ptNo=" + selectPortfolioNumber + "'" + "onClick=\"window.open(this.href, '', 'width=1000px, height=1080px')\"; target=\"_blank\">" + selectPortfolioText + "</a>" + "&nbsp&nbsp&nbsp" + "<span class='portfolioDeleteBtn' id='ptNo" + selectPortfolioNumber + "'" + ">삭제</span>" + "</li>";
+      "<a href='/onemoa/mypage/firstportfolio?ptNo=" + selectPortfolioNumber + "'" + "onClick=\"window.open(this.href, '', 'width=1000px, height=1080px')\"; target=\"_blank\">" + selectPortfolioText + "</a>" + "&nbsp&nbsp&nbsp" + "<span class='portfolioDeleteBtn' id='ptNo" + selectPortfolioNumber + "'" + " style='cursor: pointer'>삭제</span>" + "</li>";
   $("#innerPortfolio").append(aList);
 
   $(".portfolioDeleteBtn").click(function (e) {

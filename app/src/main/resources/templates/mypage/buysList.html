@@ -438,16 +438,11 @@
               </td>
 <!--            <td colspan="5"><textarea name="content" style="resize: none;" rows='10' cols='70' data-th-text="${orderReview.content}">후기 제목</textarea></td>-->
           </tr>
-<!--          <th data-th-if="${!#lists.isEmpty(orderReview.orderReviewAttachedFiles)}" class="tableStyle">첨부파일</th>-->
-<!--          <td colspan="5" data-th-if="${!#lists.isEmpty(orderReview.orderReviewAttachedFiles)}" class="tableStyle">-->
-            <ul>
-<!--              <li data-th-each="file : ${orderReview.orderReviewAttachedFiles}" style="float:left; margin-right:5%; list-style:none; width:10%">-->
-<!--                <a href="files/test.gif"-->
-<!--                   data-th-href="@{/review/files/{path}(path=${file.filepath})}">-->
-<!--                  <img data-th-src="@{/review/files/{path}(path=${file.filepath})}" style="width:100%; height:auto;"/>-->
-<!--                </a>-->
-<!--              </li>-->
-            </ul>
+          <th id="fileTh" class="tableStyle">첨부파일</th>
+           <td colspan="5" class="tableStyle">
+             <ul id="reviewFile">
+             </ul>
+           </td>
           </td>
         </table>
         <div style="display: flex; justify-content: center;">
@@ -692,6 +687,19 @@
         } else if (reviewScore == 1) {
           $("#reviewStart").text(reviewScore);
           $("#reviewStart").css("width", 20);
+        }
+        let ulList = "";
+        let filesLength = result.orderReview.orderReviewAttachedFiles.length;
+        if (filesLength == 0) {
+          $("#fileTh").remove();
+        } else {
+          for (let i = 0; i < filesLength; i++) {
+            ulList += "<li style=\"float:left; margin-right:5%; list-style:none; width:10%\">" +
+                "<a href='/onemoa/review/files/" + result.orderReview.orderReviewAttachedFiles[i].filepath + "'>" +
+                "<img src='/onemoa/review/files/" + result.orderReview.orderReviewAttachedFiles[i].filepath +
+                "' style=\"width:100%; height:auto;\">" + "</a>" + "</li>";
+          }
+          $("#reviewFile").html(ulList);
         }
       },
     })
