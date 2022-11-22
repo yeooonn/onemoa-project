@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:data-th-="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset = "UTF-8">
+    <title>onemoa mypage</title>
+<!--    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">-->
+<!--    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>-->
+    <link href="/onemoa/css/onemoa.css" rel="stylesheet">
+    <link href="/onemoa/css/onemoaMypage.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="/onemoa/js/onemoa.js"></script>
+    <style>
+      .xx-senderDiv{
+
+      }
+      .xx-senderP {
+        color: red;
+      }
+      .xx-receiverDiv {
+
+      }
+      .xx-receiverP {
+        color: blue;
+      }
+    </style>
+  </head>
+  <body style="overflow-x: hidden">
+
+  <div data-th-replace="/fragments/nav.html :: fragment-nav"></div>
+
+  <ul class="myPage">
+      <li class="mypageArea">
+        <div class="nick">
+<!--          <img data-th-src="${'/onemoa/member/files/' + member.profile}">-->
+<!--          <p data-th-text="${member.nickname}">닉네임님</p>-->
+        </div>
+        <div class="mypageNav">
+          <div class="myonemoa">
+            <p>마이원모아</p>
+            <span class="mybar"></span>
+          </div>
+
+<!-- 메시지 상세보기 -->
+          <ul class="mynav">
+            <li>
+              <div data-th-each="message : ${messages}">
+                <img data-th-if="${member.no} != ${message.receiver}" data-th-src="@{/member/files/{path}(path=${message.writer.profile})}" data-th-id="${message.writer.no}" onclick="messageDetail(this.id)" style="width: 100px; height: 100px; cursor: pointer"/>
+                <p data-th-if="${member.no} != ${message.receiver}" data-th-text="${message.writer.nickname}">
+              </div>
+            </li>
+          </ul>
+          
+        </div>
+
+      </li>
+      <li class="mypageArea">
+        <div class="mypagePortfolio">
+          <p class="mptxt2">메시지</p>
+<!--          <p data-th-text="${member}"></p>-->
+<!--          <p data-th-text="${details}"></p>-->
+
+          <div data-th-each="detail : ${details}">
+            <div class="xx-senderDiv" data-th-if="${member.no} == ${detail.sender}" align="right">
+              <p class="xx-senderP" data-th-text="${detail.cont}" ></p>
+              <p class="xx-senderP" data-th-if="${detail.cont} != null" data-th-text="${#dates.format(detail.cdt, 'MM-dd HH:mm')}"></p>
+            </div>
+            <div class="xx-receiverDiv" data-th-if="${member.no} != ${detail.sender}" align="left">
+              <p class="xx-receiverP" data-th-text="${detail.cont}"></p>
+              <p class="xx-receiverP" data-th-if="${detail.cont} != null" data-th-text="${#dates.format(detail.cdt, 'MM-dd HH:mm')}"></p>
+            </div>
+          </div>
+          <form id="sendForm" action="sendContent" method="post">
+            <input type="hidden" name="sender" data-th-value="${member.no}"/>
+            <input id="receiverBox" type="hidden" name="receiver"/>
+            <input type="text" name="contest" size="60" onkeyup="if(window.event.keyCode==13){sendContent()}">
+          </form>
+        </div>
+      </li>
+    </ul>
+
+  <footer data-th-replace="/fragments/footer.html :: fragment-footer"></footer>
+  <script>
+
+    $(document).ready(function() {
+      let param = window.location.search;
+      let pLength = param.length;
+      let receiverNo = param.substring(4, pLength);
+      $("#receiverBox").attr("value", receiverNo);
+    });
+
+    function messageDetail(value){
+      let receiverNo = value;
+      console.log(receiverNo);
+      window.location.href="/onemoa/message/messageDetail?no=" + receiverNo;
+    }
+
+    function sendContent(){
+      $("#sendForm").submit();
+    }
+  </script>
+  </body>
+</html>

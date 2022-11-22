@@ -8,6 +8,7 @@ import com.bitcamp.onemoaproject.service.productService.ProductCategoryService;
 import com.bitcamp.onemoaproject.service.productService.ProductService;
 import com.bitcamp.onemoaproject.vo.Member;
 import com.bitcamp.onemoaproject.vo.order.Order;
+import com.bitcamp.onemoaproject.vo.order.OrderReview;
 import com.bitcamp.onemoaproject.vo.order.OrderStatus;
 import com.bitcamp.onemoaproject.vo.product.AttachedFile;
 import com.bitcamp.onemoaproject.vo.product.Product;
@@ -40,14 +41,11 @@ public class MypageController {
   @Autowired
   ProductCategoryService productCategoryService;
   @Autowired
-  ProductReviewService productReviewService;
-  @Autowired
   DefaultWishService wishService;
   @Autowired
   OrderService orderService;
   @Autowired
   OrderStatusService orderStatusService;
-
   @Autowired
   OrderReviewService orderReviewService;
 
@@ -102,7 +100,7 @@ public class MypageController {
     Map map = new HashMap();
 
     Product product = productService.get(no);
-    int count = productReviewService.count(no);
+    int count = orderReviewService.count(no);
 
     int wishCheck = wishService.get((Member) session.getAttribute("loginMember"), product);
     System.out.println("wishCheck = " + wishCheck);
@@ -111,10 +109,10 @@ public class MypageController {
 
 
     if (count != 0) { // 후기글의 개수가 0이 아니면
-      double average = productReviewService.getReviewAverage(no);
+      double average = orderReviewService.getReviewAverage(no);
       map.put("average", average);
 
-      List<ProductReview> productReviews = productReviewService.list(no);
+      List<OrderReview> productReviews = orderReviewService.list(no);
       map.put("reviews", productReviews);
     }
 //     double average = Math.round(productReviewService.getReviewAverage(no) * 100) / 100.0;
