@@ -3,7 +3,6 @@
 <head>
   <meta charset = "UTF-8">
   <title>onemoa mypage</title>
-  <link href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" rel="stylesheet">
   <link href="../css/onemoa.css" rel="stylesheet">
   <link href="../css/onemoaMypage.css" rel="stylesheet">
   <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
@@ -12,10 +11,6 @@
   <style>
     .mypageArea {
       min-height: 60vw;
-    }
-
-    p {
-      margin-top: -2px;
     }
 
     #empty {
@@ -109,10 +104,6 @@
 
     .userBtn {
       float: left;
-    }
-
-    .tableStyle {
-      text-align: center;
     }
 
     .background {
@@ -220,6 +211,40 @@
       overflow: hidden;
       pointer-events: none;
     }
+    .userBtn {
+      float: left;
+    }
+    table {
+      border-collapse:collapse;
+    }
+
+    tr {
+      border-bottom: 1px solid black;
+    }
+    .tableSt {
+      width: 100%;
+      max-width: 100%;
+      margin: auto;
+      padding: 0px;
+    }
+
+    #underBanner p span, button {
+      font-size: 0.85vw;
+      float : none;
+      margin: 0 0px 0 0px;
+    }
+
+    .table2 {
+      justify-content: center;
+      display: flex;
+      margin-top: 10px;
+      margin-bottom: 10px;
+    }
+
+    .tableStyle {
+      text-align: center;
+      margin-bottom: 10px;
+    }
 
   </style>
   <!--<body style="overflow-x: hidden">-->
@@ -263,7 +288,7 @@
           <div id="empty" data-th-if="${#lists.isEmpty(buys)}"><img data-th-src="@{../img/emptycart.png}" width="20%" height="20%"/>
             <p><br>구매한 상품이 없습니다.</p></div>
           <div data-th-if="${!#lists.isEmpty(buys)}">
-            <table class="table">
+            <table class="tableSt">
               <tr>
                 <th class="tableStyle">상품번호</th>
                 <th class="tableStyle">상품이름</th>
@@ -271,6 +296,7 @@
                 <th class="tableStyle">결제금액</th>
                 <th class="tableStyle">결제일시</th>
                 <th class="tableStyle">주문상태</th>
+                <th class="tableStyle">후기</th>
               </tr>
               <tr data-th-each="buy : ${buys}">
                 <td class="tableStyle" data-th-text="${buy.no}">상품번호들어가요오</td>
@@ -279,20 +305,18 @@
                 <td class="tableStyle" data-th-text="${#numbers.formatInteger(buy.product.price, 3, 'COMMA')} + ' 원'">결제금액들어가요오</td>
                 <td class="tableStyle" data-th-text="${#temporals.format(buy.createdDate, 'yyyy-MM-dd')}">결제일시들어가요</td>
                 <td class="tableStyle" data-th-text="${buy.orderStatus.name}">주문상태들어가요</td>
-                <td class="tableStyle" style="border: none;">
-                  <button data-th-if="${buy.orderReview == null}" data-th-id="'orderReview-btn-'+${buy.no}">
+                <td class="table2">
+                  <button class="#underBanner p span, button" data-th-if="${buy.orderReview == null}" data-th-id="'orderReview-btn-'+${buy.no}">
                     <a class="userBtn"
                        data-th-href="@{/order/review/reviewForm(no=${buy.no})}"
-                       onclick="window.open(this.href, '_blank', 'width=800, height=800'); return false;" style="text-decoration: none;
-                  color:blue;">
+                       onclick="window.open(this.href, '_blank', 'width=800, height=800'); return false;" style="text-decoration: none;">
                       후기작성
                     </a>
                   </button>
-                  <button data-th-if="${buy.orderReview != null}" data-th-id="'orderReviewWritten-btn-'+${buy.no}">
-                    <a class="userBtn"
+                  <button class="#underBanner p span, button" data-th-if="${buy.orderReview != null}" data-th-id="'orderReviewWritten-btn-'+${buy.no}">
+                    <a
                        data-th-href="@{/order/review/reviewDetail(no=${buy.no})}"
-                       onclick="window.open(this.href, '_blank', 'width=800, height=800'); return false;" style="text-decoration: none;
-                       color:red;">
+                       onclick="window.open(this.href, '_blank', 'width=800, height=800'); return false;" style="text-decoration: none;">
                       후기보기</a>
                   </button>
                 </td>

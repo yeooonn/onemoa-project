@@ -41,15 +41,20 @@
 
 <main id="noticeList">
 
-  <div><img id="noticeBanner" src="../img/contestbg.png" alt=""></div>
+  <div><img id="noticeBanner" src="../img/notice.png" alt=""></div>
   <div id="underBanner"></div>
-  <h1 style="text-align: center;">공지사항</h1>
+  <h1 style="text-align: center; margin-right: 7vw">공지사항</h1>
+
+    </div></div>
   <div class="container">
+      <div>
+          <button type="button" class="btn btn-primary btn-sm" id="backToMain" style="margin-bottom: 20px;"><a href="/onemoa/">메인으로 돌아가기</a></button>
+      </div>
       <table class="table">
         <thead>
          <tr>
            <th class="tableStyle" style="width: 5vw">No</th>
-           <th class="tableStyle" style="width: 50vw">제목</th>
+           <th class="tableStyle" style="width: 90vw">제목</th>
            <th class="tableStyle" style="width: 10vw">작성자</th>
            <th class="tableStyle" style="width: 10vw">등록일</th>
          </tr>
@@ -69,9 +74,8 @@
          </tr>
         </tbody>
       </table>
-      <button type="button" class="btn btn-primary btn-sm" id="backToMain"><a href="/onemoa/">메인으로 돌아가기</a></button>
     <!-- 페이징 -->
-    <nav class="xx-nav" aria-label="pagination">
+    <nav style="margin-right: 7vw;" class="xx-nav" aria-label="pagination">
       <ul class="xx-pagination">
         <li data-th-if="${pageMaker.prev}">
           <a data-th-href="@{list(pageMaker.startPage-1)}"><span aria-hidden="true">이전페이지</span><span class="xx-visuallyhidden">previous set of pages</span></a>

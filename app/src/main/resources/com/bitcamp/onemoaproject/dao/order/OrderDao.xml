@@ -100,11 +100,11 @@
       os.name,
       pr.prno
     from
-      product_order o
-      join product p on o.pno=p.pno
-      join member m on p.mno=m.mno
-      join order_status os on os.scno=o.scno
-      left outer join order_review pr on pr.pono=o.pono
+    product_order o
+    join product p on o.pno=p.pno
+    join member m on p.mno=m.mno
+    join order_status os on os.scno=o.scno
+    left outer join order_review pr on pr.pono=o.pono
     where
       o.mno=#{value}
     order by

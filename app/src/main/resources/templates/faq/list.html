@@ -25,19 +25,21 @@
     </style>
 <body>
 <div data-th-replace="/fragments/nav.html :: fragment-nav"></div>
-<div><img id="noticeBanner" src="/onemoa/img/contestbg.png" alt=""></div>
+<div><img id="noticeBanner" src="../img/faq.png" alt=""></div>
 <div id="underBanner"></div>
-        <div style="margin-left:11vw;" class="container">
-        <h1 style="text-align: center; padding-right: 6vw;">FAQ게시판</h1>
+        <div style="margin-left:20vw;" class="container">
+        <h1 style="text-align: center;">FAQ게시판</h1>
+            <button style="margin-bottom: 10px;" type="button" class="btn btn-primary btn-sm" id="backToMain"><a href="/onemoa/">메인으로 돌아가기</a></button>
         <table class="table">
             <tr>
-                <th class="tableStyle" style="width: 5vw">No</th>
-                <th class="tableStyle" style="width: 50vw">제목</th>
+                <th class="tableStyle" style="width: 10vw">No</th>
+                <th class="tableStyle" style="width: 75vw">제목</th>
                 <th class="tableStyle" style="width: 10vw">유저타입</th>
             </tr>
             <tr>
+
             <tr data-th-each="faq, state : ${faqs}">
-                <td class="tableStyle" data-th-text="${faq.no}">100</td>
+                <td class="tableStyle" data-th-utext="${faq.no}">100</td>
                 <td class="tableStyle">
                     <a href='detail?no=1'
                        data-th-href="@{detail(no=${faq.no})}"
@@ -49,7 +51,7 @@
             </tr>
         </table>
             <!-- 페이징 -->
-            <nav class="xx-nav" aria-label="pagination">
+            <nav style="border-top: none;" class="xx-nav" aria-label="pagination">
                 <ul class="xx-pagination">
                     <li data-th-if="${pageMaker.prev}">
                         <a data-th-href="@{list(pageMaker.startPage-1)}"><span aria-hidden="true">이전페이지</span><span class="xx-visuallyhidden">previous set of pages</span></a>
@@ -62,8 +64,7 @@
                     </li>
                 </ul>
             </nav>
-        <button type="button" class="btn btn-primary btn-sm" id="backToMain"><a href="/onemoa/">메인으로 돌아가기</a></button>
-    </div>
+        </div>
 </div>
 <footer data-th-replace="/fragments/footer.html :: fragment-footer"></footer>
 </body>

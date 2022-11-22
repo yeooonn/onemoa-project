@@ -3,8 +3,6 @@
 <head>
   <meta charset = "UTF-8">
   <title>onemoa mypage</title>
-  <link href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" rel="stylesheet">
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
   <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
   <link href="/onemoa/css/onemoa.css" rel="stylesheet">
   <link href="/onemoa/css/onemoaMypage.css" rel="stylesheet">
@@ -17,9 +15,6 @@
 
     .mptxt2 {
       width: 100%;
-    }
-    p {
-      margin-top: -2px;
     }
 
     #empty {
@@ -111,12 +106,37 @@
       margin-bottom: 0px;
     }
 
-    .userBtn {
-      float: left;
-    }
-
     .tableStyle {
       text-align: center;
+      margin-bottom: 10px;
+    }
+
+    table {
+      border-collapse:collapse;
+    }
+
+    tr {
+    border-bottom: 1px solid black;
+    }
+    .tableSt {
+      width: 100%;
+      max-width: 100%;
+      margin: auto;
+      padding: 0px;
+    }
+
+    #underBanner p span, button {
+      font-size: 0.85vw;
+      float : none;
+      margin: 0 0px 0 0px;
+    }
+
+    .table2 {
+      justify-content: center;
+      display: flex;
+      margin-top: 10px;
+      margin-bottom: 10px;
+
     }
 
   </style>
@@ -161,7 +181,8 @@
           <div id="empty" data-th-if="${#lists.isEmpty(sales)}"><img data-th-src="@{../img/emptysell.png}" width="20%" height="20%"/>
             <p><br>판매한 상품이 없습니다.</p></div>
           <div data-th-if="${!#lists.isEmpty(sales)}">
-          <table class="table">
+          <table class="tableSt">
+            <tr>
             <th class="tableStyle">주문번호</th>
             <th class="tableStyle">상품이름</th>
             <th class="tableStyle">주문자</th>
@@ -169,6 +190,7 @@
             <th class="tableStyle">결제일시</th>
             <th class="tableStyle">주문상태</th>
             <th class="tableStyle">상태변경</th>
+            </tr>
               <tr data-th-each="sale: ${sales}">
                 <td class="tableStyle" data-th-value="${sale.no}" data-th-text="${sale.no}">상품번호들어가요오</td>
                 <td class="tableStyle" data-th-text="${sale.product.title}">상품이름들어가요오</td>
@@ -186,9 +208,9 @@
                               data-th-text="${oStatus.name}"></option>
                     </select>
                   </td>
-                  <td class="tableStyle">
-                    <button class="userBtn" data-th-id="'update-btn-'+${sale.no}" data-th-onclick="edit([[${sale.no}]])">수정하기</button>
-                    <button class="userBtn" data-th-id="'save-btn-'+${sale.no}" hidden>저장하기</button>
+                  <td class="table2">
+                    <button class="#underBanner p span, button" data-th-id="'update-btn-'+${sale.no}" data-th-onclick="edit([[${sale.no}]])">수정하기</button>
+                    <button class="#underBanner p span, button" data-th-id="'save-btn-'+${sale.no}" hidden>저장하기</button>
                   </td>
               </tr>
             </table>
