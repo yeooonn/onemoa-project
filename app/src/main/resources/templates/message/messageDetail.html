@@ -7,22 +7,9 @@
 <!--    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>-->
     <link href="/onemoa/css/onemoa.css" rel="stylesheet">
     <link href="/onemoa/css/onemoaMypage.css" rel="stylesheet">
+    <link href="/onemoa/css/message.css" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="/onemoa/js/onemoa.js"></script>
-    <style>
-      .xx-senderDiv{
-
-      }
-      .xx-senderP {
-        color: red;
-      }
-      .xx-receiverDiv {
-
-      }
-      .xx-receiverP {
-        color: blue;
-      }
-    </style>
   </head>
   <body style="overflow-x: hidden">
 
@@ -36,17 +23,16 @@
         </div>
         <div class="mypageNav">
           <div class="myonemoa">
-            <p>마이원모아</p>
+            <p>전체 메시지</p>
             <span class="mybar"></span>
           </div>
 
 <!-- 메시지 상세보기 -->
           <ul class="mynav">
-            <li>
-              <div data-th-each="message : ${messages}">
-                <img data-th-if="${member.no} != ${message.receiver}" data-th-src="@{/member/files/{path}(path=${message.writer.profile})}" data-th-id="${message.writer.no}" onclick="messageDetail(this.id)" style="width: 100px; height: 100px; cursor: pointer"/>
-                <p data-th-if="${member.no} != ${message.receiver}" data-th-text="${message.writer.nickname}">
-              </div>
+            <li class="message" data-th-each="message : ${messages}">
+                <img data-th-if="${member.no} != ${message.receiver}" data-th-src="@{/member/files/{path}(path=${message.writer.profile})}" data-th-id="${message.writer.no}" onclick="messageDetail(this.id)" 
+                class="messageProfile"/>
+                <span class="messageNick" data-th-if="${member.no} != ${message.receiver}" data-th-text="${message.writer.nickname}"></span>
             </li>
           </ul>
           
@@ -55,25 +41,30 @@
       </li>
       <li class="mypageArea">
         <div class="mypagePortfolio">
-          <p class="mptxt2"><span data-th-text="${receiverMember.nickname}"></span>님과의 메시지</p>
+          <p class="mptxt2" data-th-text="${receiverMember.nickname}+'님과의 대화입니다.'" style="font-weight: normal;"></p>
 <!--          <p data-th-text="${member}"></p>-->
 <!--          <p data-th-text="${details}"></p>-->
-
-          <div data-th-each="detail : ${details}">
-            <div class="xx-senderDiv" data-th-if="${member.no} == ${detail.sender}" align="right">
-              <p class="xx-senderP" data-th-text="${detail.cont}" ></p>
-              <p class="xx-senderP" data-th-if="${detail.cont} != null" data-th-text="${#dates.format(detail.cdt, 'MM-dd HH:mm')}"></p>
-            </div>
-            <div class="xx-receiverDiv" data-th-if="${member.no} != ${detail.sender}" align="left">
-              <p class="xx-receiverP" data-th-text="${detail.cont}"></p>
-              <p class="xx-receiverP" data-th-if="${detail.cont} != null" data-th-text="${#dates.format(detail.cdt, 'MM-dd HH:mm')}"></p>
+          <div class="chatArea">
+            <div class="chat" data-th-each="detail : ${details}">
+              <div class="senderdiv">
+                <div class="xx-senderDiv" data-th-if="${member.no} == ${detail.sender}">
+                  <p class="xx-senderP" data-th-text="${detail.cont}" ></p>
+                  <p class="xx-sender" data-th-if="${detail.cont} != null" data-th-text="${#dates.format(detail.cdt, 'MM-dd HH:mm')}"></p>
+                </div>
+             </div>
+             <div class="receiverdiv">
+                <div class="xx-receiverDiv" data-th-if="${member.no} != ${detail.sender}">
+                  <p class="xx-receiverP" data-th-text="${detail.cont}"></p>
+                  <p class="xx-receiver" data-th-if="${detail.cont} != null" data-th-text="${#dates.format(detail.cdt, 'MM-dd HH:mm')}"></p>
+                </div>
+              </div>
             </div>
           </div>
-          <form id="sendForm" action="sendContent" method="post">
-            <input type="hidden" name="sender" data-th-value="${member.no}"/>
-            <input id="receiverBox" type="hidden" name="receiver"/>
-            <input type="text" name="contest" size="60" onkeyup="if(window.event.keyCode==13){sendContent()}">
-          </form>
+            <form id="sendForm" action="sendContent" method="post">
+              <input type="hidden" name="sender" data-th-value="${member.no}"/>
+              <input id="receiverBox" type="hidden" name="receiver"/>
+              <input class="messagetxt" type="text" name="contest" size="60" onkeyup="if(window.event.keyCode==13){sendContent()}" placeholder="메시지를 입력하시고 엔터를 눌러주세요.">
+            </form>
         </div>
       </li>
     </ul>

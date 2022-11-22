@@ -11,6 +11,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import com.bitcamp.onemoaproject.service.MemberService;
+import com.bitcamp.onemoaproject.service.MessageService;
+import com.bitcamp.onemoaproject.vo.Member;
 
 @Controller
 @RequestMapping("/message/")
@@ -32,7 +35,7 @@ public class MessageController {
     System.out.println("messageService.list() = " + messageService.list(sender));
     return "message/messaget";
   }
-  
+
   // 메시지 상세보기
   @GetMapping("messageDetail")
   public String messageList(HttpSession session, Model model, int no) throws Exception {
@@ -45,7 +48,7 @@ public class MessageController {
     model.addAttribute("details", messageService.listNo(sender, no));
     return "message/messageDetail";
   }
-  
+
   // 메시지 저장
   @PostMapping("sendContent")
   public String messageAdd(int sender, int receiver, String contest) throws Exception {
