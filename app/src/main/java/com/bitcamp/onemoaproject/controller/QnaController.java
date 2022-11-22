@@ -43,7 +43,7 @@ public class QnaController {
     qna.setWriter((Member) session.getAttribute("loginMember"));
     
     qnaService.add(qna);
-    return "redirect:list";
+    return "redirect:mypage/list";
   }
   
   private List<QnaAttachedFile> saveAttachedFiles(Part[] files)
