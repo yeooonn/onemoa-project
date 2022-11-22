@@ -5,6 +5,7 @@
   <title>onemoa mypage</title>
   <link href="../css/onemoa.css" rel="stylesheet">
   <link href="../css/onemoaMypage.css" rel="stylesheet">
+  <link href="/onemoa/css/review.css" rel="stylesheet"/>
   <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
   <script src="/onemoa/js/login.js"></script>
   <script src="../js/onemoa.js"></script>
@@ -162,8 +163,8 @@
     }
 
     .star input {
-      width: 10%;
-      height: 10%;
+      width: 100%;
+      height: 100%;
       position: absolute;
       left: 0;
       opacity: 0;
@@ -250,6 +251,217 @@
   <!--<body style="overflow-x: hidden">-->
 <body style="overflow-x: hidden" onload="checkLoaded()">
 <div data-th-replace="/fragments/nav.html :: fragment-nav"></div>
+
+<!-- contestDetail modal2 -->
+<div class="modal2" style="position: absolute; z-index: 1;">
+  <button class="closebtn2" onclick="clo()"><img style="position: fixed;" src="../img/x.png"></button>
+  <div class="modal_body2">
+
+    <div class="contestDetail">
+    </div>
+
+    <div class="contestdtype">
+      <p onclick="team()"><a href="#">일반리뷰</a></p>
+      <p id="contestTypeTeam" onclick="team()"><a href="#">포토리뷰</a></p>
+      <span></span>
+    </div>
+
+    <!-- 일반리뷰 -->
+    <div class="contestIn">
+      <div role="tabpanel" class="tab-pane active" id="home">
+        <div class="tab-content">
+          <h1 style="text-align: center; margin-top:70px;">리뷰를 입력해주세요.</h1>
+          <form id="review-add-form" action='/onemoa/order/review/reviewAdd1' method="post">
+          <div class="container">
+              <table  style="width: 650px; height: auto;" class="table">
+                <tr>
+                  <th>
+                    상품 정보
+                  </th>
+                  <td colspan="2">
+                    <img id="productThumbnail" src="" style="width: 100px; height: 100px;"></td>
+<!--                    <img data-th-src="@{/product/files/{path}(path=${order.product.thumbnail})}" style="width: 100px; height: 100px;"></td>-->
+                </tr>
+                <tr>
+                  <th>상품 이름</th>
+                  <td><p id="productTitle"></p></td>
+                </tr>
+                <tr>
+                  <th>별점 주기</th>
+                  <td>
+                      <span class="star">
+                              ★★★★★
+                      <span>★★★★★</span>
+                      <input name="score" style="transform: translateY(20px);"
+                             type="range" oninput="drawStar(this)" value="1" step="1" min="0" max="10">
+                      </span>
+                  </td>
+                </tr>
+                <tr>
+                  <th>리뷰 제목</th>
+                  <td colspan="5"><textarea name="title" style="resize: none;" rows='auto' cols='70' required></textarea></td>
+                </tr>
+                <tr>
+                  <th>리뷰 내용</th>
+                  <td colspan="5"><textarea name="content" style="resize: none;" rows='10' cols='70' required></textarea></td>
+                </tr>
+              </table>
+              <div style="display: flex; justify-content: center;">
+                <button type='button' style="display: flex; justify-content: center;" class="btn btn-primary btn-sm" id="review-add">리뷰 등록하기</button>
+                <input hidden name="status" value="1">
+                <input hidden id="orderNo" type="number" name="orderNo" readonly>
+              </div>
+            </div>
+          </form>
+          </div>
+      </div>
+    </div>
+
+    <!-- 포토리뷰 -->
+    <div class="person" style="display: none;">
+      <div role="tabpanel" class="tab-pane" id="profile">
+        <div class="tab-content">
+          <h1 style="text-align: center; margin-top:70px;">리뷰를 입력해주세요.</h1>
+          <form id="review-add-form1" action='/onemoa/order/review/reviewAdd' method="post" enctype="multipart/form-data">
+            <div class="container">
+              <table class="table">
+                <tr>
+                  <th>
+                    상품 정보
+                  </th>
+                  <td colspan="2">
+                    <img id="productThumbnail2" src="" style="width: 100px; height: 100px;">
+                  </td>
+<!--                    <img data-th-src="@{/product/files/{path}(path=${order.product.thumbnail})}"-->
+<!--                         style="width: 100px; height: 100px;"> -->
+                  </td>
+                </tr>
+                <tr>
+                  <th>상품 이름</th>
+                  <td><p id="productTitle2"></p></td>
+                </tr>
+                <tr>
+                  <th>별점 주기</th>
+                  <td>
+                        <span class="star1">
+                                ★★★★★
+                        <span>★★★★★</span>
+                        <input name="score" style="transform: translateY(-50px);"
+                               type="range" oninput="drawStar1(this)" value="1" step="0.5" min="1" max="5">
+                        </span>
+                  </td>
+                </tr>
+                <tr>
+                  <th>리뷰 제목</th>
+                  <td colspan="5"><textarea name="title" style="resize: none;" rows='auto' cols='70' required></textarea></td>
+                </tr>
+                <tr>
+                  <th>리뷰 내용</th>
+                  <td colspan="5"><textarea name="content" style="resize: none;" rows='10' cols='70' required></textarea></td>
+                </tr>
+                <tr>
+                  <th>첨부파일</th>
+                  <td colspan="3">
+                    <input name="files" type="file" multiple accept="image/*"></td>
+                </tr>
+              </table>
+              <div style="display: flex; justify-content: center;">
+                <button type='button' class="btn btn-primary btn-sm" id="review-add1"
+                >리뷰 등록하기</button>
+              </div>
+              <input hidden name="status" value="1">
+              <input hidden id="orderNo2" type="number" name="orderNo" readonly>
+<!--              <input style="display:none" name="files" type="file" multiple accept="image/*">-->
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div><!--modal2-->
+
+<!-- modal3 review detail -->
+<div class="modal3" style="position: absolute; z-index: 1;">
+  <button class="closebtn3" onclick="clo2()"><img src="../img/x.png"></button>
+  <div class="modal_body3">
+    <h1 style="text-align: center; margin-top:70px;">리뷰 확인</h1>
+      <div class="container">
+        <table class="table">
+          <tr>
+            <th style="min-width: 80px">
+              상품 정보
+            </th>
+            <td colspan="4">
+              <img id="productThumbnail3" src="" style="width: 100px; height: 100px;">
+<!--              <img data-th-src="@{/product/files/{path}(path=${order.product.thumbnail})}"-->
+<!--                   style="width: 100px; height: 100px;"></td>-->
+          </tr>
+          <tr>
+            <th>상품 이름</th>
+            <td><p id="productTitle3"></p></td>
+          </tr>
+          <tr>
+            <th>별점
+            <td><img src="../../img/star.png" width="25px" height="25px" alt=""/></td>
+            <td>
+              <div class="star-rating">
+                <span id="reviewStart" style="width:100%"></span>
+<!--                <span data-th-if="${orderReview.score - 5 == 0}" style="width:100%"></span>-->
+<!--                <span data-th-if="${orderReview.score - 4.5 == 0}" style="width:90%"></span>-->
+<!--                <span data-th-if="${orderReview.score - 4 == 0}" style="width:80%"></span>-->
+<!--                <span data-th-if="${orderReview.score - 3.5 == 0}" style="width:70%"></span>-->
+<!--                <span data-th-if="${orderReview.score - 3 == 0}" style="width:60%"></span>-->
+<!--                <span data-th-if="${orderReview.score - 2.5 == 0}" style="width:50%"></span>-->
+<!--                <span data-th-if="${orderReview.score - 2 == 0}" style="width:40%"></span>-->
+<!--                <span data-th-if="${orderReview.score - 1.5 == 0}" style="width:30%"></span>-->
+<!--                <span data-th-if="${orderReview.score - 1 == 0}" style="width:20%"></span>-->
+              </div>
+            </td>
+            <td>작성일</td>
+              <td><p id="rwCreatedDate"></p></td>
+            <!--            <td><p id="rwCreatedDate" data-th-text="${orderReview.createdDate}">작성일</p></td>-->
+            </td>
+            </td>
+            </th>
+          </tr>
+          <tr>
+            <th>리뷰 제목</th>
+            <td>
+              <textarea id="reviewTitle" name="title" style="resize: none;" rows='auto' cols='70'>후기 제목</textarea>
+            </td>
+<!--            <td colspan="5"><textarea name="title" style="resize: none;" rows='auto' cols='70'  data-th-text="${orderReview.title}">후기 제목</textarea></td>-->
+          </tr>
+          <tr>
+            <th>리뷰 내용</th>
+              <td>
+                <textarea id="reviewContent" name="title" style="resize: none;" rows='auto' cols='70'>후기 제목</textarea>
+              </td>
+<!--            <td colspan="5"><textarea name="content" style="resize: none;" rows='10' cols='70' data-th-text="${orderReview.content}">후기 제목</textarea></td>-->
+          </tr>
+<!--          <th data-th-if="${!#lists.isEmpty(orderReview.orderReviewAttachedFiles)}" class="tableStyle">첨부파일</th>-->
+<!--          <td colspan="5" data-th-if="${!#lists.isEmpty(orderReview.orderReviewAttachedFiles)}" class="tableStyle">-->
+            <ul>
+<!--              <li data-th-each="file : ${orderReview.orderReviewAttachedFiles}" style="float:left; margin-right:5%; list-style:none; width:10%">-->
+<!--                <a href="files/test.gif"-->
+<!--                   data-th-href="@{/review/files/{path}(path=${file.filepath})}">-->
+<!--                  <img data-th-src="@{/review/files/{path}(path=${file.filepath})}" style="width:100%; height:auto;"/>-->
+<!--                </a>-->
+<!--              </li>-->
+            </ul>
+          </td>
+        </table>
+        <div style="display: flex; justify-content: center;">
+          <!--                                <button type='button' class="btn btn-primary btn-sm" id="review-update">수정하기</button>-->
+        </div>
+<!--        <input hidden type="number"-->
+<!--               data-th-value="${order.no}"-->
+<!--               name="orderNo" readonly>-->
+<!--        <input data-th-if="${#lists.isEmpty(orderReview.orderReviewAttachedFiles)}"-->
+<!--               style="display:none" name="files" type="file" multiple accept="image/*">-->
+      </div>
+  </div>
+</div><!--modal3-->
+
 <ul class="myPage">
   <li class="mypageArea">
     <div class="nick">
@@ -307,17 +519,14 @@
                 <td class="tableStyle" data-th-text="${buy.orderStatus.name}">주문상태들어가요</td>
                 <td class="table2">
                   <button class="#underBanner p span, button" data-th-if="${buy.orderReview == null}" data-th-id="'orderReview-btn-'+${buy.no}">
-                    <a class="userBtn"
-                       data-th-href="@{/order/review/reviewForm(no=${buy.no})}"
-                       onclick="window.open(this.href, '_blank', 'width=800, height=800'); return false;" style="text-decoration: none;">
-                      후기작성
-                    </a>
+                    <p class="con" data-th-id="${buy.no}" data-th-value="${buy.no}"> 후기작성 </p>
                   </button>
                   <button class="#underBanner p span, button" data-th-if="${buy.orderReview != null}" data-th-id="'orderReviewWritten-btn-'+${buy.no}">
-                    <a
-                       data-th-href="@{/order/review/reviewDetail(no=${buy.no})}"
-                       onclick="window.open(this.href, '_blank', 'width=800, height=800'); return false;" style="text-decoration: none;">
-                      후기보기</a>
+<!--                    <a-->
+<!--                       data-th-href="@{/order/review/reviewDetail(no=${buy.no})}"-->
+<!--                       onclick="window.open(this.href, '_blank', 'width=800, height=800'); return false;" style="text-decoration: none;">-->
+<!--                      후기보기</a>-->
+                    <p class="dis2" data-th-id="${buy.no}" data-th-value="${buy.no}">후기보기</p>
                   </button>
                 </td>
               </tr>
@@ -328,158 +537,8 @@
     </div>
   </li>
 </ul>
-<div class="background">
-  <div class="window">
-    <div class="popup">
-      <!-- Nav tabs -->
-      <ul class="nav nav-tabs" role="tablist">
-        <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">일반리뷰</a></li>
-        <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">포토리뷰</a></li>
-      </ul>
-      <button id="show">팝업열기</button>
-      <!-- Tab panes -->
-      <div class="tab-content">
-        <div role="tabpanel" class="tab-pane active" id="home">
-          <div class="tab-content">
-            <h1 style="text-align: center; margin-top:70px;">리뷰를 입력해주세요.</h1>
-            <form id="review-add-form" action='reviewAdd' method="post" enctype="multipart/form-data">
-              <div class="container">
-                <table  style="width: 650px; height: auto;" class="table">
-                  <tr>
-                    <th>
-                      상품 정보
-                    </th>
-                    <!--                      <td colspan="2">-->
-                    <!--                        <img data-th-src="@{/product/files/{path}(path=${buy.product.thumbnail})}"-->
-                    <!--                             style="width: 100px; height: 100px;">-->
-                    </td>
-                  </tr>
-                  <tr>
-                    <th>상품 이름</th>
-                    <!--                      <td data-th-text="${buy.product.title}">-->
-                    <!--                      </td>-->
-                  </tr>
-                  <tr>
-                    <th>별점 주기</th>
-                    <td>
-                                <span class="star">
-                                        ★★★★★
-                                <span>★★★★★</span>
-                                <input name="score" style="transform: translateY(-27px);"
-                                       type="range" oninput="drawStar(this)" value="1" step="1" min="0" max="10">
-                                </span>
-                    </td>
-                  </tr>
-                  <tr>
-                    <th>리뷰 제목</th>
-                    <td colspan="5"><textarea name="title" style="resize: none;" rows='auto' cols='70' required></textarea></td>
-                  </tr>
-                  <tr>
-                    <th>리뷰 내용</th>
-                    <td colspan="5"><textarea name="content" style="resize: none;" rows='10' cols='70' required></textarea></td>
-                  </tr>
-                </table>
-                <div style="display: flex; justify-content: center;">
-                  <button type='button' style="display: flex; justify-content: center;" class="btn btn-primary btn-sm" id="review-add">리뷰 등록하기</button>
-                </div>
-                <!--                  <input hidden type="number"-->
-                <!--                         data-th-value="${buy.no}"-->
-                <!--                         name="orderNo" readonly/>-->
-                <!--                  <input style="display:none" name="files" type="file" multiple accept="image/*">-->
-              </div>
-            </form>
-          </div>
-        </div>
-
-        <!--  포토 리뷰 -->
-        <div role="tabpanel" class="tab-pane" id="profile">
-          <div class="tab-content">
-            <h1 style="text-align: center; margin-top:70px;">리뷰를 입력해주세요.</h1>
-            <form id="review-add-form1" action='reviewAdd' method="post" enctype="multipart/form-data">
-              <div class="container">
-                <table class="table">
-                  <tr>
-                    <th>
-                      상품 정보
-                    </th>
-                    <!--                      <td colspan="2">-->
-                    <!--                        <img data-th-src="@{/product/files/{path}(path=${buy.product.thumbnail})}"-->
-                    <!--                             style="width: 100px; height: 100px;"></td>-->
-                  </tr>
-                  <tr>
-                    <th>상품 이름</th>
-                    <!--                      <td data-th-text="${buy.product.title}"></td>-->
-                  </tr>
-                  <tr>
-                    <th>별점 주기</th>
-                    <td>
-                                <span class="star1">
-                                        ★★★★★
-                                <span>★★★★★</span>
-                                <input name="score" style="transform: translateY(-27px);"
-                                       type="range" oninput="drawStar1(this)" value="1" step="1" min="0" max="10">
-                                </span>
-                    </td>
-                  </tr>
-                  <tr>
-                    <th>리뷰 제목</th>
-                    <td colspan="5"><textarea name="title" style="resize: none;" rows='auto' cols='70' required></textarea></td>
-                  </tr>
-                  <tr>
-                    <th>리뷰 내용</th>
-                    <td colspan="5"><textarea name="content" style="resize: none;" rows='10' cols='70' required></textarea></td>
-                  </tr>
-                  <tr>
-                    <th>첨부파일</th>
-                    <td colspan="3">
-                      <input name="files" type="file" multiple accept="image/*"></td>
-                  </tr>
-                </table>
-                <div style="display: flex; justify-content: center;">
-                  <button type='button' class="btn btn-primary btn-sm" id="review-add1">리뷰 등록하기</button>
-                </div>
-                <!--                  <input hidden type="number"-->
-                <!--                         data-th-value="${buy.no}"-->
-                <!--                         name="orderNo" readonly>-->
-                <!--                  <input style="display:none" name="files" type="file" multiple accept="image/*">-->
-              </div>
-            </form>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <button id="close">팝업닫기</button>
-  </div>
-  <div>
-    <div></div>
-  </div>
 </div>
-</div>
-
-<script>
-  // const drawStar = (target) => {
-  //   document.querySelector(`.star span`).style.width = `${target.value * 10}%`;
-  //   console.log(target)
-  //   console.log(target.value)
-  //   // string 으로 나감
-  // }
-  // const drawStar1 = (target) => {
-  //   document.querySelector(`.star1 span`).style.width = `${target.value * 10}%`;
-  //   // string 으로 나감
-  // }
-  //
-  // // 탭 바꾸는 js
-  // $('#myTabs a').click(function (e) {
-  //   e.preventDefault()
-  //   $(this).tab('show')
-  // })
-  //
-  // $('#myTabs a[href="#profile"]').tab('show') // Select tab by name
-  // $('#myTabs a:first').tab('show') // Select first tab
-  // $('#myTabs a:last').tab('show') // Select last tab
-  // $('#myTabs li:eq(2) a').tab('show') // Select third tab (0-indexed)
-</script>
+<footer data-th-replace="/fragments/footer.html :: fragment-footer"></footer>
 <script th:inline="javascript">
 
   function checkLoaded() {
@@ -490,7 +549,162 @@
     // console.log(window.location)
   }
 
+  console.log('window.opener', window.opener);
+  console.log('window.parent', window.parent);
+
+  $("#review-add").click(function() {
+    setTimeout(function () {
+      $('#review-add-form').submit()
+    }, 100);
+
+    setTimeout(function () {
+      window.opener.location.href = window.opener.location.href
+    }, 5000);
+
+    // opener.parent.location.reload(true)
+    // setTimeout(() => {window.self.close();}, 100);
+  });
+
+  $("#review-add1").click(function() {
+    setTimeout(function() {
+      $('#review-add-form1').submit();
+      window.opener.location.reload();
+    }, 100);
+  });
+
+  let value = "";
+
+  const drawStar = (target) => {
+    document.querySelector(`.star span`).style.width = `${target.value * 20}%`;
+    value = `${target.value}`;
+    console.log(value);
+    // string 으로 나감
+  }
+
+  const drawStar1 = (target) => {
+    document.querySelector(`.star1 span`).style.width = `${target.value * 20}%`;
+    // string 으로 나감
+  }
+
+  $(".con").click(function () {
+    console.log("Test");
+    if ($('.modal2').css('display') == 'none'){
+      $('.modal2').show();
+      $('.modal3').hide();
+      $('.modal4').hide();
+      body.style.overflow = 'hidden';
+    } else{
+      $('.modal2').hide();
+      body.style.overflow = 'auto';
+    }
+
+    let buyNo = $(this).attr("id");
+
+    $.ajax({
+      type: "POST",
+      url:"/onemoa/order/review/reviewForm",
+      data:{"buyNo": buyNo},
+      success: function (result) {
+        console.log(result);
+        $("#productThumbnail").attr("src", "/onemoa/product/files/" + result.product.thumbnail);
+        $("#productThumbnail2").attr("src", "/onemoa/product/files/" + result.product.thumbnail);
+        $("#productTitle").text(result.product.title);
+        $("#productTitle2").text(result.product.title);
+        $("#orderNo").val(result.no);
+        $("#orderNo2").val(result.no);
+      },
+    })
+  });
+
+  $("#review-add1").click(function() {
+    let productThumbnail = $("");
+    let start = value;
+    console.log(start);
+
+    $.ajax({
+      type:"POST",
+      url:"",
+      data:{},
+      success: function (resutl) {
+
+      }
+    });
+  });
+
+  function clo(){
+    if ($('.modal2').css('display') == 'show'){
+      $('.modal2').hide();
+    } else{
+      $('.modal2').hide();
+      body.style.overflow = 'auto';
+    }
+  }
+
+  $(".dis2").click(function() {
+    if ($('.modal3').css('display') == 'none'){
+      $('.modal3').show(); // 팀원모집하기 모달
+      $('.modal2').hide(); // 공모전 팀원구해요 창(팀 팀장 리스트)
+    } else{
+      $('.modal3').hide();
+      $('.modal2').hide();
+    }
+
+    let buyNo = $(this).attr("id");
+
+    $.ajax({
+      type: "POST",
+      url:"/onemoa/order/review/reviewDetail",
+      data:{"buyNo": buyNo},
+      success: function (result) {
+        console.log(result);
+        $("#productThumbnail3").attr("src", "/onemoa/product/files/" + result.order.product.thumbnail);
+        $("#productTitle3").attr("src", "/onemoa/product/files/" + result.order.product.title);
+        // $("#reviewStart").text();
+        console.log(result.orderReview.score);
+        $("#rwCreatedDate").text(result.orderReview.createdDate);
+        $("#reviewTitle").text(result.orderReview.title);
+        $("#reviewContent").text(result.orderReview.content);
+        let reviewScore = result.orderReview.score;
+        if (reviewScore == 5) {
+          $("#reviewStart").text(reviewScore);
+          $("#reviewStart").css("width", 100);
+        } else if (reviewScore == 4.5) {
+          $("#reviewStart").text(reviewScore);
+          $("#reviewStart").css("width", 90);
+        } else if (reviewScore == 4) {
+          $("#reviewStart").text(reviewScore);
+          $("#reviewStart").css("width", 80);
+        } else if (reviewScore == 3.5) {
+          $("#reviewStart").text(reviewScore);
+          $("#reviewStart").css("width", 70);
+        } else if (reviewScore == 3) {
+          $("#reviewStart").text(reviewScore);
+          $("#reviewStart").css("width", 60);
+        } else if (reviewScore == 2.5) {
+          $("#reviewStart").text(reviewScore);
+          $("#reviewStart").css("width", 50);
+        } else if (reviewScore == 2) {
+          $("#reviewStart").text(reviewScore);
+          $("#reviewStart").css("width", 40);
+        } else if (reviewScore == 1.5) {
+          $("#reviewStart").text(reviewScore);
+          $("#reviewStart").css("width", 30);
+        } else if (reviewScore == 1) {
+          $("#reviewStart").text(reviewScore);
+          $("#reviewStart").css("width", 20);
+        }
+      },
+    })
+  });
+
+  function clo2(){
+    if ($('.modal3').css('display') == 'show'){
+      $('.modal3').hide();
+    } else{
+      $('.modal3').hide();
+    }
+  }
+
 </script>
-<footer data-th-replace="/fragments/footer.html :: fragment-footer"></footer>
 </body>
 </html>

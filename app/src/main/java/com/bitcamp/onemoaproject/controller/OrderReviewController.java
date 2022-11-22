@@ -19,6 +19,7 @@ import javax.servlet.http.HttpSession;
 import javax.servlet.http.Part;
 import java.io.IOException;
 import java.util.*;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 @RequestMapping("order/review/")
@@ -32,16 +33,15 @@ public class OrderReviewController {
   @Autowired
   OrderService orderService;
 
-  @GetMapping("reviewForm")
-  public Map form(int no) throws Exception {
+  @PostMapping("reviewForm")
+  @ResponseBody
+  public Object form(int buyNo, Model model) throws Exception {
     System.out.println("reviewForm실행성공!");
-    Order order = orderService.get(no);
+    Order order = orderService.get(buyNo);
     System.out.println("order = " + order);
-
-    Map map = new HashMap();
-
-    map.put("order", order);
-    return map;
+  
+    model.addAttribute("order", order);
+    return model.getAttribute("order");
   }
 
   @PostMapping("reviewAdd")
@@ -62,7 +62,22 @@ public class OrderReviewController {
 
     System.out.println("orderReview = " + orderReview);
     orderReviewService.reviewAdd(orderReview);
-    return "redirect:/";
+    return "redirect:/mypage/buysList";
+  }
+  
+  
+  @PostMapping("reviewAdd1")
+  public String reviewAdd1(
+      int orderNo,
+      OrderReview orderReview,
+      HttpSession session
+  ) throws Exception {
+    Order order = orderService.get(orderNo);
+    orderReview.setOrder(order);
+    orderReview.setWriter((Member) session.getAttribute("loginMember"));
+    System.out.println("orderReview = " + orderReview);
+    orderReviewService.reviewAdd1(orderReview);
+    return "redirect:/mypage/buysList";
   }
 
   private List<OrderReviewAttachedFile> saveAttachedFiles(Part[] files)
@@ -93,10 +108,12 @@ public class OrderReviewController {
     }
   }
 
-  @GetMapping("reviewDetail")
-  public Map detail(int no) throws Exception {
-    OrderReview orderReview = orderReviewService.get(no);
-    Order order = orderService.get(no);
+  @PostMapping("reviewDetail")
+  @ResponseBody
+  public Map detail(int buyNo) throws Exception {
+    System.out.println("buyNo = " + buyNo);
+    OrderReview orderReview = orderReviewService.get(buyNo);
+    Order order = orderService.get(buyNo);
 
     Map map = new HashMap();
 
