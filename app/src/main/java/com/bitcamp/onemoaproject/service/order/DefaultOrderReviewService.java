@@ -29,6 +29,15 @@ public class DefaultOrderReviewService implements OrderReviewService {
       orderReviewDao.insertFiles(orderReview);
     }
   }
+  
+  @Override
+  public void reviewAdd1(OrderReview orderReview) throws Exception {
+    
+    // 1) 게시글
+    if (orderReviewDao.insert(orderReview) == 0) {
+      throw new Exception("게시글 등록 실패!");
+    }
+  }
 
   @Transactional
   @Override

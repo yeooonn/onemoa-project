@@ -9,6 +9,7 @@ public interface OrderReviewService {
 
 // 비즈니스 로직을 수행하는 객체의 사용규칙(호출규칙)
     void reviewAdd(OrderReview orderReview) throws Exception;
+    void reviewAdd1(OrderReview orderReview) throws Exception;
     boolean reviewUpdate(OrderReview orderReview) throws Exception;
     OrderReview get(int no) throws Exception;
     List<OrderReview> list() throws Exception;

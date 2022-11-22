@@ -1,0 +1,55 @@
+.star {
+  position: relative;
+  font-size: 2rem;
+  color: #ddd;
+}
+
+.star input {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  left: 0;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.star span {
+  width: 0;
+  position: absolute;
+  left: 0;
+  color: rgb(59, 56, 254);
+  overflow: hidden;
+  pointer-events: none;
+}
+.star1 {
+  position: relative;
+  font-size: 2rem;
+  color: #ddd;
+}
+
+.star1 input {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  left: 0;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.star1 span {
+  width: 0;
+  position: absolute;
+  left: 0;
+  color: rgb(59, 56, 254);
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.star1 span {
+  width: 0;
+  position: absolute;
+  left: 0;
+  color: rgb(59, 56, 254);
+  overflow: hidden;
+  pointer-events: none;
+}
