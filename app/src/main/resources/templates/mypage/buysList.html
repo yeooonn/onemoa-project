@@ -247,15 +247,423 @@
       margin-bottom: 10px;
     }
 
+    .reviewModal1 {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 2829px;
+      display: none;
+      background-color: rgba(0, 0, 0, 0.6);
+    }
+    .reviewModal1.show {
+      display: block;
+    }
+    .reviewModal1.hide {
+      display: none;
+    }
+    .reviewModal_body1 {
+      overflow-y: auto;
+      overflow-x: hidden;
+      position: absolute;
+      top: 16%;
+      left: 50%;
+      width: 80%;
+      height: 830px;
+      padding-top: 80px;
+      padding-left: 4.029%;
+      padding-right: 4.029%;
+      background-color: rgb(255, 255, 255);
+      border-radius: 10px;
+      box-shadow: 0 2px 3px 0 rgba(34, 36, 38, 0.15);
+      transform: translateX(-50%) translateY(-50%);
+    }
+    ::-webkit-scrollbar {
+      display: none;
+    }
+    .closebtn2 {
+      border: none;
+      background-color: #fff;
+      float: right;
+      position: relative;
+      top: 90px;
+      right: 15%;
+      z-index: 999;
+    }
+    .contestDetail p {
+      font-size: 1.458vw;
+      font-weight: bold;
+      letter-spacing: 1px;
+    }
+    .contestDetail .detail {
+      width: 120%;
+      height: 547px;
+    }
+    .contestDetail .detail li {
+      float: left;
+    }
+    .contestDetail .detail li .detailimg {
+      width: 90%;
+      height: auto;
+    }
+    .contestDetail .detail li .detailimg img {
+      width: 392px;
+      height: 495px;
+    }
+    .contestDetail .detail li .contable {
+      margin-left: 15.23%;
+      font-size: 1.254vw;
+      color: #909090;
+      width: 100%;
+    }
+    .contestDetail .detail li .contable tr {
+      width: 90%;
+      height: 45px;
+    }
+    .contestDetail .detail li .contable tr td:nth-of-type(1) {
+      width: 160px;
+      color: #000;
+    }
+    .contestDetail .detail li .contable tr td span:nth-of-type(1) {
+      line-height: 40px;
+
+    }
+    .contestDetail .detail li .contable tr td span {
+      display: block;
+      height: auto;
+    }
+    .contestdtype {
+      width: 100%;
+      height: 100px;
+    }
+    .contestdtype p {
+      font-size: 1.142vw;
+      color: #a5a5a5;
+      float: left;
+      margin-right: 5%;
+      font-weight: bold;
+    }
+    .contestdtype p:hover {
+      border-bottom: 3px solid #000;
+      padding-bottom: 7px;
+    }
+    .contestdtype p:nth-of-type(1) {
+      color: #000;
+      border-bottom: 3px solid #000;
+      padding-bottom: 7px;
+    }
+    .contestdtype span {
+      display: block;
+      width: 100%;
+      height: 1px;
+      background-color: #000;
+      position: relative;
+      top: 50px;
+    }
+    .person {
+      width: 100%;
+      height: auto;
+      margin-top: 40px;
+    }
+    .person p {
+      font-size: 1.350vw;
+      color: #2f2f2f;
+      line-height: 28px;
+    }
+    .person > p:nth-of-type(1) {
+      margin-left: 20px;
+    }
+    .person p span {
+      display: block;
+    }
+    .person .teamJang {
+      width: 90%;
+      height: auto;
+      margin-left: 7%;
+      margin-top: 60px;
+    }
+    .teamJang::after {
+      content: "";
+      clear: both;
+      display: table;
+    }
+    .person .teamJang li {
+      width: 15%;
+      height: auto;
+      margin-right: 5%;
+      float: left;
+      margin-bottom: 50px;
+    }
+    .person .teamJang li img {
+      width: 100%;
+      height: auto;
+    }
+    .person .teamJang li p {
+      text-align: center;
+    }
+    .insert {
+      text-align: center;
+      margin-bottom: 100px;
+      margin-top: 60px;
+    }
+    .insert p {
+      font-size: 1.563vw;
+      color: #2f2f2f;
+      line-height: 35px;
+    }
+    .insert p span {
+      display: block;
+    }
+    .insert .insertbtn {
+      width: 12.99%;
+      height: 71px;
+      border: 1px solid #707fc2;
+      margin: 30px auto;
+      padding-top: -15px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    .insert .insertbtn > p {
+      font-size: 1.250vw;
+      color: #707fc2;
+    }
+    .insert .insertbtn:hover > p {
+      color: #fff;
+      transition: all .3s;
+    }
+    .insert .insertbtn:hover {
+      background-color: #707fc2;
+      transition: all .3s;
+    }
+
+    .reviewModal2 {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 2830px;
+      background-color: rgba(0, 0, 0, 0.6);
+      display: none;
+    }
+    .reviewModal2.show {
+      display: block;
+    }
+    .reviewModal2.hide {
+      display: none;
+    }
+    .reviewModal_body3 {
+      overflow-y: auto;
+      position: absolute;
+      top: 16%;
+      left: 50%;
+      width: 40%;
+      height: 830px;
+      padding-top: 80px;
+      padding-left: 4.029%;
+      padding-right: 4.029%;
+      padding-bottom: 280px;
+      background-color: rgb(255, 255, 255);
+      border-radius: 10px;
+      box-shadow: 0 2px 3px 0 rgba(34, 36, 38, 0.15);
+      transform: translateX(-50%) translateY(-50%);
+    }
+    .closebtn3 {
+      border: none;
+      background-color: #fff;
+      float: right;
+      position: relative;
+      top: 90px;
+      right: 14.1%;
+      z-index: 999;
+    }
+    .teamJangD {
+      width: 100%;
+      height: 550px;
+    }
+    .teamJangD .pp {
+      text-align: left;
+      font-weight: bold;
+    }
+    .teamJangD .tjd li {
+      float: left;
+      margin-top: 50px;
+      width: 13%;
+    }
+    .teamJangD .tjd li:nth-of-type(2) {
+      width: 70%;
+    }
+    .teamJangD .tjd li .tjdimg {
+      width: 100%;
+      height: 155px;
+    }
+    .teamJangD .tjd li .tjdimg img {
+      width: 80.326%;
+      height: auto;
+      border-radius: 70%;
+      overflow: hidden;
+      margin-left: 14%;
+    }
+    .teamJangD .tjd li p {
+      font-size: 1.254vw;
+      text-align: center;
+      position: relative;
+      left: 10%;
+    }
+    .teamJangD .tjd .tjdtxt {
+      background-color: #bcc5e9;
+      border: 1px solid #bcc5e9;
+      margin-left: 10%;
+      border-radius: 15px;
+      padding: 20px;
+      font-size: 16px;
+      width: 100%;
+      height: 400px;
+    }
+    .portfolio {
+      width: 100%;
+      height: auto;
+      padding-top: 10px;
+      padding-bottom: 20px;
+      padding-left: 2%;
+      border-bottom: 1px solid #909090;
+      border-top: 1px solid #909090;
+      float: left;
+    }
+    .portfolio p {
+      text-align: left;
+      font-size: 1.354vw;
+      font-weight: bold;
+    }
+    .portfolio button {
+      background-color: transparent;
+      border: none;
+      position: relative;
+      top: 4px;
+      left: 8px;
+    }
+    .portfolio .po {
+      width: 25%;
+      height: 50px;
+      padding-left: 10px;
+      float: left;
+      margin-right: 100%;
+      margin-bottom: 20px;
+    }
+    .portfolio .popopo li {
+      margin-bottom: 10px;
+      margin-left: 1%;
+    }
+
+    .hhhhhh .mi {
+      float: left;
+    }
+    .hhhhhh .mi img {
+      position: inherit;
+      right: 528px;
+      top: 10px;
+    }
+    .recruitment {
+      width: 100%;
+      height: auto;
+      padding-top: 10px;
+      padding-bottom: 20px;
+      padding-left: 2%;
+      border-bottom: 1px solid #909090;
+      float: left;
+    }
+    .recruitment p {
+      text-align: left;
+      font-size: 1.354vw;
+      font-weight: bold;
+      color: #344dbe;
+    }
+    .recruitment .recruit .re {
+      width: 25%;
+      height: 50px;
+      padding-left: 10px;
+      float: left;
+      margin-right: 2%;
+      margin-bottom: 10px;
+    }
+    .recruitment .recruit .re2 {
+      width: 6%;
+      height: 50px;
+      padding-left: 10px;
+      float: left;
+      margin-bottom: 10px;
+      margin-right: 67%;
+      margin-bottom: 20px;
+    }
+    .recruitment .rerere li {
+      margin-bottom: 10px;
+      margin-left: 1%;
+    }
+    .recruitment button {
+      background-color: transparent;
+      border: none;
+      position: relative;
+      top: 4px;
+      left: 8px;
+    }
+    .recruit .mi2 {
+      float: left;
+    }
+    .recruit .mi2 img {
+      position: inherit;
+      right: 635px;
+      top: 10px;
+    }
+    .teammate {
+      text-align: center;
+    }
+    .teammate .tm {
+      border: none;
+      background-color: transparent;
+      margin-right: 3%;
+      font-size: 1.354vw;
+      width: 15%;
+      height: 80px;
+      background-color: #707fc2;
+      border: 1px solid #707fc2;
+      margin-top: 100px;
+      margin-bottom: 100px;
+      color: #fff;
+      border-radius: 10px;
+    }
+    .teammate .tm:hover {
+      background-color: #48527d;
+      color: #fff;
+      transition: all .3s;
+    }
+    .teammate .tm:nth-of-type(2) {
+      border: none;
+      background-color: transparent;
+      margin-right: 3%;
+      font-size: 1.354vw;
+      width: 15%;
+      height: 80px;
+      background-color: #999ba1;
+      border: 1px solid #999ba1;
+      margin-top: 100px;
+      margin-bottom: 100px;
+      color: #fff;
+      border-radius: 10px;
+    }
+    .teammate .tm:nth-of-type(2):hover {
+      background-color: #6c6d70;
+      color: #fff;
+      transition: all .3s;
+    }
+
   </style>
   <!--<body style="overflow-x: hidden">-->
 <body style="overflow-x: hidden" onload="checkLoaded()">
 <div data-th-replace="/fragments/nav.html :: fragment-nav"></div>
 
 <!-- contestDetail modal2 -->
-<div class="modal2" style="position: absolute; z-index: 1;">
+<div class="reviewModal1" style="position: absolute; z-index: 1;">
   <button class="closebtn2" onclick="clo()"><img style="position: fixed;" src="../img/x.png"></button>
-  <div class="modal_body2">
+  <div class="reviewModal_body1">
 
     <div class="contestDetail">
     </div>
@@ -381,9 +789,9 @@
 </div><!--modal2-->
 
 <!-- modal3 review detail -->
-<div class="modal3" style="position: absolute; z-index: 1;">
+<div class="reviewModal2" style="position: absolute; z-index: 1;">
   <button class="closebtn3" onclick="clo2()"><img src="../img/x.png"></button>
-  <div class="modal_body3">
+  <div class="reviewModal_body3">
     <h1 style="text-align: center; margin-top:70px;">리뷰 확인</h1>
       <div class="container">
         <table class="table">
@@ -583,13 +991,12 @@
 
   $(".con").click(function () {
     console.log("Test");
-    if ($('.modal2').css('display') == 'none'){
-      $('.modal2').show();
-      $('.modal3').hide();
-      $('.modal4').hide();
+    if ($('.reviewModal1').css('display') == 'none'){
+      $('.reviewModal1').show();
+      $('.reviewModal2').hide();
       body.style.overflow = 'hidden';
     } else{
-      $('.modal2').hide();
+      $('.reviewModal1').hide();
       body.style.overflow = 'auto';
     }
 
@@ -627,21 +1034,21 @@
   });
 
   function clo(){
-    if ($('.modal2').css('display') == 'show'){
-      $('.modal2').hide();
+    if ($('.reviewModal1').css('display') == 'show'){
+      $('.reviewModal1').hide();
     } else{
-      $('.modal2').hide();
+      $('.reviewModal1').hide();
       body.style.overflow = 'auto';
     }
   }
 
   $(".dis2").click(function() {
-    if ($('.modal3').css('display') == 'none'){
-      $('.modal3').show(); // 팀원모집하기 모달
-      $('.modal2').hide(); // 공모전 팀원구해요 창(팀 팀장 리스트)
+    if ($('.reviewModal2').css('display') == 'none'){
+      $('.reviewModal2').show(); // 팀원모집하기 모달
+      $('.reviewModal1').hide(); // 공모전 팀원구해요 창(팀 팀장 리스트)
     } else{
-      $('.modal3').hide();
-      $('.modal2').hide();
+      $('.reviewModal2').hide();
+      $('.reviewModal1').hide();
     }
 
     let buyNo = $(this).attr("id");
@@ -706,10 +1113,10 @@
   });
 
   function clo2(){
-    if ($('.modal3').css('display') == 'show'){
-      $('.modal3').hide();
+    if ($('.reviewModal2').css('display') == 'show'){
+      $('.reviewModal2').hide();
     } else{
-      $('.modal3').hide();
+      $('.reviewModal2').hide();
     }
   }
 
