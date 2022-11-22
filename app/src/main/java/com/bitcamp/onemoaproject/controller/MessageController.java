@@ -1,6 +1,7 @@
 package com.bitcamp.onemoaproject.controller;
 
 
+import com.bitcamp.onemoaproject.service.MemberService;
 import com.bitcamp.onemoaproject.service.MessageService;
 import com.bitcamp.onemoaproject.vo.Member;
 import javax.servlet.http.HttpSession;
@@ -17,6 +18,9 @@ public class MessageController {
 
   @Autowired
   MessageService messageService;
+  
+  @Autowired
+  MemberService memberService;
   
   // 메시지 미리보기 조회 (사이드바)
   @GetMapping("messaget")
@@ -36,6 +40,7 @@ public class MessageController {
     Member loginMember = (Member) session.getAttribute("loginMember");
     int sender = loginMember.getNo();
     model.addAttribute("member", loginMember);
+    model.addAttribute("receiverMember", memberService.get(no));
     model.addAttribute("messages", messageService.list(sender));
     model.addAttribute("details", messageService.listNo(sender, no));
     return "message/messageDetail";
