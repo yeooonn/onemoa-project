@@ -104,7 +104,7 @@
     join product p on o.pno=p.pno
     join member m on p.mno=m.mno
     join order_status os on os.scno=o.scno
-    left outer join product_review pr on pr.pono=o.pono
+    left outer join order_review pr on pr.pono=o.pono
     where
     o.mno=#{value}
     order by

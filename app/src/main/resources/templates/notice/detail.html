@@ -29,7 +29,7 @@
             <thead>
              <tr>
                <td>
-                <input name="title" data-th-value=" ${notice.title}" size=100 readonly style="border:none;border-right:0px; border-top:0px; boder-left:0px; boder-bottom:0px;">
+                <input name="title" data-th-value=" ${notice.title}" size=100 readonly style="font-size: 1vw; width: 400px; border:none;border-right:0px; border-top:0px; boder-left:0px; boder-bottom:0px;">
                </td>
                 <td>
                 <input hidden name="no" type='number' value='1' data-th-value=" ${notice.no}" size=0>
@@ -38,9 +38,9 @@
             </thead>
             <tbody>
              <tr>
-              <td>작성자 : 관리자</td>
-              <td data-th-text="'작성일 : ' + ${notice.createdDate}">작성일</td>
-              <td data-th-text="'조회수 : ' + ${notice.viewCount}">조회수</td>
+              <td style="width: 100px">작성자 : 관리자</td>
+              <td data-th-text="'작성일 : ' + ${notice.createdDate}" style="width: 100px">작성일</td>
+              <td data-th-text="'조회수 : ' + ${notice.viewCount}" style="width: 70px">조회수</td>
              </tr>
              <tr>
               <td colspan="3">

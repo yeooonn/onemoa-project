@@ -48,7 +48,7 @@ public class AdminQnaController {
     map.put("cri", cri);
     
     List<Map<String, Object>> qnas = qnaService.list(map);
-    
+    System.out.println("qnas = " + qnas);
     model.addAttribute("qnas", qnas);
     model.addAttribute("pageMaker", pageMaker);
     System.out.println("pageMaker = " + pageMaker);

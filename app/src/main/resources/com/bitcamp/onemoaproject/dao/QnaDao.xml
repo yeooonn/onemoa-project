@@ -38,22 +38,22 @@
 
   <select id="findAll" resultMap="qnaMap">
     select
-    q.qnano,
-    q.title,
-    q.cont,
-    q.cdt,
-    q.answer,
-    q.answerCdt,
-    m.mno,
-    m.name
+     q.qnano,
+      q.title,
+      q.cont,
+      q.cdt,
+      q.answer,
+      q.answerCdt,
+      m.mno,
+      m.name
     from
-    qna q
-    join member m on q.mno = m.mno
+      qna q
     <if test="no != null">
-      where q.mno=#{value}
+      join member m on q.mno = m.mno
+    where q.mno=#{value}
     </if>
     order by
-    qnano desc
+      qnano desc
   </select>
 
   <select id="findByNo" resultMap="qnaMap">

@@ -10,6 +10,8 @@
     <title>원모아</title>
 </head>
 <style>
+
+
     .star-rating {
         width: 101px;
     }
@@ -18,7 +20,29 @@
         display: inline-block;
         height: 18px;
         overflow:hidden;
-        background:url('../img/reviewstar.png')no-repeat;
+        background:url('img/reviewstar.png')no-repeat;
+    }
+
+    .star-rating span {
+        background-position: left bottom;
+        line-height: 0;
+        vertical-align: top;
+    }
+
+    #starRow {
+        width: 15%;
+    }
+
+    /*--------------------*/
+    .star-rating {
+        width: 101px;
+    }
+
+    .star-rating, .star-rating span {
+        display: inline-block;
+        height: 18px;
+        overflow:hidden;
+        background:url('/img/reviewstar.png')no-repeat;
     }
 
     .star-rating span {
@@ -30,61 +54,6 @@
         width: 101px;
     }
 
-    .star {
-        position: relative;
-        font-size: 2rem;
-        color: #ddd;
-    }
-
-    .star input {
-        width: 100%;
-        height: 100%;
-        position: absolute;
-        left: 0;
-        opacity: 0;
-        cursor: pointer;
-    }
-
-    .star span {
-        width: 0;
-        position: absolute;
-        left: 0;
-        color: rgb(59, 56, 254);
-        overflow: hidden;
-        pointer-events: none;
-    }
-    .star1 {
-        position: relative;
-        font-size: 2rem;
-        color: #ddd;
-    }
-
-    .star1 input {
-        width: 100%;
-        height: 100%;
-        position: absolute;
-        left: 0;
-        opacity: 0;
-        cursor: pointer;
-    }
-
-    .star1 span {
-        width: 0;
-        position: absolute;
-        left: 0;
-        color: rgb(59, 56, 254);
-        overflow: hidden;
-        pointer-events: none;
-    }
-
-    .star1 span {
-        width: 0;
-        position: absolute;
-        left: 0;
-        color: rgb(59, 56, 254);
-        overflow: hidden;
-        pointer-events: none;
-    }
 </style>
 <body>
 
@@ -110,14 +79,19 @@
                             </tr>
                             <tr>
                                 <th>별점
-                                    <td id="starRow" class="reviewLine" data-th-each="orderReview : ${orderReview}">
-                                            <div class="star-rating">
-                                                <span data-th-if="${orderReview.score == 5}" style="width:100%"></span>
-                                                <span data-th-if="${orderReview.score == 4}" style="width:80%"></span>
-                                                <span data-th-if="${orderReview.score == 3}" style="width:60%"></span>
-                                                <span data-th-if="${orderReview.score == 2}" style="width:40%"></span>
-                                                <span data-th-if="${orderReview.score == 1}" style="width:20%"></span>
-                                            </div>
+                                <td><img src="../../img/star.png" width="25px" height="25px" alt=""/>
+<!--                                    <td id="starRow" class="reviewLine" data-th-each="orderReview : ${orderReview}">-->
+<!--                                            <div class="star-rating">-->
+<!--                                                <span data-th-if="${orderReview.score - 5 == 0}" style="width:100%"></span>-->
+<!--                                                <span data-th-if="${orderReview.score - 4.5 == 0}" style="width:90%"></span>-->
+<!--                                                <span data-th-if="${orderReview.score - 4 == 0}" style="width:80%"></span>-->
+<!--                                                <span data-th-if="${orderReview.score - 3.5 == 0}" style="width:70%"></span>-->
+<!--                                                <span data-th-if="${orderReview.score - 3 == 0}" style="width:60%"></span>-->
+<!--                                                <span data-th-if="${orderReview.score - 2.5 == 0}" style="width:50%"></span>-->
+<!--                                                <span data-th-if="${orderReview.score - 2 == 0}" style="width:40%"></span>-->
+<!--                                                <span data-th-if="${orderReview.score - 1.5 == 0}" style="width:30%"></span>-->
+<!--                                                <span data-th-if="${orderReview.score - 1 == 0}" style="width:20%"></span>-->
+<!--                                            </div>-->
                                             <span><p data-th-value="${orderReview.score}" data-th-text="${orderReview.score}">후기 별점</p></span>
                                             <td>작성일</td>
                                             <td><p id="rwCreatedDate" data-th-text="${orderReview.createdDate}">작성일</p></td>
@@ -157,28 +131,7 @@
                 </form>
             </div>
         </div>
-<!--  포토 리뷰 -->
-<!--<div id="myModal" class="modal fade" tabindex="-1" role="dialog">-->
-<!--    <div class="modal-dialog" role="document">-->
-<!--        <div class="modal-content">-->
-<!--            <div class="modal-header">-->
-<!--                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>-->
-<!--                <h4 class="modal-title">Modal title</h4>-->
-<!--            </div>-->
-<!--            <div class="modal-body">-->
-<!--                <p>One fine body&hellip;</p>-->
-<!--            </div>-->
-<!--            <div class="modal-footer">-->
-<!--                <button id="reviewSaveBtn" type="button" class="btn btn-primary" onclick="reviewSaveBtn()">저장이 완료되었습니다.</button>-->
-<!--            </div>-->
-<!--        </div>&lt;!&ndash; /.modal-content &ndash;&gt;-->
-<!--    </div>&lt;!&ndash; /.modal-dialog &ndash;&gt;-->
-<!--</div>&lt;!&ndash; /.modal &ndash;&gt;-->
-
-<!--th:inline="javascript"-->
 <script>
-
-
             // $("#review-add").click(function() {
             //     setTimeout(function() {
             //         $('#review-add-form').submit();
@@ -294,29 +247,6 @@
             //     }, 2000);
             //     opener.parent.location.reload();
             //     });
-
-
-
-        const drawStar = (target) => {
-            document.querySelector(`.star span`).style.width = `${target.value * 10}%`;
-            // string 으로 나감
-        }
-
-        const drawStar1 = (target) => {
-            document.querySelector(`.star1 span`).style.width = `${target.value * 10}%`;
-            // string 으로 나감
-        }
-
-        // 탭 바꾸는 js
-        $('#myTabs a').click(function (e) {
-            e.preventDefault()
-            $(this).tab('show')
-        })
-
-        $('#myTabs a[href="#profile"]').tab('show') // Select tab by name
-        $('#myTabs a:first').tab('show') // Select first tab
-        $('#myTabs a:last').tab('show') // Select last tab
-        $('#myTabs li:eq(2) a').tab('show') // Select third tab (0-indexed)
 </script>
 <!--$("#review-add").click(setTimeout(function() {-->
 <!--$('#review-add-form').submit(); // 자식창에서 submit()-->

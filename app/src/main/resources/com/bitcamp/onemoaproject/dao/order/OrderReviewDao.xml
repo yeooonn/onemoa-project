@@ -119,8 +119,8 @@
   <insert id="insert" parameterType="OrderReview"
           useGeneratedKeys="true" keyColumn="prno" keyProperty="no">
     insert into
-    order_review(title,cont,mno,score,pono)
-    values(#{title},#{content},#{writer.no},#{score},#{order.no})
+    order_review(title,cont,mno,score,pono,status)
+    values(#{title},#{content},#{writer.no},#{score},#{order.no},#{status})
   </insert>
 
   <!--    <update id="reviewUpdate" parameterType="OrderReview">-->
