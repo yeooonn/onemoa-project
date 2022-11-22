@@ -1,6 +1,7 @@
 package com.bitcamp.onemoaproject.controller;
 
 import com.bitcamp.onemoaproject.service.DefaultWishService;
+import com.bitcamp.onemoaproject.service.QnaService;
 import com.bitcamp.onemoaproject.service.order.OrderReviewService;
 import com.bitcamp.onemoaproject.service.order.OrderService;
 import com.bitcamp.onemoaproject.service.order.OrderStatusService;
@@ -10,8 +11,12 @@ import com.bitcamp.onemoaproject.vo.contest.ContestTeam;
 import com.bitcamp.onemoaproject.vo.order.Order;
 import com.bitcamp.onemoaproject.vo.order.OrderReview;
 import com.bitcamp.onemoaproject.vo.order.OrderStatus;
+import com.bitcamp.onemoaproject.vo.paging.Criteria;
+import com.bitcamp.onemoaproject.vo.paging.PageMaker;
 import com.bitcamp.onemoaproject.vo.product.AttachedFile;
 import com.bitcamp.onemoaproject.vo.product.Product;
+import com.bitcamp.onemoaproject.vo.qna.Qna;
+import com.bitcamp.onemoaproject.vo.qna.QnaAttachedFile;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -22,6 +27,7 @@ import java.util.UUID;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpSession;
+import javax.servlet.http.Part;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
@@ -43,7 +49,7 @@ import com.bitcamp.onemoaproject.vo.portfolio.PortfolioAttachedFile;
 @Controller
 @RequestMapping("mypage")
 public class MypageMemberController {
-
+  
   @Autowired
   ServletContext sc;
   
@@ -73,21 +79,24 @@ public class MypageMemberController {
   
   @Autowired
   OrderReviewService orderReviewService;
-
+  
+  @Autowired
+  QnaService qnaService;
+  
   @GetMapping("changepw")
   public void changepw(HttpSession session, Model model) throws Exception {
     Member loginMember = (Member) session.getAttribute("loginMember");
     model.addAttribute("member", memberService.get(loginMember.getNo()));
   }
-
+  
   @PostMapping("checkpassword")
-  public String checkpassword(String password, String newPassword, 
+  public String checkpassword(String password, String newPassword,
       String newPasswordConfirm, HttpSession session) throws Exception {
-
+    
     // 1. 현재 비밀번호 맞는지 체크
     Member loginMember = (Member) session.getAttribute("loginMember");
     String email = loginMember.getEmail();
-
+    
     // 2. 새 비밀번호, 새비밀번호 확인 맞는지 체크
     if (newPassword.equals(newPasswordConfirm) == false) { // 새 비밀번호와 새 비밀번호 확인이 일치하기않으면
       throw new Exception("새 비밀번호와 새 비밀번호 확인이 서로 일치하지 않습니다.");
@@ -96,153 +105,152 @@ public class MypageMemberController {
     memberService.modifyPasswd(email, newPassword);
     return "redirect:changepwResult";
   }
-
-
+  
+  
   @ResponseBody
   @PostMapping("checkCurrentPassword")
   public String checkCurrentPassowrd(String password, HttpSession session) throws Exception {
     // 1. 현재 비밀번호 맞는지 체크
     Member loginMember = (Member) session.getAttribute("loginMember");
-
+    
     int result = memberService.getPasswordCheck(password, loginMember.getNo());
     System.out.println("result = " + result);
-
+    
     if (result > 0) {
       return "true";
     }
     return "false";
-
+    
   }
-
+  
   @GetMapping("changepwResult")
   public void changepwResult(HttpSession session, Model model) throws Exception {
     Member loginMember = (Member) session.getAttribute("loginMember");
     model.addAttribute("member", memberService.get(loginMember.getNo()));
     session.invalidate(); // 현재 세션을 무효화시킨다.
   }
-
+  
   @GetMapping("myinfoResult")
   public void myinfoResult(HttpSession session, Model model) throws Exception {
     Member loginMember = (Member) session.getAttribute("loginMember");
     model.addAttribute("member", memberService.get(loginMember.getNo()));
   }
-
+  
   @GetMapping("leave")
   public void leave(HttpSession session, Model model) throws Exception {
     Member loginMember = (Member) session.getAttribute("loginMember");
     model.addAttribute("member", memberService.get(loginMember.getNo()));
   }
-
+  
   @GetMapping("leaveHere")
   public String leaveHere(HttpSession session) throws Exception {
     Member loginMember = (Member) session.getAttribute("loginMember");
     memberService.updateStatus(loginMember.getEmail());
-
+    
     return "redirect:leaveResult";
   }
-
+  
   @GetMapping("leaveResult")
   public void leaveResult(HttpSession session, Model model) throws Exception {
     Member loginMember = (Member) session.getAttribute("loginMember");
     model.addAttribute("member", memberService.get(loginMember.getNo()));
     session.invalidate(); // 현재 세션을 무효화시킨다.
   }
-
-
-
+  
+  
   @GetMapping("myinfo")
   public void myinfo(HttpSession session, Model model) throws Exception {
     Member loginMember = (Member) session.getAttribute("loginMember");
     model.addAttribute("member", memberService.get(loginMember.getNo()));
     model.getAttribute("member");
     System.out.println(model.getAttribute("member"));
-
+    
   }
-
+  
   @Transactional
   @PostMapping("myinfoUpdate")
   public String myinfoUpdate(Member member, MultipartFile files, HttpSession session,
       String design, String it, String video, String marketing, String translate,
       String write, String business) throws Exception {
-
-    Member loginMember = (Member) session.getAttribute("loginMember"); 
+    
+    Member loginMember = (Member) session.getAttribute("loginMember");
     member.setProfile(saveProfile(files));
-
+    
     // 기존 관심사 삭제
     memberService.deleteInterest(loginMember.getNo());
-
+    
     String[] interestName = {design, it, video, marketing, translate, write, business};
-
+    
     for (int i = 0; i < 7; i++) {
       if (interestName[i] != null) {
         Interest interest = new Interest();
         interest.setMno(loginMember.getNo());
         interest.setPcno(interestName[i]);
-
+  
         // 새 관심사 추가
         if (memberService.addInterest(interest) == 0) {
           throw new Exception("관심사 등록에 실패하였습니다!");
         }
       }
     }
-
+    
     if (files.getSize() != 0) {
       memberService.myinfoUpdate(member);
       System.out.println(memberService.myinfoUpdate(member));
     }
-
+    
     if (!memberService.myinfoUpdate2(member)) {
       System.out.println(memberService.myinfoUpdate2(member));
       throw new Exception("회원 변경 오류입니다!");
     }
-
+    
     return "redirect:myinfoResult";
   }
-
+  
   private String saveProfile(MultipartFile files)
       throws IOException, ServletException {
     String dirPath = sc.getRealPath("/member/files");
-
-    if(files.getSize() != 0) {
+    
+    if (files.getSize() != 0) {
       String filename = UUID.randomUUID().toString();
       files.transferTo(new File(dirPath + "/" + filename));
-
+      
       return filename;
     }
     return null;
   }
-
+  
   // mypage portfolio 
-
+  
   @GetMapping("portfolioForm")
-  public void form(HttpSession session, Model model) throws Exception{
+  public void form(HttpSession session, Model model) throws Exception {
     Member loginMember = (Member) session.getAttribute("loginMember");
     model.addAttribute("member", memberService.get(loginMember.getNo()));
   }
-
+  
   @GetMapping("portfolioList")
   public String list(Model model, HttpSession session) throws Exception {
     Member loginMember = (Member) session.getAttribute("loginMember");
     model.addAttribute("portfolios", portfolioService.list(loginMember.getNo()));
     model.addAttribute("member", memberService.get(loginMember.getNo()));
-
+    
     return "mypage/portfolioList";
   }
-
-  @PostMapping("portfolioAdd") 
+  
+  @PostMapping("portfolioAdd")
   public String add(
       Portfolio portfolio,
       MultipartFile[] files,
       HttpSession session) throws Exception {
-
+    
     portfolio.setAttachedFiles(saveAttachedFiles(files));
     portfolio.setMember((Member) session.getAttribute("loginMember"));
-
+    
     portfolioService.add(portfolio);
     System.out.println("인서트 성공!");
     return "redirect:portfolioList";
   }
-
+  
   @GetMapping("portfolioDetail")
   public Map portfolioDetail(int ptNo, HttpSession session, Model model) throws Exception {
     Member loginMember = (Member) session.getAttribute("loginMember");
@@ -251,7 +259,7 @@ public class MypageMemberController {
     if (portfolio == null) {
       throw new Exception("해당 번호의 게시글이 없습니다!");
     }
-
+    
     Map map = new HashMap();
     map.put("portfolio", portfolio);
     //    map.get("portfolio");
@@ -259,7 +267,7 @@ public class MypageMemberController {
     System.out.println("portfolio = " + portfolio);
     return map;
   }
-
+  
   @GetMapping("firstportfolio")
   public void firstportfolio(Model model, int ptNo) throws Exception {
     System.out.println("ptNo = " + ptNo);
@@ -284,87 +292,85 @@ public class MypageMemberController {
     //    //    System.out.println(map.get("portfolio"));
     //    return map;
   }
-
-
+  
+  
   @PostMapping("portfolioUpdate")
   public String update(
       Portfolio portfolio,
       MultipartFile[] files,
-      HttpSession session) 
-          throws Exception {
-
+      HttpSession session)
+      throws Exception {
+    
     portfolio.setAttachedFiles(saveAttachedFiles(files));
     // checkOwner(contest.getNo(), session);
-
-
-
-    System.out.println("portfolio: "+ portfolio);
-
+    
+    System.out.println("portfolio: " + portfolio);
+    
     if (!portfolioService.update(portfolio)) {
       throw new Exception("게시글을 변경할 수 없습니다!");
     }
-
+    
     return "redirect:portfolioList";
   }
-
+  
   @GetMapping("portfolioDelete")
   public String delete(
-      int ptNo, 
-      HttpSession session) 
-          throws Exception {
-
+      int ptNo,
+      HttpSession session)
+      throws Exception {
+    
     // checkOwner(no, session);
     if (!portfolioService.delete(ptNo)) {
       throw new Exception("게시글을 삭제할 수 없습니다.");
     }
-
+    
     return "redirect:portfolioList";
   }
-
+  
   private List<PortfolioAttachedFile> saveAttachedFiles(MultipartFile[] files)
       throws IOException, ServletException {
     List<PortfolioAttachedFile> attachedFiles = new ArrayList<>();
     String dirPath = sc.getRealPath("/portfolio/files");
-
+    
     for (MultipartFile part : files) {
       if (part.isEmpty()) {
         continue;
       }
-
+      
       String filepath = UUID.randomUUID().toString();
       String filename = part.getOriginalFilename();
       part.transferTo(new File(dirPath + "/" + filepath));
       attachedFiles.add(new PortfolioAttachedFile(filename, filepath));
-
+      
     }
     return attachedFiles;
   }
-
+  
   @GetMapping("fileDelete")
   public String fileDelete(
       int ptfNo,
-      HttpSession session) 
-          throws Exception {
-
-    PortfolioAttachedFile attachedFile = portfolioService.getAttachedFile(ptfNo); 
-
+      HttpSession session)
+      throws Exception {
+    
+    PortfolioAttachedFile attachedFile = portfolioService.getAttachedFile(ptfNo);
+    
     // Member loginMember = (Member) session.getAttribute("loginMember");
-    Portfolio portfolio = portfolioService.get(attachedFile.getPtNo()); 
-
+    Portfolio portfolio = portfolioService.get(attachedFile.getPtNo());
+    
     //    if (contest.getWriter().getNo() != loginMember.getNo()) {
     //      throw new Exception("게시글 작성자가 아닙니다.");
     //    }
-
+    
     if (!portfolioService.deleteAttachedFile(ptfNo)) {
       throw new Exception("게시글 첨부파일을 삭제할 수 없습니다.");
     }
-
+    
     return "redirect:portfolioDetail?ptNo=" + portfolio.getPtNo();
   }
-
+  
   // 마이페이지 공모전 참여내역
   @GetMapping("contestList")
-  public String myContestList(Model model, HttpSession session) throws Exception{
+  public String myContestList(Model model, HttpSession session) throws Exception {
     Member loginMember = (Member) session.getAttribute("loginMember");
     model.addAttribute("member", memberService.get(loginMember.getNo()));
     model.addAttribute("contests", contestService.myContestList(loginMember.getNo()));
@@ -428,7 +434,8 @@ public class MypageMemberController {
   
   @ResponseBody
   @RequestMapping("updateStatus")
-  public void OrderUpdate(@RequestParam("orderNo") int orderNo, @RequestParam("orderStatus") int orderStatus) throws Exception {
+  public void OrderUpdate(@RequestParam("orderNo") int orderNo,
+      @RequestParam("orderStatus") int orderStatus) throws Exception {
     // 조건 : 후기가 작성된 주문건에 대해서 상태 변경 못하게 하기
     
     if (!orderService.update(orderStatus, orderNo)) {
@@ -448,8 +455,7 @@ public class MypageMemberController {
     System.out.println("wishCheck = " + wishCheck);
     int wishCount = wishService.getCount(no);
     System.out.println("wishCount = " + wishCount);
-    
-    
+  
     if (count != 0) { // 후기글의 개수가 0이 아니면
       double average = orderReviewService.getReviewAverage(no);
       map.put("average", average);
@@ -474,14 +480,14 @@ public class MypageMemberController {
   @GetMapping("productUpdate")
   public Model update(int no, Model model, HttpSession session) throws Exception {
     
-    Product product =  productService.get(no);
+    Product product = productService.get(no);
     String code = product.getProductCategory().getCode();
     
     model.addAttribute("upperCategoryName", productCategoryService.getUpperCategory(code));
-    model.addAttribute("subCategoryName",productCategoryService.getCategoryName(code));
+    model.addAttribute("subCategoryName", productCategoryService.getCategoryName(code));
     model.addAttribute("productCategories", productCategoryService.list());
     System.out.println("productCategoryService = " + productCategoryService.list());
-    model.addAttribute("product",product);
+    model.addAttribute("product", product);
     
     return model;
   }
@@ -510,6 +516,79 @@ public class MypageMemberController {
     }
     
     return "redirect:productUpdate?no=" + pNo;
+  }
+  
+  @GetMapping("qnaList")
+  public String list(Criteria cri, Model model, HttpSession session) throws Exception {
+    Member member = (Member) session.getAttribute("loginMember");
+  
+    PageMaker pageMaker = new PageMaker();
+    cri.setPerPageNum(10);
+    pageMaker.setCri(cri);
+    pageMaker.setTotalCount(qnaService.listCount2(member.getNo()));
+  
+    Map<String, Object> map = new HashMap<>();
+    map.put("cri", cri);
+    map.put("memberNo", member.getNo());
+  
+    model.addAttribute("qnas", qnaService.list2(map));
+    model.addAttribute("pageMaker", pageMaker);
+    return "mypage/qnaList";
+  }
+  
+  @GetMapping("qnaDetail")
+  public Map detail(int no) throws Exception {
+    Qna qna = qnaService.get(no);
+    if (qna == null) {
+      throw new Exception("해당 번호의 게시글이 없습니다!");
+    }
+    Map map = new HashMap();
+    map.put("qna", qna);
+    return map;
+  }
+  
+  @PostMapping("qnaUpdate")
+  public String update(
+      Qna qna,
+      Part[] files,
+      HttpSession session)
+      throws Exception {
+    qna.setWriter((Member) session.getAttribute("loginMember"));
+    qna.setQnaAttachedFiles(saveAttachedFiles(files));
+    
+    checkOwner(qna.getNo(), session);
+    
+    if (!qnaService.update(qna)) {
+      throw new Exception("게시글을 변경할 수 없습니다!");
+    }
+    
+    return "redirect:list";
+  }
+  
+  private void checkOwner(int qnaNo, HttpSession session) throws Exception {
+    Member loginMember = (Member) session.getAttribute("loginMember");
+    if (qnaService.get(qnaNo).getWriter().getNo() != loginMember.getNo()) {
+      throw new Exception("게시글 작성자가 아닙니다.");
+    }
+  }
+  
+  private List<QnaAttachedFile> saveAttachedFiles(Part[] files)
+      throws IOException, ServletException {
+    List<QnaAttachedFile> attachedFiles = new ArrayList<>();
+    String dirPath = sc.getRealPath("/qna/files");
+    
+    for (Part part : files) {
+      if (part.getSize() == 0) {
+        continue;
+      }
+      String originname = part.getSubmittedFileName();
+      System.out.println(originname);
+      String filename = UUID.randomUUID().toString();
+      part.write(dirPath + "/" + filename);
+      attachedFiles.add(new QnaAttachedFile(originname, filename));
+    }
+    
+    return attachedFiles;
   }
 }
 
