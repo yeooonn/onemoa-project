@@ -518,6 +518,11 @@ public class MypageMemberController {
     return "redirect:productUpdate?no=" + pNo;
   }
   
+  @GetMapping("qnaForm")
+  public String qnaForm(){
+    return "/mypage/qna/qnaForm";
+  }
+  
   @GetMapping("qnaList")
   public String list(Criteria cri, Model model, HttpSession session) throws Exception {
     Member member = (Member) session.getAttribute("loginMember");
@@ -533,18 +538,27 @@ public class MypageMemberController {
   
     model.addAttribute("qnas", qnaService.list2(map));
     model.addAttribute("pageMaker", pageMaker);
-    return "mypage/qnaList";
+    return "mypage/qna/qnaList";
   }
   
   @GetMapping("qnaDetail")
-  public Map detail(int no) throws Exception {
+  public String detail(int no, Model model) throws Exception {
     Qna qna = qnaService.get(no);
     if (qna == null) {
       throw new Exception("해당 번호의 게시글이 없습니다!");
     }
-    Map map = new HashMap();
-    map.put("qna", qna);
-    return map;
+    model.addAttribute("qna", qna);
+    return "mypage/qna/qnaDetail";
+  }
+  
+  @GetMapping("qnaUpdateform")
+  public String qnaUpdateform(int no, Model model) throws Exception {
+    Qna qna = qnaService.get(no);
+    if (qna == null) {
+      throw new Exception("해당 번호의 게시글이 없습니다!");
+    }
+    model.addAttribute("qna", qna);
+    return "/mypage/qna/qnaUpdateform";
   }
   
   @PostMapping("qnaUpdate")
@@ -562,7 +576,7 @@ public class MypageMemberController {
       throw new Exception("게시글을 변경할 수 없습니다!");
     }
     
-    return "redirect:list";
+    return "redirect:qnaList";
   }
   
   private void checkOwner(int qnaNo, HttpSession session) throws Exception {
@@ -589,6 +603,42 @@ public class MypageMemberController {
     }
     
     return attachedFiles;
+  }
+  
+  @GetMapping("qnaDelete")
+  public String qnaDelete(
+      int no,
+      HttpSession session)
+      throws Exception {
+
+//    checkOwner(no, session);
+    if (!qnaService.delete(no)) {
+      throw new Exception("게시글을 삭제할 수 없습니다.");
+    }
+    
+    return "redirect:qnaList";
+  }
+  
+  @GetMapping("qnaFileDelete")
+  public String qnaFileDelete(
+      int no,
+      HttpSession session)
+      throws Exception {
+    
+    QnaAttachedFile attachedFile = qnaService.getAttachedFile(no);
+    
+    Member loginMember = (Member) session.getAttribute("loginMember");
+    Qna qna = qnaService.get(attachedFile.getQnaNo());
+    
+    if (qna.getWriter().getNo() != loginMember.getNo()) {
+      throw new Exception("게시글 작성자가 아닙니다.");
+    }
+    
+    if (!qnaService.deleteAttachedFile(no)) {
+      throw new Exception("게시글 첨부파일을 삭제할 수 없습니다.");
+    }
+    
+    return "redirect:qnaUpdateform?no=" + qna.getNo();
   }
 }
 

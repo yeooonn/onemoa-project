@@ -29,11 +29,16 @@ public class MessageController {
   @GetMapping("messaget")
   public String messageForm(HttpSession session, Model model) throws Exception {
     Member loginMember = (Member) session.getAttribute("loginMember");
-    int sender = loginMember.getNo();
-    model.addAttribute("member", loginMember);
-    model.addAttribute("messages", messageService.list(sender));
-    System.out.println("messageService.list() = " + messageService.list(sender));
-    return "message/messaget";
+    if(loginMember == null) {
+      return "redirect:/pageLogin";
+    }
+    else {
+      int sender = loginMember.getNo();
+      model.addAttribute("member", loginMember);
+      model.addAttribute("messages", messageService.list(sender));
+      System.out.println("messageService.list() = " + messageService.list(sender));
+      return "message/messaget";
+    }
   }
 
   // 메시지 상세보기
@@ -41,22 +46,31 @@ public class MessageController {
   public String messageList(HttpSession session, Model model, int no) throws Exception {
     System.out.println("no = " + no);
     Member loginMember = (Member) session.getAttribute("loginMember");
-    int sender = loginMember.getNo();
-    model.addAttribute("member", loginMember);
-    model.addAttribute("receiverMember", memberService.get(no));
-    model.addAttribute("messages", messageService.list(sender));
-    model.addAttribute("details", messageService.listNo(sender, no));
-    return "message/messageDetail";
+    if(loginMember == null) {
+      return "redirect:/pageLogin";
+    }
+    else {
+      int sender = loginMember.getNo();
+      model.addAttribute("member", loginMember);
+      model.addAttribute("receiverMember", memberService.get(no));
+      model.addAttribute("messages", messageService.list(sender));
+      model.addAttribute("details", messageService.listNo(sender, no));
+      return "message/messageDetail";
+    }
   }
 
   // 메시지 저장
   @PostMapping("sendContent")
-  public String messageAdd(int sender, int receiver, String contest) throws Exception {
+  public String messageAdd(int sender, int receiver, String content) throws Exception {
     System.out.println("sender = " + sender);
     System.out.println("receiver = " + receiver);
-    System.out.println("contest = " + contest);
-    messageService.getCount(sender, receiver);
-    messageService.addMessage(sender, receiver, contest);
+    System.out.println("contest = " + content);
+    System.out.println("content.equals(\"\") = " + content.equals(""));
+    if (!content.equals("")) {
+      messageService.getCount(sender, receiver);
+      messageService.addMessage(sender, receiver, content);
+      return "redirect:messageDetail?no=" + receiver;
+    }
     return "redirect:messageDetail?no=" + receiver;
   }
 }

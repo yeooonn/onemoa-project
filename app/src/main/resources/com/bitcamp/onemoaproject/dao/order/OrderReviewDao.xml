@@ -15,6 +15,7 @@
     <association property="writer" javaType="member">
       <id column="mno" property="no"/>
       <result column="name" property="name"/>
+      <result column="nick" property="nickname"/>
     </association>
 
     <association property="order" javaType="order">

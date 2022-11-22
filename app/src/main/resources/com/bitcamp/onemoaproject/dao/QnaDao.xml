@@ -167,8 +167,11 @@
     select
     q.qnano,
     q.title,
-    m.name,
-    q.cdt
+    q.cont,
+    q.cdt,
+    q.answer,
+    q.answerCdt,
+    m.name
     from
     qna q
     join member m on q.mno=m.mno
@@ -190,8 +193,11 @@
     select
     q.qnano,
     q.title,
-    m.name,
-    q.cdt
+    q.cont,
+    q.cdt,
+    q.answer,
+    q.answerCdt,
+    m.name
     from
     qna q
     join member m on q.mno=m.mno

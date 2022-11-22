@@ -32,10 +32,6 @@ public class App {
     SpringApplication.run(App.class, args);
   }
 
-  @GetMapping("/managePage")
-  public String managePage() {
-    return "managePage";
-  }
 
   @GetMapping("/")
   public String welcome(@CookieValue(name = "email", defaultValue = "") String email, Model model) {
@@ -44,20 +40,6 @@ public class App {
     model.addAttribute("reviews", orderReviewService.listMainReview());
     System.out.println("reviews = " + orderReviewService.listMainReview());
     return "index";
-  }
-  
-  @GetMapping("young")
-  public void young() {
-  }
-
-  @GetMapping("test")
-  public void test(Model model) throws Exception {
-    model.addAttribute("members", memberService.list());
-  }
-  
-  @GetMapping("testAjax")
-  public void testAjax(Model model) throws Exception {
-    model.addAttribute("members", memberService.listTest());
   }
 }
 

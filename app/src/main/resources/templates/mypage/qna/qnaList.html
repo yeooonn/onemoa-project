@@ -12,7 +12,6 @@
     .mypageArea {
       min-height: 60vw;
     }
-
     .row {
       padding: 15px 10px;
       border: solid 1px #dbdbe5;
@@ -53,19 +52,16 @@
       /*min-height: 250px;*/
       /*max-width: 200px;*/
     }
-
     .thumbnail > img {
       height: 10vw;
       width: 100%;
     }
-
     .row > p {
       margin-top: 0px;
       font-size: 1.2vw;
       margin-bottom: 5px;
       text-align: right;
     }
-
     .caption > p {
       word-break: break-all;
       max-height: 3vw;
@@ -75,35 +71,29 @@
       font-size: 1.2vw;
       text-align: left;
     }
-
     .details {
       vertical-align: center;
     }
-
     .details img {
       margin-top: 1px;
       border: none;
     }
-
     .details p {
       display: inline;
       margin-top: 0px;
       font-size: 1vw;
     }
-
     #price > p {
       text-align: right;
       font-size: 1vw;
       margin-top: 0.5vw;
       margin-bottom: 0px;
     }
-
     #userBtn {
       float: left;
       position: fixed;
       display: none;
     }
-
   </style>
 </head>
 <body style="overflow-x: hidden">
@@ -141,11 +131,10 @@
   </li>
   <li class="mypageArea">
     <div class="mypagePortfolio">
-      <p class="mptxt2">1:1 문의 목록<span class="addport"></span>
+      <p class="mptxt2">1:1 문의 목록<span class="addport"><a href='/onemoa/qna/form'>문의글 작성하기</a></span></p>
       <div class="portfolioBoxCon">
-        <div style="margin-left: 20vw; margin-right: 20vw;">
-          <button type="button" style="margin-bottom: 10px;" class="btn btn-primary btn-sm" id="backToMain"><a href='form'>문의글 작성하기</a></button>
-            <table style="margin-bottom: 5vw;" class="table">
+        <div>
+            <table class="table">
               <tr>
                 <th class="tableStyle">No</th>
                 <th style="width: 70vw;" class="tableStyle">제목</th>
@@ -156,14 +145,15 @@
               <tr data-th-each="qna : ${qnas}">
                 <td class="tableStyle" style="width: 5vw" data-th-text="${qna.no}">100</td>
                 <td class="tableStyle" style="width: 70vw" >
-                  <a href='detail?no=1'
+                  <a href='qnaDetail?no=1'
                      data-th-href="@{qnaDetail(no=${qna.no})}"
                      data-th-text="${qna.title == ''} ? '(제목없음)' : ${qna.title}">제목</a>
                 </td>
                 <td class="tableStyle" style="width: 10vw"  data-th-text="${qna.writer.name}">홍길동</td>
                 <td class="tableStyle" style="width: 15vw"  data-th-text="${#temporals.format(qna.createdDate, 'yyyy-MM-dd')}">문의일시</td>
-                <td class="tableStyle" style="width: 12vw"  data-th-text="${#temporals.format(qna.answerCdt, 'yyyy-MM-dd')}">답변일시</td>
-              </tr>
+                <td class="tableStyle" style="width: 12vw" data-th-if="${qna.answer != null}" data-th-text="${#temporals.format(qna.answerCdt, 'yyyy-MM-dd')}">답변일시</td>
+                <td data-th-if="${qna.answer == null}">답변대기</td>
+            </tr>
             </table>
         </div>
       </div>

@@ -29,7 +29,7 @@
 
 <!-- 메시지 상세보기 -->
           <ul class="mynav">
-            <li class="message" data-th-each="message : ${messages}">
+            <li class="message" data-th-each="message : ${messages}" data-th-if="${member.no} != ${message.receiver}">
                 <img data-th-if="${member.no} != ${message.receiver}" data-th-src="@{/member/files/{path}(path=${message.writer.profile})}" data-th-id="${message.writer.no}" onclick="messageDetail(this.id)" 
                 class="messageProfile"/>
                 <span class="messageNick" data-th-if="${member.no} != ${message.receiver}" data-th-text="${message.writer.nickname}"></span>
@@ -63,7 +63,7 @@
             <form id="sendForm" action="sendContent" method="post">
               <input type="hidden" name="sender" data-th-value="${member.no}"/>
               <input id="receiverBox" type="hidden" name="receiver"/>
-              <input class="messagetxt" type="text" name="contest" size="60" onkeyup="if(window.event.keyCode==13){sendContent()}" placeholder="메시지를 입력하시고 엔터를 눌러주세요.">
+              <input class="messagetxt" type="text" name="content" size="60" onKeyDown="if(window.event.keyCode==13){sendContent()}" placeholder="메시지를 입력하시고 엔터를 눌러주세요.">
             </form>
         </div>
       </li>
@@ -71,13 +71,15 @@
 
   <footer data-th-replace="/fragments/footer.html :: fragment-footer"></footer>
   <script>
-
     $(document).ready(function() {
       let param = window.location.search;
       let pLength = param.length;
       let receiverNo = param.substring(4, pLength);
       $("#receiverBox").attr("value", receiverNo);
-    });
+     });
+
+    // 스크롤 최하단으로
+    $('.chatArea').stop().animate({ scrollTop: $('.chatArea')[0].scrollHeight }, 0);
 
     function messageDetail(value){
       let receiverNo = value;
