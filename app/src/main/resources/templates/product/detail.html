@@ -393,7 +393,7 @@
 
     <div id="buyOrAsk">
       <button id="buybtn" type="submit" class="btn btn-default">구매하기</button>
-      <button type="button" class="btn btn-default"><a>문의하기</a></button>
+      <button type="button" class="btn btn-default"><a data-th-href="@{/message/messageDetail(no=${product.writer.no})}">문의하기</a></button>
     </div>
   </div>
 </form>

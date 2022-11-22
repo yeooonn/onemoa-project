@@ -215,4 +215,23 @@
       p.pno=#{value}
   </select>
 
+  <!-- 메인페이지 후기 목록 : 1121추가 -->
+  <select id="findAllByMainReview" resultMap="orderReviewMap">
+    select
+    pw.prno,
+    pw.title,
+    pw.cont,
+    pw.score,
+    prf.fpath,
+    m.mno,
+    m.nick
+    from
+    order_review pw
+    join order_review_file prf on pw.prno = prf.prno
+    join member m on m.mno = pw.mno
+    group by pw.prno
+    order by prno desc
+    limit 8;
+  </select>
+
 </mapper>

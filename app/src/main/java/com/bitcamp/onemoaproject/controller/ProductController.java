@@ -8,14 +8,11 @@ import javax.servlet.http.Part;
 
 import com.bitcamp.onemoaproject.service.DefaultWishService;
 import com.bitcamp.onemoaproject.service.order.OrderReviewService;
-import com.bitcamp.onemoaproject.service.productService.ProductReviewService;
 import com.bitcamp.onemoaproject.vo.Member;
-import com.bitcamp.onemoaproject.vo.order.OrderReview;
 import com.bitcamp.onemoaproject.vo.paging.Criteria;
 import com.bitcamp.onemoaproject.vo.paging.PageMaker;
 import com.bitcamp.onemoaproject.vo.product.AttachedFile;
 import com.bitcamp.onemoaproject.vo.product.Product;
-import com.bitcamp.onemoaproject.vo.product.ProductReview;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

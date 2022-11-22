@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bitcamp.onemoaproject.dao.MessageDao">
+
+  <!-- 자바 객체의 프로퍼티와 컬럼 이름을 연결한다. -->
+  <resultMap type="message" id="messageMap">
+    <id column="msgno" property="msgNo"/>
+    <result column="sender" property="sender"/>
+    <result column="receiver" property="receiver"/>
+    <result column="cont" property="cont"/>
+    <result column="type" property="type"/>
+    <result column="cdt" property="cdt"/>
+
+    <association property="writer" javaType="Member">
+      <id column="mmno" property="no"/>
+      <result column="nick" property="nickname"/>
+      <result column="profile" property="profile"/>
+    </association>
+  </resultMap>
+
+  <!--  메시지 미리보기 조회 (사이드바)-->
+  <select id="findAll" resultMap="messageMap">
+    select
+    msg.msgno,
+    msg.sender,
+    msg.receiver,
+    msg.cont,
+    msg.type,
+    msg.cdt,
+    m.mno mmno,
+    m.nick,
+    m.profile
+    from message msg
+    join member m on m.mno = msg.receiver
+    where
+    msg.sender=#{sender} or msg.receiver=#{sender}
+    group by m.nick
+  </select>
+
+  <!--  메시지 상세보기-->
+  <select id="findByNo" resultMap="messageMap">
+    select
+    msgno,
+    sender,
+    receiver,
+    cont,
+    type,
+    cdt
+    from message
+    where
+    (sender=#{sender} and receiver=#{no}) OR (sender=#{no} and receiver=#{sender})
+    order by cdt asc;
+  </select>
+
+  <!-- 메시지 저장-->
+  <insert id="insertMessage">
+    insert into message (sender, receiver, cont)
+    value(#{sender}, #{receiver}, #{content});
+  </insert>
+
+  <!-- 메시지 검사 -->
+  <select id="messageCount" resultType="Integer">
+    select
+      count(*)
+    from message
+      where sender = #{receiver} and receiver = #{sender};
+  </select>
+
+  <!-- 메시지 저장-->
+  <insert id="insertMessage2">
+    insert into message (sender, receiver)
+    value(#{receiver}, #{sender});
+  </insert>
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
