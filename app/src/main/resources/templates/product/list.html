@@ -168,7 +168,9 @@
         <li class="menu" data-th-each= "category : ${productCategories}">
           <p class="cate1" data-th-text="${category.name}">상위 카테고리</p>
           <ul class="hide">
-            <a data-th-href="@{list(code=${child.code})}" data-th-each= "child : ${category.children}" data-th-text="${child.name}">하위 카테고리</a>
+            <a data-th-each= "child : ${category.children}" data-th-href="@{list(code=${child.code}, page=${pageMaker.startPage})}" data-th-text="${child.name}">하위 카테고리</a>
+<!--            <a th:href="@{/oreder/details(id=${orderInfo.seq})}">-->
+            <p data-th-text="${child}"></p>
           </ul>
         </li>
       </ul>
@@ -210,20 +212,39 @@
 
    </main>
 
-  <!-- 페이징 -->
-  <nav class="xx-nav" aria-label="pagination">
+<!--  &lt;!&ndash; 페이징 &ndash;&gt;-->
+<!--  <nav data-th-if="${code =! null}" class="xx-nav" aria-label="pagination">-->
+<!--    <ul class="xx-pagination">-->
+<!--      <li data-th-if="${pageMaker.prev}">-->
+<!--&lt;!&ndash;        <a data-th-href="@{list(pageMaker.startPage-1)}"><span aria-hidden="true">이전페이지</span><span class="xx-visuallyhidden">previous set of pages</span></a>&ndash;&gt;-->
+<!--        <a data-th-href="@{list(code=${child.code}, page=${pageMaker.startPage-1})}"><span aria-hidden="true">이전페이지</span><span class="xx-visuallyhidden">previous set of pages</span></a>-->
+<!--&lt;!&ndash;        @{/list(code=${child.code}, page=${pageMaker.startPage-1})}&ndash;&gt;-->
+<!--      </li>-->
+<!--      <data-th-block data-th-each="pageNum: ${#numbers.sequence(pageMaker.startPage, pageMaker.endPage)}">-->
+<!--        <li><a data-th-href="@{list(code=${child.code}, page=${pageMaker.startPage})}"><span class="xx-visuallyhidden">page </span><span data-th-text="${pageNum}"></span></a></li>-->
+<!--      </data-th-block>-->
+<!--      <li data-th-if="${pageMaker.next && pageMaker.endPage >0}">-->
+<!--        <a data-th-href="@{list(code=${child.code}, page=${pageMaker.endPage+1})}"><span class="xx-visuallyhidden">next set of pages</span><span aria-hidden="true">다음페이지</span></a>-->
+<!--      </li>-->
+<!--    </ul>-->
+<!--  </nav>-->
+
+  <nav data-th-if="${code == null}" class="xx-nav" aria-label="pagination">
     <ul class="xx-pagination">
       <li data-th-if="${pageMaker.prev}">
-        <a data-th-href="@{list(pageMaker.startPage-1)}"><span aria-hidden="true">이전페이지</span><span class="xx-visuallyhidden">previous set of pages</span></a>
+        <!--        <a data-th-href="@{list(pageMaker.startPage-1)}"><span aria-hidden="true">이전페이지</span><span class="xx-visuallyhidden">previous set of pages</span></a>-->
+        <a data-th-href="@{list(page=${pageMaker.startPage-1})}"><span aria-hidden="true">이전페이지</span><span class="xx-visuallyhidden">previous set of pages</span></a>
+        <!--        @{/list(code=${child.code}, page=${pageMaker.startPage-1})}-->
       </li>
       <data-th-block data-th-each="pageNum: ${#numbers.sequence(pageMaker.startPage, pageMaker.endPage)}">
-        <li><a data-th-href="@{list(page=${pageNum})}"><span class="xx-visuallyhidden">page </span><span data-th-text="${pageNum}"></span></a></li>
+        <li><a data-th-href="@{list(page=${pageMaker.startPage})}"><span class="xx-visuallyhidden">page </span><span data-th-text="${pageNum}"></span></a></li>
       </data-th-block>
       <li data-th-if="${pageMaker.next && pageMaker.endPage >0}">
         <a data-th-href="@{list(page=${pageMaker.endPage+1})}"><span class="xx-visuallyhidden">next set of pages</span><span aria-hidden="true">다음페이지</span></a>
       </li>
     </ul>
   </nav>
+
 
   <footer data-th-replace="/fragments/footer.html :: fragment-footer"></footer>
   <script>

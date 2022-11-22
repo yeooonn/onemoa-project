@@ -37,6 +37,7 @@
   }
 
   div > p {
+    word-break: break-word;
     margin-top: 1%;
     margin-left: 1%;
     margin-right: 1%;
@@ -164,8 +165,6 @@
 
   #top p {
     margin-left: 0px;
-    font-size: 1vw;
-
   }
 
   .seller-infoprofile {
@@ -188,7 +187,7 @@
   }
 
   #top #title {
-    font-size: 1.1vw;
+    font-size: 1.5vw;
   }
 
   .product_images img {
@@ -214,7 +213,7 @@
     height: 100%;
   }
 
-  #buyOrAsk {
+  .buyOrAsk {
     text-align: center;
   }
 
@@ -255,7 +254,7 @@
   }
 
   .heart {
-    display: flex;
+    justify-items: center;
   }
 
   .heart div {
@@ -276,7 +275,8 @@
     display: inline-block;
     height: 18px;
     overflow:hidden;
-    background:url('img/reviewstar.png')no-repeat;
+    /*background:url('img/reviewstar.png')no-repeat;*/
+    background:url('static/img/reviewstar.png')no-repeat;
   }
 
   .star-rating span {
@@ -355,9 +355,7 @@
         <div id="tab" style="overflow:scroll;">
           <ul id="horiScroll">
             <li data-th-each="file : ${product.attachedFiles}">
-<!--              <a data-th-href="@{/product/files/{path}(path=${file.filepath})}">-->
-                <img class="attached-image" data-th-src="@{/product/files/{path}(path=${file.filepath})}">
-<!--              </a>-->
+              <img data-th-if="${file.filepath != null}" class="attached-image" data-th-src="@{/product/files/{path}(path=${file.filepath})}">
             </li>
           </ul>
         </div>
@@ -370,7 +368,7 @@
         <div id="wishCnt" data-th-text="${wishCount}"></div>
       </div>
         <img src="../img/star.png" width="25px" height="25px"/>
-      <span id="aboutReviews" data-th-text="${average} == null and ${count} == 0 ? ' 후기 없음' : ' ' + ${average} + ' 점 ( 후기 : ' + ${count} + ' 개 ) '">별점 평균</span>
+      <span id="aboutReviews" data-th-text="${average} == null or ${count} == null ? ' 후기 없음' : ' ' + ${average} + ' 점 ( 후기 : ' + ${count} + ' 개 ) '">별점 평균</span>
     </div>
 
   <div id="top">
@@ -391,9 +389,13 @@
 
     <div class="horizonLine"></div>
 
-    <div id="buyOrAsk">
+    <div data-th-if="${session.loginMember == null or session.loginMember.no != product.writer.no}" class="buyOrAsk">
       <button id="buybtn" type="submit" class="btn btn-default">구매하기</button>
+<!--      <button type="button" class="btn btn-default"><a>문의하기</a></button>-->
       <button type="button" class="btn btn-default"><a data-th-href="@{/message/messageDetail(no=${product.writer.no})}">문의하기</a></button>
+    </div>
+    <div data-th-if="${session.loginMember != null and session.loginMember.no == product.writer.no}" class="buyOrAsk">
+      <button type="button" class="btn btn-default"><a href="/onemoa/mypage/productList">마이페이지에서 수정하기</a></button>
     </div>
   </div>
 </form>
@@ -439,11 +441,15 @@
         <tr class="reviewLine" data-th-each="orderReview : ${reviews}">
           <td id="starRow">
             <div class="star-rating">
-              <span data-th-if="${orderReview.score == 5}" style="width:100%"></span>
-              <span data-th-if="${orderReview.score == 4}" style="width:80%"></span>
-              <span data-th-if="${orderReview.score == 3}" style="width:60%"></span>
-              <span data-th-if="${orderReview.score == 2}" style="width:40%"></span>
-              <span data-th-if="${orderReview.score == 1}" style="width:20%"></span>
+              <span data-th-if="${orderReview.score - 5 == 0}" style="width:100%"></span>
+              <span data-th-if="${orderReview.score - 4.5 == 0}" style="width:90%"></span>
+              <span data-th-if="${orderReview.score - 4 == 0}" style="width:80%"></span>
+              <span data-th-if="${orderReview.score - 3.5 == 0}" style="width:70%"></span>
+              <span data-th-if="${orderReview.score - 3 == 0}" style="width:60%"></span>
+              <span data-th-if="${orderReview.score - 2.5 == 0}" style="width:50%"></span>
+              <span data-th-if="${orderReview.score - 2 == 0}" style="width:40%"></span>
+              <span data-th-if="${orderReview.score - 1.5 == 0}" style="width:30%"></span>
+              <span data-th-if="${orderReview.score - 1 == 0}" style="width:20%"></span>
             </div>
             <span><p data-th-value="${orderReview.score}" data-th-text="${orderReview.score}">후기 별점</p></span>
           </td>

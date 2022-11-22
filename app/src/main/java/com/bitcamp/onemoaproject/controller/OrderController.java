@@ -10,14 +10,10 @@ import com.bitcamp.onemoaproject.vo.product.Product;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpSession;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 // CRUD 요청을 처리하는 페이지 컨트롤러들을 한 개의 클래스로 합친다.
 @Controller // 페이지 컨트롤러에 붙이는 애노테이션
@@ -48,7 +44,6 @@ public class OrderController {
     model.addAttribute("product", product);
   }
 
-  @ResponseBody
   @PostMapping("add") // 재능판매 게시판 : 게시글 등록
   public String add(@RequestParam("no") int no, Order order, HttpSession session, Model model) throws Exception {
 

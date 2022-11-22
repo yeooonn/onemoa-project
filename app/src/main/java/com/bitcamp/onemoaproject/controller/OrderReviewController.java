@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.ServletContext;
-import javax.servlet.ServletException;
 import javax.servlet.http.HttpSession;
 import javax.servlet.http.Part;
 import java.io.IOException;
@@ -67,7 +66,7 @@ public class OrderReviewController {
   }
 
   private List<OrderReviewAttachedFile> saveAttachedFiles(Part[] files)
-          throws IOException, ServletException {
+          throws IOException {
     List<OrderReviewAttachedFile> attachedFiles = new ArrayList<>();
     String dirPath = sc.getRealPath("/review/files");
 

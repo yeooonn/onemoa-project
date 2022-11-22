@@ -72,15 +72,15 @@
 
   <select id="findAllByProduct" resultMap="orderReviewMap">
     select
-      or.prno,
-      or.cont,
-      or,cdt,
-      or.score,
-      or.status,
+      rw.prno,
+      rw.cont,
+      rw.cdt,
+      rw.score,
+      rw.status
     from
       product p
       join product_order po on p.pno=po.pno
-      join order_review or on po.pono=or.pono
+      join order_review rw on po.pono=rw.pono
     where
       p.pno=#{value}
   </select>
@@ -119,8 +119,8 @@
   <insert id="insert" parameterType="OrderReview"
           useGeneratedKeys="true" keyColumn="prno" keyProperty="no">
     insert into
-    order_review(title,cont,mno,score,pono)
-    values(#{title},#{content},#{writer.no},#{score},#{order.no})
+    order_review(title,cont,mno,score,pono,status)
+    values(#{title},#{content},#{writer.no},#{score},#{order.no},#{status})
   </insert>
 
   <!--    <update id="reviewUpdate" parameterType="OrderReview">-->
@@ -195,11 +195,11 @@
 
   <select id="getAverage" resultType="double">
     select
-      round(avg(or.score), 1) average
+      round(avg(score), 1) average
     from
       product p
       join product_order po on p.pno=po.pno
-      join order_review or on po.pono=or.pono
+      join order_review rw on po.pono=rw.pono
     where
       p.pno=#{value}
   </select>
