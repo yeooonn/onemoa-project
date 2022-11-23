@@ -1,12 +1,12 @@
 package com.bitcamp.onemoaproject.dao.product;
 
-import java.util.List;
-import java.util.Map;
-
 import com.bitcamp.onemoaproject.vo.paging.Criteria;
 import com.bitcamp.onemoaproject.vo.product.AttachedFile;
 import com.bitcamp.onemoaproject.vo.product.Product;
 import org.apache.ibatis.annotations.Mapper;
+
+import java.util.List;
+import java.util.Map;
 
 @Mapper
 public interface ProductDao {
@@ -17,6 +17,10 @@ public interface ProductDao {
 
   int update(Product product);
 
+  int makeinvalid(int no);
+
+  int makevalid(int no);
+
   int delete(int no);
 
   int deleteByMember(int memberNo);
@@ -24,6 +28,8 @@ public interface ProductDao {
   List<Product> findByCategory(String code);
 
   List<Product> findByWriter(int no);
+
+  List<Product> findAllByAdmin();
 
   int insertFiles(Product product);
 
@@ -44,6 +50,8 @@ public interface ProductDao {
 
   // 게시판 글의 개수를 세기위한 메소드
   int countProductList(String code);
+
+
 }
 
 

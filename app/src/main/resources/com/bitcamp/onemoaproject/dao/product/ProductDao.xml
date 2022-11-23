@@ -14,6 +14,7 @@
         <result column="vw_cnt" property="viewCount"/>
         <result column="cdt" property="createdDate"/>
         <result column="thumbnail" property="thumbnail"/>
+        <result column="status" property="status"/>
 
         <association property="writer" javaType="member">
             <id column="mno" property="no"/>
@@ -62,11 +63,33 @@
         from
           product p
           join product_file pf on p.pno=pf.pno
+        where
+          status=1
         order by
           pno desc
     </select>
 
-    <select id="findByCategory" resultMap="productMap" parameterType="java.lang.String">
+  <select id="findAllByAdmin" resultMap="productMap">
+    select
+      p.pno,
+      m.nick,
+      p.pcno,
+      p.title,
+      p.cont,
+      p.price,
+      p.vw_cnt,
+      p.cdt,
+      p.status,
+      p.thumbnail
+    from
+      product p
+      join member m on m.mno=p.mno
+    order by
+     pno desc
+  </select>
+
+
+  <select id="findByCategory" resultMap="productMap" parameterType="java.lang.String">
         select
           pno,
           pcno,
@@ -79,6 +102,7 @@
         from
           product
         where
+          status=1 and
           pcno=#{code}
     </select>
 
@@ -93,6 +117,7 @@
         p.cdt,
         p.thumbnail,
         p.rule,
+        p.status,
         p.selfintro,
         m.mno,
         m.profile,
@@ -123,6 +148,7 @@
         from
           product p
         where
+          status=1 and
           p.mno=#{value}
         order by
           p.pno desc
@@ -170,26 +196,31 @@
         p.vw_cnt,
         p.cdt,
         p.thumbnail,
+          m.nick
         rw.score
       from product p
+          join member m on m.mno=p.mno
       left outer join product_order po on p.pno = po.pno
       left outer join order_review rw on po.pono=rw.pono
-      <if test="categoryCode != null">
-        where p.pcno = #{categoryCode}
-      </if>
-      order by
-      pno desc
-      limit #{pageStart}, #{perPageNum}
+        where
+          p.status=1
+        <if test="categoryCode != null">
+          and p.pcno = #{categoryCode}
+        </if>
+        order by
+          pno desc
+        limit #{pageStart}, #{perPageNum}
     </select>
 
     <select id="countProductList" parameterType="String" resultType="Integer">
-        SELECT
-        count(*)
-        FROM
-        product
+        select
+          count(*)
+        from
+          product
+        where
+          status=1
         <if test="code != null">
-            WHERE
-            pcno=#{code}
+         and pcno=#{code}
         </if>
     </select>
 
@@ -206,7 +237,24 @@
         where pno=#{no}
     </update>
 
-    <select id="findFileByNo" resultMap="attachedFileMap">
+    <update id="makeinvalid">
+        update
+          product
+        set
+          status=0
+        where pno=#{value}
+    </update>
+
+  <update id="makevalid">
+    update
+    product
+    set
+    status=1
+    where pno=#{value}
+  </update>
+
+
+  <select id="findFileByNo" resultMap="attachedFileMap">
         select
           pfno,
           fpath,

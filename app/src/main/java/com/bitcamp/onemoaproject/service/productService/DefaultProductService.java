@@ -8,11 +8,13 @@ import java.util.Map;
 
 import com.bitcamp.onemoaproject.vo.paging.Criteria;
 import com.bitcamp.onemoaproject.vo.product.AttachedFile;
+import com.bitcamp.onemoaproject.vo.product.Product;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import com.bitcamp.onemoaproject.dao.product.ProductDao;
-import com.bitcamp.onemoaproject.vo.product.Product;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
+import java.util.Map;
 
 @Service
 public class DefaultProductService implements ProductService {
@@ -52,6 +54,27 @@ public class DefaultProductService implements ProductService {
   }
 
   @Override
+  public boolean invalid(int no) {
+    if (productDao.makeinvalid(no) == 0) {
+
+      return false;
+    }
+    return true;
+  }
+
+  @Override
+  public boolean valid(int no) {
+    if (productDao.makevalid(no) == 0) {
+
+      return false;
+    }
+
+    return true;
+  }
+
+
+
+  @Override
   public Product get(int no) throws Exception {
     return productDao.findByNo(no);
   }
@@ -74,6 +97,11 @@ public class DefaultProductService implements ProductService {
   @Override
   public List<Product> list(int no) throws Exception {
     return productDao.findByWriter(no);
+  }
+
+  @Override
+  public List<Product> listByAdmin() throws Exception {
+    return productDao.findAllByAdmin();
   }
 
   @Override

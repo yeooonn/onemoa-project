@@ -1,50 +1,39 @@
 package com.bitcamp.onemoaproject.controller;
 
-import com.bitcamp.onemoaproject.service.DefaultWishService;
-import com.bitcamp.onemoaproject.service.QnaService;
+import com.bitcamp.onemoaproject.service.*;
 import com.bitcamp.onemoaproject.service.order.OrderReviewService;
 import com.bitcamp.onemoaproject.service.order.OrderService;
 import com.bitcamp.onemoaproject.service.order.OrderStatusService;
 import com.bitcamp.onemoaproject.service.productService.ProductCategoryService;
 import com.bitcamp.onemoaproject.service.productService.ProductService;
+import com.bitcamp.onemoaproject.vo.Interest;
+import com.bitcamp.onemoaproject.vo.Member;
 import com.bitcamp.onemoaproject.vo.contest.ContestTeam;
 import com.bitcamp.onemoaproject.vo.order.Order;
 import com.bitcamp.onemoaproject.vo.order.OrderReview;
 import com.bitcamp.onemoaproject.vo.order.OrderStatus;
 import com.bitcamp.onemoaproject.vo.paging.Criteria;
 import com.bitcamp.onemoaproject.vo.paging.PageMaker;
+import com.bitcamp.onemoaproject.vo.portfolio.Portfolio;
+import com.bitcamp.onemoaproject.vo.portfolio.PortfolioAttachedFile;
 import com.bitcamp.onemoaproject.vo.product.AttachedFile;
 import com.bitcamp.onemoaproject.vo.product.Product;
 import com.bitcamp.onemoaproject.vo.qna.Qna;
 import com.bitcamp.onemoaproject.vo.qna.QnaAttachedFile;
-import java.io.File;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.UUID;
-import javax.servlet.ServletContext;
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpSession;
-import javax.servlet.http.Part;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
-import com.bitcamp.onemoaproject.service.ContestService;
-import com.bitcamp.onemoaproject.service.MemberService;
-import com.bitcamp.onemoaproject.service.PortfolioService;
-import com.bitcamp.onemoaproject.vo.Interest;
-import com.bitcamp.onemoaproject.vo.Member;
-import com.bitcamp.onemoaproject.vo.portfolio.Portfolio;
-import com.bitcamp.onemoaproject.vo.portfolio.PortfolioAttachedFile;
+
+import javax.servlet.ServletContext;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpSession;
+import javax.servlet.http.Part;
+import java.io.File;
+import java.io.IOException;
+import java.util.*;
 
 @Controller
 @RequestMapping("mypage")
@@ -427,7 +416,6 @@ public class MypageMemberController {
     
     List<Order> buys = orderService.buysList(member.getNo());
     
-    System.out.println("buys = " + buys);
     model.addAttribute("buys", buys);
     return model;
   }
@@ -491,6 +479,16 @@ public class MypageMemberController {
     
     return model;
   }
+
+  @PostMapping("productInvalid")
+  @ResponseBody
+  public String productInvalid(@RequestParam("no") int no) throws Exception {
+
+    productService.invalid(no);
+
+    return "redirect:productDetail?no=" + no;
+  }
+
   
   @PostMapping("productFileDelete")
   @ResponseBody

@@ -12,86 +12,57 @@
     <script src="/onemoa/js/onemoa.js"></script>
   </head>
 
+  <link href="/onemoa/css/admin.css" rel="stylesheet"/>
 </head>
-<body>
-  <ul class="myPage">
-    <li class="mypageArea">
-      <div class="mypageNav">
-        <div class="myonemoa">
-          <p>관리자페이지</p>
-          <span class="mybar">
-        </div>
-        <ul class="mynav">
-          <li><a class="font2" href="/onemoa/admin/member/memberList">회원관리</a></li>
-          <li><a class="font" href="contestList?no=all">공모전관리</a></li>
-          <li><a class="font2" href="">재능판매관리</a></li>
-          <li><a class="font2" href="">1:1문의관리</a></li>
-          <li><a class="font2" href="">FAQ관리</a></li>
-          <li><a class="font2" href="">공지사항관리</a></li>
-          <li><a class="font2" href="">카테고리관리</a></li>
-        </ul>
+<style>
+  .tableStyle {
+    text-align: center;
+  }
+</style>
+<body style="overflow-x: hidden">
+<ul class="myPage">
+  <li class="mypageArea">
+    <div class="mypageNav">
+      <div class="myonemoa">
+        <p>관리자페이지</p>
+        <span class="mybar"></span>
       </div>
-    </li>
-    <li class="mypageArea">
-      <div class="contestList">
-        <h1>공모전관리</h1>
-        
-        <select id="noType" onchange="selectNum()">
-          <option data-th-text="${no}">선택</option>
-          <option value="all">전체</option>
-          <option value="개인전">개인전</option>
-          <option value="팀전">팀전</option>
-        </select>
-        <select id="onoType" onchange="selectNum2()">
-          <option data-th-if="${ono != null}" data-th-text="${ono}">선택</option>
-          <option data-th-if="${ono == null}" data-th-text="기관명">선택</option>
-          <option value="1" data-th-text="대기업">대기업</option>
-          <option value="2" data-th-text="공공기관">공공기관</option>
-          <option value="3" data-th-text="자영업자">자영업자</option>
-        </select>
-      
-        <a href="." id="sortCreatDate" value="sortCd" data-type="" data-th-data-type="${sortCd}">등록순</a>
-        <a href="."  id="sortEndDate" value="sortEd" data-type="" data-th-data-type="${sortEd}">마감임박순</a>
-        <a href="."  id="sortViewCount" value="sortVw" data-type="" data-th-data-type="${sortVw}">조회순</a>
-        <a href="." id="sortReward" value="sortRw" data-type="" data-th-data-type="${sortRw}">상금순</a>
+      <ul class="mynav">
+        <li><a class="font2" href="/onemoa/admin/member/memberList">회원관리</a></li>
+        <li><a class="font2" href="/onemoa/admin/contest/contestList">공모전관리</a></li>
+        <li><a class="font" href="/onemoa/admin/product/productList">재능판매관리</a></li>
+        <li><a class="font2" href="/onemoa/admin/qna/list">1:1문의관리</a></li>
+        <li><a class="font2" href="/onemoa/admin/faq/list">FAQ관리</a></li>
+        <li><a class="font2" href="/onemoa/admin/notice/list">공지사항관리</a></li>
+      </ul>
+    </div>
+  </li>
+  <li class="mypageArea">
+    <h1 style="text-align: center; padding-right: 5vw">재능 판매 관리</h1>
+    <div>
+      <table style="margin-bottom: 5vw;" class="type01">
+        <tr>
+          <th class="tableStyle">No</th>
+          <th style="width: 70vw;" class="tableStyle">제목</th>
+          <th class="tableStyle">작성자</th>
+          <th class="tableStyle">상태</th>
 
-        <table class="contesttable" border='1'>
-          <tr>
-            <th>공모전번호</th>
-            <th>기관명</th>
-            <th>공모전분야</th>
-            <th>팀전여부</th>
-            <th>제목(수정하기)</th>
-            <th>등록일자</th>
-            <th>조회수</th>
-            <th>상금</th>
-          </tr>
-          <tr data-th-each="contest : ${contests}">
-            <td data-th-text="${contest.ctstNo}">공모전번호</td>
-            <td data-th-text="${contest.contOrg.orgName}">기관명</td>
-            <td data-th-text="${contest.contCategory.categoryName}">공모전분야</td>
-            <td data-th-if="${contest.team == '개인전'}">개인전</td>
-            <td data-th-if="${contest.team == '팀전'}">팀전</td>
-            <td>
-              <a href='contestDetail?ctstNo=1'
-                 data-th-href="@{contestDetail(ctstNo=${contest.ctstNo})}"
-                 data-th-text="${contest.title == ''} ? '(제목없음)' : ${contest.title}">제목</a>
-            </td>
-            <td data-th-text="${contest.createdDate}">등록일자</td>
-            <td data-th-text="${contest.vw_cnt}">조회수</td>
-            <td data-th-text="${contest.reward}">상금</td>
-          </tr>
-        </table>
-        <p>
-          <button><a href='contestForm'>새 공모전 등록</a></button>
-        </p>
-      </div>
-    </li>
-  </ul>
-<script src="/onemoa/js/contestList.js"></script>
+        <tr data-th-each="product : ${products}">
+          <td class="tableStyle" style="width: 5vw" data-th-text="${product.no}">100</td>
+          <td class="tableStyle" style="width: 70vw" >
+            <a href='detail?no=1'
+               data-th-href="@{productDetail(no=${product.no})}"
+               data-th-text="${product.title}">제목</a>
+          </td>
+          <td class="tableStyle" style="width: 10vw"  data-th-text="${product.writer.nickname}">홍길동</td>
+          <td class="tableStyle" style="width: 10vw"  data-th-if="${product.status} != 0 " data-th-text="공개">상태</td>
+          <td class="tableStyle" style="width: 10vw; color: red"  data-th-if="${product.status} == 0 " data-th-text="비공개">상태</td>
+      </tr>
+      </table>
+    </div>
+    </div>
+  </li>
+</ul>
+<footer data-th-replace="/fragments/footer.html :: fragment-footer"></footer>
 </body>
 </html>
-
-
-
-    
