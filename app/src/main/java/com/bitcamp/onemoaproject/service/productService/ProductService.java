@@ -1,9 +1,9 @@
 package com.bitcamp.onemoaproject.service.productService;
 
+import com.bitcamp.onemoaproject.vo.product.ProductWish;
 import java.util.List;
 import java.util.Map;
 
-import com.bitcamp.onemoaproject.vo.Wish;
 import com.bitcamp.onemoaproject.vo.paging.Criteria;
 import com.bitcamp.onemoaproject.vo.product.AttachedFile;
 import com.bitcamp.onemoaproject.vo.product.Product;
@@ -29,6 +29,7 @@ public interface ProductService {
     AttachedFile getAttachedFile(int fileNo) throws Exception;
 
     boolean deleteAttachedFile(int fileNo) throws Exception;
-
+    
+    List<ProductWish> findByAll() throws Exception;
 //    double getReviewAvg(int productNo) throws Exception;
 }

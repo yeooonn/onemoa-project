@@ -100,7 +100,7 @@ public class ProductController {
   }
 
   @RequestMapping("list")
-  public ModelAndView list(Criteria cri, String code) {
+  public ModelAndView list(Criteria cri, String code) throws Exception {
 
     ModelAndView mav = new ModelAndView("product/list");
 
@@ -110,7 +110,9 @@ public class ProductController {
     pageMaker.setTotalCount(productService.countProductListTotal(code));
     List<Map<String,Object>> products = productService.selectProductList(cri);
     System.out.println("products = " + products);
-
+  
+    System.out.println("productService = " + productService.findByAll());
+    mav.addObject("wishes", productService.findByAll());
     mav.addObject("products", products);
     mav.addObject("pageMaker", pageMaker);
     mav.addObject("productCategories", productCategoryService.list());

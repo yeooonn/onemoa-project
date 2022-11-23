@@ -1,5 +1,8 @@
 package com.bitcamp.onemoaproject.service.productService;
 
+import com.bitcamp.onemoaproject.dao.WishDao;
+import com.bitcamp.onemoaproject.dao.product.ProductWishDao;
+import com.bitcamp.onemoaproject.vo.product.ProductWish;
 import java.util.List;
 import java.util.Map;
 
@@ -16,6 +19,10 @@ public class DefaultProductService implements ProductService {
 
   @Autowired
   ProductDao productDao;
+  
+  @Autowired
+  ProductWishDao productWishDao;
+  
   private String categoryCode;
 
   @Override
@@ -87,9 +94,13 @@ public class DefaultProductService implements ProductService {
   public boolean deleteAttachedFile(int fileNo) throws Exception {
     return productDao.deleteFile(fileNo) > 0;
   }
-
-
-//  public double getReviewAvg(int productNo) throws Exception {
+  
+  @Override
+  public List<ProductWish> findByAll() throws Exception {
+    return productWishDao.findByAllCount();
+  }
+  
+  //  public double getReviewAvg(int productNo) throws Exception {
 //    return productDao.getReviewAvg(productNo);
 //  }
 

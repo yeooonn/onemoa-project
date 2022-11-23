@@ -4,8 +4,8 @@
   <meta charset="UTF-8">
   <title>onemoa v</title>
 <!--  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">-->
-  <link rel="stylesheet" type="text/css" href="reset.css" />
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<!--  <link rel="stylesheet" type="text/css" href="reset.css" />-->
+<!--  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>-->
   <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.js"></script>
   <link href="/onemoa/css/onemoa.css" rel="stylesheet">
@@ -176,35 +176,30 @@
       </ul>
     </nav>
 
+    <div id="productContainer"></div>
+
        <section>
-         <div class="product_container">
-<!--           <div data-th-each= "product : ${products}">-->
+         <div id="productContainer1" class="product_container">
            <div data-th-each= "product : ${products}">
-            <a href="#" data-th-href="@{detail(no=${product.no})}" class="item">
+            <a href="#" data-th-id="${product.no}" data-th-href="@{detail(no=${product.no})}" class="item">
               <!-- bootstrap card -->
               <div class="row">
                 <div>
                   <div class="thumbnail">
-                    <img id="productThumbnail" data-th-src="@{/product/files/{path}(path=${product.thumbnail})}" alt="">
-<!--                    <img src="../img/naver.png" alt="...">-->
+                    <img data-th-src="@{/product/files/{path}(path=${product.thumbnail})}" alt="">
                     <div class="caption">
                       <p data-th-text="${product.title}">Thumbnail label</p>
                     </div>
                   </div>
                   <div class="details">
-<!--                    <p data-th-text="${#aggregates.sum(product.productScores)}"></p>-->
-                    <div data-th-each="scores : ${product.productScores}">
-                      <span data-th-text="${scores.score}"></span>
-                    </div>
                       <img src="../img/activeheart.png" />
-                      <p>1개 |</p>
+                      <p data-th-id="|heart${product.no}|">0개 |</p>
                       <img src="../img/star.png" />
-                      <p>5.0 점</p>
+                      <p data-th-id="|score${product.no}|"></p>
                   </div>
                   <div id="price">
                    <p data-th-text="${#numbers.formatInteger(product.price, 3, 'COMMA')} + ' 원'">판매 가격</p>
                   </div>
-
                 </div>
               </div>
             </a>
@@ -268,11 +263,42 @@
       })});
 
     let products = [[${products}]];
+    let wishes = [[${wishes}]];
     console.log(products);
     let productsLength = products.length;
+    let score = 0.0;
+    let totalScore = 0.0;
+
     for (let i = 0; i < productsLength; i++) {
 
+      if (products[i].productScores.length > 0) {
+        for (let j = 0; j < products[i].productScores.length; j++) {
+          score += parseFloat(products[i].productScores[i].score);
+          console.log(score);
+        }
+        totalScore = score / products[i].productScores.length;
+        console.log(products[i].productScores);
+        console.log(score);
+        console.log(products[i].productScores.length);
+        console.log(totalScore)
+         $("#score" + products[i].no).text(totalScore);
+      } else {
+        $("#score" + products[i].no).text("후기없음");
+      }
     }
+
+    let aLength = $("#productContainer1").find("a").length;
+
+    // console.log(wishes)
+
+    for (let i = 0; i < aLength; i++) {
+      for (let j = 0; j < wishes.length; j++) {
+        if ($("#productContainer1").find("a").eq(i).attr("id") == wishes[j].pno) {
+          $("#heart" + wishes[j].pno).text(wishes[j].count);
+        }
+      }
+    }
+
   </script>
 </body>
 </html>
