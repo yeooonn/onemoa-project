@@ -394,12 +394,10 @@ function fieldMemberList() {
                 // "<p><a href=\"#\">수정</a><a href=\"#\">삭제</a></p>" +
                 "</li>" +
                 "<li>" +
+                "<p>" +
                 "<a href='#' id='tfmno-" + result3[i].contestTeamFieldMembers[j].tfmno + "' onclick='dis7(this.id, this.text)'>지원자보기</a>" +
-                "</li>" +
-                "<li>" +
-                "<a href='/onemoa/message/messageDetail?no=" + result3[i].contestTeamFieldMembers[j].tfmno + "'>메시지</button>" +
-                "</li>" +
-                "</ul>";
+                "</p>" + "<p>" + "<a href='/onemoa/message/messageDetail?no=" + result3[i].contestTeamFieldMembers[j].tfmno + "'>메시지</button>" +
+                "</p>" + "</li></ul>";
           } else {
             console.log("else");
             console.log(type);
@@ -413,8 +411,8 @@ function fieldMemberList() {
                 // "<p><a href=\"#\">수정</a><a href=\"#\">삭제</a></p>" +
                 "</li>" +
                 "<li>" +
-                "<p style='border:#6F9475; background-color:#6F9475; color:#ffffff;'>" +
-                "<a href='#' id='tfmno-" + result3[i].contestTeamFieldMembers[j].tfmno + "' onclick='dis9(this.id, this.text)'>팀원취소</a>" +
+                "<p>" +
+                "<a href='#' id='tfmno-" + result3[i].contestTeamFieldMembers[j].tfmno + "' onclick='dis9(this.id, this.text)' style='border:#6F9475; background-color:#6F9475; color:#ffffff;'>팀원취소</a>" +
                 "</p>" + "<p>" + "<a href='/onemoa/message/messageDetail?no=" + result3[i].contestTeamFieldMembers[j].tfmno + "'>메시지</button>" +
                 "</p>" + "</li></ul>";
           }
