@@ -226,7 +226,7 @@ public class ContestController {
         contestTeamFieldMember.setTfno(selectObj.get(i)); // 팀원 모집분야 번호 0번째
         contestTeamFieldMember.setMno(loginMember.getNo()); // 지원자 회원 번호
         contestTeamFieldMember.setCont(textArea);
-        contestTeamFieldMember.setType("false");
+        contestTeamFieldMember.setType("미승인");
   
         for (String portfolio1 : portfolios1) {
           contestTeamFieldMemberPortfolios.add(new ContestTeamFieldMemberPortfolio(portfolio1));

@@ -416,7 +416,6 @@
     where ctstno=#{value};
   </select>
 
-
   <!-- 공모전 팀원 모집 -->
   <insert id="insertTeam" useGeneratedKeys="true" keyColumn="tno" keyProperty="tno">
     insert into team(ctstno, mno, cont)

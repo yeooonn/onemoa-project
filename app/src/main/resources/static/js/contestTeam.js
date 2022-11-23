@@ -373,7 +373,6 @@ function fieldMemberList() {
                 "</li>" +
                 "<li>" +
                 "<p>" + result3[i].contestTeamFieldMembers[j].cont + "</p>" +
-                // "<p><a href=\"#\">수정</a><a href=\"#\">삭제</a></p>" +
                 "</li>" +
                 "<li>" +
                 "<p>" +
@@ -391,7 +390,6 @@ function fieldMemberList() {
                 "</li>" +
                 "<li>" +
                 "<p>" + result3[i].contestTeamFieldMembers[j].cont + "</p>" +
-                // "<p><a href=\"#\">수정</a><a href=\"#\">삭제</a></p>" +
                 "</li>" +
                 "<li>" +
                 "<p>" +
@@ -408,7 +406,6 @@ function fieldMemberList() {
                 "</li>" +
                 "<li>" +
                 "<p>" + result3[i].contestTeamFieldMembers[j].cont + "</p>" +
-                // "<p><a href=\"#\">수정</a><a href=\"#\">삭제</a></p>" +
                 "</li>" +
                 "<li>" +
                 "<p>" +
@@ -418,6 +415,7 @@ function fieldMemberList() {
           }
         }
       }
+      console.log(fieldMember);
       $("#xx-fieldMemberUl").html(fieldMember);
     },
   });
