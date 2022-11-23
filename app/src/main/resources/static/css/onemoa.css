@@ -2837,4 +2837,25 @@ label[for="label-a"] {
   border: 1px solid red;
 }
 
+/* 메인페이지 후기 별 */
+.star-rating {
+  width: 101px;
+  margin-top: 40px;
+  margin-right: 8.5%;
+  float: right;
+}
+
+.star-rating, .star-rating span {
+  display: inline-block;
+  height: 18px;
+  overflow:hidden;
+  background:url('/onemoa/img/reviewstar.png') no-repeat;
+}
+
+.star-rating span {
+  background-position: left bottom;
+  line-height: 0;
+  vertical-align: top;
+}
+
 
