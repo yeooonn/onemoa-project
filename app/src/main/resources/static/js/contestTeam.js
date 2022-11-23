@@ -399,7 +399,7 @@ function fieldMemberList() {
                 "<li>" +
                 "<a href='/onemoa/message/messageDetail?no=" + result3[i].contestTeamFieldMembers[j].tfmno + "'>메시지</button>" +
                 "</li>" +
-                "</li></ul>";
+                "</ul>";
           } else {
             console.log("else");
             console.log(type);
