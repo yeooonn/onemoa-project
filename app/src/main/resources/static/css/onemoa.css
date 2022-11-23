@@ -1640,7 +1640,7 @@ label[for="label-a"] {
 .portfolio2:nth-of-type(4) ul li:nth-of-type(2) p:nth-of-type(2) a:nth-of-type(2):hover {
   color: red;
 }
-.portfolio2:nth-of-type(4) ul li:nth-of-type(3) p {
+.portfolio2:nth-of-type(4) ul li:nth-of-type(3) a {
   font-weight: normal;
   width: 100%;
   border: 1px solid #707fc2;
@@ -1654,7 +1654,7 @@ label[for="label-a"] {
   margin-top: 22%;
   font-size: 1.2vw;
 }
-.portfolio2:nth-of-type(4) ul li:nth-of-type(3) p:hover {
+.portfolio2:nth-of-type(4) ul li:nth-of-type(3) a:hover {
   background-color: #707fc2;
   color: #fff;
   transition: all .3s;

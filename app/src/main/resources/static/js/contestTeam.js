@@ -338,7 +338,7 @@ function teamReaderDetail() {
                 + "<span>" + result2[i].size + "</span>"
             fieldSize += Number(result2[i].size);
           }
-          fieldHead = "<li>" +  "모집인원 총" + fieldSize + "명 " + fieldList + "</li>" + "<button class=\"tmm\" onclick=\"dis5()\">팀원 지원하기</button>" + "<button class=\"tmm2\" onclick=\"location.href='/onemoa/message/messageDetail?no=' + readerNumber \">메시지</button>"
+          fieldHead = "<li>" +  "모집인원 총" + fieldSize + "명 " + fieldList + "</li>" + "<button class=\"tmm\" onclick=\"dis5()\">팀원 지원하기</button>";
           $("#xx-readerField").html(fieldHead);
         },
       });
@@ -378,7 +378,8 @@ function fieldMemberList() {
                 "<li>" +
                 "<p>" +
                 "<a href='#' id='tfmno-" + result3[i].contestTeamFieldMembers[j].tfmno + "' onclick='dis7(this.id, this.text)'>지원자보기</a>" +
-                "</p></li></ul>";
+                "</p>" + "<p>" + "<a href='/onemoa/message/messageDetail?no=" + result3[i].contestTeamFieldMembers[j].tfmno + "'>메시지</button>" +
+                "</p>" + "</li></ul>";
           }
           else if (type == "미승인") {
             console.log("if");
@@ -393,9 +394,9 @@ function fieldMemberList() {
                 // "<p><a href=\"#\">수정</a><a href=\"#\">삭제</a></p>" +
                 "</li>" +
                 "<li>" +
-                "<p>" +
                 "<a href='#' id='tfmno-" + result3[i].contestTeamFieldMembers[j].tfmno + "' onclick='dis7(this.id, this.text)'>지원자보기</a>" +
-                "</p></li></ul>";
+                "<a href='/onemoa/message/messageDetail?no=" + result3[i].contestTeamFieldMembers[j].tfmno + "'>메시지</button>" +
+                "</li></ul>";
           } else {
             console.log("else");
             console.log(type);
@@ -409,9 +410,10 @@ function fieldMemberList() {
                 // "<p><a href=\"#\">수정</a><a href=\"#\">삭제</a></p>" +
                 "</li>" +
                 "<li>" +
-                "<p style='border:#6F9475; background-color:#6F9475; color:#ffffff'>" +
+                "<p style='border:#6F9475; background-color:#6F9475; color:#ffffff;'>" +
                 "<a href='#' id='tfmno-" + result3[i].contestTeamFieldMembers[j].tfmno + "' onclick='dis9(this.id, this.text)'>팀원취소</a>" +
-                "</p></li></ul>";
+                "</p>" + "<p>" + "<a href='/onemoa/message/messageDetail?no=" + result3[i].contestTeamFieldMembers[j].tfmno + "'>메시지</button>" +
+                "</p>" + "</li></ul>";
           }
         }
       }
