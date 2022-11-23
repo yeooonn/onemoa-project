@@ -25,5 +25,7 @@ public class Product {
   private String rule;
   private String selfIntro;
 //  private List<Wish> wishlist;
+  
+  List<ProductScore> productScores;
 }
 

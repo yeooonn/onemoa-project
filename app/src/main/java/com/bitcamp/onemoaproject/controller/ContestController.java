@@ -203,6 +203,7 @@ public class ContestController {
     }
     else if (loginMember != null) {
       List<Member> member = memberService.getFieldMemberPortfolio(loginMember.getNo());
+      System.out.println("member = " + member);
       return member;
     }
     return null;

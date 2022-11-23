@@ -35,6 +35,10 @@
             <result column="fname" property="filename"/>
             <result column="pno" property="productNo"/>
         </collection>
+
+        <collection property="productScores" ofType="ProductScore">
+          <result column="score" property="score"/>
+        </collection>
     </resultMap>
 
     <resultMap type="attachedFile" id="attachedFileMap">
@@ -138,23 +142,44 @@
         </foreach>
     </insert>
 
+<!--    <select id="selectProductList" resultMap="productMap" parameterType="criteria">-->
+<!--        select-->
+<!--        p.pno,-->
+<!--        p.pcno,-->
+<!--        p.title,-->
+<!--        p.price,-->
+<!--        p.vw_cnt,-->
+<!--        p.cdt,-->
+<!--        p.thumbnail-->
+<!--        from-->
+<!--        product p-->
+<!--        <if test="categoryCode != null">-->
+<!--            where p.pcno = #{categoryCode}-->
+<!--        </if>-->
+<!--        order by-->
+<!--        pno desc-->
+<!--        limit #{pageStart}, #{perPageNum}-->
+<!--    </select>-->
+
     <select id="selectProductList" resultMap="productMap" parameterType="criteria">
-        select
+      select
         p.pno,
         p.pcno,
         p.title,
         p.price,
         p.vw_cnt,
         p.cdt,
-        p.thumbnail
-        from
-        product p
-        <if test="categoryCode != null">
-            where p.pcno = #{categoryCode}
-        </if>
-        order by
-        pno desc
-        limit #{pageStart}, #{perPageNum}
+        p.thumbnail,
+        rw.score
+      from product p
+      left outer join product_order po on p.pno = po.pno
+      left outer join order_review rw on po.pono=rw.pono
+      <if test="categoryCode != null">
+        where p.pcno = #{categoryCode}
+      </if>
+      order by
+      pno desc
+      limit #{pageStart}, #{perPageNum}
     </select>
 
     <select id="countProductList" parameterType="String" resultType="Integer">
