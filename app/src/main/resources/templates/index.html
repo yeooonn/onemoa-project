@@ -15,6 +15,9 @@
 
     .star-rating {
       width: 101px;
+      margin-top: 40px;
+      margin-right: 8.5%;
+      float: right;
     }
 
     .star-rating, .star-rating span {
@@ -22,7 +25,7 @@
       height: 18px;
       overflow:hidden;
       /*background:url('img/reviewstar.png')no-repeat;*/
-      background:url('/onemoa/img/reviewstar.png')no-repeat;
+      background:url('/onemoa/img/reviewstar.png') no-repeat;
     }
 
     .star-rating span {
@@ -120,7 +123,7 @@
           <li data-th-each="review : ${reviews}">
               <img data-th-each="file : ${review.orderReviewAttachedFiles}" src="./img/mainre.png" data-th-src="@{product/reviewfiles/{path}(path=${file.filepath})}" style="display: inline-block; width: 100%; height: 200px;">
               <p class="rev" data-th-text="${review.writer.nickname}" style="font-size: 1vw; color: gray;"></p>
-              <p class="rev" data-th-text="${'별점'+ review.score}" style="font-size: 1vw; color: blue;"></p>
+              <!-- <p class="rev" data-th-text="${'별점'+ review.score}" style="font-size: 1vw; color: blue;"></p> -->
               <div class="star-rating">
                 <span data-th-if="${review.score - 5 == 0}" style="width:100%"></span>
                 <span data-th-if="${review.score - 4.5 == 0}" style="width:90%"></span>
