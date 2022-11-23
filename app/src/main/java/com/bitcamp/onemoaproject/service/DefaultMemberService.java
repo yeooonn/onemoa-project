@@ -86,10 +86,10 @@ public class DefaultMemberService implements MemberService {
   public void modifyPasswd(String email, String newPassword) {
     memberDao.modifyPasswd(email, newPassword);
   }
-
+  
   @Override
   public Member getNickName(String nickname) {
-    return null;
+    return memberDao.findByNickName(nickname);
   }
 
   @Override
