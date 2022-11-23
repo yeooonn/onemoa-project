@@ -3,6 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <link href="/onemoa/css/onemoa.css" rel="stylesheet">
+  <link rel="icon" href="../img/favicon1.ico">
+  <link rel="shortcut icon" href="../img/favicon1.ico">
   <script src="/onemoa/js/login.js"></script>
   <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
   <link href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" rel="stylesheet">
@@ -22,26 +24,26 @@
 </style>
 <body>
 <div data-th-replace="/fragments/nav.html :: fragment-nav"></div>
-<div><img id="noticeBanner" src="../img/contestbg.png" alt=""></div>
+<div><img id="noticeBanner" src="../img/faq.png" alt=""></div>
 <div id="underBanner"></div>
 <h1 style="text-align: center;">FAQ</h1>
   <div class="container">
+    <div class="buttons">
+      <button style="margin-bottom: 10px;" type="button" class="btn btn-primary btn-sm" id="backToMain"><a href="./list">목록</a></button>
+      <button style="margin-bottom: 10px;" type="button" class="btn btn-primary btn-sm" id="backToMain"><a href="/onemoa/">메인으로 돌아가기</a></button>
+    </div>
     <table class="table">
       <tbody>
       <tr>
       <th>제목</th>
-      <td name="title" data-th-text="${faq.title}" size=100 >제목</td>
+      <td name="title" data-th-text="${faq.title}" size=100>제목</td>
       </tr>
       <tr>
         <th>내용</th>
-        <td data-th-text="${faq.content}">내용</td>
+        <td><textarea name='content' rows='40' cols='30' data-th-utext="${faq.content}" style="width: 100%; min-height: 500px; border:none; outline: none; resize: none;" readonly>내용</textarea></td>
       </tr>
       </tbody>
     </table>
-    <div class="buttons">
-      <button type="button" class="btn btn-primary btn-sm" id="backToMain"><a href="./list">목록</a></button>
-      <button type="button" class="btn btn-primary btn-sm" id="backToMain"><a href="/onemoa/">메인으로 돌아가기</a></button>
-    </div>
   </div>
   <input type="hidden" name='no'
          value='1'
