@@ -3,8 +3,6 @@
   <head>
     <meta charset = "UTF-8">
     <title>onemoa mypage</title>
-<!--    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">-->
-<!--    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>-->
     <link href="/onemoa/css/onemoa.css" rel="stylesheet">
     <link href="/onemoa/css/onemoaMypage.css" rel="stylesheet">
     <link href="/onemoa/css/message.css" rel="stylesheet">
@@ -20,8 +18,6 @@
   <ul class="myPage">
       <li class="mypageArea">
         <div class="nick">
-<!--          <img data-th-src="${'/onemoa/member/files/' + member.profile}">-->
-<!--          <p data-th-text="${member.nickname}">닉네임님</p>-->
         </div>
         <div class="mypageNav">
           <div class="myonemoa">
@@ -32,7 +28,7 @@
 <!-- 메시지 상세보기 -->
           <ul class="mynav">
             <li class="message" data-th-each="message : ${messages}" data-th-if="${member.no} != ${message.receiver}">
-                <img data-th-if="${member.no} != ${message.receiver}" data-th-src="@{/member/files/{path}(path=${message.writer.profile})}" data-th-id="${message.writer.no}" onclick="messageDetail(this.id)" 
+                <img data-th-if="${member.no} != ${message.receiver}" data-th-src="@{/member/files/{path}(path=${message.writer.profile})}" data-th-id="${message.writer.no}" onclick="messageDetail(this.id)"
                 class="messageProfile"/>
                 <span class="messageNick" data-th-if="${member.no} != ${message.receiver}" data-th-text="${message.writer.nickname}"></span>
             </li>
@@ -44,28 +40,43 @@
       <li class="mypageArea">
         <div class="mypagePortfolio">
           <p class="mptxt2" data-th-text="${receiverMember.nickname}+'님과의 대화입니다.'" style="font-weight: normal;"></p>
-<!--          <p data-th-text="${member}"></p>-->
-<!--          <p data-th-text="${details}"></p>-->
           <div class="chatArea">
             <div class="chat" data-th-each="detail : ${details}">
               <div class="senderdiv">
                 <div class="xx-senderDiv" data-th-if="${member.no} == ${detail.sender}">
                   <p class="xx-senderP" data-th-text="${detail.cont}" ></p>
-                  <p class="xx-sender" data-th-if="${detail.cont} != null" data-th-text="${#dates.format(detail.cdt, 'MM-dd HH:mm')}"></p>
+                  <p class="xx-sender" data-th-if="${detail.cont} != null" data-th-text="${#dates.format(detail.cdt, 'MM/dd HH:mm')}"></p>
+                </div>
+                <div data-th-if="${member.no} == ${detail.sender}" data-th-each="file : ${detail.messageAttachedFiles}">
+                  <p data-th-if="${file.filepath} != null">
+                    <a data-th-href="|/onemoa/message/files/${file.filepath}|" >
+                      <img data-th-src="@{/message/files/{path}(path=${file.filepath})}" style="width: 200px; height: 200px">
+                    </a>
+                  </p>
                 </div>
              </div>
              <div class="receiverdiv">
                 <div class="xx-receiverDiv" data-th-if="${member.no} != ${detail.sender}">
                   <p class="xx-receiverP" data-th-text="${detail.cont}"></p>
-                  <p class="xx-receiver" data-th-if="${detail.cont} != null" data-th-text="${#dates.format(detail.cdt, 'MM-dd HH:mm')}"></p>
+                  <p class="xx-receiver" data-th-if="${detail.cont} != null" data-th-text="${#dates.format(detail.cdt, 'MM/dd HH:mm')}"></p>
+                </div>
+                <div data-th-if="${member.no} != ${detail.sender}" data-th-each="file : ${detail.messageAttachedFiles}">
+                  <p data-th-if="${file.filepath} != null">
+                    <a data-th-href="|/onemoa/message/files/${file.filepath}|" >
+                      <img data-th-src="@{/message/files/{path}(path=${file.filepath})}" style="width: 200px; height: 200px">
+                    </a>
+                  </p>
                 </div>
               </div>
             </div>
           </div>
-            <form id="sendForm" action="sendContent" method="post">
+            <form id="sendForm" action="sendContent" method="post" enctype="multipart/form-data">
               <input type="hidden" name="sender" data-th-value="${member.no}"/>
               <input id="receiverBox" type="hidden" name="receiver"/>
-              <input class="messagetxt" type="text" name="content" size="60" onKeyDown="if(window.event.keyCode==13){sendContent()}" placeholder="메시지를 입력하시고 엔터를 눌러주세요.">
+              <div>
+                <input name='files' type="file" multiple/>
+              </div>
+              <input class="messagetxt" type="text" name="cont" size="60" onKeyDown="if(window.event.keyCode==13){sendContent()}" placeholder="메시지를 입력하시고 엔터를 눌러주세요.">
             </form>
         </div>
       </li>

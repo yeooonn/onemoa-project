@@ -18,6 +18,13 @@
       <result column="nick" property="nickname"/>
       <result column="profile" property="profile"/>
     </association>
+
+    <collection property="messageAttachedFiles" ofType="MessageAttachedFile">
+      <id column="msgfno" property="msgFno"/>
+      <result column="fname" property="filename"/>
+      <result column="fpath" property="filepath"/>
+      <result column="msgno" property="msgNo"/>
+    </collection>
   </resultMap>
 
   <!--  메시지 미리보기 조회 (사이드바)-->
@@ -42,22 +49,34 @@
   <!--  메시지 상세보기-->
   <select id="findByNo" resultMap="messageMap">
     select
-    msgno,
-    sender,
-    receiver,
-    cont,
-    type,
-    cdt
-    from message
+      msg.msgno,
+      msg.sender,
+      msg.receiver,
+      msg.cont,
+      msg.type,
+      msg.cdt,
+      mf.fpath
+    from message msg
+      left outer join message_file mf on msg.msgno = mf.msgno
     where
-    (sender=#{sender} and receiver=#{no}) OR (sender=#{no} and receiver=#{sender})
+      (sender=#{sender} and receiver=#{no}) OR (sender=#{no} and receiver=#{sender})
     order by cdt asc;
   </select>
 
   <!-- 메시지 저장-->
-  <insert id="insertMessage">
+  <insert id="insertMessage" parameterType="message"
+    useGeneratedKeys="true" keyColumn="msgno" keyProperty="msgNo">
     insert into message (sender, receiver, cont)
-    value(#{sender}, #{receiver}, #{content});
+    value(#{sender}, #{receiver}, #{cont});
+  </insert>
+
+  <!-- 첨부파일 저장 -->
+  <insert id="insertMessageFiles" parameterType="message">
+    insert into message_file(fname,fpath,msgno)
+    values
+    <foreach collection="messageAttachedFiles" item="file" separator=",">
+      (#{file.filename},#{file.filepath},#{msgNo})
+    </foreach>
   </insert>
 
   <!-- 메시지 검사 -->
@@ -68,7 +87,7 @@
       where sender = #{receiver} and receiver = #{sender};
   </select>
 
-  <!-- 메시지 저장-->
+  <!-- 메시지 저장 content null 값-->
   <insert id="insertMessage2">
     insert into message (sender, receiver)
     value(#{receiver}, #{sender});

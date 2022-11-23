@@ -6,6 +6,7 @@ import com.bitcamp.onemoaproject.vo.Message;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service 
 public class DefaultMessageService implements MessageService {
@@ -28,10 +29,18 @@ public class DefaultMessageService implements MessageService {
     return messageDao.findByNo(sender, no);
   }
   
-  // 메시지 저장
+  // 메시지 저장(객체)
   @Override
-  public int addMessage(int sender, int receiver, String content) throws Exception {
-    return messageDao.insertMessage(sender, receiver, content);
+  @Transactional
+  public void addMessage(Message message) throws Exception {
+    // 1) 메시지 등록
+    if (messageDao.insertMessage(message) == 0) {
+      throw new Exception("메시지 등록 실패!");
+    }
+    // 2) 첨부파일 등록
+    if (message.getMessageAttachedFiles().size() > 0) {
+      messageDao.insertMessageFiles(message);
+    }
   }
   
   // 메시지 카운터
@@ -44,6 +53,8 @@ public class DefaultMessageService implements MessageService {
     }
     return messageDao.messageCount(sender, receiver);
   }
+  
+
 }
 
 

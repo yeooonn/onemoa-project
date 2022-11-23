@@ -11,7 +11,7 @@ public interface MessageService {
   List<Message> listNo(int sender, int no) throws Exception;
   
   // 메시지 저장
-  int addMessage(int sender, int receiver, String content) throws Exception;
+  void addMessage(Message message) throws Exception;
   
   // 메시지 카운터
   int getCount(int sender, int receiver);

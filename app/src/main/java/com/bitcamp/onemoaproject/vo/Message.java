@@ -1,6 +1,7 @@
 package com.bitcamp.onemoaproject.vo;
 
 import java.util.Date;
+import java.util.List;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -16,4 +17,6 @@ public class Message {
   private Boolean type;
   private Date cdt;
   private Member writer;
+  
+  List<MessageAttachedFile> messageAttachedFiles;
 }

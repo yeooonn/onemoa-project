@@ -13,8 +13,11 @@ public interface MessageDao {
   // 메시지 상세보기
   List<Message> findByNo(@Param("sender") int sender, @Param("no") int no);
   
-  // 메시지 저장
-  int insertMessage(@Param("sender") int sender, @Param("receiver") int receiver, @Param("content") String content);
+  // 메시지 저장(객체)
+  int insertMessage(Message message);
+  
+  // 메시지 파일 저장
+  int insertMessageFiles(Message message);
   
   // 메시지 카운터
   int messageCount(@Param("sender") int sender, @Param("receiver") int receiver);

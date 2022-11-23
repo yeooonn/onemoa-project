@@ -25,17 +25,16 @@
         </div>
         <div class="mypageNav">
           <div class="myonemoa">
-            <p>마이원모아</p>
+            <p>전체 메시지</p>
             <span class="mybar"></span>
           </div>
 
           <!--  메시지 미리보기 조회 (사이드바)  -->
           <ul class="mynav">
-            <li>
-              <div data-th-each="message : ${messages}">
-                <img data-th-if="${member.nickname} != ${message.writer.nickname}" data-th-src="@{/member/files/{path}(path=${message.writer.profile})}" data-th-id="${message.writer.no}" onclick="messageDetail(this.id)" style="width: 100px; height: 100px; cursor: pointer"/>
-                <p data-th-if="${member.no} != ${message.receiver}" data-th-text="${message.writer.nickname}">
-              </div>
+            <li class="message" data-th-each="message : ${messages}" data-th-if="${member.no} != ${message.receiver}">
+              <img data-th-if="${member.no} != ${message.receiver}" data-th-src="@{/member/files/{path}(path=${message.writer.profile})}" data-th-id="${message.writer.no}" onclick="messageDetail(this.id)"
+                   class="messageProfile"/>
+              <span class="messageNick" data-th-if="${member.no} != ${message.receiver}" data-th-text="${message.writer.nickname}"></span>
             </li>
           </ul>
           
