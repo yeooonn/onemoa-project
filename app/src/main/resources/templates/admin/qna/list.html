@@ -5,6 +5,7 @@
     <title>onemoa mypage</title>
     <link href="/onemoa/css/onemoa.css" rel="stylesheet">
     <link href="/onemoa/css/onemoaMypage.css" rel="stylesheet">
+    <link href="/onemoa/css/onemoaManage.css" rel="stylesheet">
     <link href="/onemoa/css/admin.css" rel="stylesheet"/>
     <link rel="icon" href="../../img/favicon1.ico">
     <link rel="shortcut icon" href="../../img/favicon1.ico">
@@ -52,28 +53,28 @@
             <td><a href='detail?no=1' data-th-href="@{answerdetail(no=${qna.no})}" data-th-text="${qna.title == ''} ? '(제목없음)' : ${qna.title}">제목</a></td>
             <td data-th-text="${qna.writer.name}">홍길동</td>
             <td data-th-text="${#temporals.format(qna.createdDate, 'yyyy-MM-dd')}">2022-1-1</td>
-            <td data-th-if="${qna.answer == null}"><a href='detail?no=1' data-th-href="@{answerdetail(no=${qna.no})}">답변대기</a></td>
-            <td data-th-if="${qna.answer != null}">답변완료</td>
+            <td data-th-if="${qna.answer == null}"><a href='detail?no=1' data-th-href="@{answerdetail(no=${qna.no})}" style="color:royalblue;">답변대기</a></td>
+            <td data-th-if="${qna.answer != null}" style="font-weight: 600;">답변완료</td>
 <!--          <td style="width: 100px" data-th-text="${qna.answer}"></td>-->
           </tr>
         </table>
       </div>
-      <div class="nextBox">
-        <nav class="xx-nav" aria-label="pagination">
-          <ul class="xx-pagination">
-            <li data-th-if="${pageMaker.prev}">
-              <a data-th-href="@{list(pageMaker.startPage-1)}"><span aria-hidden="true">이전페이지</span><span class="xx-visuallyhidden">previous set of pages</span></a>
-            </li>
-            <data-th-block data-th-each="pageNum: ${#numbers.sequence(pageMaker.startPage, pageMaker.endPage)}">
-              <li><a data-th-href="@{list(page=${pageNum})}"><span class="xx-visuallyhidden">page </span><span data-th-text="${pageNum}"></span></a></li>
-            </data-th-block>
-            <li data-th-if="${pageMaker.next && pageMaker.endPage >0}">
-              <a data-th-href="@{list(page=${pageMaker.endPage+1})}"><span class="xx-visuallyhidden">next set of pages</span><span aria-hidden="true">다음페이지</span></a>
-            </li>
-          </ul>
-        </nav>
-      </div>
     </li>
  </ul>
+<div class="nextBox" style="margin-bottom: 50px;">
+    <nav class="xx-nav" aria-label="pagination" style="padding-top: 50px;">
+        <ul class="xx-pagination">
+            <li data-th-if="${pageMaker.prev}">
+                <a data-th-href="@{list(pageMaker.startPage-1)}"><span aria-hidden="true">이전페이지</span><span class="xx-visuallyhidden">previous set of pages</span></a>
+            </li>
+            <data-th-block data-th-each="pageNum: ${#numbers.sequence(pageMaker.startPage, pageMaker.endPage)}">
+                <li><a data-th-href="@{list(page=${pageNum})}"><span class="xx-visuallyhidden">page </span><span data-th-text="${pageNum}"></span></a></li>
+            </data-th-block>
+            <li data-th-if="${pageMaker.next && pageMaker.endPage >0}">
+                <a data-th-href="@{list(page=${pageMaker.endPage+1})}"><span class="xx-visuallyhidden">next set of pages</span><span aria-hidden="true">다음페이지</span></a>
+            </li>
+        </ul>
+    </nav>
+</div>
 </body>
 </html>
