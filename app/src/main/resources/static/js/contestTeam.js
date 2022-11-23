@@ -395,7 +395,10 @@ function fieldMemberList() {
                 "</li>" +
                 "<li>" +
                 "<a href='#' id='tfmno-" + result3[i].contestTeamFieldMembers[j].tfmno + "' onclick='dis7(this.id, this.text)'>지원자보기</a>" +
+                "</li>" +
+                "<li>" +
                 "<a href='/onemoa/message/messageDetail?no=" + result3[i].contestTeamFieldMembers[j].tfmno + "'>메시지</button>" +
+                "</li>" +
                 "</li></ul>";
           } else {
             console.log("else");
