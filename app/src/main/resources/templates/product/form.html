@@ -13,6 +13,7 @@
   <link href="../css/onemoa.css" rel="stylesheet" />
   <script src="/onemoa/js/login.js"></script>
   <style>
+
     .length1 {
       margin-left: 15vw;
       margin-right: 15vw;
@@ -79,17 +80,17 @@
         <div class="productForm-grid-item">
         <div id="productDetail" class="input-group">
           <span class="input-group-addon">가격</span>
-          <input name="price" id="price" type="number" class="form-control" min="1000" max="10000000" step="1000" placeholder="가격을 원(₩) 단위로 입력해주세요."/>
+          <input required name="price" id="price" type="number" class="form-control" min="1000" max="10000000" step="1000" placeholder="가격을 원(₩) 단위로 입력해주세요."/>
         </div>
         <div class="input-group">
           <span class="input-group-addon">제목</span>
-          <input name="title" id="title" type="text" class="form-control" maxlength="100" placeholder="제목을 입력해주세요.(최대 100 자) "/>
+          <input required name="title" id="title" type="text" class="form-control" maxlength="100" placeholder="제목을 입력해주세요.(최대 100 자) "/>
         </div>
-        <textarea name="content" style="width: 90%; height: 90%"></textarea>
-        <div class="productForm-grid-item" placeholder="수정 및 재진행 규칙을 적어주세요. (미입력시 원모아의 기본 정책을 따르게 됩니다)" >수정 및 재진행</div>
-        <textarea name="rule" class="rule"></textarea>
+        <textarea required name="content" style="width: 90%; height: 90%"></textarea>
+        <div class="productForm-grid-item" placeholder="수정 및 재진행 규칙을 적어주세요." >수정 및 재진행</div>
+        <textarea required name="rule" class="rule"></textarea>
         <div class="productForm-grid-item">판매자 소개글</div>
-        <textarea name="selfIntro" class="rule" placeholder="구매자에게 자신을 소개해주세요!"></textarea>
+        <textarea required name="selfIntro" class="rule" placeholder="구매자에게 자신을 소개해주세요!"></textarea>
       </div>
 
       <div class="productForm-grid-item">
@@ -124,7 +125,7 @@
         minHeight: 200,             // set minimum height of editor
         maxHeight: 200,             // set maximum height of editor
         maxWidth: 500,
-        placeholder : '수정 및 재진행 규칙을 적어주세요. (미입력시 원모아의 기본 정책을 따르게 됩니다)',
+        placeholder : '수정 및 재진행 규칙을 적어주세요',
         toolbar: false
       });
 
@@ -164,16 +165,6 @@
           for (let i = 0; i < result.length; i++) {
             $code.innerHTML += '<option value="'+ result[i].pcno + '" text="' + result[i].pcname + '">' + result[i].pcname + '</option>'
           }
-
-
-          // <select name="code" class="productForm-category" id="code">
-          //   <option value="">하위 카테고리 선택</option>
-
-//          data-th-value="${child.code}" data-th-text="${child.name}"
-
-          // for (let i = 0; i < arr.length; i++) {
-          //   subcatelist += "<option data-th-value=" + arr[i].pcno + "data-th-text" + arr[i].code + "></option>"
-          // }
         }
       });
     }

@@ -1,10 +1,10 @@
 package com.bitcamp.onemoaproject.vo.product;
 
 import com.bitcamp.onemoaproject.vo.Member;
-import com.bitcamp.onemoaproject.vo.Wish;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
+
 import java.sql.Date;
 import java.util.List;
 
@@ -24,6 +24,9 @@ public class Product {
   private List<AttachedFile> attachedFiles;
   private String rule;
   private String selfIntro;
-//  private List<Wish> wishlist;
+  private int status;
+
+  private int wishCount;
+  private double reviewAverage;
 }
 

@@ -276,7 +276,7 @@
     height: 18px;
     overflow:hidden;
     /*background:url('img/reviewstar.png')no-repeat;*/
-    background:url('static/img/reviewstar.png')no-repeat;
+    background:url('../img/reviewstar.png')no-repeat;
   }
 
   .star-rating span {
@@ -451,7 +451,6 @@
               <span data-th-if="${orderReview.score - 1.5 == 0}" style="width:30%"></span>
               <span data-th-if="${orderReview.score - 1 == 0}" style="width:20%"></span>
             </div>
-            <span><p data-th-value="${orderReview.score}" data-th-text="${orderReview.score}">후기 별점</p></span>
           </td>
           <td><p data-th-text="${orderReview.content}">후기 내용</p></td>
           <td><p id="rwCreatedDate" data-th-text="${orderReview.createdDate}">작성일</p></td>

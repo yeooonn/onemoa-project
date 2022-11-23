@@ -362,13 +362,6 @@
       </div>
     </div>
     <div class="commonBorder">
-      <div class="heart">
-        <img src="../img/deadheart.png" alt="heartClicked" width="25px" height="25px" >
-        <p hidden id="checkLike" data-th-value="${wishCheck}"></p>
-        <div id="wishCnt" data-th-text="${wishCount}"></div>
-      </div>
-      <img src="../img/star.png" width="25px" height="25px"/>
-      <span id="aboutReviews" data-th-text="${average} == null or ${count} == null ? ' 후기 없음' : ' ' + ${average} + ' 점 ( 후기 : ' + ${count} + ' 개 ) '">별점 평균</span>
     </div>
 
     <div id="top">
@@ -390,8 +383,8 @@
       <div class="horizonLine"></div>
 
       <div id="buyOrAsk">
-        <button type="submit" class="btn btn-default"><a>수정하기</a></button>
-        <button id="invalid" type="button" class="btn btn-default">삭제 (게시물 비공개)</button>
+        <button data-th-if="${product.status == 0}" id="valid" type="button" class="btn btn-default">게시물 공개 처리</button>
+        <button data-th-if="${product.status != 0}" id="invalid" type="button" class="btn btn-default">게시물 비공개</button>
       </div>
     </div>
 </form>
@@ -425,87 +418,8 @@
 </div>
 <div class="commonBorder"></div>
 
-<div id="detail3">
-  <div id="detail3-1">
-    <p id="reviewMark">구매자 후기</p>
-    <p>최신순</p>
-    <p>별점 높은 순</p>
-    <p>별점 낮은 순</p>
-  </div>
-  <div id="detail3-2">
-    <table id="reviewList">
-      <tr class="reviewLine" data-th-each="review : ${reviews}">
-        <td id="starRow">
-          <div class="star-rating">
-            <span data-th-if="${review.score - 5 == 0}" style="width:100%"></span>
-            <span data-th-if="${review.score - 4.5 == 0}" style="width:90%"></span>
-            <span data-th-if="${review.score - 4 == 0}" style="width:80%"></span>
-            <span data-th-if="${review.score - 3.5 == 0}" style="width:70%"></span>
-            <span data-th-if="${review.score - 3 == 0}" style="width:60%"></span>
-            <span data-th-if="${review.score - 2.5 == 0}" style="width:50%"></span>
-            <span data-th-if="${review.score - 2 == 0}" style="width:40%"></span>
-            <span data-th-if="${review.score - 1.5 == 0}" style="width:30%"></span>
-            <span data-th-if="${review.score - 1 == 0}" style="width:20%"></span>
-          </div>
-        </td>
-        <td><p data-th-text="${review.content}">후기 내용</p></td>
-        <td><p id="rwCreatedDate" data-th-text="${review.createdDate}">작성일</p></td>
-      </tr>
-    </table>
-  </div>
 </div>
 </div>
-</div>
-<footer data-th-replace="/fragments/footer.html :: fragment-footer"></footer>
-<script>
-  $(document).ready(function () {
-    const checkLike = $("#checkLike").attr("value"); // 해당 사용자가 좋아하는지
-
-    console.log(checkLike);
-
-    if (checkLike == 1) {
-      $(`.heart > img`).attr({ src: "../img/aliveheart.png" });
-      console.log("좋아함")
-    } else if (checkLike == 0) {
-      $(`.heart > img`).attr({ src: "../img/deadheart.png" });
-      console.log("안좋아함")
-    }
-    const productNo = $("#productNo").attr("value");
-
-
-    $(".heart").on("click", function () {
-      $.ajax({
-        url: '/onemoa/product/like',
-        type: 'POST',
-        data: {'productNo': productNo},
-        success: function(data) {
-
-          console.log(data);
-          //
-//          $("#checkLike").text(data.result);
-
-          if (data.result == 1) {
-            console.log("이제 좋아요!");
-            $(`.heart > img`).attr({ src: "../img/aliveheart.png" });
-          } else {
-            console.log("이제 안좋아요1");
-            $(`.heart > img`).attr({ src: "../img/deadheart.png" });
-          }
-          $("#wishCnt").text(data.count);
-        },
-        error: function () {
-          swal({
-            title : "로그인이 필요합니다!",
-            icon  : "info",
-            closeOnClickOutside : false
-          }, function(){
-            location.href = 'http://localhost:3333/onemoa/pageLogin';
-          });
-        }
-      });
-    });
-  });
-</script>
 <script>
   $(".attached-image").click(function () {
     const clickedImg = $(this).attr('src');
@@ -520,20 +434,37 @@
   $("#invalid").on("click", function() {
 
     $.ajax({
-      url: '/onemoa/mypage/productInvalid',
+      url: '/onemoa/admin/product/productInvalid',
       type: 'POST',
       data: {'no': no},
       success: function(data) {
         swal({
           text: "게시글이 비공개 처리 되었습니다.",
           icon: "success"}).then(() => {
-            opener.location.reload();
-            self.close();
+          window.location.href="/onemoa/admin/product/productList";
           }
         )
       }
     });
   });
+
+  $("#valid").on("click", function() {
+  console.log("TEST")
+    $.ajax({
+      url: '/onemoa/admin/product/productValid',
+      type: 'POST',
+      data: {'no': no},
+      success: function(data) {
+        swal({
+          text: "게시글이 공개 처리 되었습니다.",
+          icon: "success"}).then(() => {
+            window.location.href="/onemoa/admin/product/productList";
+            }
+        )
+      }
+    });
+  });
+
 </script>
 </body>
 </html>
