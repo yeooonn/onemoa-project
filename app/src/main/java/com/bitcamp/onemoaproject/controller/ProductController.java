@@ -106,17 +106,18 @@ public class ProductController {
 
     PageMaker pageMaker = new PageMaker();
     cri.setCategoryCode(code);
+    /*cri.setPerPageNum(5);*/
     pageMaker.setCri(cri);
     pageMaker.setTotalCount(productService.countProductListTotal(code));
     List<Map<String,Object>> products = productService.selectProductList(cri);
     System.out.println("products = " + products);
   
     System.out.println("productService = " + productService.findByAll());
+    mav.addObject("code", code);
     mav.addObject("wishes", productService.findByAll());
     mav.addObject("products", products);
     mav.addObject("pageMaker", pageMaker);
     mav.addObject("productCategories", productCategoryService.list());
-
 
     return mav;
   }

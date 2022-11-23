@@ -81,7 +81,7 @@
         <div class="swiper-wrapper">
           <div class="swiper-slide" data-th-each="contest: ${contests}">
             <ul>
-              <li><img data-th-src="@{/contest/files/{path}(path=${contest.thumbNail})}" style="height: 400px"></li>
+              <li><img data-th-src="@{/contest/files/{path}(path=${contest.thumbNail})}" style="height: 350px"></li>
               <li><p data-th-text="${contest.contCategory.categoryName}" style="font-size: 1vw; color: gray;"></p></li>
               <li><p data-th-text="${contest.title}" style="font-size: 1.2vw"></p></li>
             </ul>
