@@ -39,7 +39,7 @@ public interface MemberDao {
   // 회원 포트폴리오 목록 조회
   List<Member> findByMemberPortfolio(int fieldMemberNo);
 
-  void modifyPasswd(
+  int modifyPasswd(
       @Param("email") String email, 
       @Param("newPassword") String newPassword);
 
@@ -52,6 +52,11 @@ public interface MemberDao {
   
   // test
   List<Member> findAllTest();
+  
+  Member findByIdEmail(@Param("name") String name, @Param("email") String email);
+  
+  int updatePwd(@Param("name") String name, @Param("email") String email,
+      @Param("password") String password);
 }
 
 

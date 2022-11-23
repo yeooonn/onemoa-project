@@ -94,12 +94,12 @@ public class DefaultMemberService implements MemberService {
 
   @Override
   public Member getIdEmail(String name, String email) {
-    return null;
+    return memberDao.findByIdEmail(name, email);
   }
 
   @Override
-  public boolean updatePwd(Member member) {
-    return false;
+  public boolean updatePwd(String email, String password) {
+    return memberDao.modifyPasswd(email, password) > 0;
   }
 
   // 사용자 패스워드 체크

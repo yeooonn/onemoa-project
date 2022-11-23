@@ -72,6 +72,7 @@ public class MemberController {
   @PostMapping("findByPwd")
   public String memberfindByPwd(String name, String email) throws Exception {
     Member member = memberService.getIdEmail(name, email);
+    System.out.println("member = " + member);
     if(member != null) {
       Random random = new Random();
       int checkNum = random.nextInt(888888) + 111111;
@@ -92,10 +93,12 @@ public class MemberController {
   @PostMapping("resetPassword")
   public String memberfindByPwd(String name, String email, String emailCodeKey) throws Exception {
     Member member = memberService.getIdEmail(name, email);
+    System.out.println("member = " + member);
     if(member != null) {
       member.setPassword(emailCodeKey);
       System.out.println("member = " + member);
-      if (!memberService.updatePwd(member)) {
+      
+      if (!memberService.updatePwd(email, emailCodeKey)) {
         throw new Exception("사용자 변경 실패!");
       }
 
