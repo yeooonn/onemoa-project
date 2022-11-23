@@ -232,7 +232,7 @@
     }
 
     #underBanner p span, button {
-      font-size: 0.85vw;
+      font-size: 16px;
       float : none;
       margin: 0 0px 0 0px;
     }
@@ -270,8 +270,8 @@
       position: absolute;
       top: 16%;
       left: 50%;
-      width: 80%;
-      height: 830px;
+      width: 40%;
+      height: 800px;
       padding-top: 80px;
       padding-left: 4.029%;
       padding-right: 4.029%;
@@ -299,7 +299,6 @@
     }
     .contestDetail .detail {
       width: 120%;
-      height: 547px;
     }
     .contestDetail .detail li {
       float: left;
@@ -334,25 +333,11 @@
       display: block;
       height: auto;
     }
-    .contestdtype {
-      width: 100%;
-      height: 100px;
-    }
-    .contestdtype p {
-      font-size: 1.142vw;
-      color: #a5a5a5;
-      float: left;
-      margin-right: 5%;
-      font-weight: bold;
-    }
-    .contestdtype p:hover {
-      border-bottom: 3px solid #000;
-      padding-bottom: 7px;
-    }
+
     .contestdtype p:nth-of-type(1) {
       color: #000;
       border-bottom: 3px solid #000;
-      padding-bottom: 7px;
+      padding-bottom: 3px;
     }
     .contestdtype span {
       display: block;
@@ -656,6 +641,43 @@
       color: #fff;
       transition: all .3s;
     }
+    #productTitle {
+      font-size:1vw;
+      margin-bottom: 20px;
+      margin-top: 20px;
+    }
+    #productTitle2 {
+      font-size:1vw;
+    }
+    #productTitle3 {
+      font-size:1vw;
+    }
+
+    .dis2 {
+      color: dodgerblue;
+    }
+
+    .star-rating {
+      width: 101px;
+    }
+
+    .star-rating, .star-rating span {
+      display: inline-block;
+      height: 18px;
+      overflow:hidden;
+      /*background:url('img/reviewstar.png')no-repeat;*/
+      background:url('../img/reviewstar.png')no-repeat;
+    }
+
+    .star-rating span {
+      background-position: left bottom;
+      line-height: 0;
+      vertical-align: top;
+    }
+
+    #reviewStart {
+      height: 50px;
+    }
 
   </style>
   <!--<body style="overflow-x: hidden">-->
@@ -664,12 +686,10 @@
 
 <!-- contestDetail modal2 -->
 <div class="reviewModal1" style="position: absolute; z-index: 1;">
-  <button class="closebtn2" onclick="clo()"><img style="position: fixed;" src="../img/x.png"></button>
+  <button hidden class="closebtn2" onclick="clo()"><img style="position: fixed;" src="../img/x.png"></button>
   <div class="reviewModal_body1">
-
     <div class="contestDetail">
     </div>
-
     <div class="contestdtype">
       <p onclick="team()"><a href="#">일반리뷰</a></p>
       <p id="contestTypeTeam" onclick="team()"><a href="#">포토리뷰</a></p>
@@ -678,12 +698,11 @@
 
     <!-- 일반리뷰 -->
     <div class="contestIn">
-      <div role="tabpanel" class="tab-pane active" id="home">
         <div class="tab-content">
-          <h1 style="text-align: center; margin-top:70px;">리뷰를 입력해주세요.</h1>
+          <h1 style="text-align: center; margin-bottom: 30px;">리뷰를 입력해주세요.</h1>
           <form id="review-add-form" action='/onemoa/order/review/reviewAdd1' method="post">
           <div class="container">
-              <table  style="width: 650px; height: auto;" class="table">
+              <table style="width: 650px; height: auto;" class="table">
                 <tr>
                   <th>
                     상품 정보
@@ -697,13 +716,13 @@
                   <td><p id="productTitle"></p></td>
                 </tr>
                 <tr>
-                  <th>별점 주기</th>
+                  <th>별점</th>
                   <td>
                       <span class="star">
                               ★★★★★
                       <span>★★★★★</span>
-                      <input name="score" style="transform: translateY(20px);"
-                             type="range" oninput="drawStar(this)" value="1" step="1" min="0" max="10">
+                      <input name="score" style="transform: translateY(0px);"
+                             type="range" oninput="drawStar(this)" value="1" step="0.5" min="1" max="5">
                       </span>
                   </td>
                 </tr>
@@ -717,24 +736,25 @@
                 </tr>
               </table>
               <div style="display: flex; justify-content: center;">
-                <button type='button' style="display: flex; justify-content: center;" class="btn btn-primary btn-sm" id="review-add">리뷰 등록하기</button>
+                <button type='button' style="display: flex; justify-content: center; margin-top: 30px; padding: 10px;"
+                        class="btn btn-primary btn-sm" id="review-add">리뷰 등록하기</button>
+                <button type='button' style="display: flex; justify-content: center; margin-top: 30px; padding: 10px;"
+                        class="btn btn-primary btn-sm" onclick="clo()">취소</button>
                 <input hidden name="status" value="1">
                 <input hidden id="orderNo" type="number" name="orderNo" readonly>
               </div>
             </div>
           </form>
-          </div>
       </div>
     </div>
 
     <!-- 포토리뷰 -->
     <div class="person" style="display: none;">
-      <div role="tabpanel" class="tab-pane" id="profile">
         <div class="tab-content">
-          <h1 style="text-align: center; margin-top:70px;">리뷰를 입력해주세요.</h1>
+          <h1 style="text-align: center; margin-bottom: 30px; margin-top: -40px;">리뷰를 입력해주세요.</h1>
           <form id="review-add-form1" action='/onemoa/order/review/reviewAdd' method="post" enctype="multipart/form-data">
             <div class="container">
-              <table class="table">
+              <table style="width: 650px; height: auto;"  class="table">
                 <tr>
                   <th>
                     상품 정보
@@ -751,12 +771,12 @@
                   <td><p id="productTitle2"></p></td>
                 </tr>
                 <tr>
-                  <th>별점 주기</th>
+                  <th>별점</th>
                   <td>
                         <span class="star1">
                                 ★★★★★
                         <span>★★★★★</span>
-                        <input name="score" style="transform: translateY(-50px);"
+                        <input name="score" style="transform: translateY(0px);"
                                type="range" oninput="drawStar1(this)" value="1" step="0.5" min="1" max="5">
                         </span>
                   </td>
@@ -775,9 +795,11 @@
                     <input name="files" type="file" multiple accept="image/*"></td>
                 </tr>
               </table>
-              <div style="display: flex; justify-content: center;">
-                <button type='button' class="btn btn-primary btn-sm" id="review-add1"
-                >리뷰 등록하기</button>
+              <div style="display: flex; justify-content: center; margin-top: 10px;">
+                <button style="padding: 10px;"  type='button' class="btn btn-primary btn-sm" id="review-add1">
+                  리뷰 등록하기</button>
+              <button type='button' style="display: flex; justify-content: center; padding: 10px;"
+                        class="btn btn-primary btn-sm" onclick="clo()">취소</button>
               </div>
               <input hidden name="status" value="1">
               <input hidden id="orderNo2" type="number" name="orderNo" readonly>
@@ -786,17 +808,16 @@
           </form>
         </div>
       </div>
-    </div>
   </div>
 </div><!--modal2-->
 
 <!-- modal3 review detail -->
 <div class="reviewModal2" style="position: absolute; z-index: 1;">
-  <button class="closebtn3" onclick="clo2()"><img src="../img/x.png"></button>
+  <button hidden class="closebtn3" onclick="clo2()"><img src="../img/x.png"></button>
   <div class="reviewModal_body3">
-    <h1 style="text-align: center; margin-top:70px;">리뷰 확인</h1>
+    <h1 style="text-align: center; margin-top:20px;">리뷰 확인하기</h1>
       <div class="container">
-        <table class="table">
+        <table style="width: 650px; height: auto;" class="table">
           <tr>
             <th style="min-width: 80px">
               상품 정보
@@ -812,40 +833,38 @@
           </tr>
           <tr>
             <th>별점
-            <td><img src="../../img/star.png" width="25px" height="25px" alt=""/></td>
             <td>
-              <div class="star-rating">
+              <div style="height: 50px; margin-top: 10px" class="star-rating">
                 <span id="reviewStart" style="width:100%"></span>
-<!--                <span data-th-if="${orderReview.score - 5 == 0}" style="width:100%"></span>-->
-<!--                <span data-th-if="${orderReview.score - 4.5 == 0}" style="width:90%"></span>-->
-<!--                <span data-th-if="${orderReview.score - 4 == 0}" style="width:80%"></span>-->
-<!--                <span data-th-if="${orderReview.score - 3.5 == 0}" style="width:70%"></span>-->
-<!--                <span data-th-if="${orderReview.score - 3 == 0}" style="width:60%"></span>-->
-<!--                <span data-th-if="${orderReview.score - 2.5 == 0}" style="width:50%"></span>-->
-<!--                <span data-th-if="${orderReview.score - 2 == 0}" style="width:40%"></span>-->
-<!--                <span data-th-if="${orderReview.score - 1.5 == 0}" style="width:30%"></span>-->
-<!--                <span data-th-if="${orderReview.score - 1 == 0}" style="width:20%"></span>-->
               </div>
             </td>
-            <td>작성일</td>
-              <td><p id="rwCreatedDate"></p></td>
+            <td style="text-align: right; font-weight: 700;">작성일</td>
+              <td style="margin-left: 10px;"><span id="rwCreatedDate"></span></td>
             <!--            <td><p id="rwCreatedDate" data-th-text="${orderReview.createdDate}">작성일</p></td>-->
             </td>
             </td>
             </th>
           </tr>
           <tr>
-            <th>리뷰 제목</th>
-            <td>
-              <textarea id="reviewTitle" name="title" style="resize: none;" rows='auto' cols='70'>후기 제목</textarea>
+            <th >리뷰 제목</th>
+            <td colspan="5">
+              <textarea id="reviewTitle" name="title" style="resize: none;" rows='4' cols='70' readonly>후기 제목</textarea>
             </td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
 <!--            <td colspan="5"><textarea name="title" style="resize: none;" rows='auto' cols='70'  data-th-text="${orderReview.title}">후기 제목</textarea></td>-->
           </tr>
           <tr>
             <th>리뷰 내용</th>
-              <td>
-                <textarea id="reviewContent" name="title" style="resize: none;" rows='auto' cols='70'>후기 제목</textarea>
+              <td colspan="5">
+                <textarea id="reviewContent" name="title" style="resize: none;" rows='20' cols='70' readonly>후기 제목</textarea>
               </td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
 <!--            <td colspan="5"><textarea name="content" style="resize: none;" rows='10' cols='70' data-th-text="${orderReview.content}">후기 제목</textarea></td>-->
           </tr>
           <th id="fileTh" class="tableStyle">첨부파일</th>
@@ -853,9 +872,14 @@
              <ul id="reviewFile">
              </ul>
            </td>
-          </td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
         </table>
         <div style="display: flex; justify-content: center;">
+          <button type='button' style="display: flex; justify-content: center; margin-top: 30px; padding: 10px;"
+                  class="btn btn-primary btn-sm" onclick="clo2()">취소</button>
           <!--                                <button type='button' class="btn btn-primary btn-sm" id="review-update">수정하기</button>-->
         </div>
 <!--        <input hidden type="number"-->
@@ -924,14 +948,14 @@
                 <td class="tableStyle" data-th-text="${buy.orderStatus.name}">주문상태들어가요</td>
                 <td class="table2">
                   <button class="#underBanner p span, button" data-th-if="${buy.orderReview == null}" data-th-id="'orderReview-btn-'+${buy.no}">
-                    <p class="con" data-th-id="${buy.no}" data-th-value="${buy.no}"> 후기작성 </p>
+                    <span class="con" data-th-id="${buy.no}" data-th-value="${buy.no}"> 후기작성 </span>
                   </button>
                   <button class="#underBanner p span, button" data-th-if="${buy.orderReview != null}" data-th-id="'orderReviewWritten-btn-'+${buy.no}">
 <!--                    <a-->
 <!--                       data-th-href="@{/order/review/reviewDetail(no=${buy.no})}"-->
 <!--                       onclick="window.open(this.href, '_blank', 'width=800, height=800'); return false;" style="text-decoration: none;">-->
 <!--                      후기보기</a>-->
-                    <p class="dis2" data-th-id="${buy.no}" data-th-value="${buy.no}">후기보기</p>
+                    <span class="dis2" data-th-id="${buy.no}" data-th-value="${buy.no}">후기보기</span>
                   </button>
                 </td>
               </tr>
@@ -1062,7 +1086,7 @@
       success: function (result) {
         console.log(result);
         $("#productThumbnail3").attr("src", "/onemoa/product/files/" + result.order.product.thumbnail);
-        $("#productTitle3").attr("src", "/onemoa/product/files/" + result.order.product.title);
+        $("#productTitle3").text(result.order.product.title);
         // $("#reviewStart").text();
         console.log(result.orderReview.score);
         $("#rwCreatedDate").text(result.orderReview.createdDate);
