@@ -1,6 +1,7 @@
 package com.bitcamp.onemoaproject.service.productService;
 
 import com.bitcamp.onemoaproject.dao.WishDao;
+import com.bitcamp.onemoaproject.dao.product.ProductDao;
 import com.bitcamp.onemoaproject.dao.product.ProductWishDao;
 import com.bitcamp.onemoaproject.vo.product.ProductWish;
 import java.util.List;

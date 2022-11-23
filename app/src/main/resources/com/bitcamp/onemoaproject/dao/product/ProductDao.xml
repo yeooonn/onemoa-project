@@ -196,10 +196,10 @@
         p.vw_cnt,
         p.cdt,
         p.thumbnail,
-          m.nick
+        m.nick,
         rw.score
       from product p
-          join member m on m.mno=p.mno
+      join member m on m.mno=p.mno
       left outer join product_order po on p.pno = po.pno
       left outer join order_review rw on po.pono=rw.pono
         where
