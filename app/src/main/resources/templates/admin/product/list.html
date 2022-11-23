@@ -5,11 +5,14 @@
     <title>onemoa mypage</title>
     <link href="/onemoa/css/onemoa.css" rel="stylesheet">
     <link href="/onemoa/css/onemoaMypage.css" rel="stylesheet">
-    <link href="/onemoa/css/admin.css" rel="stylesheet"/>
     <link rel="icon" href="../../img/favicon1.ico">
     <link rel="shortcut icon" href="../../img/favicon1.ico">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="/onemoa/js/onemoa.js"></script>
+    <link href="/onemoa/css/admin.css" rel="stylesheet"/>
+    <link href="/onemoa/css/onemoaMypage.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="/onemoa/js/onemoa.js"></script>
 </head>
 <style>
@@ -18,12 +21,14 @@
     }
 </style>
 <body>
+<div><img id="noticeBanner" src="../img/contestbg.png" alt=""></div>
+<div id="underBanner"></div>
 <ul class="myPage">
     <li class="mypageArea">
         <div class="mypageNav">
             <div class="myonemoa">
                 <p>관리자페이지</p>
-                <span class="mybar"><span>
+                <span class="mybar">
             </div>
             <ul class="mynav">
                 <li><a class="font2" href="/onemoa/admin/member/memberList">회원관리</a></li>
@@ -35,14 +40,13 @@
                 <li><a class="font2" href="">카테고리관리</a></li>
             </ul>
         </div>
-        </div>
     </li>
     <li class="mypageArea">
       <div class="member">
         <h1>1:1 문의 목록</h1>
           <table class="type01" border='1'>
           <tr>
-            <th>번호</th>
+            <th style="width: 5vw;">번호</th>
             <th>제목</th>
             <th>작성자</th>
             <th>등록일</th>
@@ -75,6 +79,7 @@
         </nav>
       </div>
     </li>
- </ul>
+</ul>
+
 </body>
 </html>
