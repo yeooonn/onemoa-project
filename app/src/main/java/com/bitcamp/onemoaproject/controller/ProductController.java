@@ -109,6 +109,7 @@ public class ProductController {
     pageMaker.setCri(cri);
     pageMaker.setTotalCount(productService.countProductListTotal(code));
     List<Map<String,Object>> products = productService.selectProductList(cri);
+    System.out.println("products = " + products);
 
     mav.addObject("products", products);
     mav.addObject("pageMaker", pageMaker);

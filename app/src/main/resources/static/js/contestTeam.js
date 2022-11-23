@@ -338,7 +338,7 @@ function teamReaderDetail() {
                 + "<span>" + result2[i].size + "</span>"
             fieldSize += Number(result2[i].size);
           }
-          fieldHead = "<li>" +  "모집인원 총" + fieldSize + "명 " + fieldList + "</li>" + "<button class=\"tmm\" onclick=\"dis5()\">팀원 지원하기</button>"
+          fieldHead = "<li>" +  "모집인원 총" + fieldSize + "명 " + fieldList + "</li>" + "<button class=\"tmm\" onclick=\"dis5()\">팀원 지원하기</button>" + "<button class=\"tmm2\" onclick=\"location.href='/onemoa/message/messageDetail?no=' + readerNumber \">메시지</button>"
           $("#xx-readerField").html(fieldHead);
         },
       });

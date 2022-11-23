@@ -178,20 +178,24 @@
 
        <section>
          <div class="product_container">
+<!--           <div data-th-each= "product : ${products}">-->
            <div data-th-each= "product : ${products}">
             <a href="#" data-th-href="@{detail(no=${product.no})}" class="item">
               <!-- bootstrap card -->
               <div class="row">
                 <div>
                   <div class="thumbnail">
-                    <img data-th-src="@{/product/files/{path}(path=${product.thumbnail})}" alt="">
+                    <img id="productThumbnail" data-th-src="@{/product/files/{path}(path=${product.thumbnail})}" alt="">
 <!--                    <img src="../img/naver.png" alt="...">-->
                     <div class="caption">
                       <p data-th-text="${product.title}">Thumbnail label</p>
                     </div>
                   </div>
-
                   <div class="details">
+<!--                    <p data-th-text="${#aggregates.sum(product.productScores)}"></p>-->
+                    <div data-th-each="scores : ${product.productScores}">
+                      <span data-th-text="${scores.score}"></span>
+                    </div>
                       <img src="../img/activeheart.png" />
                       <p>1개 |</p>
                       <img src="../img/star.png" />
@@ -247,7 +251,7 @@
 
 
   <footer data-th-replace="/fragments/footer.html :: fragment-footer"></footer>
-  <script>
+  <script data-th-inline="javascript">
     $(document).ready(function() {
       $(".menu>p").click(function(){
         $(this).addClass("selected");
@@ -262,6 +266,13 @@
           submenu.slideDown();
         }
       })});
+
+    let products = [[${products}]];
+    console.log(products);
+    let productsLength = products.length;
+    for (let i = 0; i < productsLength; i++) {
+
+    }
   </script>
 </body>
 </html>

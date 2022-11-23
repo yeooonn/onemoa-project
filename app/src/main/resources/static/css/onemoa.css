@@ -1567,6 +1567,26 @@ label[for="label-a"] {
   color: #fff;
   transition: all .3s;
 }
+
+.portfolio2 ul .tmm2 {
+  float: right;
+  border: none;
+  background-color: transparent;
+  margin-right: 20%;
+  font-size: 1.354vw;
+  width: 15%;
+  height: 80px;
+  background-color: #707fc2;
+  border: 1px solid #707fc2;
+  color: #fff;
+  border-radius: 10px;
+  margin-top: -95px;
+}
+.portfolio2 ul .tmm2:hover {
+  background-color: #48527d;
+  color: #fff;
+  transition: all .3s;
+}
 .portfolio2:nth-of-type(4) {
   padding-top: 100px;
   padding-bottom: 100px;
