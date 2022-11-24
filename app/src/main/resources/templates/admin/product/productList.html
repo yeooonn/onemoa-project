@@ -45,6 +45,7 @@
           <th class="tableStyle">No</th>
           <th style="width: 70vw;" class="tableStyle">제목</th>
           <th class="tableStyle">작성자</th>
+          <th class="tableStyle">등록일</th>
           <th class="tableStyle">상태</th>
 
         <tr data-th-each="product : ${products}">
@@ -55,6 +56,7 @@
                data-th-text="${product.title}">제목</a>
           </td>
           <td class="tableStyle" style="width: 10vw"  data-th-text="${product.writer.nickname}">홍길동</td>
+          <td class="tableStyle" style="width: 10vw"  data-th-text="${product.createdDate}">등록날짜</td>
           <td class="tableStyle" style="width: 10vw"  data-th-if="${product.status} != 0 " data-th-text="공개">상태</td>
           <td class="tableStyle" style="width: 10vw; color: red"  data-th-if="${product.status} == 0 " data-th-text="비공개">상태</td>
       </tr>

@@ -123,6 +123,18 @@ public class DefaultMemberService implements MemberService {
   public List<Member> listTest() throws Exception {
     return memberDao.findAllTest();
   }
+  
+  // 관리자 페이지 회원 비활성화
+  @Override
+  public boolean deactivate(int no) {
+    return memberDao.updateDeactivate(no) > 0;
+  }
+  
+  // 관리자 페이지 회원 활성화
+  @Override
+  public boolean activate(int no) {
+    return memberDao.updateActivate(no) > 0;
+  }
 }
 
 

@@ -57,6 +57,12 @@ public interface MemberDao {
   
   int updatePwd(@Param("name") String name, @Param("email") String email,
       @Param("password") String password);
+  
+  // 관리자 페이지 회원 비활성화
+  int updateDeactivate(int no);
+  
+  // 관리자 페이지 회원 활성화
+  int updateActivate(int no);
 }
 
 

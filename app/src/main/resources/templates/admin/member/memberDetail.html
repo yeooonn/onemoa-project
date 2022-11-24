@@ -17,22 +17,22 @@
   <form action='memberUpdate' method="post" id='adminMemberUpdate'>
   <table border='1' style="margin: 0 auto;">
     <tr>
-      <th>번호</th><td><input name='no' type='number' 
-          value='1' data-th-value="${member.no}" 
+      <th>번호</th><td><input name='no' type='number'
+          value='1' data-th-value="${member.no}"
           readonly></td>
     </tr>
     <tr>
-      <th>이름</th><td><input name='name' type='text' 
-          value='홍길동' data-th-value="${member.name}" 
+      <th>이름</th><td><input name='name' type='text'
+          value='홍길동' data-th-value="${member.name}"
           size='60'></td>
     </tr>
     <tr>
-      <th>닉네임</th><td><input name='nickname' type='text' 
-          value='홍길동' data-th-value="${member.nickname}" 
+      <th>닉네임</th><td><input name='nickname' type='text'
+          value='홍길동' data-th-value="${member.nickname}"
           size='60'></td>
     </tr>
     <tr>
-      <th>이메일</th><td><input name='email' type='email' 
+      <th>이메일</th><td><input name='email' type='email'
           value='hong@test.com' data-th-value="${member.email}"
           size='60'></td>
     </tr>
@@ -45,18 +45,18 @@
        data-th-value="${member.jobNo}"></td>
     </tr>
     <tr>
-      <th>우편번호</th><td><input name='postNo' type='text' 
-          value='홍길동' data-th-value="${member.postNo}" 
+      <th>우편번호</th><td><input name='postNo' type='text'
+          value='홍길동' data-th-value="${member.postNo}"
           size='60'></td>
     </tr>
     <tr>
-      <th>기본주소</th><td><input name='baseAddr' type='text' 
-          value='홍길동' data-th-value="${member.baseAddr}" 
+      <th>기본주소</th><td><input name='baseAddr' type='text'
+          value='홍길동' data-th-value="${member.baseAddr}"
           size='60'></td>
     </tr>
     <tr>
-      <th>상세주소</th><td><input name='detailAddr' type='text' 
-          value='홍길동' data-th-value="${member.detailAddr}" 
+      <th>상세주소</th><td><input name='detailAddr' type='text'
+          value='홍길동' data-th-value="${member.detailAddr}"
           size='60'></td>
     </tr>
     <tr>
@@ -72,18 +72,19 @@
       </td>
     </tr>
     <tr>
-      <th>수익금 출금 계좌</th><td><input name='account' type='text' 
-          value='홍길동' data-th-value="${member.account}" 
+      <th>수익금 출금 계좌</th><td><input name='account' type='text'
+          value='홍길동' data-th-value="${member.account}"
           size='60'></td>
     </tr>
     <tr>
       <th>등록일</th><td data-th-text="${member.createdDate}">2022-1-1</td>
     </tr>
-    
+
   </table>
   <p style="text-align: center;">
     <button type='button' id="checkMember">변경</button>
-    <button><a href='memberDelete?no=1' data-th-href="@{memberDelete(no=${member.no})}">비활성화</a></button>
+    <button data-th-if="${member.status} == 1"><a href='memberDeactivate?no=1' data-th-href="@{memberDeactivate(no=${member.no})}">비활성화</a></button>
+    <button data-th-if="${member.status} != 1"><a href='memberActivate?no=1' data-th-href="@{memberActivate(no=${member.no})}">활성화</a></button>
   </p>
   </form>
 <script>

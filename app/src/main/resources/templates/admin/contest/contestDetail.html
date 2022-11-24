@@ -138,8 +138,8 @@
   </table>
   <p style="text-align: center;">
     <button type='submit'>변경</button>
-    <a href='contestDelete?ctstNo=1' data-th-href="@{contestDelete(ctstno=${contest.ctstNo})}">삭제</a>
-    <a href='contestList'>목록</a>
+    <button type=button><a href='contestDelete?ctstNo=1' data-th-href="@{contestDelete(ctstno=${contest.ctstNo})}">삭제</a></button>
+    <button type=button><a href='contestList'>목록</a></button>
   </p>
 </form>
 <script>

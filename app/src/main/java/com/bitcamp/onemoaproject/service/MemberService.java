@@ -46,6 +46,12 @@ public interface MemberService {
   List<Member> listTest() throws Exception;
   
   boolean updatePwd(String email, String password);
+  
+  // 관리자 페이지 회원 비활성화
+  boolean deactivate(int no);
+  
+  // 관리자 페이지 회원 활성화
+  boolean activate(int no);
 }
 
 

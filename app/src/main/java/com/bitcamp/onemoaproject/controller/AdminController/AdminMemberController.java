@@ -76,7 +76,21 @@ public class AdminMemberController {
     return "redirect:memberList";
   }
 
-
+  @GetMapping("memberDeactivate")
+  public String memberDeactivate(int no) throws Exception {
+    if (!memberService.deactivate(no)) {
+      throw new Exception("회원 비활성화 오류입니다.");
+    }
+    return "redirect:memberList";
+  }
+  
+  @GetMapping("memberActivate")
+  public String memberActivate(int no) throws Exception {
+    if (!memberService.activate(no)) {
+      throw new Exception("회원 활성화 오류입니다.");
+    }
+    return "redirect:memberList";
+  }
 
 
 

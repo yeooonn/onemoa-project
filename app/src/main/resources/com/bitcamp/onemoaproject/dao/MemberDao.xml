@@ -107,7 +107,8 @@
       profile,
       pstno,
       base_addr,
-      detail_addr
+      detail_addr,
+      status
     from
       member
     where
@@ -275,6 +276,22 @@
     tel, cdt, pstno, base_addr, detail_addr, jno, bank,
     account, profile, status from member where cdt=curdate() order by mno;
   </select>
+
+  <!-- 관리자페이지 - 회원 비활성화 -->
+  <update id="updateDeactivate" parameterType="Member">
+    update member set
+    status=0
+    where
+    mno=#{no}
+  </update>
+
+  <!-- 관리자페이지 - 회원 활성화 -->
+  <update id="updateActivate" parameterType="Member">
+    update member set
+    status=1
+    where
+    mno=#{no}
+  </update>
 </mapper>
 
 
