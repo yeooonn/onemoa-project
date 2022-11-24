@@ -2,6 +2,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
+    <title>onemoa</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" rel="stylesheet">
     <link rel="icon" href="../img/favicon1.ico">
     <link rel="shortcut icon" href="../img/favicon1.ico">
@@ -10,7 +11,6 @@
     <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
     <link href="/onemoa/css/onemoa.css" rel="stylesheet">
     <script src="/onemoa/js/login.js"></script>
-    <title>onemoa</title>
 </head>
 <style>
     #backToMain a {
@@ -57,7 +57,7 @@
             </tr>
         </table>
             <!-- 페이징 -->
-            <nav style="border-top: none;" class="xx-nav" aria-label="pagination">
+            <nav style="border-top: none; margin-bottom: 250px;" class="xx-nav" aria-label="pagination">
                 <ul class="xx-pagination">
                     <li data-th-if="${pageMaker.prev}">
                         <a data-th-href="@{list(pageMaker.startPage-1)}"><span aria-hidden="true">이전페이지</span><span class="xx-visuallyhidden">previous set of pages</span></a>
