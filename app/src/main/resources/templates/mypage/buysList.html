@@ -268,10 +268,10 @@
       overflow-y: auto;
       overflow-x: hidden;
       position: absolute;
-      top: 12%;
+      top: 16%;
       left: 50%;
-      width: 50%;
-      height: 655px;
+      width: 40%;
+      height: 1000px;
       padding-top: 80px;
       padding-left: 4.029%;
       padding-right: 4.029%;
@@ -442,10 +442,10 @@
     .reviewModal_body3 {
       overflow-y: auto;
       position: absolute;
-      top: 12%;
+      top: 16%;
       left: 50%;
-      width: 55%;
-      height: 650px;
+      width: 40%;
+      height: 750px;
       padding-top: 30px;
       padding-left: 4.029%;
       padding-right: 4.029%;
@@ -936,12 +936,19 @@
                 <th class="tableStyle">후기</th>
               </tr>
               <tr data-th-each="buy : ${buys}">
-                <td class="tableStyle" data-th-text="${buy.no}">상품번호들어가요오</td>
-                <td class="tableStyle" data-th-text="${buy.product.title}">상품이름들어가요오</td>
-                <td class="tableStyle" data-th-text="${buy.product.writer.nickname}">판매한사람</td>
-                <td class="tableStyle" data-th-text="${#numbers.formatInteger(buy.product.price, 3, 'COMMA')} + ' 원'">결제금액들어가요오</td>
-                <td class="tableStyle" data-th-text="${#temporals.format(buy.createdDate, 'yyyy-MM-dd')}">결제일시들어가요</td>
-                <td class="tableStyle" data-th-text="${buy.orderStatus.name}">주문상태들어가요</td>
+                <td class="tableStyle" data-th-text="${buy.no}">상품번호</td>
+                <td class="tableStyle">
+                <a href="#" data-th-href="@{/mypage/productDetail(no=${buy.product.no})}"
+                   onclick="window.open(this.href, '_blank', 'width=1200, height=1000,' +
+                      ' top=Math.ceil(( window.outerHeight - 800 )/5) , ' +
+                       'left=Math.ceil(( window.outerWidth - 800 )/8'); return false;" class="item">
+                  <span id="emp" data-th-text="${buy.product.title}"></span>
+                </a>
+                </td>
+                <td class="tableStyle" data-th-text="${buy.product.writer.nickname}">판매자 닉네임</td>
+                <td class="tableStyle" data-th-text="${#numbers.formatInteger(buy.product.price, 3, 'COMMA')} + ' 원'">결제금액</td>
+                <td class="tableStyle" data-th-text="${#temporals.format(buy.createdDate, 'yyyy-MM-dd')}">결제일시</td>
+                <td class="tableStyle" data-th-text="${buy.orderStatus.name}">주문상태</td>
                 <td class="table2">
                   <button class="#underBanner p span, button" data-th-if="${buy.orderReview == null}" data-th-id="'orderReview-btn-'+${buy.no}">
                     <span class="con" data-th-id="${buy.no}" data-th-value="${buy.no}"> 후기작성 </span>

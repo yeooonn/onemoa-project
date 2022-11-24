@@ -185,11 +185,11 @@
             </tr>
             <tr>
               <th class="tableStyle">제목</th>
-              <td colspan="3"><textarea style="outline: none; resize: none;" rows='2' cols='84' data-th-text="${qna.title}" readonly>></textarea></td>
+              <td colspan="3"><textarea style="border:none; outline: none; resize: none;" rows='2' cols='84' data-th-text="${qna.title}" readonly>></textarea></td>
             </tr>
             <tr>
               <th class="tableStyle">문의내용</th>
-              <td colspan="3"><textarea style="outline: none; resize: none;" rows='15' cols='84' data-th-text="${qna.content}" readonly>></textarea></td>
+              <td colspan="3"><textarea style="border:none; outline: none; resize: none;" rows='15' cols='84' data-th-text="${qna.content}" readonly>></textarea></td>
             </tr>
             <tr>
               <th class="tableStyle">첨부파일</th>
@@ -220,7 +220,6 @@
           <div class="table2">
             <button data-th-if="${qna.answer == null}" style="padding:3px 7px; text-decoration-line: none;" type='submit'>수정하러가기</button>
             <button style="padding:3px 7px; margin-left:10px;"><a href="./qnaList" style="text-decoration-line: none; color: black;">목록</a></button>
-
           </div>
         </div>
       </form>
