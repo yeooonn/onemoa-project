@@ -194,11 +194,21 @@
             <th class="tableStyle">상태변경</th>
             </tr>
               <tr data-th-each="sale: ${sales}">
-                <td class="tableStyle" data-th-value="${sale.no}" data-th-text="${sale.no}">상품번호들어가요오</td>
-                <td class="tableStyle" data-th-text="${sale.product.title}">상품이름들어가요오</td>
-                <td class="tableStyle" data-th-text="${sale.buyer.nickname}">주문한사람들어가요오</td>
-                <td class="tableStyle" data-th-text="${#numbers.formatInteger(sale.product.price, 3, 'COMMA')} + ' 원'">결제금액들어가요오</td>
-                <td class="tableStyle" data-th-text="${#temporals.format(sale.createdDate, 'yyyy-MM-dd')}">결제일시들어가요</td>
+                <td class="tableStyle" data-th-value="${sale.no}" data-th-text="${sale.no}">2</td>
+                <td class="tableStyle">
+                  <a href="#" data-th-href="@{/mypage/productDetail(no=${sale.product.no})}"
+                     onclick="window.open(this.href, '_blank', 'width=1200, height=1000,' +
+                      ' top=Math.ceil(( window.outerHeight - 800 )/5) , ' +
+                       'left=Math.ceil(( window.outerWidth - 800 )/8'); return false;" class="item">
+                    <span id="pp" data-th-text="${sale.product.title}"></span>
+                  </a>
+                </td>
+
+
+
+                <td class="tableStyle" data-th-text="${sale.buyer.nickname}">주문자 닉네임</td>
+                <td class="tableStyle" data-th-text="${#numbers.formatInteger(sale.product.price, 3, 'COMMA')} + ' 원'">결제금액</td>
+                <td class="tableStyle" data-th-text="${#temporals.format(sale.createdDate, 'yyyy-MM-dd')}">결제일시</td>
                   <td class="tableStyle">
                     <select id="selectBox2" name="orderStatus.no" disabled>
                       <option id="nowStatus" selected data-th-value="${sale.orderStatus.no}"

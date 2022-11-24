@@ -193,11 +193,11 @@
             </tr>
             <tr>
               <th class="tableStyle">제목</th>
-              <td colspan="3"><textarea name="title" style="outline: none; resize: none;" rows='2' cols='84' data-th-text="${qna.title}">></textarea></td>
+              <td colspan="3"><textarea name="title" style="border:none; outline: none; resize: none;" rows='2' cols='84' data-th-text="${qna.title}">></textarea></td>
             </tr>
             <tr>
               <th class="tableStyle">문의내용</th>
-              <td colspan="3"><textarea name="content" style="outline: none; resize: none;" rows='15' cols='84' data-th-text="${qna.content}">></textarea></td>
+              <td colspan="3"><textarea name="content" style="border:none; outline: none; resize: none;" rows='15' cols='84' data-th-text="${qna.content}">></textarea></td>
             </tr>
             <tr>
               <th class="tableStyle">첨부파일</th>
@@ -216,7 +216,7 @@
               </td>
             </tr>
             <tr><th class="tableStyle">답글 내용</th>
-              <td colspan="3" data-th-text="${qna.answer}"></td>
+              <td colspan="3" name="answer" data-th-text="${qna.answer}"></td>
             </tr>
             <tr>
               <th class="tableStyle">답글 일시</th>

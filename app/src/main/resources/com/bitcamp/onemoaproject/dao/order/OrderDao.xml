@@ -23,7 +23,6 @@
 
     <association property="product" javaType="product">
       <id column="pno" property="no"/>
-      <result column="mno" property="no"/>
       <result column="title" property="title"/>
       <result column="price" property="price"/>
       <result column="thumbnail" property="thumbnail"/>
@@ -65,25 +64,25 @@
 
   <select id="findBySellerNo" resultMap="orderMap">
     select
-    o.pono,
-    o.pno,
-    o.scno,
-    o.cdt,
-    p.title,
-    p.mno,
-    p.price,
-    m.nick,
-    os.scno,
-    os.name
+      o.pono,
+      o.scno,
+      o.cdt,
+      p.pno,
+      p.title,
+      p.mno,
+      p.price,
+      m.nick,
+      os.scno,
+      os.name
     from
-    product_order o
-    join product p on o.pno=p.pno
-    join member m on o.mno=m.mno
-    join order_status os on os.scno=o.scno
+      product_order o
+      join product p on o.pno=p.pno
+      join member m on o.mno=m.mno
+      join order_status os on os.scno=o.scno
     where
-    p.mno=#{value}
+      p.mno=#{value}
     order by
-    cdt desc
+      cdt desc
   </select>
 
   <select id="findByBuyerNo" resultMap="orderMap">
