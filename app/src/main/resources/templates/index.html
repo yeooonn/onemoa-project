@@ -97,7 +97,7 @@
       <div class="gallery">
         <ul class="clearfix">
           <li data-th-each="review : ${reviews}">
-              <img data-th-each="file : ${review.orderReviewAttachedFiles}" src="./img/mainre.png" data-th-src="@{product/reviewfiles/{path}(path=${file.filepath})}" style="display: inline-block; width: 100%; height: 200px;">
+              <img data-th-each="file : ${review.orderReviewAttachedFiles}" src="./img/mainre.png" data-th-src="@{review/files/{path}(path=${file.filepath})}" style="display: inline-block; width: 100%; height: 200px;">
               <p class="rev" data-th-text="${review.writer.nickname}" style="font-size: 1vw; color: gray;"></p>
               <!-- <p class="rev" data-th-text="${'별점'+ review.score}" style="font-size: 1vw; color: blue;"></p> -->
               <div class="star-rating">
@@ -111,7 +111,7 @@
                 <span data-th-if="${review.score - 1.5 == 0}" style="width:30%"></span>
                 <span data-th-if="${review.score - 1 == 0}" style="width:20%"></span>
               </div>
-              <p data-th-text="${review.title}" style="font-size: 1vw;"></p>
+              <p data-th-text="${review.title}" style="font-size: 1vw; width: 100%; margin-top: 100px;"></p>
               <p data-th-text="${review.content}" style="font-size: 1vw;"></p>
           </li>
         </ul>

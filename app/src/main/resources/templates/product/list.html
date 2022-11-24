@@ -8,7 +8,7 @@
   <link href="/onemoa/css/onemoa.css" rel="stylesheet">
   <link rel="icon" href="../img/favicon1.ico">
   <link rel="shortcut icon" href="../img/favicon1.ico">
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<!--  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>-->
   <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.js"></script>
   <script src="/onemoa/js/login.js"></script>
@@ -271,8 +271,10 @@
     for (let i = 0; i < productsLength; i++) {
 
       if (products[i].productScores.length > 0) {
+        // console.log(products[i].productScores);
+        // console.log(products[i].productScores[0].score);
         for (let j = 0; j < products[i].productScores.length; j++) {
-          score += parseFloat(products[i].productScores[i].score);
+          score += parseFloat(products[i].productScores[j].score);
           console.log(score);
         }
         totalScore = score / products[i].productScores.length;
