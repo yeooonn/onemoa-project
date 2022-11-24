@@ -70,6 +70,9 @@
   font-size: 1vw;
   width: 100%;
 }
+.messageImg {
+  margin-top: 75px;
+}
 .messageProfile {
   width: 35%; 
   height: auto; 
@@ -88,14 +91,27 @@
   margin-right: 15%;
 }
 .messagetxt {
-  width: 75%;
+  width: 65%;
   height: 50px;
   padding-left: 2%;
   border: 1px solid #999;
   border-radius: 10px;
 }
-
-
+.messageFile {
+  margin-right: 25%;
+  float: right;
+  color: blue;
+  margin-bottom: 10px;
+  background-color: #707fc2;
+  color: #fff;
+  padding:16px 18px;
+  font-size: 1vw;
+  border-radius: 10px;
+}
+.messageFile:hover {
+  background-color: #505785;
+  transition: all .3s;
+}
 
 
 

@@ -61,11 +61,11 @@
                   <p class="xx-receiver" data-th-if="${detail.cont} != null" data-th-text="${#dates.format(detail.cdt, 'MM/dd HH:mm')}"></p>
                 </div>
                 <div data-th-if="${member.no} != ${detail.sender}" data-th-each="file : ${detail.messageAttachedFiles}">
-                  <p data-th-if="${file.filepath} != null">
+                  <div class="messageImg" data-th-if="${file.filepath} != null">
                     <a data-th-href="|/onemoa/message/files/${file.filepath}|" >
                       <img data-th-src="@{/message/files/{path}(path=${file.filepath})}" style="width: 200px; height: 200px">
                     </a>
-                  </p>
+                  </div>
                 </div>
               </div>
             </div>
@@ -74,7 +74,8 @@
               <input type="hidden" name="sender" data-th-value="${member.no}"/>
               <input id="receiverBox" type="hidden" name="receiver"/>
               <div>
-                <input name='files' type="file" multiple/>
+                <input id="messageFile" name='files' type="file" multiple style="display: none;"/>
+                <label class="messageFile" for="messageFile" id="messageFile">파일첨부</label>
               </div>
               <input class="messagetxt" type="text" name="cont" size="60" onKeyDown="if(window.event.keyCode==13){sendContent()}" placeholder="메시지를 입력하시고 엔터를 눌러주세요.">
             </form>
