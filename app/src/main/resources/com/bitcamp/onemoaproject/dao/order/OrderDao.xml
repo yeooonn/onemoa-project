@@ -117,12 +117,14 @@
     o.pno,
     o.scno,
     o.cdt,
+    ost.name,
     p.title,
     p.price,
     p.thumbnail
     from
     product_order o
     join product p on o.pno=p.pno
+    join order_status ost on ost.scno=o.scno
     where o.pono=#{value}
   </select>
 

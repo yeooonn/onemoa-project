@@ -108,30 +108,30 @@
 
     <select id="findByNo" resultMap="productMap">
         select
-        p.pno,
-        p.pcno,
-        p.title,
-        p.cont,
-        p.price,
-        p.vw_cnt,
-        p.cdt,
-        p.thumbnail,
-        p.rule,
-        p.status,
-        p.selfintro,
-        m.mno,
-        m.profile,
-        m.nick,
-        pf.pfno,
-        pf.fname,
-        pf.fpath
+          p.pno,
+          p.pcno,
+          p.title,
+          p.cont,
+          p.price,
+          p.vw_cnt,
+          p.cdt,
+          p.thumbnail,
+          p.rule,
+          p.status,
+          p.selfintro,
+          m.mno,
+          m.profile,
+          m.nick,
+          pf.pfno,
+          pf.fname,
+          pf.fpath
         from
-        product p
-        join member m on p.mno = m.mno
-        left outer join product_file pf on p.pno=pf.pno
-        left outer join product_category pc on p.pcno=pc.pcno
+          product p
+          join member m on p.mno = m.mno
+          left outer join product_file pf on p.pno=pf.pno
+          left outer join product_category pc on p.pcno=pc.pcno
         where
-        p.pno=#{value};
+          p.pno=#{value};
     </select>
 
     <select id="findByWriter" resultMap="productMap">
@@ -167,25 +167,6 @@
             (#{file.filename},#{file.filepath}, #{no})
         </foreach>
     </insert>
-
-<!--    <select id="selectProductList" resultMap="productMap" parameterType="criteria">-->
-<!--        select-->
-<!--        p.pno,-->
-<!--        p.pcno,-->
-<!--        p.title,-->
-<!--        p.price,-->
-<!--        p.vw_cnt,-->
-<!--        p.cdt,-->
-<!--        p.thumbnail-->
-<!--        from-->
-<!--        product p-->
-<!--        <if test="categoryCode != null">-->
-<!--            where p.pcno = #{categoryCode}-->
-<!--        </if>-->
-<!--        order by-->
-<!--        pno desc-->
-<!--        limit #{pageStart}, #{perPageNum}-->
-<!--    </select>-->
 
     <select id="selectProductList" resultMap="productMap" parameterType="criteria">
       select
