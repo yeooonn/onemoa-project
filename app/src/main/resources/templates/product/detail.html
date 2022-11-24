@@ -270,11 +270,11 @@
   }
 
 
-  .star-rating {
+  .xx-star-rating {
     width: 101px;
   }
 
-  .star-rating, .star-rating span {
+  .xx-star-rating, .xx-star-rating span {
     display: inline-block;
     height: 18px;
     overflow:hidden;
@@ -282,7 +282,7 @@
     background:url('../img/reviewstar.png')no-repeat;
   }
 
-  .star-rating span {
+  .xx-star-rating span {
     background-position: left bottom;
     line-height: 0;
     vertical-align: top;
@@ -443,7 +443,7 @@
       <table id="reviewList">
         <tr class="reviewLine" data-th-each="orderReview : ${reviews}">
           <td id="starRow">
-            <div class="star-rating">
+            <div class="xx-star-rating">
               <span data-th-if="${orderReview.score - 5 == 0}" style="width:100%"></span>
               <span data-th-if="${orderReview.score - 4.5 == 0}" style="width:90%"></span>
               <span data-th-if="${orderReview.score - 4 == 0}" style="width:80%"></span>

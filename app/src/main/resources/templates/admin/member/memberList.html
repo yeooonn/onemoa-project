@@ -48,12 +48,15 @@
               <th>이름(회원수정하기)</th>
               <th>이메일</th>
               <th>가입일</th>
+              <th>상태</th>
             </tr>
             <tr data-th-each="member : ${members}">
               <td style="width: 1vw" data-th-text="${member.no}">1</td>
               <td><a href='memberDetail?no=1' data-th-href="@{memberDetail(no=${member.no})}" data-th-text="${member.name}">홍길동</a></td>
               <td data-th-text="${member.email}">hong@test.com</td>
               <td data-th-text="${member.createdDate}">2022-11-17</td>
+              <td data-th-if="${member.status} == 1" data-th-text="활성화" style="color:blue"></td>
+              <td data-th-if="${member.status} != 1" data-th-text="비활성화" style="color:red"></td>
             </tr>
           </table>
           <p>

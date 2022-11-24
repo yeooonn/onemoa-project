@@ -265,7 +265,22 @@ function dis(){
     $('.modal2').hide();
     body.style.overflow = 'auto';
   }
+
 }
+
+// function dis(){
+//   leaderjoin();
+//
+//   if ($('.modal5').css('display') == 'none'){
+//     $('.modal5').show();
+//     $('.modal3').hide();
+//     $('.modal4').hide();
+//     body.style.overflow = 'hidden';
+//   } else{
+//     $('.modal5').hide();
+//     body.style.overflow = 'auto';
+//   }
+// }
 
 function clo3(){
   if ($('.modal4').css('display') == 'show'){
@@ -377,7 +392,7 @@ function fieldMemberList() {
                 "<li>" +
                 "<p>" +
                 "<a href='#' id='tfmno-" + result3[i].contestTeamFieldMembers[j].tfmno + "' onclick='dis7(this.id, this.text)'>지원자보기</a>" +
-                "</p>" + "<p>" + "<a href='/onemoa/message/messageDetail?no=" + result3[i].contestTeamFieldMembers[j].tfmno + "'>메시지</button>" +
+                "</p>" + "<p>" + "<a href='/onemoa/message/messageDetail?no=" + result3[i].contestTeamFieldMembers[j].mno + "'>메시지</button>" +
                 "</p>" + "</li></ul>";
           }
           else if (type == "미승인") {
@@ -394,7 +409,7 @@ function fieldMemberList() {
                 "<li>" +
                 "<p>" +
                 "<a href='#' id='tfmno-" + result3[i].contestTeamFieldMembers[j].tfmno + "' onclick='dis7(this.id, this.text)'>지원자보기</a>" +
-                "</p>" + "<p>" + "<a href='/onemoa/message/messageDetail?no=" + result3[i].contestTeamFieldMembers[j].tfmno + "'>메시지</button>" +
+                "</p>" + "<p>" + "<a href='/onemoa/message/messageDetail?no=" + result3[i].contestTeamFieldMembers[j].mno + "'>메시지</button>" +
                 "</p>" + "</li></ul>";
           } else {
             console.log("else");
@@ -410,7 +425,7 @@ function fieldMemberList() {
                 "<li>" +
                 "<p>" +
                 "<a href='#' id='tfmno-" + result3[i].contestTeamFieldMembers[j].tfmno + "' onclick='dis9(this.id, this.text)' style='border:#6F9475; background-color:#6F9475; color:#ffffff;'>팀원취소</a>" +
-                "</p>" + "<p>" + "<a href='/onemoa/message/messageDetail?no=" + result3[i].contestTeamFieldMembers[j].tfmno + "'>메시지</button>" +
+                "</p>" + "<p>" + "<a href='/onemoa/message/messageDetail?no=" + result3[i].contestTeamFieldMembers[j].mno + "'>메시지</button>" +
                 "</p>" + "</li></ul>";
           }
         }

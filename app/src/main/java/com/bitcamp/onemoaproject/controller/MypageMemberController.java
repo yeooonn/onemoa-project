@@ -448,7 +448,7 @@ public class MypageMemberController {
       double average = orderReviewService.getReviewAverage(no);
       map.put("average", average);
       
-      List<OrderReview> productReviews = orderReviewService.list(no);
+      List<OrderReview> productReviews = orderReviewService.listByPno(no);
       map.put("reviews", productReviews);
     }
 //     double average = Math.round(productReviewService.getReviewAverage(no) * 100) / 100.0;

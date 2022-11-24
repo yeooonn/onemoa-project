@@ -270,8 +270,8 @@
       position: absolute;
       top: 16%;
       left: 50%;
-      width: 40%;
-      height: 1000px;
+      width: 50%;
+      height: 800px;
       padding-top: 80px;
       padding-left: 4.029%;
       padding-right: 4.029%;
@@ -444,7 +444,7 @@
       position: absolute;
       top: 16%;
       left: 50%;
-      width: 40%;
+      width: 50%;
       height: 750px;
       padding-top: 30px;
       padding-left: 4.029%;
@@ -950,7 +950,10 @@
                 <td class="tableStyle" data-th-text="${#temporals.format(buy.createdDate, 'yyyy-MM-dd')}">결제일시</td>
                 <td class="tableStyle" data-th-text="${buy.orderStatus.name}">주문상태</td>
                 <td class="table2">
-                  <button class="#underBanner p span, button" data-th-if="${buy.orderReview == null}" data-th-id="'orderReview-btn-'+${buy.no}">
+                  <button class="#underBanner p span, button" data-th-if="${buy.orderReview == null} and ${buy.orderStatus.name == '발송완료'}" data-th-id="'orderReview-btn-'+${buy.no}">
+                    <span class="con" data-th-id="${buy.no}" data-th-value="${buy.no}"> 후기작성 </span>
+                  </button>
+                  <button class="#underBanner p span, button" data-th-if="${buy.orderReview == null} and ${buy.orderStatus.name != '발송완료'}" data-th-id="'orderReview-btn-'+${buy.no}" disabled style="pointer-events: none;">
                     <span class="con" data-th-id="${buy.no}" data-th-value="${buy.no}"> 후기작성 </span>
                   </button>
                   <button class="#underBanner p span, button" data-th-if="${buy.orderReview != null}" data-th-id="'orderReviewWritten-btn-'+${buy.no}">
