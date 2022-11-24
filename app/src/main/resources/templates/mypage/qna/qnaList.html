@@ -3,14 +3,24 @@
 <head>
   <meta charset = "UTF-8">
   <title>onemoa mypage</title>
-  <link href="../css/onemoa.css" rel="stylesheet">
-  <link href="../css/onemoaMypage.css" rel="stylesheet">
   <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+  <link href="/onemoa/css/onemoa.css" rel="stylesheet">
+  <link href="/onemoa/css/onemoaMypage.css" rel="stylesheet">
+  <link rel="icon" href="../img/favicon1.ico">
+  <link rel="shortcut icon" href="../img/favicon1.ico">
   <script src="/onemoa/js/login.js"></script>
-  <script src="../js/onemoa.js"></script>
+  <script src="/onemoa/js/onemoa.js"></script>
   <style>
     .mypageArea {
       min-height: 60vw;
+    }
+    .mptxt2 {
+      width: 100%;
+    }
+
+    #empty {
+      text-align: center;
+      margin-top: 20%;
     }
     .row {
       padding: 15px 10px;
@@ -94,6 +104,41 @@
       position: fixed;
       display: none;
     }
+
+
+    .tableStyle {
+      text-align: center;
+      margin: 10px;
+    }
+
+    table {
+      border-collapse:collapse;
+    }
+    td {
+      margin-bottom: 10px;
+    }
+    tr {
+      border-bottom: 1px solid black;
+    }
+    .tableSt {
+      width: 100%;
+      max-width: 100%;
+      padding-bottom: 100px;
+    }
+
+    #underBanner p span, button {
+      font-size: 0.85vw;
+      float : none;
+      margin: 0 0px 0 0px;
+    }
+
+    .table2 {
+      justify-content: center;
+      display: flex;
+      margin-top: 10px;
+      margin-bottom: 10px;
+    }
+
   </style>
 </head>
 <body style="overflow-x: hidden">
@@ -133,15 +178,15 @@
     <div class="mypagePortfolio">
       <p class="mptxt2">1:1 문의 목록<span class="addport"><a href='/onemoa/qna/form'>문의글 작성하기</a></span></p>
       <div class="portfolioBoxCon">
-        <div>
-            <table class="table">
+        <ul class="portfolioList">
+            <table style="width: 92%" class="tableSt">
               <tr>
-                <th class="tableStyle">No</th>
-                <th style="width: 70vw;" class="tableStyle">제목</th>
+                <th style="margin-bottom: 10px;" class="tableStyle">번호</th>
+                <th class="tableStyle">제목</th>
                 <th class="tableStyle">작성자</th>
                 <th class="tableStyle">문의일</th>
                 <th class="tableStyle">답변 등록일</th>
-
+              </tr>
               <tr data-th-each="qna : ${qnas}">
                 <td class="tableStyle" style="width: 5vw" data-th-text="${qna.no}">100</td>
                 <td class="tableStyle" style="width: 70vw" >
@@ -149,12 +194,13 @@
                      data-th-href="@{qnaDetail(no=${qna.no})}"
                      data-th-text="${qna.title == ''} ? '(제목없음)' : ${qna.title}">제목</a>
                 </td>
-                <td class="tableStyle" style="width: 10vw"  data-th-text="${qna.writer.name}">홍길동</td>
-                <td class="tableStyle" style="width: 15vw"  data-th-text="${#temporals.format(qna.createdDate, 'yyyy-MM-dd')}">문의일시</td>
-                <td class="tableStyle" style="width: 12vw" data-th-if="${qna.answer != null}" data-th-text="${#temporals.format(qna.answerCdt, 'yyyy-MM-dd')}">답변일시</td>
-                <td data-th-if="${qna.answer == null}">답변대기</td>
+                <td class="tableStyle" style="width: 10vw; padding: 10px"  data-th-text="${qna.writer.name}">홍길동</td>
+                <td class="tableStyle" style="width: 15vw; padding: 10px"  data-th-text="${#temporals.format(qna.createdDate, 'yyyy-MM-dd')}">문의일시</td>
+                <td class="tableStyle" style="width: 12vw; padding: 10px; font-weight: 600;" data-th-if="${qna.answer != null}" data-th-text="${#temporals.format(qna.answerCdt, 'yyyy-MM-dd')}">답변일시</td>
+                <td class="tableStyle" data-th-if="${qna.answer == null}" style="color: royalblue; width: 12vw;">답변대기</td>
             </tr>
             </table>
+         </ul>
         </div>
       </div>
     </div>
@@ -174,7 +220,6 @@
         </ul>
       </nav>
     </div>
-
   </li>
 </ul>
 

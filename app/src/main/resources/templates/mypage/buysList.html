@@ -268,10 +268,10 @@
       overflow-y: auto;
       overflow-x: hidden;
       position: absolute;
-      top: 16%;
+      top: 12%;
       left: 50%;
-      width: 40%;
-      height: 800px;
+      width: 50%;
+      height: 655px;
       padding-top: 80px;
       padding-left: 4.029%;
       padding-right: 4.029%;
@@ -346,6 +346,7 @@
       background-color: #000;
       position: relative;
       top: 50px;
+      margin-bottom: -30px;
     }
     .person {
       width: 100%;
@@ -441,14 +442,14 @@
     .reviewModal_body3 {
       overflow-y: auto;
       position: absolute;
-      top: 16%;
+      top: 12%;
       left: 50%;
-      width: 40%;
-      height: 830px;
-      padding-top: 80px;
+      width: 55%;
+      height: 650px;
+      padding-top: 30px;
       padding-left: 4.029%;
       padding-right: 4.029%;
-      padding-bottom: 280px;
+      padding-bottom: 100px;
       background-color: rgb(255, 255, 255);
       border-radius: 10px;
       box-shadow: 0 2px 3px 0 rgba(34, 36, 38, 0.15);
@@ -674,11 +675,6 @@
       line-height: 0;
       vertical-align: top;
     }
-
-    #reviewStart {
-      height: 50px;
-    }
-
   </style>
   <!--<body style="overflow-x: hidden">-->
 <body style="overflow-x: hidden" onload="checkLoaded()">
@@ -817,7 +813,7 @@
   <div class="reviewModal_body3">
     <h1 style="text-align: center; margin-top:20px;">리뷰 확인하기</h1>
       <div class="container">
-        <table style="width: 650px; height: auto;" class="table">
+        <table style="width: 550px; height: auto;" class="table">
           <tr>
             <th style="min-width: 80px">
               상품 정보
@@ -834,8 +830,8 @@
           <tr>
             <th>별점
             <td>
-              <div style="height: 50px; margin-top: 10px" class="star-rating">
-                <span id="reviewStart" style="width:100%"></span>
+              <div style="height: 18.5px; margin-top: 8px;" class="star-rating">
+                <span id="reviewStart" style="width:100%; color: #fff;"></span>
               </div>
             </td>
             <td style="text-align: right; font-weight: 700;">작성일</td>
@@ -909,7 +905,7 @@
         <li><a class="font2" href="/onemoa/mypage/salesList">판매 관리</a></li>
         <li><a class="font2" href="/onemoa/mypage/productList">상품 관리</a></li>
         <li><a class="font2" href="">결제내역</a></li>
-        <li><a class="font2" href="">1:1 문의내역</a></li>
+        <li><a class="font2" href="/onemoa/mypage/qnaList">1:1 문의내역</a></li>
         <li class="menu">
           <a class="font2" href="myinfo">계정설정</a>
           <ul class="hide">
@@ -1094,31 +1090,31 @@
         $("#reviewContent").text(result.orderReview.content);
         let reviewScore = result.orderReview.score;
         if (reviewScore == 5) {
-          $("#reviewStart").text(reviewScore);
+          // $("#reviewStart").text(reviewScore);
           $("#reviewStart").css("width", 100);
         } else if (reviewScore == 4.5) {
-          $("#reviewStart").text(reviewScore);
+          // $("#reviewStart").text(reviewScore);
           $("#reviewStart").css("width", 90);
         } else if (reviewScore == 4) {
-          $("#reviewStart").text(reviewScore);
+          // $("#reviewStart").text(reviewScore);
           $("#reviewStart").css("width", 80);
         } else if (reviewScore == 3.5) {
-          $("#reviewStart").text(reviewScore);
+          // $("#reviewStart").text(reviewScore);
           $("#reviewStart").css("width", 70);
         } else if (reviewScore == 3) {
-          $("#reviewStart").text(reviewScore);
+          // $("#reviewStart").text(reviewScore);
           $("#reviewStart").css("width", 60);
         } else if (reviewScore == 2.5) {
-          $("#reviewStart").text(reviewScore);
+          // $("#reviewStart").text(reviewScore);
           $("#reviewStart").css("width", 50);
         } else if (reviewScore == 2) {
-          $("#reviewStart").text(reviewScore);
+          // $("#reviewStart").text(reviewScore);
           $("#reviewStart").css("width", 40);
         } else if (reviewScore == 1.5) {
-          $("#reviewStart").text(reviewScore);
+          // $("#reviewStart").text(reviewScore);
           $("#reviewStart").css("width", 30);
         } else if (reviewScore == 1) {
-          $("#reviewStart").text(reviewScore);
+          // $("#reviewStart").text(reviewScore);
           $("#reviewStart").css("width", 20);
         }
         let ulList = "";
