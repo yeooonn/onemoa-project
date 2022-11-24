@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset = "UTF-8">
+    <title>onemoa mypage</title>
+    <link href="/onemoa/css/onemoa.css" rel="stylesheet">
+    <link href="/onemoa/css/onemoaMypage.css" rel="stylesheet">
+    <link href="/onemoa/css/onemoaManage.css" rel="stylesheet">
+    <link rel="icon" href="../../img/favicon1.ico">
+    <link rel="shortcut icon" href="../../img/favicon1.ico">
+    <link href="/onemoa/css/admin.css" rel="stylesheet"/>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="/onemoa/js/onemoa.js"></script>
+    <style>
+      td:nth-of-type(2):hover {
+        background-color: navy;
+        color: white;
+      }
+      td {
+        text-align: center;
+      }
+    </style>
+  </head>
+  <body style="overflow-x: hidden">
+    <ul class="myPage">
+      <li class="mypageArea">
+        <div class="mypageNav">
+          <div class="myonemoa">
+            <p>관리자페이지</p>
+            <span class="mybar"></span>
+          </div>
+          <ul class="mynav">
+            <li><a class="font" href="/onemoa/admin/member/memberList">회원관리</a></li>
+            <li><a class="font2" href="/onemoa/admin/contest/contestList">공모전관리</a></li>
+            <li><a class="font2" href="/onemoa/admin/product/productList">재능판매관리</a></li>
+            <li><a class="font2" href="/onemoa/admin/qna/list">1:1문의관리</a></li>
+            <li><a class="font2" href="/onemoa/admin/faq/list">FAQ관리</a></li>
+            <li><a class="font2" href="/onemoa/admin/notice/list">공지사항관리</a></li>
+          </ul>
+        </div>
+      </li>
+      <li class="mypageArea">
+        <div class="member">
+          <h1>회원</h1>
+          <table class="type01">
+            <tr>
+              <th>번호</th>
+              <th>이름(회원수정하기)</th>
+              <th>이메일</th>
+              <th>가입일</th>
+              <th>상태</th>
+            </tr>
+            <tr data-th-each="member : ${members}">
+              <td style="width: 1vw" data-th-text="${member.no}">1</td>
+              <td><a href='memberDetail?no=1' data-th-href="@{memberDetail(no=${member.no})}" data-th-text="${member.name}">홍길동</a></td>
+              <td data-th-text="${member.email}">hong@test.com</td>
+              <td data-th-text="${member.createdDate}">2022-11-17</td>
+              <td data-th-if="${member.status} == 1" data-th-text="활성화" style="color:blue"></td>
+              <td data-th-if="${member.status} != 1" data-th-text="비활성화" style="color:red"></td>
+            </tr>
+          </table>
+          <p>
+          <!-- <button class="memberlistbtn"><a href='../'>메인</a></button> -->
+          <button class="memberlistbtn"><a href='memberForm'>회원등록</a></button>
+          </p>
+        </div>
+      </li>
+    </ul>
+
+
+  </body>
+</html>

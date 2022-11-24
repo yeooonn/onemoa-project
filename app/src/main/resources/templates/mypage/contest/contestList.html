@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:data-th-="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset = "UTF-8">
+    <title>onemoa mypage</title>
+<!--    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">-->
+<!--    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>-->
+    <link href="/onemoa/css/onemoa.css" rel="stylesheet">
+    <link href="/onemoa/css/onemoaMypage.css" rel="stylesheet">
+    <link rel="icon" href="./../img/favicon1.ico">
+    <link rel="shortcut icon" href="./../img/favicon1.ico">
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="/onemoa/js/onemoa.js"></script>
+    <style>
+      table.type01 {
+        border-collapse: collapse;
+        text-align: left;
+        line-height: 1.5;
+        margin : 20px 10px;
+        width: 91%;
+      }
+      table.type01 th {
+        width: 150px;
+        padding: 10px;
+        font-weight: bold;
+        vertical-align: top;
+        border: 1px solid #ccc;
+      }
+      table.type01 td {
+        width: 350px;
+        padding: 10px;
+        vertical-align: top;
+        border: 1px solid #ccc;
+      }
+    </style>
+  </head>
+  <body style="overflow-x: hidden">
+
+  <div data-th-replace="/fragments/nav.html :: fragment-nav"></div>
+
+  <ul class="myPage">
+      <li class="mypageArea">
+        <div class="nick">
+          <img data-th-src="${'/onemoa/member/files/' + member.profile}">
+          <p data-th-text="${member.nickname}">닉네임님</p>
+        </div>
+        <div class="mypageNav">
+          <div class="myonemoa">
+            <p>마이원모아</p>
+            <span class="mybar"></span>
+          </div>
+
+          <ul class="mynav">
+            <li><a class="font2" href="../mypage/portfolioList">포트폴리오 관리</a></li>
+            <li><a class="font" href="/onemoa/mypage/contestList">공모전 관리</a></li>
+            <li><a class="font2" href="/onemoa/mypage/buysList">구매 관리</a></li>
+            <li><a class="font2" href="/onemoa/mypage/salesList">판매 관리</a></li>
+            <li><a class="font2" href="/onemoa/mypage/productList">상품 관리</a></li>
+            <li><a class="font2" href="">결제내역</a></li>
+            <li><a class="font2" href="/onemoa/mypage/qnaList">1:1 문의내역</a></li>
+            <li class="menu">
+              <a class="font2" href="myinfo">계정설정</a>
+              <ul class="hide">
+                <li><a class="font2" href="../mypage/myinfo">내정보수정</a></li>
+                <li><a class="font2" href="../mypage/changepw">비밀번호변경</a></li>
+                <li><a class="font2" href="../mypage/leave">회원탈퇴</a></li>
+              </ul>
+            </li>
+          </ul>
+          
+        </div>
+
+      </li>
+      <li class="mypageArea">
+        <div class="mypagePortfolio">
+          <p class="mptxt2">공모전 팀전 참가내역</p>
+          <div class="mypageContestListBox">
+            <table class="type01">
+              <thead>
+              <tr>
+                <th>No</th>
+                <th>기관명</th>
+                <th>카테고리</th>
+                <th>공모전제목</th>
+                <th>참여 일자</th>
+              </tr>
+              </thead>
+              <tbody>
+                <tr data-th-each="contest : ${contests}">
+                  <td data-th-text="${contest.ctstNo}"></td>
+                  <td data-th-text="${contest.contOrg.orgName}"></td>
+                  <td data-th-text="${contest.contCategory.categoryName}"></td>
+                  <td><a data-th-href="@{contestDetail(no=${contest.ctstNo})}" data-th-text="${contest.title}"></a></td>
+                  <td data-th-text="${contest.contestTeams.cdt}"></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </li>
+    </ul>
+
+  <footer data-th-replace="/fragments/footer.html :: fragment-footer"></footer>
+  </body>
+</html>

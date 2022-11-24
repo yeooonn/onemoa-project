@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js">
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
+  <link rel="stylesheet"href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css"/>
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+  <link href="../css/onemoa.css" rel="stylesheet">
+  <script src="../js/login.js"></script>
+  <script src="../js/onemoa.js"></script>
+  <style>
+    p {
+      word-wrap: break-word;
+    }
+
+    .wrap {
+      margin-bottom: 5%;
+      margin-top: 1%;
+      max-width: 60vw;
+      min-width: 40vw;
+      display: grid;
+      margin-left: 5%;
+      position: relative;
+    }
+
+    #detail-4 {
+      display: flex;
+      justify-content: center;
+      border : solid #c4c4c4 1px ;
+      min-height: 40vw;
+      max-height: 40vw;
+      margin-bottom: 0.5vw;
+      text-align: center;
+    }
+
+    #detail-4 img {
+      margin: auto;
+    }
+
+    div > p {
+      margin-top: 1%;
+      margin-left: 1%;
+      margin-right: 1%;
+      margin-bottom: 1%;
+      font-size: 1.2vw;
+    }
+
+    .head {
+      font-weight: bold;
+    }
+
+    #reviewInfo {
+      margin-left: 0px;
+    }
+
+    .commonBorder {
+      display: flex;
+      justify-content : center;
+      align-items: center;
+      height: 5vw;
+      font-size: 1.6vw;
+      padding-top: 3px;
+    }
+
+
+    #breadc {
+      margin-top: 5%;
+      margin-left: 5%;
+    }
+
+    /* left */
+
+    #detail-5 {
+      display: grid;
+      border : solid #c4c4c4 1px ;
+    }
+
+    #detail-6 {
+      display: grid;
+      grid-template-columns: 3.3fr 3.3fr 3.3fr;
+      height: 20px;
+    }
+
+    #detail2 {
+      border : solid #c4c4c4 1px ;
+      border-radius: 4px;
+      max-width: 60vw;
+      min-width: 40vw;
+    }
+
+    #detail2-1 {
+      border-bottom: solid #c4c4c4 1px;
+    }
+
+    #detail2-2 {
+      border-bottom: solid #c4c4c4 1px;
+    }
+
+    #detail2-3 {
+      border-bottom: solid #c4c4c4 1px;
+    }
+
+    #detail2-4 {
+      border-bottom: solid #c4c4c4 1px;
+    }
+
+    #detail2-5 {
+      border-bottom: solid #c4c4c4 1px;
+    }
+
+    #detail2-6 {
+    }
+
+    #detail3 {
+      margin-bottom: 20px;
+    }
+
+    #detail3-1 {
+      padding: 4px 0px 2px 0px;
+      text-align: right;
+    }
+
+    #detail3-1 > p {
+      display: inline;
+      font-size: 1vw;
+    }
+
+    #reviewMark {
+      color: white;
+      display: inline;
+      border: 1px  ;
+      border-radius: 8px;
+      padding: 5px 10px 5px 10px;
+      margin: 0px;
+      background-color: #99a0bd;
+      float: left;
+    }
+
+    #detail3-2 {
+      border-top: solid #c4c4c4 1px;
+      margin-top: 15px;
+      padding-top: 10px;
+    }
+
+    #top {
+      border : solid #c4c4c4 1px ;
+      border-radius: 4px;
+      background-color: #f8f6f6;
+      margin-left : 61%;
+      margin-right: 1%;
+      padding-top: 0.5%;
+      padding-bottom: 1%;
+      position: fixed;
+      min-width: 30vw;
+      max-width: 30vw;
+    }
+
+    #top > div {
+      border: none;
+      padding-top: 5px;
+      padding-left: 20px;
+      padding-right: 20px;
+      grid-auto-rows: minmax(100px, auto);
+    }
+
+
+    #top p {
+      margin-left: 0px;
+      font-size: 1vw;
+    }
+
+    .seller-infoprofile {
+      margin-right: 20px;
+      text-align: center;
+    }
+
+    #top #sellerNick {
+      font-size: 1.5vw;
+    }
+
+    #top .horizonLine {
+      display: block;
+      height: 10px;
+      border-bottom: solid 1px #c4c4c4;
+      margin-left: 3%;
+      margin-right: 3%;
+      margin-bottom: 3%;
+      margin-top: 3%;
+    }
+
+    #top #title {
+      font-size: 1.1vw;
+    }
+
+    .product_images img {
+      width: 30vw;
+    }
+
+    #detail2-2 img, p {
+      max-width: 100%;
+    }
+
+    #detail-2 button {
+      font-size: 30px;
+      height: 50px;
+      width: 200px;
+      border: 4px solid #555;
+      border-radius: 10px;
+      margin-left: 130px;
+      margin-top: 50px;
+      cursor: pointer;
+    }
+
+    .cell img {
+      height: 100%;
+    }
+
+    #buyOrAsk {
+      text-align: center;
+    }
+
+    #top .btn-default {
+      color: white;
+      border: none;
+      border-radius: 4px;
+      background-color: #707fc2;
+      margin: 0;
+      padding: 8px 8px;
+      width: 48%;
+      float: none;
+    }
+
+    .attached-file-container li {
+      display: inline;
+    }
+
+    .attached-file-container img {
+      height: auto;
+      width: 100%;
+    }
+
+    #rwCreatedDate {
+      float: right;
+    }
+
+    #detail3-2 #reviewList {
+      margin-left: 0px;
+      width: 100%;
+      padding-right: 10px;
+    }
+
+    #reviewList .reviewLine p {
+      font-size: 1vw;
+      margin-top: 5px;
+      margin-bottom: 5px;
+    }
+
+    .heart {
+      display: flex;
+    }
+
+    .heart div {
+      display: inline;
+      margin: 0px 20px 0px 10px;
+    }
+
+    #aboutReviews {
+      margin-left: 10px;
+    }
+
+
+    .star-rating {
+      width: 101px;
+    }
+
+    .star-rating, .star-rating span {
+      display: inline-block;
+      height: 18px;
+      overflow:hidden;
+      background:url('../img/reviewstar.png')no-repeat;
+    }
+
+    .star-rating span {
+      background-position: left bottom;
+      line-height: 0;
+      vertical-align: top;
+    }
+
+    #starRow {
+      width: 15%;
+    }
+
+    .box {
+      padding: 0.5vw 0.5vw;
+      max-width: 60vw;
+      min-width: 40vw;
+      width:100%;
+      max-height: 20vw;
+      min-height: 10vw;
+      margin:0 auto;
+    }
+
+    #tab ul {
+      white-space:nowrap;
+      overflow-x: auto;
+      text-align:center}
+
+    #tab ul li {
+      display:inline-block;
+      margin-right: 2vw;
+    }
+
+    #tab ul li img {
+      min-height: 9vw;
+      max-height: 9vw;
+    }
+
+    #tab ul li img:hover {
+      transform: scale(1.2);
+      box-shadow: 0 0 8px rgba(0, 0, 0, 0.6);
+    }
+
+    .progress-container {
+      width: 100%;
+      height: 8px;
+      background: #ccc;
+    }
+
+    .progress-bar {
+      height: 8px;
+      background: #04AA6D;
+      width: 0%;
+    }
+
+    #sellerIntro > p {
+      word-break: break-all;
+    }
+
+
+  </style>
+</head>
+<body style="overflow-x: hidden">
+<form action="/onemoa/mypage/productUpdate" method="GET">
+  <div><input hidden id="productNo" type="number" name="no"  data-th-value="${product.no}"></div>
+  <div class="wrap">
+    <div id="detail-4" data-th-if="${!#lists.isEmpty(product.attachedFiles)}">
+      <img class="focused-img" data-th-src="@{/product/files/{path}(path=${product.thumbnail})}" height="90%" width="90%" />
+    </div>
+    <div id="detail-5">
+      <div class="box">
+        <div id="tab" style="overflow:scroll;">
+          <ul id="horiScroll">
+            <li data-th-each="file : ${product.attachedFiles}">
+              <img data-th-if="${file.filepath != null}" class="attached-image" data-th-src="@{/product/files/{path}(path=${file.filepath})}">
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="commonBorder">
+    </div>
+
+    <div id="top">
+      <div style="word-break:break-all;"><p id="title" class="head" data-th-text="${product.title}">제목</p></div>
+      <div><p class="head" data-th-text="${#numbers.formatInteger(product.price, 3, 'COMMA')} + ' 원'">가격</p></div>
+
+      <div class="horizonLine"></div>
+      <div id="seller-info">
+        <div class="seller-infoprofile">
+          <img id="sellerProfile" src="../img/profile2.png" data-th-src="'/onemoa/member/files/' + ${product.writer.profile}" class="img-circle" alt="Cinque" width="100" height="100">
+          <div><p id="sellerNick" class="head" data-th-text="${product.writer.nickname}">재능판매자 닉네임</p></div>
+        </div>
+      </div>
+
+      <div id="sellerIntro" data-th-utext="${product.selfIntro}">안녕하세요! 저는 XX대학교 졸업 후, A기업 마케팅 부서에서 5년 간 근무했습니다. 현재는 프리랜서로 활동하고 있습니다.
+        고객의 눈길을 끌 수 있는 로고, 제가 만들어드리죠!
+      </div>
+
+      <div class="horizonLine"></div>
+
+      <div id="buyOrAsk">
+        <button data-th-if="${product.status == 0}" id="valid" type="button" class="btn btn-default">게시물 공개 처리</button>
+        <button data-th-if="${product.status != 0}" id="invalid" type="button" class="btn btn-default">게시물 비공개</button>
+      </div>
+    </div>
+</form>
+
+<div id="detail2">
+  <div id="detail2-1" class="head"><p>서비스 설명</p></div>
+  <div id="detail2-2" style="word-break: break-all"><p data-th-utext="${product.content}" style="max-width: 100%">서비스 설명 내용</p></div>
+  <div id="detail2-3" class="head"><p>수정 및 재진행</p></div>
+  <div id="detail2-4"><p data-th-utext="${product.rule}">
+    시안은 1개이며 간단한 레이아웃/텍스트 조정에 한해 무료 2회로 진행합니다.
+    레이아웃이 크게 변경되거나, 30%이상 수정을 원하실 경우 유료로 수정 가능합니다</p></div>
+  <div id="detail2-5"><p class="head">취소 및 환불 규정</p></div>
+  <div id="detail2-6"><p>
+    <p> 01. 전문가와 의뢰인 간의 상호 협의 후 청약철회가 가능합니다. </p>
+    <p> 02. 전문가의 귀책사유로 디자인작업을 시작하지 않았거나 혹은 이에 준하는 보편적인 관점에서 심각하게 잘못 이행한 경우 결제 금액 전체 환불이 가능합니다.</p>
+    <p> 03. 전문가가 작업 기간 동안 지정된 서비스를 제공하지 못할 것이 확실한 경우 지급받은 서비스 비용을 일할 계산하여 작업물 개수와 작업 기간 일수만큼 공제하고 잔여 금액을 환불합니다.</p>
+    <p> 04. 서비스 받은 항목을 공제하여 환불하며, 공제 비용은 정가 처리됩니다.</p>
+    <p>  가. 소비자 피해 보상 규정에 의거하여 작업물 원본의 멸실 및 작업 기간 미이행 및 이에 상응하는 전문가 책임으로 인한 피해 발생 시, 전액 환불 </p>
+    <p>  나. 시안 작업 진행된 상품 차감 환불</p>
+    <p>   ⓐ. '디자인'에 대한 금액이 서비스 내 별도 기재가 되지 않았거나, 디자인 상품 패키지 내 수정 횟수가 1회(1회 포함) 이상인 서비스 상품의 시안 or 샘플이 제공된 경우 </p>
+    <p> → 구매금액의 10% 환불(디자인 비용이 별도 기재되어 있는 경우, 해당금액 차감 후 환불)</p>
+    <p> ※ 시안 제공 및 수정이 추가로 이뤄진 경우 환불 금액내 수정 횟수에 따라 분할하여 환불.</p>
+
+    <p> 05. 주문 제작 상품 등 서비스 받은 항목이 없으며, 결제 후 1일 이내 작업이 진행되기 전 시점은 전액 환불 가능.</p>
+
+    <p> 06. 다만, 환불이 불가능한 서비스에 대한 사실을 표시사항에 포함한 경우에는 의뢰인의 환불요청이 제한될 수 있습니다.</p>
+    <p>  가. 고객의 요청에 따라 개별적으로 주문 제작되는 재판매가 불가능한 경우(인쇄, 이니셜 각인, 사이즈 맞춤 등)</p>
+    <p>   ⓐ. 주문 제작 상품 특성상 제작(인쇄 등) 진행된 경우.</p>
+    <p>   ⓑ. 인쇄 색상의 차이 : 모니터의 종류에 따라 색상의 차이가 발생하며,인쇄 시마다 합판 인쇄 방법의 특성상 색상 표현의 오차가 발생함.</p>
+    <p>   ⓒ. 디자인 서비스이며 수정 횟수가 존재하지 않았던 상품일 경우 시안 수령 후 환불 불가</p></div>
+</div>
+<div class="commonBorder"></div>
+
+</div>
+</div>
+<script>
+  $(".attached-image").click(function () {
+    const clickedImg = $(this).attr('src');
+    console.log(clickedImg);
+    $(".focused-img").attr('src', clickedImg);
+
+  });
+</script>
+<script>
+  const no = $("#productNo").attr("value");
+
+  $("#invalid").on("click", function() {
+
+    $.ajax({
+      url: '/onemoa/admin/product/productInvalid',
+      type: 'POST',
+      data: {'no': no},
+      success: function(data) {
+        swal({
+          text: "게시글이 비공개 처리 되었습니다.",
+          icon: "success"}).then(() => {
+          window.location.href="/onemoa/admin/product/productList";
+          }
+        )
+      }
+    });
+  });
+
+  $("#valid").on("click", function() {
+  console.log("TEST")
+    $.ajax({
+      url: '/onemoa/admin/product/productValid',
+      type: 'POST',
+      data: {'no': no},
+      success: function(data) {
+        swal({
+          text: "게시글이 공개 처리 되었습니다.",
+          icon: "success"}).then(() => {
+            window.location.href="/onemoa/admin/product/productList";
+            }
+        )
+      }
+    });
+  });
+
+</script>
+</body>
+</html>

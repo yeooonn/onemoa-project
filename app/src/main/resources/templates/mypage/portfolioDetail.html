@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset = "UTF-8">
+    <title>onemoa mypage</title>
+    <link href="/onemoa/css/onemoa.css" rel="stylesheet">
+    <link href="/onemoa/css/onemoaMypage.css" rel="stylesheet">
+    <link rel="icon" href="../img/favicon1.ico">
+    <link rel="shortcut icon" href="../img/favicon1.ico">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.js"></script>
+    <script src="/onemoa/js/onemoa.js"></script>
+    <script src="/onemoa/js/login.js"></script>
+  </head>
+  <body style="overflow-x: hidden">
+    <div data-th-replace="/fragments/nav.html :: fragment-nav"></div>
+    <ul class="myPage">
+      <li class="mypageArea2">
+        <div class="nick">
+          <img data-th-src="${'/onemoa/member/files/' + member.profile} " style='width: 100%; height: auto; border-radius: 70%; overflow: hidden;'>
+         <p data-th-text="${member.nickname}">닉네임님</p>
+        </div>
+        <div class="mypageNav">
+          <div class="myonemoa">
+            <p>마이원모아</p>
+            <span class="mybar">
+          </div>
+          <ul class="mynav">
+            <li><a class="font" href="../mypage/portfolioList">포트폴리오 관리</a></li>
+            <li><a class="font2" href="/onemoa/mypage/contestList">공모전 관리</a></li>
+            <li><a class="font2" href="/onemoa/mypage/buysList">구매 관리</a></li>
+            <li><a class="font2" href="/onemoa/mypage/salesList">판매 관리</a></li>
+            <li><a class="font2" href="/onemoa/mypage/productList">상품 관리</a></li>
+            <li><a class="font2" href="">결제내역</a></li>
+            <li><a class="font2" href="">1:1 문의내역</a></li>
+            <li class="menu">
+              <a class="font2" href="myinfo">계정설정</a>
+              <ul class="hide">
+                <li><a class="font2" href="../mypage/myinfo">내정보수정</a></li>
+                <li><a class="font2" href="../mypage/changepw">비밀번호변경</a></li>
+                <li><a class="font2" href="../mypage/leave">회원탈퇴</a></li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </li>
+      <li class="mypageArea2">
+        <div class="mypagePortfolio">
+          <p class="mptxt">포트폴리오 등록하기</p>
+          <div class="portfolioBoxCon2">
+            <form action='portfolioUpdate' method="post" enctype="multipart/form-data">
+              <table style="width:100%;">
+               <tr style="display:none;">
+                 <td>포트폴리오 번호 <input class="ptNo" name='ptNo' type='number' value='포트폴리오 번호: 1' placeholder="포트폴리오 번호:" data-th-value="${portfolio.ptNo}" readonly></td>
+                </tr>
+                <tr>
+                  <td><input name='title' type='text' size='60' placeholder="포트폴리오 제목을 입력해주세요." data-th-value="${portfolio.title}"></td>
+                </tr>
+                 <tr>
+                  <td><textarea name="cont" rows='20' cols='60' placeholder="나의 포트폴리오를 설명해주세요." data-th-text="${portfolio.cont}"></textarea></td>
+                </tr>
+                <tr>
+                  <td>
+                    <label class="portFile" for="portFile">첨부파일<img class="portFileimg" src="/onemoa/img/upload.png"></label>
+                    <input name='files' type="file" multiple  id="portFile" class="pbtn" onchange="readURL(this);">
+                  </td>
+                </tr>
+              </table>
+              <div class="addfile">
+                <p style="font-size: 1vw;">추가할 파일 미리보기</p>
+                <div class="addfilecon" style="border:1px solid #999; width: 95%; height: auto; padding: 10px;">
+                  <img id ="preimg" class="preimg" src ="" style="width: 260px; height: 260px; display:none;">
+                </div>
+              </div>
+
+              <p style="font-size: 1vw;">이미 추가된 파일</p>
+              <ul class="portfolioimglist" id="imgrolling">
+              </ul>
+              <span></span>
+              <p class="portbtns">
+                <button id="list-btn" type='button' class="portsub">목록보기</button>
+                <button id="delete-btn" type='button' class="portsub">삭제하기</button>
+                <button type='submit' class="portsub">수정하기</button>
+              </p>
+            </form>
+          </div>
+        </div>
+      </li>
+    </ul>
+
+
+    <script>
+
+      $("#list-btn").click(() => {
+    	  window.location.href = "portfolioList";
+      });
+
+      $("#delete-btn").click(() => {
+    	  window.location.href = "portfolioDelete?ptNo=[[${portfolio.ptNo}]]";
+      });
+
+      function readURL(input) {
+
+          if (input.files && input.files[0]) {
+            var reader = new FileReader();
+            reader.onload = function(e) {
+              document.getElementById('preimg').src = e.target.result;
+              document.getElementById('preimg').style.display = "block";
+            };
+            reader.readAsDataURL(input.files[0]);
+          }
+        }
+
+    </script>
+
+    <script th:inline="javascript">
+      let files = [[${portfolio}]];
+      let test1 = files.attachedFiles;
+      console.log(files);
+      let imgList = "";
+      for (let i=0; i < test1.length; i++) {
+    	  console.log(test1[i].filepath);
+    	  imgList += "<li>" +
+    		  "<img src='" + "/onemoa/portfolio/files/"
+          + test1[i].filepath + "'style='width: 260px; height: 260px;''>" + "<p style='font-size:1vw;text-align:center;'><a href='" + "/onemoa/mypage/fileDelete?ptfNo="+ test1[i].ptfNo + "'>삭제</a></p>" +"</li>"
+      }
+      console.log(imgList);
+      $("#imgrolling").html(imgList);
+
+    </script>
+
+
+    <footer data-th-replace="/fragments/footer.html :: fragment-footer"></footer>
+  </body>
+</html>

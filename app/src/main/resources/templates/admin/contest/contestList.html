@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset = "UTF-8">
+    <title>onemoa mypage</title>
+    <link rel="icon" href="../../img/favicon1.ico">
+    <link rel="shortcut icon" href="../../img/favicon1.ico">
+    <link href="/onemoa/css/onemoa.css" rel="stylesheet">
+    <link href="/onemoa/css/admin.css" rel="stylesheet"/>
+    <link href="/onemoa/css/onemoaMypage.css" rel="stylesheet">
+    <link href="/onemoa/css/onemoaManage.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="/onemoa/js/onemoa.js"></script>
+  </head>
+</head>
+<body>
+  <ul class="myPage">
+    <li class="mypageArea">
+      <div class="mypageNav">
+        <div class="myonemoa">
+          <p>관리자페이지</p>
+          <span class="mybar"></span>
+        </div>
+        <ul class="mynav">
+          <li><a class="font2" href="/onemoa/admin/member/memberList">회원관리</a></li>
+          <li><a class="font" href="/onemoa/admin/contest/contestList">공모전관리</a></li>
+          <li><a class="font2" href="/onemoa/admin/product/productList">재능판매관리</a></li>
+          <li><a class="font2" href="/onemoa/admin/qna/list">1:1문의관리</a></li>
+          <li><a class="font2" href="/onemoa/admin/faq/list">FAQ관리</a></li>
+          <li><a class="font2" href="/onemoa/admin/notice/list">공지사항관리</a></li>
+        </ul>
+      </div>
+    </li>
+    <li class="mypageArea">
+      <div class="contestList">
+        <h1>공모전관리</h1>
+        
+        <select id="noType" onchange="selectNum()">
+          <option data-th-text="${no}">선택</option>
+          <option value="all">전체</option>
+          <option value="개인전">개인전</option>
+          <option value="팀전">팀전</option>
+        </select>
+        <select id="onoType" onchange="selectNum2()">
+          <option data-th-if="${ono != null}" data-th-text="${ono}">선택</option>
+          <option data-th-if="${ono == null}" data-th-text="기관명">선택</option>
+          <option value="1" data-th-text="대기업">대기업</option>
+          <option value="2" data-th-text="공공기관">공공기관</option>
+          <option value="3" data-th-text="자영업자">자영업자</option>
+        </select>
+      
+        <a href="." id="sortCreatDate" value="sortCd" data-type="" data-th-data-type="${sortCd}">등록순</a>
+        <a href="."  id="sortEndDate" value="sortEd" data-type="" data-th-data-type="${sortEd}">마감임박순</a>
+        <a href="."  id="sortViewCount" value="sortVw" data-type="" data-th-data-type="${sortVw}">조회순</a>
+        <a href="." id="sortReward" value="sortRw" data-type="" data-th-data-type="${sortRw}">상금순</a>
+
+        <table class="type01">
+          <tr>
+            <th>공모전번호</th>
+            <th>기관명</th>
+            <th>공모전분야</th>
+            <th>팀전여부</th>
+            <th>제목(수정하기)</th>
+            <th>등록일자</th>
+            <th>종료일자</th>
+            <th>조회수</th>
+            <th>상금</th>
+          </tr>
+          <tr data-th-each="contest : ${contests}">
+            <td data-th-text="${contest.ctstNo}">공모전번호</td>
+            <td data-th-text="${contest.contOrg.orgName}">기관명</td>
+            <td data-th-text="${contest.contCategory.categoryName}">공모전분야</td>
+            <td data-th-if="${contest.team == '개인전'}">개인전</td>
+            <td data-th-if="${contest.team == '팀전'}">팀전</td>
+            <td>
+              <a href='contestDetail?ctstNo=1'
+                 data-th-href="@{contestDetail(ctstNo=${contest.ctstNo})}"
+                 data-th-text="${contest.title == ''} ? '(제목없음)' : ${contest.title}">제목</a>
+            </td>
+            <td data-th-text="${contest.createdDate}">등록일자</td>
+            <td data-th-text="${contest.eDate}">등록일자</td>
+            <td data-th-text="${contest.vw_cnt}">조회수</td>
+            <td data-th-text="${contest.reward}">상금</td>
+          </tr>
+        </table>
+        <p>
+          <button><a href='contestForm'>새 공모전 등록</a></button>
+        </p>
+      </div>
+    </li>
+  </ul>
+  <div class="nextBox">
+    <nav class="xx-nav" aria-label="pagination" style="padding-top: 40px;">
+      <ul class="xx-pagination">
+        <li data-th-if="${pageMaker.prev}">
+          <a data-th-href="@{contestList(pageMaker.startPage-1)}"><span aria-hidden="true">이전페이지</span><span class="xx-visuallyhidden">previous set of pages</span></a>
+        </li>
+        <data-th-block data-th-each="pageNum: ${#numbers.sequence(pageMaker.startPage, pageMaker.endPage)}">
+          <li><a data-th-href="@{contestList(page=${pageNum})}"><span class="xx-visuallyhidden">page </span><span data-th-text="${pageNum}"></span></a></li>
+        </data-th-block>
+        <li data-th-if="${pageMaker.next && pageMaker.endPage >0}">
+          <a data-th-href="@{contestList(page=${pageMaker.endPage+1})}"><span class="xx-visuallyhidden">next set of pages</span><span aria-hidden="true">다음페이지</span></a>
+        </li>
+      </ul>
+    </nav>
+  </div>
+<script src="/onemoa/js/contestList.js"></script>
+</body>
+</html>
+
+
+
+    

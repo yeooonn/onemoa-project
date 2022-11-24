@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset = "UTF-8">
+    <title>onemoa mypage</title>
+    <link href="/onemoa/css/onemoa.css" rel="stylesheet">
+    <link href="/onemoa/css/onemoaMypage.css" rel="stylesheet">
+    <link href="/onemoa/css/onemoaManage.css" rel="stylesheet">
+    <link rel="icon" href="../../img/favicon1.ico">
+    <link rel="shortcut icon" href="../../img/favicon1.ico">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="/onemoa/js/onemoa.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
+  </head>
+
+</head>
+<body>
+  <ul class="myPage">
+    <li class="mypageArea">
+      <div class="mypageNav">
+        <div class="myonemoa">
+          <p>관리자페이지</p>
+          <span class="mybar">
+        </div>
+        <ul class="mynav">
+          <li><a class="font2" href="/onemoa/admin/member/memberList">회원관리</a></li>
+          <li><a class="font2" href="/onemoa/admin/contest/contestList">공모전관리</a></li>
+          <li><a class="font2" href="">재능판매관리</a></li>
+          <li><a class="font2" href="/onemoa/admin/qna/list">1:1문의관리</a></li>
+          <li><a class="font2" href="/onemoa/admin/faq/list">FAQ관리</a></li>
+          <li><a class="font" href="/onemoa/admin/notice/list">공지사항관리</a></li>
+          <li><a class="font2" href="">카테고리관리</a></li>
+        </ul>
+      </div>
+    </li>
+    <li class="mypageArea">
+      <div class="contestList">
+        <h1>공지사항 등록</h1>
+
+        <form style="margin-left:10vw; margin-right:10vw;" action='add' method="post" enctype="multipart/form-data">
+          <input id="title" class="form-control" name="title" type="text" placeholder="제목" required>
+          <textarea id="summernote" name='content' rows='10' cols='60' placeholder="내용"></textarea>
+          <button id ="cancel" type="button" class="btn btn-secondary btn-sm"><a href="./list">취소</a></button>
+          <button id="register" type="submit" class="btn btn-primary btn-sm" >등록</button>
+        </form>
+      </div>
+    </li>
+  </ul>
+<!--  <script>-->
+<!--    $('#summernote').summernote({-->
+<!--      height: 500,                 // set editor height-->
+<!--      minHeight: 500,             // set minimum height of editor-->
+<!--      maxHeight: 500,             // set maximum height of editor-->
+<!--      placeholder : '내용'-->
+<!--    });-->
+<!--  </script>-->
+<!--  <script>-->
+<!--    &lt;!&ndash; summernote 내용 필수 입력화 코드 &ndash;&gt;-->
+<!--    $('#register').click(function() {-->
+
+<!--      if($('#summernote').summernote('isEmpty')) {-->
+<!--        alert('내용을 입력하세요!');-->
+<!--        console.log('내용을 입력하세요!');-->
+
+<!--      }-->
+<!--    });-->
+<!--  </script>-->
+</body>
+</html>
+
+
+
+    

@@ -1,0 +1,889 @@
+/* portfoilo */
+header {
+  border-bottom: 1px solid #999;
+}
+.myPage {
+  width: 100%;
+  height: auto;
+  margin-top: 100px;
+}
+.myPage::after {
+  content:'';
+  display:block;
+  clear:both;
+  width: 100%;
+  height: auto;
+  padding-top: 116px;
+}
+.myPage .mypageArea {
+  float: left;
+  height: auto;
+  margin-left: 6.562%;
+}
+.myPage .mypageArea:nth-of-type(1) {
+  width: 13.5%;
+  margin-left: 10%;
+}
+.myPage .mypageArea:nth-of-type(2) {
+  width: 63%;
+}
+.myPage .mypageArea .nick {
+  width: 100%;
+  position: relative;
+  right: 50px;
+}
+.myPage .mypageArea .nick img {
+  width: 100%;
+  height: auto;
+  border-radius: 70%;
+  overflow: hidden;
+}
+.myPage .mypageArea .nick p {
+  margin-bottom: 80px;
+  text-align: center;
+}
+.myPage .mypageNav {
+  width: 100%;
+}
+.myPage .mypageNav .myonemoa {
+  width: 100%;
+  height: 50px;
+  font-size: 1.563vw;
+  font-weight: bold;
+}
+.myPage .mypageNav .mybar {
+  display: block;
+  width: 100%;
+  height: 3px;
+  background-color: #000;
+  margin-top: -10px;
+}
+.myPage .mypageNav .mynav {
+  width: 100%;
+  height: auto;
+}
+.myPage .mypageNav .mynav li:nth-of-type(1) {
+  margin-top: 22px;
+  font-weight: bold;
+}
+.myPage .mypageNav .mynav li {
+  font-size: 1.354vw;
+  margin-bottom: 22px;
+  margin-left: 3%;
+}
+.myPage .mypageNav .mynav li a:hover {
+  font-weight: bold;
+  transition: all .3s;
+}
+.myPage .mypageArea .mypagePortfolio .mptxt {
+  font-size: 1.667vw;
+  font-weight: bold;
+  margin-bottom: 40px;
+  width: 92.5%;
+  height: 15px;
+}
+.myPage .mypageArea .mypagePortfolio .mptxt .addport:hover {
+  background-color: #4a5480;
+  transition: all .3s;
+}
+.myPage .mypageArea .mypagePortfolio .portfolioBox {
+  width: 95%;
+  height: auto;
+  border: 1px solid #999;
+  background-color: rgb(251, 251, 251);
+  padding-top: 60px;
+}
+.myPage .mypageArea .mypagePortfolio .portfolioBox .portfolioBoxCon p:nth-of-type(2) {
+  font-weight: normal;
+  position: relative;
+  top: -15px;
+}
+.myPage .mypageArea .mypagePortfolio .portfolioBox .portfolioBoxCon {
+  width: 100%;
+  height: auto;
+}
+.myPage .mypageArea .mypagePortfolio .portfolioBox .portfolioBoxCon p {
+  text-align: center;
+  font-size: 1.350vw;
+  color: #4b4b4b;
+}
+.myPage .mypageArea .mypagePortfolio .portfolioBox .portfolioBoxCon p span {
+  color: #000;
+  font-weight: bold;
+}
+.myPage .mypageArea .mypagePortfolio .portfolioBox .portfolioBoxCon img {
+  margin: 30px auto;
+  display: block;
+  
+}
+.myPage .mypageArea .mypagePortfolio .portfolioBox .portfolioBoxCon .insertbtn {
+  color: #fff;
+  background-color: #707fc2;
+  border-radius: 5px;
+  font-size: 1.250vw;
+  width: 22%;
+  height: 60px;
+  line-height: 60px;
+  margin: 75px auto;
+}
+.myPage .mypageArea .mypagePortfolio .portfolioBox .portfolioBoxCon .insertbtn:hover {
+  background-color: #4a5480;
+  transition: all .3s;
+  cursor: pointer;
+} 
+
+/* portfoilo list */
+.myPage .mypageArea .mypagePortfolio .portfolioBoxCon .portfolioList {
+  width: 100%;
+}
+.myPage .mypageArea .mypagePortfolio .portfolioBoxCon .portfolioList li {
+  float: left;
+  margin-right: 5%;
+}
+.myPage .mypageArea .mypagePortfolio .portfolioBox .portfolioBoxCon .portfolioList::after {
+  content:'';
+  display:block;
+  clear:both;
+}
+.myPage .mypageArea .mypagePortfolio .portfolioBoxCon .portfolioList li p {
+  text-align: center;
+}
+.myPage .mypageArea .mypagePortfolio .mptxt2 {
+  font-size: 1.667vw;
+  font-weight: bold;
+  margin-bottom: 40px;
+  border-bottom: 1px solid #999;
+  width: 92.5%;
+  height: 50px;
+}
+.myPage .mypageArea .mypagePortfolio .mptxt2 .addport {
+  font-size: 1.05vw;
+  float: right;
+  padding: 10px 10px;
+  background-color: #707fc2;
+  color: #fff;
+  font-weight: normal;
+  border-radius: 5px;
+}
+.myPage .mypageArea .mypagePortfolio .mptxt2 .addport:hover {
+  background-color: #4a5480;
+  transition: all .3s;
+}
+
+/* portfolioAdd */
+.myPage .mypageArea2 {
+  float: left;
+  height: auto;
+  margin-left: 6.562%;
+}
+.myPage .mypageArea2:nth-of-type(1) {
+  width: 13.5%;
+  margin-left: 10%;
+}
+.myPage .mypageArea2:nth-of-type(2) {
+  width: 63%;
+}
+.myPage .mypageArea2 .nick {
+  width: 100%;
+  position: relative;
+  right: 50px;
+}
+.myPage .mypageArea2 .nick p {
+  margin-bottom: 80px;
+  text-align: center;
+}
+.myPage .mypageNav {
+  width: 100%;
+  position: relative;
+  right: 50px;
+}
+.myPage .mypageNav .myonemoa {
+  width: 100%;
+  height: 50px;
+  font-size: 1.563vw;
+  font-weight: bold;
+}
+.myPage .mypageNav .mybar {
+  display: block;
+  width: 100%;
+  height: 3px;
+  background-color: #000;
+  margin-top: -10px;
+
+}
+.myPage .mypageNav .mynav {
+  width: 100%;
+  height: auto;
+}
+.myPage .mypageNav .mynav li:nth-of-type(1) {
+  margin-top: 22px;
+  font-weight: bold;
+}
+.myPage .mypageNav .mynav li {
+  font-size: 1.354vw;
+  margin-bottom: 22px;
+  margin-left: 3%;
+}
+.myPage .mypageNav .mynav li a:hover {
+  font-weight: bold;
+  transition: all .3s;
+}
+.myPage .mypageArea2 .mypagePortfolio .mptxt {
+  font-size: 1.667vw;
+  font-weight: bold;
+  margin-bottom: 40px;
+  width: 92.5%;
+  height: 15px;
+}
+.myPage .mypageArea2 .mypagePortfolio .portfolioBoxCon2 {
+  width: 100%;
+  height: auto;
+}
+.myPage .mypageArea2 .mypagePortfolio .portfolioBoxCon2 table {
+  width: 100%;
+  height: auto;
+}
+.myPage .mypageArea2 .mypagePortfolio .portfolioBoxCon2 table tr {
+  height: 30px;
+}
+.myPage .mypageArea2 .mypagePortfolio .portfolioBoxCon2 table tr td input {
+  width: 95%;
+  height: 45px;
+  padding: 15px;
+  font-size: 1vw;
+  border: none;
+  background-color: #ededf7;
+  border-radius: 5px;
+  margin-bottom: 20px;
+}
+.myPage .mypageArea2 .mypagePortfolio .portfolioBoxCon2 table tr td .ptNo {
+  background-color: #d0d0db;
+  width: 5.5%;
+  height: 20px;
+}
+.myPage .mypageArea2 .mypagePortfolio .portfolioBoxCon2 table tr td textarea {
+  padding: 15px;
+  width: 95%;
+  margin-bottom: 20px;
+  font-size: 1vw;
+}
+
+.myPage .mypageArea2 .mypagePortfolio .portfolioBoxCon2 table tr td .portFile {
+  width: 95%;
+  height: 45px;
+  background-color:#dddde3;
+  border-radius: 5px;
+  color: #696969;
+  cursor: pointer;
+  display: block;
+  padding: 15px;
+  margin-bottom: 20px;
+}
+.myPage .mypageArea2 .mypagePortfolio .portfolioBoxCon2 table tr td .portFile .portFileimg {
+  float: right;
+}
+.myPage .mypageArea2 .mypagePortfolio .portfolioBoxCon2 table tr td .pbtn {
+  display: none;
+}
+.myPage .mypageArea2 .mypagePortfolio .portfolioBoxCon2 .portbtns {
+  float: right;
+  position: relative;
+  left: -5%;
+  top: -30px;
+}
+.myPage .mypageArea2 .mypagePortfolio .portfolioBoxCon2 .portsub {
+  border: none;
+  background-color: transparent;
+  text-align: center;
+  padding: 10px 15px;
+  color: #fff;
+  border-radius: 5px;
+  background-color: #707fc2;
+  font-size: 0.9vw;
+  margin-left: 5px;
+}
+.myPage .mypageArea2 .mypagePortfolio .portfolioBoxCon2 .portsub:hover {
+  background-color: #4a5480;
+  transition: all .3s;
+}
+.myPage .mypageArea2 .mypagePortfolio .portfolioBoxCon2 span {
+  border-top: 1px solid #999;
+  display: block;
+  width: 95%;
+  height: 50px;
+}
+.myPage .mypageArea2 .mypagePortfolio .portfolioBoxCon2 .portbtns {
+  margin: 0 auto;
+}
+.myPage .mypageArea2 .mypagePortfolio .portfolioBoxCon2 .portbtns .portsub {
+  border: none;
+  background-color: transparent;
+  text-align: center;
+  padding: 10px 15px;
+  color: #fff;
+  border-radius: 5px;
+  background-color: rgb(111, 114, 123);
+  font-size: 0.9vw;
+}
+.myPage .mypageArea2 .mypagePortfolio .portfolioBoxCon2 .portbtns .portsub:hover {
+  background-color: rgb(84, 86, 92);
+  transition: all .3s;
+}
+.myPage .mypageArea2 .mypagePortfolio .portfolioBoxCon2 .portbtns .portsub:nth-of-type(2) {
+  background-color: #70a5c2;
+}
+.myPage .mypageArea2 .mypagePortfolio .portfolioBoxCon2 .portbtns .portsub:nth-of-type(2):hover {
+  background-color: #4d7489;
+  transition: all .3s;
+}
+.myPage .mypageArea2 .mypagePortfolio .portfolioBoxCon2 .portbtns .portsub:nth-of-type(3) {
+  background-color: #707fc2;
+}
+.myPage .mypageArea2 .mypagePortfolio .portfolioBoxCon2 .portbtns .portsub:nth-of-type(3):hover {
+  background-color: #4a5480;
+  transition: all .3s;
+}
+.myPage .mypageArea2 .mypagePortfolio .portfolioBoxCon2 .portAddbtn {
+  float: right;
+  position: relative;
+  left: -5%;
+  top: -15px;
+  border: none;
+  background-color: transparent;
+  text-align: center;
+  padding: 10px 15px;
+  color: #fff;
+  border-radius: 5px;
+  background-color: #707fc2;
+  font-size: 0.9vw;
+  margin-right: 1%;
+}
+.myPage .mypageArea2 .mypagePortfolio .portfolioBoxCon2 .portAddbtn:hover {
+  background-color: #4a5480;
+  transition: all .3s;
+}
+.myPage .mypageArea2 .mypagePortfolio .portfolioBoxCon2 .plist {
+  float: right;
+  position: relative;
+  left: -5%;
+  top: -15px;
+  border: none;
+  background-color: transparent;
+  text-align: center;
+  padding: 10px 15px;
+  color: #fff;
+  border-radius: 5px;
+  background-color: #727272;
+  font-size: 0.9vw;
+}
+.myPage .mypageArea2 .mypagePortfolio .portfolioBoxCon2 .plist:hover {
+  background-color: #424242;
+  transition: all .3s;
+}
+.myPage .mypageArea2 .mypagePortfolio .portfolioBoxCon2 .portfolioimglist {
+  width: 100%;
+  height: auto;
+  display: inline-block;
+}
+.myPage .mypageArea2 .mypagePortfolio .portfolioBoxCon2 .portfolioimglist li {
+  float: left;
+  height: auto;
+  margin-right: 6%;
+}
+
+/* 계정설정 */
+.hide {
+  display: none;
+}
+
+/* 내정보수정 */
+.myPage .mypageArea3 {
+  float: left;
+}
+.myPage .mypageArea3:nth-of-type(1) {
+  width: 15%;
+  margin-right: 8%;
+
+}
+.myPage .mypageArea3:nth-of-type(1) img {
+  width: 100%;
+  height: auto;
+  border-radius: 70%;
+  overflow: hidden;
+}
+.myPage .mypageArea3 .profilupdate {
+  font-size: 1.1vw;
+  margin: 0 auto;
+  text-align: center;
+  padding: 10px 0px;
+  width: 80%;
+  border: 1px solid #999;
+  border-radius: 5px;
+  margin-top: 10px;
+}
+.myPage .mypageArea3 .profilupdate:hover {
+  border: 1px solid blue;
+  color: blue;
+  transition: all .3s;
+}
+.myPage .mypageArea3:nth-of-type(2) {
+  width: 60%;
+}
+.myPage .mypageArea3 .myinfobtn {
+  font-size: 1.1vw;
+  padding: 10px 0px;
+  width: 62.5%;
+  height: 50px;
+  line-height: 30px;
+  border-radius: 5px;
+  background-color: #707fc2;
+  color: #fff;
+  text-align: center;
+  margin-right: 38%;
+  border:none;
+  margin-top: 20px;
+}
+.myPage .mypageArea3 .myinfobtn:hover {
+  background-color: #4a5480;
+  transition: all .3s;
+}
+.font {
+  font-weight: bold;
+}
+.font2 {
+  font-weight: normal;
+}
+
+/* 폼 */
+
+.joinForm-flex-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+#join_frm {
+  margin-bottom: 150px;
+}
+.joinForm-grid-container {
+  width: 37%;
+  display: grid;
+  grid-template-columns: 1fr;
+  border-style: solid;
+  border-radius: 5px;
+  border-color: #e2e2e2;
+  padding-left: 5%;
+}
+.joinForm-grid-container .joinp {
+  padding-top: 50px;
+  font-size: 2vw;
+}
+.joinForm-grid-item p {
+  font-size: 1.1vw;
+  height: 10px;
+}
+.joinForm-grid-item p span {
+  color: red
+} 
+.joinForm-grid-item .name-input {
+  padding-left: 2%;
+  font-size: 1vw;
+  height: 50px;
+  border-radius: 3px;
+  border: 1px solid #cdcdcd;
+}
+.joinForm-grid-item .name-input::placeholder {
+  color: #a3a3a3;
+}
+.joinForm-grid-item .nickname-input {
+  padding-left: 2%;
+  font-size: 1vw;
+  height: 50px;
+  border-radius: 3px;
+  border: 1px solid #cdcdcd;
+  margin-top: 0;
+}
+.joinForm-grid-item .nickname-input::placeholder {
+  color: #a3a3a3;
+}
+.joinForm-grid-item .nickname_check_btn {
+  height: 50px;
+  border: none;
+  background-color: #83879a;
+  color: #fff;
+  border-radius: 5px;
+  position: relative;
+  left: -16.5%;
+}
+.joinForm-grid-item .nickname_check_btn:hover {
+  background-color: #575a68;
+  transition: all .3s;
+}
+.joinForm-grid-item #nicknameCheckBox {
+  font-size: 1vw;
+  color: #ff0000;
+  border: none;
+  display: none;
+  outline:none;
+}
+.joinForm-grid-item .email-input {
+  padding-left: 2%;
+  font-size: 1vw;
+  height: 50px;
+  border-radius: 3px;
+  border: 1px solid #cdcdcd;
+  margin-top: 0;
+}
+.joinForm-grid-item .email-input::placeholder {
+  color: #a3a3a3;
+}
+.joinForm-grid-item .mail-input-check {
+  padding-left: 2%;
+  font-size: 1vw;
+  height: 50px;
+  border-radius: 3px;
+  border: 1px solid #cdcdcd;
+  position: relative;
+  left: -16.5%;
+}
+.joinForm-grid-item .mail-input-check::placeholder {
+  color: #a3a3a3;
+}
+.joinForm-grid-item .email_auth_btn {
+  height: 50px;
+  border: none;
+  background-color: #83879a;
+  color: #fff;
+  border-radius: 5px;
+  position: relative;
+  left: -16.5%;
+}
+.joinForm-grid-item .email_auth_btn:hover {
+  background-color: #575a68;
+  transition: all .3s;
+}
+#email-auth-box {
+  display: none;
+}
+.joinForm-grid-item .email_auth_check_btn {
+  height: 50px;
+  border: none;
+  background-color: #83879a;
+  color: #fff;
+  border-radius: 5px;
+}
+.joinForm-grid-item .email_auth_check_btn:hover {
+  background-color: #575a68;
+  transition: all .3s;
+}
+.joinForm-grid-item #emailAuthCheckBox {
+  font-size: 1vw;
+  color: #ff0000;
+  border: none;
+  display: none;
+  outline:none;
+}
+.joinForm-grid-item #password {
+  padding-left: 2%;
+  font-size: 1vw;
+  height: 50px;
+  border-radius: 3px;
+  border: 1px solid #cdcdcd;
+}
+.joinForm-grid-item #password::placeholder {
+  color: #a3a3a3;
+}
+.joinForm-grid-item #password-ck {
+  padding-left: 2%;
+  font-size: 1vw;
+  height: 50px;
+  border-radius: 3px;
+  border: 1px solid #cdcdcd;
+}
+.joinForm-grid-item #password-ck::placeholder {
+  color: #a3a3a3;
+}
+.joinForm-grid-item #password-cked {
+  font-size: 1vw;
+  color: #ff0000;
+  border: none;
+  display: none;
+  outline:none;
+}
+.joinForm-grid-item #sample6_postcode {
+  padding-left: 2%;
+  font-size: 1vw;
+  height: 50px;
+  border-radius: 3px;
+  border: 1px solid #cdcdcd;
+}
+.joinForm-grid-item #sample6_postcode::placeholder {
+  color: #a3a3a3;
+}
+.joinForm-grid-item #sample6_address {
+  padding-left: 2%;
+  font-size: 1vw;
+  height: 50px;
+  border-radius: 3px;
+  border: 1px solid #cdcdcd;
+}
+.joinForm-grid-item #sample6_address::placeholder {
+  color: #a3a3a3;
+}
+.joinForm-grid-item #sample6_detailAddress {
+  padding-left: 2%;
+  font-size: 1vw;
+  height: 50px;
+  border-radius: 3px;
+  border: 1px solid #cdcdcd;
+}
+.joinForm-grid-item #sample6_detailAddress::placeholder {
+  color: #a3a3a3;
+}
+.joinForm-grid-item .joinForm-postcode-bnt {
+  height: 50px;
+  border: none;
+  background-color: #83879a;
+  color: #fff;
+  border-radius: 5px;
+}
+.joinForm-grid-item .joinForm-postcode-bnt:hover {
+  background-color: #575a68;
+  transition: all .3s;
+}
+.joinForm-grid-item:nth-child(22) {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.joinForm-grid-item .job {
+  padding-left: 1.1%;
+  font-size: 1vw;
+  width: 61%;
+  height: 50px;
+  border-radius: 3px;
+  border: 1px solid #cdcdcd;
+  color: #a3a3a3;
+  padding-right: 27%;
+}
+.joinForm-grid-item #jobNoCheckBox {
+  font-size: 1vw;
+  color: #ff0000;
+  border: none;
+  display: none;
+  outline:none;
+}
+.joinForm-grid-item .bank {
+  padding-left: 1.1%;
+  font-size: 1vw;
+  height: 50px;
+  border-radius: 3px;
+  border: 1px solid #cdcdcd;
+  color: #a3a3a3;
+  width: 61%;
+}
+.joinForm-grid-item .account-input {
+  padding-left: 2%;
+  font-size: 1vw;
+  height: 50px;
+  border-radius: 3px;
+  border: 1px solid #cdcdcd;
+  width: 61%;
+}
+.joinForm-grid-item .account-input::placeholder {
+  color: #a3a3a3;
+}
+  /*joinForm 관심사선택 multiselect*/
+.interest-multiselect .interest {
+  padding-left: 2%;
+  font-size: 1vw;
+  height: 50px;
+  border-radius: 3px;
+  border: 1px solid #cdcdcd;
+  color: #a3a3a3;
+  position: relative;
+  left: -1.3%;
+}
+.interest {
+  position: relative;
+  width: 63%;
+}
+.interest p {
+  font-size: 1vw;
+  color: #a3a3a3;
+  line-height: 10px;
+}
+#interest-checkboxes {
+  display: none;
+  border: 1px #dadada solid;
+  box-shadow: 0 0 2px rgba(0, 0, 0, 0.3);
+  border-radius: 5px;
+  padding-top: 20px;
+  padding-left: 20px;
+  cursor: pointer;
+  width: 63%;
+  margin-top: 5px;
+  position: relative;
+  left: -1.3%;
+}
+#interest-checkboxes input {
+  margin-bottom: 20px;
+}
+#interest-checkboxes span {
+  font-size: large;
+  margin-left: 2%;
+}
+#interest-checkboxes label {
+  display: block;
+}
+#interest-checkboxes label:hover {
+  background-color: #1e90ff;
+}
+.joinForm-grid-item > span {
+  font-size: 130%;
+  margin: 1%;
+}
+.mail-input-box > input {
+  width: 60%;
+  height: 30px;
+  font-size: 100%;
+  margin: 1%;
+}
+.mail-input-box > button {
+  width: 20%;
+  height: 30px;
+}
+.joinForm-grid-item > input {
+  width: 60%;
+  height: 30px;
+  font-size: 100%;
+  margin: 1%;
+}
+.joinForm-grid-item > button {
+  width: 20%;
+  height: 50px;
+  border: none;
+  background-color: #707fc2;
+  border-radius: 5px;
+  color: #fff;
+}
+.joinForm-grid-item .joinForm-footer-bnt:nth-of-type(1) {
+  width: 25%;
+  margin-top: 50px;
+  margin-bottom: 50px;
+}
+.joinForm-grid-item .joinForm-footer-bnt:hover {
+  background-color: #4c5684;
+  transition: all .3s;
+}
+.joinForm-grid-item .joinForm-footer-bnt:nth-of-type(2) {
+  width: 25%;
+  height: 50px;
+  border: none;
+  background-color: #999ba1;
+  border-radius: 5px;
+  color: #fff;
+}
+.joinForm-grid-item .joinForm-footer-bnt:nth-of-type(2):hover {
+  background-color: #717379;
+  transition: all .3s;
+}
+.joinForm-footer-bnt {
+  margin-right: 2%;
+  position: relative;
+  left: -6.5%;
+}
+#sample6_postcode {
+  width: 35%;
+  height: 30px;
+  margin: 1%;
+}
+.joinForm-postcode-bnt {
+  width: 20%;
+  height: 30px;
+  margin: 1%;
+}
+#sample6_address {
+  width: 60%;
+  height: 30px;
+  margin: 1%;
+}
+#sample6_detailAddress {
+  width: 60%;
+  height: 30px;
+  margin: 1%;
+}
+.joinForm-grid-item .select {
+  margin: 1%;
+}
+.interest-multiselect {
+  margin: 1%;
+}
+
+/* changepw */
+.mypageArea .mypagePortfolio .changepw p {
+  font-size: 1.1vw;
+  position: relative;
+  top: 12px;
+}
+.mypageArea .mypagePortfolio .changepw input {
+  width: 30%;
+  height: 45px;
+  padding-left: 1%;
+}
+.mypageArea .mypagePortfolio .changepw {
+  width: 100%;
+  height: 200px;
+}
+.mypageArea .mypagePortfolio .changepw .checkp li {
+  width: 30%;
+  float: left;
+  margin-right: 2%;
+}
+.mypageArea .mypagePortfolio .changepw .checkp li input {
+  width: 100%;
+  padding-left: 3%;
+}
+.mypageArea .changepwbtn {
+  padding: 15px 15px;
+  width: 18%;
+  background: #707fc2;
+  color: #fff;
+  font-size: 1.1vw;
+  border-radius: 5px;
+  border: none;
+  margin-top: 20px;
+  margin-left: -0.5px;
+  float: left;
+}
+.mypageArea .changepwbtn:hover {
+  background-color: #4c5684;
+  transition: all .3s;
+}
+
+/* leave */
+.mypageArea .mypagePortfolio .leave p {
+  font-size: 1.1vw;
+  position: relative;
+  top: 12px;
+}
+.mypageArea .mypagePortfolio .leave input {
+  width: 30%;
+  height: 45px;
+  padding-left: 1%;
+}
+.mypageArea .mypagePortfolio .leave {
+  width: 100%;
+  height: 80px;
+}
+.mypageArea .leavebtn {
+  padding: 10px 18px;
+  width: 10%;
+  background: #707fc2;
+  color: #fff;
+  font-size: 1.1vw;
+  border-radius: 5px;
+}
+.mypageArea .leavebtn:hover {
+  background-color: #4c5684;
+  transition: all .3s;
+}

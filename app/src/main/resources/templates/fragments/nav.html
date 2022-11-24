@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<div data-th-fragment="fragment-nav">
+  <div class="modal"style="position: absolute; z-index: 1;">
+    <div class="modal_body">
+      <div calss="login_container">
+        <button class="closebtn"><img src="/onemoa/img/x.png"></button>
+        <p>로그인</p>
+        <form action='login' method="post">
+          <table class="input_login" >
+            <tr>
+              <td><input name='email' type='email' id='email' value="user1@test.com" placeholder="이메일을 입력해 주세요." data-th-value="${email}"></td>
+            </tr>
+            <tr>
+              <td><input name='password' type='password' id='password' placeholder="패스워드를 입력해 주세요."></td>
+            </tr>
+          </table>
+          <div class="email-password-checkbox">
+            <input
+                type="text"
+                id="emailPasswordCheck"
+                value=""
+                required
+                readonly
+                style="font-size: 1vw; color: #ff0000; border: none; display: none; outline:none; width: 100%; text-align: center" />
+          </div>
+          <label for="label-a"><input type="checkbox" name="saveEmail" id="email2">이메일 유지<br></label>
+          <p class="find"><a href = "/onemoa/member/findIdPw">아이디 찾기</a> / <a href = "/onemoa/member/findIdPw">패스워드 찾기</a></p>
+          <p>
+            <button type='button' class="loginbtn" id="adminCheck"><img src="/onemoa/img/loginbtn.png"></button>
+          </p>
+        </form>
+<!--        <div class="sns">-->
+<!--          <p class="snsp">SNS로 간편하게 로그인하세요.</p>-->
+<!--          <a href="#"><img src="/onemoa/img/kakao.png"></a>-->
+<!--          <a href="#"><img src="/onemoa/img/naver.png"></a>-->
+<!--          <a href="#"><img src="/onemoa/img/google.png"></a>-->
+<!--        </div>-->
+        <div class="sign">
+          <a href="/onemoa/joinform"><img src="/onemoa/img/signup.png"></a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <header>
+    <div class="nav">
+      <a href="/onemoa/" style="text-decoration-line: none"><p class="logo">ONEMOA</p></a>
+      <ul class="firstnav">
+        <li data-th-if="${session.loginMember != null}"><a href="/onemoa/logout" data-th-text="|${session.loginMember.nickname} (로그아웃)|" style="text-decoration-line: none">로그아웃</a></li>
+        <li><button class="btn-open-popup" data-th-if="${session.loginMember == null}" style="text-decoration-line: none">로그인</button></li>
+        <li><a href="/onemoa/mypage/portfolioList" style="text-decoration-line: none">마이페이지</a></li>
+          <li><a href="/onemoa/message/messaget" style="text-decoration-line: none">메시지</a></li>
+      </ul>
+    </div>
+
+    <div class="menu">
+      <ul class="secnav">
+        <li><a href="/onemoa/contest/contestTeam?no=all" style="text-decoration-line: none"><p>공모전</p></a></li>
+        <li><a href="/onemoa/product/list" style="text-decoration-line: none"><p>재능판매</p></a></li>
+      </ul>
+    </div>
+  </header>
+</div>
+</html>

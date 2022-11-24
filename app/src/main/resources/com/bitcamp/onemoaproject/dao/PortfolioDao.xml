@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bitcamp.onemoaproject.dao.PortfolioDao">
+
+  <resultMap type="portfolio" id="portfolioMap">
+    <id column="ptno" property="ptNo"/>
+    <result column="mno" property="mno"/>
+    <result column="title" property="title"/>
+    <result column="cont" property="cont"/>
+    <result column="cdt" property="createdDate"/>
+
+    <!-- 조인 결과에서 같은 게시글에 대해 한 개의 회원 데이터를 담을 경우 -->
+    <association property="member" javaType="member">
+      <id column="no" property="no"/>
+      <id column="nick" property="nickname"/>
+      <id column="profile" property="profile"/>
+    </association>
+
+    <!-- 조인 결과에서 같은 게시글에 대해 한 개의 회원 데이터를 담을 경우 -->
+    <!-- <association property="contCategory" javaType="contestCategory">
+      <id column="ctgno" property="no"/>
+      <result column="ccname" property="categoryName"/>
+    </association> -->
+    
+    <!-- 조인 결과에서 같은 게시글에 대해 여러 개의 첨부 파일 데이터를 담을 경우 -->
+    <collection property="attachedFiles" ofType="portfolioattachedFile">
+      <id column="ptfno" property="ptfNo"/>
+      <result column="fname" property="fName"/>
+      <result column="fpath" property="filepath"/>
+      <result column="ptno" property="ptNo"/>
+    </collection>
+
+  </resultMap>
+  
+  <resultMap type="portfolioattachedFile" id="portfolioattachedFileMap">
+    <id column="ptfno" property="ptfNo"/>
+    <result column="fname" property="fName"/>
+    <result column="fpath" property="filepath"/>
+    <result column="ptno" property="ptNo"/>
+  </resultMap>
+
+  <select id="findAll" resultMap="portfolioMap">
+    select
+	    pf.ptno,
+	    mno,
+	    title,
+	    cont,
+	    cdt,
+	    pf.fname,
+	    pf.fpath,
+	    pf.ptfno
+    from portfolio
+      join portfolio_file pf on portfolio.ptno = pf.ptno
+    where 
+      mno = #{value};
+  </select>
+
+  <select id="findAll2" resultMap="portfolioMap">
+    select
+      p.ptno,
+      p.mno,
+      p.title,
+      p.cont,
+      p.cdt,
+      pf.ptfno,
+      pf.fname,
+      pf.fpath
+    from
+    portfolio p
+      join portfolio_file pf on p.ptno = pf.ptno
+    where
+      p.mno=#{value}
+    group by p.ptno;
+  </select>
+
+  <insert id="insert" parameterType="portfolio"
+          useGeneratedKeys="true" keyColumn="ptno" keyProperty="ptNo">
+    insert into portfolio(mno,title,cont) 
+    values(#{member.no},#{title},#{cont})
+  </insert>
+
+  <select id="findByNo" resultMap="portfolioMap">
+    select
+	    pf.ptno,
+	    pf.ptfno,
+      mno,
+      title,
+      cont,
+      cdt,
+      pf.fname,
+      pf.fpath
+    from
+	    portfolio
+	    join portfolio_file pf on portfolio.ptno = pf.ptno
+    where
+      portfolio.ptNo=#{value}
+  </select>
+
+  <update id="update" parameterType="portfolio">
+    update portfolio set 
+      title=#{title},
+      cont=#{cont}
+    where ptno=#{ptNo}
+  </update>
+  
+   <delete id="delete">
+    delete from portfolio 
+    where ptno=#{value}
+  </delete>
+  
+  <insert id="insertFiles" parameterType="portfolio">
+    insert into portfolio_file(fpath,ptno,fname) 
+    values 
+    <foreach collection="attachedFiles" item="file" separator=",">
+      (#{file.filepath},#{ptNo},#{file.fName})
+    </foreach>
+  </insert>  
+    
+  <select id="findFileByNo" resultMap="portfolioattachedFileMap">
+    select 
+      ptfNo,
+      fpath,
+      ptno,
+      fname
+    from 
+      portfolio_file 
+    where 
+      ptfno = #{value}
+  </select>
+  
+  <delete id="deleteFiles">
+    delete from portfolio_file 
+    where ptno=#{value}
+  </delete>
+  
+   <delete id="deleteFile">
+    delete from portfolio_file 
+    where ptfno=#{value}
+  </delete>
+
+<!-- 포트폴리오 번호로 포트폴리오 회원 첨부파일 조회 -->
+  <select id="findByPno" resultMap="portfolioMap">
+    select
+    pf.ptno,
+    pf.ptfno,
+    p.mno,
+    p.title,
+    p.cont,
+    p.cdt,
+    m.nick,
+    m.profile,
+    pf.fname,
+    pf.fpath
+    from
+    portfolio p
+    left outer join portfolio_file pf on p.ptno = pf.ptno
+    join member m on m.mno = p.mno
+    where
+    p.ptNo=#{value};
+  </select>
+</mapper>

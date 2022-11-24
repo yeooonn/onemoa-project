@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+        <meta charset = "UTF-8">
+        <title>onemoa mypage</title>
+        <link href="/onemoa/css/onemoa.css" rel="stylesheet">
+        <link href="/onemoa/css/onemoaMypage.css" rel="stylesheet">
+        <link href="/onemoa/css/onemoaManage.css" rel="stylesheet">
+        <link rel="icon" href="../../img/favicon1.ico">
+        <link rel="shortcut icon" href="../../img/favicon1.ico">
+        <link href="/onemoa/css/admin.css" rel="stylesheet"/>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="/onemoa/js/onemoa.js"></script>
+    </head>
+<style>
+    td {
+        text-align: center;
+    }
+</style>
+<body>
+  <ul class="myPage">
+    <li class="mypageArea">
+      <div class="mypageNav">
+        <div class="myonemoa">
+            <p>관리자페이지</p>
+            <span class="mybar"></span>
+        </div>
+        <ul class="mynav">
+          <li><a class="font2" href="/onemoa/admin/member/memberList">회원관리</a></li>
+          <li><a class="font2" href="/onemoa/admin/contest/contestList">공모전관리</a></li>
+          <li><a class="font2" href="/onemoa/admin/product/productList">재능판매관리</a></li>
+          <li><a class="font2" href="/onemoa/admin/qna/list">1:1문의관리</a></li>
+          <li><a class="font" href="/onemoa/admin/faq/list">FAQ관리</a></li>
+          <li><a class="font2" href="/onemoa/admin/notice/list">공지사항관리</a></li>
+        </ul>
+        </div>
+      </div>
+    </li>
+    <li class="mypageArea">
+      <div class="member">
+        <h1>FAQ관리</h1>
+          <table class="type01" border='1'>
+          <tr>
+            <th>번호</th>
+            <th>제목</th>
+            <th>유저타입</th>
+          </tr>
+          <tr data-th-each="faq, state : ${faqs}">
+<!--            <td data-th-text="${state.count}">100</td>-->
+            <td style="width: 1vw;" data-th-text="${faq.no}">100</td>
+            <td>
+              <a href='detail?no=1'
+                 data-th-href="@{detail(no=${faq.no})}"
+                 data-th-text="${faq.title == ''} ? '(제목없음)' : ${faq.title}">제목</a>
+            </td>
+            <td style="width: 5vw;" data-th-text="${faq.type}">유저타입</td>
+          </tr>
+        </table>
+        <p>
+          <button class="memberlistbtn"><a href='form'>새 FAQ 등록</a></button>
+        </p>
+      </div>
+    </li>
+  </ul>
+  <div class="nextBox" style="margin-bottom: 50px;">
+      <nav class="xx-nav" aria-label="pagination" style="padding-top: 50px;">
+          <ul class="xx-pagination">
+              <li data-th-if="${pageMaker.prev}">
+                  <a data-th-href="@{list(pageMaker.startPage-1)}"><span aria-hidden="true">이전페이지</span><span class="xx-visuallyhidden">previous set of pages</span></a>
+              </li>
+              <data-th-block data-th-each="pageNum: ${#numbers.sequence(pageMaker.startPage, pageMaker.endPage)}">
+                  <li><a data-th-href="@{list(page=${pageNum})}"><span class="xx-visuallyhidden">page </span><span data-th-text="${pageNum}"></span></a></li>
+              </data-th-block>
+              <li data-th-if="${pageMaker.next && pageMaker.endPage >0}">
+                  <a data-th-href="@{list(page=${pageMaker.endPage+1})}"><span class="xx-visuallyhidden">next set of pages</span><span aria-hidden="true">다음페이지</span></a>
+              </li>
+          </ul>
+      </nav>
+  </div>
+</body>
+</html>

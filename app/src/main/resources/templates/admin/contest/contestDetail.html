@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>onemoa mypage</title>
+  <link rel="icon" href="../../img/favicon1.ico">
+  <link rel="shortcut icon" href="../../img/favicon1.ico">
+  <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+  <link href="/onemoa/css/admin.css" rel="stylesheet"/>
+</head>
+<body>
+<h1 style="text-align: center; margin-top:70px;">게시글 상세 정보</h1>
+<form action='contestUpdate' method="post" enctype="multipart/form-data">
+  <table border='1' style="margin: 0 auto;" class="type01">
+    <tr>
+      <th>번호</th>
+      <td>
+        <input name='ctstNo' type='number' value='1' data-th-value="${contest.ctstNo}" readonly>
+      </td>
+    </tr>
+    <tr>
+      <th>기관명</th>
+      <td>
+        <select name="orgNo">
+          <option data-th-value="${contest.orgNo}" data-th-text="${contest.contOrg.orgName}"></option>
+          <option value="1">대기업</option>
+          <option value="2">공공기관</option>
+          <option value="3">자영업자</option>
+        </select>
+      </td>
+    </tr>
+    <tr>
+      <th>주관</th>
+      <td>
+        <input name='org' type='text' size='60' value='주관' data-th-value="${contest.org}">
+      </td>
+    </tr>
+    <tr>
+      <th>썸네일</th>
+      <td>
+        <img data-th-src="${'/onemoa/contest/files/'+contest.thumbNail}" style="width: 177px; height: 194px;">
+        <li>
+          <a href="files/test.gif" data-th-href="@{files/{path}(path=${contest.thumbNail})}" data-th-text="${contest.thumbNail}"></a>
+        </li> 파일 추가 : <input name='files2' type="file" multiple>
+      </td>
+    </tr>
+    <tr>
+      <th>공모전분야</th>
+      <td>
+        <select name="ctgNo" data-th-value="${contest.contCategory.categoryName}">
+          <option data-th-value="${contest.ctgNo}" data-th-text="${contest.contCategory.categoryName}"></option>
+          <option value="1">기획/아이디어</option>
+          <option value="2">광고/마케팅</option>
+          <option value="3">사진/영상/UCC</option>
+          <option value="4">디자인/순수미술/공예</option>
+          <option value="5">네이밍/슬로건</option>
+          <option value="6">캐릭터/만화/게임</option>
+          <option value="7">건축/건설/인테리어</option>
+          <option value="8">과학/공학</option>
+          <option value="9">예체능/패션</option>
+          <option value="10">전시/페스티벌</option>
+          <option value="11">문학/시나리오</option>
+        </select>
+      </td>
+    </tr>
+    <tr>
+      <th>제목</th>
+      <td>
+        <input name='title' type='text' size='60' value="제목" data-th-value="${contest.title}">
+      </td>
+    </tr>
+    <tr>
+      <th>공모전설명</th>
+      <td>
+        <textarea name='subCont' rows='6' cols='60' data-th-text="${contest.subCont}"></textarea>
+      </td>
+    <tr>
+    <tr>
+      <th>접수방법</th>
+      <td>
+        <input name='appl' type='text' size='60' value="이메일" data-th-value="${contest.appl}">
+      </td>
+    </tr>
+    <tr>
+      <th>참가자격</th>
+      <td>
+        <input name='qual' type='text' value="대학생/일반인/초등학생/중학생/고등학생" data-th-value="${contest.qual}">
+      </td>
+    </tr>
+    <tr>
+      <th>시작일시</th>
+      <td>
+        <input name='sDate' type='date' value="시작일시" data-th-value="${contest.sDate}">
+      </td>
+    </tr>
+    <tr>
+      <th>종료일시</th>
+      <td>
+        <input name='eDate' type='date' data-th-value="${contest.eDate}">
+      </td>
+    </tr>
+    <tr>
+      <th>상금</th>
+      <td>
+        <input name='reward' type='text' size='60' data-th-value="${contest.reward}">
+      </td>
+    </tr>
+    <tr>
+      <th>홈페이지</th>
+      <td>
+        <input name='page' type='text' size='60' data-th-value="${contest.page}">
+      </td>
+    </tr>
+    <tr>
+      <th>팀전여부</th>
+      <input id="contestIsTeam" type="hidden" data-th-value="${contest.team}">
+      <td>
+        <input id="contestTeamIndividual" type="radio" name="team" value="개인전">개인전
+        <input id="contestTeamTeam" type="radio" name="team" value="팀전">팀전
+      </td>
+    </tr>
+    <tr>
+      <th>공모전상세설명</th>
+      <td>
+        <textarea name='cont' rows='10' cols='60' data-th-text="${contest.cont}"></textarea>
+      </td>
+    </tr>
+    <tr>
+      <th>첨부파일</th>
+      <td>
+        <ul>
+          <li data-th-each="file : ${contest.contestAttachedFiles}">
+            <a href="files/test.gif" data-th-href="@{files/{path}(path=${file.filepath})}" data-th-text="${file.filepath}">test.gif</a> [ <a href="contestFileDelete?ctstfno=${file.ctstFno}" data-th-href="@{contestFileDelete(ctstfno=${file.ctstFno})}">삭제</a>]
+          </li>
+        </ul> 파일 추가: <input name='files' type="file" multiple>
+      </td>
+    </tr>
+  </table>
+  <p style="text-align: center;">
+    <button type='submit'>변경</button>
+    <button type=button><a href='contestDelete?ctstNo=1' data-th-href="@{contestDelete(ctstno=${contest.ctstNo})}">삭제</a></button>
+    <button type=button><a href='contestList'>목록</a></button>
+  </p>
+</form>
+<script>
+  let isTeam = document.querySelector("#contestIsTeam").value;
+
+  if(isTeam == "false") {  // 팀전여부 값이 false면 체크박스 개인전 선택
+    document.getElementById("contestTeamIndividual").setAttribute("checked", true);
+  } else { // 팀전여부 값이 true면 체크박스 팀전 선택
+    document.getElementById("contestTeamTeam").setAttribute("checked", true);
+  }
+</script>
+</body>
+</html>

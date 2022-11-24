@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset = "UTF-8">
+  <title>onemoa</title>
+  <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+  <script src="/onemoa/js/onemoa.js"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <link href="/onemoa/css/onemoa.css" rel="stylesheet">
+  <script src="/onemoa/js/login.js"></script>
+  <link rel="icon" href="../img/favicon1.ico">
+  <link rel="shortcut icon" href="../img/favicon1.ico">
+  <style>
+    /*#noticeList {*/
+    /*    height: auto;*/
+    /*    min-height: 100%;*/
+    /*    padding-bottom: 300px;*/
+    /*}*/
+
+  </style>
+</head>
+<style>
+    td {
+        text-align: center;
+    }
+    .tableStyle {
+        text-align: center;
+    }
+</style>
+<body style="overflow-x: hidden">
+<script>
+  window.onpageshow = function(e) {
+    if (e.persisted || (window.performance && window.performance.navigation.type === 2)) {
+      window.location.reload();
+      console.log("리로드 완료");
+    }
+  }
+</script>
+
+<div data-th-replace="/fragments/nav.html :: fragment-nav"></div>
+
+<main id="noticeList">
+
+  <div><img id="noticeBanner" src="../img/notice.png" alt=""></div>
+  <div id="underBanner"></div>
+  <h1 style="text-align: center; margin-right: 7vw">공지사항</h1>
+
+    </div></div>
+  <div class="container">
+      <div>
+          <button type="button" class="btn btn-primary btn-sm" id="backToMain" style="margin-bottom: 20px;"><a href="/onemoa/">메인으로 돌아가기</a></button>
+      </div>
+      <table class="table">
+        <thead>
+         <tr>
+           <th class="tableStyle" style="width: 5vw">No</th>
+           <th class="tableStyle" style="width: 90vw">제목</th>
+           <th class="tableStyle" style="width: 10vw">작성자</th>
+           <th class="tableStyle" style="width: 10vw">등록일</th>
+         </tr>
+        </thead>
+        <tbody>
+         <tr data-th-each="notice, state : ${notices}">
+<!--          <td class="tableStyle" th:utext="${state.count}">3</td>-->
+          <td class="tableStyle" data-th-text="${notice.no}">3</td>
+          <td class="tableStyle">
+            <a href='detail?no=1'
+              data-th-href="@{detail(no=${notice.no})}"
+              data-th-text="${notice.title == ''} ? '(제목없음)' : ${notice.title}">제목</a>  
+          </td>
+          <td class="tableStyle">관리자</td>
+          <td class="tableStyle" data-th-text="${notice.createdDate}">등록일</td>
+          <!-- 수정/삭제 버튼  -->
+         </tr>
+        </tbody>
+      </table>
+    <!-- 페이징 -->
+    <nav style="margin-right: 7vw;" class="xx-nav" aria-label="pagination">
+      <ul class="xx-pagination">
+        <li data-th-if="${pageMaker.prev}">
+          <a data-th-href="@{list(pageMaker.startPage-1)}"><span aria-hidden="true">이전페이지</span><span class="xx-visuallyhidden">previous set of pages</span></a>
+        </li>
+        <data-th-block data-th-each="pageNum: ${#numbers.sequence(pageMaker.startPage, pageMaker.endPage)}">
+          <li><a data-th-href="@{list(page=${pageNum})}"><span class="xx-visuallyhidden">page </span><span data-th-text="${pageNum}"></span></a></li>
+        </data-th-block>
+        <li data-th-if="${pageMaker.next && pageMaker.endPage >0}">
+          <a data-th-href="@{list(page=${pageMaker.endPage+1})}"><span class="xx-visuallyhidden">next set of pages</span><span aria-hidden="true">다음페이지</span></a>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</main>
+
+
+<footer data-th-replace="/fragments/footer.html :: fragment-footer"></footer>
+</body>
+</html>

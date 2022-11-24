@@ -1,0 +1,83 @@
+/* contestList */
+
+.myPage .mypageArea .contestList h1 {
+  font-size: 1.5vw;
+  margin-top: 30px;
+  margin-bottom: 15px;
+}
+.myPage .mypageArea .contestList table tr th {
+  height: 30px;
+  text-align: center;
+}
+.myPage .mypageArea .contestList table tr td {
+  height: 30px;
+  padding: 7px 10px;
+}
+.myPage .mypageArea .contestList table tr .updatetitle:hover {
+  background-color: blue;
+  transition: all .3s;
+  color: #fff;
+}
+.myPage .mypageArea .contestList button {
+  padding: 5px 10px;
+  float:left;
+  position: relative;
+  left: -20px;
+}
+.mynav li {
+  cursor: pointer;
+}
+.font {
+  font-weight: bold;
+}
+.font2 {
+  font-weight: normal;
+}
+.myPage .mypageArea .contestList .contesttable {
+  margin-top: 10px;
+}
+
+/* memberList */
+.myPage .mypageArea .member h1 {
+  font-size: 1.5vw;
+  margin-top: 30px;
+  margin-bottom: 15px;
+}
+.myPage .mypageArea .member .memberlistbtn {
+  padding: 5px 10px;
+  float: left;
+  position: relative;
+  left: -20px;
+}
+.myPage .mypageArea .member table tr th {
+  height: 30px;
+  text-align: center;
+}
+.myPage .mypageArea .member table tr td {
+  height: 30px;
+  padding: 7px 10px;
+}
+
+/* faq detail */
+.faqtable td th {
+  border: 1px solid black;
+  border-collapse: collapse;
+  padding: 10px;
+}
+.faqtable td {
+  border: 1px solid black;
+  border-collapse: collapse;
+  padding: 10px;
+}
+.FAQ p {
+  margin-right: 47%;
+}
+.FAQ p button {
+  margin-right: -10px;
+}
+ 
+
+
+
+
+

@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bitcamp.onemoaproject.dao.product.ProductCategoryDao">
+
+  <resultMap type="productCategory" id="productCategoryMap">
+    <id column="pcno" property="code"/>
+    <result column="pctier" property="tier"/>
+    <result column="pcname" property="name"/>
+    <result column="pcparent" property="parent"/>
+    <collection property="children" ofType="productCategory">
+        <id column="spcno" property="code"/>
+        <result column="spctier" property="tier"/>
+        <result column="spcname" property="name"/>
+        <result column="spcparent" property="parent"/>
+    </collection>
+  </resultMap>
+
+  <resultMap id="selectMap" type="hashMap">
+  </resultMap>
+
+  <select id="findAll" resultMap="productCategoryMap">
+    select
+      c.pcno,
+      c.pctier,
+      c.pcname,
+      c.pcparent,
+      c2.pcno spcno,
+      c2.pctier spctier,
+      c2.pcname spcname,
+      c2.pcparent spcparent
+    from
+      product_category c
+      inner join product_category c2 on c2.pcparent=c.pcno
+  </select>
+
+  <select id="findByParent" parameterType="String" resultMap="selectMap">
+    select
+      pcno,
+      pcname
+    from
+      product_category
+    where
+      pcparent=#{code}
+  </select>
+
+  <select id="findByChild" parameterType="String" resultType="String">
+    select
+      c.pcname
+    from
+      product_category c
+      inner join product_category c2 on c2.pcparent=c.pcno
+    where
+      c2.pcno=#{code}
+  </select>
+
+  <select id="findNameByCode" parameterType="String" resultType="String">
+    select
+      pcname
+    from
+      product_category
+    where
+      pcno=#{code}
+  </select>
+
+
+</mapper>

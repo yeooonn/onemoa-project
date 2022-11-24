@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset = "UTF-8">
+    <title>onemoa contestTeam</title>
+    <link href="/onemoa/css/onemoa.css" rel="stylesheet">
+    <link href="/onemoa/css/portfolioLink.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="/onemoa/js/onemoa.js"></script>
+    <link rel="icon" href="../img/favicon1.ico">
+    <link rel="shortcut icon" href="../img/favicon1.ico">
+  </head>
+  <body style="overflow-x: hidden;">
+    <div class="portfolioLinkClick">
+      <div class="portpart">
+        <ul class="portfolio1">
+          <li>
+            <div class="proimgsize">
+              <img src="../img/small.png" data-th-src="@{/member/files/{path}(path=${portfolio[0].Member.profile})}" style="width:90%; height: auto;  border-radius: 70%; overflow: hidden;">
+            </div>
+          </li>
+          <li data-th-text=" ${portfolio[0].Member.nickname + '님 포트폴리오'}">닉네임님 포트폴리오</li>
+        </ul>
+        <span class="bar"></span>
+
+        <div class="portcontents">
+          <p data-th-text="${portfolio[0].title}">카드명함 디자인</p>
+          <p>프로젝트 설명</p>
+          <p data-th-text="${portfolio[0].cont}">
+            제가 직접 디자인한 카드 명함입니다. 심플한 디자인이 포인트이고 고급스러운 느낌을 주기위해
+            무게감있는 색상을 사용하여 그 분위기를 더해주었습니다.
+            제가 직접 디자인한 카드 명함입니다. 심플한 디자인이 포인트이고 고급스러운 느낌을 주기위해
+            무게감있는 색상을 사용하여 그 분위기를 더해주었습니다.
+          </p>
+        </div> <!--portcontents-->
+        <span class="bar"></span>
+
+        <div class="otherport">
+          <p data-th-text="${portfolio[0].Member.nickname+'님의 다른 포트폴리오'}">닉네임님의 다른 포트폴리오</p>
+          <ul class="otherlist">
+            <li data-th-each="portfolio : ${portfolios}">
+              <a href='firstportfolio?ptNo=1' data-th-href="@{firstportfolio?(ptNo=${portfolio.ptNo})}"><img data-th-src="${'/onemoa/portfolio/files/'+ portfolio.attachedFiles[0].filepath}" style="width:90%; height: auto;"></a>
+              <p data-th-text="${portfolio.title}">포트폴리오 제목</p>
+            </li>
+          </ul>
+        </div>
+      </div><!--portpart-->
+
+      <div class="portpart" id="portpart">
+        <div class="portbig" data-th-each="port1 : ${portfolio}">
+          <div data-th-each="port2 : ${port1.attachedFiles}"> <br>
+            <img data-th-src="${'/onemoa/portfolio/files/'+ port2.filepath}" style="width: 95%; height: auto;">
+          </div>
+        </div>
+      </div><!--portpart-->
+    </div>
+    
+    
+    <script th:inline="javascript">
+      let files = [[${portfolio}]];
+      let test1 = files.attachedFiles;
+      console.log(files);
+      let imgList = "";
+      for (let i=0; i < test1.length; i++) {
+        console.log(test1[i].filepath);
+        imgList += "<div class='portbig'>" + 
+          "<img src='" + "/onemoa/portfolio/files/"
+          + test1[i].filepath + "'style='width: 95%; height: auto;''>" + "</div>"
+      }
+      console.log(imgList);
+      $("#portpart").html(imgList);
+      
+    </script>
+    
+  </body>
+</html>

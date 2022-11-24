@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset = "UTF-8">
+    <title>onemoa mypage</title>
+    <link href="/onemoa/css/onemoa.css" rel="stylesheet">
+    <link href="/onemoa/css/onemoaMypage.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+    <script src="/onemoa/js/myinfo.js"></script>
+    <link rel="icon" href="../img/favicon1.ico">
+    <link rel="shortcut icon" href="../img/favicon1.ico">
+  </head>
+  <body style="overflow-x: hidden">
+    
+    <div data-th-replace="/fragments/nav.html :: fragment-nav"></div>
+    
+    <ul class="myPage">
+      <li class="mypageArea">
+        <div class="nick">
+          <img data-th-src="${'/onemoa/member/files/' + member.profile}">
+          <p data-th-text="${member.nickname}">닉네임님</p>
+        </div>
+        <div class="mypageNav">
+          <div class="myonemoa">
+            <p>마이원모아</p>
+            <span class="mybar">
+          </div>
+          <ul class="mynav">
+            <li><a class="font2" href="../mypage/portfolioList">나의 포트폴리오</a></li>
+            <li><a class="font2" href="/onemoa/mypage/contestList">공모전관리</a></li>
+            <li><a class="font2" href="">구매관리</a></li>
+            <li><a class="font2" href="">판매관리</a></li>
+            <li><a class="font2" href="">상품관리</a></li>
+            <li><a class="font2" href="">결제내역</a></li>
+            <li><a class="font2" href="">1:1 문의내역</a></li>
+            <li class="menu">
+              <a class="font" href="myinfo">계정설정</a>
+              <ul class="hide">
+                <li><a class="font" href="../mypage/myinfo">내정보수정</a></li>
+                <li><a class="font2" href="../mypage/changepw">비밀번호변경</a></li>
+                <li><a class="font2" href="../mypage/leave">회원탈퇴</a></li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </li>
+      <li class="mypageArea">
+        <div class="mypagePortfolio">
+          <p class="mptxt2">내정보수정</p>
+
+          <form id="myinfo" action="myinfoUpdate" method="post" enctype="multipart/form-data">
+          <div class="mypageArea3">
+            <img data-th-src="${'/onemoa/member/files/' + member.profile}" id="preProfile">
+            <label class="porfile" for="porfile"><p class="profilupdate">프로필 변경</p></label>
+            <input name='files' type="file" id="porfile" data-th-value="${member.profile}" style="display: none" onchange="readURL(this);">
+          </div>
+          <div class="mypageArea3">
+          <input name='no' type='hidden' value='1' data-th-value="${member.no}" readonly>
+          <input name='name' type='hidden' value='홍길동' data-th-value="${member.name}" readonly size='60'>
+          
+            <div class="joinForm-grid-item">
+              <p>닉네임</p>
+            </div>
+            <div class="joinForm-grid-item">
+              <input
+                  class="nickname-input"
+                  type="text"
+                  name="nickname"
+                  id="nickname"
+                  placeholder="닉네임을 입력해 주세요"
+                  maxlength="20"
+                  required
+                  data-th-value="${member.nickname}" 
+              />
+              <button type="button" id="nicknameCheckBtn" class="nickname_check_btn">
+                중복검사
+              </button>
+            </div>
+            <div class="joinForm-grid-item">
+              <input type="text" id="nicknameCheckBox" required value="" readonly/>
+            </div>
+
+            <div class="joinForm-grid-item">
+              <p>이메일</p>
+            </div>
+            <div class="joinForm-grid-item">
+              <div class="mail-input-box">
+                <input
+                    class="email-input"
+                    type="email"
+                    name="email"
+                    id="joinEmail"
+                    placeholder="이메일을 입력해 주세요"
+                    maxlength="30"
+                    required
+                    data-th-value="${member.email}"
+                    readonly
+                />
+            </div>
+
+            <div class="joinForm-grid-item">
+              <p>우편번호</p>
+            </div>
+            <div class="joinForm-grid-item">
+              <div class="address">
+                <input
+                    type="text"
+                    id="sample6_postcode"
+                    name="postNo"
+                    placeholder="우편번호"
+                    required
+                    data-th-value="${member.postNo}"
+                />
+                <input
+                    type="button"
+                    class="joinForm-postcode-bnt"
+                    onclick="postcode()"
+                    value="우편번호 찾기"
+                /><br />
+                <input
+                    type="text"
+                    id="sample6_address"
+                    name="baseAddr"
+                    placeholder="도로명주소"
+                    required
+                    data-th-value="${member.baseAddr}"
+                /><br />
+                <input
+                    type="text"
+                    id="sample6_detailAddress"
+                    name="detailAddr"
+                    placeholder="상세주소"
+                    required
+                    data-th-value="${member.detailAddr}"
+                />
+              </div>
+            </div>
+
+            <div class="joinForm-grid-item">
+              <p>수익금 출금 은행</p>
+            </div>
+            <div class="joinForm-grid-item">
+              <select id="bank" name="bank" class="bank" data-th-value="${member.bank}">
+                <option value="0" data-th-selected="${member.bank}">수익금을 출금할 은행을 선택해주세요</option>
+                <option value="우리은행" data-th-selected="${member.bank}=='우리은행'">우리은행</option>
+                <option value="국민은행" data-th-selected="${member.bank}=='국민은행'">국민은행</option>
+                <option value="신한은행" data-th-selected="${member.bank}=='신한은행'">신한은행</option>
+                <option value="농협은행" data-th-selected="${member.bank}=='농협은행'">농협은행</option>
+              </select>
+            </div>
+
+            <div class="joinForm-grid-item">
+              <p>수익금 출금 계좌</p>
+            </div>
+            <div class="joinForm-grid-item">
+              <div class="account-input-box">
+                <input
+                    class="account-input"
+                    type="text"
+                    name="account"
+                    id="account"
+                    placeholder="수익음 출금 계좌번호를 입력해 주세요"
+                    maxlength="30"
+                    required
+                    data-th-value="${member.account}"
+                />
+              </div>
+            </div>
+
+            <div class="joinForm-grid-item">
+              <p>직업</p>
+            </div>
+            <div class="joinForm-grid-item">
+              <select id="jobNo" name="jobNo" class="job">
+                <option value="0" selected>직업을 선택해주세요.</option>
+                <option value="1">프리랜서</option>
+                <option value="2">직장인</option>
+                <option value="3">소상공인</option>
+                <option value="4">스타트업 창업</option>
+                <option value="5">대학(원)생</option>
+                <option value="6">취업준비생</option>
+              </select>
+            </div>
+            <div class="joinForm-grid-item">
+              <input
+                  type="text"
+                  id="jobNoCheckBox"
+                  required
+                  value=""
+                  readonly />
+            </div>
+
+            <div class="joinForm-grid-item">
+              <p>관심사 선택</p>
+            </div>
+            <div class="interest-multiselect">
+              <div class="interest-selectBox">
+                <div class="interest" onclick="showInterestCheckboxes()">
+                  <p>관심사를 선택해 주세요.</p>
+                </div>
+                <div id="interest-checkboxes">
+                  <input type="checkbox" name="design" value="010000" /><span>디자인</span><br />
+                  <input type="checkbox" name="it" value="020000"/><span>IT·프로그래밍</span><br />
+                  <input type="checkbox" name="video" value="030000"/><span>영상·사진·음향</span><br />
+                  <input type="checkbox" name="marketing" value="040000"/><span>마케팅</span><br />
+                  <input type="checkbox" name="translate" value="050000"/><span>번역·통역</span><br />
+                  <input type="checkbox" name="write" value="060000"/><span>문서·글쓰기</span><br />
+                  <input type="checkbox" name="business" value="070000"/><span>비즈니스컨설팅</span><br />
+                </div>
+              </div><!-- interest-selectBox -->
+            </div><!-- interest-multiselect  -->
+          <button type="button" class="myinfobtn" id="checkboxCheck">수정하기</button>
+          </div><!--mypageArea3-->
+          </form>
+            
+        </div><!--mypagePortfolio-->
+      </li>
+    </ul>
+
+
+    <footer data-th-replace="/fragments/footer.html :: fragment-footer"></footer>
+    
+    <script>
+    $("#checkboxCheck").click(function() {
+
+    	  console.log("test");
+    	    const myinfo = document.getElementById("myinfo");
+    	    const jobNoCheck = document.getElementById("jobNo");
+    	    console.log("test");
+    	    // const jobNo = $("")
+    	    if (isnickname == false) {
+    	      document.getElementById("nicknameCheckBox").value = "닉네임 중복검사가 필요합니다.";
+    	      document.getElementById("nicknameCheckBox").style.display = "red";
+    	      document.getElementById("nicknameCheckBox").style.display = "block";
+    	      document.getElementById("nickname").focus();
+    	    }
+
+    	    if (jobNoCheck.options[jobNoCheck.selectedIndex].value == 0) {
+    	      document.getElementById("jobNoCheckBox").value = "직업을 선택해 주세요.";
+    	      document.getElementById("jobNoCheckBox").style.color = "red";
+    	      document.getElementById("jobNoCheckBox").style.display = "block";
+    	    } else {
+    	      myinfo.submit();
+    	      return true;
+    	    }
+    	});
+    </script>
+
+  <script>
+      const body = document.querySelector('body');
+      const modal = document.querySelector('.modal');
+      const btnOpenPopup = document.querySelector('.btn-open-popup');
+      const closebtn = document.querySelector('.closebtn');
+
+      btnOpenPopup.addEventListener('click', () => {
+        modal.style.display = 'block';
+
+        if (modal.classList.contains('show')) {
+          body.style.overflow = 'hide';
+        }
+        body.style.overflow = 'hidden';
+      });
+
+      closebtn.addEventListener('click', () => {
+        modal.style.display = 'none';
+        body.style.overflow = 'auto';
+      });
+      
+      function readURL(input) {
+          if (input.files && input.files[0]) {
+            var reader = new FileReader();
+            reader.onload = function(e) {
+              document.getElementById('preProfile').src = e.target.result;
+              document.getElementById('preProfile').style.display = "block";
+            };
+            reader.readAsDataURL(input.files[0]);
+          }
+        }  
+    </script>  
+    
+    
+  </body>
+</html>

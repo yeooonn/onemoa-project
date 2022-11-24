@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>onemoa</title>
+  <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+  <script src="/onemoa/js/onemoa.js"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <!-- include libraries(jQuery, bootstrap) -->
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <!-- include summernote css/js -->
+  <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
+  <link href="/onemoa/css/onemoa.css" rel="stylesheet">
+  <script src="/onemoa/onemoa/js/login.js"></script>
+  <link rel="icon" href="../img/favicon1.ico">
+  <link rel="shortcut icon" href="../img/favicon1.ico">
+</head>
+<body style="overflow-x: hidden">
+<div data-th-replace="/fragments/nav.html :: fragment-nav"></div>
+
+<main id="noticeDetail">
+  <div><img id="noticeBanner" src="../img/notice.png" alt=""></div>
+  <div id="underBanner"></div>
+  <div class="container" style="height: 650px">
+
+          <table class="table">
+            <thead>
+             <tr>
+               <td>
+                <input name="title" data-th-value=" ${notice.title}" size=100 readonly style="font-size: 1vw; width: 400px; border:none; outline: none; resize: none; border-right:0px; border-top:0px; boder-left:0px; boder-bottom:0px;">
+               </td>
+                <td>
+               </td>
+                 <td>
+                     <div class="buttons">
+                         <button id="backToList" type="button" class="btn btn-primary"><a href="./list">목록으로</a></button>
+                     </div>
+                 </td>
+             </tr>
+            </thead>
+            <tbody>
+             <tr>
+              <td style="width: 100px">작성자 : 관리자</td>
+              <td data-th-text="'작성일 : ' + ${notice.createdDate}" style="width: 100px">작성일</td>
+              <td data-th-text="'조회수 : ' + ${notice.viewCount}" style="width: 70px">조회수</td>
+             </tr>
+             <tr>
+              <td colspan="3">
+                  <textarea name='content' rows='auto' cols='30' data-th-utext="${notice.content}" style="width: 100%; min-height: 500px; border:none; outline: none; resize: none;" readonly>내용</textarea>
+              </td>
+             </tr>
+            </tbody>
+          </table>
+      <input hidden name="no" type='number' value='1' data-th-value=" ${notice.no}" size=0>
+  </div>
+</main>
+
+  <footer data-th-replace="/fragments/footer.html :: fragment-footer"></footer>
+  
+</body>
+</html>

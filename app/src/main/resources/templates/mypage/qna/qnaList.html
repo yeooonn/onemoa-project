@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:data-th-="http://www.w3.org/1999/xhtml">
+<head>
+  <meta charset = "UTF-8">
+  <title>onemoa mypage</title>
+  <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+  <link href="/onemoa/css/onemoa.css" rel="stylesheet">
+  <link href="/onemoa/css/onemoaMypage.css" rel="stylesheet">
+  <link rel="icon" href="../img/favicon1.ico">
+  <link rel="shortcut icon" href="../img/favicon1.ico">
+  <script src="/onemoa/js/login.js"></script>
+  <script src="/onemoa/js/onemoa.js"></script>
+  <style>
+    .mypageArea {
+      min-height: 60vw;
+    }
+    .mptxt2 {
+      width: 100%;
+    }
+
+    #empty {
+      text-align: center;
+      margin-top: 20%;
+    }
+    .row {
+      padding: 15px 10px;
+      border: solid 1px #dbdbe5;
+      border-radius: 4px;
+
+      display: inline-block;
+      vertical-align: middle;
+      -webkit-transform: perspective(1px) translateZ(0);
+      transform: perspective(1px) translateZ(0);
+      box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+      -webkit-transition-duration: 0.3s;
+      transition-duration: 0.3s;
+      -webkit-transition-property: box-shadow;
+      transition-property: box-shadow;
+
+      max-height: 20vw;
+      min-height: 12vw;
+      width: 15.3vw;
+      margin-bottom: 2vw;
+
+      /*max-height: 330px;*/
+      /*min-height: 330px;*/
+    }
+    .row:hover {
+      box-shadow: 0 0 8px rgba(0, 0, 0, 0.6);
+      background-color: #ffffff;
+      opacity: 0.5;
+    }
+
+    .row:hover #userBtn {
+      display: block;
+    }
+
+    .thumbnail {
+      horiz-align: center;
+      text-align: center;
+
+      /*min-height: 250px;*/
+      /*max-width: 200px;*/
+    }
+    .thumbnail > img {
+      height: 10vw;
+      width: 100%;
+    }
+    .row > p {
+      margin-top: 0px;
+      font-size: 1.2vw;
+      margin-bottom: 5px;
+      text-align: right;
+    }
+    .caption > p {
+      word-break: break-all;
+      max-height: 3vw;
+      min-height: 3vw;
+      margin-top: 5px;
+      margin-bottom: 15px;
+      font-size: 1.2vw;
+      text-align: left;
+    }
+    .details {
+      vertical-align: center;
+    }
+    .details img {
+      margin-top: 1px;
+      border: none;
+    }
+    .details p {
+      display: inline;
+      margin-top: 0px;
+      font-size: 1vw;
+    }
+    #price > p {
+      text-align: right;
+      font-size: 1vw;
+      margin-top: 0.5vw;
+      margin-bottom: 0px;
+    }
+    #userBtn {
+      float: left;
+      position: fixed;
+      display: none;
+    }
+
+
+    .tableStyle {
+      text-align: center;
+      margin: 10px;
+    }
+
+    table {
+      border-collapse:collapse;
+    }
+    td {
+      margin-bottom: 10px;
+    }
+    tr {
+      border-bottom: 1px solid black;
+    }
+    .tableSt {
+      width: 100%;
+      max-width: 100%;
+      padding-bottom: 100px;
+    }
+
+    #underBanner p span, button {
+      font-size: 0.85vw;
+      float : none;
+      margin: 0 0px 0 0px;
+    }
+
+    .table2 {
+      justify-content: center;
+      display: flex;
+      margin-top: 10px;
+      margin-bottom: 10px;
+    }
+
+  </style>
+</head>
+<body style="overflow-x: hidden">
+<div data-th-replace="/fragments/nav.html :: fragment-nav"></div>
+
+<ul class="myPage">
+  <li class="mypageArea">
+    <div class="nick">
+      <img data-th-src="${'/onemoa/member/files/' + session.loginMember.profile}">
+      <p data-th-text="${session.loginMember.nickname}">닉네임님</p>
+    </div>
+    <div class="mypageNav">
+      <div class="myonemoa">
+        <p>마이원모아</p>
+        <span class="mybar"></span>
+      </div>
+      <ul class="mynav">
+        <li><a class="font2" href="../mypage/portfolioList">포트폴리오 관리</a></li>
+        <li><a class="font2" href="/onemoa/mypage/contestList">공모전 관리</a></li>
+        <li><a class="font2" href="/onemoa/mypage/buysList">구매 관리</a></li>
+        <li><a class="font2" href="/onemoa/mypage/salesList">판매 관리</a></li>
+        <li><a class="font2" href="/onemoa/mypage/productList">상품 관리</a></li>
+        <li><a class="font2" href="">결제내역</a></li>
+        <li><a class="font" href="/onemoa/mypage/qnaList">1:1 문의내역</a></li>
+        <li class="menu">
+          <a class="font2" href="myinfo">계정설정</a>
+          <ul class="hide">
+            <li><a class="font2" href="../mypage/myinfo">내정보수정</a></li>
+            <li><a class="font2" href="../mypage/changepw">비밀번호변경</a></li>
+            <li><a class="font2" href="../mypage/leave">회원탈퇴</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </li>
+  <li class="mypageArea">
+    <div class="mypagePortfolio">
+      <p class="mptxt2">1:1 문의 목록<span class="addport"><a href='/onemoa/qna/form'>문의글 작성하기</a></span></p>
+      <div class="portfolioBoxCon">
+        <ul class="portfolioList">
+            <table style="width: 92%" class="tableSt">
+              <tr>
+                <th style="margin-bottom: 10px;" class="tableStyle">번호</th>
+                <th class="tableStyle">제목</th>
+                <th class="tableStyle">작성자</th>
+                <th class="tableStyle">문의일</th>
+                <th class="tableStyle">답변 등록일</th>
+              </tr>
+              <tr data-th-each="qna : ${qnas}">
+                <td class="tableStyle" style="width: 5vw" data-th-text="${qna.no}">100</td>
+                <td class="tableStyle" style="width: 70vw" >
+                  <a href='qnaDetail?no=1'
+                     data-th-href="@{qnaDetail(no=${qna.no})}"
+                     data-th-text="${qna.title == ''} ? '(제목없음)' : ${qna.title}">제목</a>
+                </td>
+                <td class="tableStyle" style="width: 10vw; padding: 10px"  data-th-text="${qna.writer.name}">홍길동</td>
+                <td class="tableStyle" style="width: 15vw; padding: 10px"  data-th-text="${#temporals.format(qna.createdDate, 'yyyy-MM-dd')}">문의일시</td>
+                <td class="tableStyle" style="width: 12vw; padding: 10px; font-weight: 600;" data-th-if="${qna.answer != null}" data-th-text="${#temporals.format(qna.answerCdt, 'yyyy-MM-dd')}">답변일시</td>
+                <td class="tableStyle" data-th-if="${qna.answer == null}" style="color: royalblue; width: 12vw;">답변대기</td>
+            </tr>
+            </table>
+         </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="nextBox">
+      <nav class="xx-nav" aria-label="pagination">
+        <ul class="xx-pagination">
+          <li data-th-if="${pageMaker.prev}">
+            <a data-th-href="@{qnaList(pageMaker.startPage-1)}"><span aria-hidden="true">이전페이지</span><span class="xx-visuallyhidden">previous set of pages</span></a>
+          </li>
+          <data-th-block data-th-each="pageNum: ${#numbers.sequence(pageMaker.startPage, pageMaker.endPage)}">
+            <li><a data-th-href="@{qnaList(page=${pageNum})}"><span class="xx-visuallyhidden">page </span><span data-th-text="${pageNum}"></span></a></li>
+          </data-th-block>
+          <li data-th-if="${pageMaker.next && pageMaker.endPage >0}">
+            <a data-th-href="@{qnaList(page=${pageMaker.endPage+1})}"><span class="xx-visuallyhidden">next set of pages</span><span aria-hidden="true">다음페이지</span></a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </li>
+</ul>
+
+<footer data-th-replace="/fragments/footer.html :: fragment-footer"></footer>
+<script>
+</script>
+</body>
+</html>

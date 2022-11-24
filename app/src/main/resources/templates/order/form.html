@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>onemoa v</title>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.js"></script>
+    <script src="../js/login.js"></script>
+    <link href="../css/onemoa.css" rel="stylesheet">
+    <link rel="icon" href="../img/favicon1.ico">
+    <link rel="shortcut icon" href="../img/favicon1.ico">
+    <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js" ></script>
+    <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.2.0.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
+    <link rel="stylesheet"href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css" />
+    <style>
+        * {
+            box-sizing: content-box;
+        }
+    </style>
+    <script>
+        var productNo = [[${product.no}]];
+
+        var IMP = window.IMP;
+        IMP.init("imp17851657");
+
+        function requestPay() {
+            IMP.request_pay({
+                pg : 'kakaopay',
+                pay_method : 'kakaopay',
+                merchant_uid: parseInt(Date.now() + (Math.random() * 1000)),
+                name : '[[${product.title}]]',
+                amount : '[[${product.price}]]',
+                buyer_email : 'Iamport@chai.finance',
+                buyer_name : '원모아',
+                buyer_tel : '010-1234-5678',
+                buyer_addr : '서울특별시 강남구 삼성동',
+                buyer_postcode : '123-456'
+            }, function (rsp) { // callback
+                if (rsp.success) {
+                    console.log(rsp);
+                    document.addOrder.submit();
+
+                } else {
+                    console.log(rsp);
+                    swal("", "결제가 취소되었습니다." , "error");
+                }
+            });
+        }
+    </script>
+    <style>
+        #border {
+            display: block;
+            background-color: #999;
+            height: 1px;
+            margin-top: 1vw;
+            width: 100%;
+        }
+
+        #payment {
+            margin: 1vw 1.4vw;
+            float: none;
+            border: none;
+            border-radius: 4px;
+            background: #707fc2;
+            width: 98%;
+            color: white;
+            padding: 0.6vw;
+            font-size: 1.5vw;
+        }
+
+        #payment:hover {
+            background: #344dbe;
+        }
+
+        .comment {
+            padding-left: 1.8vw;
+        }
+
+        .orderInfo {
+            color: #333333;
+            font-size: 1.3vw;
+            margin: 1vw 0px;
+        }
+
+        .orderInfoTitle {
+            color: #333333;
+            font-size: 1.3vw;
+            margin: 0vw 0vw 1vw 0vw;
+            background: #ccc;
+            padding: 0.4vw 0.4vw;
+            border-radius: 4px;
+        }
+
+
+        .orderForm {
+            min-height: 80vw;
+        }
+
+        .container {
+            margin: 3vw 5.2vw;
+        }
+
+        .panel {
+            min-height: 16vw;
+            max-height: 16vw;
+            padding: 0.6vw 0.8vw 1vw 0.8vw;
+            margin-left: 1vw;
+            margin-bottom: 1vw;
+            border-radius: 4px;
+            border: solid #999 1px;
+        }
+
+
+        .panel-heading {
+            margin-bottom: 1vw;
+
+        }
+
+        .panel img {
+            margin-right: 1vw;
+            margin-bottom: 1vw;
+            width: 15%;
+            height: 15%;
+            float: left;
+            border: #ddd solid 1px;
+        }
+
+        .address > input {
+            padding-left: 0.5vw;
+        }
+
+        .disable :hover {
+
+        }
+
+
+    </style>
+</head>
+<body style="overflow-x: hidden">
+<div data-th-replace="/fragments/nav.html :: fragment-nav"></div>
+<span id="border"></span>
+<div class="orderForm">
+<div class="container">
+<form name="addOrder" action="add" method="post">
+
+    <input hidden name="no" data-th-value="${product.no}"/>
+    <div class="panel panel-default">
+        <div class="orderInfoTitle">상품 결제하기</div>
+        <a href="" data-th-href="@{/product/detail(no=${product.no})}">
+         <img data-th-src="@{/product/files/{path}(path=${product.thumbnail})}" alt="제품대표이미지">
+        </a>
+        <div class="orderInfo" data-th-value="${product.title}" data-th-text="${product.title}">상품 제목</div>
+        <div class="orderInfo" data-th-value="${product.price}" data-th-text="'가격 : ' + ${#numbers.formatInteger(product.price, 3, 'COMMA')} + ' 원'">상품 가격</div>
+    </div>
+    <div id="info" class="panel panel-default">
+        <div class="orderInfoTitle">기본 정보 입력</div>
+        <label style="font-size: 1.1vw" for="r1" class="radio-inline"><input style="margin-right: 0.5vw" type="radio" id="r1"  value="0" name="radio" checked>기본 주소를 배송지로 등록</label>
+        <label style="font-size: 1.1vw" for="r2" class="radio-inline"><input style="margin: 0vw 0.5vw" type="radio" id="r2" value="1" name="radio">새로운 배송지 등록</label>
+        <div class="address">
+            <input
+                    data-th-value="${buyer.postNo}"
+                    type="text"
+                    id="sample6_postcode"
+                    name="postNo"
+                    placeholder="우편번호"
+                    required
+            />
+            <input
+                    type="button"
+                    class="joinForm-postcode-bnt"
+                    onclick="sample6_execDaumPostcode()"
+                    name="postNofindBtn"
+                    value="우편번호 찾기"
+            /><br />
+            <input
+                    data-th-value="${buyer.baseAddr}"
+                    type="text"
+                    id="sample6_address"
+                    name="baseAddr"
+                    placeholder="도로명주소"
+                    required
+            /><br />
+            <input
+                    data-th-value="${buyer.detailAddr}"
+                    type="text"
+                    id="sample6_detailAddress"
+                    name="detailAddr"
+                    placeholder="상세주소"
+                    required
+            />
+        </div>
+    </div>
+    <div class="comment"><span><img src="../img/info_icon.png" width="15px" height="15px"></span> 결제 전 유의사항 :
+    결제완료 후 빠르게 제작이 들어가는 상품의 경우, 환불이 어려울 수 있습니다.</div>
+    <span>
+        <button type="button" id="payment" onclick="requestPay()">결제하기</button> <!-- 결제하기 버튼 생성 -->
+    </span>
+</form>
+</div>
+</div>
+<footer data-th-replace="/fragments/footer.html :: fragment-footer"></footer>
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<script src="../js/joinForm.js"></script>
+<script th:inline="javascript">
+
+    const postNo = [[${buyer.postNo}]]
+    const baseAddr = [[${buyer.baseAddr}]]
+    const detailAddr = [[${buyer.detailAddr}]]
+
+    console.log(postNo);
+    console.log(baseAddr);
+    console.log(detailAddr);
+
+    $(document).ready(function(){
+        if($("input[name=radio]:checked").val() == "0") {
+            $("input:text[name=postNo]").attr("readonly", true);
+            $("input:button[name=postNofindBtn]").attr("disabled",true);
+            $("input:text[name=baseAddr]").attr("readonly", true);
+            $("input:text[name=detailAddr]").attr("readonly", true);
+        }
+        // 라디오버튼 클릭시 이벤트 발생
+        $("input:radio[name=radio]").click(function(){
+
+            if($("input[name=radio]:checked").val() == "1"){ // 새로운 배송지 할거면
+
+                $("input:text[name=postNo]").val('');
+                $("input:text[name=baseAddr]").val('');
+                $("input:text[name=detailAddr]").val('');
+
+                $("input:text[name=postNo]").attr("readonly", false);
+                $("input:button[name=postNofindBtn]").attr("disabled", false);
+                $("input:text[name=baseAddr]").attr("readonly", false);
+                $("input:text[name=detailAddr]").attr("readonly", false);
+                // radio 버튼의 value 값이 1이라면 활성화
+
+            } else if($("input[name=radio]:checked").val() == "0"){ // 기본 주소를 배송지 할거면
+
+                $("input:text[name=postNo]").val(postNo);
+                $("input:text[name=baseAddr]").val(baseAddr);
+                $("input:text[name=detailAddr]").val(detailAddr);
+
+                $("input:text[name=postNo]").attr("readonly", true);
+                $("input:button[name=postNofindBtn]").attr("disabled", true);
+                $("input:text[name=baseAddr]").attr("readonly", true);
+                $("input:text[name=detailAddr]").attr("readonly", true);
+
+                // radio 버튼의 value 값이 0이라면 비활성화
+            }
+        });
+    });
+</script>
+</body>
+</html>

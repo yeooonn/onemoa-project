@@ -12,32 +12,49 @@ repositories {
 dependencies {
     // spring-webmvc 관련 라이브러리
     implementation 'org.springframework.boot:spring-boot-starter-web'
-    
+
     // Thymeleaf 관련 라이브러리
     implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
 
     // spring-jdbc 관련 라이브러리
     implementation 'org.springframework.boot:spring-boot-starter-jdbc'
-    
+
     // mybatis-spring 관련 라이브러리
     implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:2.2.2'
 
-    // mariadb jdbc driver 관련 라이브러리    
+    // mariadb jdbc driver 관련 라이브러리
     runtimeOnly 'org.mariadb.jdbc:mariadb-java-client'
-    
+
+    // spring-email 관련 라이브러리
+    implementation 'org.springframework.boot:spring-boot-starter-mail:2.7.5'
+
     // 개발 편이성을 제공하는 라이브러리 ==> 개발 완료 후 제거한다.
     developmentOnly 'org.springframework.boot:spring-boot-devtools'
-    
+
     // 단위테스트 관련 라이브러리
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
-    
+
+    // lombok 라이브러리
+    implementation 'org.projectlombok:lombok:1.18.24'
+    annotationProcessor('org.projectlombok:lombok')
+    compileOnly 'org.projectlombok:lombok'
+
+    // 채팅 관련 라이브러리
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    runtimeOnly 'com.h2database:h2'
+    runtimeOnly 'mysql:mysql-connector-java'
+    implementation 'org.springframework.boot:spring-boot-starter-websocket'
+    implementation 'org.webjars:sockjs-client:1.1.2'
+    implementation 'org.webjars:stomp-websocket:2.3.3-1'
+
     // 프레임워크나 라이브러리 등에서 출력하는 로그를 다루는 라이브러리
     //implementation 'org.apache.logging.log4j:log4j-core:2.18.0'
-    
-    
+
+    implementation 'com.google.code.gson:gson:2.10'
+
+
     //implementation project(':app-common')
 }
-
 // 단위 테스트에 사용할 라이브러리를 지정한다.
 tasks.named('test') {
   useJUnitPlatform()
@@ -64,7 +81,7 @@ tasks.withType(JavaCompile) {
 // Eclipse IDE에서 사용할 프로젝트 정보 설정하기
 eclipse {
     project {
-        name = "onemoa-project" 
+        name = "onemoa-project-demo" 
         // 프로젝트 이름을 지정하지 않으면 build.gradle 파일이 있는 
         // 폴더 이름을 프로젝트 이름을 사용한다.
     }

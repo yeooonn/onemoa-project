@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bitcamp.onemoaproject.dao.product.ProductWishDao">
+
+  <resultMap type="productWish" id="productWishMap">
+      <result column="ppno" property="pno"/>
+      <result column="count" property="count"/>
+  </resultMap>
+
+  <select id="findByAllCount" resultMap="productWishMap">
+    select
+      pno as ppno,
+      count(*) as count
+    from
+      wishlist
+    group by pno;
+  </select>
+
+</mapper>

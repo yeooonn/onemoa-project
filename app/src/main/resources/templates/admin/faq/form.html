@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>onemoa mypage</title>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <link href="/onemoa/css/onemoa.css" rel="stylesheet">
+    <link href="/onemoa/css/onemoaMypage.css" rel="stylesheet">
+    <link href="/onemoa/css/onemoaManage.css" rel="stylesheet">
+    <link rel="icon" href="../../img/favicon1.ico">
+    <link rel="shortcut icon" href="../../img/favicon1.ico">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="/onemoa/js/onemoa.js"></script>
+</head>
+<body>
+  <h1 style="text-align: center; margin-top:70px; margin-bottom:20px;">새 FAQ 등록</h1>
+  <form action='add' method="post" style="text-align: center;">
+    <table class="table" border='1' style="margin: 0 auto;">
+      <tr>
+        <th>타입</th>
+        <td style="float: left;">
+          <select name="type" style="width: 100%;">
+            <option value="타입을 선택해주세요." selected>타입을 선택해주세요.</option>
+            <option value="판매자">판매자</option>
+            <option value="구매자">구매자</option>
+          </select>
+        </td>
+      </tr>
+      <tr>
+        <th>제목</th>
+        <td style="float: left; width: 100%;"><input name="title" style="width: 100%;" placeholder="제목을 입력해주세요." required></td>
+      </tr>
+      <tr>
+        <th>내용</th>
+        <td><textarea name="content" style="resize: none;" rows='10' cols='60' placeholder="내용을 입력해주세요." required></textarea></td>
+      </tr>
+    </table>
+    <p style="text-align: center; margin-right: 48%;">
+      <button type='submit' style=" margin-right: -10px;">등록</button>
+      <button style=" margin-right: -10px;"><a href='./list'>목록</a></button>
+    </p>
+  </form>
+</body>
+</html>

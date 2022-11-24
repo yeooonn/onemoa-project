@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>onemoa</title>
+<!--  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">-->
+  <link rel="stylesheet" type="text/css" href="reset.css" />
+  <link href="/onemoa/css/onemoa.css" rel="stylesheet">
+  <link rel="icon" href="../img/favicon1.ico">
+  <link rel="shortcut icon" href="../img/favicon1.ico">
+<!--  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>-->
+  <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.js"></script>
+  <script src="/onemoa/js/login.js"></script>
+
+<!--  <link href="/onemoa/css/pagination.css"/>-->
+  <style>
+
+    #newProduct {
+      position: fixed;
+      top: 45vw;
+      left: 87.8vw;
+      padding: 10px 20px;
+      border-radius: 20px;
+      border: none;
+      background-color: #dbdbe5;
+      font-size: 1.2vw;
+    }
+
+    .row {
+      overflow: hidden;
+      padding: 8px 8px;
+      border: solid 1px #dbdbe5;
+      border-radius: 4px;
+
+      display: inline-block;
+      vertical-align: middle;
+      -webkit-transform: perspective(1px) translateZ(0);
+      transform: perspective(1px) translateZ(0);
+      box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+      -webkit-transition-duration: 0.3s;
+      transition-duration: 0.3s;
+      -webkit-transition-property: box-shadow;
+      transition-property: box-shadow;
+
+      height: 19vw;
+      width: 15.3vw;
+
+    }
+    .row:hover {
+      box-shadow: 0 0 8px rgba(0, 0, 0, 0.6);
+    }
+
+    .thumbnail {
+      margin-right: 0px;
+      margin-bottom: 0px;
+      horiz-align: center;
+      text-align: center;
+      min-height: 10vw;
+      border: none;
+      padding: 0px;
+    }
+
+    .thumbnail .caption {
+      padding: 5px;
+    }
+
+    .thumbnail > img {
+      height: 10vw;
+      width: 100%;
+    }
+
+    .row > p {
+      margin-top: 0px;
+      font-size: 1.2vw;
+      margin-bottom: 5px;
+      text-align: right;
+    }
+
+    .caption > p {
+      word-break: break-all;
+      max-height: 2.5vw;
+      min-height: 2.5vw;
+      margin-top: 0vw;
+      margin-bottom: 0vw;
+      font-size: 1vw;
+      text-align: left;
+    }
+
+    .details {
+      vertical-align: center;
+    }
+
+    .details img {
+      margin-top: 1px;
+    }
+
+    .details p {
+      display: inline;
+      margin-top: 0px;
+      font-size: 1vw;
+    }
+
+    #price {
+      text-align: right;
+    }
+
+    #price > p {
+      margin-top: 0vw;
+      margin-bottom: 0vw;
+    }
+
+    /*페이징 css*/
+    .xx-visuallyhidden {
+      border: 0;
+      clip: rect(0 0 0 0);
+      height: auto;
+      margin: 0;
+      overflow: hidden;
+      padding: 0;
+      position: absolute;
+      width: 1px;
+      white-space: nowrap;
+    }
+    .xx-nav {
+      display: flex;
+      justify-content: center;
+      margin-top: 1em;
+      margin-bottom: 3em;
+      padding-top: .5em;
+      margin-left: 22vw;
+    }
+    .xx-pagination {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+    }
+    .xx-pagination li {
+      margin: 0 1px;
+    }
+    .xx-pagination a {
+      display: block;
+      padding: .5em 1em;
+      border: 1px solid #999;
+      border-radius: .2em;
+      text-decoration: none;
+    }
+    .xx-pagination a[aria-current="page"] {
+      background-color: #333;
+      color: #fff;
+    }
+
+  </style>
+</head>
+<body style="overflow-x: hidden">
+  <div data-th-replace="/fragments/nav.html :: fragment-nav"></div>
+
+  <main id="productList">
+    <img class="banner" src="/onemoa/img/productbg.png" alt="">
+    <div id="underBanner">
+      <p id="">전체카테고리
+        <span>최신순</span>
+        <span>인기순</span>
+        <span>평점순</span>
+      </p>
+    </div>
+
+    <nav id="productCateList">
+      <ul>
+        <li class="menu" data-th-each= "category : ${productCategories}">
+          <p class="cate1" data-th-text="${category.name}">상위 카테고리</p>
+          <ul class="hide">
+            <a data-th-each= "child : ${category.children}" data-th-href="@{list(code=${child.code}, page=${pageMaker.startPage})}" data-th-text="${child.name}">하위 카테고리</a>
+<!--            <a th:href="@{/oreder/details(id=${orderInfo.seq})}">-->
+            <p data-th-text="${child}"></p>
+          </ul>
+        </li>
+      </ul>
+    </nav>
+
+    <div id="productContainer"></div>
+
+       <section>
+         <div id="productContainer1" class="product_container">
+           <div data-th-each= "product : ${products}">
+            <a href="#" data-th-id="${product.no}" data-th-href="@{detail(no=${product.no})}" class="item">
+              <!-- bootstrap card -->
+              <div class="row">
+                <div>
+                  <div class="thumbnail">
+                    <img data-th-src="@{/product/files/{path}(path=${product.thumbnail})}" alt="">
+                    <div class="caption">
+                      <p data-th-text="${product.title}">Thumbnail label</p>
+                    </div>
+                  </div>
+                  <div class="details">
+                      <img src="../img/activeheart.png" />
+                      <p data-th-id="|heart${product.no}|">0개 |</p>
+                      <img src="../img/star.png" />
+                      <p data-th-id="|score${product.no}|"></p>
+                  </div>
+                  <div id="price">
+                   <p data-th-text="${#numbers.formatInteger(product.price, 3, 'COMMA')} + ' 원'">판매 가격</p>
+                  </div>
+                </div>
+              </div>
+            </a>
+           </div>
+         </div>
+       </section>
+
+    <a href="form"><button class="button" id="newProduct">새 글 작성하기</button></a>
+
+   </main>
+
+  <!-- 페이징 -->
+  <nav data-th-if="${code != null}" class="xx-nav" aria-label="pagination">
+    <ul class="xx-pagination">
+      <li data-th-if="${pageMaker.prev}">
+        <a data-th-href="@{list(code=${code}, page=${pageMaker.startPage-1})}"><span aria-hidden="true">이전페이지</span><span class="xx-visuallyhidden">previous set of pages</span></a>
+      </li>
+      <data-th-block data-th-each="pageNum: ${#numbers.sequence(pageMaker.startPage, pageMaker.endPage)}">
+        <li><a data-th-href="@{list(code=${code}, page=${pageNum})}"><span class="xx-visuallyhidden">page </span><span data-th-text="${pageNum}"></span></a></li>
+      </data-th-block>
+      <li data-th-if="${pageMaker.next && pageMaker.endPage >0}">
+        <a data-th-href="@{list(code=${code}, page=${pageMaker.endPage+1})}"><span class="xx-visuallyhidden">next set of pages</span><span aria-hidden="true">다음페이지</span></a>
+      </li>
+    </ul>
+  </nav>
+
+  <nav data-th-if="${code == null}" class="xx-nav" aria-label="pagination">
+    <ul class="xx-pagination">
+      <li data-th-if="${pageMaker.prev}">
+        <a data-th-href="@{list(page=${pageMaker.startPage-1})}"><span aria-hidden="true">이전페이지</span><span class="xx-visuallyhidden">previous set of pages</span></a>
+      </li>
+      <data-th-block data-th-each="pageNum: ${#numbers.sequence(pageMaker.startPage, pageMaker.endPage)}">
+        <li><a data-th-href="@{list(page=${pageNum})}"><span class="xx-visuallyhidden">page </span><span data-th-text="${pageNum}"></span></a></li>
+      </data-th-block>
+      <li data-th-if="${pageMaker.next && pageMaker.endPage >0}">
+        <a data-th-href="@{list(page=${pageMaker.endPage+1})}"><span class="xx-visuallyhidden">next set of pages</span><span aria-hidden="true">다음페이지</span></a>
+      </li>
+    </ul>
+  </nav>
+
+  <footer data-th-replace="/fragments/footer.html :: fragment-footer"></footer>
+  <script data-th-inline="javascript">
+    $(document).ready(function() {
+      $(".menu>p").click(function(){
+        $(this).addClass("selected");
+
+        var submenu = $(this).next("ul");
+
+        // submenu 가 화면상에 보일때는 위로 보드랍게 접고 아니면 아래로 보드랍게 펼치기
+        if (submenu.is(":visible") ){
+          submenu.slideUp();
+          $(this).removeClass("selected");
+        } else {
+          submenu.slideDown();
+        }
+      })});
+
+    let products = [[${products}]];
+    let wishes = [[${wishes}]];
+    console.log(products);
+    let productsLength = products.length;
+    let score = 0;
+    let totalScore = 0;
+
+    for (let i = 0; i < productsLength; i++) {
+
+      if (products[i].productScores.length > 0) {
+        // console.log(products[i].productScores);
+        // console.log(products[i].productScores[0].score);
+        for (let j = 0; j < products[i].productScores.length; j++) {
+          score += products[i].productScores[j].score;
+          console.log(score);
+        }
+        totalScore = score / products[i].productScores.length;
+        console.log("products[i].productScores");
+        console.log(products[i].productScores);
+        console.log("score");
+        console.log(score);
+        console.log("products[i].productScores.length");
+        console.log(products[i].productScores.length);
+        console.log("totalScore");
+        console.log(totalScore);
+         $("#score" + products[i].no).text(totalScore);
+         totalScore = 0;
+         score = 0;
+      } else {
+        $("#score" + products[i].no).text("후기없음");
+      }
+    }
+
+    let aLength = $("#productContainer1").find("a").length;
+
+    // console.log(wishes)
+
+    for (let i = 0; i < aLength; i++) {
+      for (let j = 0; j < wishes.length; j++) {
+        if ($("#productContainer1").find("a").eq(i).attr("id") == wishes[j].pno) {
+          $("#heart" + wishes[j].pno).text(wishes[j].count);
+        }
+      }
+    }
+
+  </script>
+</body>
+</html>

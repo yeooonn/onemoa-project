@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset = "UTF-8">
+    <title>onemoa mypage</title>
+    <link href="/onemoa/css/onemoa.css" rel="stylesheet">
+    <link href="/onemoa/css/onemoaMypage.css" rel="stylesheet">
+    <link href="/onemoa/css/onemoaManage.css" rel="stylesheet">
+    <link rel="icon" href="../../img/favicon1.ico">
+    <link rel="shortcut icon" href="../../img/favicon1.ico">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="/onemoa/js/onemoa.js"></script>
+  </head>
+
+</head>
+<body>
+  <ul class="myPage">
+    <li class="mypageArea">
+      <div class="mypageNav">
+        <div class="myonemoa">
+          <p>관리자페이지</p>
+          <span class="mybar">
+        </div>
+        <ul class="mynav">
+          <li><a class="font2" href="/onemoa/admin/member/memberList">회원관리</a></li>
+          <li><a class="font2" href="/onemoa/admin/contest/contestList">공모전관리</a></li>
+          <li><a class="font2" href="">재능판매관리</a></li>
+          <li><a class="font2" href="/onemoa/admin/qna/list">1:1문의관리</a></li>
+          <li><a class="font2" href="/onemoa/admin/faq/list">FAQ관리</a></li>
+          <li><a class="font" href="/onemoa/admin/notice/list">공지사항관리</a></li>
+          <li><a class="font2" href="">카테고리관리</a></li>
+        </ul>
+      </div>
+    </li>
+    <li class="mypageArea">
+      <div class="contestList">
+        <h1>공지사항 상세보기</h1>
+        <form action='update' method="post" enctype="multipart/form-data">
+          <table class="type01">
+          <thead>
+          <tr>
+            <td>
+              <input name="title" data-th-value=" ${notice.title}" size=100 style="border:none;border-right:0px; border-top:0px; boder-left:0px; boder-bottom:0px;">
+            </td>
+            <td>
+              <input hidden name="no" type='number' value='1' data-th-value=" ${notice.no}" size=0>
+            </td>
+          </tr>
+          </thead>
+          <tbody>
+          <tr>
+            <td>작성자 : 관리자</td>
+            <td data-th-text="'작성일 : ' + ${notice.createdDate}">작성일</td>
+            <td data-th-text="'조회수 : ' + ${notice.viewCount}">조회수</td>
+          </tr>
+          <tr>
+            <td colspan="3">
+              <textarea name='content' data-th-text="${notice.content}" style="font-size: large" rows="10" cols="100"></textarea>
+            </td>
+          </tr>
+          </tbody>
+        </table>
+        <div class="buttons">
+          <button id="delete" type="button" class="btn btn-danger">
+            <a href='delete?no=${notice.no}'
+              data-th-href="@{delete(no=${notice.no})}">삭제</a>
+          </button>
+          <button id="edit" type="submit" class="btn btn-primary">수정</button>
+          <button id="backToList" type="button" class="btn btn-primary"><a href="./list">목록으로</a></button>
+        </div>
+        </form>
+      </div>
+    </li>
+  </ul>
+</body>
+</html>
+
+
+
+    

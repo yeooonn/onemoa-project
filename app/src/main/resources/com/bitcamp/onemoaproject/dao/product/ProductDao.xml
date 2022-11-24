@@ -1,0 +1,255 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bitcamp.onemoaproject.dao.product.ProductDao">
+
+    <resultMap type="product" id="productMap">
+        <id column="pno" property="no"/>
+        <result column="title" property="title"/>
+        <result column="cont" property="content"/>
+        <result column="rule" property="rule"/>
+        <result column="selfintro" property="selfIntro"/>
+        <result column="price" property="price"/>
+        <result column="vw_cnt" property="viewCount"/>
+        <result column="cdt" property="createdDate"/>
+        <result column="thumbnail" property="thumbnail"/>
+        <result column="status" property="status"/>
+
+        <association property="writer" javaType="member">
+            <id column="mno" property="no"/>
+            <result column="nick" property="nickname"/>
+            <result column="profile" property="profile"/>
+        </association>
+
+        <association property="productCategory" javaType="productCategory">
+            <id column="pcno" property="code"/>
+            <result column="pctier" property="tier"/>
+            <result column="pcname" property="name"/>
+            <result column="pcparent" property="parent"/>
+        </association>
+
+        <collection property="attachedFiles" ofType="attachedFile">
+            <!-- ofType이 담기는 collection이라는 뜻이다  -->
+            <id column="pfno" property="no"/>
+            <result column="fpath" property="filepath"/>
+            <result column="fname" property="filename"/>
+            <result column="pno" property="productNo"/>
+        </collection>
+
+        <collection property="productScores" ofType="ProductScore">
+          <result column="score" property="score"/>
+        </collection>
+    </resultMap>
+
+    <resultMap type="attachedFile" id="attachedFileMap">
+        <id column="pfno" property="no"/>
+        <result column="fname" property="filename"/>
+        <result column="fpath" property="filepath"/>
+        <result column="pno" property="productNo"/>
+    </resultMap>
+
+    <select id="findAll" resultMap="productMap">
+        select
+          p.pno,
+          p.pcno,
+          p.title,
+          p.cont,
+          p.price,
+          p.vw_cnt,
+          p.cdt,
+          p.thumbnail,
+          pf.fpath
+        from
+          product p
+          join product_file pf on p.pno=pf.pno
+        where
+          status=1
+        order by
+          pno desc
+    </select>
+
+  <select id="findAllByAdmin" resultMap="productMap">
+    select
+      p.pno,
+      m.nick,
+      p.pcno,
+      p.title,
+      p.cont,
+      p.price,
+      p.vw_cnt,
+      p.cdt,
+      p.status,
+      p.thumbnail
+    from
+      product p
+      join member m on m.mno=p.mno
+    order by
+     pno desc
+  </select>
+
+
+  <select id="findByCategory" resultMap="productMap" parameterType="java.lang.String">
+        select
+          pno,
+          pcno,
+          title,
+          cont,
+          price,
+          vw_cnt,
+          cdt,
+          thumbnail,
+        from
+          product
+        where
+          status=1 and
+          pcno=#{code}
+    </select>
+
+    <select id="findByNo" resultMap="productMap">
+        select
+          p.pno,
+          p.pcno,
+          p.title,
+          p.cont,
+          p.price,
+          p.vw_cnt,
+          p.cdt,
+          p.thumbnail,
+          p.rule,
+          p.status,
+          p.selfintro,
+          m.mno,
+          m.profile,
+          m.nick,
+          pf.pfno,
+          pf.fname,
+          pf.fpath
+        from
+          product p
+          join member m on p.mno = m.mno
+          left outer join product_file pf on p.pno=pf.pno
+          left outer join product_category pc on p.pcno=pc.pcno
+        where
+          p.pno=#{value};
+    </select>
+
+    <select id="findByWriter" resultMap="productMap">
+        select
+          p.pno,
+          p.pcno,
+          p.title,
+          p.cont,
+          p.price,
+          p.vw_cnt,
+          p.cdt,
+          p.thumbnail,
+          p.rule
+        from
+          product p
+        where
+          status=1 and
+          p.mno=#{value}
+        order by
+          p.pno desc
+    </select>
+
+    <insert id="insert" parameterType="product"
+            useGeneratedKeys="true" keyColumn="pno" keyProperty="no">
+        insert into product(pcno, mno, title, cont, price, rule, selfintro, thumbnail)
+        values(#{productCategory.code},#{writer.no},#{title},#{content},#{price},#{rule},#{selfIntro},#{thumbnail})
+    </insert>
+
+    <insert id="insertFiles" parameterType="product">
+        insert into product_file(fname,fpath,pno)
+        values
+        <foreach collection="attachedFiles" item="file" separator=",">
+            (#{file.filename},#{file.filepath}, #{no})
+        </foreach>
+    </insert>
+
+    <select id="selectProductList" resultMap="productMap" parameterType="criteria">
+      select
+        p.pno,
+        p.pcno,
+        p.title,
+        p.price,
+        p.vw_cnt,
+        p.cdt,
+        p.thumbnail,
+        m.nick,
+        rw.score
+      from product p
+      join member m on m.mno=p.mno
+      left outer join product_order po on p.pno = po.pno
+      left outer join order_review rw on po.pono=rw.pono
+        where
+          p.status=1
+        <if test="categoryCode != null">
+          and p.pcno = #{categoryCode}
+        </if>
+        order by
+          pno desc
+        limit #{pageStart}, #{perPageNum}
+    </select>
+
+    <select id="countProductList" parameterType="String" resultType="Integer">
+        select
+          count(*)
+        from
+          product
+        where
+          status=1
+        <if test="code != null">
+         and pcno=#{code}
+        </if>
+    </select>
+
+    <update id="update" parameterType="product">
+        update
+          product
+        set
+          price=#{price},
+          title=#{title},
+          cont=#{content},
+          rule=#{rule},
+          selfintro=#{selfIntro},
+          cdt=now()
+        where pno=#{no}
+    </update>
+
+    <update id="makeinvalid">
+        update
+          product
+        set
+          status=0
+        where pno=#{value}
+    </update>
+
+  <update id="makevalid">
+    update
+    product
+    set
+    status=1
+    where pno=#{value}
+  </update>
+
+
+  <select id="findFileByNo" resultMap="attachedFileMap">
+        select
+          pfno,
+          fpath,
+          pno
+        from
+          product_file
+        where
+          pfno = #{value}
+    </select>
+
+
+    <delete id="deleteFile">
+        delete
+        from product_file
+        where pfno=#{value}
+    </delete>
+</mapper>

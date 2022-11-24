@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:data-th-="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset = "UTF-8">
+    <title>onemoa mypage</title>
+<!--    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">-->
+<!--    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>-->
+    <link href="/onemoa/css/onemoa.css" rel="stylesheet">
+    <link href="/onemoa/css/onemoaMypage.css" rel="stylesheet">
+    <link href="/onemoa/css/message.css" rel="stylesheet">
+    <link rel="icon" href="../img/favicon1.ico">
+    <link rel="shortcut icon" href="../img/favicon1.ico">
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="/onemoa/js/onemoa.js"></script>
+  </head>
+  <body style="overflow-x: hidden">
+
+  <div data-th-replace="/fragments/nav.html :: fragment-nav"></div>
+
+  <ul class="myPage">
+      <li class="mypageArea">
+        <div class="nick">
+<!--          <img data-th-src="${'/onemoa/member/files/' + member.profile}">-->
+<!--          <p data-th-text="${member.nickname}">닉네임님</p>-->
+        </div>
+        <div class="mypageNav">
+          <div class="myonemoa">
+            <p>전체 메시지</p>
+            <span class="mybar"></span>
+          </div>
+
+          <!--  메시지 미리보기 조회 (사이드바)  -->
+          <ul class="mynav">
+            <li class="message" data-th-each="message : ${messages}" data-th-if="${member.no} != ${message.receiver}">
+              <img data-th-if="${member.no} != ${message.receiver}" data-th-src="@{/member/files/{path}(path=${message.writer.profile})}" data-th-id="${message.writer.no}" onclick="messageDetail(this.id)"
+                   class="messageProfile"/>
+              <span class="messageNick" data-th-if="${member.no} != ${message.receiver}" data-th-text="${message.writer.nickname}"></span>
+            </li>
+          </ul>
+          
+        </div>
+
+      </li>
+      <li class="mypageArea">
+        <div class="mypagePortfolio">
+          <p class="mptxt2">메시지</p>
+<!--          <p data-th-text="${messages}"></p>-->
+        </div>
+      </li>
+    </ul>
+
+  <footer data-th-replace="/fragments/footer.html :: fragment-footer"></footer>
+  <script>
+    function messageDetail(value){
+      let receiverNo = value;
+      console.log(receiverNo);
+      window.location.href="/onemoa/message/messageDetail?no=" + receiverNo;
+    }
+  </script>
+  </body>
+</html>

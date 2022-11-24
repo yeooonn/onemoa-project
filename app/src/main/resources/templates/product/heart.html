@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="reset.css" />
+    <link rel="icon" href="../img/favicon1.ico">
+    <link rel="shortcut icon" href="../img/favicon1.ico">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <style>
+        .heart {
+            width: 20px;
+            height: 20px;
+            background: #7c7979;
+            position: relative;
+            transform: rotate(45deg);
+            cursor: pointer;
+        }
+
+        .heart::before,
+        .heart::after {
+            content: "";
+            width: 20px;
+            height: 20px;
+            position: absolute;
+            border-radius: 50%;
+            background: #7c7979;
+        }
+
+        .heart::before {
+            left: -50%;
+        }
+
+        .heart::after {
+            top: -50%;
+        }
+
+        .heart-active {
+            background: #ea2027;
+        }
+
+        .heart-active::before,
+        .heart-active::after {
+            background: #ea2027;
+        }
+
+
+    </style>
+</head>
+<body>
+<div class="heart"></div>
+
+<script>
+    $(document).ready(function () {
+        $(".heart").on("click", function () {
+                $(".heart").toggleClass("heart-active");
+        })
+    });
+
+</script>
+</body>
+</html>

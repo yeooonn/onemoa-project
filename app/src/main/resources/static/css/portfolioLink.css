@@ -1,0 +1,96 @@
+.portfolioLinkClick {
+  width: 100%;
+  height: auto;
+  padding: 5%;
+}
+.portfolioLinkClick .portpart:nth-of-type(1) {
+  width: 40%;
+  position: fixed;
+  margin-left: 1%;
+}
+.portfolioLinkClick .portpart:nth-of-type(2) {
+  margin-left: 42%;
+}
+.portfolioLinkClick .portpart {
+  float: left;
+}
+.portfolioLinkClick .portpart .portfolio1 {
+  width: 90%;
+  height: 135px;
+}
+.portfolioLinkClick .portpart .portfolio1 li {
+  float: left;
+  width: 32%;
+}
+.portfolioLinkClick .portpart .portfolio1 li:nth-of-type(2) {
+  font-size: 1.8vw;
+  font-weight: bold;
+  margin-left: 4%;
+  margin-top: 43px;
+  width: 50%;
+}
+.portfolioLinkClick .portpart .bar {
+  display: block;
+  width: 80%;
+  height: 1px;
+  background-color: #999;
+}
+.portfolioLinkClick .portpart .portcontents {
+  width: 100%;
+  height: auto;
+}
+.portfolioLinkClick .portpart .portcontents p:nth-of-type(1) {
+  font-size: 1.8vw;
+  font-weight: bold;
+  margin-bottom: 30px;
+  margin-top: 30px;
+}
+.portfolioLinkClick .portpart .portcontents p:nth-of-type(2) {
+  font-size: 1.6vw;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+.portfolioLinkClick .portpart .portcontents p:nth-of-type(3) {
+  font-size: 1.5vw;
+  font-weight: bold;
+  color: #898989;
+  width: 80%;
+  line-height: 30px;
+}
+.portfolioLinkClick .portpart .portcontents .wishsize img{
+  width: 40%;
+  margin-bottom: 30px;
+}
+.portfolioLinkClick .portpart .otherport {
+  width: 100%;
+  height: auto;
+}
+.portfolioLinkClick .portpart .otherport .otherlist {
+  width: auto;
+  height: 220px;
+  overflow: scroll; 
+}
+.portfolioLinkClick .portpart .otherport p {
+  font-size: 1.5vw;
+  font-weight: bold;
+}
+.portfolioLinkClick .portpart .otherport .otherlist li {
+  float: left;
+  width:40%;
+  margin-right: 3%;
+}
+.portfolioLinkClick .portpart .otherport .otherlist li p {
+  font-weight: normal;
+  margin-top: -0.01px;
+  text-align: center;
+  margin-left: -10px;
+}
+.portfolioLinkClick .portpart .portbig {
+  width: 95%;
+  height: auto;
+}
+.portfolioLinkClick .portpart .portbig img {
+  width: 100%;
+  margin-left: 20px;
+  margin-bottom: 10px;
+}

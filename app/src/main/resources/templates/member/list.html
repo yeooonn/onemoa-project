@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="icon" href="../img/favicon1.ico">
+  <link rel="shortcut icon" href="../img/favicon1.ico">
+  <meta charset="UTF-8">
+  <title>onemoa</title>
+  <style>
+    tr:hover {
+      background-color: gray;
+      color: white;
+    }
+  </style>
+</head>
+<body>
+<h1><a href='../'>회원</a></h1>
+<a href='form'>새 회원</a>
+<table border='1'>
+  <tr>
+    <th>번호</th>
+    <th>이름</th>
+    <th>이메일</th>
+  </tr>
+
+  <tr data-th-each="member : ${members}">
+    <td data-th-text="${member.no}">10</td>
+    <td><a href='detail?no=10' data-th-href="@{detail(no=${member.no})}" data-th-text="${member.name}">홍길동</a></td>
+    <td data-th-text="${member.email}"></td>
+  </tr>
+</table>
+<p>
+  <a href='../'>메인</a>
+</p>
+</body>
+</html>

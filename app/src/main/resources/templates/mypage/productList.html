@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:data-th-="http://www.w3.org/1999/xhtml">
+<head>
+  <meta charset = "UTF-8">
+  <title>onemoa mypage</title>
+  <link href="../css/onemoa.css" rel="stylesheet">
+  <link href="../css/onemoaMypage.css" rel="stylesheet">
+  <link rel="icon" href="../img/favicon1.ico">
+  <link rel="shortcut icon" href="../img/favicon1.ico">
+  <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+  <script src="/onemoa/js/login.js"></script>
+  <script src="../js/onemoa.js"></script>
+  <style>
+    .mypageArea {
+      min-height: 60vw;
+    }
+
+    .row {
+      padding: 15px 10px;
+      border: solid 1px #dbdbe5;
+      border-radius: 4px;
+
+      display: inline-block;
+      vertical-align: middle;
+      -webkit-transform: perspective(1px) translateZ(0);
+      transform: perspective(1px) translateZ(0);
+      box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+      -webkit-transition-duration: 0.3s;
+      transition-duration: 0.3s;
+      -webkit-transition-property: box-shadow;
+      transition-property: box-shadow;
+
+      max-height: 20vw;
+      min-height: 12vw;
+      width: 15.3vw;
+      margin-bottom: 2vw;
+
+      /*max-height: 330px;*/
+      /*min-height: 330px;*/
+    }
+    .row:hover {
+      box-shadow: 0 0 8px rgba(0, 0, 0, 0.6);
+      background-color: #ffffff;
+      opacity: 0.5;
+    }
+
+    .row:hover #userBtn {
+      display: block;
+    }
+
+    .thumbnail {
+      horiz-align: center;
+      text-align: center;
+
+      /*min-height: 250px;*/
+      /*max-width: 200px;*/
+    }
+
+    .thumbnail > img {
+      height: 10vw;
+      width: 100%;
+    }
+
+    .row > p {
+      margin-top: 0px;
+      font-size: 1.2vw;
+      margin-bottom: 5px;
+      text-align: right;
+    }
+
+    .caption > p {
+      word-break: break-all;
+      max-height: 3vw;
+      min-height: 3vw;
+      margin-top: 5px;
+      margin-bottom: 15px;
+      font-size: 1.2vw;
+      text-align: left;
+    }
+
+    .details {
+      vertical-align: center;
+    }
+
+    .details img {
+      margin-top: 1px;
+      border: none;
+    }
+
+    .details p {
+      display: inline;
+      margin-top: 0px;
+      font-size: 1vw;
+    }
+
+    #price > p {
+      text-align: right;
+      font-size: 1vw;
+      margin-top: 0.5vw;
+      margin-bottom: 0px;
+    }
+
+    #userBtn {
+      float: left;
+      position: fixed;
+      display: none;
+    }
+
+  </style>
+</head>
+<body style="overflow-x: hidden">
+<div data-th-replace="/fragments/nav.html :: fragment-nav"></div>
+
+<ul class="myPage">
+  <li class="mypageArea">
+    <div class="nick">
+      <img data-th-src="${'/onemoa/member/files/' + session.loginMember.profile}">
+      <p data-th-text="${session.loginMember.nickname}">닉네임님</p>
+    </div>
+    <div class="mypageNav">
+      <div class="myonemoa">
+        <p>마이원모아</p>
+        <span class="mybar">
+      </div>
+      <ul class="mynav">
+        <li><a class="font2" href="../mypage/portfolioList">포트폴리오 관리</a></li>
+        <li><a class="font2" href="/onemoa/mypage/contestList">공모전 관리</a></li>
+        <li><a class="font2" href="/onemoa/mypage/buysList">구매 관리</a></li>
+        <li><a class="font2" href="/onemoa/mypage/salesList">판매 관리</a></li>
+        <li><a class="font" href="/onemoa/mypage/productList">상품 관리</a></li>
+        <li><a class="font2" href="">결제내역</a></li>
+        <li><a class="font2" href="/onemoa/mypage/qnaList">1:1 문의내역</a></li>
+        <li class="menu">
+          <a class="font2" href="myinfo">계정설정</a>
+          <ul class="hide">
+            <li><a class="font2" href="../mypage/myinfo">내정보수정</a></li>
+            <li><a class="font2" href="../mypage/changepw">비밀번호변경</a></li>
+            <li><a class="font2" href="../mypage/leave">회원탈퇴</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </li>
+  <li class="mypageArea">
+    <div class="mypagePortfolio">
+      <p class="mptxt2">상품관리<span class="addport"><a href="/onemoa/product/form">새 판매글 등록하기</a></span></p>
+      <div class="portfolioBoxCon">
+        <ul class="portfolioList">
+          <li data-th-each="product: ${products}">
+            <a href="#" data-th-href="@{/mypage/productDetail(no=${product.no})}"
+               onclick="window.open(this.href, '_blank', 'width=1200, height=1000, top=Math.ceil(( window.outerHeight - 800 )/5) , left=Math.ceil(( window.outerWidth - 800 )/8'); return false;" class="item">
+              <!-- bootstrap card -->
+              <div class="row">
+                <div class="col-sm-6 col-md-4">
+                  <div class="thumbnail">
+                    <img data-th-src="@{/product/files/{path}(path=${product.thumbnail})}" alt="">
+                    <!--                    <img src="../img/naver.png" alt="...">-->
+                    <div class="caption">
+                      <p data-th-text="${product.title}">Thumbnail label</p>
+                    </div>
+                  </div>
+
+                  <div class="details">
+                    <img src="../img/activeheart.png" />
+                    <p>1개 |</p>
+                    <img src="../img/star.png" />
+                    <p>5.0 점</p>
+                  </div>
+                  <div id="price">
+                    <p data-th-text="${#numbers.formatInteger(product.price, 3, 'COMMA')} + ' 원'">판매 가격</p>
+                  </div>
+
+                </div>
+              </div>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <ul class="portfolioList">
+    </ul>
+
+  </li>
+</ul>
+
+<footer data-th-replace="/fragments/footer.html :: fragment-footer"></footer>
+<script>
+</script>
+</body>
+</html>

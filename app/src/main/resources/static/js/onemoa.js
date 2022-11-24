@@ -192,3 +192,16 @@ function clo8(){
     $('.modal8').show();
   }
 }
+
+/* 마이페이지 메뉴 */
+$(document).ready(function(){
+  $(".menu a").mouseover(function(){
+      $(this).next("ul").slideDown();
+  });
+  $(".menu .hide").mouseleave(function(){
+    $(this).slideUp();
+  });
+});
+
+
+

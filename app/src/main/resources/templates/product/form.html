@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>onemoa</title>
+  <link rel="icon" href="../img/favicon1.ico">
+  <link rel="shortcut icon" href="../img/favicon1.ico">
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
+  <link href="../css/onemoa.css" rel="stylesheet" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="../js/onemoa.js"></script>
+  <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
+  <script src="/onemoa/js/login.js"></script>
+  <style>
+
+    .length1 {
+      margin-left: 15vw;
+      margin-right: 15vw;
+    }
+    .pbn {
+      width: 100%
+    }
+    .categoryA-container{
+      float: left;
+    }
+
+    .categoryB-container{
+    }
+
+    .rule {
+      margin-top: 5px;
+      margin-bottom: 10px;
+      border-radius: 4px;
+      border-color: #ccc;
+      padding-left: 2px;
+      resize : none;
+      width: 100%;
+      min-height: 60px;
+    }
+
+    .productForm-category {
+      margin-bottom: 10px;
+    }
+
+
+  </style>
+</head>
+<body style="overflow-x: hidden">
+  <div data-th-replace="/fragments/nav.html :: fragment-nav"></div>
+
+  <img class=pbn src="../img/productbg.png" alt="이미지를 찾을 수 없습니다.">
+  <div class=length1>
+    <form action="add" method="POST" enctype="multipart/form-data">
+      <div class="productForm-grid-container">
+        <div class="productForm-grid-item"><p>재능판매 등록</p></div>
+        <div class="productForm-grid-item">
+        </div>
+
+        <div class="categoryA-container">
+          <label for="categoryA">상위 카테고리 선택</label><br />
+          <select name="categoryA" class="productForm-category" id="categoryA" onchange="setUpperCategory()" required>
+            <div>
+            <option value="" >상위 카테고리 선택</option>
+            <option data-th-each="category : ${productCategories}" data-th-value="${category.code}" data-th-text="${category.name}">상위카테고리</option>
+            </div>
+          </select>
+        </div>
+        <div class="categoryB-container">
+          <div class="">
+            <label for="code">하위 카테고리 선택</label><br />
+            <select name="productCategory.code" class="productForm-category" id="code" required>
+              <option value="">하위 카테고리 선택</option>
+<!--              <option data-th-each= "child : ${category.children}" data-th-if="" data-th-value="${child.code}" data-th-text="${child.name}">하위카테고리</option>-->
+            </select>
+          </div>
+        </div>
+      </div>
+
+        <div class="productForm-grid-item">
+        <div id="productDetail" class="input-group">
+          <span class="input-group-addon">가격</span>
+          <input required name="price" id="price" type="number" class="form-control" min="1000" max="10000000" step="1000" placeholder="가격을 원(₩) 단위로 입력해주세요."/>
+        </div>
+        <div class="input-group">
+          <span class="input-group-addon">제목</span>
+          <input required name="title" id="title" type="text" class="form-control" maxlength="100" placeholder="제목을 입력해주세요.(최대 100 자) "/>
+        </div>
+        <textarea required name="content" style="width: 90%; height: 90%"></textarea>
+        <div class="productForm-grid-item" placeholder="수정 및 재진행 규칙을 적어주세요." >수정 및 재진행</div>
+        <textarea required name="rule" class="rule"></textarea>
+        <div class="productForm-grid-item">판매자 소개글</div>
+        <textarea required name="selfIntro" class="rule" placeholder="구매자에게 자신을 소개해주세요!"></textarea>
+      </div>
+
+      <div class="productForm-grid-item">
+        <div class="productForm-grid-item2">
+          <span>메인이미지등록(필수) 0/4</span>
+          <input class="productForm-inputbox1" name="files1" type="file" multiple accept="image/*" required onchange="addFile(this)"/>
+<!--          <img width="200px" src="/img/productFromMain.png" onclick="document.all.files1.click();"/>-->
+        </div>
+        <input id="productListReferrer" type="hidden" name="sendReferrer">
+        <div class="productForm-grid-item">
+          <button type="submit" class="btn btn-default" name="register">등록</button>
+          <button id="cancelAndGolist" type="button" class="btn btn-default">취소</button>
+        </div>
+      </div>
+    </form>
+  </div>
+
+  <script>
+    $(document).ready(function() {
+      $('textarea[name=content]').html('');
+      $('textarea[name=content]').summernote({
+        height: 500,                 // set editor height
+        minHeight: 500,             // set minimum height of editor
+        maxHeight: 500,             // set maximum height of editor
+        maxWidth: 500,
+        placeholder : '내용'
+      });
+
+      $('textarea[name=rule]').html('');
+      $('textarea[name=rule]').summernote({
+        height: 200,                 // set editor height
+        minHeight: 200,             // set minimum height of editor
+        maxHeight: 200,             // set maximum height of editor
+        maxWidth: 500,
+        placeholder : '수정 및 재진행 규칙을 적어주세요',
+        toolbar: false
+      });
+
+      $('textarea[name=selfIntro]').html('');
+      $('textarea[name=selfIntro]').summernote({
+        height: 200,                 // set editor height
+        minHeight: 200,             // set minimum height of editor
+        maxHeight: 200,             // set maximum height of editor
+        maxWidth: 500,
+        placeholder : '구매자에게 당신에 대해 소개해주세요!',
+        toolbar: false
+      });
+
+    });
+  </script>
+
+  <footer data-th-replace="/fragments/footer.html :: fragment-footer"></footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
+  <script>
+    function setUpperCategory() {
+      var upperCategorySelected = document.getElementById("categoryA");
+      var value = upperCategorySelected.options[document.getElementById("categoryA").selectedIndex].value;
+      console.log(value);
+
+      $.ajax({
+        type: "GET",
+        url: "/onemoa/product/getSubCategories",
+        data: {code:value},
+        success: function(result) {
+          console.log(result);
+
+          var $code = document.getElementById('code');
+
+          $code.innerHTML = '<option value="">하위 카테고리 선택</option>';
+
+          for (let i = 0; i < result.length; i++) {
+            $code.innerHTML += '<option value="'+ result[i].pcno + '" text="' + result[i].pcname + '">' + result[i].pcname + '</option>'
+          }
+        }
+      });
+    }
+  </script>
+  <script>
+    $("#cancelAndGolist").addEventListener('click', goback);
+    $("button:submit[name=register]").addEventListener('click',goback)
+
+    function goback() {
+      history.back();
+    }
+    let re = document.referrer;
+    let referrer =  re.substring(29, re.length);
+    $("#productListReferrer").attr("value", referrer);
+
+  </script>
+</body>
+</html>

@@ -1,0 +1,585 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bitcamp.onemoaproject.dao.ContestDao">
+
+  <!-- 공모전 -->
+  <resultMap type="contest" id="contestMap">
+    <id column="ctstno" property="ctstNo"/>
+    <result column="orgno" property="orgNo"/>
+    <result column="ctgno" property="ctgNo"/>
+    <result column="title" property="title"/>
+    <result column="subcont" property="subCont"/>
+    <result column="cdt" property="createdDate"/>
+    <result column="sdate" property="sDate"/>
+    <result column="edate" property="eDate"/>
+    <result column="vw_cnt" property="vw_cnt"/>
+    <result column="org" property="org"/>
+    <result column="appl" property="appl"/>
+    <result column="cont" property="cont"/>
+    <result column="page" property="page"/>
+    <result column="size" property="size"/>
+    <result column="qual" property="qual"/>
+    <result column="team" property="team"/>
+    <result column="reward" property="reward"/>
+    <result column="thumbnail" property="thumbNail"/>
+
+    <!-- 조인결과에서 한개의 공모전에 한개의 기관명을 담을 경우 -->
+    <association property="contOrg" javaType="contestOrg">
+      <id column="orgno" property="no"/>
+      <result column="coname" property="orgName"/>
+    </association>
+
+    <!-- 조인결과에서 한개의 공모전에 한개의 카테고리를 담을 경우 -->
+    <association property="contCategory" javaType="contestCategory">
+      <id column="ctgno" property="no"/>
+      <result column="ccname" property="categoryName"/>
+    </association>
+
+    <!--  조인결과에서 한개의 공모전에 한개의 팀을 담을 경우  -->
+    <association property="contestTeams" javaType="ContestTeam">
+      <id column="tno" property="tno"/>
+      <result column="ctstno" property="ctstno"/>
+      <result column="mno" property="mno"/>
+      <result column="cont" property="cont"/>
+      <result column="teamcdt" property="cdt"/>
+    </association>
+
+    <!-- 조인 결과에서 같은 공모전에 여러 개의 첨부 파일 데이터를 담을 경우 -->
+    <!-- ofType이 담기는 collection이라는 뜻이다  -->
+    <collection property="contestAttachedFiles" ofType="contestAttachedFile">
+      <id column="ctstfno" property="ctstFno"/>
+      <result column="fname" property="fName"/>
+      <result column="fpath" property="filepath"/>
+    </collection>
+  </resultMap>
+
+  <!-- 공모전 첨부파일 -->
+  <resultMap type="contestAttachedFile" id="contestAttachedFileMap">
+    <id column="ctstfno" property="ctstFno"/>
+    <result column="fname" property="fName"/>
+    <result column="fpath" property="filepath"/>
+    <result column="ctstno" property="ctstNo"/>
+  </resultMap>
+
+  <!-- 공모전 팀원모집 -->
+  <resultMap type="contestTeam" id="contestTeamMap">
+    <id column="tno" property="tno"/>
+    <result column="ctstno" property="ctstno"/>
+    <result column="mno" property="mno"/>
+    <result column="cont" property="cont"/>
+    <result column="cdt" property="cdt"/>
+
+    <!-- 조인결과에서 팀원모집에 한개의 회원을 담을 경우 -->
+    <association property="reader" javaType="Member">
+      <id column="mno" property="no"/>
+      <result column="nick" property="nickname"/>
+      <result column="profile" property="profile"/>
+    </association>
+
+    <!-- 조인결과에서 팀원모집에 여러개의 포트폴리오를 담을 경우  -->
+    <collection property="contestTeamPortfolios" ofType="ContestTeamPortfolio">
+      <id column="tpno" property="tpno"/>
+      <result column="tno" property="tno"/>
+      <result column="fpath" property="fpath"/>
+    </collection>
+
+    <!-- 조인결과에서 팀원모집에 여러개의 모집분야를 담을 경우  -->
+    <collection property="contestTeamFields" ofType="ContestTeamField">
+      <id column="tfno" property="tfno"/>
+      <result column="tno" property="tno"/>
+      <result column="name" property="name"/>
+      <result column="size" property="size"/>
+    </collection>
+  </resultMap>
+
+  <!-- 모집분야 -->
+  <resultMap type="ContestTeamField" id="contestTeamFieldsMap">
+    <id column="tfno" property="tfno"/>
+    <result column="tno" property="tno"/>
+    <result column="name" property="name"/>
+    <result column="size" property="size"/>
+    <result column="type" property="type"/>
+
+    <!-- 조인결과에서 모집분야에 여러개의 팀원모집분야지원자를 담을 경우  -->
+    <collection property="ContestTeamFieldMembers" ofType="ContestTeamFieldMember">
+      <id column="tfmno" property="tfmno"/>
+      <result column="tfno" property="tfno"/>
+      <result column="mno" property="mno"/>
+      <result column="cont" property="cont"/>
+      <result column="date" property="date"/>
+      <result column="types" property="type"/>
+
+      <!-- 조인결과에서 팀원모집분야지원자에 한개의 회원을 담을 경우 -->
+      <association property="applicant" javaType="Member">
+        <id column="mno" property="no"/>
+        <result column="nick" property="nickname"/>
+        <result column="profile" property="profile"/>
+      </association>
+
+    </collection>
+  </resultMap>
+
+  <!-- 팀원모집분야지원자 -->
+  <resultMap type="contestTeamFieldMember" id="contestTeamFieldMemberMap">
+    <id column="tfmno" property="tfmno"/>
+    <result column="tfno" property="tfno"/>
+    <result column="mno" property="mno"/>
+    <result column="cont" property="cont"/>
+    <result column="date" property="date"/>
+    <result column="type" property="type"/>
+
+    <!-- 조인결과에서 팀원모집분야지원자에 한개의 회원을 담을 경우 -->
+    <association property="applicant" javaType="Member">
+      <id column="mno" property="no"/>
+      <result column="nick" property="nickname"/>
+      <result column="profile" property="profile"/>
+    </association>
+
+    <association property="teamField" javaType="ContestTeamField">
+      <id column="tfno" property="tfno"/>
+      <result column="tno" property="tno"/>
+      <result column="name" property="name"/>
+      <result column="size" property="size"/>
+      <result column="type" property="type"/>
+    </association>
+
+    <!-- 조인결과에서 팀원모집분야지원자에 여러개의 포트폴리오를 담을 경우  -->
+    <collection property="contestTeamFieldMemberPortfolioList"
+      ofType="ContestTeamFieldMemberPortfolio">
+      <id column="tmpno" property="tmpno"/>
+      <result column="tfmno" property="tfmno"/>
+      <result column="fpath" property="fpath"/>
+    </collection>
+  </resultMap>
+
+  <!-- 팀원모집분야 지원 포트폴리오 -->
+  <resultMap type="ContestTeamFieldMemberPortfolio" id="contestTeamFieldMemberPortfolioMap">
+    <id column="tmpno" property="tmpno"/>
+    <result column="tfmno" property="tfmno"/>
+    <result column="fpath" property="fpath"/>
+  </resultMap>
+
+  <!-- 공모전 리스트 -->
+  <select id="findAll" resultMap="contestMap">
+    select
+    ctstno,
+    co.name coname,
+    cc.name ccname,
+    title,
+    subcont,
+    cdt,
+    sdate,
+    edate,
+    vw_cnt,
+    org,
+    appl,
+    cont,
+    page,
+    size,
+    qual,
+    team,
+    reward,
+    thumbnail
+    from contest
+    join contest_category cc on contest.ctgno = cc.ctgno
+    join contest_organization co on contest.orgno = co.orgno
+    <if test="no != 'all'">
+      where team=#{no}
+    </if>
+    <if test="ono != null">
+      and contest.orgno=#{ono}
+    </if>
+    order by
+    <if test="sortCd != null">
+      cdt ${sortCd}
+    </if>
+    <if test="sortEd != null">
+      edate ${sortEd}
+    </if>
+    <if test="sortVw != null">
+      vw_cnt ${sortVw}
+    </if>
+    <if test="sortRw != null">
+      reward ${sortRw}
+    </if>
+    <if test="sortCd == null and sortEd == null and sortVw == null and sortRw == null">
+      ctstno desc
+    </if>
+    limit #{cri.pageStart}, #{cri.perPageNum}
+  </select>
+
+  <!-- 페이징을 위해 공모전 개수 조회 -->
+  <select id="findAllContestCount" resultType="Integer">
+    select
+      count(*)
+    from
+      contest
+  </select>
+
+  <!-- 공모전 리스트 -->
+  <select id="findAll2" resultMap="contestMap">
+    select
+    ctstno,
+    co.name coname,
+    cc.name ccname,
+    title,
+    subcont,
+    cdt,
+    sdate,
+    edate,
+    vw_cnt,
+    org,
+    appl,
+    cont,
+    page,
+    size,
+    qual,
+    team,
+    reward,
+    thumbnail
+    from contest
+    join contest_category cc on contest.ctgno = cc.ctgno
+    join contest_organization co on contest.orgno = co.orgno
+    <if test="no != 'all'">
+      where team=#{no}
+    </if>
+    <if test="ono != null">
+      and contest.orgno=#{ono}
+    </if>
+    order by
+    <if test="sortCd != null">
+      cdt ${sortCd}
+    </if>
+    <if test="sortEd != null">
+      edate ${sortEd}
+    </if>
+    <if test="sortVw != null">
+      vw_cnt ${sortVw}
+    </if>
+    <if test="sortRw != null">
+      reward ${sortRw}
+    </if>
+    <if test="sortCd == null and sortEd == null and sortVw == null and sortRw == null">
+      ctstno desc
+    </if>
+  </select>
+
+  <!-- 공모전 상세정보 -->
+  <select id="findByNo" resultMap="contestMap">
+    select
+    cont.ctstno,
+    cont.ctgno,
+    cont.orgno,
+    co.name coname,
+    cc.name ccname,
+    cont.title,
+    cont.subcont,
+    cont.cdt,
+    cont.sdate,
+    cont.edate,
+    cont.vw_cnt,
+    cont.org,
+    cont.appl,
+    cont.cont,
+    cont.page,
+    cont.size,
+    cont.qual,
+    cont.team,
+    cont.reward,
+    cont.thumbnail,
+    cf.ctstfno,
+    cf.fname,
+    cf.fpath
+    from
+    contest cont
+    join contest_category cc on cont.ctgno = cc.ctgno
+    join contest_organization co on cont.orgno = co.orgno
+    left outer join contest_file cf on cont.ctstno = cf.ctstno
+    where
+    cont.ctstno=#{value};
+  </select>
+
+  <!-- 공모전 조회수 증가 -->
+  <update id="updateViewCount" parameterType="contest">
+    update
+    contest
+    set vw_cnt = vw_cnt + 1
+    where ctstno=#{value};
+  </update>
+
+  <!-- 공모전 등록 -->
+  <insert id="insert" parameterType="contest"
+    useGeneratedKeys="true" keyColumn="ctstno" keyProperty="ctstNo">
+    INSERT INTO `contest` (`orgno`, `ctgno`, `title`, `subcont`, `sdate`, `edate`, `vw_cnt`, `org`,
+    `appl`, `cont`, `page`, `size`, `qual`, `team`, `reward`, `thumbnail`)
+    VALUES
+    (
+    #{orgNo},
+    #{ctgNo},
+    #{title},
+    #{subCont},
+    #{sDate},
+    #{eDate},
+    #{vw_cnt},
+    #{org},
+    #{appl},
+    #{cont},
+    #{page},
+    #{size},
+    #{qual},
+    #{team},
+    #{reward},
+    #{thumbNail});
+  </insert>
+
+  <!-- 공모전 첨부파일 등록 -->
+  <insert id="insertFiles" parameterType="contest">
+    insert into contest_file(fname,fpath,ctstno)
+    values
+    <foreach collection="contestAttachedFiles" item="file" separator=",">
+      (#{file.fName},#{file.filepath},#{ctstNo})
+    </foreach>
+  </insert>
+
+  <!-- 공모전 수정 -->
+  <update id="update" parameterType="contest">
+    update contest set
+    orgno=#{orgNo},
+    ctgno=#{ctgNo},
+    title=#{title},
+    subcont=#{subCont},
+    sdate=#{sDate},
+    edate=#{eDate},
+    org=#{org},
+    appl=#{appl},
+    cont=#{cont},
+    page=#{page},
+    size=#{size},
+    qual=#{qual},
+    team=#{team},
+    reward=#{reward}
+    where ctstno=#{ctstNo}
+  </update>
+
+  <!-- 공모전 썸네일 첨부파일 수정 -->
+  <update id="updateThumbnailFile" parameterType="contest">
+    update contest set
+    thumbnail=#{thumbNail}
+    where ctstno=#{ctstNo}
+  </update>
+
+  <!-- 공모전 삭제 -->
+  <delete id="delete">
+    delete from contest
+    where ctstno=#{value}
+  </delete>
+
+  <!-- 공모전 첨부파일 삭제 -->
+  <delete id="deleteFiles">
+    delete from contest_file
+    where ctstno=#{value}
+  </delete>
+
+  <!-- 공모전 게시글의 첨부파일 삭제하기 위해 첨부파일 번호 검색 -->
+  <select id="findFileByNo" resultMap="contestAttachedFileMap">
+    select
+    ctstfno,
+    fname,
+    fpath,
+    ctstno
+    from
+    contest_file
+    where
+    ctstfno = #{value}
+  </select>
+
+  <!-- 공모전 게시글의 첨부파일 삭제 -->
+  <delete id="deleteFile">
+    delete from contest_file
+    where ctstfno=#{value}
+  </delete>
+
+  <!-- 공모전 팀원구해요 목록 검색 -->
+  <select id="findByTeamNo" resultMap="contestTeamMap">
+    select
+    t.tno,
+    t.ctstno,
+    t.mno,
+    t.cont,
+    t.cdt,
+    m.nick,
+    m.profile
+    from team t
+    join member m on m.mno = t.mno
+    where ctstno=#{value};
+  </select>
+
+  <!-- 공모전 팀원 모집 -->
+  <insert id="insertTeam" useGeneratedKeys="true" keyColumn="tno" keyProperty="tno">
+    insert into team(ctstno, mno, cont)
+    values
+    (#{ctstno}, #{mno}, #{cont})
+  </insert>
+
+  <!-- 팀원 모집 포트폴리오 목록 -->
+  <insert id="insertTeamFiles" parameterType="contestTeam">
+    insert into team_portfolio(tno, fpath)
+    values
+    <foreach collection="contestTeamPortfolios" item="file" separator=",">
+      (#{tno}, #{file.fpath})
+    </foreach>
+  </insert>
+
+  <!-- 팀원 모집하기 모집분야 등록 -->
+  <insert id="insertTeamField" parameterType="contestTeam">
+    insert into team_field(tno, name, size, type)
+    values
+    <foreach collection="contestTeamFields" item="field" separator=",">
+      (#{tno}, #{field.name}, #{field.size}, true)
+    </foreach>
+  </insert>
+
+  <!-- 팀장 상세보기 정보 출력 -->
+  <select id="findByReader" resultMap="contestTeamMap">
+    select
+      t.tno,
+      t.ctstno,
+      t.mno,
+      t.cont,
+      t.cdt,
+      m.nick,
+      m.profile,
+      tp.fpath
+    from team t
+      join member m on m.mno = t.mno
+      left outer join team_portfolio tp on t.tno = tp.tno
+    where ctstno=#{contestNo} and m.mno=#{memberNo};
+  </select>
+
+  <!-- 팀장 상세보기 팀분류 출력 -->
+  <select id="findByTeamField" resultMap="contestTeamFieldsMap">
+    select
+    tfno,
+    tno,
+    name,
+    size,
+    type
+    from team_field
+    where tno=#{value};
+  </select>
+
+  <!-- 팀원모집분야 지원자 리스트 -->
+  <select id="findByTeamFieldMember" resultMap="contestTeamFieldsMap">
+    select
+    tf.tfno,
+    tf.tno,
+    tf.name,
+    tf.size,
+    tf.type,
+    tfm.tfmno,
+    tfm.tfno,
+    tfm.cont,
+    tfm.cdt,
+    tfm.type as types,
+    m.mno,
+    m.nick,
+    m.profile
+    from team_field tf
+    join team_field_member tfm on tf.tfno = tfm.tfno
+    join member m on m.mno = tfm.mno
+    where tf.tno=#{value};
+  </select>
+
+  <!-- 팀원모집분야 등록 -->
+  <insert id="insertFieldMember" useGeneratedKeys="true" keyColumn="tfmno" keyProperty="tfmno">
+    insert into team_field_member(tfno, mno, cont, type)
+    values
+    (#{tfno}, #{mno}, #{cont}, #{type})
+  </insert>
+
+  <!-- 팀원 모집 포트폴리오 등록 -->
+  <insert id="insertFieldMemberPortfolio" parameterType="contestTeamFieldMember">
+    insert into team_member_portfolio(tfmno, fpath)
+    values
+    <foreach collection="contestTeamFieldMemberPortfolioList" item="file" separator=",">
+      (#{tfmno}, #{file.fpath})
+    </foreach>
+  </insert>
+
+  <!-- 공모전 팀원 상세보기(지원자보기) -->
+  <select id="findByFieldMemberDetailView" resultMap="contestTeamFieldMemberMap">
+    select
+    tfm.tfmno,
+    tfm.tfno,
+    tfm.mno,
+    tfm.cont,
+    tfm.cdt,
+    tfm.type,
+    tf.tno,
+    tf.name,
+    tf.size,
+    m.nick,
+    m.profile,
+    tmp.fpath
+    from team_field_member tfm
+    join team_field tf on tf.tfno = tfm.tfno
+    join team_member_portfolio tmp on tfm.tfmno = tmp.tfmno
+    join member m on m.mno = tfm.mno
+    where tfm.tfmno=#{value};
+  </select>
+
+
+  <!-- 팀채택하기 승인 취소 -->
+  <update id="updateFieldMemberType" parameterType="ContestTeamFieldMember">
+    update
+    team_field_member
+    set type=#{booleanValue}
+    where
+    tfmno=#{fmNo};
+  </update>
+
+  <!-- 메인페이지 인기 공모전 -->
+  <select id="findByMain" resultMap="contestMap">
+    select
+      c.ctstno,
+      cc.name ccname,
+      c.title,
+      c.thumbnail
+    from contest c
+      join contest_category cc on cc.ctgno = c.ctgno
+    order by
+      c.vw_cnt desc
+    limit 1, 12;
+  </select>
+
+  <!-- 마이페이지 공모전 팀전 참가내역 -->
+  <select id="findAllByMyContestList" resultMap="contestMap">
+    select
+      c.ctstno,
+      co.name coname,
+      cc.name ccname,
+      c.title,
+      c.subcont,
+      c.cdt,
+      c.sdate,
+      c.edate,
+      c.vw_cnt,
+      c.org,
+      c.appl,
+      c.cont,
+      c.page,
+      c.size,
+      c.qual,
+      c.team,
+      c.reward,
+      c.thumbnail,
+      t.cdt teamcdt
+    from contest c
+      join contest_category cc on c.ctgno = cc.ctgno
+      join contest_organization co on c.orgno = co.orgno
+      join team t on c.ctstno = t.ctstno
+    where t.mno = #{mno};
+  </select>
+</mapper>

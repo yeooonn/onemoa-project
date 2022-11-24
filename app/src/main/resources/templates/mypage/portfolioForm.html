@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset = "UTF-8">
+    <title>onemoa mypage</title>
+    <link href="/onemoa/css/onemoa.css" rel="stylesheet">
+    <link href="/onemoa/css/onemoaMypage.css" rel="stylesheet">
+    <link rel="icon" href="../img/favicon1.ico">
+    <link rel="shortcut icon" href="../img/favicon1.ico">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.js"></script>
+    <script src="/onemoa/js/onemoa.js"></script>
+    <script src="/onemoa/js/login.js"></script>
+  </head>
+  <body style="overflow-x: hidden">
+    <div data-th-replace="/fragments/nav.html :: fragment-nav"></div>
+    <ul class="myPage">
+      <li class="mypageArea2">
+        <div class="nick">
+          <img data-th-src="${'/onemoa/member/files/' + member.profile} " style='width: 100%; height: auto; border-radius: 70%; overflow: hidden;'>
+          <p data-th-text="${member.nickname}">닉네임님</p>
+        </div>
+        <div class="mypageNav">
+          <div class="myonemoa">
+            <p>마이원모아</p>
+            <span class="mybar">
+          </div>
+          <ul class="mynav">
+            <li><a class="font" href="../mypage/portfolioList">포트폴리오 관리</a></li>
+            <li><a class="font2" href="/onemoa/mypage/contestList">공모전 관리</a></li>
+            <li><a class="font2" href="/onemoa/mypage/buysList">구매 관리</a></li>
+            <li><a class="font2" href="/onemoa/mypage/salesList">판매 관리</a></li>
+            <li><a class="font2" href="/onemoa/mypage/productList">상품 관리</a></li>
+            <li><a class="font2" href="">결제내역</a></li>
+            <li><a class="font2" href="">1:1 문의내역</a></li>
+            <li class="menu">
+              <a class="font2" href="myinfo">계정설정</a>
+              <ul class="hide">
+                <li><a class="font2" href="../mypage/myinfo">내정보수정</a></li>
+                <li><a class="font2" href="../mypage/changepw">비밀번호변경</a></li>
+                <li><a class="font2" href="../mypage/leave">회원탈퇴</a></li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </li>
+      <li class="mypageArea2">
+        <div class="mypagePortfolio">
+          <p class="mptxt">포트폴리오 등록하기</p>
+          <div class="portfolioBoxCon2">
+            <form action='portfolioAdd' method="post" enctype="multipart/form-data">
+              <table>
+                <tr>
+                  <td><input name='title' type='text' size='60' placeholder="포트폴리오 제목을 입력해주세요."></td>
+                </tr>
+                 <tr>
+                  <td><textarea name="cont" rows='20' cols='60' placeholder="나의 포트폴리오를 설명해주세요."></textarea></td>
+                </tr>
+                <tr>
+                  <td>
+                    <label class="portFile" for="portFile">첨부파일<img class="portFileimg" src="../img/upload.png"></label>
+                    <input name='files' type="file" multiple id="portFile" class="pbtn">
+                  </td>
+                </tr>
+              </table>
+              <p>
+                <a class="plist" href='portfolioList'>목록보기</a>
+                <button class="portAddbtn" type='submit'>등록하기</button>
+              </p>
+            </form>
+          </div>
+        </div>
+      </li>
+    </ul>
+    <footer data-th-replace="/fragments/footer.html :: fragment-footer"></footer>
+  </body>
+</html>
