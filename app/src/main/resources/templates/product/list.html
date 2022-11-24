@@ -264,8 +264,8 @@
     let wishes = [[${wishes}]];
     console.log(products);
     let productsLength = products.length;
-    let score = 0.0;
-    let totalScore = 0.0;
+    let score = 0;
+    let totalScore = 0;
 
     for (let i = 0; i < productsLength; i++) {
 
@@ -273,15 +273,21 @@
         // console.log(products[i].productScores);
         // console.log(products[i].productScores[0].score);
         for (let j = 0; j < products[i].productScores.length; j++) {
-          score += parseFloat(products[i].productScores[j].score);
+          score += products[i].productScores[j].score;
           console.log(score);
         }
         totalScore = score / products[i].productScores.length;
+        console.log("products[i].productScores");
         console.log(products[i].productScores);
+        console.log("score");
         console.log(score);
+        console.log("products[i].productScores.length");
         console.log(products[i].productScores.length);
-        console.log(totalScore)
+        console.log("totalScore");
+        console.log(totalScore);
          $("#score" + products[i].no).text(totalScore);
+         totalScore = 0;
+         score = 0;
       } else {
         $("#score" + products[i].no).text("후기없음");
       }
