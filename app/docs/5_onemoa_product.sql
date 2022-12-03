@@ -1,0 +1,160 @@
+-- product
+INSERT INTO onemoa.product (pno, pcno, mno, title, cont, price, vw_cnt, cdt, thumbnail, rule, selfintro, status) VALUES (2, '010100', 1, '거래처에 신뢰를 주는 회사 이미지를 만들어드립니다.', '<p>ㅇㅇ</p>', 90000, 0, '2022-11-22', 'd1aa5f24-9ec0-437a-9a71-1059cb6ddbf4', '<p>ㅇ</p>', '<p>ㅇ</p>', 1);
+INSERT INTO onemoa.product (pno, pcno, mno, title, cont, price, vw_cnt, cdt, thumbnail, rule, selfintro, status) VALUES (3, '010100', 1, '식당 로고 제작 10년차의 실력을 보여드릴게요!', '<p>ㅇ</p>', 150000, 0, '2022-11-22', 'd7441ecc-cce4-4591-b861-2d2957e6de5f', '<p>ㅇ</p>', '<p>ㅇ</p>', 1);
+INSERT INTO onemoa.product (pno, pcno, mno, title, cont, price, vw_cnt, cdt, thumbnail, rule, selfintro, status) VALUES (4, '010100', 1, '특별한 날엔, 특별한 로고를', '<p>ㅇ</p>', 30000, 0, '2022-11-22', '77de319d-9224-4116-aa1d-403eba6d3608', '<p>ㅇ</p>', '<p>ㅇ</p>', 1);
+INSERT INTO onemoa.product (pno, pcno, mno, title, cont, price, vw_cnt, cdt, thumbnail, rule, selfintro, status) VALUES (5, '010100', 1, '멋진 로고를 만들어서 소식을 전해요', '<p>ㅇ</p>', 50000, 0, '2022-11-22', '2010def7-2a82-462d-83eb-42843bb8256d', '<p>ㅇ</p>', '<p>ㅇ</p>', 1);
+INSERT INTO onemoa.product (pno, pcno, mno, title, cont, price, vw_cnt, cdt, thumbnail, rule, selfintro, status) VALUES (7, '010100', 1, '인상깊은 회사 로고는 거래량을 증가시켜줍니다.', '<p>ㅇ</p>', 170000, 0, '2022-11-22', '51ccf554-3c5b-4418-8613-c4d90f0bad9b', '<p>ㅇ</p>', '<p>ㅇ</p>', 1);
+INSERT INTO onemoa.product (pno, pcno, mno, title, cont, price, vw_cnt, cdt, thumbnail, rule, selfintro, status) VALUES (8, '010100', 1, '로고 디자인 8년 차의 실력을 구경하세요', '<p>ㅇ</p>', 130000, 0, '2022-11-22', 'f00d0f37-d842-4a43-925a-69848e9d587c', '<p>ㅇ</p>', '<p>ㅇ</p>', 1);
+INSERT INTO onemoa.product (pno, pcno, mno, title, cont, price, vw_cnt, cdt, thumbnail, rule, selfintro, status) VALUES (9, '010100', 1, '예쁜 로고로 기쁜 일을 축하하자!', '<p>ㅇ</p>', 20000, 0, '2022-11-22', '2a669cea-9436-4080-8193-fef444af64a0', '<p>ㅇ</p>', '<p>ㅇ</p>', 1);
+INSERT INTO onemoa.product (pno, pcno, mno, title, cont, price, vw_cnt, cdt, thumbnail, rule, selfintro, status) VALUES (10, '010100', 1, '커피향이 풍기는 동네 카페 브랜딩', '<p>ㅇㅇ</p>', 60000, 0, '2022-11-22', 'cdb7d55c-6e29-4b5d-8ed0-eab5612e9a73', '<p>ㅇㅇ</p>', '<p>ㅇㅇ</p>', 1);
+INSERT INTO onemoa.product (pno, pcno, mno, title, cont, price, vw_cnt, cdt, thumbnail, rule, selfintro, status) VALUES (11, '010100', 1, '헬짱들을 부르는 피트니스 브랜딩', '<p>ㅇ</p>', 90000, 0, '2022-11-22', 'e6bc847f-a2ed-47eb-b04c-3963433a0394', '<p>ㅇ</p>', '<p>ㅇ</p>', 1);
+INSERT INTO onemoa.product (pno, pcno, mno, title, cont, price, vw_cnt, cdt, thumbnail, rule, selfintro, status) VALUES (12, '010100', 1, '멋진 로고는 술을 부른다! 술집도 브랜딩이 필요한 시대', '<p>ㅇ</p>', 100000, 0, '2022-11-22', '2ca14422-6f60-4159-8413-6a8d47e04881', '<p>ㅇ</p>', '<p>ㅇ</p>', 1);
+INSERT INTO onemoa.product (pno, pcno, mno, title, cont, price, vw_cnt, cdt, thumbnail, rule, selfintro, status) VALUES (13, '010100', 1, '사업 분야와 잘 어울리는 로고가 필요하다면?', '<p>ㅇ</p>', 100000, 0, '2022-11-22', 'ab1927b1-ffa7-4008-9bae-d7d5b09752b0', '<p>ㅇ</p>', '<p>ㅇ</p>', 1);
+INSERT INTO onemoa.product (pno, pcno, mno, title, cont, price, vw_cnt, cdt, thumbnail, rule, selfintro, status) VALUES (14, '010100', 1, '음식점 로고 제작 전문가, 나야 나!', '<p>ㅇ</p>', 120000, 0, '2022-11-22', '809b0ea3-4462-4c64-a266-96ac6b0895c7', '<p>ㅇ</p>', '<p>ㅇ</p>', 1);
+INSERT INTO onemoa.product (pno, pcno, mno, title, cont, price, vw_cnt, cdt, thumbnail, rule, selfintro, status) VALUES (15, '010100', 1, '감성 술집 로고는 이게 딱이야', '<p>ㅇ</p>', 110000, 0, '2022-11-22', '1400a241-87a7-43ce-9aeb-5ca0f97d99e4', '<p>ㅇ</p>', '<p>ㅇ</p>', 1);
+INSERT INTO onemoa.product (pno, pcno, mno, title, cont, price, vw_cnt, cdt, thumbnail, rule, selfintro, status) VALUES (16, '010100', 1, '매출을 올리는 마법의 로고', '<p>ㅇ</p>', 150000, 0, '2022-11-22', 'f9c0d148-d1ef-4ed8-bf62-af1bcf2614f2', '<p>ㅇ</p>', '<p>ㅇ</p>', 1);
+INSERT INTO onemoa.product (pno, pcno, mno, title, cont, price, vw_cnt, cdt, thumbnail, rule, selfintro, status) VALUES (17, '010100', 1, '독립서점 브랜딩, 제가 도와드릴게요', '<p>ㅇ</p>', 80000, 0, '2022-11-22', '67d42813-c213-47b3-b32a-1de3d2eb0f85', '<p>ㅇ</p>', '<p>ㅇ</p>', 1);
+INSERT INTO onemoa.product (pno, pcno, mno, title, cont, price, vw_cnt, cdt, thumbnail, rule, selfintro, status) VALUES (18, '010100', 1, '요식업 브랜딩만 50건! 믿고 맡기세요~', '<p>ㅇ</p>', 130000, 0, '2022-11-22', 'c0e09f5f-cb92-4883-be4d-5865afaecc94', '<p>ㅇ</p>', '<p>ㅇ</p>', 1);
+INSERT INTO onemoa.product (pno, pcno, mno, title, cont, price, vw_cnt, cdt, thumbnail, rule, selfintro, status) VALUES (19, '010100', 1, '지역 상권에 어울리는 디자인을 만들어드려요', '<div>안녕하세요! 동네 주민들의 발길을 끌만한 로고가 필요한가요?</div><div>브랜드 네임이 정해졌다면 이제는 그 이름을 어떻게 표현할지 고민하는 단계입니다. </div><div>이때 가장 중요한 것은 고객들에게 우리 회사와 서비스를 직관적으로 전달할 수 있는 디자인 요소들을 찾는 것입니다. 제게 맡겨주시면 네이밍부터 로고 제작까지 한 번에 진행하실 수 있습니다.로고란 기업이나 단체 또는 개인이 자신의 아이덴티티를 표현하기 위한 이미지라고 할 수 있습니다.</div><div><br></div><div>따라서 고객님들께서 원하시는 방향성을 파악하고 그에 맞는 컨셉과 스토리를 구상하여 작업을 진행하게 됩니다.</div><div>또한 단순한 로고가 아닌 명함, 간판, 브로슈어, 포스터, 홈페이지 등 모든 곳에 적용될 수 있는 형태로 시안을 제시해드리고 있습니다.</div><div>&nbsp;</div><div>작업 기간은 1~2일 정도 소요되며, 수정 횟수 제한 없이 무제한으로 피드백 받아보실 수 있습니다.</div><div>비용은 10만원이며, 자세한 사항은 상담 시 안내 드리겠습니다.</div><div>문의사항 있으시면 언제든 편하게 연락 주세요. 감사합니다.</div><div><br></div>', 100000, 0, '2022-11-22', '05120f63-2f50-4e8a-9366-1467dd739a39', '<div>&nbsp;약속드립니다.</div><div><br></div><div>&nbsp;1. 끝까지 친절하고 책임감 있게 응대해 드리겠습니다.</div><div><br></div><div>&nbsp;2. 작업 진행 중 수정 횟수에 제한을 두지 않습니다.</div><div>&nbsp;3. 작업 완료 후 고객님의 로고는 파기하지 않습니다. 필요하시면 언제든 문의 주세요.</div><div>&nbsp;4. 사후 A/S 무상 제공 (1년)</div>', '<div>지역 상권을 분석하고 컨셉을 기획하고</div><div>아이디어를 시각적으로 심플하게 구현합니다.</div><div>동네 사람들의 눈길을 끌 수 있는 로고 제작, <br>맡겨주세요!</div><div><br></div>', 1);
+INSERT INTO onemoa.product (pno, pcno, mno, title, cont, price, vw_cnt, cdt, thumbnail, rule, selfintro, status) VALUES (20, '020200', 2, '악세서리 판매 웹페이지 제작', '<p>ㅇ</p>', 770000, 0, '2022-11-22', '8196a0a7-2924-49fe-926b-f3f8c7fc194c', '<p>ㅇ</p>', '<p>ㅇ</p>', 1);
+INSERT INTO onemoa.product (pno, pcno, mno, title, cont, price, vw_cnt, cdt, thumbnail, rule, selfintro, status) VALUES (21, '020200', 2, '의류 판매 홈페이지 제작, 당신의 상품이 돋보이게', '<p>ㅇ</p>', 900000, 0, '2022-11-22', '9d3828a7-91b9-48c6-9a0f-dc8c0fbb284b', '<p>ㅇ</p>', '<p>ㅇ</p>', 1);
+INSERT INTO onemoa.product (pno, pcno, mno, title, cont, price, vw_cnt, cdt, thumbnail, rule, selfintro, status) VALUES (22, '020200', 2, '스타트업이라면, Django', '<p>d</p>', 950000, 0, '2022-11-22', 'c7609db1-9e75-42be-9621-b7f4b750fb2d', '<p>d</p>', '<p>d</p>', 1);
+INSERT INTO onemoa.product (pno, pcno, mno, title, cont, price, vw_cnt, cdt, thumbnail, rule, selfintro, status) VALUES (23, '020200', 2, '비지니스 최적화, 저희와 함께 하시죠', '<p>ㅇ</p>', 700000, 0, '2022-11-22', '4a1192d7-1a20-4b98-8fa0-06cbe9c08adf', '<p>ㅇ</p>', '<p>ㅇ</p>', 1);
+INSERT INTO onemoa.product (pno, pcno, mno, title, cont, price, vw_cnt, cdt, thumbnail, rule, selfintro, status) VALUES (24, '020200', 2, '간단한 웹페이지로 회사의 성장을 빠르게!', '<p>ㅇ</p>', 550000, 0, '2022-11-22', 'bbec51ae-3fea-4620-9264-45813a18671a', '<p>ㅇ</p>', '<p>ㅇ</p>', 1);
+INSERT INTO onemoa.product (pno, pcno, mno, title, cont, price, vw_cnt, cdt, thumbnail, rule, selfintro, status) VALUES (25, '020200', 2, '트렌디한 웹사이트는 저희가 잘하죠', '<p>ㅇ</p>', 970000, 0, '2022-11-22', 'a01d8c77-ec10-425a-b7c8-10a0ba138844', '<p>ㅇ</p>', '<p>ㅇ</p>', 1);
+INSERT INTO onemoa.product (pno, pcno, mno, title, cont, price, vw_cnt, cdt, thumbnail, rule, selfintro, status) VALUES (26, '020200', 2, '웹페이지를 원하는대로, 바라는대로', '<p>ㅇ</p>', 880000, 0, '2022-11-22', '62f94f35-f749-49fd-92b6-f09c9587f31c', '<p>ㅇ</p>', '<p>ㅇ</p>', 1);
+INSERT INTO onemoa.product (pno, pcno, mno, title, cont, price, vw_cnt, cdt, thumbnail, rule, selfintro, status) VALUES (27, '020200', 2, '안정적인 웹사이트를 만들어드립니다.', '<p>ㅇ</p>', 850000, 0, '2022-11-22', '9115ecf4-6bfe-4e9f-bc87-5c8834d37f23', '<p>ㅇ</p>', '<p>ㅇ</p>', 1);
+INSERT INTO onemoa.product (pno, pcno, mno, title, cont, price, vw_cnt, cdt, thumbnail, rule, selfintro, status) VALUES (28, '020200', 2, '매끄러운 반응형 웹', '<p>ㅇ</p>', 960000, 0, '2022-11-22', 'e73f20b2-84e9-43d8-9c2d-3fb99909e22a', '<p>ㅇ</p>', '<p>ㅇ</p>', 1);
+INSERT INTO onemoa.product (pno, pcno, mno, title, cont, price, vw_cnt, cdt, thumbnail, rule, selfintro, status) VALUES (29, '020200', 2, '웹페이지 제작은 유림랩스!', '<p>ㅇ</p>', 870000, 0, '2022-11-22', '06c18bda-67c7-4efc-835a-5c96e828d311', '<p>ㅇ</p>', '<p>ㅇ</p>', 1);
+INSERT INTO onemoa.product (pno, pcno, mno, title, cont, price, vw_cnt, cdt, thumbnail, rule, selfintro, status) VALUES (30, '020200', 2, '로펌 웹사이트는 로펌스러워야 하니까!', '<p>ㅇ</p>', 920000, 0, '2022-11-22', '896e73d8-2ecc-40d9-8436-722f51edb944', '<p>ㅇ</p>', '<p>ㅇ</p>', 1);
+INSERT INTO onemoa.product (pno, pcno, mno, title, cont, price, vw_cnt, cdt, thumbnail, rule, selfintro, status) VALUES (31, '020200', 2, 'MBTI 테스트 웹사이트', 'ㅇㅇ', 670000, 0, '2022-11-22', '9bca169b-c980-4842-8eb4-e947129953df', '<p>ㅇ</p>', '<p>ㅇ</p>', 1);
+INSERT INTO onemoa.product (pno, pcno, mno, title, cont, price, vw_cnt, cdt, thumbnail, rule, selfintro, status) VALUES (32, '020200', 2, '뷰티 제품에 최적화된 감각적인 웹, 만나보세요', 'ㅇ', 790000, 0, '2022-11-25', 'bfabb9aa-6f9c-483c-9aa7-992351eb7489', '<p>ㅇ</p>', '<p>ㅇ</p>', 0);
+INSERT INTO onemoa.product (pno, pcno, mno, title, cont, price, vw_cnt, cdt, thumbnail, rule, selfintro, status) VALUES (33, '020200', 2, '최상의 UX를 제공합니다.', '<p>ㅇ</p>', 690000, 0, '2022-11-25', 'c4080951-24e5-4eb4-a1fd-d6a31af51cdf', '<p>ㅇ</p>', '<p>ㅇ</p>', 0);
+INSERT INTO onemoa.product (pno, pcno, mno, title, cont, price, vw_cnt, cdt, thumbnail, rule, selfintro, status) VALUES (34, '020200', 2, 'IT는 IT 전문가에게 맡기세요', 'ㅇ', 770000, 0, '2022-11-22', '3d49ae56-34f0-4cc4-80b4-4f6497b755ad', '<p>ㅇ</p>', '<p>ㅇ</p>', 0);
+INSERT INTO onemoa.product (pno, pcno, mno, title, cont, price, vw_cnt, cdt, thumbnail, rule, selfintro, status) VALUES (35, '020200', 2, '아이들의 집중도와 학습능력을 높여주는 교육 웹사이트', '<p>아이들의 공부 습관 형성과 집중력 향상을 도와주는 교육용 웹페이지를 제작하고 있습니다.</p><p>저희 교육용 웹페이지는 유튜브 영상처럼 재생되는 방식이며, 학생들이 직접 참여하면서 문제를 풀어나갈 수 있고, 부모님들은 자녀분들의 모습을 실시간으로 확인 할 수 있습니다. 또한 선생님들께서는 수업 자료나 과제 제출 용도로 이용 하실 수 있습니다.</p><p>저희 페이지에는 수학, 영어, 과학, 역사 과목 외에도 코딩, 미술, 음악 같은 예체능 과목까지 총 6개 카테고리별로 약 100여 개의 동영상 강의가 있으며, 현재 계속 업데이트 중입니다.</p><p>원하는 기능이 있는 경우, 적은 추가 비용으로 구현이 가능합니다. 현재 유명 교육 기관인 XX영어, ZZ유치원에서 저희 교육용 웹사이트를 커스터마징 하여 사용 중에 있습니다.&nbsp;</p><div><br></div><p><br></p>', 950000, 0, '2022-11-22', '92d68087-b426-461b-872f-7dcd20c420f4', '<p>&nbsp;다음과 같을 때에 무상으로 수정해드립니다.</p><p><br></p><p>&nbsp;1.&nbsp; 기존 요청 기능에 대하여 무상으로 1회 수정이 가능합니다.</p><p>&nbsp;2. 디자인에 대한 수정 작업 범위는 레이아웃이 변경되지 않는 선에서 디자인 변경만 가능합니다.</p><p>&nbsp;- 기존 내용 오탈자 수정은 횟수 제한 없이 수정 가능합니다.</p><p>&nbsp;- 작업 완료 후 일주일 이내로 수정사항 회신주시면 감사하겠습니다.</p><p>&nbsp;- 기존 기획과 요청사항을 벗어날 경우 유상으로 진행됩니다.(비용 추후 협의)</p><p><br></p><p>취소 및 환불관련 규정은 관련 법령에 따라 일괄 적용 됩니다</p><p><br></p>', '<span style="font-size: 24.4295px;">&nbsp;효율적이고 효과적인 교육을 실현할 수 있는 웹서비스를 항상 고민합니다.</span>', 1);
+INSERT INTO onemoa.product (pno, pcno, mno, title, cont, price, vw_cnt, cdt, thumbnail, rule, selfintro, status) VALUES (71, '020100', 1, '고퀄리티 디자인 반응형 홈페이지와 SEO최적화를 해 드립니다.', '<p><span style="font-size: 23.1003px;">10년 이상 대기업 웹사이트 유지 운영 등의 풍부한 경험을 가진 인력과 포트폴리오를 보유하고 있습니다.</span></p><div><br></div>', 20000, 0, '2022-11-24', '21ffbb30-b429-4ecd-97c1-eb578da67d39', '<p><span style="font-size: 23.1003px;">서비스의 수정에 대해 안내를 드리겠습니다.</span></p><p><span style="font-size: 23.1003px;">Standard 서비스 기본 3회, Deluxe 기본 4회, Premeum 기본 5회 기준은&nbsp;</span></p><p><span style="font-size: 23.1003px;">&nbsp; &nbsp;회원님이 컨펌하시고 진행을 했는데 추후에 변경을 요청을&nbsp; 주실 때 가능한 수정 범위입니다.</span></p><p><span style="font-size: 23.1003px;">&nbsp; &nbsp;즉,&nbsp; 텍스트 사진 변경 등 페이지의 레이아웃을 변경하지 않고 요청을 주실 경우입니다.&nbsp;</span></p><p><span style="font-size: 23.1003px;">- 서비스 상품 기본 페이지 외 추가되는 항목에 대해서는 1페이지 20만원 기준으로 추가하실 수 있습니다.</span></p><p><span style="font-size: 23.1003px;">- 제작 시 자사 오류로 인한 수정은 1년간 무상제공 됩니다.</span></p>', '<p><span style="font-size: 23.1003px;">창업칭구는</span></p><p><span style="font-size: 23.1003px;">대기업, 메이저 산업군 위주로 다양한 분야의 고객 레퍼런스를 확보하고 있습니다.&nbsp;</span></p><div><br></div>', 1);
+INSERT INTO onemoa.product (pno, pcno, mno, title, cont, price, vw_cnt, cdt, thumbnail, rule, selfintro, status) VALUES (72, '020100', 20, '모바일웹', '<p>모바일웹<br></p>', 20000, 0, '2022-11-24', '74828cd0-5f3d-4566-b0eb-ae9350d3d545', '<p>모바일웹<br></p>', '<p>모바일웹<br></p>', 0);
+
+
+-- product_file
+INSERT INTO onemoa.product_file (pfno, fname, fpath, pno) VALUES (3, '15.png', 'd1aa5f24-9ec0-437a-9a71-1059cb6ddbf4', 2);
+INSERT INTO onemoa.product_file (pfno, fname, fpath, pno) VALUES (4, '14.png', 'd7441ecc-cce4-4591-b861-2d2957e6de5f', 3);
+INSERT INTO onemoa.product_file (pfno, fname, fpath, pno) VALUES (5, 'Design.png', '77de319d-9224-4116-aa1d-403eba6d3608', 4);
+INSERT INTO onemoa.product_file (pfno, fname, fpath, pno) VALUES (6, '3.png', '2010def7-2a82-462d-83eb-42843bb8256d', 5);
+INSERT INTO onemoa.product_file (pfno, fname, fpath, pno) VALUES (8, '2.png', '51ccf554-3c5b-4418-8613-c4d90f0bad9b', 7);
+INSERT INTO onemoa.product_file (pfno, fname, fpath, pno) VALUES (9, '1.png', 'f00d0f37-d842-4a43-925a-69848e9d587c', 8);
+INSERT INTO onemoa.product_file (pfno, fname, fpath, pno) VALUES (10, '2.png', '2a669cea-9436-4080-8193-fef444af64a0', 9);
+INSERT INTO onemoa.product_file (pfno, fname, fpath, pno) VALUES (11, '13.png', 'cdb7d55c-6e29-4b5d-8ed0-eab5612e9a73', 10);
+INSERT INTO onemoa.product_file (pfno, fname, fpath, pno) VALUES (12, '11.png', 'e6bc847f-a2ed-47eb-b04c-3963433a0394', 11);
+INSERT INTO onemoa.product_file (pfno, fname, fpath, pno) VALUES (13, '9.png', '2ca14422-6f60-4159-8413-6a8d47e04881', 12);
+INSERT INTO onemoa.product_file (pfno, fname, fpath, pno) VALUES (14, '10.png', 'ab1927b1-ffa7-4008-9bae-d7d5b09752b0', 13);
+INSERT INTO onemoa.product_file (pfno, fname, fpath, pno) VALUES (15, '흰색 배경의 냄비 그림이 들어간 곱창 레스토랑 술집 로고.png', '809b0ea3-4462-4c64-a266-96ac6b0895c7', 14);
+INSERT INTO onemoa.product_file (pfno, fname, fpath, pno) VALUES (16, '12.png', '1400a241-87a7-43ce-9aeb-5ca0f97d99e4', 15);
+INSERT INTO onemoa.product_file (pfno, fname, fpath, pno) VALUES (17, '3.png', 'f9c0d148-d1ef-4ed8-bf62-af1bcf2614f2', 16);
+INSERT INTO onemoa.product_file (pfno, fname, fpath, pno) VALUES (18, '6.png', '67d42813-c213-47b3-b32a-1de3d2eb0f85', 17);
+INSERT INTO onemoa.product_file (pfno, fname, fpath, pno) VALUES (19, 'Green Illustration Taco Food Logo.png', 'c0e09f5f-cb92-4883-be4d-5865afaecc94', 18);
+INSERT INTO onemoa.product_file (pfno, fname, fpath, pno) VALUES (20, '1.png', '05120f63-2f50-4e8a-9366-1467dd739a39', 19);
+INSERT INTO onemoa.product_file (pfno, fname, fpath, pno) VALUES (21, '4.png', '7ec06f38-8c44-4b15-91c8-9e7e00bda12d', 19);
+INSERT INTO onemoa.product_file (pfno, fname, fpath, pno) VALUES (22, '2.png', '8cc0ae98-b23c-48fe-ac89-695cf6ec025f', 19);
+INSERT INTO onemoa.product_file (pfno, fname, fpath, pno) VALUES (23, '3.png', '2ff5752f-ad53-45cc-ae9d-92611ad8c20f', 19);
+INSERT INTO onemoa.product_file (pfno, fname, fpath, pno) VALUES (24, '5.png', 'd9f8c1c3-3a55-4b14-8f34-c7952ac6d1e7', 19);
+INSERT INTO onemoa.product_file (pfno, fname, fpath, pno) VALUES (25, '7.png', '5db5b406-6940-4c4f-824b-93c0b974ff1d', 19);
+INSERT INTO onemoa.product_file (pfno, fname, fpath, pno) VALUES (26, '8.png', 'c63b209d-2e8e-41bb-a0c4-c55ff5cb8c3b', 19);
+INSERT INTO onemoa.product_file (pfno, fname, fpath, pno) VALUES (27, '주얼리웹.png', '8196a0a7-2924-49fe-926b-f3f8c7fc194c', 20);
+INSERT INTO onemoa.product_file (pfno, fname, fpath, pno) VALUES (28, '스크린샷 2022-11-22 15.56.17.png', '9d3828a7-91b9-48c6-9a0f-dc8c0fbb284b', 21);
+INSERT INTO onemoa.product_file (pfno, fname, fpath, pno) VALUES (29, '스크린샷 2022-11-22 15.41.18.png', 'c7609db1-9e75-42be-9621-b7f4b750fb2d', 22);
+INSERT INTO onemoa.product_file (pfno, fname, fpath, pno) VALUES (30, '스크린샷 2022-11-22 15.17.49.png', '4a1192d7-1a20-4b98-8fa0-06cbe9c08adf', 23);
+INSERT INTO onemoa.product_file (pfno, fname, fpath, pno) VALUES (31, '스크린샷 2022-11-22 15.30.52.png', 'bbec51ae-3fea-4620-9264-45813a18671a', 24);
+INSERT INTO onemoa.product_file (pfno, fname, fpath, pno) VALUES (33, '스크린샷 2022-11-22 19.07.07.png', '7a65701f-fd7b-4056-8a48-54a2a3c8b7b2', 25);
+INSERT INTO onemoa.product_file (pfno, fname, fpath, pno) VALUES (34, '스크린샷 2022-11-22 19.16.28.png', '62f94f35-f749-49fd-92b6-f09c9587f31c', 26);
+INSERT INTO onemoa.product_file (pfno, fname, fpath, pno) VALUES (35, 'java기반웹개발.png', '9115ecf4-6bfe-4e9f-bc87-5c8834d37f23', 27);
+INSERT INTO onemoa.product_file (pfno, fname, fpath, pno) VALUES (36, '스크린샷 2022-11-22 16.00.38.png', 'e73f20b2-84e9-43d8-9c2d-3fb99909e22a', 28);
+INSERT INTO onemoa.product_file (pfno, fname, fpath, pno) VALUES (37, '스크린샷 2022-11-22 15.52.30.png', '06c18bda-67c7-4efc-835a-5c96e828d311', 29);
+INSERT INTO onemoa.product_file (pfno, fname, fpath, pno) VALUES (38, '스크린샷 2022-11-22 15.33.42.png', '896e73d8-2ecc-40d9-8436-722f51edb944', 30);
+INSERT INTO onemoa.product_file (pfno, fname, fpath, pno) VALUES (39, '스크린샷 2022-11-22 15.35.55.png', '9bca169b-c980-4842-8eb4-e947129953df', 31);
+INSERT INTO onemoa.product_file (pfno, fname, fpath, pno) VALUES (40, '스크린샷 2022-11-22 19.11.48.png', 'bfabb9aa-6f9c-483c-9aa7-992351eb7489', 32);
+INSERT INTO onemoa.product_file (pfno, fname, fpath, pno) VALUES (41, '스크린샷 2022-11-22 19.12.08.png', '972390c6-d6e1-4173-82db-6c73f90e1cc6', 32);
+INSERT INTO onemoa.product_file (pfno, fname, fpath, pno) VALUES (42, '스크린샷 2022-11-22 19.12.22.png', 'bcf65356-7f50-4049-87ca-ba8ff67def7d', 32);
+INSERT INTO onemoa.product_file (pfno, fname, fpath, pno) VALUES (43, '스크린샷 2022-11-22 19.12.32.png', '35d6fa91-1cf4-422c-91d6-fb8fec12e09f', 32);
+INSERT INTO onemoa.product_file (pfno, fname, fpath, pno) VALUES (44, '스크린샷 2022-11-22 19.12.48.png', '79ed77c6-de43-4381-b9fc-aa08faccedf5', 32);
+INSERT INTO onemoa.product_file (pfno, fname, fpath, pno) VALUES (45, '스크린샷 2022-11-22 15.29.58.png', 'c4080951-24e5-4eb4-a1fd-d6a31af51cdf', 33);
+INSERT INTO onemoa.product_file (pfno, fname, fpath, pno) VALUES (46, 'Contact Us.png', '3d49ae56-34f0-4cc4-80b4-4f6497b755ad', 34);
+INSERT INTO onemoa.product_file (pfno, fname, fpath, pno) VALUES (47, '2.png', '74f15e33-c6ba-4016-839f-333009e33c0e', 34);
+INSERT INTO onemoa.product_file (pfno, fname, fpath, pno) VALUES (48, '1.png', '92d68087-b426-461b-872f-7dcd20c420f4', 35);
+INSERT INTO onemoa.product_file (pfno, fname, fpath, pno) VALUES (49, '2.png', '4aa55cf7-985d-4a06-84f8-3a1940d9ccac', 35);
+INSERT INTO onemoa.product_file (pfno, fname, fpath, pno) VALUES (50, '3.png', '779148c1-f9f4-4df0-bf7a-e12956aa8fd0', 35);
+INSERT INTO onemoa.product_file (pfno, fname, fpath, pno) VALUES (51, '4.png', 'e46498b3-e6fe-4149-ab39-6cf78238bff8', 35);
+INSERT INTO onemoa.product_file (pfno, fname, fpath, pno) VALUES (52, '5.png', 'ef7affef-4de5-4611-b9e0-b24c842b8aa7', 35);
+INSERT INTO onemoa.product_file (pfno, fname, fpath, pno) VALUES (55, 'p1-1.jpeg', '21ffbb30-b429-4ecd-97c1-eb578da67d39', 71);
+INSERT INTO onemoa.product_file (pfno, fname, fpath, pno) VALUES (56, 'p1-2.jpeg', 'ea312c23-7a90-4334-a886-04186bb77105', 71);
+INSERT INTO onemoa.product_file (pfno, fname, fpath, pno) VALUES (57, 'p1-3.jpeg', '0f4438fd-500f-4246-a651-f4ecc893c067', 71);
+INSERT INTO onemoa.product_file (pfno, fname, fpath, pno) VALUES (58, 'p1-4.jpeg', '4a5c14d5-a608-4c8b-8d08-846db70b4716', 71);
+INSERT INTO onemoa.product_file (pfno, fname, fpath, pno) VALUES (59, '사진1.jpg', '74828cd0-5f3d-4566-b0eb-ae9350d3d545', 72);
+INSERT INTO onemoa.product_file (pfno, fname, fpath, pno) VALUES (60, '채수빈.jpg', 'de2386b1-9eb0-4dfd-b660-0258b65cd95e', 72);
+
+
+-- product_order
+INSERT INTO onemoa.product_order (pono, mno, pno, pstno, base_addr, detail_addr, cdt, scno) VALUES (2, 10, 35, '6134', '서울특별시 강남구 역삼동 819-3', '삼오빌딩 5-9층', '2022-11-22 19:49:07', 1);
+INSERT INTO onemoa.product_order (pono, mno, pno, pstno, base_addr, detail_addr, cdt, scno) VALUES (32, 1, 35, '6134', '서울특별시 강남구 역삼동 819-3', '삼오빌딩 5-9층', '2022-11-24 14:49:06', 1);
+INSERT INTO onemoa.product_order (pono, mno, pno, pstno, base_addr, detail_addr, cdt, scno) VALUES (33, 1, 34, '6134', '서울특별시 강남구 역삼동 819-3', '삼오빌딩 5-9층', '2022-11-24 14:50:46', 1);
+INSERT INTO onemoa.product_order (pono, mno, pno, pstno, base_addr, detail_addr, cdt, scno) VALUES (34, 10, 19, '6134', '서울특별시 강남구 역삼동 819-3', '삼오빌딩 5-9층', '2022-11-24 15:01:58', 1);
+INSERT INTO onemoa.product_order (pono, mno, pno, pstno, base_addr, detail_addr, cdt, scno) VALUES (35, 11, 19, '6134', '서울특별시 강남구 역삼동 819-3', '삼오빌딩 5-9층', '2022-11-24 15:01:58', 1);
+INSERT INTO onemoa.product_order (pono, mno, pno, pstno, base_addr, detail_addr, cdt, scno) VALUES (36, 12, 19, '6134', '서울특별시 강남구 역삼동 819-3', '삼오빌딩 5-9층', '2022-11-24 15:01:58', 1);
+INSERT INTO onemoa.product_order (pono, mno, pno, pstno, base_addr, detail_addr, cdt, scno) VALUES (37, 13, 19, '6134', '서울특별시 강남구 역삼동 819-3', '삼오빌딩 5-9층', '2022-11-24 15:01:58', 1);
+INSERT INTO onemoa.product_order (pono, mno, pno, pstno, base_addr, detail_addr, cdt, scno) VALUES (38, 2, 14, '6134', '서울특별시 강남구 역삼동 819-3', '삼오빌딩 5-9층', '2022-11-24 15:09:31', 1);
+INSERT INTO onemoa.product_order (pono, mno, pno, pstno, base_addr, detail_addr, cdt, scno) VALUES (39, 10, 33, '6134', '서울특별시 강남구 역삼동 819-3', '삼오빌딩 5-9층', '2022-11-24 15:12:18', 1);
+INSERT INTO onemoa.product_order (pono, mno, pno, pstno, base_addr, detail_addr, cdt, scno) VALUES (40, 6, 19, '6134', '서울특별시 강남구 역삼동 819-3', '삼오빌딩 5-9층', '2022-11-24 15:15:10', 1);
+INSERT INTO onemoa.product_order (pono, mno, pno, pstno, base_addr, detail_addr, cdt, scno) VALUES (41, 8, 35, '6134', '서울특별시 강남구 역삼동 819-3', '삼오빌딩 5-9층', '2022-11-24 15:18:04', 1);
+INSERT INTO onemoa.product_order (pono, mno, pno, pstno, base_addr, detail_addr, cdt, scno) VALUES (42, 8, 15, '6134', '서울특별시 강남구 역삼동 819-3', '삼오빌딩 5-9층', '2022-11-24 15:19:38', 1);
+INSERT INTO onemoa.product_order (pono, mno, pno, pstno, base_addr, detail_addr, cdt, scno) VALUES (43, 8, 2, '6134', '서울특별시 강남구 역삼동 819-3', '삼오빌딩 5-9층', '2022-11-24 15:23:28', 1);
+INSERT INTO onemoa.product_order (pono, mno, pno, pstno, base_addr, detail_addr, cdt, scno) VALUES (44, 11, 14, '6134', '서울특별시 강남구 역삼동 819-3', '삼오빌딩 5-9층', '2022-11-24 15:31:17', 1);
+INSERT INTO onemoa.product_order (pono, mno, pno, pstno, base_addr, detail_addr, cdt, scno) VALUES (45, 40, 19, '6134', '서울특별시 강남구 역삼동 819-3', '삼오빌딩 5-9층', '2022-11-24 15:39:13', 1);
+INSERT INTO onemoa.product_order (pono, mno, pno, pstno, base_addr, detail_addr, cdt, scno) VALUES (46, 21, 33, '6134', '서울특별시 강남구 역삼동 819-3', '삼오빌딩 5-9층', '2022-11-24 16:20:34', 1);
+INSERT INTO onemoa.product_order (pono, mno, pno, pstno, base_addr, detail_addr, cdt, scno) VALUES (47, 30, 19, '6134', '서울특별시 강남구 역삼동 819-3', '삼오빌딩 5-9층', '2022-11-24 17:56:31', 4);
+INSERT INTO onemoa.product_order (pono, mno, pno, pstno, base_addr, detail_addr, cdt, scno) VALUES (48, 20, 19, '6134', '서울특별시 강남구 역삼동 819-3', '삼오빌딩 5-9층', '2022-11-24 19:05:56', 4);
+INSERT INTO onemoa.product_order (pono, mno, pno, pstno, base_addr, detail_addr, cdt, scno) VALUES (49, 2, 71, '6134', '서울특별시 강남구 역삼동 819-3', '삼오빌딩 5-9층', '2022-11-24 19:52:55', 1);
+INSERT INTO onemoa.product_order (pono, mno, pno, pstno, base_addr, detail_addr, cdt, scno) VALUES (50, 2, 12, '6134', '서울특별시 강남구 역삼동 819-3', '삼오빌딩 5-9층', '2022-11-24 19:53:38', 4);
+INSERT INTO onemoa.product_order (pono, mno, pno, pstno, base_addr, detail_addr, cdt, scno) VALUES (51, 2, 13, '6134', '서울특별시 강남구 역삼동 819-3', '삼오빌딩 5-9층', '2022-11-24 20:08:41', 4);
+INSERT INTO onemoa.product_order (pono, mno, pno, pstno, base_addr, detail_addr, cdt, scno) VALUES (53, 1, 23, '6134', '서울특별시 강남구 역삼동 819-3', '삼오빌딩 5-9층', '2022-11-25 10:42:28', 1);
+INSERT INTO onemoa.product_order (pono, mno, pno, pstno, base_addr, detail_addr, cdt, scno) VALUES (54, 2, 18, '6134', '서울특별시 강남구 역삼동 819-3', '삼오빌딩 5-9층', '2022-11-25 10:50:29', 1);
+INSERT INTO onemoa.product_order (pono, mno, pno, pstno, base_addr, detail_addr, cdt, scno) VALUES (55, 2, 12, '6134', '서울특별시 강남구 역삼동 819-3', '삼오빌딩 5-9층', '2022-11-25 10:51:44', 4);
+INSERT INTO onemoa.product_order (pono, mno, pno, pstno, base_addr, detail_addr, cdt, scno) VALUES (56, 2, 13, '6134', '서울특별시 강남구 역삼동 819-3', '삼오빌딩 5-9층', '2022-11-25 11:14:52', 4);
+INSERT INTO onemoa.product_order (pono, mno, pno, pstno, base_addr, detail_addr, cdt, scno) VALUES (57, 2, 19, '6134', '서울특별시 강남구 역삼동 819-3', '삼오빌딩 5-9층', '2022-11-25 16:30:07', 4);
+
+
+-- order_review
+INSERT INTO onemoa.order_review (prno, mno, title, cont, cdt, pono, status, score) VALUES (40, 1, ' 아이들의 학습 집중도가 향상되었어요', ' 너무 마음에 드는 페이지입니다~', '2022-11-22', 32, 1, 5.0);
+INSERT INTO onemoa.order_review (prno, mno, title, cont, cdt, pono, status, score) VALUES (41, 10, ' 너무 마음에 드는 페이지입니다~', ' 너무 마음에 드는 페이지입니다~', '2022-11-23', 2, 1, 5.0);
+INSERT INTO onemoa.order_review (prno, mno, title, cont, cdt, pono, status, score) VALUES (42, 10, ' 너무 마음에 드는 디자인니다~', ' 너무 마음에 드는 디자인입니다~', '2022-11-24', 34, 1, 4.0);
+INSERT INTO onemoa.order_review (prno, mno, title, cont, cdt, pono, status, score) VALUES (43, 11, ' 너무 마음에 드는 디자인니다~', ' 너무 마음에 드는 디자인입니다~', '2022-11-24', 35, 1, 3.5);
+INSERT INTO onemoa.order_review (prno, mno, title, cont, cdt, pono, status, score) VALUES (44, 12, ' 너무 마음에 드는 디자인니다~', ' 너무 마음에 드는 디자인입니다~', '2022-11-24', 36, 1, 2.0);
+INSERT INTO onemoa.order_review (prno, mno, title, cont, cdt, pono, status, score) VALUES (45, 13, ' 너무 마음에 드는 디자인니다~', ' 너무 마음에 드는 디자인입니다~', '2022-11-24', 37, 1, 4.0);
+INSERT INTO onemoa.order_review (prno, mno, title, cont, cdt, pono, status, score) VALUES (46, 1, ' 최고의 품질', ' 홈페이지 제작 외주 많이 맡겨봤지만 여기가 최고네요', '2022-11-24', 33, 1, 5.0);
+INSERT INTO onemoa.order_review (prno, mno, title, cont, cdt, pono, status, score) VALUES (47, 2, ' 너무 마음에 드는 로고네요~', ' 지인들이 로고가 예쁘다네요 ㅎㅎㅎ', '2022-11-24', 38, 1, 3.0);
+INSERT INTO onemoa.order_review (prno, mno, title, cont, cdt, pono, status, score) VALUES (48, 6, ' 디자인이 필요하면 이분께!', ' 덕분에 저희 사업이 잘 될 것 같아요! 저렴한 가격에 멋진 디자인입니다.', '2022-11-24', 40, 1, 5.0);
+INSERT INTO onemoa.order_review (prno, mno, title, cont, cdt, pono, status, score) VALUES (49, 8, ' 마음에 듭니다', ' 정말 마음에 들어요', '2022-11-24', 42, 1, 5.0);
+INSERT INTO onemoa.order_review (prno, mno, title, cont, cdt, pono, status, score) VALUES (50, 40, '디자인 이뻐요', '디자인 이뻐요', '2022-11-24', 45, 1, 3.0);
+INSERT INTO onemoa.order_review (prno, mno, title, cont, cdt, pono, status, score) VALUES (51, 21, ' 가격이 저렴하고 페이지도 마음에 들어요!', ' 저렴한 가격, 좋은 품질! 감사합니다.', '2022-11-24', 46, 1, 5.0);
+INSERT INTO onemoa.order_review (prno, mno, title, cont, cdt, pono, status, score) VALUES (52, 30, '연정님 디자인 이뻐요', '연정님 디자인 이뻐요', '2022-11-25', 47, 1, 5.0);
+INSERT INTO onemoa.order_review (prno, mno, title, cont, cdt, pono, status, score) VALUES (53, 20, '디자인 이뻐요.', '디자인 이뻐요.', '2022-11-25', 48, 1, 3.5);
+INSERT INTO onemoa.order_review (prno, mno, title, cont, cdt, pono, status, score) VALUES (54, 2, '연정님 디자인 이뻐요', '연정님 디자인 이뻐요', '2022-11-24', 50, 1, 5.0);
+INSERT INTO onemoa.order_review (prno, mno, title, cont, cdt, pono, status, score) VALUES (55, 2, '연정님 디자인 이뻐요', '연정님 디자인 이뻐요', '2022-11-24', 51, 1, 5.0);
+INSERT INTO onemoa.order_review (prno, mno, title, cont, cdt, pono, status, score) VALUES (56, 2, '디자인 이뻐요', '디자인 이뻐요', '2022-11-25', 55, 1, 5.0);
+INSERT INTO onemoa.order_review (prno, mno, title, cont, cdt, pono, status, score) VALUES (57, 2, '디자인 이뻐요', '디자인 이뻐요', '2022-11-25', 56, 1, 5.0);
+INSERT INTO onemoa.order_review (prno, mno, title, cont, cdt, pono, status, score) VALUES (58, 2, '디자인 이뻐요~', '디자인 이뻐요~', '2022-11-25', 57, 1, 5.0);
+
+
+-- order_review_file
+INSERT INTO onemoa.order_review_file (prfno, fname, fpath, prno) VALUES (49, '스크린샷 2022-11-24 15.05.06.png', '45b36997-90cb-4031-8401-e8aa2e037f03', 46);
+INSERT INTO onemoa.order_review_file (prfno, fname, fpath, prno) VALUES (50, '스크린샷 2022-11-24 15.08.03.png', '4004fdd1-218c-4411-8e20-58a33b2d0071', 47);
+INSERT INTO onemoa.order_review_file (prfno, fname, fpath, prno) VALUES (51, '스크린샷 2022-11-24 15.15.32.png', '5b8f90a2-c30d-48aa-bd37-a4f55cc9809e', 48);
+INSERT INTO onemoa.order_review_file (prfno, fname, fpath, prno) VALUES (52, '스크린샷 2022-11-24 15.22.22.png', 'b13da553-c22a-4b77-bb9c-cfb5a4dc72d2', 49);
+INSERT INTO onemoa.order_review_file (prfno, fname, fpath, prno) VALUES (53, 'KakaoTalk_Photo_2022-11-15-17-11-28.png', 'aa3f8d74-520f-4ada-98b8-89b559a8780c', 50);
+INSERT INTO onemoa.order_review_file (prfno, fname, fpath, prno) VALUES (54, '스크린샷 2022-11-24 16.23.10.png', 'a593e0e6-03c4-4fc3-ad15-24acb9c4485c', 51);
+INSERT INTO onemoa.order_review_file (prfno, fname, fpath, prno) VALUES (55, 'KakaoTalk_Photo_2022-11-15-17-11-21.png', '2a9ca1db-370f-4daa-922f-4bccfcdf5452', 54);
+INSERT INTO onemoa.order_review_file (prfno, fname, fpath, prno) VALUES (56, 'p1-2.jpeg', '32def2e7-40e4-4bfa-966e-86c31bf061a1', 55);
+INSERT INTO onemoa.order_review_file (prfno, fname, fpath, prno) VALUES (57, 'p1-1.jpeg', '25927291-c60b-4372-b4e3-d29e2ae7a7a5', 56);
+INSERT INTO onemoa.order_review_file (prfno, fname, fpath, prno) VALUES (58, '8f888d0f-b23a-447e-8337-4df38c34fe63.jpeg', '1ef84312-8e2d-4361-b0f5-cbc4261e17c9', 57);
+INSERT INTO onemoa.order_review_file (prfno, fname, fpath, prno) VALUES (59, '3346abdf-2e75-447f-9095-5dfd2446cb67.jpeg', 'dbce9659-4537-48d7-b938-be6c6fb20bce', 58);
+
+

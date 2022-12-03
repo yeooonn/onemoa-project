@@ -626,12 +626,12 @@ ALTER TABLE product_order
 
 -- 1대1대화
 CREATE TABLE message (
-  msgno INTEGER    NOT NULL COMMENT '메신저번호', -- 메신저번호
-  mno   INTEGER    NOT NULL COMMENT '질문자번호', -- 질문자번호
-  mno2  INTEGER    NOT NULL COMMENT '판매자번호', -- 판매자번호
-  cont  MEDIUMTEXT NOT NULL COMMENT '메시지내용', -- 메시지내용
-  type  BOOLEAN    NOT NULL COMMENT '메시지유형', -- 메시지유형
-  cdt   DATE       NOT NULL DEFAULT now() COMMENT '생성날짜' -- 생성날짜
+  msgno    INTEGER    NOT NULL COMMENT '메신저번호', -- 메신저번호
+  sender   INTEGER    NOT NULL COMMENT '발신자', -- 발신자
+  receiver INTEGER    NOT NULL COMMENT '수신자', -- 수신자
+  cont     MEDIUMTEXT NULL     COMMENT '메시지내용', -- 메시지내용
+  type     BOOLEAN    NOT NULL DEFAULT false COMMENT '메시지유형', -- 메시지유형
+  cdt      DATETIME   NOT NULL DEFAULT now() COMMENT '생성날짜' -- 생성날짜
 )
 COMMENT '1대1대화';
 
@@ -1026,7 +1026,7 @@ ALTER TABLE product_order
 ALTER TABLE message
   ADD CONSTRAINT FK_member_TO_message -- 회원 -> 1대1대화
     FOREIGN KEY (
-      mno -- 질문자번호
+      sender -- 발신자
     )
     REFERENCES member ( -- 회원
       mno -- 회원번호
@@ -1036,7 +1036,7 @@ ALTER TABLE message
 ALTER TABLE message
   ADD CONSTRAINT FK_member_TO_message2 -- 회원 -> 1대1대화2
     FOREIGN KEY (
-      mno2 -- 판매자번호
+      receiver -- 수신자
     )
     REFERENCES member ( -- 회원
       mno -- 회원번호
